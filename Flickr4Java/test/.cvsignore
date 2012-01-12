@@ -1,0 +1,6 @@
+TEST-com.flickr4java.flickr.PeopleInterfaceTest.txt
+TEST-com.flickr4java.flickr.BlogsInterfaceTest.txt
+TEST-com.flickr4java.flickr.FavoritesInterfaceTest.txt
+TEST-com.flickr4java.flickr.ContactsInterfaceTest.txt
+TEST-com.flickr4java.flickr.GroupsInterfaceTest.txt
+build

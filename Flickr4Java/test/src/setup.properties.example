@@ -1,0 +1,19 @@
+host = www.flickr.com
+apiKey = your API key
+email = your login email
+password = password
+username = username
+nsid = 7317713@N04
+groupid = 34427469792@N01
+testgroupid = 52240590759@N01
+photoid = 419231223
+photoidOriginal = 3264000
+photosetid = 122485
+imagefile = path/to/test/image
+secret = your secret
+token = your token (with delete privileges)
+
+# id of a photo in your stream
+# which the tests can use to set, get and remove geo data
+# existing geo data will be destroyed!
+geo.write.photoid = 430641361

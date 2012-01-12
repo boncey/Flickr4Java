@@ -1,0 +1,11 @@
+To build flickrj you must download the source code from CVS.
+
+flickrj is built with Ant.  Install the current version of Ant, cd into the 
+flickrj/api directory downloaded from CVS and type 'ant'.
+
+You should be able to build flickrj with either JDK 1.4 or 1.5. 
+The default distribution is built to JDK 1.4.  This can now be changed by
+editing the build.properties and changing the javac.source and javac.target to 
+the desired target VM.  
+
+To execute tests cd into flickrj/api/test and type 'ant test'.

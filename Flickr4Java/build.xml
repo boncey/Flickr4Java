@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="flickrj API" default="build" basedir=".">
+
+	<property file="build.properties"/>
+
+        <path id="build.classpath">
+          <pathelement location="${lib.dir}/axis.jar"/>
+          <pathelement location="${lib.dir}/commons-discovery-0.2.jar"/>
+          <pathelement location="${lib.dir}/commons-logging-1.0.4.jar"/>
+          <pathelement location="${lib.dir}/jaxrpc.jar"/>
+          <pathelement location="${lib.dir}/log4j-1.2.8.jar"/>
+          <pathelement location="${lib.dir}/saaj.jar"/>
+        </path>
+
+    	<path id="examples.classpath">
+    	  <pathelement location="${build.dir}/${vname}.jar"/>
+		</path>
+	
+	<!-- ==================================================== -->
+	<!-- Initialize Ant                                       -->
+	<!-- ==================================================== -->
+	
+	<target name="init">
+        
+	</target>
+	
+	<!-- ==================================================== -->
+	<!-- Compile the source code.                             -->
+	<!-- ==================================================== -->
+
+	<target	name="compile" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes}"/>
+		
+		<javac
+			srcdir="${src.dir}" 
+			destdir="${build.classes}"
+			classpathref="build.classpath"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			optimize="${javac.optimize}"
+			source="${javac.source}" 
+			target="${javac.target}">
+			<include name="**/*.java"/>
+		</javac>
+	</target>
+	
+	<!-- ==================================================== -->
+	<!-- Create the JAR archive.                              -->
+	<!-- ==================================================== -->
+
+	<target	name="jar" depends="compile">
+		<jar 
+			jarfile="${build.dir}/${vname}.jar" 
+			basedir="${build.classes}">
+			<include name="**/*"/>
+		</jar>
+	</target>
+	
+	<!-- ==================================================== -->
+	<!-- Generate the API documentation.                      -->
+	<!-- ==================================================== -->
+	
+	<target	name="javadocs"	depends="init">
+		<mkdir dir="${build.javadocs}"/>
+		<javadoc
+			packagenames="${packages}"
+			sourcepath="${src.dir}"
+			destdir="${build.javadocs}"
+			classpathref="build.classpath"
+			overview="${overview}"
+			author="${javadoc.author}"
+			version="${javadoc.version}"
+			windowtitle="${vName} API"
+			doctitle="${vName}"
+			bottom="${copyright}"
+			stylesheetfile="docs/stylesheet.css"/>
+	</target>
+	
+	<!-- ==================================================== -->
+	<!-- Generate the API documentation and compress to ZIP   -->
+	<!-- ==================================================== -->
+	
+	<target name="javadocs-zip" depends="javadocs">
+		<zip zipfile="${vname}-javadocs.zip" basedir="${build.javadocs}"/>
+	</target>
+	
+	<!-- ==================================================== -->
+	<!-- Build the application.                               -->
+	<!-- ==================================================== -->
+	
+	<target name="build" depends="jar">
+		<!--
+        <copy todir="${build.lib}">
+            <fileset dir="${lib.dir}"/>
+		</copy>
+        -->
+	</target>
+
+	<!-- ==================================================== -->
+	<!-- Execute the JUnit tests                              -->
+	<!-- ==================================================== -->
+	
+	<target name="test" depends="build">
+		<ant dir="${test.dir}" inheritAll="false"/>
+	</target>
+	
+	<!-- ==================================================== -->
+	<!-- Create the distribution                              -->
+	<!-- ==================================================== -->
+
+	<target name="dist" depends="clean, build, javadocs">
+		<copy file="README.txt" todir="${build.dir}"/>
+		<copy file="LICENSE-apache.txt" todir="${build.dir}"/>
+		<copy file="LICENSE.txt" todir="${build.dir}"/>
+		<copy file="CHANGELOG.txt" todir="${build.dir}"/>
+		<copy file="BUILDING.txt" todir="${build.dir}"/>
+		<copy file="CONTRIB.txt" todir="${build.dir}"/>
+		
+		<copy todir="${build.docs}">
+			<fileset dir="${docs.dir}"/>
+		</copy>
+		
+		<mkdir dir="${build.dir}/examples"/>
+		<copy todir="${build.dir}/examples">
+			<fileset dir="${examples.dir}"/>
+		</copy>
+		
+		<delete dir="${build.classes}"/>
+		
+		<mkdir dir="zip/${vname}"/>
+		<copy todir="zip/${vname}">
+			<fileset dir="${build.dir}"/>
+		</copy>
+		<zip zipfile="${name}-${version}.zip" basedir="zip"/>
+		<tar tarfile="${name}-${version}.tar" basedir="zip"/>
+		<gzip zipfile="${name}-${version}.tar.gz" src="${name}-${version}.tar"/>
+		<delete file="${name}-${version}.tar"/>
+		<delete dir="zip"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compiles the example code                                           -->
+	<!-- =================================================================== -->
+	<target name="examples" depends="jar">
+	    <javac srcdir="${examples.dir}"
+	    	classpathref="examples.classpath"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			optimize="${javac.optimize}">
+			<include name="**/*.java"/>
+	    </javac>
+	</target>
+	
+	<!-- ==================================================== -->
+	<!-- Clean up generated stuff                             -->
+	<!-- ==================================================== -->
+
+	<target	name="clean">
+		<delete dir="${build.dir}"/>
+ 		<ant dir="${test.dir}" inheritAll="false" target="clean"/>
+	</target>
+	
+</project>

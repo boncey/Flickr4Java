@@ -344,7 +344,7 @@ public class GeoInterface {
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      */
     public PhotoList photosForLocation(
         GeoData location,

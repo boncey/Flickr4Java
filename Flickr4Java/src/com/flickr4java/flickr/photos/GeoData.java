@@ -38,11 +38,11 @@ public class GeoData {
      * World level is 1, Country is ~3, Region ~6, City ~11, Street ~16.
      *
      * @param accuracy
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_WORLD
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_COUNTRY
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_REGION
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_CITY
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_STREET
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_WORLD
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_COUNTRY
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_REGION
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_CITY
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_STREET
      */
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;

@@ -76,9 +76,9 @@ public class UploadMetaData {
     /**
      * Get the Content-type of the Photo.
      *
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_OTHER
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_PHOTO
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_SCREENSHOT
      * @return contentType
      */
     public String getContentType() {
@@ -88,9 +88,9 @@ public class UploadMetaData {
     /**
      * Set the Content-type of the Photo.
      *
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_OTHER
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_PHOTO
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_SCREENSHOT
      * @param contentType
      */
     public void setContentType(String contentType) {
@@ -108,9 +108,9 @@ public class UploadMetaData {
     /**
      * Get the safety-level.
      *
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_MODERATE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_RESTRICTED
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_SAFE
      * @return The safety-level
      */
     public String getSafetyLevel() {
@@ -120,9 +120,9 @@ public class UploadMetaData {
     /**
      * Set the safety level (adultness) of a photo.<p>
      *
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_MODERATE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_RESTRICTED
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_SAFE
      * @param safetyLevel
      */
     public void setSafetyLevel(String safetyLevel) {

@@ -6,7 +6,7 @@ import java.util.Date;
  * Activity-Event. It's type is either 'note' or 'comment', or 'fave'.
  * id is set only, if the type of the Event is 'note' or 'comment'.
  *
- * @see com.flickr4java.flickr.activity.Item
+ * @see com.flickr4java.flickr.test.activity.Item
  * @author mago
  * @version $Id: Event.java,v 1.2 2007/07/22 16:18:20 x-mago Exp $
  */

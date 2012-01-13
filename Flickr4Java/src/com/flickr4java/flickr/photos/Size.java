@@ -21,50 +21,50 @@ public class Size {
 	/**
      * Thumbnail, 100 on longest side.
      *
-     * @see com.flickr4java.flickr.photos.Size#getLabel()
-     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.test.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
     public static final int THUMB = 0;
 
     /**
      * Small square 75x75.
      *
-     * @see com.flickr4java.flickr.photos.Size#getLabel()
-     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.test.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
     public static final int SQUARE = 1;
 
     /**
      * Small, 240 on longest side.
      *
-     * @see com.flickr4java.flickr.photos.Size#getLabel()
-     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.test.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
     public static final int SMALL = 2;
 
     /**
      * Medium, 500 on longest side.
      *
-     * @see com.flickr4java.flickr.photos.Size#getLabel()
-     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.test.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
     public static final int MEDIUM = 3;
 
     /**
      * Large, 1024 on longest side (only exists for very large original images).
      *
-     * @see com.flickr4java.flickr.photos.Size#getLabel()
-     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.test.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
     public static final int LARGE = 4;
 
@@ -72,10 +72,10 @@ public class Size {
      * Original image, either a jpg, gif or png, depending on source format.<br>
      * Only from pro-users original images are available!
      *
-     * @see com.flickr4java.flickr.photos.Size#getLabel()
-     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.test.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
     public static final int ORIGINAL = 5;
 
@@ -93,12 +93,12 @@ public class Size {
      * Size of the Photo.
      *
      * @return label
-     * @see com.flickr4java.flickr.photos.Size#THUMB
-     * @see com.flickr4java.flickr.photos.Size#SQUARE
-     * @see com.flickr4java.flickr.photos.Size#SMALL
-     * @see com.flickr4java.flickr.photos.Size#MEDIUM
-     * @see com.flickr4java.flickr.photos.Size#LARGE
-     * @see com.flickr4java.flickr.photos.Size#ORIGINAL
+     * @see com.flickr4java.flickr.test.photos.Size#THUMB
+     * @see com.flickr4java.flickr.test.photos.Size#SQUARE
+     * @see com.flickr4java.flickr.test.photos.Size#SMALL
+     * @see com.flickr4java.flickr.test.photos.Size#MEDIUM
+     * @see com.flickr4java.flickr.test.photos.Size#LARGE
+     * @see com.flickr4java.flickr.test.photos.Size#ORIGINAL
      */
     public int getLabel() {
         return label;
@@ -130,12 +130,12 @@ public class Size {
      * Size of the Photo.
      *
      * @param label The integer-representation of a size
-     * @see com.flickr4java.flickr.photos.Size#THUMB
-     * @see com.flickr4java.flickr.photos.Size#SQUARE
-     * @see com.flickr4java.flickr.photos.Size#SMALL
-     * @see com.flickr4java.flickr.photos.Size#MEDIUM
-     * @see com.flickr4java.flickr.photos.Size#LARGE
-     * @see com.flickr4java.flickr.photos.Size#ORIGINAL
+     * @see com.flickr4java.flickr.test.photos.Size#THUMB
+     * @see com.flickr4java.flickr.test.photos.Size#SQUARE
+     * @see com.flickr4java.flickr.test.photos.Size#SMALL
+     * @see com.flickr4java.flickr.test.photos.Size#MEDIUM
+     * @see com.flickr4java.flickr.test.photos.Size#LARGE
+     * @see com.flickr4java.flickr.test.photos.Size#ORIGINAL
      */
     public void setLabel(int label) {
         this.label = label;

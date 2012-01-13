@@ -46,7 +46,7 @@ public class PandaInterface {
 
     /**
      * Return a list of Flickr pandas, from whom you can request photos using
-     * the {@link com.flickr4java.flickr.panda.PandaInterface#getPhotos(Panda, Set, int, int)}
+     * the {@link com.flickr4java.flickr.test.panda.PandaInterface#getPhotos(Panda, Set, int, int)}
      * API method.
      *
      * This method does not require authentication.
@@ -83,14 +83,14 @@ public class PandaInterface {
      * This method does not require authentication.
      *
      * @param panda The panda to ask for photos from.
-     * @param extras A set of Strings controlling the extra information to fetch for each returned record. {@link com.flickr4java.flickr.photos.Extras#ALL_EXTRAS}
+     * @param extras A set of Strings controlling the extra information to fetch for each returned record. {@link com.flickr4java.flickr.test.photos.Extras#ALL_EXTRAS}
      * @param perPage The number of photos to show per page
      * @param page The page offset
      * @return A PhotoList
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      */
     public PhotoList getPhotos(Panda panda, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
         ArrayList pandas = new ArrayList();

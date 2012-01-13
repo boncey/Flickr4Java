@@ -413,13 +413,13 @@ public class PhotosetsInterface {
      * 
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.photos.Extras
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
      * @param photosetId The photoset ID
      * @param extras Set of extra-fields
      * @param privacy_filter filter value for authenticated calls
@@ -491,13 +491,13 @@ public class PhotosetsInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.photos.Extras
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
      * @param photosetId The photoset ID
      * @param perPage The number of photos per page
      * @param page The page offset

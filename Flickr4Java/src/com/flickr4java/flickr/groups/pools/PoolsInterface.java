@@ -169,7 +169,7 @@ public class PoolsInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param groupId The group ID
      * @param tags The optional tags (may be null)
      * @param extras Set of extra-attributes to include (may be null)
@@ -241,7 +241,7 @@ public class PoolsInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param groupId The group ID
      * @param tags The optional tags (may be null)
      * @param perPage The number of photos per page (0 to ignore)

@@ -87,11 +87,11 @@ public class SearchParameters {
      * Defaults to maximum value if not specified.
      *
      * @param accuracy from 1 to 16
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_WORLD
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_COUNTRY
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_REGION
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_CITY
-     * @see com.flickr4java.flickr.Flickr#ACCURACY_STREET
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_WORLD
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_COUNTRY
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_REGION
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_CITY
+     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_STREET
      */
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
@@ -249,8 +249,8 @@ public class SearchParameters {
      * url_sq, url_t, url_s, url_m, url_l, url_o
      *
      * @param extras A set of extra-attributes
-     * @see com.flickr4java.flickr.photos.Extras#ALL_EXTRAS
-     * @see com.flickr4java.flickr.photos.Extras#MIN_EXTRAS
+     * @see com.flickr4java.flickr.test.photos.Extras#ALL_EXTRAS
+     * @see com.flickr4java.flickr.test.photos.Extras#MIN_EXTRAS
      */
     public void setExtras(Set extras) {
         this.extras = extras;
@@ -309,9 +309,9 @@ public class SearchParameters {
      * Un-authed calls can only see Safe content.
      *
      * @param level 1, 2 or 3
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_SAFE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_MODERATE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_RESTRICTED
      */
     public void setSafeSearch(String level) {
         this.safeSearch = level;
@@ -329,13 +329,13 @@ public class SearchParameters {
      * Set the sort-order.<p>
      * The default is <a href="#DATE_POSTED_DESC">DATE_POSTED_DESC</a>
      *
-     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_POSTED_ASC
-     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_POSTED_DESC
-     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_TAKEN_ASC
-     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_TAKEN_DESC
-     * @see com.flickr4java.flickr.photos.SearchParameters#INTERESTINGNESS_ASC
-     * @see com.flickr4java.flickr.photos.SearchParameters#INTERESTINGNESS_DESC
-     * @see com.flickr4java.flickr.photos.SearchParameters#RELEVANCE
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_POSTED_ASC
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_POSTED_DESC
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_TAKEN_ASC
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_TAKEN_DESC
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#INTERESTINGNESS_ASC
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#INTERESTINGNESS_DESC
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#RELEVANCE
      * @param order
      */
     public void setSort(int order) {
@@ -344,7 +344,7 @@ public class SearchParameters {
 
     /**
      * @return A placeId
-     * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
+     * @see com.flickr4java.flickr.test.places.PlacesInterface#resolvePlaceId(String)
      */
     public String getPlaceId() {
         return placeId;
@@ -363,9 +363,9 @@ public class SearchParameters {
      * (though we may extend the limit in the future).
      *
      * @param placeId
-     * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
-     * @see com.flickr4java.flickr.places.Place#getPlaceId()
-     * @see com.flickr4java.flickr.places.Location#getPlaceId()
+     * @see com.flickr4java.flickr.test.places.PlacesInterface#resolvePlaceId(String)
+     * @see com.flickr4java.flickr.test.places.Place#getPlaceId()
+     * @see com.flickr4java.flickr.test.places.Location#getPlaceId()
      */
     public void setPlaceId(String placeId) {
         this.placeId = placeId;
@@ -390,8 +390,8 @@ public class SearchParameters {
      * (though flickr may extend the limit in the future).<p/>
      *
      * @param woeId
-     * @see com.flickr4java.flickr.places.Place#getWoeId()
-     * @see com.flickr4java.flickr.places.Location#getWoeId()
+     * @see com.flickr4java.flickr.test.places.Place#getWoeId()
+     * @see com.flickr4java.flickr.test.places.Location#getWoeId()
      */
     public void setWoeId(String woeId) {
         this.woeId = woeId;

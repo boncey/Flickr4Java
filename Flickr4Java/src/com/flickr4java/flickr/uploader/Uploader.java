@@ -24,14 +24,14 @@ import com.flickr4java.flickr.util.StringUtilities;
 /**
  * Upload a photo.<p>
  *
- * Setting {@link com.flickr4java.flickr.uploader.UploadMetaData#setAsync(boolean)}
+ * Setting {@link com.flickr4java.flickr.test.uploader.UploadMetaData#setAsync(boolean)}
  * you can switch between synchronous and asynchronous uploads.<p>
  *
  * Synchronous uploads return the photoId, whilst asynchronous uploads
  * return a ticketId.<p>
  *
  * TicketId's can be tracked with
- * {@link com.flickr4java.flickr.photos.upload.UploadInterface#checkTickets(Set)}
+ * {@link com.flickr4java.flickr.test.photos.upload.UploadInterface#checkTickets(Set)}
  * for completion.
  *
  * @author Anthony Eden

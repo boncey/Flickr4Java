@@ -7,7 +7,7 @@ This API has been tested with JDK 1.4 and JDK 1.5. The default distribution is b
 
 Please note: this library is not thread safe.
 
-To use the API just construct a instance of the class com.flickr4java.flickr.Flickr and request the interfaces which you need to work with.  For example, to send a test ping to the Flickr service:
+To use the API just construct a instance of the class com.flickr4java.flickr.test.Flickr and request the interfaces which you need to work with.  For example, to send a test ping to the Flickr service:
 
 String apiKey = YOUR_API_KEY
 Flickr f = new Flickr(apiKey);

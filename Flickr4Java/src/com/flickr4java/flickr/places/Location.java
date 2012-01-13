@@ -8,8 +8,8 @@ package com.flickr4java.flickr.places;
  *
  * @author mago
  * @version $Id: Location.java,v 1.4 2009/07/12 22:43:07 x-mago Exp $
- * @see com.flickr4java.flickr.photos.SearchParameters#setPlaceId(String)
- * @see com.flickr4java.flickr.photos.Photo#getPlaceId()
+ * @see com.flickr4java.flickr.test.photos.SearchParameters#setPlaceId(String)
+ * @see com.flickr4java.flickr.test.photos.Photo#getPlaceId()
  */
 public class Location {
     private static final long serialVersionUID = 12L;
@@ -79,7 +79,7 @@ public class Location {
     /**
      *
      * @return woeid
-     * @see com.flickr4java.flickr.photos.SearchParameters#setWoeId(String)
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#setWoeId(String)
      */
     public String getWoeId() {
         return woeId;

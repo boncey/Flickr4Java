@@ -172,7 +172,7 @@ public class PeopleInterface {
      *
      * The groups will contain only the members nsid, name, admin and eighteenplus.
      * If you want the whole group-information, you have to call 
-     * {@link com.flickr4java.flickr.groups.GroupsInterface#getInfo(String)}.
+     * {@link com.flickr4java.flickr.test.groups.GroupsInterface#getInfo(String)}.
      *
      * This method does not require authentication.
      *
@@ -220,7 +220,7 @@ public class PeopleInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param userId The User ID
      * @param extras Set of extra-attributes to include (may be null)
      * @param perPage The number of photos per page

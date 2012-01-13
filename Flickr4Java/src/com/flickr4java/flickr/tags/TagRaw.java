@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @see com.flickr4java.flickr.tags.TagsInterface#getListUserRaw
+ * @see com.flickr4java.flickr.test.tags.TagsInterface#getListUserRaw
  * @author mago
  * @version $Id: TagRaw.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
  */

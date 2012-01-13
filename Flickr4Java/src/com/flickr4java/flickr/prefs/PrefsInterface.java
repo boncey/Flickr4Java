@@ -52,9 +52,9 @@ public class PrefsInterface {
     /**
      * Returns the default content type preference for the user.
      *
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_OTHER
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_PHOTO
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_SCREENSHOT
      * @return The content-type
      * @throws IOException
      * @throws SAXException
@@ -87,12 +87,12 @@ public class PrefsInterface {
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PRIVATE
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PRIVATE
      */
     public int getGeoPerms() throws IOException, SAXException, FlickrException {
         List parameters = new ArrayList();
@@ -152,9 +152,9 @@ public class PrefsInterface {
     /**
      * Returns the default safety level preference for the user.
      *
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_MODERATE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_RESTRICTED
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_SAFE
      * @return The current users safety-level
      * @throws IOException
      * @throws SAXException
@@ -183,12 +183,12 @@ public class PrefsInterface {
     /**
      * Returns the default privacy level preference for the user.
      *
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException

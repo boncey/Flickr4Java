@@ -77,7 +77,7 @@ public class InterestingnessInterface {
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      */
     public PhotoList getList(String date, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
         List parameters = new ArrayList();
@@ -130,7 +130,7 @@ public class InterestingnessInterface {
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      */
     public PhotoList getList(Date date, Set extras, int perPage, int page)
       throws FlickrException, IOException, SAXException {

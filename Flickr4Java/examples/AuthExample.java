@@ -9,14 +9,14 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.util.IOUtilities;
+import com.flickr4java.flickr.test.Flickr;
+import com.flickr4java.flickr.test.FlickrException;
+import com.flickr4java.flickr.test.REST;
+import com.flickr4java.flickr.test.RequestContext;
+import com.flickr4java.flickr.test.auth.Auth;
+import com.flickr4java.flickr.test.auth.AuthInterface;
+import com.flickr4java.flickr.test.auth.Permission;
+import com.flickr4java.flickr.test.util.IOUtilities;
 
 /**
  * Demonstrates the authentication-process.<p>

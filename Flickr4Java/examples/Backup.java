@@ -13,20 +13,20 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.photos.PhotoList;
-import com.flickr4java.flickr.photos.PhotosInterface;
-import com.flickr4java.flickr.photos.Size;
-import com.flickr4java.flickr.photosets.Photoset;
-import com.flickr4java.flickr.photosets.PhotosetsInterface;
-import com.flickr4java.flickr.util.AuthStore;
-import com.flickr4java.flickr.util.FileAuthStore;
+import com.flickr4java.flickr.test.Flickr;
+import com.flickr4java.flickr.test.FlickrException;
+import com.flickr4java.flickr.test.REST;
+import com.flickr4java.flickr.test.RequestContext;
+import com.flickr4java.flickr.test.auth.Auth;
+import com.flickr4java.flickr.test.auth.Permission;
+import com.flickr4java.flickr.test.photos.Photo;
+import com.flickr4java.flickr.test.photos.PhotoList;
+import com.flickr4java.flickr.test.photos.PhotosInterface;
+import com.flickr4java.flickr.test.photos.Size;
+import com.flickr4java.flickr.test.photosets.Photoset;
+import com.flickr4java.flickr.test.photosets.PhotosetsInterface;
+import com.flickr4java.flickr.test.util.AuthStore;
+import com.flickr4java.flickr.test.util.FileAuthStore;
 
 /**
  * A simple program to backup all of a users private and public photos in a photoset aware manner.  If photos 

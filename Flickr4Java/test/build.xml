@@ -117,30 +117,30 @@
           <pathelement location="${root.dir}/lib/saaj.jar"/>
         </classpath>
 
-        <test name="com.flickr4java.flickr.ActivityInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.BlogsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.CommentsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.CommonsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.ContactsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.FavoritesInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.GeoInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.GroupsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.InterestingnessInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.MachinetagsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.MembersInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.ObjectTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.PandaInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.PeopleInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.PhotosetsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.PhotosInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.PlacesInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.PrefsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.TagsInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.TestInterfaceTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.UploaderTest" todir="${test.reports}"/>
-        <test name="com.flickr4java.flickr.ReflectionInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.ActivityInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.BlogsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.CommentsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.CommonsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.ContactsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.FavoritesInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.GeoInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.GroupsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.InterestingnessInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.MachinetagsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.MembersInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.ObjectTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.PandaInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.PeopleInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.PhotosetsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.PhotosInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.PlacesInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.PrefsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.TagsInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.TestInterfaceTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.UploaderTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.ReflectionInterfaceTest" todir="${test.reports}"/>
       	
-        <test name="com.flickr4java.flickr.CompletenessTest" todir="${test.reports}"/>
+        <test name="com.flickr4java.flickr.test.CompletenessTest" todir="${test.reports}"/>
      </junit>
       <echo message="Test reports are in ${test.reports}"/>
    </target>

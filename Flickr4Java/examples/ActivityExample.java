@@ -7,17 +7,17 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.activity.ActivityInterface;
-import com.flickr4java.flickr.activity.Event;
-import com.flickr4java.flickr.activity.Item;
-import com.flickr4java.flickr.activity.ItemList;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.util.IOUtilities;
+import com.flickr4java.flickr.test.Flickr;
+import com.flickr4java.flickr.test.FlickrException;
+import com.flickr4java.flickr.test.REST;
+import com.flickr4java.flickr.test.RequestContext;
+import com.flickr4java.flickr.test.activity.ActivityInterface;
+import com.flickr4java.flickr.test.activity.Event;
+import com.flickr4java.flickr.test.activity.Item;
+import com.flickr4java.flickr.test.activity.ItemList;
+import com.flickr4java.flickr.test.auth.Auth;
+import com.flickr4java.flickr.test.auth.Permission;
+import com.flickr4java.flickr.test.util.IOUtilities;
 
 /**
  * Demonstration of howto use the ActivityInterface.

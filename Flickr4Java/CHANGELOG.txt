@@ -101,7 +101,7 @@ Release 1.0b4 (July 23, 2007):
  - The methods setViews() and setRotation() set the value -1, if not available
  - Added BBox and safeSearch to SearchParameters
  - Added missing URL-encoding at REST-Post request.
- - com.flickr4java.flickr.photos.Size got constants for the sizes.
+ - com.flickr4java.flickr.test.photos.Size got constants for the sizes.
  - Fix of wrong tags-parsing in PhotoUtil for InterestingnessInterface#getList()
  - Set extras-constants in InterestingnessInterface deprecated,
    as they belong to photos.Extras

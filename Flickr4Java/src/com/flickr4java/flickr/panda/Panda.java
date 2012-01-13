@@ -5,7 +5,7 @@ package com.flickr4java.flickr.panda;
  *
  * @author mago
  * @version $Id: Panda.java,v 1.3 2009/07/12 22:43:07 x-mago Exp $
- * @see com.flickr4java.flickr.panda.PandaInterface#getPhotos(Panda, java.util.Set, int, int)
+ * @see com.flickr4java.flickr.test.panda.PandaInterface#getPhotos(Panda, java.util.Set, int, int)
  */
 public class Panda {
     private static final long serialVersionUID = 12L;

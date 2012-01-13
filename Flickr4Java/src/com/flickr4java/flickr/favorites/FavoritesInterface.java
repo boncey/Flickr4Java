@@ -80,7 +80,7 @@ public class FavoritesInterface {
      * @param page The page to view.  Values <= 0 will be ignored.
      * @param extras a Set Strings representing extra parameters to send
      * @return The Collection of Photo objects
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @throws IOException
      * @throws SAXException
      */
@@ -142,7 +142,7 @@ public class FavoritesInterface {
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      */
     public PhotoList getPublicList(String userId, int perPage, int page, Set extras)
             throws IOException, SAXException, FlickrException {

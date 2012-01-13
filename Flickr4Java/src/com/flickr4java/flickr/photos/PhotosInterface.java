@@ -272,7 +272,7 @@ public class PhotosInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param userId The user ID
      * @param count The number of photos to return
      * @param justFriends True to include friends
@@ -506,7 +506,7 @@ public class PhotosInterface {
      * @param photoId
      * @param perPage
      * @param page
-     * @return List of {@link com.flickr4java.flickr.people.User}
+     * @return List of {@link com.flickr4java.flickr.test.people.User}
      */
     public Collection getFavorites(String photoId, int perPage, int page)
         throws IOException, SAXException, FlickrException {
@@ -679,7 +679,7 @@ public class PhotosInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param extras Set of extra-fields
      * @param perPage The number of photos per page
      * @param page The page offset
@@ -840,7 +840,7 @@ public class PhotosInterface {
      * </ul>
      * Set to 0 to not specify a privacy Filter.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param sort The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, and interestingness-asc.
      * @param extras A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
      * @param perPage Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
@@ -922,7 +922,7 @@ public class PhotosInterface {
      * </ul>
      * Set to 0 to not specify a privacy Filter.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param sort The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, and interestingness-asc.
      * @param extras A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
      * @param perPage Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
@@ -987,7 +987,7 @@ public class PhotosInterface {
      *
      * This method requires authentication with 'read' permission.
      *
-     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.test.photos.Extras
      * @param minDate Date indicating the date from which modifications should be compared. Must be given.
      * @param extras A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
      * @param perPage Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
@@ -1185,9 +1185,9 @@ public class PhotosInterface {
      *
      * This method requires authentication with 'write' permission.
      *
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
-     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_PHOTO
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_SCREENSHOT
+     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_OTHER
      * @param photoId The photo ID
      * @param contentType The contentType to set
      * @throws IOException
@@ -1338,9 +1338,9 @@ public class PhotosInterface {
      * @param photoId The photo ID
      * @param safetyLevel The safety level of the photo or null
      * @param hidden Hidden from public searches or not or null
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
-     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_SAFE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_MODERATE
+     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_RESTRICTED
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException

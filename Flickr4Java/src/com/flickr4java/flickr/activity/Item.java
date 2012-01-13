@@ -6,7 +6,7 @@ import java.util.Collection;
  * Item with activity can be of type 'photo' or 'photoset'.
  * It contains a list of Event.
  *
- * @see com.flickr4java.flickr.activity.Event
+ * @see com.flickr4java.flickr.test.activity.Event
  * @author mago
  * @version $Id: Item.java,v 1.2 2007/07/22 16:18:20 x-mago Exp $
  */

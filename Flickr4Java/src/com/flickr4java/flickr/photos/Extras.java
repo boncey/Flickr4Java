@@ -40,18 +40,18 @@ public class Extras {
     /**
      * Set of all extra-arguments. Used for requesting lists of photos.
      *
-     * @see com.flickr4java.flickr.groups.pools.PoolsInterface#getPhotos(String, String[], Set, int, int)
-     * @see com.flickr4java.flickr.panda.PandaInterface#getPhotos(com.flickr4java.flickr.panda.Panda, Set, int, int)
-     * @see com.flickr4java.flickr.people.PeopleInterface#getPublicPhotos(String, Set, int, int)
-     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getContactsPublicPhotos(String, Set, int, boolean, boolean, boolean)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getWithGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getWithoutGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#recentlyUpdated(java.util.Date, Set, int, int)
-     * @see com.flickr4java.flickr.photos.SearchParameters#setExtras(Set)
-     * @see com.flickr4java.flickr.photos.geo.GeoInterface#photosForLocation(GeoData, Set, int, int)
-     * @see com.flickr4java.flickr.interestingness.InterestingnessInterface#getList(java.util.Date, Set, int, int)
-     * @see com.flickr4java.flickr.favorites.FavoritesInterface#getList(String, int, int, Set)
+     * @see com.flickr4java.flickr.test.groups.pools.PoolsInterface#getPhotos(String, String[], Set, int, int)
+     * @see com.flickr4java.flickr.test.panda.PandaInterface#getPhotos(com.flickr4java.flickr.test.panda.Panda, Set, int, int)
+     * @see com.flickr4java.flickr.test.people.PeopleInterface#getPublicPhotos(String, Set, int, int)
+     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getContactsPublicPhotos(String, Set, int, boolean, boolean, boolean)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getWithGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getWithoutGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#recentlyUpdated(java.util.Date, Set, int, int)
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#setExtras(Set)
+     * @see com.flickr4java.flickr.test.photos.geo.GeoInterface#photosForLocation(GeoData, Set, int, int)
+     * @see com.flickr4java.flickr.test.interestingness.InterestingnessInterface#getList(java.util.Date, Set, int, int)
+     * @see com.flickr4java.flickr.test.favorites.FavoritesInterface#getList(String, int, int, Set)
      */
     public static final Set ALL_EXTRAS = new HashSet();
 
@@ -59,17 +59,17 @@ public class Extras {
      * Minimal Set of extra-arguments. Used by convenience-methods
      * that request lists of photos.
      *
-     * @see com.flickr4java.flickr.groups.pools.PoolsInterface#getPhotos(String, String[], Set, int, int)
-     * @see com.flickr4java.flickr.panda.PandaInterface#getPhotos(com.flickr4java.flickr.panda.Panda, Set, int, int)
-     * @see com.flickr4java.flickr.people.PeopleInterface#getPublicPhotos(String, Set, int, int)
-     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getContactsPublicPhotos(String, Set, int, boolean, boolean, boolean)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getWithGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#getWithoutGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
-     * @see com.flickr4java.flickr.photos.PhotosInterface#recentlyUpdated(java.util.Date, Set, int, int)
-     * @see com.flickr4java.flickr.photos.geo.GeoInterface#photosForLocation(GeoData, Set, int, int)
-     * @see com.flickr4java.flickr.interestingness.InterestingnessInterface#getList(java.util.Date, Set, int, int)
-     * @see com.flickr4java.flickr.favorites.FavoritesInterface#getList(String, int, int, Set)
+     * @see com.flickr4java.flickr.test.groups.pools.PoolsInterface#getPhotos(String, String[], Set, int, int)
+     * @see com.flickr4java.flickr.test.panda.PandaInterface#getPhotos(com.flickr4java.flickr.test.panda.Panda, Set, int, int)
+     * @see com.flickr4java.flickr.test.people.PeopleInterface#getPublicPhotos(String, Set, int, int)
+     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getContactsPublicPhotos(String, Set, int, boolean, boolean, boolean)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getWithGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getWithoutGeoData(java.util.Date, java.util.Date, java.util.Date, java.util.Date, int, String, Set, int, int)
+     * @see com.flickr4java.flickr.test.photos.PhotosInterface#recentlyUpdated(java.util.Date, Set, int, int)
+     * @see com.flickr4java.flickr.test.photos.geo.GeoInterface#photosForLocation(GeoData, Set, int, int)
+     * @see com.flickr4java.flickr.test.interestingness.InterestingnessInterface#getList(java.util.Date, Set, int, int)
+     * @see com.flickr4java.flickr.test.favorites.FavoritesInterface#getList(String, int, int, Set)
      */
     public static final Set MIN_EXTRAS = new HashSet();
 

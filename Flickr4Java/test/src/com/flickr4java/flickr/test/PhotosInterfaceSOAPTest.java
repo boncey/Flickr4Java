@@ -53,11 +53,7 @@ public class PhotosInterfaceSOAPTest extends TestCase {
 
             Flickr.debugStream = true;
             SOAP soap = new SOAP(properties.getProperty("host"));
-            flickr = new Flickr(properties.getProperty("apiKey"), soap);
-
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setSharedSecret(properties.getProperty("secret"));
-
+            flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), soap);
         } finally {
             IOUtilities.close(in);
         }

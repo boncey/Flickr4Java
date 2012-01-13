@@ -89,42 +89,42 @@ public final class PhotoUtils {
         // the Url-generation.
         List sizes = new ArrayList();
         String urlTmp = photoElement.getAttribute("url_t");
-        if (urlTmp.startsWith("http")) {
+        if (urlTmp != null && urlTmp.startsWith("http")) {
             Size sizeT = new Size();
             sizeT.setLabel(Size.THUMB);
             sizeT.setSource(urlTmp);
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_s");
-        if (urlTmp.startsWith("http")) {
+        if (urlTmp != null && urlTmp.startsWith("http")) {
             Size sizeT = new Size();
             sizeT.setLabel(Size.SMALL);
             sizeT.setSource(urlTmp);
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_sq");
-        if (urlTmp.startsWith("http")) {
+        if (urlTmp != null && urlTmp.startsWith("http")) {
             Size sizeT = new Size();
             sizeT.setLabel(Size.SQUARE);
             sizeT.setSource(urlTmp);
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_m");
-        if (urlTmp.startsWith("http")) {
+        if (urlTmp != null && urlTmp.startsWith("http")) {
             Size sizeT = new Size();
             sizeT.setLabel(Size.MEDIUM);
             sizeT.setSource(urlTmp);
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_l");
-        if (urlTmp.startsWith("http")) {
+        if (urlTmp != null && urlTmp.startsWith("http")) {
             Size sizeT = new Size();
             sizeT.setLabel(Size.LARGE);
             sizeT.setSource(urlTmp);
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_o");
-        if (urlTmp.startsWith("http")) {
+        if (urlTmp != null && urlTmp.startsWith("http")) {
             Size sizeT = new Size();
             sizeT.setLabel(Size.ORIGINAL);
             sizeT.setSource(urlTmp);

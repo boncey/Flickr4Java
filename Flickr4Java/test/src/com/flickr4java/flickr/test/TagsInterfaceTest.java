@@ -87,7 +87,7 @@ public class TagsInterfaceTest extends TestCase {
         assertNotNull(photo);
         assertEquals(properties.getProperty("photoid"), photo.getId());
         assertNotNull(photo.getTags());
-        assertEquals(3, photo.getTags().size());
+        assertEquals(10, photo.getTags().size());
     }
 
     public void testGetHotList() throws FlickrException, IOException, SAXException {
@@ -101,14 +101,14 @@ public class TagsInterfaceTest extends TestCase {
         TagsInterface iface = flickr.getTagsInterface();
         Collection tags = iface.getListUser(properties.getProperty("nsid"));
         assertNotNull(tags);
-        assertEquals(4, tags.size());
+        assertEquals(721, tags.size());
     }
 
     public void testListUserPopular() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
         Collection tags = iface.getListUserPopular(properties.getProperty("nsid"));
         assertNotNull(tags);
-        assertEquals(4, tags.size());
+        assertEquals(10, tags.size());
         Iterator iter = tags.iterator();
         while (iter.hasNext()) {
             Tag tag = (Tag) iter.next();

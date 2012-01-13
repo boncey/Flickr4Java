@@ -48,10 +48,10 @@ public class AuthInterfaceSOAPTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            Flickr.debugStream = true;
             SOAP soap = new SOAP(properties.getProperty("host"));
             flickr = new Flickr(properties.getProperty("apiKey"), soap);
-            
+            Flickr.debugRequest = true;
+            Flickr.debugStream = true;
             RequestContext requestContext = RequestContext.getRequestContext();
             requestContext.setSharedSecret(properties.getProperty("secret"));
         } finally {

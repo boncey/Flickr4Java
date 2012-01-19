@@ -6,6 +6,7 @@ package com.flickr4java.flickr;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,11 +18,18 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Response;
+import org.scribe.model.Token;
+import org.scribe.model.Verb;
+import org.scribe.oauth.OAuthService;
 import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.util.Base64;
 import com.flickr4java.flickr.util.DebugInputStream;
 import com.flickr4java.flickr.util.DebugOutputStream;
@@ -121,31 +129,49 @@ public class REST extends Transport {
      * @throws IOException
      * @throws SAXException
      */
-    public Response get(String path, List parameters) throws IOException, SAXException {
-        URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, parameters);
-        if (Flickr.debugRequest) System.out.println("GET: " + url);
+    public com.flickr4java.flickr.Response get(String path, List parameters) throws IOException, SAXException {
+    	
+		OAuthService service = new ServiceBuilder().provider(FlickrApi.class)
+				.apiKey("XXX").apiSecret("XXX").build();
+
+		Token requestToken = new Token("XXX", "XXX");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.flickr.com/services/rest");
+		for (int i = 0; i < parameters.size(); i++) {
+			Parameter p = (Parameter) parameters.get(i);
+			request.addQuerystringParameter(p.getName(), (String) p.getValue());
+		}
+		
+		service.signRequest(requestToken, request);
+		
+
+		Response scribeResponse = request.send();
+        
+		//@TODO need to do something with this stuff here
+		/*        URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, parameters);
+        if (Flickr.debugRequest) {
+        	System.out.println("GET: " + url);
+        }
+
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
         if (proxyAuth) {
             conn.setRequestProperty(
                 "Proxy-Authorization",
                 "Basic " + getProxyCredentials()
             );
         }
-        conn.connect();
-
+*/
         InputStream in = null;
         try {
-            if (Flickr.debugStream) {
-                in = new DebugInputStream(conn.getInputStream(), System.out);
-            } else {
-                in = conn.getInputStream();
-            }
 
-            Response response = null;
+        	com.flickr4java.flickr.Response response = null;
             synchronized (mutex) {
-                Document document = builder.parse(in);
-                response = (Response) responseClass.newInstance();
+            	String strXml = scribeResponse.getBody();
+            	if(Flickr.debugStream) {
+            		System.out.println(strXml);
+            	}
+				Document document = builder.parse(new InputSource(new StringReader(strXml)));
+				response = (com.flickr4java.flickr.Response) responseClass.newInstance();                
                 response.parse(document);
             }
             return response;
@@ -168,7 +194,7 @@ public class REST extends Transport {
      * @throws IOException
      * @throws SAXException
      */
-    public Response post(String path, List parameters, boolean multipart) throws IOException, SAXException {
+    public com.flickr4java.flickr.Response post(String path, List parameters, boolean multipart) throws IOException, SAXException {
         // see: AuthUtilities.getSignature()
         //AuthUtilities.addAuthToken(parameters);
 
@@ -267,10 +293,10 @@ public class REST extends Transport {
                 } else {
                     in = conn.getInputStream();
                 }
-                Response response = null;
+                com.flickr4java.flickr.Response response = null;
                 synchronized (mutex) {
                     Document document = builder.parse(in);
-                    response = (Response) responseClass.newInstance();
+                    response = (com.flickr4java.flickr.Response) responseClass.newInstance();
                     response.parse(document);
                 }
                 return response;

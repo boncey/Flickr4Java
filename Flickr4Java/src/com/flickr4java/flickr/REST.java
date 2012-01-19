@@ -134,6 +134,7 @@ public class REST extends Transport {
 		OAuthService service = new ServiceBuilder().provider(FlickrApi.class)
 				.apiKey("XXX").apiSecret("XXX").build();
 
+
 		Token requestToken = new Token("XXX", "XXX");
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.flickr.com/services/rest");

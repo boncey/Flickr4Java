@@ -6,19 +6,16 @@ package com.flickr4java.flickr.uploader;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.util.StringUtilities;
 
 /**
@@ -47,16 +44,12 @@ public class Uploader {
      *
      * @param apiKey The API key
      */
-    public Uploader(String apiKey, String sharedSecret) {
-        try {
-            this.apiKey = apiKey;
-            this.sharedSecret = sharedSecret;
-            this.transport = new REST();
-            this.transport.setResponseClass(UploaderResponse.class);
-        } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
-    }
+	public Uploader(String apiKey, String sharedSecret) {
+		this.apiKey = apiKey;
+		this.sharedSecret = sharedSecret;
+		this.transport = new REST();
+		this.transport.setResponseClass(UploaderResponse.class);
+	}
 
     /**
      * Upload a photo from a byte-array.
@@ -69,48 +62,42 @@ public class Uploader {
      * @throws SAXException
      */
     public String upload(byte[] data, UploadMetaData metaData) throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
+        Map<String, String> parameters = new HashMap<String, String>();
 
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("api_key", apiKey);
 
         String title = metaData.getTitle();
         if (title != null)
-            parameters.add(new Parameter("title", title));
+            parameters.put("title", title);
 
         String description = metaData.getDescription();
         if (description != null)
-            parameters.add(new Parameter("description", description));
+            parameters.put("description", description);
 
         Collection tags = metaData.getTags();
         if (tags != null)
-            parameters.add(new Parameter("tags", StringUtilities.join(tags, " ")));
+            parameters.put("tags", StringUtilities.join(tags, " "));
 
-        parameters.add(new Parameter("is_public", metaData.isPublicFlag() ? "1" : "0"));
-        parameters.add(new Parameter("is_family", metaData.isFamilyFlag() ? "1" : "0"));
-        parameters.add(new Parameter("is_friend", metaData.isFriendFlag() ? "1" : "0"));
+        parameters.put("is_public", metaData.isPublicFlag() ? "1" : "0");
+        parameters.put("is_family", metaData.isFamilyFlag() ? "1" : "0");
+        parameters.put("is_friend", metaData.isFriendFlag() ? "1" : "0");
 
-        parameters.add(new Parameter("photo", data));
+        if(true)throw new RuntimeException("Look at me");
+        //parameters.put("photo", data);
 
         if (metaData.isHidden() != null) {
-            parameters.add(new Parameter("hidden", metaData.isHidden().booleanValue() ? "1" : "0"));
+            parameters.put("hidden", metaData.isHidden().booleanValue() ? "1" : "0");
         }
 
         if (metaData.getSafetyLevel() != null) {
-            parameters.add(new Parameter("safety_level", metaData.getSafetyLevel()));
+            parameters.put("safety_level", metaData.getSafetyLevel());
         }
 
-        parameters.add(new Parameter("async", metaData.isAsync() ? "1" : "0"));
+        parameters.put("async", metaData.isAsync() ? "1" : "0");
 
         if (metaData.getContentType() != null) {
-            parameters.add(new Parameter("content_type", metaData.getContentType()));
+            parameters.put("content_type", metaData.getContentType());
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getMultipartSignature(sharedSecret, parameters)
-            )
-        );
-
         UploaderResponse response = (UploaderResponse) transport.post("/services/upload/", parameters, true);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
@@ -135,35 +122,31 @@ public class Uploader {
      * @throws SAXException
      */
     public String upload(InputStream in, UploadMetaData metaData) throws IOException, FlickrException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
 
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("api_key", apiKey);
 
         String title = metaData.getTitle();
         if (title != null)
-            parameters.add(new Parameter("title", title));
+            parameters.put("title", title);
 
         String description = metaData.getDescription();
         if (description != null)
-            parameters.add(new Parameter("description", description));
+            parameters.put("description", description);
 
         Collection tags = metaData.getTags();
         if (tags != null) {
-            parameters.add(new Parameter("tags", StringUtilities.join(tags, " ")));
+            parameters.put("tags", StringUtilities.join(tags, " "));
         }
 
-        parameters.add(new Parameter("is_public", metaData.isPublicFlag() ? "1" : "0"));
-        parameters.add(new Parameter("is_family", metaData.isFamilyFlag() ? "1" : "0"));
-        parameters.add(new Parameter("is_friend", metaData.isFriendFlag() ? "1" : "0"));
-        parameters.add(new Parameter("async", metaData.isAsync() ? "1" : "0"));
+        parameters.put("is_public", metaData.isPublicFlag() ? "1" : "0");
+        parameters.put("is_family", metaData.isFamilyFlag() ? "1" : "0");
+        parameters.put("is_friend", metaData.isFriendFlag() ? "1" : "0");
+        parameters.put("async", metaData.isAsync() ? "1" : "0");
 
-        parameters.add(new Parameter("photo", in));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getMultipartSignature(sharedSecret, parameters)
-            )
-        );
+		if (true)
+			throw new RuntimeException("Unimplemented... look at me");
+        //parameters.put("photo", in);
 
         UploaderResponse response = (UploaderResponse) transport.post("/services/upload/", parameters, true);
         if (response.isError()) {
@@ -189,20 +172,14 @@ public class Uploader {
      * @throws SAXException
      */
     public String replace(InputStream in, String flickrId, boolean async) throws IOException, FlickrException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
 
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("async", async ? "1" : "0"));
-        parameters.add(new Parameter("photo_id", flickrId));
-
-        parameters.add(new Parameter("photo", in));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getMultipartSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("async", async ? "1" : "0");
+        parameters.put("photo_id", flickrId);
+        if(true)throw new RuntimeException("Look at me");
+        //parameters.put("photo", in);
 
         UploaderResponse response = (UploaderResponse) transport.post("/services/replace/", parameters, true);
         if (response.isError()) {
@@ -228,20 +205,15 @@ public class Uploader {
      * @throws SAXException
      */
     public String replace(byte[] data, String flickrId, boolean async) throws IOException, FlickrException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
 
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("async", async ? "1" : "0"));
-        parameters.add(new Parameter("photo_id", flickrId));
+        parameters.put("async", async ? "1" : "0");
+        parameters.put("photo_id", flickrId);
 
-        parameters.add(new Parameter("photo", data));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getMultipartSignature(sharedSecret, parameters)
-            )
-        );
+        if(true)throw new RuntimeException("Look at me");
+        //parameters.put("photo", data);
 
         UploaderResponse response = (UploaderResponse) transport.post("/services/replace/", parameters, true);
         if (response.isError()) {

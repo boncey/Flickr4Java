@@ -2,7 +2,9 @@ package com.flickr4java.flickr.activity;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.w3c.dom.Element;
@@ -10,10 +12,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
@@ -55,23 +55,17 @@ public class ActivityInterface {
     public ItemList userComments(int perPage, int page)
       throws IOException, SAXException, FlickrException {
         ItemList items = new ItemList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_USER_COMMENTS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_USER_COMMENTS);
+        parameters.put("api_key", apiKey);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
 
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -108,31 +102,25 @@ public class ActivityInterface {
     public ItemList userPhotos(int perPage, int page, String timeframe)
       throws IOException, SAXException, FlickrException {
         ItemList items = new ItemList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_USER_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_USER_PHOTOS);
+        parameters.put("api_key", apiKey);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
 
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
 
         if (timeframe != null) {
             if (checkTimeframeArg(timeframe)) {
-                parameters.add(new Parameter("timeframe", timeframe));
+                parameters.put("timeframe", timeframe);
             } else {
             	throw new FlickrException("0","Timeframe-argument to getUserPhotos() not valid");
             }
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

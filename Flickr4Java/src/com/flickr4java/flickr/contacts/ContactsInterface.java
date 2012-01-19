@@ -7,17 +7,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
@@ -53,18 +53,12 @@ public class ContactsInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public Collection getList() throws IOException, SAXException, FlickrException {
-        List contacts = new ArrayList();
+    public Collection<Contact> getList() throws IOException, SAXException, FlickrException {
+        List<Contact> contacts = new ArrayList<Contact>();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -106,27 +100,20 @@ public class ContactsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getListRecentlyUploaded(Date lastUpload, String filter)
+    public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter)
       throws IOException, SAXException, FlickrException {
-        List contacts = new ArrayList();
+        List<Contact> contacts = new ArrayList<Contact>();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST_RECENTLY_UPLOADED));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST_RECENTLY_UPLOADED);
+        parameters.put("api_key", apiKey);
 
-        if (lastUpload != null) {
-            parameters.add(new Parameter("date_lastupload", lastUpload.getTime() / 1000L));
-        }
+		if (lastUpload != null) {
+			parameters.put("date_lastupload", String.valueOf(lastUpload.getTime() / 1000L));
+		}
         if (filter != null) {
-            parameters.add(new Parameter("filter", filter));
+            parameters.put("filter", filter);
         }
-
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -167,14 +154,13 @@ public class ContactsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getPublicList(String userId) throws IOException, SAXException, FlickrException {
-        List contacts = new ArrayList();
+    public Collection<Contact> getPublicList(String userId) throws IOException, SAXException, FlickrException {
+        List<Contact> contacts = new ArrayList<Contact>();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PUBLIC_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
-
-        parameters.add(new Parameter("user_id", userId));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PUBLIC_LIST);
+        parameters.put("api_key", apiKey);
+        parameters.put("user_id", userId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

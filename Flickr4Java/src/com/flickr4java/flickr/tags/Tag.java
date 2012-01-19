@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 
-import com.flickr4java.flickr.photos.Size;
 import com.flickr4java.flickr.util.StringUtilities;
 
 /**

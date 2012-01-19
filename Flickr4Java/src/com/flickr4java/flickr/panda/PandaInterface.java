@@ -2,7 +2,8 @@ package com.flickr4java.flickr.panda;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -10,10 +11,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
@@ -58,9 +57,9 @@ public class PandaInterface {
      */
     public ArrayList getList() throws FlickrException, IOException, SAXException {
         ArrayList pandas = new ArrayList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -94,20 +93,20 @@ public class PandaInterface {
      */
     public PhotoList getPhotos(Panda panda, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
         ArrayList pandas = new ArrayList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PHOTOS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("panda_name", panda.getName()));
+        parameters.put("panda_name", panda.getName());
 
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);

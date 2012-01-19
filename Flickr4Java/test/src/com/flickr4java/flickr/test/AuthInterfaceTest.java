@@ -4,32 +4,22 @@
 
 package com.flickr4java.flickr.test;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Properties;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.xml.sax.SAXException;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
 
 import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
-
-import edu.stanford.ejalbert.BrowserLauncher;
-import edu.stanford.ejalbert.exception.BrowserLaunchingExecutionException;
-import edu.stanford.ejalbert.exception.BrowserLaunchingInitializingException;
-import edu.stanford.ejalbert.exception.UnsupportedOperatingSystemException;
 
 /**
  * @author Anthony Eden
@@ -47,14 +37,21 @@ public class AuthInterfaceTest { //extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            REST rest = new REST();
+OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST(service);
             rest.setHost(properties.getProperty("host"));
 
             flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            System.err.println(properties.getProperty("secret"));
-            requestContext.setSharedSecret(properties.getProperty("secret"));
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
+
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }

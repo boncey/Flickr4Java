@@ -6,18 +6,18 @@ package com.flickr4java.flickr.groups;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for working with Flickr Groups.
@@ -54,22 +54,16 @@ public class GroupsInterface {
      * @deprecated Flickr returns just empty results
      */
     public Category browse(String catId) throws IOException, SAXException, FlickrException {
-        List subcategories = new ArrayList();
-        List groups = new ArrayList();
+        List<Subcategory> subcategories = new ArrayList<Subcategory>();
+        List<Group> groups = new ArrayList<Group>();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_BROWSE));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_BROWSE);
+        parameters.put("api_key", apiKey);
 
         if (catId != null) {
-            parameters.add(new Parameter("cat_id", catId));
+            parameters.put("cat_id", catId);
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -119,11 +113,10 @@ public class GroupsInterface {
      * @return The Group object
      */
     public Group getInfo(String groupId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_INFO));
-        parameters.add(new Parameter("api_key", apiKey));
-
-        parameters.add(new Parameter("group_id", groupId));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_INFO);
+        parameters.put("api_key", apiKey);
+        parameters.put("group_id", groupId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -177,24 +170,18 @@ public class GroupsInterface {
      */
     public Collection search(String text, int perPage, int page) throws FlickrException, IOException, SAXException {
         GroupList groupList = new GroupList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SEARCH));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SEARCH);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("text", text));
+        parameters.put("text", text);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", new Integer(perPage)));
+            parameters.put("per_page", String.valueOf(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", new Integer(page)));
+            parameters.put("page", String.valueOf(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

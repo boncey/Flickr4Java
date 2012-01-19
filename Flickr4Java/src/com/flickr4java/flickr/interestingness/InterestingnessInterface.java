@@ -8,9 +8,9 @@ package com.flickr4java.flickr.interestingness;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -18,10 +18,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
@@ -80,25 +78,25 @@ public class InterestingnessInterface {
      * @see com.flickr4java.flickr.test.photos.Extras
      */
     public PhotoList getList(String date, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
         PhotoList photos = new PhotoList();
 
-        parameters.add(new Parameter(KEY_METHOD, METHOD_GET_LIST));
-        parameters.add(new Parameter(KEY_API_KEY, apiKey));
+        parameters.put(KEY_METHOD, METHOD_GET_LIST);
+        parameters.put(KEY_API_KEY, apiKey);
 
         if (date != null) {
-             parameters.add(new Parameter(KEY_DATE, date));
+             parameters.put(KEY_DATE, date);
         }
 
         if (extras != null) {
-            parameters.add(new Parameter(KEY_EXTRAS, StringUtilities.join(extras, ",")));
+            parameters.put(KEY_EXTRAS, StringUtilities.join(extras, ","));
         }
 
         if (perPage > 0) {
-            parameters.add(new Parameter(KEY_PER_PAGE, String.valueOf(perPage)));
+            parameters.put(KEY_PER_PAGE, String.valueOf(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter(KEY_PAGE, String.valueOf(page)));
+            parameters.put(KEY_PAGE, String.valueOf(page));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);

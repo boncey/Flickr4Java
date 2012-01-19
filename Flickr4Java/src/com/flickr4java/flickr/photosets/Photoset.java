@@ -3,8 +3,6 @@
  */
 package com.flickr4java.flickr.photosets;
 
-import java.lang.StringBuffer;
-
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.Photo;
 

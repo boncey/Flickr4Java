@@ -10,8 +10,8 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.people.User;

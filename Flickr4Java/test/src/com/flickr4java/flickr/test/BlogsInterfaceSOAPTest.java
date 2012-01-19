@@ -9,14 +9,16 @@ import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import junit.framework.TestCase;
+
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.blogs.BlogsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
-import junit.framework.TestCase;
-import org.xml.sax.SAXException;
 
 /**
  * @author Matt Ray

@@ -5,8 +5,6 @@ package com.flickr4java.flickr;
 
 import java.util.Set;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import com.flickr4java.flickr.activity.ActivityInterface;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
@@ -217,20 +215,6 @@ public class Flickr {
      * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_PRIVATE = 5;
-
-    /**
-     * Construct a new Flickr gateway instance.  Defaults to a REST transport.
-     *
-     * @param apiKey The API key, must be non-null
-     */
-    public Flickr(String apiKey) {
-        setApiKey(apiKey);
-        try {
-            setTransport(new REST(DEFAULT_HOST));
-        } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
-    }
 
     /**
      * Construct a new Flickr gateway instance.

@@ -2,22 +2,24 @@ package com.flickr4java.flickr.test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
+
+import junit.framework.TestCase;
+
+import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.SOAP;
-import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.tags.TagsInterface;
-import com.flickr4java.flickr.tags.Tag;
-import com.flickr4java.flickr.tags.RelatedTagsList;
 import com.flickr4java.flickr.photos.Photo;
-import org.xml.sax.SAXException;
-import junit.framework.TestCase;
+import com.flickr4java.flickr.tags.RelatedTagsList;
+import com.flickr4java.flickr.tags.Tag;
+import com.flickr4java.flickr.tags.TagsInterface;
+import com.flickr4java.flickr.util.IOUtilities;
 
 /**
  * @author Anthony Eden
@@ -49,21 +51,21 @@ public class TagsInterfaceSOAPTest extends TestCase {
         assertNotNull(photo);
         assertEquals(properties.getProperty("photoid"), photo.getId());
         assertNotNull(photo.getTags());
-        assertEquals(0, photo.getTags().size());
+        assertEquals(3, photo.getTags().size());
     }
 
     public void testGetListUser() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
         Collection tags = iface.getListUser(properties.getProperty("nsid"));
         assertNotNull(tags);
-        assertEquals(1, tags.size());
+        assertEquals(756, tags.size());
     }
 
     public void testListUserPopular() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
         Collection tags = iface.getListUserPopular(properties.getProperty("nsid"));
         assertNotNull(tags);
-        assertEquals(1, tags.size());
+        assertEquals(10, tags.size());
         Iterator iter = tags.iterator();
         while (iter.hasNext()) {
             Tag tag = (Tag) iter.next();

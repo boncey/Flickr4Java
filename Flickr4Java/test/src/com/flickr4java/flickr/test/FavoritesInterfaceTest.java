@@ -10,18 +10,24 @@ import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import junit.framework.TestCase;
+
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.favorites.FavoritesInterface;
-import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.photos.Extras;
-import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Auth;
-import junit.framework.TestCase;
-import org.xml.sax.SAXException;
+import com.flickr4java.flickr.auth.AuthInterface;
+import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.favorites.FavoritesInterface;
+import com.flickr4java.flickr.photos.Extras;
+import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.util.IOUtilities;
 
 /**
  * @author Anthony Eden
@@ -38,7 +44,9 @@ public class FavoritesInterfaceTest extends TestCase {
             Properties properties = new Properties();
             properties.load(in);
 
-            REST rest = new REST();
+OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST(service);
 
             flickr = new Flickr(
                 properties.getProperty("apiKey"),
@@ -46,11 +54,14 @@ public class FavoritesInterfaceTest extends TestCase {
                 rest
             );
 
-            RequestContext requestContext = RequestContext.getRequestContext();
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            requestContext.setAuth(auth);
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -58,23 +69,23 @@ public class FavoritesInterfaceTest extends TestCase {
 
     public void testGetList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getList(null, 0, 0, null);
+        Collection favorites = iface.getList(null, 15, 1, null);
         assertNotNull(favorites);
-        assertEquals(2, favorites.size());
+        assertEquals(15, favorites.size());
     }
 
     public void testGetListWithExtras() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getList(null, 0, 0, Extras.ALL_EXTRAS);
+        Collection favorites = iface.getList(null, 15, 1, Extras.ALL_EXTRAS);
         assertNotNull(favorites);
-        assertEquals(2, favorites.size());
+        assertEquals(15, favorites.size());
     }
 
     public void testGetPublicList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection favorites = iface.getPublicList("77348956@N00", 0, 0, null);
         assertNotNull(favorites);
-        assertEquals(6, favorites.size());
+        assertEquals(14, favorites.size());
     }
 
     public void testAddAndRemove() throws FlickrException, IOException, SAXException {

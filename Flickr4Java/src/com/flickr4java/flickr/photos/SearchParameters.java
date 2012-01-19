@@ -5,15 +5,12 @@ package com.flickr4java.flickr.photos;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.util.StringUtilities;
 
 /**
@@ -436,128 +433,128 @@ public class SearchParameters {
         this.contacts = contacts;
     }
 
-    public Collection getAsParameters() {
-        List parameters = new ArrayList();
+    public Map<String, String> getAsParameters() {
+        Map<String, String> parameters = new HashMap<String, String>();
 
         String lat = getLatitude();
         if (lat != null) {
-            parameters.add(new Parameter("lat", lat));
+            parameters.put("lat", lat);
         }
 
         String lon = getLongitude();
         if (lon != null) {
-            parameters.add(new Parameter("lon", lon));
+            parameters.put("lon", lon);
         }
 
         int radius = getRadius();
         if (radius > 0) {
-            parameters.add(new Parameter("radius", radius));
+            parameters.put("radius", Integer.toString(radius));
         }
 
         String radiusUnits = getRadiusUnits();
         if (radiusUnits != null) {
-            parameters.add(new Parameter("radius_units", radiusUnits));
+            parameters.put("radius_units", radiusUnits);
         }
 
         String media = getMedia();
         if (media != null) {
-            parameters.add(new Parameter("media", media));
+            parameters.put("media", media);
         }
 
         String userId = getUserId();
         if (userId != null) {
-            parameters.add(new Parameter("user_id", userId));
+            parameters.put("user_id", userId);
             String contacts = getContacts();
             if (contacts != null) {
-                parameters.add(new Parameter("contacts", contacts));
+                parameters.put("contacts", contacts);
             }
         }
 
         String groupId = getGroupId();
         if (groupId != null) {
-            parameters.add(new Parameter("group_id", groupId));
+            parameters.put("group_id", groupId);
         }
 
         String[] tags = getTags();
         if (tags != null) {
-            parameters.add(new Parameter("tags", StringUtilities.join(tags, ",")));
+            parameters.put("tags", StringUtilities.join(tags, ","));
         }
 
         String tagMode = getTagMode();
         if (tagMode != null) {
-            parameters.add(new Parameter("tag_mode", tagMode));
+            parameters.put("tag_mode", tagMode);
         }
 
         String[] mtags = getMachineTags();
         if (mtags != null) {
-        	parameters.add(new Parameter("machine_tags", StringUtilities.join(mtags, ",")));
+        	parameters.put("machine_tags", StringUtilities.join(mtags, ","));
         }
 
         String mtagMode = getMachineTagMode();
         if (mtagMode != null) {
-            parameters.add(new Parameter("machine_tag_mode", mtagMode));
+            parameters.put("machine_tag_mode", mtagMode);
         }
 
         String text = getText();
         if (text != null) {
-            parameters.add(new Parameter("text", text));
+            parameters.put("text", text);
         }
 
         Date minUploadDate = getMinUploadDate();
         if (minUploadDate != null) {
-            parameters.add(new Parameter("min_upload_date", new Long(minUploadDate.getTime() / 1000L)));
+            parameters.put("min_upload_date", Long.toString(minUploadDate.getTime() / 1000L));
         }
 
         Date maxUploadDate = getMaxUploadDate();
         if (maxUploadDate != null) {
-            parameters.add(new Parameter("max_upload_date", new Long(maxUploadDate.getTime() / 1000L)));
+            parameters.put("max_upload_date", Long.toString(maxUploadDate.getTime() / 1000L));
         }
 
         Date minTakenDate = getMinTakenDate();
         if (minTakenDate != null) {
-            parameters.add(new Parameter("min_taken_date", ((DateFormat)MYSQL_DATE_FORMATS.get()).format(minTakenDate)));
+            parameters.put("min_taken_date", ((DateFormat)MYSQL_DATE_FORMATS.get()).format(minTakenDate));
         }
 
         Date maxTakenDate = getMaxTakenDate();
         if (maxTakenDate != null) {
-            parameters.add(new Parameter("max_taken_date", ((DateFormat)MYSQL_DATE_FORMATS.get()).format(maxTakenDate)));
+            parameters.put("max_taken_date", ((DateFormat)MYSQL_DATE_FORMATS.get()).format(maxTakenDate));
         }
 
         String license = getLicense();
         if (license != null) {
-            parameters.add(new Parameter("license", license));
+            parameters.put("license", license);
         }
 
         Date intrestingnessDate = getInterestingnessDate();
         if (intrestingnessDate != null) {
-            parameters.add(new Parameter("date", ((DateFormat)DATE_FORMATS.get()).format(intrestingnessDate)));
+            parameters.put("date", ((DateFormat)DATE_FORMATS.get()).format(intrestingnessDate));
         }
 
         String[] bbox = getBBox();
         if (bbox != null) {
-            parameters.add(new Parameter("bbox", StringUtilities.join(bbox, ",")));
+            parameters.put("bbox", StringUtilities.join(bbox, ","));
             if (accuracy > 0) {
-                parameters.add(new Parameter("accuracy", accuracy));
+                parameters.put("accuracy", Integer.toString(accuracy));
             }
         } else {
             String woeId = getWoeId();
             if (woeId != null) {
-                parameters.add(new Parameter("woe_id", woeId));
+                parameters.put("woe_id", woeId);
             }
         }
 
         String safeSearch = getSafeSearch();
         if (safeSearch != null) {
-            parameters.add(new Parameter("safe_search", safeSearch));
+            parameters.put("safe_search", safeSearch);
         }
 
         boolean hasGeo = getHasGeo();
         if (hasGeo) {
-            parameters.add(new Parameter("has_geo", "true"));
+            parameters.put("has_geo", "true");
         }
 
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
 
         if (sort != DATE_POSTED_DESC) {
@@ -568,7 +565,7 @@ public class SearchParameters {
             if(sort == INTERESTINGNESS_DESC) sortArg = "interestingness-desc";
             if(sort == INTERESTINGNESS_ASC) sortArg = "interestingness-asc";
             if(sort == RELEVANCE) sortArg = "relevance";
-            if(sortArg != null) parameters.add(new Parameter("sort", sortArg));
+            if(sortArg != null) parameters.put("sort", sortArg);
         }
 
         return parameters;

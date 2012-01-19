@@ -84,7 +84,7 @@ public class Photo {
     private int views = -1;
     private int rotation;
     private Collection notes;
-    private Collection tags;
+    private Collection<Tag> tags;
     private Collection urls;
     private String iconServer;
     private String iconFarm;
@@ -320,11 +320,11 @@ public class Photo {
         this.notes = notes;
     }
 
-    public Collection getTags() {
+    public Collection<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Collection tags) {
+    public void setTags(Collection<Tag> tags) {
         this.tags = tags;
     }
 

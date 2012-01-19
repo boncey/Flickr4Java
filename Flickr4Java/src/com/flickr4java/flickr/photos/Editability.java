@@ -5,10 +5,8 @@ package com.flickr4java.flickr.photos;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.regex.Matcher;
 
-import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.StringUtilities;
 
 /**

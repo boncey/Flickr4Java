@@ -20,6 +20,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.TestCase;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
@@ -59,7 +62,9 @@ public class PhotosInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            REST rest = new REST();
+OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST(service);
 
             flickr = new Flickr(
                 properties.getProperty("apiKey"),
@@ -67,12 +72,14 @@ public class PhotosInterfaceTest extends TestCase {
                 rest
             );
 
-            RequestContext requestContext = RequestContext.getRequestContext();
+			Auth auth = new Auth();
+			auth.setPermission(Permission.WRITE);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            auth.setPermission(Permission.WRITE); 
-            requestContext.setAuth(auth);
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
             Flickr.debugStream = false;
             Flickr.debugRequest = false; 
         } finally {
@@ -113,9 +120,9 @@ public class PhotosInterfaceTest extends TestCase {
         assertNotNull(photo);
         assertNotNull(photo.getUrl());
         assertNotNull(photo.getTitle());
-        assertEquals("green1", photo.getTitle());
+        assertEquals("dsc_0364", photo.getTitle());
         assertEquals(properties.getProperty("photoid"), photo.getId());
-        assertEquals("5edf8d0892", photo.getSecret());
+        assertEquals("0004987f96", photo.getSecret());
         assertEquals("152", photo.getServer());
         assertEquals("1", photo.getFarm());
         assertEquals("0", photo.getLicense());
@@ -221,12 +228,12 @@ public class PhotosInterfaceTest extends TestCase {
         PhotosInterface iface = flickr.getPhotosInterface();
         SearchParameters searchParams = new SearchParameters();
         searchParams.setUserId(properties.getProperty("nsid"));
-        PhotoList photos = iface.search(searchParams, 0, 0);
+        PhotoList photos = iface.search(searchParams, 33, 0);
         assertNotNull(photos);
         assertEquals(1, photos.getPage());
-        assertEquals(1, photos.getPages());
+        assertEquals(4, photos.getPages());
         assertEquals(100, photos.getPerPage());
-        assertEquals(5, photos.getTotal());
+        assertEquals(303, photos.getTotal());
     }
 
     public void testBoundingBoxSearch() throws FlickrException, IOException, SAXException {

@@ -6,8 +6,10 @@ package com.flickr4java.flickr.photosets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -16,10 +18,8 @@ import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
@@ -72,18 +72,12 @@ public class PhotosetsInterface {
      * @param photoId The photo ID
      */
     public void addPhoto(String photosetId, String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ADD_PHOTO));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ADD_PHOTO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photoset_id", photosetId);
+        parameters.put("photo_id", photoId);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -104,19 +98,13 @@ public class PhotosetsInterface {
      */
     public Photoset create(String title, String description, String primaryPhotoId)
             throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_CREATE));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_CREATE);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("title", title));
-        parameters.add(new Parameter("description", description));
-        parameters.add(new Parameter("primary_photo_id", primaryPhotoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("title", title);
+        parameters.put("description", description);
+        parameters.put("primary_photo_id", primaryPhotoId);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -138,17 +126,11 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public void delete(String photosetId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_DELETE));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_DELETE);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photoset_id", photosetId);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -168,21 +150,15 @@ public class PhotosetsInterface {
      */
     public void editMeta(String photosetId, String title, String description)
             throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_EDIT_META));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_EDIT_META);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
-        parameters.add(new Parameter("title", title));
+        parameters.put("photoset_id", photosetId);
+        parameters.put("title", title);
         if (description != null) {
-            parameters.add(new Parameter("description", description));
+            parameters.put("description", description);
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -202,19 +178,13 @@ public class PhotosetsInterface {
      */
     public void editPhotos(String photosetId, String primaryPhotoId, String[] photoIds)
             throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_EDIT_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_EDIT_PHOTOS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
-        parameters.add(new Parameter("primary_photo_id", primaryPhotoId));
-        parameters.add(new Parameter("photo_ids", StringUtilities.join(photoIds, ",")));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photoset_id", photosetId);
+        parameters.put("primary_photo_id", primaryPhotoId);
+        parameters.put("photo_ids", StringUtilities.join(photoIds, ","));
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -236,21 +206,12 @@ public class PhotosetsInterface {
      */
     public PhotoContext getContext(String photoId, String photosetId)
             throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_CONTEXT));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_CONTEXT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("photoset_id", photosetId));
-
-        if (AuthUtilities.isAuthenticated(parameters)) {
-            parameters.add(
-                new Parameter(
-                    "api_sig",
-                    AuthUtilities.getSignature(sharedSecret, parameters)
-                )
-            );
-        }
+        parameters.put("photo_id", photoId);
+        parameters.put("photoset_id", photosetId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -291,20 +252,11 @@ public class PhotosetsInterface {
      * @throws SAXException
      */
     public Photoset getInfo(String photosetId) throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_INFO));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_INFO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
-
-        if (AuthUtilities.isAuthenticated(parameters)) {
-            parameters.add(
-                new Parameter(
-                    "api_sig",
-                    AuthUtilities.getSignature(sharedSecret, parameters)
-                )
-            );
-        }
+        parameters.put("photoset_id", photosetId);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -353,20 +305,12 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public Photosets getList(String userId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
 
         if (userId != null) {
-            parameters.add(new Parameter("user_id", userId));
-        }
-        if (AuthUtilities.isAuthenticated(parameters)) {
-            parameters.add(
-                new Parameter(
-                    "api_sig",
-                    AuthUtilities.getSignature(sharedSecret, parameters)
-                )
-            );
+            parameters.put("user_id", userId);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -434,34 +378,26 @@ public class PhotosetsInterface {
       int privacy_filter, int perPage, int page)
       throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PHOTOS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
+        parameters.put("photoset_id", photosetId);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", new Integer(perPage)));
+            parameters.put("per_page", String.valueOf(perPage));
         }
 
         if (page > 0) {
-            parameters.add(new Parameter("page", new Integer(page)));
+            parameters.put("page", String.valueOf(page));
         }
 
         if (privacy_filter > 0) {
-            parameters.add(new Parameter("privacy_filter", "" + privacy_filter));
+            parameters.put("privacy_filter", "" + privacy_filter);
         }
 
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter(Extras.KEY_EXTRAS, StringUtilities.join(extras, ",")));
-        }
-        if (AuthUtilities.isAuthenticated(parameters)) {
-            parameters.add(
-                new Parameter(
-                    "api_sig",
-                    AuthUtilities.getSignature(sharedSecret, parameters)
-                )
-            );
+            parameters.put(Extras.KEY_EXTRAS, StringUtilities.join(extras, ","));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -522,18 +458,11 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public void orderSets(String[] photosetIds) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ORDER_SETS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ORDER_SETS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_ids", StringUtilities.join(photosetIds, ",")));
-
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photoset_ids", StringUtilities.join(photosetIds, ","));
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -551,18 +480,12 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public void removePhoto(String photosetId, String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_REMOVE_PHOTO));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_REMOVE_PHOTO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photoset_id", photosetId);
+        parameters.put("photo_id", photoId);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {

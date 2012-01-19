@@ -4,20 +4,18 @@
 package com.flickr4java.flickr.test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
-import com.flickr4java.flickr.people.User;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.people.User;
 
 /**
  * Interface for testing Flickr connectivity.
@@ -53,11 +51,11 @@ public class TestInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection echo(Collection params) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ECHO));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.addAll(params);
+    public Collection echo(Map params) throws IOException, SAXException, FlickrException {
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ECHO);
+        parameters.put("api_key", apiKey);
+        parameters.putAll(params);
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -75,15 +73,10 @@ public class TestInterface {
      * @throws FlickrException
      */
     public User login() throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_LOGIN));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_LOGIN);
+        parameters.put("api_key", apiKey);
+
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -107,15 +100,10 @@ public class TestInterface {
      * @throws FlickrException 
      */
     public void null_() throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_NULL));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_NULL);
+        parameters.put("api_key", apiKey);
+
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {

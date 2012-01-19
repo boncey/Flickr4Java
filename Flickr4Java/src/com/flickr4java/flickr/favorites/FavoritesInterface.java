@@ -4,20 +4,17 @@
 package com.flickr4java.flickr.favorites;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
@@ -54,17 +51,10 @@ public class FavoritesInterface {
      * @throws FlickrException
      */
     public void add(String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ADD));
-        parameters.add(new Parameter("api_key", apiKey));
-
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ADD);
+        parameters.put("api_key", apiKey);
+        parameters.put("photo_id", photoId);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -88,28 +78,22 @@ public class FavoritesInterface {
             SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
 
         if (userId != null) {
-            parameters.add(new Parameter("user_id", userId));
+            parameters.put("user_id", userId);
         }
         if (extras != null) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", new Integer(perPage)));
+            parameters.put("per_page", String.valueOf(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", new Integer(page)));
+            parameters.put("page", String.valueOf(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -148,20 +132,20 @@ public class FavoritesInterface {
             throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PUBLIC_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PUBLIC_LIST);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("user_id", userId));
+        parameters.put("user_id", userId);
 
         if (extras != null) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", new Integer(perPage)));
+            parameters.put("per_page", String.valueOf(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", new Integer(page)));
+            parameters.put("page", String.valueOf(page));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -188,17 +172,11 @@ public class FavoritesInterface {
      * @param photoId The photo id
      */
     public void remove(String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_REMOVE));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_REMOVE);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {

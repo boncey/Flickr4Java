@@ -4,17 +4,15 @@
 
 package com.flickr4java.flickr.util;
 
-import com.flickr4java.flickr.Parameter;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthUtilities;
-
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import com.flickr4java.flickr.Parameter;
 
 /** @author Anthony Eden */
 public class UrlUtilities {
@@ -30,12 +28,8 @@ public class UrlUtilities {
      * @return The URL
      * @throws MalformedURLException
      */
-    public static URL buildUrl(
-        String host,
-        int port,
-        String path,
-        List parameters
-    ) throws MalformedURLException {
+	public static URL buildUrl(String host, int port, String path, Map<String, String> parameters)
+			throws MalformedURLException {
         // see: AuthUtilities.getSignature()
         // AuthUtilities.addAuthToken(parameters);
 
@@ -51,26 +45,27 @@ public class UrlUtilities {
         }
         buffer.append(path);
 
-        Iterator iter = parameters.iterator();
-        if (iter.hasNext()) {
+        if (!parameters.isEmpty()) {
             buffer.append("?");
         }
-        while (iter.hasNext()) {
-            Parameter p = (Parameter) iter.next();
-            buffer.append(p.getName());
-            buffer.append("=");
-	    Object value = p.getValue();
-	    if (value != null) {
-		String string = value.toString();
-		try {
-		    string = URLEncoder.encode(string, UTF8);
-		} catch(UnsupportedEncodingException e) {
-		    // Should never happen, but just in case
+        int size = parameters.size();
+		for (Map.Entry<String, String> entry : parameters.entrySet()) {
+			buffer.append(entry.getKey());
+			buffer.append("=");
+			Object value = entry.getValue();
+			if (value != null) {
+				String string = value.toString();
+				try {
+					string = URLEncoder.encode(string, UTF8);
+				} catch (UnsupportedEncodingException e) {
+					// Should never happen, but just in case
+				}
+				buffer.append(string);
+			}
+			if (--size != 0) {
+				buffer.append("&");
+			}
 		}
-		buffer.append(string);
-	    }
-            if (iter.hasNext()) buffer.append("&");
-        }
 
 /*        RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();

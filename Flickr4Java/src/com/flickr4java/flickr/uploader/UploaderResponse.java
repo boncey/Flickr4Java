@@ -6,11 +6,11 @@ package com.flickr4java.flickr.uploader;
 
 import java.util.Collection;
 
-import com.flickr4java.flickr.Response;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
+
+import com.flickr4java.flickr.Response;
 
 /**
  * Parsing the response after an upload.

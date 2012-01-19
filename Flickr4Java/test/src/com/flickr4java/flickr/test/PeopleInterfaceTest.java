@@ -11,6 +11,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.TestCase;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
@@ -19,6 +22,7 @@ import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
+import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.people.PeopleInterface;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.PhotoList;
@@ -42,7 +46,9 @@ public class PeopleInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            REST rest = new REST();
+OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST(service);
             rest.setHost(properties.getProperty("host"));
 
             flickr = new Flickr(
@@ -51,11 +57,14 @@ public class PeopleInterfaceTest extends TestCase {
                 rest
             );
 
-            RequestContext requestContext = RequestContext.getRequestContext();
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            requestContext.setAuth(auth);
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -88,9 +97,9 @@ public class PeopleInterfaceTest extends TestCase {
         assertNotNull(person);
         assertEquals(properties.getProperty("nsid"), person.getId());
         assertEquals(properties.getProperty("username"), person.getUsername());
-        assertEquals(person.getMobileurl(), "http://m.flickr.com/photostream.gne?id=7285574");
-        assertEquals(person.getPhotosurl(), "http://www.flickr.com/photos/javatest3/");
-        assertEquals(person.getProfileurl(), "http://www.flickr.com/people/javatest3/");
+        assertEquals(person.getMobileurl(), "http://m.flickr.com/photostream.gne?id=1979953");
+        assertEquals(person.getPhotosurl(), "http://www.flickr.com/photos/misteral/");
+        assertEquals(person.getProfileurl(), "http://www.flickr.com/people/misteral/");
         assertTrue(person.getBuddyIconUrl().startsWith("http://"));
     }
 

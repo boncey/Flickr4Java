@@ -6,17 +6,17 @@ package com.flickr4java.flickr.blogs;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.util.XMLUtilities;
 
@@ -52,12 +52,12 @@ public class BlogsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getServices()
+    public Collection<Service> getServices()
       throws IOException, SAXException, FlickrException {
-        List list = new ArrayList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_SERVICES));
-        parameters.add(new Parameter("api_key", apiKey));
+        List<Service> list = new ArrayList<Service>();
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_SERVICES);
+        parameters.put("api_key", apiKey);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -87,23 +87,17 @@ public class BlogsInterface {
      * @throws FlickrException
      */
     public void postPhoto(Photo photo, String blogId, String blogPassword) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_POST_PHOTO));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_POST_PHOTO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("blog_id", blogId));
-        parameters.add(new Parameter("photo_id", photo.getId()));
-        parameters.add(new Parameter("title", photo.getTitle()));
-        parameters.add(new Parameter("description", photo.getDescription()));
+        parameters.put("blog_id", blogId);
+        parameters.put("photo_id", photo.getId());
+        parameters.put("title", photo.getTitle());
+        parameters.put("description", photo.getDescription());
         if (blogPassword != null) {
-            parameters.add(new Parameter("blog_password", blogPassword));
+            parameters.put("blog_password", blogPassword);
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -134,15 +128,9 @@ public class BlogsInterface {
     public Collection getList() throws IOException, SAXException, FlickrException {
         List blogs = new ArrayList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {

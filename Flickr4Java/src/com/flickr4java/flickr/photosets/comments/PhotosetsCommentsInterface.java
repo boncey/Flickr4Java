@@ -3,17 +3,17 @@ package com.flickr4java.flickr.photosets.comments;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.comments.Comment;
 import com.flickr4java.flickr.util.XMLUtilities;
 
@@ -54,18 +54,13 @@ public class PhotosetsCommentsInterface {
      * @throws SAXException
      */
     public String addComment(String photosetId, String commentText) throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ADD_COMMENT));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ADD_COMMENT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
-        parameters.add(new Parameter("comment_text", commentText));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photoset_id", photosetId);
+        parameters.put("comment_text", commentText);
+
 
         // Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
@@ -86,17 +81,12 @@ public class PhotosetsCommentsInterface {
      * @throws SAXException
      */
     public void deleteComment(String commentId) throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_DELETE_COMMENT));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_DELETE_COMMENT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("comment_id", commentId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("comment_id", commentId);
+
 
         // Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
@@ -116,18 +106,13 @@ public class PhotosetsCommentsInterface {
      * @throws FlickrException
      */
     public void editComment(String commentId, String commentText) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_EDIT_COMMENT));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_EDIT_COMMENT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("comment_id", commentId));
-        parameters.add(new Parameter("comment_text", commentText));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("comment_id", commentId);
+        parameters.put("comment_text", commentText);
+
 
         // Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
@@ -149,11 +134,11 @@ public class PhotosetsCommentsInterface {
      * @throws FlickrException
      */
     public List getList(String photosetId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photoset_id", photosetId));
+        parameters.put("photoset_id", photosetId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

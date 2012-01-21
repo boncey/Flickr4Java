@@ -2,9 +2,9 @@ package com.flickr4java.flickr.test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,11 +15,9 @@ import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.test.TestInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
 /**
@@ -50,8 +48,8 @@ public class TestInterfaceSOAPTest extends TestCase {
 
     public void testEcho() throws FlickrException, IOException, SAXException {
         TestInterface iface = flickr.getTestInterface();
-        List params = new ArrayList();
-        params.add(new Parameter("test", "test"));
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("test", "test");
         Collection results = iface.echo(params);
         assertNotNull(results);
     }

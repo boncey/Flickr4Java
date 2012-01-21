@@ -6,8 +6,10 @@ package com.flickr4java.flickr.groups.pools;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -15,10 +17,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
@@ -61,18 +61,12 @@ public class PoolsInterface {
      */
     public void add(String photoId, String groupId) throws IOException, SAXException,
             FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ADD));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ADD);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("group_id", groupId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("group_id", groupId);
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -93,12 +87,12 @@ public class PoolsInterface {
      * @throws FlickrException
      */
     public PhotoContext getContext(String photoId, String groupId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_CONTEXT));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_CONTEXT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("group_id", groupId));
+        parameters.put("photo_id", photoId);
+        parameters.put("group_id", groupId);
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -133,18 +127,12 @@ public class PoolsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getGroups() throws IOException, SAXException, FlickrException {
-        List groups = new ArrayList();
+    public Collection<Group> getGroups() throws IOException, SAXException, FlickrException {
+        List<Group> groups = new ArrayList<Group>();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_GROUPS));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_GROUPS);
+        parameters.put("api_key", apiKey);
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -184,19 +172,19 @@ public class PoolsInterface {
       throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PHOTOS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("group_id", groupId));
+        parameters.put("group_id", groupId);
         if (tags != null) {
-            parameters.add(new Parameter("tags", StringUtilities.join(tags, " ")));
+            parameters.put("tags", StringUtilities.join(tags, " "));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", new Integer(perPage)));
+            parameters.put("per_page", String.valueOf(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", new Integer(page)));
+            parameters.put("page", String.valueOf(page));
         }
 
         if (extras != null) {
@@ -208,14 +196,8 @@ public class PoolsInterface {
                 }
                 sb.append(it.next());
             }
-            parameters.add(new Parameter(Extras.KEY_EXTRAS, sb.toString()));
+            parameters.put(Extras.KEY_EXTRAS, sb.toString());
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -264,18 +246,12 @@ public class PoolsInterface {
      */
     public void remove(String photoId, String groupId) throws IOException, SAXException,
             FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_REMOVE));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_REMOVE);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("group_id", groupId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("group_id", groupId);
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {

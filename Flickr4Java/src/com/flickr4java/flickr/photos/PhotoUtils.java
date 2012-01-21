@@ -1,7 +1,7 @@
 package com.flickr4java.flickr.photos;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

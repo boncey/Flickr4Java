@@ -3,7 +3,9 @@ package com.flickr4java.flickr.photos.comments;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -11,11 +13,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
-import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.photos.PhotosInterface;
@@ -62,18 +61,12 @@ public class CommentsInterface {
      * @throws FlickrException
      */
     public String addComment(String photoId, String commentText) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ADD_COMMENT));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ADD_COMMENT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("comment_text", commentText));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("comment_text", commentText);
 
         //Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
@@ -95,17 +88,11 @@ public class CommentsInterface {
      * @throws FlickrException
      */
     public void deleteComment(String commentId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_DELETE_COMMENT));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_DELETE_COMMENT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("comment_id", commentId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("comment_id", commentId);
 
         //Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
@@ -128,18 +115,12 @@ public class CommentsInterface {
      * @throws FlickrException
      */
     public void editComment(String commentId, String commentText) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_EDIT_COMMENT));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_EDIT_COMMENT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("comment_id", commentId));
-        parameters.add(new Parameter("comment_text", commentText));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("comment_id", commentId);
+        parameters.put("comment_text", commentText);
 
         //Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
@@ -163,10 +144,10 @@ public class CommentsInterface {
      */
     public List getList(String photoId)
       throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(new Parameter("photo_id", photoId));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
+        parameters.put("photo_id", photoId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -226,34 +207,28 @@ public class CommentsInterface {
      */
     public PhotoList getRecentForContacts(Date lastComment, ArrayList contactsFilter, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
         PhotoList photos = new PhotoList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", PhotosInterface.METHOD_GET_NOT_IN_SET));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);
+        parameters.put("api_key", apiKey);
 
         if (lastComment != null) {
-            parameters.add(new Parameter("last_comment", String.valueOf(lastComment.getTime() / 1000L)));
+            parameters.put("last_comment", String.valueOf(lastComment.getTime() / 1000L));
         }
 
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
 
         if (contactsFilter != null && !contactsFilter.isEmpty()) {
-            parameters.add(new Parameter("contacts_filter", StringUtilities.join(contactsFilter, ",")));
+            parameters.put("contacts_filter", StringUtilities.join(contactsFilter, ","));
         }
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

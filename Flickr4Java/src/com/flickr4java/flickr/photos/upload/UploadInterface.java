@@ -2,8 +2,10 @@ package com.flickr4java.flickr.photos.upload;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -11,10 +13,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 
 /**
  * Checks the status of asynchronous photo upload tickets.
@@ -50,9 +50,9 @@ public class UploadInterface {
      * @throws FlickrException
      */
     public List checkTickets(Set tickets) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_CHECK_TICKETS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_CHECK_TICKETS);
+        parameters.put("api_key", apiKey);
 
         StringBuffer sb = new StringBuffer();
         Iterator it = tickets.iterator();
@@ -67,13 +67,8 @@ public class UploadInterface {
                 sb.append(obj);
             }
         }
-        parameters.add(new Parameter("tickets", sb.toString()));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("tickets", sb.toString());
+
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters);
         if (response.isError()) {

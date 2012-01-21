@@ -9,18 +9,21 @@ import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import junit.framework.TestCase;
+
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.auth.AuthInterface;
+import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Category;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.GroupsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.auth.AuthInterface;
-import com.flickr4java.flickr.auth.Auth;
-import junit.framework.TestCase;
-import org.xml.sax.SAXException;
 
 /**
  * @author Anthony Eden
@@ -43,9 +46,13 @@ public class GroupsInterfaceSOAPTest extends TestCase {
             RequestContext requestContext = RequestContext.getRequestContext();
             requestContext.setSharedSecret(properties.getProperty("secret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            requestContext.setAuth(auth);
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
+
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }

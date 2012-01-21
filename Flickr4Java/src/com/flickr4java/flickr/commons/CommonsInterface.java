@@ -2,17 +2,16 @@ package com.flickr4java.flickr.commons;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
@@ -47,11 +46,11 @@ public class CommonsInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public ArrayList getInstitutions() throws FlickrException, IOException, SAXException {
-        ArrayList institutions = new ArrayList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_INSTITUTIONS));
-        parameters.add(new Parameter("api_key", apiKey));
+    public ArrayList<Institution> getInstitutions() throws FlickrException, IOException, SAXException {
+        ArrayList<Institution> institutions = new ArrayList<Institution>();
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_INSTITUTIONS);
+        parameters.put("api_key", apiKey);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

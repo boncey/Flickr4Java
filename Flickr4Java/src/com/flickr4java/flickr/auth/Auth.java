@@ -4,9 +4,9 @@
 
 package com.flickr4java.flickr.auth;
 
-import com.flickr4java.flickr.people.User;
-
 import java.io.Serializable;
+
+import com.flickr4java.flickr.people.User;
 
 /**
  * @author Anthony Eden
@@ -18,8 +18,25 @@ public class Auth implements Serializable {
 	 */
 	private static final long serialVersionUID = -2254618470673679663L;
 	private String token;
-    private Permission permission;
+	private String tokenSecret;
+
+	private Permission permission;
     private User user;
+
+    
+    /**
+	 * @return the tokenSecret
+	 */
+	public String getTokenSecret() {
+		return tokenSecret;
+	}
+
+	/**
+	 * @param tokenSecret the tokenSecret to set
+	 */
+	public void setTokenSecret(String tokenSecret) {
+		this.tokenSecret = tokenSecret;
+	}
 
     public String getToken() {
         return token;

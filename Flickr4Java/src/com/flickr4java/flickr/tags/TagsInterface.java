@@ -6,7 +6,9 @@ package com.flickr4java.flickr.tags;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -14,10 +16,8 @@ import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
@@ -74,11 +74,11 @@ public class TagsInterface {
      */
     public ClusterList getClusters(String searchTag)
       throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_CLUSTERS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_CLUSTERS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("tag", searchTag));
+        parameters.put("tag", searchTag);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -118,12 +118,12 @@ public class TagsInterface {
     public PhotoList getClusterPhotos(String tag, String clusterId)
       throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_CLUSTER_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_CLUSTER_PHOTOS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("tag", tag));
-        parameters.add(new Parameter("cluster_id", clusterId));
+        parameters.put("tag", tag);
+        parameters.put("cluster_id", clusterId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -153,12 +153,12 @@ public class TagsInterface {
      * @return The collection of HotlistTag objects
      */
     public Collection getHotList(String period, int count) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_HOT_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_HOT_LIST);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("period", period));
-        parameters.add(new Parameter("count", "" + count));
+        parameters.put("period", period);
+        parameters.put("count", "" + count);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -188,11 +188,11 @@ public class TagsInterface {
      * @return The collection of Tag objects
      */
     public Photo getListPhoto(String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST_PHOTO));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST_PHOTO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -232,11 +232,11 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public Collection getListUser(String userId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST_USER));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST_USER);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("user_id", userId));
+        parameters.put("user_id", userId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -269,11 +269,11 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public Collection getListUserPopular(String userId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST_USER_POPULAR));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST_USER_POPULAR);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("user_id", userId));
+        parameters.put("user_id", userId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -307,12 +307,12 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public Collection getListUserRaw(String tagVal) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST_USER_RAW));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST_USER_RAW);
+        parameters.put("api_key", apiKey);
 
         if (tagVal != null) {
-            parameters.add(new Parameter("tag", tagVal));
+            parameters.put("tag", tagVal);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -351,11 +351,11 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public RelatedTagsList getRelated(String tag) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_RELATED));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_RELATED);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("tag", tag));
+        parameters.put("tag", tag);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

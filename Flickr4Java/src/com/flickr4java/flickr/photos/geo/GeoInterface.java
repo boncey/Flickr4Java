@@ -1,8 +1,8 @@
 package com.flickr4java.flickr.photos.geo;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -10,10 +10,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.photos.GeoData;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
@@ -64,10 +62,10 @@ public class GeoInterface {
      * or if any other error has been reported in the response.
      */
     public GeoData getLocation(String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LOCATION));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(new Parameter("photo_id", photoId));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LOCATION);
+        parameters.put("api_key", apiKey);
+        parameters.put("photo_id", photoId);
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -106,16 +104,10 @@ public class GeoInterface {
      * or if any other error has been reported in the response.
      */
     public GeoPermissions getPerms(String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PERMS));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PERMS);
+        parameters.put("api_key", apiKey);
+        parameters.put("photo_id", photoId);
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -144,16 +136,10 @@ public class GeoInterface {
      * @throws FlickrException
      */
     public void removeLocation(String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_REMOVE_LOCATION));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_REMOVE_LOCATION);
+        parameters.put("api_key", apiKey);
+        parameters.put("photo_id", photoId);
 
         // Note: This method requires an HTTP POST request.
         Response response = transport.post(transport.getPath(), parameters);
@@ -180,23 +166,17 @@ public class GeoInterface {
      * @throws FlickrException 
      */
     public void setLocation(String photoId, GeoData location) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_LOCATION));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_LOCATION);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("lat", String.valueOf(location.getLatitude())));
-        parameters.add(new Parameter("lon", String.valueOf(location.getLongitude())));
+        parameters.put("photo_id", photoId);
+        parameters.put("lat", String.valueOf(location.getLatitude()));
+        parameters.put("lon", String.valueOf(location.getLongitude()));
         int accuracy = location.getAccuracy();
         if (accuracy > 0) {
-            parameters.add(new Parameter("accuracy", String.valueOf(location.getAccuracy())));
+            parameters.put("accuracy", String.valueOf(location.getAccuracy()));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         // Note: This method requires an HTTP POST request.
         Response response = transport.post(transport.getPath(), parameters);
@@ -219,20 +199,14 @@ public class GeoInterface {
      * @throws FlickrException 
      */
     public void setPerms(String photoId, GeoPermissions perms) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_PERMS));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("is_public", perms.isPublic() ? "1" : "0"));
-        parameters.add(new Parameter("is_contact", perms.isContact() ? "1" : "0"));
-        parameters.add(new Parameter("is_friend", perms.isFriend() ? "1" : "0"));
-        parameters.add(new Parameter("is_family", perms.isFamily() ? "1" : "0"));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_PERMS);
+        parameters.put("api_key", apiKey);
+        parameters.put("photo_id", photoId);
+        parameters.put("is_public", perms.isPublic() ? "1" : "0");
+        parameters.put("is_contact", perms.isContact() ? "1" : "0");
+        parameters.put("is_friend", perms.isFriend() ? "1" : "0");
+        parameters.put("is_family", perms.isFamily() ? "1" : "0");
 
         // Note: This method requires an HTTP POST request.
         Response response = transport.post(transport.getPath(), parameters);
@@ -262,25 +236,19 @@ public class GeoInterface {
         String placeId,
         String woeId
     ) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_BATCH_CORRECT_LOCATION));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_BATCH_CORRECT_LOCATION);
+        parameters.put("api_key", apiKey);
 
         if (placeId != null) {
-            parameters.add(new Parameter("place_id", placeId));
+            parameters.put("place_id", placeId);
         }
         if (woeId != null) {
-            parameters.add(new Parameter("woe_id", woeId));
+            parameters.put("woe_id", woeId);
         }
-        parameters.add(new Parameter("lat", location.getLatitude()));
-        parameters.add(new Parameter("lon", location.getLongitude()));
-        parameters.add(new Parameter("accuracy", location.getAccuracy()));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("lat", Float.toString(location.getLatitude()));
+        parameters.put("lon", Float.toString(location.getLongitude()));
+        parameters.put("accuracy", Integer.toString(location.getAccuracy()));
 
         // Note: This method requires an HTTP POST request.
         Response response = transport.post(transport.getPath(), parameters);
@@ -305,23 +273,17 @@ public class GeoInterface {
         String placeId,
         String woeId
     ) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_CORRECT_LOCATION));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_CORRECT_LOCATION);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
         if (placeId != null) {
-            parameters.add(new Parameter("place_id", placeId));
+            parameters.put("place_id", placeId);
         }
         if (woeId != null) {
-            parameters.add(new Parameter("woe_id", woeId));
+            parameters.put("woe_id", woeId);
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         // Note: This method requires an HTTP POST request.
         Response response = transport.post(transport.getPath(), parameters);
@@ -351,23 +313,23 @@ public class GeoInterface {
         Set extras,
         int perPage, int page
     ) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
+        Map<String, String> parameters = new HashMap<String, String>();
         PhotoList photos = new PhotoList();
-        parameters.add(new Parameter("method", METHOD_PHOTOS_FOR_LOCATION));
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("method", METHOD_PHOTOS_FOR_LOCATION);
+        parameters.put("api_key", apiKey);
 
         if (extras.size() > 0) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(new Parameter("lat", location.getLatitude()));
-        parameters.add(new Parameter("lon", location.getLongitude()));
-        parameters.add(new Parameter("accuracy", location.getAccuracy()));
+        parameters.put("lat", Float.toString(location.getLatitude()));
+        parameters.put("lon", Float.toString(location.getLongitude()));
+        parameters.put("accuracy", Integer.toString(location.getAccuracy()));
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
@@ -402,18 +364,12 @@ public class GeoInterface {
         String photoId,
         int context
     ) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_CONTEXT));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_CONTEXT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("context", "" + context));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("context", "" + context);
 
         // Note: This method requires an HTTP POST request.
         Response response = transport.post(transport.getPath(), parameters);

@@ -10,6 +10,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.TestCase;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
@@ -18,6 +21,7 @@ import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
+import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.urls.UrlsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
@@ -37,17 +41,21 @@ public class UrlsInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            REST rest = new REST();
+OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST(service);
             rest.setHost(properties.getProperty("host"));
 
             flickr = new Flickr(properties.getProperty("apiKey"), rest);
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setSharedSecret(properties.getProperty("secret"));
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            requestContext.setAuth(auth);
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -62,13 +70,13 @@ public class UrlsInterfaceTest extends TestCase {
     public void testGetUserPhotos() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserPhotos(properties.getProperty("nsid"));
-        assertEquals("http://www.flickr.com/photos/javatest/", url);
+        assertEquals("http://www.flickr.com/photos/misteral/", url);
     }
 
     public void testGetUserProfile() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserProfile(properties.getProperty("nsid"));
-        assertEquals("http://www.flickr.com/people/javatest/", url);
+        assertEquals("http://www.flickr.com/people/misteral/", url);
     }
 
     public void testLookupGroup() throws FlickrException, IOException, SAXException {
@@ -80,8 +88,8 @@ public class UrlsInterfaceTest extends TestCase {
 
     public void testLookupUser() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        String username = iface.lookupUser("http://www.flickr.com/people/javatest");
-        assertEquals("javatest", username);
+        String username = iface.lookupUser("http://www.flickr.com/people/misteral");
+        assertEquals("I_am_Allan", username);
     }
 
 }

@@ -1,19 +1,17 @@
 package com.flickr4java.flickr.machinetags;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
@@ -244,19 +242,19 @@ public class MachinetagsInterface {
      */
     public NamespacesList getNamespaces(String predicate, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList nsList = new NamespacesList();
-        parameters.add(new Parameter("method", METHOD_GET_NAMESPACES));
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("method", METHOD_GET_NAMESPACES);
+        parameters.put("api_key", apiKey);
 
         if (predicate != null) {
-            parameters.add(new Parameter("predicate", predicate));
+            parameters.put("predicate", predicate);
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -293,22 +291,22 @@ public class MachinetagsInterface {
      */
     public NamespacesList getPairs(String namespace, String predicate, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList nsList = new NamespacesList();
-        parameters.add(new Parameter("method", METHOD_GET_PAIRS));
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("method", METHOD_GET_PAIRS);
+        parameters.put("api_key", apiKey);
 
         if (namespace != null) {
-            parameters.add(new Parameter("namespace", namespace));
+            parameters.put("namespace", namespace);
         }
         if (predicate != null) {
-            parameters.add(new Parameter("predicate", predicate));
+            parameters.put("predicate", predicate);
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -344,19 +342,19 @@ public class MachinetagsInterface {
      */
     public NamespacesList getPredicates(String namespace, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList nsList = new NamespacesList();
-        parameters.add(new Parameter("method", METHOD_GET_PREDICATES));
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("method", METHOD_GET_PREDICATES);
+        parameters.put("api_key", apiKey);
 
         if (namespace != null) {
-            parameters.add(new Parameter("namespace", namespace));
+            parameters.put("namespace", namespace);
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -392,22 +390,22 @@ public class MachinetagsInterface {
      */
     public NamespacesList getValues(String namespace, String predicate, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList valuesList = new NamespacesList();
-        parameters.add(new Parameter("method", METHOD_GET_VALUES));
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("method", METHOD_GET_VALUES);
+        parameters.put("api_key", apiKey);
 
         if (namespace != null) {
-            parameters.add(new Parameter("namespace", namespace));
+            parameters.put("namespace", namespace);
         }
         if (predicate != null) {
-            parameters.add(new Parameter("predicate", predicate));
+            parameters.put("predicate", predicate);
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -442,22 +440,21 @@ public class MachinetagsInterface {
      */
     public NamespacesList getRecentValues(String namespace, String predicate, Date addedSince)
       throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList valuesList = new NamespacesList();
-        parameters.add(new Parameter("method", METHOD_GET_RECENTVALUES));
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("method", METHOD_GET_RECENTVALUES);
+        parameters.put("api_key", apiKey);
 
         if (namespace != null) {
-            parameters.add(new Parameter("namespace", namespace));
+            parameters.put("namespace", namespace);
         }
         if (predicate != null) {
-            parameters.add(new Parameter("predicate", predicate));
+            parameters.put("predicate", predicate);
         }
         if (addedSince != null) {
-            parameters.add(new Parameter(
+            parameters.put(
                 "added_since",
-                new Long(addedSince.getTime() / 1000L))
-            );
+                Long.toString(addedSince.getTime() / 1000L));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);

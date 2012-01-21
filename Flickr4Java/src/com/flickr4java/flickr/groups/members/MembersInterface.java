@@ -1,8 +1,8 @@
 package com.flickr4java.flickr.groups.members;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -10,10 +10,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.util.StringUtilities;
 
 /**
@@ -58,32 +56,23 @@ public class MembersInterface {
     public MembersList getList(String groupId, Set memberTypes, int perPage, int page)
       throws FlickrException, IOException, SAXException {
         MembersList members = new MembersList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_LIST));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("group_id", groupId));
+        parameters.put("group_id", groupId);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
         if (memberTypes != null) {
-            parameters.add(
-                new Parameter(
-                    "membertypes",
-                    StringUtilities.join(memberTypes, ",")
-                )
-            );
+            parameters.put("membertypes",
+                    StringUtilities.join(memberTypes, ","));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());

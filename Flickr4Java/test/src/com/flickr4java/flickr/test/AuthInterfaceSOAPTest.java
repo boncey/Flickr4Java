@@ -17,6 +17,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.TestCase;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
@@ -48,7 +51,9 @@ public class AuthInterfaceSOAPTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            SOAP soap = new SOAP(properties.getProperty("host"));
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            SOAP soap = new SOAP(properties.getProperty("host"), service);
             flickr = new Flickr(properties.getProperty("apiKey"), soap);
             Flickr.debugRequest = true;
             Flickr.debugStream = true;

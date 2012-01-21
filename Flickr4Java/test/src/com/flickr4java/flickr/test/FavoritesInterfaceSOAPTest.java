@@ -10,18 +10,24 @@ import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import junit.framework.TestCase;
+
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
-import com.flickr4java.flickr.favorites.FavoritesInterface;
-import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.photos.Extras;
-import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Auth;
-import junit.framework.TestCase;
-import org.xml.sax.SAXException;
+import com.flickr4java.flickr.auth.AuthInterface;
+import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.favorites.FavoritesInterface;
+import com.flickr4java.flickr.photos.Extras;
+import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.util.IOUtilities;
 
 /**
  * @author Anthony Eden
@@ -37,16 +43,24 @@ public class FavoritesInterfaceSOAPTest extends TestCase {
             Properties properties = new Properties();
             properties.load(in);
 
+            System.setProperty("http.proxyHost", "localhost");
+            System.setProperty("http.proxyPort", "8888");
             Flickr.debugStream = true;
-            SOAP soap = new SOAP(properties.getProperty("host"));
+            Flickr.debugRequest = true;
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            SOAP soap = new SOAP(properties.getProperty("host"), service);
+            
             flickr = new Flickr(properties.getProperty("apiKey"), soap);
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setSharedSecret(properties.getProperty("secret"));
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            requestContext.setAuth(auth);
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }

@@ -6,18 +6,18 @@ package com.flickr4java.flickr.reflection;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for testing the complete implementation of all Flickr-methods.<p>
@@ -61,17 +61,12 @@ public class ReflectionInterface {
      * @throws FlickrException
      */
     public Method getMethodInfo(String methodName) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_METHOD_INFO));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_METHOD_INFO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("method_name", methodName));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("method_name", methodName);
+
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -188,16 +183,11 @@ public class ReflectionInterface {
      * @throws FlickrException
      */
     public Collection getMethods() throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_METHODS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_METHODS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {

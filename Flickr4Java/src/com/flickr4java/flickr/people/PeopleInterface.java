@@ -6,7 +6,9 @@ package com.flickr4java.flickr.people;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
@@ -14,10 +16,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.PhotoList;
@@ -67,11 +67,11 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User findByEmail(String email) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_FIND_BY_EMAIL));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_FIND_BY_EMAIL);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("find_email", email));
+        parameters.put("find_email", email);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -96,11 +96,11 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User findByUsername(String username) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_FIND_BY_USERNAME));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_FIND_BY_USERNAME);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("username", username));
+        parameters.put("username", username);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -125,17 +125,11 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User getInfo(String userId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_INFO));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_INFO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("user_id", userId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("user_id", userId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -186,11 +180,11 @@ public class PeopleInterface {
       throws IOException, SAXException, FlickrException {
         List groups = new ArrayList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PUBLIC_GROUPS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PUBLIC_GROUPS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("user_id", userId));
+        parameters.put("user_id", userId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -234,21 +228,21 @@ public class PeopleInterface {
             FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PUBLIC_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("user_id", userId));
+        parameters.put("user_id", userId);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
 
         if (extras != null) {
-            parameters.add(new Parameter(Extras.KEY_EXTRAS, StringUtilities.join(extras, ",")));
+            parameters.put(Extras.KEY_EXTRAS, StringUtilities.join(extras, ","));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
@@ -280,15 +274,9 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User getUploadStatus() throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_UPLOAD_STATUS));
-        parameters.add(new Parameter("api_key", apiKey));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_UPLOAD_STATUS);
+        parameters.put("api_key", apiKey);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters);
         if (response.isError()) {

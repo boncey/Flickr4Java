@@ -13,8 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -24,12 +26,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Parameter;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.auth.AuthUtilities;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.geo.GeoInterface;
 import com.flickr4java.flickr.util.IOUtilities;
@@ -114,18 +114,12 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public void addTags(String photoId, String[] tags) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_ADD_TAGS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_ADD_TAGS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("tags", StringUtilities.join(tags, " ", true)));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("tags", StringUtilities.join(tags, " ", true));
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -145,17 +139,11 @@ public class PhotosInterface {
      */
     public void delete(String photoId)
         throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_DELETE));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_DELETE);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
 
         // Note: This method requires an HTTP POST request.
         Response response = transport.post(transport.getPath(), parameters);
@@ -179,17 +167,11 @@ public class PhotosInterface {
      */
     public List getAllContexts(String photoId) throws IOException, SAXException, FlickrException {
         List list = new ArrayList();
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_ALL_CONTEXTS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_ALL_CONTEXTS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -227,28 +209,22 @@ public class PhotosInterface {
             throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_CONTACTS_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_CONTACTS_PHOTOS);
+        parameters.put("api_key", apiKey);
 
         if (count > 0) {
-            parameters.add(new Parameter("count", count));
+            parameters.put("count", Integer.toString(count));
         }
         if (justFriends) {
-            parameters.add(new Parameter("just_friends", "1"));
+            parameters.put("just_friends", "1");
         }
         if (singlePhoto) {
-            parameters.add(new Parameter("single_photo", "1"));
+            parameters.put("single_photo", "1");
         }
         if (includeSelf) {
-            parameters.add(new Parameter("include_self", "1"));
+            parameters.put("include_self", "1");
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -292,23 +268,23 @@ public class PhotosInterface {
       throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_CONTACTS_PUBLIC_PHOTOS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_CONTACTS_PUBLIC_PHOTOS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("user_id", userId));
+        parameters.put("user_id", userId);
 
         if (count > 0) {
-            parameters.add(new Parameter("count", count));
+            parameters.put("count", Integer.toString(count));
         }
         if (justFriends) {
-            parameters.add(new Parameter("just_friends", "1"));
+            parameters.put("just_friends", "1");
         }
         if (singlePhoto) {
-            parameters.add(new Parameter("single_photo", "1"));
+            parameters.put("single_photo", "1");
         }
         if (includeSelf) {
-            parameters.add(new Parameter("include_self", "1"));
+            parameters.put("include_self", "1");
         }
 
         if (extras != null) {
@@ -320,7 +296,7 @@ public class PhotosInterface {
                 }
                 sb.append(it.next());
             }
-            parameters.add(new Parameter(Extras.KEY_EXTRAS, sb.toString()));
+            parameters.put(Extras.KEY_EXTRAS, sb.toString());
         }
 
         Response response = transport.get(transport.getPath(), parameters);
@@ -353,11 +329,11 @@ public class PhotosInterface {
      */
     public PhotoContext getContext(String photoId)
       throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_CONTEXT));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_CONTEXT);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -405,9 +381,9 @@ public class PhotosInterface {
         throws IOException, SAXException, FlickrException {
         List photocounts = new ArrayList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_COUNTS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_COUNTS);
+        parameters.put("api_key", apiKey);
 
         if (dates == null && takenDates == null) {
             throw new IllegalArgumentException("You must provide a value for either dates or takenDates");
@@ -418,22 +394,16 @@ public class PhotosInterface {
             for (int i = 0; i < dates.length; i++) {
                 dateList.add(String.valueOf(dates[i].getTime() / 1000L));
             }
-            parameters.add(new Parameter("dates", StringUtilities.join(dateList, ",")));
+            parameters.put("dates", StringUtilities.join(dateList, ","));
         }
 
         if (takenDates != null) {
-            List takenDateList = new ArrayList();
+            List<String> takenDateList = new ArrayList<String>();
             for (int i = 0; i < takenDates.length; i++) {
                 takenDateList.add(String.valueOf(takenDates[i].getTime() / 1000L));
             }
-            parameters.add(new Parameter("taken_dates", StringUtilities.join(takenDateList, ",")));
+            parameters.put("taken_dates", StringUtilities.join(takenDateList, ","));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -468,13 +438,13 @@ public class PhotosInterface {
      */
     public Collection getExif(String photoId, String secret)
         throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_EXIF));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_EXIF);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
         if (secret != null) {
-            parameters.add(new Parameter("secret", secret));
+            parameters.put("secret", secret);
         }
 
         Response response = transport.get(transport.getPath(), parameters);
@@ -510,19 +480,19 @@ public class PhotosInterface {
      */
     public Collection getFavorites(String photoId, int perPage, int page)
         throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
+    	Map<String, String> parameters = new HashMap<String, String>();
 
-        parameters.add(new Parameter("method", METHOD_GET_FAVORITES));
-        parameters.add(new Parameter("api_key", apiKey));
+        parameters.put("method", METHOD_GET_FAVORITES);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
 
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
 
         Response response = transport.get(transport.getPath(), parameters);
@@ -559,13 +529,13 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public Photo getInfo(String photoId, String secret) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_INFO));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_INFO);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
         if (secret != null) {
-            parameters.add(new Parameter("secret", secret));
+            parameters.put("secret", secret);
         }
 
         Response response = transport.get(transport.getPath(), parameters);
@@ -592,29 +562,23 @@ public class PhotosInterface {
     public PhotoList getNotInSet(int perPage, int page) throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", PhotosInterface.METHOD_GET_NOT_IN_SET));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);
+        parameters.put("api_key", apiKey);
 
         RequestContext requestContext = RequestContext.getRequestContext();
 
         List extras = requestContext.getExtras();
         if (extras.size() > 0) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -647,17 +611,11 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public Permissions getPerms(String photoId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_PERMS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_PERMS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -689,18 +647,18 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public PhotoList getRecent(Set extras, int perPage, int page) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_RECENT));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_RECENT);
+        parameters.put("api_key", apiKey);
 
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter(Extras.KEY_EXTRAS, StringUtilities.join(extras, ",")));
+            parameters.put(Extras.KEY_EXTRAS, StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
 
         Response response = transport.get(transport.getPath(), parameters);
@@ -746,20 +704,12 @@ public class PhotosInterface {
     public Collection getSizes(String photoId, boolean sign) throws IOException, SAXException, FlickrException {
         List sizes = new ArrayList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_SIZES));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_SIZES);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
 
-        if (sign) {
-            parameters.add(
-                new Parameter(
-                    "api_sig",
-                    AuthUtilities.getSignature(sharedSecret, parameters)
-                )
-            );
-        }
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
@@ -794,22 +744,16 @@ public class PhotosInterface {
      */
     public PhotoList getUntagged(int perPage, int page)
         throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_UNTAGGED));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_UNTAGGED);
+        parameters.put("api_key", apiKey);
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -855,43 +799,37 @@ public class PhotosInterface {
         Date minTakenDate, Date maxTakenDate,
         int privacyFilter, String sort, Set extras, int perPage, int page) 
         throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_WITH_GEO_DATA));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_WITH_GEO_DATA);
+        parameters.put("api_key", apiKey);
 
         if (minUploadDate != null) {
-            parameters.add(new Parameter("min_upload_date", minUploadDate.getTime() / 1000L));
+            parameters.put("min_upload_date", Long.toString(minUploadDate.getTime() / 1000L));
         }
         if (maxUploadDate != null) {
-            parameters.add(new Parameter("max_upload_date", maxUploadDate.getTime() / 1000L));
+            parameters.put("max_upload_date", Long.toString(maxUploadDate.getTime() / 1000L));
         }
         if (minTakenDate != null) {
-            parameters.add(new Parameter("min_taken_date", minTakenDate.getTime() / 1000L));
+            parameters.put("min_taken_date", Long.toString(minTakenDate.getTime() / 1000L));
         }
         if (maxTakenDate != null) {
-            parameters.add(new Parameter("max_taken_date", maxTakenDate.getTime() / 1000L));
+            parameters.put("max_taken_date", Long.toString(maxTakenDate.getTime() / 1000L));
         }
         if (privacyFilter > 0) {
-            parameters.add(new Parameter("privacy_filter", privacyFilter));        	
+            parameters.put("privacy_filter", Integer.toString(privacyFilter));        	
         }
         if (sort != null) {
-            parameters.add(new Parameter("sort", sort));
+            parameters.put("sort", sort);
         }
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -933,43 +871,37 @@ public class PhotosInterface {
      * @throws SAXException
      */
     public PhotoList getWithoutGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_WITHOUT_GEO_DATA));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_WITHOUT_GEO_DATA);
+        parameters.put("api_key", apiKey);
 
         if (minUploadDate != null) {
-            parameters.add(new Parameter("min_upload_date", minUploadDate.getTime() / 1000L));
+            parameters.put("min_upload_date", Long.toString(minUploadDate.getTime() / 1000L));
         }
         if (maxUploadDate != null) {
-            parameters.add(new Parameter("max_upload_date", maxUploadDate.getTime() / 1000L));
+            parameters.put("max_upload_date", Long.toString(maxUploadDate.getTime() / 1000L));
         }
         if (minTakenDate != null) {
-            parameters.add(new Parameter("min_taken_date", minTakenDate.getTime() / 1000L));
+            parameters.put("min_taken_date", Long.toString(minTakenDate.getTime() / 1000L));
         }
         if (maxTakenDate != null) {
-            parameters.add(new Parameter("max_taken_date", maxTakenDate.getTime() / 1000L));
+            parameters.put("max_taken_date", Long.toString(maxTakenDate.getTime() / 1000L));
         }
         if (privacyFilter > 0) {
-            parameters.add(new Parameter("privacy_filter", privacyFilter));        	
+            parameters.put("privacy_filter", Long.toString(privacyFilter));        	
         }
         if (sort != null) {
-            parameters.add(new Parameter("sort", sort));
+            parameters.put("sort", sort);
         }
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -998,27 +930,21 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public PhotoList recentlyUpdated(Date minDate, Set extras, int perPage, int page) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_RECENTLY_UPDATED));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_RECENTLY_UPDATED);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("min_date", minDate.getTime() / 1000L));
+        parameters.put("min_date", Long.toString( minDate.getTime() / 1000L));
 
         if (extras != null && !extras.isEmpty()) {
-            parameters.add(new Parameter("extras", StringUtilities.join(extras, ",")));
+            parameters.put("extras", StringUtilities.join(extras, ","));
         }
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1040,17 +966,11 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public void removeTag(String tagId) throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_REMOVE_TAG));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_REMOVE_TAG);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("tag_id", tagId));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("tag_id", tagId);
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1073,24 +993,18 @@ public class PhotosInterface {
         throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SEARCH));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SEARCH);
+        parameters.put("api_key", apiKey);
 
-        parameters.addAll(params.getAsParameters());
+        parameters.putAll(params.getAsParameters());
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", "" + perPage));
+            parameters.put("per_page", "" + perPage);
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", "" + page));
+            parameters.put("page", "" + page);
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1125,24 +1039,18 @@ public class PhotosInterface {
         throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_GET_INTERESTINGNESS));
-        parameters.add(new Parameter("api_key", apiKey));
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_GET_INTERESTINGNESS);
+        parameters.put("api_key", apiKey);
 
-        parameters.addAll(params.getAsParameters());
+        parameters.putAll(params.getAsParameters());
 
         if (perPage > 0) {
-            parameters.add(new Parameter("per_page", perPage));
+            parameters.put("per_page", Integer.toString(perPage));
         }
         if (page > 0) {
-            parameters.add(new Parameter("page", page));
+            parameters.put("page", Integer.toString(page));
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.get(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1196,18 +1104,12 @@ public class PhotosInterface {
      */
     public void setContentType(String photoId, String contentType) throws IOException,
             SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_CONTENTTYPE));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_CONTENTTYPE);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("content_type", contentType));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("content_type", contentType);
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1230,29 +1132,23 @@ public class PhotosInterface {
      */
     public void setDates(String photoId, Date datePosted, Date dateTaken, String dateTakenGranularity)
             throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_DATES));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_DATES);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
 
         if (datePosted != null) {
-            parameters.add(new Parameter("date_posted", new Long(datePosted.getTime() / 1000)));
+            parameters.put("date_posted",  Long.toString(datePosted.getTime() / 1000));
         }
 
         if (dateTaken != null) {
-            parameters.add(new Parameter("date_taken", ((DateFormat)DATE_FORMATS.get()).format(dateTaken)));
+            parameters.put("date_taken", ((DateFormat)DATE_FORMATS.get()).format(dateTaken));
         }
 
         if (dateTakenGranularity != null) {
-            parameters.add(new Parameter("date_taken_granularity", dateTakenGranularity));
+            parameters.put("date_taken_granularity", dateTakenGranularity);
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1274,19 +1170,13 @@ public class PhotosInterface {
      */
     public void setMeta(String photoId, String title, String description)
         throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_META));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_META);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("title", title));
-        parameters.add(new Parameter("description", description));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("title", title);
+        parameters.put("description", description);
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1307,22 +1197,16 @@ public class PhotosInterface {
      */
     public void setPerms(String photoId, Permissions permissions) throws IOException,
             SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_PERMS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_PERMS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("is_public", permissions.isPublicFlag() ? "1" : "0"));
-        parameters.add(new Parameter("is_friend", permissions.isFriendFlag() ? "1" : "0"));
-        parameters.add(new Parameter("is_family", permissions.isFamilyFlag() ? "1" : "0"));
-        parameters.add(new Parameter("perm_comment", permissions.getComment()));
-        parameters.add(new Parameter("perm_addmeta", permissions.getAddmeta()));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("is_public", permissions.isPublicFlag() ? "1" : "0");
+        parameters.put("is_friend", permissions.isFriendFlag() ? "1" : "0");
+        parameters.put("is_family", permissions.isFamilyFlag() ? "1" : "0");
+        parameters.put("perm_comment", Integer.toString(permissions.getComment()));
+        parameters.put("perm_addmeta", Integer.toString(permissions.getAddmeta()));
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1347,25 +1231,19 @@ public class PhotosInterface {
      */
     public void setSafetyLevel(String photoId, String safetyLevel, Boolean hidden)
             throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_SAFETYLEVEL));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_SAFETYLEVEL);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
+        parameters.put("photo_id", photoId);
 
         if (safetyLevel != null) {
-            parameters.add(new Parameter("safety_level", safetyLevel));
+            parameters.put("safety_level", safetyLevel);
         }
 
         if (hidden != null) {
-            parameters.add(new Parameter("hidden", hidden.booleanValue() ? "1" : "0"));
+            parameters.put("hidden", hidden.booleanValue() ? "1" : "0");
         }
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {
@@ -1386,18 +1264,12 @@ public class PhotosInterface {
      */
     public void setTags(String photoId, String[] tags)
         throws IOException, SAXException, FlickrException {
-        List parameters = new ArrayList();
-        parameters.add(new Parameter("method", METHOD_SET_TAGS));
-        parameters.add(new Parameter("api_key", apiKey));
+    	Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("method", METHOD_SET_TAGS);
+        parameters.put("api_key", apiKey);
 
-        parameters.add(new Parameter("photo_id", photoId));
-        parameters.add(new Parameter("tags", StringUtilities.join(tags, " ", true)));
-        parameters.add(
-            new Parameter(
-                "api_sig",
-                AuthUtilities.getSignature(sharedSecret, parameters)
-            )
-        );
+        parameters.put("photo_id", photoId);
+        parameters.put("tags", StringUtilities.join(tags, " ", true));
 
         Response response = transport.post(transport.getPath(), parameters);
         if (response.isError()) {

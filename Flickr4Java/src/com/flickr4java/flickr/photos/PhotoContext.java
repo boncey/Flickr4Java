@@ -3,7 +3,6 @@
  */
 package com.flickr4java.flickr.photos;
 
-import com.flickr4java.flickr.photos.Photo;
 
 /**
  * @author Anthony Eden

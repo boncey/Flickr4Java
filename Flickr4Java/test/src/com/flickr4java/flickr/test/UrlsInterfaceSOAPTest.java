@@ -52,13 +52,13 @@ public class UrlsInterfaceSOAPTest extends TestCase {
     public void testGetUserPhotos() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserPhotos(properties.getProperty("nsid"));
-        assertEquals("http://www.flickr.com/photos/javatest/", url);
+        assertEquals("http://www.flickr.com/photos/misteral/", url);
     }
 
     public void testGetUserProfile() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserProfile(properties.getProperty("nsid"));
-        assertEquals("http://www.flickr.com/people/javatest/", url);
+        assertEquals("http://www.flickr.com/people/misteral/", url);
     }
 
     public void testLookupGroup() throws FlickrException, IOException, SAXException {
@@ -70,7 +70,7 @@ public class UrlsInterfaceSOAPTest extends TestCase {
 
     public void testLookupUser() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        String username = iface.lookupUser("http://www.flickr.com/people/javatest");
+        String username = iface.lookupUser("http://www.flickr.com/people/misteral");
         assertEquals("javatest", username);
     }
 

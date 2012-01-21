@@ -12,6 +12,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.TestCase;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
@@ -20,6 +23,7 @@ import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
+import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.members.Member;
 import com.flickr4java.flickr.groups.members.MembersInterface;
 import com.flickr4java.flickr.groups.members.MembersList;
@@ -43,7 +47,9 @@ public class MembersInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            REST rest = new REST();
+OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST(service);
             rest.setHost(properties.getProperty("host"));
 
             flickr = new Flickr(
@@ -52,11 +58,14 @@ public class MembersInterfaceTest extends TestCase {
                 rest
             );
 
-            RequestContext requestContext = RequestContext.getRequestContext();
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            requestContext.setAuth(auth);
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }

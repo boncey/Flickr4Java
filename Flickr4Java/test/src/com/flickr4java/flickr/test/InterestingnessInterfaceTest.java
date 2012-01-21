@@ -6,6 +6,9 @@ import java.util.Properties;
 
 import junit.framework.TestCase;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
@@ -14,6 +17,7 @@ import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
+import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.interestingness.InterestingnessInterface;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
@@ -40,7 +44,9 @@ public class InterestingnessInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            REST rest = new REST();
+OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+    				.apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST(service);
 
             flickr = new Flickr(
                 properties.getProperty("apiKey"),
@@ -48,11 +54,14 @@ public class InterestingnessInterfaceTest extends TestCase {
                 rest
             );
 
-            RequestContext requestContext = RequestContext.getRequestContext();
+			Auth auth = new Auth();
+			auth.setPermission(Permission.READ);
+			auth.setToken(properties.getProperty("token"));
+			auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-            AuthInterface authInterface = flickr.getAuthInterface();
-            Auth auth = authInterface.checkToken(properties.getProperty("token"));
-            requestContext.setAuth(auth);
+			RequestContext requestContext = RequestContext.getRequestContext();
+			requestContext.setAuth(auth);
+			flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -65,11 +74,11 @@ public class InterestingnessInterfaceTest extends TestCase {
 		assertNotNull(flickr);
 		InterestingnessInterface ii = flickr.getInterestingnessInterface();
 		assertNotNull(ii);
-		PhotoList list = ii.getList("2006-09-11", Extras.ALL_EXTRAS, 10, 9);
+		PhotoList list = ii.getList("2006-09-11", Extras.ALL_EXTRAS, 7, 9);
 		assertNotNull(list);
-		assertEquals(10, list.size());
+		assertEquals(7, list.size());
 		assertEquals(9, list.getPage());
-		assertEquals(10, list.getPerPage());
+		assertEquals(7, list.getPerPage());
 		assertEquals(50, list.getPages());
 		assertEquals(500, list.getTotal());
 		assertTrue(list.get(0) instanceof Photo);

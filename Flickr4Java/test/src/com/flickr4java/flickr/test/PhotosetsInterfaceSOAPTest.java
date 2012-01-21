@@ -2,7 +2,6 @@ package com.flickr4java.flickr.test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;

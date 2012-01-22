@@ -3,10 +3,10 @@
  */
 package com.flickr4java.flickr;
 
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
 import java.util.Map;
-
-import org.xml.sax.SAXException;
 
 /**
  * The abstract Transport class provides a common interface for transporting requests to the Flickr servers. Flickr
@@ -21,6 +21,7 @@ public abstract class Transport {
     public static final String REST = "REST";
     public static final String SOAP = "SOAP";
 
+    protected static final String API_HOST = "http://api.flickr.com";
     private String transportType;
     protected Class responseClass;
     private String path;
@@ -86,7 +87,7 @@ public abstract class Transport {
      * @throws SAXException
      */
     public abstract Response post(String path, Map<String, String> parameters, boolean multipart) throws IOException,
-            SAXException;
+    SAXException;
 
     /**
      * @return Returns the path.

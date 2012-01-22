@@ -1,22 +1,12 @@
 package com.flickr4java.flickr;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.Map;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.rpc.ServiceException;
-import javax.xml.soap.Name;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPException;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.util.UrlUtilities;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 import org.apache.axis.message.SOAPBodyElement;
 import org.apache.axis.message.SOAPEnvelope;
-import org.apache.axis.message.SOAPHeaderElement;
 import org.apache.axis.utils.XMLUtils;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Token;
@@ -25,8 +15,16 @@ import org.scribe.oauth.OAuthService;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.util.UrlUtilities;
+import javax.xml.rpc.ServiceException;
+import javax.xml.soap.Name;
+import javax.xml.soap.SOAPElement;
+import javax.xml.soap.SOAPException;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.Map;
 
 
 /**
@@ -39,29 +37,26 @@ public class SOAP extends Transport {
     public static final String URN = "urn:flickr";
     public static final String BODYELEMENT = "FlickrRequest";
     public static final String PATH = "/services/soap/";
+
+    // TODO [DJG] Configure service internally
     private OAuthService service;
 
-    public SOAP() throws ParserConfigurationException {
+
+    public SOAP() {
+        setHost(Flickr.DEFAULT_HOST);
+    }
+
+    public SOAP(String host) {
+        setHost(host);
+    }
+
+    @Deprecated // No need to expose OAuthService construction to outside world
+    public SOAP(OAuthService service) {
         setTransportType(SOAP);
         setResponseClass(SOAPResponse.class);
         setPath(PATH);
-    }
-
-    public SOAP(String host) throws ParserConfigurationException {
-        this();
-        setHost(host);
-    }
-
-    public SOAP(String host, OAuthService service) throws ParserConfigurationException {
-        this();
-        setHost(host);
+        setHost(Flickr.DEFAULT_HOST);
         this.service = service;
-    }
-
-    public SOAP(String host, int port) throws ParserConfigurationException {
-        this();
-        setHost(host);
-        setPort(port);
     }
 
     /**
@@ -73,6 +68,7 @@ public class SOAP extends Transport {
      * @throws IOException
      * @throws SAXException
      */
+    @Override
     public Response get(String path, Map<String, String> parameters) throws IOException, SAXException {
         //this is currently exactly the same as the post
         return post(path, parameters);
@@ -88,14 +84,16 @@ public class SOAP extends Transport {
      * @throws IOException
      * @throws SAXException
      */
+    @Override
     public Response post(String path, Map<String, String> parameters, boolean multipart)
             throws IOException, SAXException {
         URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, Collections.<String, String> emptyMap());
 
-		OAuthRequest request = new OAuthRequest(Verb.POST, "http://api.flickr.com" + PATH);
+        OAuthRequest request = new OAuthRequest(Verb.POST, API_HOST + PATH);
         RequestContext requestContext = RequestContext.getRequestContext();
-		Auth auth = requestContext.getAuth();
-		Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
+        Auth auth = requestContext.getAuth();
+        Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
+        service.signRequest(requestToken, request);
 
         try {
             //build the envelope
@@ -131,19 +129,19 @@ public class SOAP extends Transport {
             Service service = new Service();
             Call call = (Call) service.createCall();
             call.setTargetEndpointAddress(url);
-            
-            request.addPayload(env.getAsString());
-            
-//            SOAPEnvelope envelope = call.invoke(env);
 
-    		this.service.signRequest(requestToken, request);
+            request.addPayload(env.getAsString());
+
+            //            SOAPEnvelope envelope = call.invoke(env);
+
+            this.service.signRequest(requestToken, request);
             org.scribe.model.Response scribeResponse = request.send();
 
             if (Flickr.debugStream) {
                 System.out.println("SOAP RESPONSE:");
                 System.out.println(scribeResponse.getBody());
             }
-            
+
             SOAPEnvelope envelope = new SOAPEnvelope(new ByteArrayInputStream(scribeResponse.getBody().getBytes("UTF-8")));
             SOAPResponse response = new SOAPResponse(envelope);
             response.parse(null); //the null is because we don't really need a document, but the Interface does

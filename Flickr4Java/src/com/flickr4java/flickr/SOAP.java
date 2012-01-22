@@ -28,7 +28,9 @@ import java.util.Map;
 
 
 /**
- * SOAP interface to flickr
+ * SOAP interface to flickr.
+ * 
+ * Not yet working with OAuth - please use {@link REST} instead.
  *
  * @author Matt Ray
  */

@@ -49,7 +49,7 @@ public class FavoritesInterfaceSOAPTest extends TestCase {
             Flickr.debugRequest = true;
             OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
     				.apiSecret(properties.getProperty("secret")).build();
-            SOAP soap = new SOAP(properties.getProperty("host"), service);
+            SOAP soap = new SOAP(service);
             
             flickr = new Flickr(properties.getProperty("apiKey"), soap);
 

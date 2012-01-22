@@ -2,22 +2,28 @@
 
 package com.flickr4java.flickr.test;
 
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.SOAP;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.groups.Group;
+import com.flickr4java.flickr.urls.UrlsInterface;
+import com.flickr4java.flickr.util.IOUtilities;
+
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.SOAP;
-import com.flickr4java.flickr.groups.Group;
-import com.flickr4java.flickr.urls.UrlsInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 /**
  * @author Anthony Eden
@@ -27,6 +33,7 @@ public class UrlsInterfaceSOAPTest extends TestCase {
     Flickr flickr = null;
     Properties properties = null;
 
+    @Override
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -35,9 +42,19 @@ public class UrlsInterfaceSOAPTest extends TestCase {
             properties.load(in);
 
             Flickr.debugStream = true;
-            SOAP soap = new SOAP(properties.getProperty("host"));
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+                    .apiSecret(properties.getProperty("secret")).build();
+            SOAP soap = new SOAP(service);
             flickr = new Flickr(properties.getProperty("apiKey"), soap);
-            
+
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
+
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -52,13 +69,15 @@ public class UrlsInterfaceSOAPTest extends TestCase {
     public void testGetUserPhotos() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserPhotos(properties.getProperty("nsid"));
-        assertEquals("http://www.flickr.com/photos/misteral/", url);
+        String username = properties.getProperty("username");
+        assertEquals(String.format("http://www.flickr.com/photos/%s/", username), url);
     }
 
     public void testGetUserProfile() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserProfile(properties.getProperty("nsid"));
-        assertEquals("http://www.flickr.com/people/misteral/", url);
+        String username = properties.getProperty("username");
+        assertEquals(String.format("http://www.flickr.com/people/%s/", username), url);
     }
 
     public void testLookupGroup() throws FlickrException, IOException, SAXException {
@@ -70,8 +89,9 @@ public class UrlsInterfaceSOAPTest extends TestCase {
 
     public void testLookupUser() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        String username = iface.lookupUser("http://www.flickr.com/people/misteral");
-        assertEquals("javatest", username);
+        String username = properties.getProperty("username");
+        String usernameOnFlickr = iface.lookupUser(String.format("http://www.flickr.com/people/%s/", username));
+        assertEquals(username, usernameOnFlickr);
     }
 
 }

@@ -4,24 +4,6 @@
 
 package com.flickr4java.flickr.test;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Properties;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
@@ -36,6 +18,24 @@ import edu.stanford.ejalbert.exception.BrowserLaunchingExecutionException;
 import edu.stanford.ejalbert.exception.BrowserLaunchingInitializingException;
 import edu.stanford.ejalbert.exception.UnsupportedOperatingSystemException;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Properties;
+
+import junit.framework.TestCase;
+
 /**
  * @author Anthony Eden
  */
@@ -44,6 +44,7 @@ public class AuthInterfaceSOAPTest extends TestCase {
     Flickr flickr = null;
     Properties properties = null;
 
+    @Override
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -51,14 +52,21 @@ public class AuthInterfaceSOAPTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
-            SOAP soap = new SOAP(properties.getProperty("host"), service);
-            flickr = new Flickr(properties.getProperty("apiKey"), soap);
             Flickr.debugRequest = true;
             Flickr.debugStream = true;
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+                    .apiSecret(properties.getProperty("secret")).build();
+            SOAP soap = new SOAP(service);
+            flickr = new Flickr(properties.getProperty("apiKey"), soap);
+
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
+
             RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setSharedSecret(properties.getProperty("secret"));
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -71,22 +79,22 @@ public class AuthInterfaceSOAPTest extends TestCase {
     }
 
     public void testReadAuthentication() throws FlickrException, IOException, SAXException,
-            BrowserLaunchingInitializingException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
+    BrowserLaunchingInitializingException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
         testAuthentication(Permission.READ);
     }
 
     public void testWriteAuthentication() throws FlickrException, IOException, BrowserLaunchingInitializingException,
-            SAXException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
+    SAXException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
         testAuthentication(Permission.WRITE);
     }
 
     public void testDeleteAuthentication() throws FlickrException, IOException, BrowserLaunchingInitializingException,
-            SAXException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
+    SAXException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
         testAuthentication(Permission.DELETE);
     }
 
     private void testAuthentication(Permission permission) throws FlickrException, IOException, SAXException,
-            BrowserLaunchingInitializingException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
+    BrowserLaunchingInitializingException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
         AuthInterface authInterface = flickr.getAuthInterface();
         String frob = authInterface.getFrob();
         URL url = authInterface.buildAuthenticationUrl(permission, frob);
@@ -108,8 +116,8 @@ public class AuthInterfaceSOAPTest extends TestCase {
         d.setVisible(true);
 
         Auth auth = authInterface.getToken(frob);
-//        System.out.println("Token: " + authentication.getToken());
-//        System.out.println("Permission: " + authentication.getPermission());
+        //        System.out.println("Token: " + authentication.getToken());
+        //        System.out.println("Permission: " + authentication.getPermission());
         assertNotNull(auth.getToken());
         assertEquals(permission, auth.getPermission());
 

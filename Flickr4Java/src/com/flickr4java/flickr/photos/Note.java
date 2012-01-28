@@ -3,12 +3,12 @@
  */
 package com.flickr4java.flickr.photos;
 
+import com.flickr4java.flickr.util.StringUtilities;
+
 import java.awt.Rectangle;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;
-
-import com.flickr4java.flickr.util.StringUtilities;
 
 /**
  * @author Anthony Eden

@@ -12,9 +12,6 @@ import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.urls.UrlsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -41,12 +38,10 @@ public class UrlsInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-                    .apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST(service);
+            REST rest = new REST();
             rest.setHost(properties.getProperty("host"));
 
-            flickr = new Flickr(properties.getProperty("apiKey"), rest);
+            flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
 
             Auth auth = new Auth();
             auth.setPermission(Permission.READ);

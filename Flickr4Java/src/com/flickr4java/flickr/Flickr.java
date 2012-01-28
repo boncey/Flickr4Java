@@ -3,8 +3,6 @@
  */
 package com.flickr4java.flickr;
 
-import java.util.Set;
-
 import com.flickr4java.flickr.activity.ActivityInterface;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
@@ -36,6 +34,8 @@ import com.flickr4java.flickr.test.TestInterface;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.urls.UrlsInterface;
 
+import java.util.Set;
+
 /**
  * Main entry point for the Flickrj API.
  * This class is used to acquire Interface classes which wrap the Flickr API.<p>
@@ -56,6 +56,12 @@ public class Flickr {
      * The default endpoint host.
      */
     public static final String DEFAULT_HOST = "api.flickr.com";
+
+
+    /**
+     * The key used when the API key is stored for passing to the Transport methods.
+     */
+    public static final String API_KEY = "api_key";
 
     /**
      * Set to true to enable response debugging (print the response stream)
@@ -161,21 +167,21 @@ public class Flickr {
      * @see com.flickr4java.flickr.test.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
      * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getSafetyLevel()
      * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setSafetyLevel(String)
-	 * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_SAFE = "1";
     /**
      * @see com.flickr4java.flickr.test.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
      * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getSafetyLevel()
      * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setSafetyLevel(String)
-	 * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_MODERATE = "2";
     /**
      * @see com.flickr4java.flickr.test.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
      * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getSafetyLevel()
      * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setSafetyLevel(String)
-	 * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
+     * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_RESTRICTED = "3";
 
@@ -408,14 +414,14 @@ public class Flickr {
 
     public MachinetagsInterface getMachinetagsInterface() {
         if (machinetagsInterface == null) {
-        	machinetagsInterface = new MachinetagsInterface(apiKey, sharedSecret, transport);
+            machinetagsInterface = new MachinetagsInterface(apiKey, sharedSecret, transport);
         }
         return machinetagsInterface;
     }
 
     public MembersInterface getMembersInterface() {
         if (membersInterface == null) {
-        	membersInterface = new MembersInterface(apiKey, sharedSecret, transport);
+            membersInterface = new MembersInterface(apiKey, sharedSecret, transport);
         }
         return membersInterface;
     }

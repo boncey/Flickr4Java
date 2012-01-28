@@ -4,10 +4,10 @@
 
 package com.flickr4java.flickr;
 
+import com.flickr4java.flickr.auth.Auth;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.flickr4java.flickr.auth.Auth;
 
 /**
  * A thread local variable used to hold contextual information used in requests.  To get an instance of this class use
@@ -48,6 +48,7 @@ public class RequestContext {
      * @deprecated Get the secret from {@link Flickr#getSharedSecret()}.
      * @return The shared secret
      */
+    @Deprecated
     public String getSharedSecret() {
         return sharedSecret;
     }
@@ -58,6 +59,7 @@ public class RequestContext {
      * @deprecated Set the secret in {@link Flickr#setSharedSecret(String)}.
      * @param sharedSecret The shared secret
      */
+    @Deprecated
     public void setSharedSecret(String sharedSecret) {
         this.sharedSecret = sharedSecret;
     }
@@ -68,7 +70,10 @@ public class RequestContext {
      * @return List of extra return values requested
      */
     public List getExtras() {
-        if (extras == null) extras = new ArrayList();
+        if (extras == null)
+        {
+            extras = new ArrayList();
+        }
         return extras;
     }
 
@@ -78,6 +83,7 @@ public class RequestContext {
 
     private static class RequestContextThreadLocal extends ThreadLocal {
 
+        @Override
         protected Object initialValue() {
             return new RequestContext();
         }

@@ -1,15 +1,15 @@
 package com.flickr4java.flickr.photos;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.tags.Tag;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.tags.Tag;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utilitiy-methods to transfer requested XML to Photo-objects.

@@ -1,7 +1,6 @@
 package com.flickr4java.flickr;
 
-import java.util.Collection;
-import java.util.Iterator;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 import org.apache.axis.message.SOAPBody;
 import org.apache.axis.message.SOAPEnvelope;
@@ -9,7 +8,8 @@ import org.apache.axis.message.SOAPFault;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * Flickr SOAP Response object.

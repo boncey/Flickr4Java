@@ -3,9 +3,6 @@
  */
 package com.flickr4java.flickr;
 
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -23,7 +20,7 @@ public abstract class Transport {
 
     protected static final String API_HOST = "http://api.flickr.com";
     private String transportType;
-    protected Class responseClass;
+    protected Class<?> responseClass;
     private String path;
     private String host;
     private int port = 80;
@@ -57,23 +54,23 @@ public abstract class Transport {
      *
      * @param path The request path
      * @param parameters The parameters (collection of Parameter objects)
+     * @param sharedSecret TODO
      * @return The Response
-     * @throws IOException
-     * @throws SAXException
+     * @throws FlickrException
      */
-    public abstract Response get(String path, Map<String, String> parameters) throws IOException, SAXException;
+    public abstract Response get(String path, Map<String, String> parameters, String sharedSecret) throws FlickrException;
 
     /**
      * Invoke an HTTP POST request on a remote host.
      *
      * @param path The request path
      * @param parameters The parameters (collection of Parameter objects)
+     * @param sharedSecret TODO
      * @return The Response object
-     * @throws IOException
-     * @throws SAXException
+     * @throws FlickrException
      */
-    public Response post(String path, Map<String, String> parameters) throws IOException, SAXException {
-        return post(path, parameters, false);
+    public Response post(String path, Map<String, String> parameters, String sharedSecret) throws FlickrException {
+        return post(path, parameters, sharedSecret, false);
     }
 
     /**
@@ -81,13 +78,25 @@ public abstract class Transport {
      *
      * @param path The request path
      * @param parameters The parameters (List of Parameter objects)
+     * @param sharedSecret TODO
      * @param multipart Use multipart
      * @return The Response object
-     * @throws IOException
-     * @throws SAXException
+     * @throws FlickrException
      */
-    public abstract Response post(String path, Map<String, String> parameters, boolean multipart) throws IOException,
-    SAXException;
+    public abstract Response post(String path, Map<String, String> parameters, String sharedSecret, boolean multipart) throws FlickrException;
+
+    /**
+     * Invoke a non OAuth HTTP GET request on a remote host.
+     * 
+     * This is only used for the Flickr OAuth methods checkToken and getAccessToken.
+     *
+     * @param path The request path
+     * @param parameters The parameters
+     * @return The Response
+     * @throws FlickrException
+     */
+    public abstract Response getNonOAuth(String path, Map<String, String> parameters)
+            throws FlickrException;
 
     /**
      * @return Returns the path.
@@ -103,11 +112,11 @@ public abstract class Transport {
         this.path = path;
     }
 
-    public Class getResponseClass() {
+    public Class<?> getResponseClass() {
         return responseClass;
     }
 
-    public void setResponseClass(Class responseClass) {
+    public void setResponseClass(Class<?> responseClass) {
         if (responseClass == null) {
             throw new IllegalArgumentException("The response Class cannot be null");
         }

@@ -2,32 +2,28 @@
 
 package com.flickr4java.flickr.test;
 
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.favorites.FavoritesInterface;
+import com.flickr4java.flickr.photos.Extras;
+import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.util.IOUtilities;
+
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Properties;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.favorites.FavoritesInterface;
-import com.flickr4java.flickr.photos.Extras;
-import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.util.IOUtilities;
 
 /**
  * @author Anthony Eden
@@ -37,6 +33,7 @@ public class FavoritesInterfaceTest extends TestCase {
 
     Flickr flickr = null;
 
+    @Override
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         InputStream in = null;
         try {
@@ -44,24 +41,22 @@ public class FavoritesInterfaceTest extends TestCase {
             Properties properties = new Properties();
             properties.load(in);
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST(service);
+            REST rest = new REST();
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }

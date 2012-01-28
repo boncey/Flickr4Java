@@ -4,20 +4,21 @@
 
 package com.flickr4java.flickr.photos.licenses;
 
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
 
 /**
  * Interface for working with copyright licenses.
@@ -56,9 +57,9 @@ public class LicensesInterface {
     public Collection getInfo() throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_INFO);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -90,12 +91,12 @@ public class LicensesInterface {
     public void setLicense(String photoId, int licenseId) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_SET_LICENSE);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
         parameters.put("license_id", Integer.toString(licenseId));
 
         // Note: This method requires an HTTP POST request.
-        Response response = transportAPI.post(transportAPI.getPath(), parameters);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

@@ -2,35 +2,11 @@
 
 package com.flickr4java.flickr.test;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.imageio.ImageIO;
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.Note;
@@ -45,6 +21,29 @@ import com.flickr4java.flickr.photos.Size;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.imageio.ImageIO;
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
+import junit.framework.TestCase;
+
 /**
  * @author Anthony Eden
  * @version $Id: PhotosInterfaceTest.java,v 1.20 2009/07/23 21:49:35 x-mago Exp $
@@ -54,6 +53,7 @@ public class PhotosInterfaceTest extends TestCase {
     Flickr flickr = null;
     Properties properties = null;
 
+    @Override
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
 
         InputStream in = null;
@@ -62,26 +62,26 @@ public class PhotosInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST(service);
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+                    .apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST();
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.WRITE);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.WRITE);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
             Flickr.debugStream = false;
-            Flickr.debugRequest = false; 
+            Flickr.debugRequest = false;
         } finally {
             IOUtilities.close(in);
         }
@@ -144,12 +144,12 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals("green", ((Tag) tags.get(0)).getValue());
         assertEquals("grn", ((Tag) tags.get(1)).getValue());
 
-		ArrayList notes = (ArrayList) photo.getNotes();
+        ArrayList notes = (ArrayList) photo.getNotes();
         assertEquals("This region is important", ((Note) notes.get(0)).getText());
         assertEquals(
-            "java.awt.Rectangle[x=154,y=41,width=70,height=76]",
-            ((Note) notes.get(0)).getBounds().toString()
-        );
+                "java.awt.Rectangle[x=154,y=41,width=70,height=76]",
+                ((Note) notes.get(0)).getBounds().toString()
+                );
     }
 
     public void testGetContactsPhotos() throws FlickrException, IOException, SAXException {
@@ -266,14 +266,14 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
 
 
     public void testSetContentType() throws FlickrException, IOException, SAXException {
-        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"));
+        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"), properties.getProperty("tokensecret"));
         RequestContext.getRequestContext().setAuth(auth);
 
         PhotosInterface iface = flickr.getPhotosInterface();
         iface.setContentType(
-            properties.getProperty("photoid"),
-            Flickr.CONTENTTYPE_PHOTO
-        );
+                properties.getProperty("photoid"),
+                Flickr.CONTENTTYPE_PHOTO
+                );
     }
 
     public void testSetDates() {
@@ -281,7 +281,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
     }
 
     public void testSetMeta() throws FlickrException, IOException, SAXException {
-        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"));
+        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"), properties.getProperty("tokensecret"));
         RequestContext.getRequestContext().setAuth(auth);
 
         String newTitle = "New Title";
@@ -300,15 +300,15 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
     }
 
     public void testSetSafetyLevel() throws FlickrException, IOException, SAXException {
-        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"));
+        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"), properties.getProperty("tokensecret"));
         RequestContext.getRequestContext().setAuth(auth);
 
         PhotosInterface iface = flickr.getPhotosInterface();
         iface.setSafetyLevel(
-            properties.getProperty("photoid"),
-            Flickr.SAFETYLEVEL_SAFE,
-            new Boolean(false)
-        );
+                properties.getProperty("photoid"),
+                Flickr.SAFETYLEVEL_SAFE,
+                new Boolean(false)
+                );
     }
 
     public void testSetTags() throws FlickrException, IOException, SAXException {
@@ -331,15 +331,15 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertNotNull(tags);
         assertEquals(3, tags.size());
 
-//        String tagId = null;
-//        Iterator tagsIter = tags.iterator();
-//        TAG_LOOP: while (tagsIter.hasNext()) {
-//            Tag tag = (Tag) tagsIter.next();
-//            if (tag.getValue().equals("test")) {
-//                tagId = tag.getId();
-//                break TAG_LOOP;
-//            }
-//        }
+        //        String tagId = null;
+        //        Iterator tagsIter = tags.iterator();
+        //        TAG_LOOP: while (tagsIter.hasNext()) {
+        //            Tag tag = (Tag) tagsIter.next();
+        //            if (tag.getValue().equals("test")) {
+        //                tagId = tag.getId();
+        //                break TAG_LOOP;
+        //            }
+        //        }
 
     }
 
@@ -351,8 +351,8 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertNotNull(image);
         assertEquals(240, image.getWidth());
         assertEquals(180, image.getHeight());
-//        System.out.println("Image width: " + image.getWidth());
-//        System.out.println("Image height: " + image.getHeight());
+        //        System.out.println("Image width: " + image.getWidth());
+        //        System.out.println("Image height: " + image.getHeight());
         ImageIO.write(image, "jpg", new File("out.small.jpg"));
     }
 
@@ -378,7 +378,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         ImageIO.write(image, "jpg", new File("out.smallsquare.jpg"));
     }
 
-/*    public void testGetOriginalImage() throws FlickrException, IOException, SAXException {
+    /*    public void testGetOriginalImage() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoidOriginal");
         Photo photo = iface.getInfo(photoId, null);

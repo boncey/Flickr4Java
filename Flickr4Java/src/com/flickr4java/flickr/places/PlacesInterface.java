@@ -1,16 +1,6 @@
 package com.flickr4java.flickr.places;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -18,6 +8,17 @@ import com.flickr4java.flickr.photos.SearchParameters;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Lookup Flickr Places.<p>
@@ -145,11 +146,11 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_FIND);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("query", query);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -230,7 +231,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_FIND_BY_LATLON);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("lat", "" + Double.toString(latitude));
         parameters.put("lon", "" + Double.toString(longitude));
@@ -238,7 +239,7 @@ public class PlacesInterface {
 
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -273,7 +274,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_GET_CHILDREN_WITH_PHOTOS_PUBLIC);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -282,7 +283,7 @@ public class PlacesInterface {
             parameters.put("woe_id", woeId);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -316,7 +317,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         Location loc = new Location();
         parameters.put("method", METHOD_GET_INFO);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -325,7 +326,7 @@ public class PlacesInterface {
             parameters.put("woe_id", woeId);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -349,11 +350,11 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         Location loc = new Location();
         parameters.put("method", METHOD_GET_INFO_BY_URL);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", url);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -376,9 +377,9 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_GET_PLACETYPES);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -416,7 +417,7 @@ public class PlacesInterface {
         Map<String, String> parameters = new HashMap<String, String>();
         Location loc = new Location();
         parameters.put("method", METHOD_GET_SHAPEHISTORY);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -425,7 +426,7 @@ public class PlacesInterface {
             parameters.put("woe_id", woeId);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -456,7 +457,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_GET_TOP_PLACES_LIST);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -469,7 +470,7 @@ public class PlacesInterface {
             parameters.put("date", ((DateFormat) SearchParameters.DATE_FORMATS.get()).format(date));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -515,12 +516,12 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_BOUNDINGBOX);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         parameters.put("bbox", bbox);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -560,7 +561,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_CONTACTS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -577,7 +578,7 @@ public class PlacesInterface {
         }
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -632,7 +633,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_TAGS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type_id", Integer.toString(placeTypeId));
         if (woeId != null) {
@@ -669,7 +670,7 @@ public class PlacesInterface {
             parameters.put("max_taken_date", ((DateFormat) SearchParameters.MYSQL_DATE_FORMATS.get()).format(maxTakenDate));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -713,7 +714,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_USER);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -739,7 +740,7 @@ public class PlacesInterface {
         }
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -770,13 +771,13 @@ public class PlacesInterface {
       throws FlickrException, IOException, SAXException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_RESOLVE_PLACE_ID);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_id", placeId);
 
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -801,13 +802,13 @@ public class PlacesInterface {
       throws FlickrException, IOException, SAXException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_RESOLVE_PLACE_URL);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", flickrPlacesUrl);
 
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -841,7 +842,7 @@ public class PlacesInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         ArrayList tagsList = new ArrayList();
         parameters.put("method", METHOD_TAGS_FOR_PLACE);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (woeId != null) {
             parameters.put("woe_id", woeId);
@@ -862,7 +863,7 @@ public class PlacesInterface {
             parameters.put("max_taken_date", ((DateFormat) SearchParameters.MYSQL_DATE_FORMATS.get()).format(maxTakenDate));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

@@ -1,24 +1,10 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoContext;
@@ -28,6 +14,19 @@ import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import junit.framework.TestCase;
+
 /**
  * @author Anthony Eden
  */
@@ -36,6 +35,7 @@ public class PhotosetsInterfaceTest extends TestCase {
     Flickr flickr = null;
     Properties properties = null;
 
+    @Override
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         //Flickr.debugStream = true;
 
@@ -45,24 +45,24 @@ public class PhotosetsInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST(service);
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+                    .apiSecret(properties.getProperty("secret")).build();
+            REST rest = new REST();
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -107,7 +107,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photosets photosets = iface.getList(properties.getProperty("nsid"));
         assertNotNull(photosets);
-        assertEquals(2, photosets.getPhotosets().size());
+        assertFalse(photosets.getPhotosets().isEmpty());
     }
 
     public void testGetList2() throws FlickrException, IOException, SAXException {
@@ -119,14 +119,14 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
     public void testGetPhotos() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         PhotoList photos = iface.getPhotos(
-            properties.getProperty("photosetid"),
-            10,
-            1
-        );
+                properties.getProperty("photosetid"),
+                10,
+                1
+                );
         assertNotNull(photos);
         assertEquals(2, photos.size());
-        assertEquals(properties.getProperty("username"), ((Photo) photos.get(0)).getOwner().getUsername()); 
-        assertEquals(properties.getProperty("nsid"), ((Photo) photos.get(0)).getOwner().getId()); 
+        assertEquals(properties.getProperty("username"), ((Photo) photos.get(0)).getOwner().getUsername());
+        assertEquals(properties.getProperty("nsid"), ((Photo) photos.get(0)).getOwner().getId());
     }
 
     public void testOrderSets() throws FlickrException, IOException, SAXException {

@@ -5,18 +5,7 @@
  */
 package com.flickr4java.flickr.interestingness;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -25,6 +14,18 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -36,7 +37,7 @@ public class InterestingnessInterface {
     public static final String METHOD_GET_LIST = "flickr.interestingness.getList";
 
     private static final String KEY_METHOD = "method";
-    private static final String KEY_API_KEY = "api_key";
+    private static final String KEY_API_KEY = Flickr.API_KEY;
     private static final String KEY_DATE = "date";
     private static final String KEY_EXTRAS = "extras";
     private static final String KEY_PER_PAGE = "per_page";
@@ -99,7 +100,7 @@ public class InterestingnessInterface {
             parameters.put(KEY_PAGE, String.valueOf(page));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

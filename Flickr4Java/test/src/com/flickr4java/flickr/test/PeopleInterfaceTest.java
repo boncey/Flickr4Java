@@ -48,7 +48,7 @@ public class PeopleInterfaceTest extends TestCase {
 
 OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
     				.apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST(service);
+            REST rest = new REST();
             rest.setHost(properties.getProperty("host"));
 
             flickr = new Flickr(

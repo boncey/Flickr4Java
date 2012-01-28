@@ -3,16 +3,17 @@
  */
 package com.flickr4java.flickr.prefs;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
 
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Requesting preferences for the current authenticated user.
@@ -61,10 +62,10 @@ public class PrefsInterface {
     public String getContentType() throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_CONTENT_TYPE);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -90,10 +91,10 @@ public class PrefsInterface {
     public int getGeoPerms() throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_GEO_PERMS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -120,10 +121,10 @@ public class PrefsInterface {
     public boolean getHidden() throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_HIDDEN);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -146,10 +147,10 @@ public class PrefsInterface {
     public String getSafetyLevel() throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_SAFETY_LEVEL);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -175,10 +176,10 @@ public class PrefsInterface {
     public int getPrivacy() throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_PRIVACY);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

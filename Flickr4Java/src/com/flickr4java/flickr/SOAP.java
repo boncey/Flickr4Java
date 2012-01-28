@@ -13,7 +13,6 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 import javax.xml.rpc.ServiceException;
 import javax.xml.soap.Name;
@@ -21,7 +20,6 @@ import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPException;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
@@ -67,13 +65,12 @@ public class SOAP extends Transport {
      * @param path The request path
      * @param parameters The parameters (collection of Parameter objects)
      * @return The Response
-     * @throws IOException
-     * @throws SAXException
+     * @throws FlickrException
      */
     @Override
-    public Response get(String path, Map<String, String> parameters) throws IOException, SAXException {
+    public Response get(String path, Map<String, String> parameters, String sharedSecret) throws FlickrException {
         //this is currently exactly the same as the post
-        return post(path, parameters);
+        return post(path, parameters, sharedSecret);
     }
 
     /**
@@ -83,13 +80,11 @@ public class SOAP extends Transport {
      * @param parameters The parameters (collection of Parameter objects)
      * @param multipart Use multipart
      * @return The Response object
-     * @throws IOException
-     * @throws SAXException
+     * @throws FlickrException
      */
     @Override
-    public Response post(String path, Map<String, String> parameters, boolean multipart)
-            throws IOException, SAXException {
-        URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, Collections.<String, String> emptyMap());
+    public Response post(String path, Map<String, String> parameters, String sharedSecret, boolean multipart)
+            throws FlickrException {
 
         OAuthRequest request = new OAuthRequest(Verb.POST, API_HOST + PATH);
         RequestContext requestContext = RequestContext.getRequestContext();
@@ -98,6 +93,7 @@ public class SOAP extends Transport {
         service.signRequest(requestToken, request);
 
         try {
+            URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, Collections.<String, String> emptyMap());
             //build the envelope
             SOAPEnvelope env = new SOAPEnvelope();
             env.addNamespaceDeclaration("xsi", "http://www.w3.org/1999/XMLSchema-instance");
@@ -151,14 +147,31 @@ public class SOAP extends Transport {
 
         } catch (SOAPException se) {
             se.printStackTrace();
-            throw new RuntimeException(se); // TODO: Replace with a better exception
+            throw new RuntimeException(se);
         } catch (ServiceException se) {
             se.printStackTrace();
-            throw new RuntimeException(se); // TODO: Replace with a better exception
+            throw new RuntimeException(se);
         } catch (Exception se) {
             se.printStackTrace();
-            throw new RuntimeException(se); // TODO: Replace with a better exception
+            throw new RuntimeException(se);
         }
     }
+    /**
+     * Invoke a non OAuth HTTP GET request on a remote host.
+     * 
+     * This is only used for the Flickr OAuth methods checkToken and getAccessToken.
+     *
+     * @param path The request path
+     * @param parameters The parameters
+     * @return The Response
+     * @throws FlickrException
+     */
+    @Override
+    public Response getNonOAuth(String path, Map<String, String> parameters)
+            throws FlickrException {
 
+        // TODO
+
+        return null;
+    }
 }

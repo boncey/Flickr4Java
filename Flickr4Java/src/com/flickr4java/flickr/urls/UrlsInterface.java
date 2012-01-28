@@ -3,18 +3,19 @@
  */
 package com.flickr4java.flickr.urls;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.groups.Group;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.groups.Group;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Interface for testing Flickr connectivity.
@@ -61,11 +62,11 @@ public class UrlsInterface {
     public String getGroup(String groupId) throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_GROUP);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("group_id", groupId);
 
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -86,11 +87,11 @@ public class UrlsInterface {
     public String getUserPhotos(String userId) throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_USER_PHOTOS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
 
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -111,11 +112,11 @@ public class UrlsInterface {
     public String getUserProfile(String userId) throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_USER_PROFILE);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
 
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -136,11 +137,11 @@ public class UrlsInterface {
     public Group lookupGroup(String url) throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_LOOKUP_GROUP);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", url);
 
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -166,11 +167,11 @@ public class UrlsInterface {
       throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_LOOKUP_USER);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", url);
 
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

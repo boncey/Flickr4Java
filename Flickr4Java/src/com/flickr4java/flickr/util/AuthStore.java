@@ -3,9 +3,9 @@
  */
 package com.flickr4java.flickr.util;
 
-import java.io.IOException;
-
 import com.flickr4java.flickr.auth.Auth;
+
+import java.io.IOException;
 
 /**
  * Defines an interface for possibly persistent storage of token information.

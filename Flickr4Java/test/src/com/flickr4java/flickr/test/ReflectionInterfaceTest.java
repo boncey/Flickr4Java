@@ -49,7 +49,7 @@ public class ReflectionInterfaceTest extends TestCase {
 
 			OAuthService service = new ServiceBuilder().provider(FlickrApi.class)
 					.apiKey(properties.getProperty("apiKey")).apiSecret(properties.getProperty("secret")).build();
-			REST rest = new REST(service);
+			REST rest = new REST();
 			flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
 
 			Auth auth = new Auth();
@@ -80,7 +80,7 @@ public class ReflectionInterfaceTest extends TestCase {
         Iterator argsIterator = method.getArguments().iterator();
         
         Argument api_key = (Argument)argsIterator.next();
-        assertEquals("api_key", api_key.getName());
+        assertEquals(Flickr.API_KEY, api_key.getName());
         assertFalse(api_key.isOptional());
         assertNotNull(api_key.getDescription());
         
@@ -128,7 +128,7 @@ public class ReflectionInterfaceTest extends TestCase {
         Iterator argsIterator = method.getArguments().iterator();
         
         Argument api_key = (Argument)argsIterator.next();
-        assertEquals("api_key", api_key.getName());
+        assertEquals(Flickr.API_KEY, api_key.getName());
         assertFalse(api_key.isOptional());
         assertNotNull(api_key.getDescription());
         

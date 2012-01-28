@@ -3,21 +3,22 @@
  */
 package com.flickr4java.flickr.reflection;
 
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for testing the complete implementation of all Flickr-methods.<p>
@@ -63,12 +64,12 @@ public class ReflectionInterface {
     public Method getMethodInfo(String methodName) throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_METHOD_INFO);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("method_name", methodName);
 
 
-        Response response = transport.get(transport.getPath(), parameters);
+        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -185,11 +186,11 @@ public class ReflectionInterface {
     public Collection getMethods() throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_METHODS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
 
 
-        Response response = transport.get(transport.getPath(), parameters);
+        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

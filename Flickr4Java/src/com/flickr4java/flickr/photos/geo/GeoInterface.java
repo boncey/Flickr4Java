@@ -1,14 +1,6 @@
 package com.flickr4java.flickr.photos.geo;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -17,6 +9,15 @@ import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Access to the flickr.photos.geo methods.
@@ -64,10 +65,10 @@ public class GeoInterface {
     public GeoData getLocation(String photoId) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_LOCATION);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
 
-        Response response = transport.get(transport.getPath(), parameters);
+        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -106,10 +107,10 @@ public class GeoInterface {
     public GeoPermissions getPerms(String photoId) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_PERMS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
 
-        Response response = transport.get(transport.getPath(), parameters);
+        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -138,11 +139,11 @@ public class GeoInterface {
     public void removeLocation(String photoId) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_REMOVE_LOCATION);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
 
         // Note: This method requires an HTTP POST request.
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         // This method has no specific response - It returns an empty sucess response 
         // if it completes without error.
         if (response.isError()) {
@@ -168,7 +169,7 @@ public class GeoInterface {
     public void setLocation(String photoId, GeoData location) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_SET_LOCATION);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("lat", String.valueOf(location.getLatitude()));
@@ -179,7 +180,7 @@ public class GeoInterface {
         }
 
         // Note: This method requires an HTTP POST request.
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         // This method has no specific response - It returns an empty sucess response 
         // if it completes without error.
         if (response.isError()) {
@@ -201,7 +202,7 @@ public class GeoInterface {
     public void setPerms(String photoId, GeoPermissions perms) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_SET_PERMS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
         parameters.put("is_public", perms.isPublic() ? "1" : "0");
         parameters.put("is_contact", perms.isContact() ? "1" : "0");
@@ -209,7 +210,7 @@ public class GeoInterface {
         parameters.put("is_family", perms.isFamily() ? "1" : "0");
 
         // Note: This method requires an HTTP POST request.
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         // This method has no specific response - It returns an empty sucess response 
         // if it completes without error.
         if (response.isError()) {
@@ -238,7 +239,7 @@ public class GeoInterface {
     ) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_BATCH_CORRECT_LOCATION);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -251,7 +252,7 @@ public class GeoInterface {
         parameters.put("accuracy", Integer.toString(location.getAccuracy()));
 
         // Note: This method requires an HTTP POST request.
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         // This method has no specific response - It returns an empty sucess response 
         // if it completes without error.
         if (response.isError()) {
@@ -275,7 +276,7 @@ public class GeoInterface {
     ) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_CORRECT_LOCATION);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         if (placeId != null) {
@@ -286,7 +287,7 @@ public class GeoInterface {
         }
 
         // Note: This method requires an HTTP POST request.
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         // This method has no specific response - It returns an empty sucess response 
         // if it completes without error.
         if (response.isError()) {
@@ -316,7 +317,7 @@ public class GeoInterface {
         Map<String, String> parameters = new HashMap<String, String>();
         PhotoList photos = new PhotoList();
         parameters.put("method", METHOD_PHOTOS_FOR_LOCATION);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (extras.size() > 0) {
             parameters.put("extras", StringUtilities.join(extras, ","));
@@ -330,7 +331,7 @@ public class GeoInterface {
         parameters.put("lat", Float.toString(location.getLatitude()));
         parameters.put("lon", Float.toString(location.getLongitude()));
         parameters.put("accuracy", Integer.toString(location.getAccuracy()));
-        Response response = transport.get(transport.getPath(), parameters);
+        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -366,13 +367,13 @@ public class GeoInterface {
     ) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_SET_CONTEXT);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("context", "" + context);
 
         // Note: This method requires an HTTP POST request.
-        Response response = transport.post(transport.getPath(), parameters);
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         // This method has no specific response - It returns an empty sucess response 
         // if it completes without error.
         if (response.isError()) {

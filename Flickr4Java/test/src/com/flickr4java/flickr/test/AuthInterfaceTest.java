@@ -4,6 +4,10 @@
 
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -13,39 +17,30 @@ import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
 
-import edu.stanford.ejalbert.BrowserLauncher;
-import edu.stanford.ejalbert.exception.BrowserLaunchingExecutionException;
-import edu.stanford.ejalbert.exception.BrowserLaunchingInitializingException;
-import edu.stanford.ejalbert.exception.UnsupportedOperatingSystemException;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.scribe.model.Token;
+import org.scribe.model.Verifier;
 
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
-
-import junit.framework.TestCase;
+import java.util.Scanner;
 
 /**
  * @author Anthony Eden
  */
-public class AuthInterfaceTest extends TestCase {
+public class AuthInterfaceTest {
 
-    Flickr flickr = null;
-    Properties properties = null;
+    private Flickr flickr = null;
+    private Properties properties = null;
 
-    @Override
-    public void setUp() throws ParserConfigurationException, IOException {
+    @Before
+    public void setUp() throws IOException {
         Flickr.debugRequest = true;
         InputStream in = null;
         try {
@@ -53,9 +48,7 @@ public class AuthInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-                    .apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST(service);
+            REST rest = new REST();
             rest.setHost(properties.getProperty("host"));
 
             flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
@@ -72,65 +65,72 @@ public class AuthInterfaceTest extends TestCase {
             IOUtilities.close(in);
         }
     }
-    public void testGetFrob() throws FlickrException, IOException, SAXException {
+
+    @Test
+    //    @Ignore // Ignored as test is interactive so would fail a build
+    public void testAuthFlow() throws FlickrException, IOException, URISyntaxException {
+
         AuthInterface authInterface = flickr.getAuthInterface();
-        String frob = authInterface.getFrob();
-        assertNotNull(frob);
+
+        Token requestToken = authInterface.getRequestToken();
+
+        assertNotNull(requestToken);
+        assertNotNull(requestToken.getToken());
+        assertNotNull(requestToken.getSecret());
+        assertTrue(requestToken.getRawResponse().contains("oauth_callback_confirmed=true"));
+
+        String url = authInterface.getAuthorizationUrl(requestToken, Permission.READ);
+
+        assertNotNull(url);
+        assertEquals(String.format("http://www.flickr.com/services/oauth/authorize?oauth_token=%s&perms=%s", requestToken.getToken(), Permission.READ.toString()), url);
+
+        Desktop desktop = Desktop.getDesktop();
+        if (!desktop.isSupported( java.awt.Desktop.Action.BROWSE )) {
+            System.out.println("Paste this URL into your browser");
+            System.out.println(url);
+        } else {
+            URI uri = new URI(url);
+            desktop.browse(uri);
+        }
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the given authorization code provided by Flickr auth");
+        System.out.print(">>");
+        String code = in.nextLine();
+
+        assertNotNull(code);
+
+        Verifier verifier = new Verifier(code);
+        Token accessToken = authInterface.getAccessToken(requestToken, verifier);
+
+        assertNotNull(accessToken);
+        assertNotNull(accessToken.getToken());
+        assertNotNull(accessToken.getSecret());
+
+        Auth checkedAuth = authInterface.checkToken(accessToken);
+        assertNotNull(checkedAuth);
+        assertEquals(accessToken.getToken(), checkedAuth.getToken());
+        assertEquals(accessToken.getSecret(), checkedAuth.getTokenSecret());
+        assertEquals(Permission.READ, checkedAuth.getPermission());
+        assertNotNull(checkedAuth.getUser());
+        assertNotNull(checkedAuth.getUser().getUsername());
     }
 
-    public void testReadAuthentication() throws FlickrException, IOException, SAXException,
-    BrowserLaunchingInitializingException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
-        testAuthentication(Permission.READ);
-    }
+    @Test
+    @Ignore // Ignored as test is interactive so would fail a build
+    public void testExchangeToken() throws FlickrException {
 
-    public void testWriteAuthentication() throws FlickrException, IOException, BrowserLaunchingInitializingException,
-    SAXException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
-        testAuthentication(Permission.WRITE);
-    }
-
-    public void testDeleteAuthentication() throws FlickrException, IOException, BrowserLaunchingInitializingException,
-    SAXException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
-        testAuthentication(Permission.DELETE);
-    }
-
-    private void testAuthentication(Permission permission) throws FlickrException, IOException, SAXException,
-    BrowserLaunchingInitializingException, BrowserLaunchingExecutionException, UnsupportedOperatingSystemException {
         AuthInterface authInterface = flickr.getAuthInterface();
-        String frob = authInterface.getFrob();
-        URL url = authInterface.buildAuthenticationUrl(permission, frob);
 
-        BrowserLauncher launcher = new BrowserLauncher(null);
-        launcher.openURLinBrowser(url.toString());
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the Flickr auth token to exchange");
+        System.out.print(">>");
+        String flickrAuthToken = in.nextLine();
 
-        // display a dialog
-        final JDialog d = new JDialog();
-        JButton continueButton = new JButton("Continue");
-        continueButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                d.dispose();
-            }
-        });
-        d.getContentPane().add(continueButton);
-        d.setModal(true);
-        d.pack();
-        d.setVisible(true);
+        Token oAuthToken = authInterface.exchangeAuthToken(flickrAuthToken);
 
-        Auth auth = authInterface.getToken(frob);
-        //        System.out.println("Token: " + authentication.getToken());
-        //        System.out.println("Permission: " + authentication.getPermission());
-        assertNotNull(auth.getToken());
-        assertEquals(permission, auth.getPermission());
-
-        Auth checkedAuth = authInterface.checkToken(auth.getToken());
-        assertEquals(auth.getToken(), checkedAuth.getToken());
-        assertEquals(auth.getPermission(), checkedAuth.getPermission());
-    }
-
-    public void testCheckToken() throws FlickrException, IOException, SAXException {
-        String token = properties.getProperty("token");
-        AuthInterface authInterface = flickr.getAuthInterface();
-        Auth checkedAuth = authInterface.checkToken(token);
-
-        assertEquals(token, checkedAuth.getToken());
+        assertNotNull(oAuthToken);
+        assertNotNull(oAuthToken.getToken());
+        assertNotNull(oAuthToken.getSecret());
     }
 }

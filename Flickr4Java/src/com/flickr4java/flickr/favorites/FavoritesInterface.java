@@ -3,21 +3,22 @@
  */
 package com.flickr4java.flickr.favorites;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Interface for working with Flickr favorites.
@@ -53,10 +54,10 @@ public class FavoritesInterface {
     public void add(String photoId) throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_ADD);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -80,7 +81,7 @@ public class FavoritesInterface {
 
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (userId != null) {
             parameters.put("user_id", userId);
@@ -95,7 +96,7 @@ public class FavoritesInterface {
             parameters.put("page", String.valueOf(page));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -134,7 +135,7 @@ public class FavoritesInterface {
 
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_PUBLIC_LIST);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
 
@@ -148,7 +149,7 @@ public class FavoritesInterface {
             parameters.put("page", String.valueOf(page));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -174,11 +175,11 @@ public class FavoritesInterface {
     public void remove(String photoId) throws IOException, SAXException, FlickrException {
     	Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_REMOVE);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

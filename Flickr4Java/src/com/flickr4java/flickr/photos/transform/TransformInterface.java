@@ -4,15 +4,16 @@
 
 package com.flickr4java.flickr.photos.transform;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.xml.sax.SAXException;
-
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
+
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Anthony Eden
@@ -46,13 +47,13 @@ public class TransformInterface {
         throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_ROTATE);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("degrees", String.valueOf(degrees));
 
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

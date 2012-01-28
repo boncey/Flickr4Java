@@ -1,17 +1,6 @@
 package com.flickr4java.flickr.photos.comments;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -20,6 +9,18 @@ import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Work on Comments.
@@ -63,13 +64,13 @@ public class CommentsInterface {
     public String addComment(String photoId, String commentText) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_ADD_COMMENT);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("comment_text", commentText);
 
         //Note: This method requires an HTTP POST request.
-        Response response = transportAPI.post(transportAPI.getPath(), parameters);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -90,12 +91,12 @@ public class CommentsInterface {
     public void deleteComment(String commentId) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_DELETE_COMMENT);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("comment_id", commentId);
 
         //Note: This method requires an HTTP POST request.
-        Response response = transportAPI.post(transportAPI.getPath(), parameters);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -117,13 +118,13 @@ public class CommentsInterface {
     public void editComment(String commentId, String commentText) throws IOException, SAXException, FlickrException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_EDIT_COMMENT);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("comment_id", commentId);
         parameters.put("comment_text", commentText);
 
         //Note: This method requires an HTTP POST request.
-        Response response = transportAPI.post(transportAPI.getPath(), parameters);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -146,10 +147,10 @@ public class CommentsInterface {
       throws FlickrException, IOException, SAXException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -209,7 +210,7 @@ public class CommentsInterface {
         PhotoList photos = new PhotoList();
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (lastComment != null) {
             parameters.put("last_comment", String.valueOf(lastComment.getTime() / 1000L));
@@ -230,7 +231,7 @@ public class CommentsInterface {
             parameters.put("page", Integer.toString(page));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

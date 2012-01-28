@@ -1,18 +1,19 @@
 package com.flickr4java.flickr.machinetags;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A more precise way to tag and to search photos.
@@ -245,7 +246,7 @@ public class MachinetagsInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList nsList = new NamespacesList();
         parameters.put("method", METHOD_GET_NAMESPACES);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (predicate != null) {
             parameters.put("predicate", predicate);
@@ -257,7 +258,7 @@ public class MachinetagsInterface {
             parameters.put("page", "" + page);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -294,7 +295,7 @@ public class MachinetagsInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList nsList = new NamespacesList();
         parameters.put("method", METHOD_GET_PAIRS);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (namespace != null) {
             parameters.put("namespace", namespace);
@@ -309,7 +310,7 @@ public class MachinetagsInterface {
             parameters.put("page", "" + page);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -345,7 +346,7 @@ public class MachinetagsInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList nsList = new NamespacesList();
         parameters.put("method", METHOD_GET_PREDICATES);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (namespace != null) {
             parameters.put("namespace", namespace);
@@ -357,7 +358,7 @@ public class MachinetagsInterface {
             parameters.put("page", "" + page);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -393,7 +394,7 @@ public class MachinetagsInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList valuesList = new NamespacesList();
         parameters.put("method", METHOD_GET_VALUES);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (namespace != null) {
             parameters.put("namespace", namespace);
@@ -408,7 +409,7 @@ public class MachinetagsInterface {
             parameters.put("page", "" + page);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -443,7 +444,7 @@ public class MachinetagsInterface {
     	Map<String, String> parameters = new HashMap<String, String>();
         NamespacesList valuesList = new NamespacesList();
         parameters.put("method", METHOD_GET_RECENTVALUES);
-        parameters.put("api_key", apiKey);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (namespace != null) {
             parameters.put("namespace", namespace);
@@ -457,7 +458,7 @@ public class MachinetagsInterface {
                 Long.toString(addedSince.getTime() / 1000L));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

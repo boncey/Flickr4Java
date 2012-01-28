@@ -3,6 +3,11 @@
  */
 package com.flickr4java.flickr.people;
 
+import com.flickr4java.flickr.contacts.OnlineStatus;
+import com.flickr4java.flickr.util.BuddyIconable;
+import com.flickr4java.flickr.util.StringUtilities;
+import com.flickr4java.flickr.util.UrlUtilities;
+
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,11 +16,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
-
-import com.flickr4java.flickr.contacts.OnlineStatus;
-import com.flickr4java.flickr.util.BuddyIconable;
-import com.flickr4java.flickr.util.StringUtilities;
-import com.flickr4java.flickr.util.UrlUtilities;
 
 /**
  * @author Anthony Eden

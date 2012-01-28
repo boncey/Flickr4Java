@@ -1,18 +1,5 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -20,9 +7,18 @@ import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.activity.ActivityInterface;
 import com.flickr4java.flickr.activity.ItemList;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
+
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import junit.framework.TestCase;
 
 /**
  *
@@ -34,8 +30,9 @@ public class ActivityInterfaceTest extends TestCase {
     Flickr flickr = null;
     Properties properties = null;
 
+    @Override
     public void setUp() throws
-      ParserConfigurationException, IOException, FlickrException, SAXException {
+    ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugRequest = false;
         InputStream in = null;
         try {
@@ -43,38 +40,36 @@ public class ActivityInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST(service);
+            REST rest = new REST();
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
-		} finally {
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
+        } finally {
             IOUtilities.close(in);
         }
     }
 
     public void testUserComments()
-      throws FlickrException, IOException, SAXException {
+            throws FlickrException, IOException, SAXException {
         ActivityInterface actInterface = flickr.getActivityInterface();
         ItemList list = actInterface.userComments(10, 1);
         assertTrue(list.size() > 0);
     }
 
     public void testUserPhotos()
-      throws FlickrException, IOException, SAXException {
+            throws FlickrException, IOException, SAXException {
         ActivityInterface actInterface = flickr.getActivityInterface();
         ItemList list = actInterface.userPhotos(10, 1, "6000d");
         assertTrue(list.size() > 0);

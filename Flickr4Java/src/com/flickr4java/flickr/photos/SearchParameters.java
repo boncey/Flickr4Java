@@ -3,15 +3,15 @@
  */
 package com.flickr4java.flickr.photos;
 
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.util.StringUtilities;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.util.StringUtilities;
 
 /**
  * @author Anthony Eden

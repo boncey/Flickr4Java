@@ -2,24 +2,6 @@
 
 package com.flickr4java.flickr.test;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.imageio.ImageIO;
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
@@ -36,6 +18,24 @@ import com.flickr4java.flickr.photos.Size;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.xml.sax.SAXException;
+
+import javax.imageio.ImageIO;
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Set;
+
+import junit.framework.TestCase;
+
 /**
  * @author Anthony Eden
  */
@@ -44,6 +44,7 @@ public class PhotosInterfaceSOAPTest extends TestCase {
     Flickr flickr = null;
     Properties properties = null;
 
+    @Override
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -188,7 +189,7 @@ public class PhotosInterfaceSOAPTest extends TestCase {
     }
 
     public void testSetMeta() throws FlickrException, IOException, SAXException {
-        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"));
+        Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"), properties.getProperty("tokensecret"));
         RequestContext.getRequestContext().setAuth(auth);
 
         String newTitle = "New Title";
@@ -217,15 +218,15 @@ public class PhotosInterfaceSOAPTest extends TestCase {
         assertNotNull(tags);
         assertEquals(1, tags.size());
 
-//        String tagId = null;
-//        Iterator tagsIter = tags.iterator();
-//        TAG_LOOP: while (tagsIter.hasNext()) {
-//            Tag tag = (Tag) tagsIter.next();
-//            if (tag.getValue().equals("test")) {
-//                tagId = tag.getId();
-//                break TAG_LOOP;
-//            }
-//        }
+        //        String tagId = null;
+        //        Iterator tagsIter = tags.iterator();
+        //        TAG_LOOP: while (tagsIter.hasNext()) {
+        //            Tag tag = (Tag) tagsIter.next();
+        //            if (tag.getValue().equals("test")) {
+        //                tagId = tag.getId();
+        //                break TAG_LOOP;
+        //            }
+        //        }
 
         String[] tagsAfterRemove = {};
         iface.setTags(photoId, tagsAfterRemove);
@@ -244,8 +245,8 @@ public class PhotosInterfaceSOAPTest extends TestCase {
         assertNotNull(image);
         assertEquals(240, image.getWidth());
         assertEquals(180, image.getHeight());
-//        System.out.println("Image width: " + image.getWidth());
-//        System.out.println("Image height: " + image.getHeight());
+        //        System.out.println("Image width: " + image.getWidth());
+        //        System.out.println("Image height: " + image.getHeight());
         ImageIO.write(image, "jpg", new File("out.small.jpg"));
     }
 

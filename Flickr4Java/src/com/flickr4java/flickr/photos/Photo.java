@@ -3,6 +3,14 @@
  */
 package com.flickr4java.flickr.photos;
 
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.tags.Tag;
+import com.flickr4java.flickr.util.IOUtilities;
+import com.flickr4java.flickr.util.StringUtilities;
+
+import javax.imageio.ImageIO;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,14 +27,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
-
-import javax.imageio.ImageIO;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.tags.Tag;
-import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.util.StringUtilities;
 
 /**
  * Class representing metadata about a Flickr photo. Instances do not actually

@@ -29,15 +29,15 @@ public class TestInterface {
     public static final String METHOD_LOGIN = "flickr.test.login";
     public static final String METHOD_NULL = "flickr.test.null";
 
-    private String apiKey;
-    private String sharedSecret;
-    private Transport transport;
+    private final String apiKey;
+    private final String sharedSecret;
+    private final Transport transport;
 
     public TestInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+            String apiKey,
+            String sharedSecret,
+            Transport transportAPI
+            ) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transport = transportAPI;
@@ -53,7 +53,7 @@ public class TestInterface {
      * @throws FlickrException
      */
     public Collection echo(Map params) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ECHO);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.putAll(params);
@@ -74,7 +74,7 @@ public class TestInterface {
      * @throws FlickrException
      */
     public User login() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOGIN);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -92,16 +92,16 @@ public class TestInterface {
 
         return user;
     }
-    
+
     /**
      * Null test.
      * This method requires authentication with 'read' permission.
-     * @throws SAXException 
-     * @throws IOException 
-     * @throws FlickrException 
+     * @throws SAXException
+     * @throws IOException
+     * @throws FlickrException
      */
     public void null_() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_NULL);
         parameters.put(Flickr.API_KEY, apiKey);
 

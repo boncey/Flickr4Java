@@ -35,15 +35,15 @@ public class CommentsInterface {
     public static final String METHOD_GET_LIST       = "flickr.photos.comments.getList";
     public static final String METHOD_GET_RECENT     = "flickr.photos.comments.getRecentForContacts";
 
-    private String apiKey;
-    private String sharedSecret;
-    private Transport transportAPI;
+    private final String apiKey;
+    private final String sharedSecret;
+    private final Transport transportAPI;
 
     public CommentsInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transport
-    ) {
+            String apiKey,
+            String sharedSecret,
+            Transport transport
+            ) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transport;
@@ -62,7 +62,7 @@ public class CommentsInterface {
      * @throws FlickrException
      */
     public String addComment(String photoId, String commentText) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -74,7 +74,7 @@ public class CommentsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Element commentElement = (Element)response.getPayload();
+        Element commentElement = response.getPayload();
         return commentElement.getAttribute("id");
     }
 
@@ -89,7 +89,7 @@ public class CommentsInterface {
      * @throws FlickrException
      */
     public void deleteComment(String commentId) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -100,7 +100,7 @@ public class CommentsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        // This method has no specific response - It returns an empty 
+        // This method has no specific response - It returns an empty
         // sucess response if it completes without error.
     }
 
@@ -116,7 +116,7 @@ public class CommentsInterface {
      * @throws FlickrException
      */
     public void editComment(String commentId, String commentText) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -128,7 +128,7 @@ public class CommentsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        // This method has no specific response - It returns an empty 
+        // This method has no specific response - It returns an empty
         // sucess response if it completes without error.
     }
 
@@ -144,8 +144,8 @@ public class CommentsInterface {
      * @throws SAXException
      */
     public List getList(String photoId)
-      throws FlickrException, IOException, SAXException {
-        Map<String, String> parameters = new HashMap<String, String>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
@@ -183,15 +183,15 @@ public class CommentsInterface {
     /**
      * <p>Returns the list of photos belonging to your contacts that have been commented on recently.</p>
      *
-     * <p>There is an emphasis on the recent part with this method, which is 
+     * <p>There is an emphasis on the recent part with this method, which is
      * fancy-talk for "in the last hour".</p>
      *
-     * <p>It is not meant to be a general purpose, get all the comments ever, 
-     * but rather a quick and easy way to bubble up photos that people are 
+     * <p>It is not meant to be a general purpose, get all the comments ever,
+     * but rather a quick and easy way to bubble up photos that people are
      * talking about ("about") now.</p>
      *
-     * <p>It has the added bonus / side-effect of bubbling up photos a person 
-     * may have missed because they were uploaded before the photo owner was 
+     * <p>It has the added bonus / side-effect of bubbling up photos a person
+     * may have missed because they were uploaded before the photo owner was
      * made a contact or the business of life got in the way.</p>
      *
      * This method requires authentication with 'read' permission.
@@ -208,7 +208,7 @@ public class CommentsInterface {
      */
     public PhotoList getRecentForContacts(Date lastComment, ArrayList contactsFilter, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
         PhotoList photos = new PhotoList();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);
         parameters.put(Flickr.API_KEY, apiKey);
 

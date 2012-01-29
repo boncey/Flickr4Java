@@ -51,16 +51,16 @@ public class PrefsInterface {
     /**
      * Returns the default content type preference for the user.
      *
-     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_OTHER
-     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_PHOTO
-     * @see com.flickr4java.flickr.test.Flickr#CONTENTTYPE_SCREENSHOT
+     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
+     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
+     * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
      * @return The content-type
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public String getContentType() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTENT_TYPE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -81,15 +81,15 @@ public class PrefsInterface {
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PRIVATE
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PRIVATE
      */
     public int getGeoPerms() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GEO_PERMS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -119,7 +119,7 @@ public class PrefsInterface {
      * @throws FlickrException
      */
     public boolean getHidden() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_HIDDEN);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -136,16 +136,16 @@ public class PrefsInterface {
     /**
      * Returns the default safety level preference for the user.
      *
-     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_MODERATE
-     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_RESTRICTED
-     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_SAFE
+     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
+     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
+     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
      * @return The current users safety-level
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public String getSafetyLevel() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SAFETY_LEVEL);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -162,19 +162,19 @@ public class PrefsInterface {
     /**
      * Returns the default privacy level preference for the user.
      *
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      * @return privacyLevel
      */
     public int getPrivacy() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PRIVACY);
         parameters.put(Flickr.API_KEY, apiKey);
 

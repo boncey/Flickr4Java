@@ -62,7 +62,7 @@ public class ReflectionInterface {
      * @throws FlickrException
      */
     public Method getMethodInfo(String methodName) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_METHOD_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -184,7 +184,7 @@ public class ReflectionInterface {
      * @throws FlickrException
      */
     public Collection getMethods() throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_METHODS);
         parameters.put(Flickr.API_KEY, apiKey);
 

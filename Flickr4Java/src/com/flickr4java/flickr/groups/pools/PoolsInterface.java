@@ -62,7 +62,7 @@ public class PoolsInterface {
      */
     public void add(String photoId, String groupId) throws IOException, SAXException,
             FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -88,7 +88,7 @@ public class PoolsInterface {
      * @throws FlickrException
      */
     public PhotoContext getContext(String photoId, String groupId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTEXT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -131,7 +131,7 @@ public class PoolsInterface {
     public Collection<Group> getGroups() throws IOException, SAXException, FlickrException {
         List<Group> groups = new ArrayList<Group>();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GROUPS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -158,7 +158,7 @@ public class PoolsInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      * @param groupId The group ID
      * @param tags The optional tags (may be null)
      * @param extras Set of extra-attributes to include (may be null)
@@ -173,7 +173,7 @@ public class PoolsInterface {
       throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -224,7 +224,7 @@ public class PoolsInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      * @param groupId The group ID
      * @param tags The optional tags (may be null)
      * @param perPage The number of photos per page (0 to ignore)
@@ -247,7 +247,7 @@ public class PoolsInterface {
      */
     public void remove(String photoId, String groupId) throws IOException, SAXException,
             FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE);
         parameters.put(Flickr.API_KEY, apiKey);
 

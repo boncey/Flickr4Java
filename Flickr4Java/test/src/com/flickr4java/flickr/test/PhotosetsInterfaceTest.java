@@ -14,9 +14,6 @@ import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -45,8 +42,6 @@ public class PhotosetsInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-                    .apiSecret(properties.getProperty("secret")).build();
             REST rest = new REST();
 
             flickr = new Flickr(
@@ -100,7 +95,7 @@ public class PhotosetsInterfaceTest extends TestCase {
         Photoset photoset = iface.getInfo(properties.getProperty("photosetid"));
         assertNotNull(photoset);
         assertNotNull(photoset.getPrimaryPhoto());
-        assertEquals(2, photoset.getPhotoCount());
+        assertTrue(photoset.getPhotoCount() >= 1);
     }
 
     public void testGetList() throws FlickrException, IOException, SAXException {
@@ -124,7 +119,7 @@ public class PhotosetsInterfaceTest extends TestCase {
                 1
                 );
         assertNotNull(photos);
-        assertEquals(2, photos.size());
+        assertTrue(photos.size() >= 1);
         assertEquals(properties.getProperty("username"), ((Photo) photos.get(0)).getOwner().getUsername());
         assertEquals(properties.getProperty("nsid"), ((Photo) photos.get(0)).getOwner().getId());
     }

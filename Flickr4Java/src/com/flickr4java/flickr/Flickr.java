@@ -114,111 +114,111 @@ public class Flickr {
     private UrlsInterface urlsInterface;
 
     /**
-     * @see com.flickr4java.flickr.test.photos.PhotosInterface#setContentType(String, String)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getContentType()
-     * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setContentType(String)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#setContentType(String, String)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getContentType()
+     * @see com.flickr4java.flickr.uploader.UploadMetaData#setContentType(String)
      */
     public static final String CONTENTTYPE_PHOTO = "1";
 
     /**
-     * @see com.flickr4java.flickr.test.photos.PhotosInterface#setContentType(String, String)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getContentType()
-     * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setContentType(String)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#setContentType(String, String)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getContentType()
+     * @see com.flickr4java.flickr.uploader.UploadMetaData#setContentType(String)
      */
     public static final String CONTENTTYPE_SCREENSHOT = "2";
 
     /**
-     * @see com.flickr4java.flickr.test.photos.PhotosInterface#setContentType(String, String)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getContentType()
-     * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setContentType(String)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#setContentType(String, String)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getContentType()
+     * @see com.flickr4java.flickr.uploader.UploadMetaData#setContentType(String)
      */
     public static final String CONTENTTYPE_OTHER = "3";
 
     /**
      * The lowest accuracy for bounding-box searches.
      *
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setAccuracy(int)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setAccuracy(int)
      */
     public static final int ACCURACY_WORLD = 1;
 
     /**
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setAccuracy(int)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setAccuracy(int)
      */
     public static final int ACCURACY_COUNTRY = 3;
 
     /**
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setAccuracy(int)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setAccuracy(int)
      */
     public static final int ACCURACY_REGION = 6;
 
     /**
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setAccuracy(int)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setAccuracy(int)
      */
     public static final int ACCURACY_CITY = 11;
 
     /**
      * The highest accuracy for bounding-box searches.
      *
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setAccuracy(int)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setAccuracy(int)
      */
     public static final int ACCURACY_STREET = 16;
 
     /**
-     * @see com.flickr4java.flickr.test.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getSafetyLevel()
-     * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setSafetyLevel(String)
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getSafetyLevel()
+     * @see com.flickr4java.flickr.uploader.UploadMetaData#setSafetyLevel(String)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_SAFE = "1";
     /**
-     * @see com.flickr4java.flickr.test.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getSafetyLevel()
-     * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setSafetyLevel(String)
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getSafetyLevel()
+     * @see com.flickr4java.flickr.uploader.UploadMetaData#setSafetyLevel(String)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_MODERATE = "2";
     /**
-     * @see com.flickr4java.flickr.test.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getSafetyLevel()
-     * @see com.flickr4java.flickr.test.uploader.UploadMetaData#setSafetyLevel(String)
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#setSafeSearch(String)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getSafetyLevel()
+     * @see com.flickr4java.flickr.uploader.UploadMetaData#setSafetyLevel(String)
+     * @see com.flickr4java.flickr.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_RESTRICTED = "3";
 
     /**
-     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getPrivacy()
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getGeoPerms()
+     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_NO_FILTER = 0;
     /**
-     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getPrivacy()
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getGeoPerms()
+     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_PUBLIC = 1;
     /**
-     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getPrivacy()
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getGeoPerms()
+     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_FRIENDS = 2;
     /**
-     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getPrivacy()
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getGeoPerms()
+     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_FAMILY = 3;
     /**
-     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getPrivacy()
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getGeoPerms()
+     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_FRIENDS_FAMILY = 4;
     /**
-     * @see com.flickr4java.flickr.test.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getPrivacy()
-     * @see com.flickr4java.flickr.test.prefs.PrefsInterface#getGeoPerms()
+     * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
+     * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_PRIVATE = 5;
 

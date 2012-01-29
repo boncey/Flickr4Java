@@ -56,7 +56,7 @@ public class BlogsInterface {
     public Collection<Service> getServices()
       throws IOException, SAXException, FlickrException {
         List<Service> list = new ArrayList<Service>();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SERVICES);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -88,7 +88,7 @@ public class BlogsInterface {
      * @throws FlickrException
      */
     public void postPhoto(Photo photo, String blogId, String blogPassword) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_POST_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -129,7 +129,7 @@ public class BlogsInterface {
     public Collection getList() throws IOException, SAXException, FlickrException {
         List blogs = new ArrayList();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 

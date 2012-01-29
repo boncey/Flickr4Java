@@ -63,7 +63,7 @@ public class GeoInterface {
      * or if any other error has been reported in the response.
      */
     public GeoData getLocation(String photoId) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LOCATION);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
@@ -105,7 +105,7 @@ public class GeoInterface {
      * or if any other error has been reported in the response.
      */
     public GeoPermissions getPerms(String photoId) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PERMS);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
@@ -137,7 +137,7 @@ public class GeoInterface {
      * @throws FlickrException
      */
     public void removeLocation(String photoId) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE_LOCATION);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
@@ -167,7 +167,7 @@ public class GeoInterface {
      * @throws FlickrException 
      */
     public void setLocation(String photoId, GeoData location) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_LOCATION);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -200,7 +200,7 @@ public class GeoInterface {
      * @throws FlickrException 
      */
     public void setPerms(String photoId, GeoPermissions perms) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_PERMS);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
@@ -237,7 +237,7 @@ public class GeoInterface {
         String placeId,
         String woeId
     ) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_BATCH_CORRECT_LOCATION);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -274,7 +274,7 @@ public class GeoInterface {
         String placeId,
         String woeId
     ) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CORRECT_LOCATION);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -307,14 +307,14 @@ public class GeoInterface {
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList photosForLocation(
         GeoData location,
         Set extras,
         int perPage, int page
     ) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PhotoList photos = new PhotoList();
         parameters.put("method", METHOD_PHOTOS_FOR_LOCATION);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -365,7 +365,7 @@ public class GeoInterface {
         String photoId,
         int context
     ) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_CONTEXT);
         parameters.put(Flickr.API_KEY, apiKey);
 

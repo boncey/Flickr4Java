@@ -23,15 +23,15 @@ import java.util.Map;
 public class CommonsInterface {
     public static final String METHOD_GET_INSTITUTIONS = "flickr.commons.getInstitutions";
 
-    private String apiKey;
-    private String sharedSecret;
-    private Transport transportAPI;
+    private final String apiKey;
+    private final String sharedSecret;
+    private final Transport transportAPI;
 
     public CommonsInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+            String apiKey,
+            String sharedSecret,
+            Transport transportAPI
+            ) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -49,7 +49,7 @@ public class CommonsInterface {
      */
     public ArrayList<Institution> getInstitutions() throws FlickrException, IOException, SAXException {
         ArrayList<Institution> institutions = new ArrayList<Institution>();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INSTITUTIONS);
         parameters.put(Flickr.API_KEY, apiKey);
 

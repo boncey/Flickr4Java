@@ -11,10 +11,10 @@ import com.flickr4java.flickr.SearchResultList;
  *
  * @author Anthony Eden
  */
-public class PhotoList extends SearchResultList {
+public class PhotoList<E> extends SearchResultList<E> {
 
-	// (avoid compiler warning)
-	private static final long serialVersionUID = -4735611134085303463L;
+    // (avoid compiler warning)
+    private static final long serialVersionUID = -4735611134085303463L;
 
 
 }

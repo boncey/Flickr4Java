@@ -68,7 +68,7 @@ public class SOAP extends Transport {
      * @throws FlickrException
      */
     @Override
-    public Response get(String path, Map<String, String> parameters, String sharedSecret) throws FlickrException {
+    public Response get(String path, Map<String, Object> parameters, String sharedSecret) throws FlickrException {
         //this is currently exactly the same as the post
         return post(path, parameters, sharedSecret);
     }
@@ -78,12 +78,11 @@ public class SOAP extends Transport {
      *
      * @param path The request path
      * @param parameters The parameters (collection of Parameter objects)
-     * @param multipart Use multipart
      * @return The Response object
      * @throws FlickrException
      */
     @Override
-    public Response post(String path, Map<String, String> parameters, String sharedSecret, boolean multipart)
+    public Response post(String path, Map<String, Object> parameters, String sharedSecret, boolean multipart)
             throws FlickrException {
 
         OAuthRequest request = new OAuthRequest(Verb.POST, API_HOST + PATH);
@@ -109,8 +108,8 @@ public class SOAP extends Transport {
             body.addChildElement(sbe);
 
             //add all the parameters to the body
-            for(Map.Entry<String, String> entry : parameters.entrySet()) {
-                e = XMLUtils.StringToElement("", entry.getKey(), entry.getValue());
+            for(Map.Entry<String, Object> entry : parameters.entrySet()) {
+                e = XMLUtils.StringToElement("", entry.getKey(), String.valueOf(entry.getValue()));
                 sbe = new SOAPBodyElement(e);
                 body.addChildElement(sbe);
             }

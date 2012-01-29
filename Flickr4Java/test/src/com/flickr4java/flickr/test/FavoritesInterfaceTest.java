@@ -64,21 +64,21 @@ public class FavoritesInterfaceTest extends TestCase {
 
     public void testGetList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getList(null, 15, 1, null);
+        Collection<Photo> favorites = iface.getList(null, 15, 1, null);
         assertNotNull(favorites);
-        assertEquals(15, favorites.size());
+        assertFalse(favorites.isEmpty());
     }
 
     public void testGetListWithExtras() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getList(null, 15, 1, Extras.ALL_EXTRAS);
+        Collection<Photo> favorites = iface.getList(null, 15, 1, Extras.ALL_EXTRAS);
         assertNotNull(favorites);
-        assertEquals(15, favorites.size());
+        assertFalse(favorites.isEmpty());
     }
 
     public void testGetPublicList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getPublicList("77348956@N00", 0, 0, null);
+        Collection<Photo> favorites = iface.getPublicList("77348956@N00", 0, 0, null);
         assertNotNull(favorites);
         assertEquals(14, favorites.size());
     }
@@ -89,9 +89,9 @@ public class FavoritesInterfaceTest extends TestCase {
         iface.add(photoId);
 
         Photo foundPhoto = null;
-        Iterator favorites = iface.getList(null, 0, 0, null).iterator();
+        Iterator<Photo> favorites = iface.getList(null, 0, 0, null).iterator();
         while (favorites.hasNext()) {
-            Photo photo = (Photo) favorites.next();
+            Photo photo = favorites.next();
             if (photo.getId().equals(photoId)) {
                 foundPhoto = photo;
                 break;

@@ -243,7 +243,7 @@ public class MachinetagsInterface {
      */
     public NamespacesList getNamespaces(String predicate, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList nsList = new NamespacesList();
         parameters.put("method", METHOD_GET_NAMESPACES);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -292,7 +292,7 @@ public class MachinetagsInterface {
      */
     public NamespacesList getPairs(String namespace, String predicate, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList nsList = new NamespacesList();
         parameters.put("method", METHOD_GET_PAIRS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -343,7 +343,7 @@ public class MachinetagsInterface {
      */
     public NamespacesList getPredicates(String namespace, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList nsList = new NamespacesList();
         parameters.put("method", METHOD_GET_PREDICATES);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -391,7 +391,7 @@ public class MachinetagsInterface {
      */
     public NamespacesList getValues(String namespace, String predicate, int perPage, int page)
       throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList valuesList = new NamespacesList();
         parameters.put("method", METHOD_GET_VALUES);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -441,7 +441,7 @@ public class MachinetagsInterface {
      */
     public NamespacesList getRecentValues(String namespace, String predicate, Date addedSince)
       throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList valuesList = new NamespacesList();
         parameters.put("method", METHOD_GET_RECENTVALUES);
         parameters.put(Flickr.API_KEY, apiKey);

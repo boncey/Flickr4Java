@@ -49,41 +49,52 @@ public abstract class Transport {
         this.transportType = transport;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     /**
      * Invoke an HTTP GET request on a remote host.  You must close the InputStream after you are done with.
      *
      * @param path The request path
      * @param parameters The parameters (collection of Parameter objects)
-     * @param sharedSecret TODO
+     * @param sharedSecret
      * @return The Response
      * @throws FlickrException
      */
-    public abstract Response get(String path, Map<String, String> parameters, String sharedSecret) throws FlickrException;
+    public abstract Response get(String path, Map<String, Object> parameters, String sharedSecret) throws FlickrException;
 
-    /**
-     * Invoke an HTTP POST request on a remote host.
-     *
-     * @param path The request path
-     * @param parameters The parameters (collection of Parameter objects)
-     * @param sharedSecret TODO
-     * @return The Response object
-     * @throws FlickrException
-     */
-    public Response post(String path, Map<String, String> parameters, String sharedSecret) throws FlickrException {
-        return post(path, parameters, sharedSecret, false);
-    }
 
     /**
      * Invoke an HTTP POST request on a remote host.
      *
      * @param path The request path
      * @param parameters The parameters (List of Parameter objects)
-     * @param sharedSecret TODO
-     * @param multipart Use multipart
+     * @param sharedSecret
      * @return The Response object
      * @throws FlickrException
      */
-    public abstract Response post(String path, Map<String, String> parameters, String sharedSecret, boolean multipart) throws FlickrException;
+    public abstract Response post(String path, Map<String, Object> parameters, String sharedSecret, boolean multipart) throws FlickrException;
+
+
+    /**
+     * Invoke an HTTP POST request on a remote host.
+     *
+     * @param path The request path
+     * @param parameters The parameters (List of Parameter objects)
+     * @param sharedSecret
+     * @return The Response object
+     * @throws FlickrException
+     */
+    public Response post(String path, Map<String, Object> parameters, String sharedSecret) throws FlickrException {
+
+        return post(path, parameters, sharedSecret, false);
+    }
+
 
     /**
      * Invoke a non OAuth HTTP GET request on a remote host.
@@ -98,29 +109,10 @@ public abstract class Transport {
     public abstract Response getNonOAuth(String path, Map<String, String> parameters)
             throws FlickrException;
 
-    /**
-     * @return Returns the path.
-     */
-    public String getPath() {
-        return path;
-    }
-
-    /**
-     * @param path The path to set.
-     */
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Class<?> getResponseClass() {
-        return responseClass;
-    }
-
     public void setResponseClass(Class<?> responseClass) {
         if (responseClass == null) {
             throw new IllegalArgumentException("The response Class cannot be null");
         }
         this.responseClass = responseClass;
     }
-
 }

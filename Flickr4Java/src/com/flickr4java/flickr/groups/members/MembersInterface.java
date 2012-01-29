@@ -57,7 +57,7 @@ public class MembersInterface {
     public MembersList getList(String groupId, Set memberTypes, int perPage, int page)
       throws FlickrException, IOException, SAXException {
         MembersList members = new MembersList();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 

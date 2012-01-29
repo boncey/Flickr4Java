@@ -23,13 +23,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import java.io.DataOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Transport implementation using the REST interface.
@@ -40,6 +41,8 @@ import java.util.Map;
 public class REST extends Transport {
 
     public static final String PATH = "/services/rest/";
+    private static final String CHARSET_NAME = "UTF-8";
+
     private boolean proxyAuth = false;
     private String proxyUser = "";
     private String proxyPassword = "";
@@ -51,14 +54,14 @@ public class REST extends Transport {
      */
     public REST() {
         setTransportType(REST);
-        setHost(Flickr.DEFAULT_HOST);
+        setHost(API_HOST);
         setPath(PATH);
         setResponseClass(RESTResponse.class);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         try {
             builder = builderFactory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e);
+            throw new FlickrRuntimeException(e);
         }
     }
 
@@ -120,14 +123,13 @@ public class REST extends Transport {
      * @param path The request path
      * @param parameters The parameters (collection of Parameter objects)
      * @return The Response
-     * @throws FlickrException
      */
     @Override
-    public com.flickr4java.flickr.Response get(String path, Map<String, String> parameters, String sharedSecret) throws FlickrException {
+    public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String sharedSecret) {
 
-        OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.flickr.com/services/rest");
-        for (Map.Entry<String, String> entry : parameters.entrySet()) {
-            request.addQuerystringParameter(entry.getKey(), entry.getValue());
+        OAuthRequest request = new OAuthRequest(Verb.GET, API_HOST + path);
+        for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+            request.addQuerystringParameter(entry.getKey(), String.valueOf(entry.getValue()));
         }
 
         if (proxyAuth) {
@@ -137,7 +139,7 @@ public class REST extends Transport {
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
         Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(parameters.get(Flickr.API_KEY))
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY)))
                 .apiSecret(sharedSecret).build();
         service.signRequest(requestToken, request);
 
@@ -160,13 +162,13 @@ public class REST extends Transport {
             }
             return response;
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            throw new FlickrRuntimeException(e);
         } catch (InstantiationException e) {
-            throw new RuntimeException(e);
+            throw new FlickrRuntimeException(e);
         } catch (SAXException e) {
-            throw new FlickrException(e);
+            throw new FlickrRuntimeException(e);
         } catch (IOException e) {
-            throw new FlickrException(e);
+            throw new FlickrRuntimeException(e);
         }
     }
 
@@ -178,10 +180,9 @@ public class REST extends Transport {
      * @param path The request path
      * @param parameters The parameters
      * @return The Response
-     * @throws FlickrException
      */
     @Override
-    public Response getNonOAuth(String path, Map<String, String> parameters) throws FlickrException {
+    public Response getNonOAuth(String path, Map<String, String> parameters) {
         InputStream in = null;
         try {
             URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, parameters);
@@ -212,13 +213,13 @@ public class REST extends Transport {
             }
             return response;
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            throw new FlickrRuntimeException(e);
         } catch (InstantiationException e) {
-            throw new RuntimeException(e);
+            throw new FlickrRuntimeException(e);
         } catch (IOException e) {
-            throw new FlickrException(e);
+            throw new FlickrRuntimeException(e);
         } catch (SAXException e) {
-            throw new FlickrException(e);
+            throw new FlickrRuntimeException(e);
         } finally {
             IOUtilities.close(in);
         }
@@ -229,30 +230,38 @@ public class REST extends Transport {
      *
      * @param path The request path
      * @param parameters The parameters (collection of Parameter objects)
-     * @param multipart Use multipart
      * @return The Response object
-     * @throws FlickrException
      */
     @Override
-    public com.flickr4java.flickr.Response post(String path, Map<String, String> parameters, String sharedSecret, boolean multipart) throws FlickrException {
+    public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String sharedSecret, boolean multipart) {
 
-        OAuthRequest request = new OAuthRequest(Verb.POST, "http://api.flickr.com" + PATH);
-        for (Map.Entry<String, String> entry : parameters.entrySet()) {
-            request.addQuerystringParameter(entry.getKey(), entry.getValue());
+        OAuthRequest request = new OAuthRequest(Verb.POST, API_HOST + path);
+
+        if (multipart) {
+            buildMultipartRequest(parameters, request);
+        } else {
+            buildNormalPostRequest(parameters, request);
         }
+
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
         Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(parameters.get("apiKey"))
-                .apiSecret(sharedSecret).build();
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY)))
+                .apiSecret(sharedSecret).debug().build();
         service.signRequest(requestToken, request);
+
+        if (multipart) {
+            // Ensure all parameters (including oauth) are added to payload so signature matches
+            parameters.putAll(request.getOauthParameters());
+            request.addPayload(buildMultipartBody(parameters, getMultipartBoundary()));
+        }
 
         if (proxyAuth) {
             request.addHeader("Proxy-Authorization", "Basic " + getProxyCredentials());
         }
 
         if (Flickr.debugRequest) {
-            System.out.println("GET: " + request.getCompleteUrl());
+            System.out.println("POST: " + request.getCompleteUrl());
         }
 
         org.scribe.model.Response scribeResponse = request.send();
@@ -270,39 +279,48 @@ public class REST extends Transport {
             }
             return response;
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            throw new FlickrRuntimeException(e);
         } catch (InstantiationException e) {
-            throw new RuntimeException(e);
+            throw new FlickrRuntimeException(e);
         } catch (SAXException e) {
-            throw new FlickrException(e);
+            throw new FlickrRuntimeException(e);
         } catch (IOException e) {
-            throw new FlickrException(e);
+            throw new FlickrRuntimeException(e);
         }
     }
 
-    @SuppressWarnings("unused")
-    private void writeParam(String name, Object value, DataOutputStream out, String boundary)
-            throws IOException {
-        if (value instanceof InputStream) {
-            out.writeBytes("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"image.jpg\";\r\n");
-            out.writeBytes("Content-Type: image/jpeg" + "\r\n\r\n");
-            InputStream in = (InputStream) value;
-            byte[] buf = new byte[512];
-            int res = -1;
-            while ((res = in.read(buf)) != -1) {
-                out.write(buf);
-            }
-            out.writeBytes("\r\n" + "--" + boundary + "\r\n");
-        } else if (value instanceof byte[]) {
-            out.writeBytes("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"image.jpg\";\r\n");
-            out.writeBytes("Content-Type: image/jpeg" + "\r\n\r\n");
-            out.write((byte[]) value);
-            out.writeBytes("\r\n" + "--" + boundary + "\r\n");
-        } else {
-            out.writeBytes("Content-Disposition: form-data; name=\"" + name + "\"\r\n\r\n");
-            out.write(((String) value).getBytes("UTF-8"));
-            out.writeBytes("\r\n" + "--" + boundary + "\r\n");
+    /**
+     * 
+     * @param parameters
+     * @param request
+     */
+    private void buildNormalPostRequest(Map<String, Object> parameters, OAuthRequest request) {
+        for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+            request.addBodyParameter(entry.getKey(), String.valueOf(entry.getValue()));
         }
+    }
+
+    /**
+     * 
+     * @param parameters
+     * @param request
+     */
+    private void buildMultipartRequest(Map<String, Object> parameters, OAuthRequest request) {
+        request.addHeader("Content-Type", "multipart/form-data; boundary=" + getMultipartBoundary());
+        for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+            String key = entry.getKey();
+            if (!key.equals("photo")) {
+                request.addQuerystringParameter(key, String.valueOf(entry.getValue()));
+            }
+        }
+    }
+
+    /**
+     * 
+     * @return
+     */
+    private String getMultipartBoundary() {
+        return "---------------------------7d273f7a0d3";
     }
 
     public boolean isProxyAuth() {
@@ -319,6 +337,52 @@ public class REST extends Transport {
         return new String(
                 Base64.encode((proxyUser + ":" + proxyPassword).getBytes())
                 );
+    }
+
+    private byte[] buildMultipartBody(Map<String, Object> parameters, String boundary) {
+
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        try {
+            buffer.write(("--" + boundary + "\r\n").getBytes(CHARSET_NAME));
+            for (Entry<String, Object> entry : parameters.entrySet()) {
+                String key = entry.getKey();
+                writeParam(key, entry.getValue(), buffer, boundary);
+            }
+        } catch (IOException e) {
+            throw new FlickrRuntimeException(e);
+        }
+
+        if (Flickr.debugRequest) {
+            String output = new String(buffer.toByteArray());
+            System.out.println("Multipart body:\n" + output);
+        }
+        return buffer.toByteArray();
+    }
+
+    private void writeParam(String name, Object value, ByteArrayOutputStream buffer, String boundary)
+            throws IOException {
+        if (value instanceof InputStream) {
+            buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"image.jpg\";\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Type: image/jpeg" + "\r\n\r\n").getBytes(CHARSET_NAME));
+            InputStream in = (InputStream) value;
+            byte[] buf = new byte[512];
+
+            @SuppressWarnings("unused")
+            int res = -1;
+            while ((res = in.read(buf)) != -1) {
+                buffer.write(buf);
+            }
+            buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
+        } else if (value instanceof byte[]) {
+            buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"image.jpg\";\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Type: image/jpeg" + "\r\n\r\n").getBytes(CHARSET_NAME));
+            buffer.write((byte[]) value);
+            buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
+        } else {
+            buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"\r\n\r\n").getBytes(CHARSET_NAME));
+            buffer.write(((String) value).getBytes(CHARSET_NAME));
+            buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
+        }
     }
 
 }

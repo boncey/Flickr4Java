@@ -49,7 +49,7 @@ public class NotesInterface {
      * @return The updated Note object
      */
     public Note add(String photoId, Note note) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -85,7 +85,7 @@ public class NotesInterface {
      * @throws FlickrException
      */
     public void delete(String noteId) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -106,7 +106,7 @@ public class NotesInterface {
      * @throws FlickrException
      */
     public void edit(Note note) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT);
         parameters.put(Flickr.API_KEY, apiKey);
 

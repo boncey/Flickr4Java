@@ -72,7 +72,7 @@ public class PhotosetsInterface {
      * @param photoId The photo ID
      */
     public void addPhoto(String photosetId, String photoId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -98,7 +98,7 @@ public class PhotosetsInterface {
      */
     public Photoset create(String title, String description, String primaryPhotoId)
             throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CREATE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -126,7 +126,7 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public void delete(String photosetId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -150,7 +150,7 @@ public class PhotosetsInterface {
      */
     public void editMeta(String photosetId, String title, String description)
             throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_META);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -178,7 +178,7 @@ public class PhotosetsInterface {
      */
     public void editPhotos(String photosetId, String primaryPhotoId, String[] photoIds)
             throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -206,7 +206,7 @@ public class PhotosetsInterface {
      */
     public PhotoContext getContext(String photoId, String photosetId)
             throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTEXT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -252,7 +252,7 @@ public class PhotosetsInterface {
      * @throws SAXException
      */
     public Photoset getInfo(String photosetId) throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -305,7 +305,7 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public Photosets getList(String userId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -357,13 +357,13 @@ public class PhotosetsInterface {
      * 
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.test.photos.Extras
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
      * @param photosetId The photoset ID
      * @param extras Set of extra-fields
      * @param privacy_filter filter value for authenticated calls
@@ -378,7 +378,7 @@ public class PhotosetsInterface {
       int privacy_filter, int perPage, int page)
       throws IOException, SAXException, FlickrException {
         PhotoList photos = new PhotoList();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -427,13 +427,13 @@ public class PhotosetsInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.test.photos.Extras
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_NO_FILTER
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_PUBLIC
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FAMILY
-     * @see com.flickr4java.flickr.test.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.photos.Extras
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
+     * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
      * @param photosetId The photoset ID
      * @param perPage The number of photos per page
      * @param page The page offset
@@ -458,7 +458,7 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public void orderSets(String[] photosetIds) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ORDER_SETS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -480,7 +480,7 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public void removePhoto(String photosetId, String photoId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
 

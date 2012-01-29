@@ -201,7 +201,7 @@ public class User implements Serializable, BuddyIconable {
     /**
      * The Date, when a User has favourited a Photo.<br>
      * This value is set, when a User is created by
-     * {@link com.flickr4java.flickr.test.photos.PhotosInterface#getFavorites(String, int, int)}.
+     * {@link com.flickr4java.flickr.photos.PhotosInterface#getFavorites(String, int, int)}.
      *
      * @return faveDate
      */

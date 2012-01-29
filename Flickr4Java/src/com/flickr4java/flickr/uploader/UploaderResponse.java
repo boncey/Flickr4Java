@@ -83,14 +83,14 @@ public class UploaderResponse implements Response {
     }
 
     /**
-     * @see com.flickr4java.flickr.test.Response#getPayload()
+     * @see com.flickr4java.flickr.Response#getPayload()
      */
     public Element getPayload() {
         return responsePayLoad;
     }
 
     /**
-     * @see com.flickr4java.flickr.test.Response#getPayloadCollection()
+     * @see com.flickr4java.flickr.Response#getPayloadCollection()
      */
     public Collection getPayloadCollection() {
         return null;

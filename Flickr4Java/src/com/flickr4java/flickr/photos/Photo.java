@@ -768,7 +768,7 @@ public class Photo {
 
     /**
      * @return A placeId
-     * @see com.flickr4java.flickr.test.places.PlacesInterface#resolvePlaceId(String)
+     * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
      */
     public String getPlaceId() {
         return placeId;
@@ -826,7 +826,7 @@ public class Photo {
      * Set sizes to override the generated URLs of the different sizes.
      *
      * @param sizes
-     * @see com.flickr4java.flickr.test.photos.PhotosInterface#getSizes(String)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getSizes(String)
      */
     public void setSizes(Collection sizes) {
         Iterator it = sizes.iterator();

@@ -56,7 +56,7 @@ public class ActivityInterface {
     public ItemList userComments(int perPage, int page)
             throws IOException, SAXException, FlickrException {
         ItemList items = new ItemList();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_COMMENTS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -103,7 +103,7 @@ public class ActivityInterface {
     public ItemList userPhotos(int perPage, int page, String timeframe)
             throws IOException, SAXException, FlickrException {
         ItemList items = new ItemList();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 

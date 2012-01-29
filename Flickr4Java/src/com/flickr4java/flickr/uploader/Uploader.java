@@ -6,36 +6,47 @@ package com.flickr4java.flickr.uploader;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.FlickrRuntimeException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.IOUtilities;
 import com.flickr4java.flickr.util.StringUtilities;
 
-import org.xml.sax.SAXException;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Upload a photo.<p>
  *
- * Setting {@link com.flickr4java.flickr.test.uploader.UploadMetaData#setAsync(boolean)}
+ * Setting {@link com.flickr4java.flickr.uploader.UploadMetaData#setAsync(boolean)}
  * you can switch between synchronous and asynchronous uploads.<p>
  *
  * Synchronous uploads return the photoId, whilst asynchronous uploads
  * return a ticketId.<p>
  *
  * TicketId's can be tracked with
- * {@link com.flickr4java.flickr.test.photos.upload.UploadInterface#checkTickets(Set)}
+ * {@link com.flickr4java.flickr.photos.upload.UploadInterface#checkTickets(Set)}
  * for completion.
  *
  * @author Anthony Eden
  * @version $Id: Uploader.java,v 1.12 2009/12/15 20:57:49 x-mago Exp $
  */
 public class Uploader {
+    /**
+     * 
+     */
+    private static final String SERVICES_REPLACE_PATH = "/services/replace/";
+    /**
+     * 
+     */
+    private static final String SERVICES_UPLOAD_PATH = "/services/upload/";
     private final String apiKey;
     private final String sharedSecret;
     private final Transport transport;
@@ -59,11 +70,152 @@ public class Uploader {
      * @param metaData The meta data
      * @return photoId or ticketId
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public String upload(byte[] data, UploadMetaData metaData) throws FlickrException, IOException, SAXException {
-        Map<String, String> parameters = new HashMap<String, String>();
+    public String upload(byte[] data, UploadMetaData metaData) throws FlickrException {
+        Map<String, Object> parameters = setUploadParameters(metaData);
+        parameters.put("photo", data);
+
+        UploaderResponse response = postPhoto(parameters, SERVICES_UPLOAD_PATH);
+
+        return getResponseString(metaData.isAsync(), response);
+    }
+
+    /**
+     * Upload a photo from a File.
+     *
+     * @param file the photo file
+     * @param metaData The meta data
+     * @return photoId or ticketId
+     * @throws FlickrException
+     */
+    public String upload(File file, UploadMetaData metaData) throws FlickrException {
+        InputStream in = null;
+
+        try
+        {
+            in = new FileInputStream(file);
+            return upload(in, metaData);
+        } catch (IOException e) {
+            throw new FlickrRuntimeException(e);
+        } finally {
+            IOUtilities.close(in);
+        }
+    }
+
+    /**
+     * Upload a photo from an InputStream.
+     *
+     * @param in
+     * @param metaData
+     * @return photoId or ticketId
+     * @throws FlickrException
+     */
+    public String upload(InputStream in, UploadMetaData metaData) throws FlickrException {
+        Map<String, Object> parameters = setUploadParameters(metaData);
+        parameters.put("photo", in);
+
+        UploaderResponse response = postPhoto(parameters, SERVICES_UPLOAD_PATH);
+
+        return getResponseString(metaData.isAsync(), response);
+    }
+
+    /**
+     * Replace a photo from an InputStream.
+     *
+     * @param in
+     * @return photoId or ticketId
+     * @throws FlickrException
+     */
+    public String replace(InputStream in, String flickrId, boolean async) throws FlickrException {
+        Map<String, Object> parameters = setReplaceParameters(flickrId, async);
+        parameters.put("photo", in);
+
+        UploaderResponse response = postPhoto(parameters, SERVICES_REPLACE_PATH);
+
+        return getResponseString(async, response);
+    }
+
+    /**
+     * Replace a photo from an InputStream.
+     *
+     * @param data
+     * @param flickrId
+     * @param async
+     * @return photoId or ticketId
+     * @throws FlickrException
+     */
+    public String replace(byte[] data, String flickrId, boolean async) throws FlickrException {
+        Map<String, Object> parameters = setReplaceParameters(flickrId, async);
+
+        parameters.put("photo", data);
+
+        UploaderResponse response = postPhoto(parameters, SERVICES_REPLACE_PATH);
+
+        return getResponseString(async, response);
+    }
+
+    /**
+     * Replace a photo from a File.
+     *
+     * @param file
+     * @param flickrId
+     * @param async
+     * @return photoId or ticketId
+     * @throws FlickrException
+     */
+    public String replace(File file, String flickrId, boolean async) throws FlickrException {
+        InputStream in = null;
+
+        try
+        {
+            in = new FileInputStream(file);
+            return replace(in, flickrId, async);
+        } catch (FileNotFoundException e) {
+            throw new FlickrRuntimeException(e);
+        } finally {
+            IOUtilities.close(in);
+        }
+    }
+
+    /**
+     * Call the post multipart end point.
+     * @param parameters
+     * @param path
+     * @return
+     * @throws FlickrException
+     */
+    private UploaderResponse postPhoto(Map<String, Object> parameters, String path) throws FlickrException {
+        UploaderResponse response = (UploaderResponse) transport.post(path, parameters, sharedSecret, true);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+        return response;
+    }
+
+    /**
+     * Get the photo or ticket id from the response.
+     * 
+     * @param async
+     * @param response
+     * @return
+     */
+    private String getResponseString(boolean async, UploaderResponse response) {
+        String id = "";
+        if (async) {
+            id = response.getTicketId();
+        } else {
+            id = response.getPhotoId();
+        }
+        return id;
+    }
+
+    /**
+     * 
+     * @param metaData
+     * @return
+     */
+    private Map<String, Object> setUploadParameters(UploadMetaData metaData) {
+        Map<String, Object> parameters = new TreeMap<String, Object>();
 
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -79,20 +231,9 @@ public class Uploader {
             parameters.put("description", description);
         }
 
-        Collection tags = metaData.getTags();
-        if (tags != null)
-        {
+        Collection<String> tags = metaData.getTags();
+        if (tags != null) {
             parameters.put("tags", StringUtilities.join(tags, " "));
-        }
-
-        parameters.put("is_public", metaData.isPublicFlag() ? "1" : "0");
-        parameters.put("is_family", metaData.isFamilyFlag() ? "1" : "0");
-        parameters.put("is_friend", metaData.isFriendFlag() ? "1" : "0");
-
-        if(true)
-        {
-            throw new RuntimeException("Look at me");
-            //parameters.put("photo", data);
         }
 
         if (metaData.isHidden() != null) {
@@ -103,54 +244,8 @@ public class Uploader {
             parameters.put("safety_level", metaData.getSafetyLevel());
         }
 
-        parameters.put("async", metaData.isAsync() ? "1" : "0");
-
         if (metaData.getContentType() != null) {
             parameters.put("content_type", metaData.getContentType());
-        }
-        UploaderResponse response = (UploaderResponse) transport.post("/services/upload/", parameters, sharedSecret, true);
-        if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
-        }
-        String id = "";
-        if (metaData.isAsync()) {
-            id = response.getTicketId();
-        } else {
-            id = response.getPhotoId();
-        }
-        return id;
-    }
-
-    /**
-     * Upload a photo from an InputStream.
-     *
-     * @param in
-     * @param metaData
-     * @return photoId or ticketId
-     * @throws IOException
-     * @throws FlickrException
-     * @throws SAXException
-     */
-    public String upload(InputStream in, UploadMetaData metaData) throws IOException, FlickrException, SAXException {
-        Map<String, String> parameters = new HashMap<String, String>();
-
-        parameters.put(Flickr.API_KEY, apiKey);
-
-        String title = metaData.getTitle();
-        if (title != null)
-        {
-            parameters.put("title", title);
-        }
-
-        String description = metaData.getDescription();
-        if (description != null)
-        {
-            parameters.put("description", description);
-        }
-
-        Collection tags = metaData.getTags();
-        if (tags != null) {
-            parameters.put("tags", StringUtilities.join(tags, " "));
         }
 
         parameters.put("is_public", metaData.isPublicFlag() ? "1" : "0");
@@ -158,95 +253,23 @@ public class Uploader {
         parameters.put("is_friend", metaData.isFriendFlag() ? "1" : "0");
         parameters.put("async", metaData.isAsync() ? "1" : "0");
 
-        if (true)
-        {
-            throw new RuntimeException("Unimplemented... look at me");
-            //parameters.put("photo", in);
-        }
-
-        UploaderResponse response = (UploaderResponse) transport.post("/services/upload/", parameters, sharedSecret, true);
-        if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
-        }
-        String id = "";
-        if (metaData.isAsync()) {
-            id = response.getTicketId();
-        } else {
-            id = response.getPhotoId();
-        }
-        return id;
+        return parameters;
     }
 
     /**
-     * Upload a photo from an InputStream.
-     *
-     * @param in
-     * @param metaData
-     * @return photoId or ticketId
-     * @throws IOException
-     * @throws FlickrException
-     * @throws SAXException
+     * 
+     * @param flickrId
+     * @param async
+     * @return
      */
-    public String replace(InputStream in, String flickrId, boolean async) throws IOException, FlickrException, SAXException {
-        Map<String, String> parameters = new HashMap<String, String>();
+    private Map<String, Object> setReplaceParameters(String flickrId, boolean async) {
+        Map<String, Object> parameters = new TreeMap<String, Object>();
 
         parameters.put(Flickr.API_KEY, apiKey);
-
-        parameters.put("async", async ? "1" : "0");
-        parameters.put("photo_id", flickrId);
-        if(true)
-        {
-            throw new RuntimeException("Look at me");
-            //parameters.put("photo", in);
-        }
-
-        UploaderResponse response = (UploaderResponse) transport.post("/services/replace/", parameters, sharedSecret, true);
-        if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
-        }
-        String id = "";
-        if (async) {
-            id = response.getTicketId();
-        } else {
-            id = response.getPhotoId();
-        }
-        return id;
-    }
-
-    /**
-     * Upload a photo from an InputStream.
-     *
-     * @param in
-     * @param metaData
-     * @return photoId or ticketId
-     * @throws IOException
-     * @throws FlickrException
-     * @throws SAXException
-     */
-    public String replace(byte[] data, String flickrId, boolean async) throws IOException, FlickrException, SAXException {
-        Map<String, String> parameters = new HashMap<String, String>();
-
-        parameters.put(Flickr.API_KEY, apiKey);
-
         parameters.put("async", async ? "1" : "0");
         parameters.put("photo_id", flickrId);
 
-        if(true)
-        {
-            throw new RuntimeException("Look at me");
-            //parameters.put("photo", data);
-        }
-
-        UploaderResponse response = (UploaderResponse) transport.post("/services/replace/", parameters, sharedSecret, true);
-        if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
-        }
-        String id = "";
-        if (async) {
-            id = response.getTicketId();
-        } else {
-            id = response.getPhotoId();
-        }
-        return id;
+        return parameters;
     }
+
 }

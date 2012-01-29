@@ -33,15 +33,15 @@ public class ContactsInterface {
     private static final String METHOD_GET_LIST_RECENTLY_UPLOADED = "flickr.contacts.getListRecentlyUploaded";
     private static final String METHOD_GET_PUBLIC_LIST = "flickr.contacts.getPublicList";
 
-    private String apiKey;
-    private String sharedSecret;
-    private Transport transportAPI;
+    private final String apiKey;
+    private final String sharedSecret;
+    private final Transport transportAPI;
 
     public ContactsInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+            String apiKey,
+            String sharedSecret,
+            Transport transportAPI
+            ) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -57,7 +57,7 @@ public class ContactsInterface {
     public Collection<Contact> getList() throws IOException, SAXException, FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -102,16 +102,16 @@ public class ContactsInterface {
      * @throws FlickrException
      */
     public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter)
-      throws IOException, SAXException, FlickrException {
+            throws IOException, SAXException, FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_RECENTLY_UPLOADED);
         parameters.put(Flickr.API_KEY, apiKey);
 
-		if (lastUpload != null) {
-			parameters.put("date_lastupload", String.valueOf(lastUpload.getTime() / 1000L));
-		}
+        if (lastUpload != null) {
+            parameters.put("date_lastupload", String.valueOf(lastUpload.getTime() / 1000L));
+        }
         if (filter != null) {
             parameters.put("filter", filter);
         }
@@ -158,7 +158,7 @@ public class ContactsInterface {
     public Collection<Contact> getPublicList(String userId) throws IOException, SAXException, FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("user_id", userId);

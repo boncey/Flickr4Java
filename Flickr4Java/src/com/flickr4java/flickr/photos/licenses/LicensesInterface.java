@@ -55,7 +55,7 @@ public class LicensesInterface {
      * @throws FlickrException
      */
     public Collection getInfo() throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -89,7 +89,7 @@ public class LicensesInterface {
      * @throws FlickrException
      */
     public void setLicense(String photoId, int licenseId) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_LICENSE);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);

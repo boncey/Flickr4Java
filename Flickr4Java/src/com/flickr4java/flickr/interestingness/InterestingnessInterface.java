@@ -76,10 +76,10 @@ public class InterestingnessInterface {
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList getList(String date, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         PhotoList photos = new PhotoList();
 
         parameters.put(KEY_METHOD, METHOD_GET_LIST);
@@ -129,7 +129,7 @@ public class InterestingnessInterface {
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList getList(Date date, Set extras, int perPage, int page)
       throws FlickrException, IOException, SAXException {

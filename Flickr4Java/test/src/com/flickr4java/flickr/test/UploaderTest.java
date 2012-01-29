@@ -2,22 +2,6 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -29,6 +13,17 @@ import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.xml.sax.SAXException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import junit.framework.TestCase;
+
 /**
  * @author Anthony Eden
  */
@@ -39,7 +34,8 @@ public class UploaderTest extends TestCase {
     Flickr flickr = null;
     Properties properties = null;
 
-    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
+    @Override
+    public void setUp() throws IOException, FlickrException {
         InputStream in = null;
         Flickr.debugRequest = false;
         Flickr.debugStream = false;
@@ -48,26 +44,24 @@ public class UploaderTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
             REST rest = new REST();
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
             uploader = flickr.getUploader();
             pint = flickr.getPhotosInterface();
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.WRITE);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
@@ -91,7 +85,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
             while ((b = in.read()) != -1) {
                 out.write((byte) b);
             }
-            UploadMetaData metaData = new UploadMetaData();
+            UploadMetaData metaData = buildPrivatePhotoMetadata();
             // check correct handling of escaped value
             metaData.setTitle("óöä");
             String photoId = uploader.upload(out.toByteArray(), metaData);
@@ -115,7 +109,8 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         InputStream in = null;
         try {
             in = new FileInputStream(imageFile);
-            UploadMetaData metaData = new UploadMetaData();
+            UploadMetaData metaData = buildPrivatePhotoMetadata();
+            metaData.setPublicFlag(false);
             // check correct handling of escaped value
             metaData.setTitle("óöä");
             String photoId = uploader.upload(in, metaData);
@@ -141,7 +136,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
             uploadIS = new FileInputStream(imageFile);
 
             // Upload a photo, which we'll replace, then delete
-            UploadMetaData metaData = new UploadMetaData();
+            UploadMetaData metaData = buildPrivatePhotoMetadata();
             photoId = uploader.upload(uploadIS, metaData);
         } finally {
             IOUtilities.close(uploadIS);
@@ -151,8 +146,15 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         try {
             replaceIS = new FileInputStream(imageFile);
 
-            photoId = uploader.replace(replaceIS, photoId, false);
-            assertNotNull(photoId);
+            try {
+                photoId = uploader.replace(replaceIS, photoId, false);
+                assertNotNull(photoId);
+            } catch (FlickrException e) {
+                // Error code 1 means test account is not pro so don't fail test because of that
+                if (!e.getErrorCode().equals("1")) {
+                    throw e;
+                }
+            }
             pint.delete(photoId);
         } finally {
             IOUtilities.close(replaceIS);
@@ -180,15 +182,33 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
             }
 
             // Upload a photo, which we'll replace, then delete
-            UploadMetaData metaData = new UploadMetaData();
+            UploadMetaData metaData = buildPrivatePhotoMetadata();
             String photoId = uploader.upload(out.toByteArray(), metaData);
 
-            photoId = uploader.replace(out.toByteArray(), photoId, false);
-            assertNotNull(photoId);
+            try {
+                photoId = uploader.replace(out.toByteArray(), photoId, false);
+                assertNotNull(photoId);
+            } catch (FlickrException e) {
+                // Error code 1 means test account is not pro so don't fail test because of that
+                if (!e.getErrorCode().equals("1")) {
+                    throw e;
+                }
+            }
+
             pint.delete(photoId);
         } finally {
             IOUtilities.close(in);
         }
+    }
+
+    /**
+     * Build {@link UploadMetaData} with public set to false so uploaded photos are private.
+     * @return
+     */
+    private UploadMetaData buildPrivatePhotoMetadata() {
+        UploadMetaData uploadMetaData = new UploadMetaData();
+        uploadMetaData.setPublicFlag(false);
+        return uploadMetaData;
     }
 
 }

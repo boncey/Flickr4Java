@@ -58,7 +58,7 @@ public class GroupsInterface {
         List<Subcategory> subcategories = new ArrayList<Subcategory>();
         List<Group> groups = new ArrayList<Group>();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_BROWSE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -114,7 +114,7 @@ public class GroupsInterface {
      * @return The Group object
      */
     public Group getInfo(String groupId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("group_id", groupId);
@@ -171,7 +171,7 @@ public class GroupsInterface {
      */
     public Collection search(String text, int perPage, int page) throws FlickrException, IOException, SAXException {
         GroupList groupList = new GroupList();
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SEARCH);
         parameters.put(Flickr.API_KEY, apiKey);
 

@@ -64,7 +64,7 @@ public class FileAuthStore implements AuthStore {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.flickr4java.flickr.test.util.AuthStore#store(com.flickr4java.flickr.test.auth.Auth)
+	 * @see com.flickr4java.flickr.util.AuthStore#store(com.flickr4java.flickr.auth.Auth)
 	 */
 	public void store(Auth token) throws IOException {
 		this.auths.put(token.getUser().getId(), token);
@@ -81,21 +81,21 @@ public class FileAuthStore implements AuthStore {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.flickr4java.flickr.test.util.AuthStore#retrieve(java.lang.String)
+	 * @see com.flickr4java.flickr.util.AuthStore#retrieve(java.lang.String)
 	 */
 	public Auth retrieve(String nsid) {
 		return (Auth) this.auths.get(nsid);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.flickr4java.flickr.test.util.AuthStore#retrieveAll()
+	 * @see com.flickr4java.flickr.util.AuthStore#retrieveAll()
 	 */
 	public Auth[] retrieveAll() {
 		return (Auth[])this.auths.values().toArray(new Auth[this.auths.size()]);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.flickr4java.flickr.test.util.AuthStore#clearAll()
+	 * @see com.flickr4java.flickr.util.AuthStore#clearAll()
 	 */
 	public void clearAll() {
 		this.auths.clear();
@@ -106,7 +106,7 @@ public class FileAuthStore implements AuthStore {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.flickr4java.flickr.test.util.AuthStore#clear(java.lang.String)
+	 * @see com.flickr4java.flickr.util.AuthStore#clear(java.lang.String)
 	 */
 	public void clear(String nsid) {
 		this.auths.remove(nsid);

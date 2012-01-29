@@ -60,7 +60,7 @@ public class UrlsInterface {
      * @throws FlickrException
      */
     public String getGroup(String groupId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GROUP);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -85,7 +85,7 @@ public class UrlsInterface {
      * @throws FlickrException
      */
     public String getUserPhotos(String userId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_USER_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -110,7 +110,7 @@ public class UrlsInterface {
      * @throws FlickrException
      */
     public String getUserProfile(String userId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_USER_PROFILE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -135,7 +135,7 @@ public class UrlsInterface {
      * @throws FlickrException
      */
     public Group lookupGroup(String url) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOOKUP_GROUP);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -165,7 +165,7 @@ public class UrlsInterface {
      */
     public String lookupUser(String url)
       throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOOKUP_USER);
         parameters.put(Flickr.API_KEY, apiKey);
 

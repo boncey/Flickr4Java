@@ -68,7 +68,7 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User findByEmail(String email) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_FIND_BY_EMAIL);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -97,7 +97,7 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User findByUsername(String username) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_FIND_BY_USERNAME);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -126,7 +126,7 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User getInfo(String userId) throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -167,7 +167,7 @@ public class PeopleInterface {
      *
      * The groups will contain only the members nsid, name, admin and eighteenplus.
      * If you want the whole group-information, you have to call 
-     * {@link com.flickr4java.flickr.test.groups.GroupsInterface#getInfo(String)}.
+     * {@link com.flickr4java.flickr.groups.GroupsInterface#getInfo(String)}.
      *
      * This method does not require authentication.
      *
@@ -181,7 +181,7 @@ public class PeopleInterface {
       throws IOException, SAXException, FlickrException {
         List groups = new ArrayList();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_GROUPS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -215,7 +215,7 @@ public class PeopleInterface {
      *
      * This method does not require authentication.
      *
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      * @param userId The User ID
      * @param extras Set of extra-attributes to include (may be null)
      * @param perPage The number of photos per page
@@ -229,7 +229,7 @@ public class PeopleInterface {
             FlickrException {
         PhotoList photos = new PhotoList();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -275,7 +275,7 @@ public class PeopleInterface {
      * @throws FlickrException
      */
     public User getUploadStatus() throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_UPLOAD_STATUS);
         parameters.put(Flickr.API_KEY, apiKey);
 

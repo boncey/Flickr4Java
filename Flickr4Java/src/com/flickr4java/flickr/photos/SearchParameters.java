@@ -18,7 +18,7 @@ import java.util.Set;
  * @version $Id: SearchParameters.java,v 1.20 2009/07/23 20:41:03 x-mago Exp $
  */
 public class SearchParameters {
-	private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 12L;
 
     private String userId;
     private String groupId;
@@ -48,12 +48,14 @@ public class SearchParameters {
     private boolean hasGeo = false;
 
     public static final ThreadLocal DATE_FORMATS = new ThreadLocal() {
+        @Override
         protected synchronized Object initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd");
         }
     };
 
     public static final ThreadLocal MYSQL_DATE_FORMATS = new ThreadLocal() {
+        @Override
         protected synchronized Object initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
@@ -84,11 +86,11 @@ public class SearchParameters {
      * Defaults to maximum value if not specified.
      *
      * @param accuracy from 1 to 16
-     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_WORLD
-     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_COUNTRY
-     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_REGION
-     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_CITY
-     * @see com.flickr4java.flickr.test.Flickr#ACCURACY_STREET
+     * @see com.flickr4java.flickr.Flickr#ACCURACY_WORLD
+     * @see com.flickr4java.flickr.Flickr#ACCURACY_COUNTRY
+     * @see com.flickr4java.flickr.Flickr#ACCURACY_REGION
+     * @see com.flickr4java.flickr.Flickr#ACCURACY_CITY
+     * @see com.flickr4java.flickr.Flickr#ACCURACY_STREET
      */
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
@@ -246,15 +248,15 @@ public class SearchParameters {
      * url_sq, url_t, url_s, url_m, url_l, url_o
      *
      * @param extras A set of extra-attributes
-     * @see com.flickr4java.flickr.test.photos.Extras#ALL_EXTRAS
-     * @see com.flickr4java.flickr.test.photos.Extras#MIN_EXTRAS
+     * @see com.flickr4java.flickr.photos.Extras#ALL_EXTRAS
+     * @see com.flickr4java.flickr.photos.Extras#MIN_EXTRAS
      */
     public void setExtras(Set extras) {
         this.extras = extras;
     }
 
     /**
-     * 4 values defining the Bounding Box of the area that 
+     * 4 values defining the Bounding Box of the area that
      * will be searched.<p>
      * The 4 values represent the bottom-left corner of the box
      * and the top-right corner, minimum_longitude, minimum_latitude,
@@ -284,16 +286,16 @@ public class SearchParameters {
      * @param maximum_latitude
      */
     public void setBBox(
-        String minimum_longitude,
-        String minimum_latitude,
-        String maximum_longitude,
-        String maximum_latitude
-    ) {
+            String minimum_longitude,
+            String minimum_latitude,
+            String maximum_longitude,
+            String maximum_latitude
+            ) {
         this.bbox = new String[] {
-            minimum_longitude,
-            minimum_latitude,
-            maximum_longitude,
-            maximum_latitude
+                minimum_longitude,
+                minimum_latitude,
+                maximum_longitude,
+                maximum_latitude
         };
     }
 
@@ -306,9 +308,9 @@ public class SearchParameters {
      * Un-authed calls can only see Safe content.
      *
      * @param level 1, 2 or 3
-     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_SAFE
-     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_MODERATE
-     * @see com.flickr4java.flickr.test.Flickr#SAFETYLEVEL_RESTRICTED
+     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
+     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
+     * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
      */
     public void setSafeSearch(String level) {
         this.safeSearch = level;
@@ -326,13 +328,13 @@ public class SearchParameters {
      * Set the sort-order.<p>
      * The default is <a href="#DATE_POSTED_DESC">DATE_POSTED_DESC</a>
      *
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_POSTED_ASC
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_POSTED_DESC
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_TAKEN_ASC
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#DATE_TAKEN_DESC
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#INTERESTINGNESS_ASC
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#INTERESTINGNESS_DESC
-     * @see com.flickr4java.flickr.test.photos.SearchParameters#RELEVANCE
+     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_POSTED_ASC
+     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_POSTED_DESC
+     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_TAKEN_ASC
+     * @see com.flickr4java.flickr.photos.SearchParameters#DATE_TAKEN_DESC
+     * @see com.flickr4java.flickr.photos.SearchParameters#INTERESTINGNESS_ASC
+     * @see com.flickr4java.flickr.photos.SearchParameters#INTERESTINGNESS_DESC
+     * @see com.flickr4java.flickr.photos.SearchParameters#RELEVANCE
      * @param order
      */
     public void setSort(int order) {
@@ -341,7 +343,7 @@ public class SearchParameters {
 
     /**
      * @return A placeId
-     * @see com.flickr4java.flickr.test.places.PlacesInterface#resolvePlaceId(String)
+     * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
      */
     public String getPlaceId() {
         return placeId;
@@ -360,9 +362,9 @@ public class SearchParameters {
      * (though we may extend the limit in the future).
      *
      * @param placeId
-     * @see com.flickr4java.flickr.test.places.PlacesInterface#resolvePlaceId(String)
-     * @see com.flickr4java.flickr.test.places.Place#getPlaceId()
-     * @see com.flickr4java.flickr.test.places.Location#getPlaceId()
+     * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
+     * @see com.flickr4java.flickr.places.Place#getPlaceId()
+     * @see com.flickr4java.flickr.places.Location#getPlaceId()
      */
     public void setPlaceId(String placeId) {
         this.placeId = placeId;
@@ -387,8 +389,8 @@ public class SearchParameters {
      * (though flickr may extend the limit in the future).<p/>
      *
      * @param woeId
-     * @see com.flickr4java.flickr.test.places.Place#getWoeId()
-     * @see com.flickr4java.flickr.test.places.Location#getWoeId()
+     * @see com.flickr4java.flickr.places.Place#getWoeId()
+     * @see com.flickr4java.flickr.places.Location#getWoeId()
      */
     public void setWoeId(String woeId) {
         this.woeId = woeId;
@@ -406,9 +408,9 @@ public class SearchParameters {
      */
     public void setMedia(String media) throws FlickrException {
         if (media.equals("all") ||
-            media.equals("photos") ||
-            media.equals("videos")
-        ) {
+                media.equals("photos") ||
+                media.equals("videos")
+                ) {
             this.media = media;
         } else {
             throw new FlickrException("0", "Media type is not valid.");
@@ -433,8 +435,8 @@ public class SearchParameters {
         this.contacts = contacts;
     }
 
-    public Map<String, String> getAsParameters() {
-        Map<String, String> parameters = new HashMap<String, String>();
+    public Map<String, Object> getAsParameters() {
+        Map<String, Object> parameters = new HashMap<String, Object>();
 
         String lat = getLatitude();
         if (lat != null) {
@@ -487,7 +489,7 @@ public class SearchParameters {
 
         String[] mtags = getMachineTags();
         if (mtags != null) {
-        	parameters.put("machine_tags", StringUtilities.join(mtags, ","));
+            parameters.put("machine_tags", StringUtilities.join(mtags, ","));
         }
 
         String mtagMode = getMachineTagMode();
@@ -559,13 +561,27 @@ public class SearchParameters {
 
         if (sort != DATE_POSTED_DESC) {
             String sortArg = null;
-            if(sort == DATE_POSTED_ASC) sortArg = "date-posted-asc";
-            if(sort == DATE_TAKEN_DESC) sortArg = "date-taken-desc";
-            if(sort == DATE_TAKEN_ASC) sortArg = "date-taken-asc";
-            if(sort == INTERESTINGNESS_DESC) sortArg = "interestingness-desc";
-            if(sort == INTERESTINGNESS_ASC) sortArg = "interestingness-asc";
-            if(sort == RELEVANCE) sortArg = "relevance";
-            if(sortArg != null) parameters.put("sort", sortArg);
+            if(sort == DATE_POSTED_ASC) {
+                sortArg = "date-posted-asc";
+            }
+            if(sort == DATE_TAKEN_DESC) {
+                sortArg = "date-taken-desc";
+            }
+            if(sort == DATE_TAKEN_ASC) {
+                sortArg = "date-taken-asc";
+            }
+            if(sort == INTERESTINGNESS_DESC) {
+                sortArg = "interestingness-desc";
+            }
+            if(sort == INTERESTINGNESS_ASC) {
+                sortArg = "interestingness-asc";
+            }
+            if(sort == RELEVANCE) {
+                sortArg = "relevance";
+            }
+            if(sortArg != null) {
+                parameters.put("sort", sortArg);
+            }
         }
 
         return parameters;

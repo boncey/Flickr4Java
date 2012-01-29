@@ -45,7 +45,7 @@ public class TransformInterface {
      */
     public void rotate(String photoId, int degrees)
         throws IOException, SAXException, FlickrException {
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ROTATE);
         parameters.put(Flickr.API_KEY, apiKey);
 

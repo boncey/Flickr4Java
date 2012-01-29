@@ -55,7 +55,7 @@ public class PhotosetsCommentsInterface {
      * @throws SAXException
      */
     public String addComment(String photosetId, String commentText) throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -82,7 +82,7 @@ public class PhotosetsCommentsInterface {
      * @throws SAXException
      */
     public void deleteComment(String commentId) throws FlickrException, IOException, SAXException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -107,7 +107,7 @@ public class PhotosetsCommentsInterface {
      * @throws FlickrException
      */
     public void editComment(String commentId, String commentText) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -135,7 +135,7 @@ public class PhotosetsCommentsInterface {
      * @throws FlickrException
      */
     public List getList(String photosetId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 

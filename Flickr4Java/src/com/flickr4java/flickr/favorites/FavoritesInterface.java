@@ -7,6 +7,7 @@ import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
@@ -33,9 +34,9 @@ public class FavoritesInterface {
     public static final String METHOD_GET_PUBLIC_LIST = "flickr.favorites.getPublicList";
     public static final String METHOD_REMOVE = "flickr.favorites.remove";
 
-    private String apiKey;
-    private String sharedSecret;
-    private Transport transportAPI;
+    private final String apiKey;
+    private final String sharedSecret;
+    private final Transport transportAPI;
 
     public FavoritesInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
@@ -52,7 +53,7 @@ public class FavoritesInterface {
      * @throws FlickrException
      */
     public void add(String photoId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
@@ -71,15 +72,15 @@ public class FavoritesInterface {
      * @param page The page to view.  Values <= 0 will be ignored.
      * @param extras a Set Strings representing extra parameters to send
      * @return The Collection of Photo objects
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList getList(String userId, int perPage, int page, Set extras) throws IOException,
-            SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+    public PhotoList<Photo> getList(String userId, int perPage, int page, Set<String> extras) throws IOException,
+    SAXException, FlickrException {
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -103,9 +104,9 @@ public class FavoritesInterface {
 
         Element photosElement = response.getPayload();
         photos.setPage(photosElement.getAttribute("page"));
-		photos.setPages(photosElement.getAttribute("pages"));
-		photos.setPerPage(photosElement.getAttribute("perpage"));
-		photos.setTotal(photosElement.getAttribute("total"));
+        photos.setPages(photosElement.getAttribute("pages"));
+        photos.setPerPage(photosElement.getAttribute("perpage"));
+        photos.setTotal(photosElement.getAttribute("total"));
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         for (int i = 0; i < photoNodes.getLength(); i++) {
             Element photoElement = (Element) photoNodes.item(i);
@@ -127,13 +128,13 @@ public class FavoritesInterface {
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
-     * @see com.flickr4java.flickr.test.photos.Extras
+     * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList getPublicList(String userId, int perPage, int page, Set extras)
+    public PhotoList<Photo> getPublicList(String userId, int perPage, int page, Set<String> extras)
             throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
-        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -156,9 +157,9 @@ public class FavoritesInterface {
 
         Element photosElement = response.getPayload();
         photos.setPage(photosElement.getAttribute("page"));
-		photos.setPages(photosElement.getAttribute("pages"));
-		photos.setPerPage(photosElement.getAttribute("perpage"));
-		photos.setTotal(photosElement.getAttribute("total"));
+        photos.setPages(photosElement.getAttribute("pages"));
+        photos.setPerPage(photosElement.getAttribute("perpage"));
+        photos.setTotal(photosElement.getAttribute("total"));
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         for (int i = 0; i < photoNodes.getLength(); i++) {
             Element photoElement = (Element) photoNodes.item(i);
@@ -172,8 +173,8 @@ public class FavoritesInterface {
      *
      * @param photoId The photo id
      */
-    public void remove(String photoId) throws IOException, SAXException, FlickrException {
-    	Map<String, String> parameters = new HashMap<String, String>();
+    public void remove(String photoId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE);
         parameters.put(Flickr.API_KEY, apiKey);
 

@@ -2,6 +2,8 @@
 
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertNotNull;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -13,6 +15,8 @@ import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import java.io.ByteArrayOutputStream;
@@ -22,19 +26,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 /**
  * @author Anthony Eden
  */
-public class UploaderTest extends TestCase {
+public class UploaderTest {
 
     Uploader uploader = null;
     PhotosInterface pint = null;
     Flickr flickr = null;
     Properties properties = null;
 
-    @Override
+    @Before
     public void setUp() throws IOException, FlickrException {
         InputStream in = null;
         Flickr.debugRequest = false;
@@ -74,6 +76,7 @@ public class UploaderTest extends TestCase {
      * @throws FlickrException
      * @throws SAXException
      */
+    @Test
     public void testUploadByteArray() throws IOException, FlickrException, SAXException {
         File imageFile = new File(properties.getProperty("imagefile"));
         InputStream in = null;
@@ -104,6 +107,7 @@ public class UploaderTest extends TestCase {
      * @throws FlickrException
      * @throws SAXException
      */
+    @Test
     public void testUploadInputStream() throws IOException, FlickrException, SAXException {
         File imageFile = new File(properties.getProperty("imagefile"));
         InputStream in = null;
@@ -128,6 +132,7 @@ public class UploaderTest extends TestCase {
      * @throws FlickrException
      * @throws SAXException
      */
+    @Test
     public void testReplaceInputStream() throws IOException, FlickrException, SAXException {
         File imageFile = new File(properties.getProperty("imagefile"));
         InputStream uploadIS = null;
@@ -168,6 +173,7 @@ public class UploaderTest extends TestCase {
      * @throws FlickrException
      * @throws SAXException
      */
+    @Test
     public void testReplaceByteArray() throws IOException, FlickrException, SAXException {
         File imageFile = new File(properties.getProperty("imagefile"));
         InputStream in = null;

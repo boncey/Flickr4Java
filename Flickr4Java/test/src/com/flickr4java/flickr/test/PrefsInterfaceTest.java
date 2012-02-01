@@ -1,36 +1,38 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.prefs.PrefsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * @author Martin Goebel
  * @version $Id: PrefsInterfaceTest.java,v 1.3 2008/06/28 22:30:04 x-mago Exp $
  */
-public class PrefsInterfaceTest extends TestCase {
+public class PrefsInterfaceTest {
 
     Flickr flickr = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         InputStream in = null;
         try {
@@ -61,6 +63,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testGetContentType() throws FlickrException, IOException, SAXException {
         PrefsInterface iface = flickr.getPrefsInterface();
         String type = iface.getContentType();
@@ -71,6 +74,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         );
     }
 
+    @Test
     public void testGetSafetyLevel() throws FlickrException, IOException, SAXException {
         PrefsInterface iface = flickr.getPrefsInterface();
         String level = iface.getSafetyLevel();
@@ -81,11 +85,13 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         );
     }
 
+    @Test
     public void testGetHidden() throws FlickrException, IOException, SAXException {
         PrefsInterface iface = flickr.getPrefsInterface();
         Boolean hidden = iface.getHidden();
     }
 
+    @Test
     public void testGetGeoPerms() throws FlickrException, IOException, SAXException {
         PrefsInterface iface = flickr.getPrefsInterface();
         int geoPerm = iface.getGeoPerms();

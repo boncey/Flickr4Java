@@ -2,6 +2,10 @@
 
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -13,6 +17,8 @@ import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,17 +29,15 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 /**
  * @author Anthony Eden
  * @version $Id: FavoritesInterfaceTest.java,v 1.8 2008/01/26 00:05:17 x-mago Exp $
  */
-public class FavoritesInterfaceTest extends TestCase {
+public class FavoritesInterfaceTest {
 
     Flickr flickr = null;
 
-    @Override
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         InputStream in = null;
         try {
@@ -62,6 +66,7 @@ public class FavoritesInterfaceTest extends TestCase {
         }
     }
 
+    @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection<Photo> favorites = iface.getList(null, 15, 1, null);
@@ -69,6 +74,7 @@ public class FavoritesInterfaceTest extends TestCase {
         assertFalse(favorites.isEmpty());
     }
 
+    @Test
     public void testGetListWithExtras() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection<Photo> favorites = iface.getList(null, 15, 1, Extras.ALL_EXTRAS);
@@ -76,6 +82,7 @@ public class FavoritesInterfaceTest extends TestCase {
         assertFalse(favorites.isEmpty());
     }
 
+    @Test
     public void testGetPublicList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection<Photo> favorites = iface.getPublicList("77348956@N00", 0, 0, null);
@@ -83,6 +90,7 @@ public class FavoritesInterfaceTest extends TestCase {
         assertEquals(14, favorites.size());
     }
 
+    @Test
     public void testAddAndRemove() throws FlickrException, IOException, SAXException {
         String photoId = "2153378";
         FavoritesInterface iface = flickr.getFavoritesInterface();

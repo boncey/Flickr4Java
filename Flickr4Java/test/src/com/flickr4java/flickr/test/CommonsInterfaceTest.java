@@ -2,40 +2,45 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.commons.CommonsInterface;
 import com.flickr4java.flickr.commons.Institution;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Properties;
+
 /**
  * @author mago
  * @version $Id: CommonsInterfaceTest.java,v 1.1 2009/06/30 18:48:59 x-mago Exp $
  */
-public class CommonsInterfaceTest extends TestCase {
+public class CommonsInterfaceTest {
     Flickr flickr = null;
     Properties properties = null;
 
+    
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         //Flickr.debugStream = true;
 
@@ -69,6 +74,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testGetInstitutions() throws FlickrException, IOException, SAXException {
         CommonsInterface iface = flickr.getCommonsInterface();
         ArrayList list = iface.getInstitutions();

@@ -1,72 +1,69 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.GeoData;
 import com.flickr4java.flickr.photos.geo.GeoInterface;
 import com.flickr4java.flickr.photos.geo.GeoPermissions;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * 
  * @author till
  * @version $Id: GeoInterfaceTest.java,v 1.4 2008/01/28 23:01:45 x-mago Exp $
  */
-public class GeoInterfaceTest extends TestCase {
+public class GeoInterfaceTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
-    public GeoInterfaceTest(String arg0) {
-        super(arg0);
-    }
-
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("/setup.properties");
             properties = new Properties();
             properties.load(in);
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
             REST rest = new REST();
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
     }
 
+    @Test
     public void testGetLocation() throws IOException, SAXException, FlickrException {
         String photoId = "240935723";
         GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();
@@ -78,6 +75,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(location.getAccuracy() <= 16);
     }
 
+    @Test
     public void testGetPerms() throws IOException, SAXException, FlickrException {
         String photoId = properties.getProperty("geo.write.photoid");
         GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();
@@ -89,6 +87,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertFalse(perms.isFamily());
     }
 
+    @Test
     public void testSetLocation() throws IOException, SAXException, FlickrException {
         String photoId = properties.getProperty("geo.write.photoid");
         GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();

@@ -1,5 +1,7 @@
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertTrue;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -10,6 +12,8 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,19 +22,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 /**
  *
  * @author mago
  * @version $Id: ActivityInterfaceTest.java,v 1.3 2009/06/30 18:48:59 x-mago Exp $
  */
-public class ActivityInterfaceTest extends TestCase {
+public class ActivityInterfaceTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
-    @Override
+    
+    @Before
     public void setUp() throws
     ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugRequest = false;
@@ -61,6 +64,7 @@ public class ActivityInterfaceTest extends TestCase {
         }
     }
 
+    @Test
     public void testUserComments()
             throws FlickrException, IOException, SAXException {
         ActivityInterface actInterface = flickr.getActivityInterface();
@@ -68,6 +72,7 @@ public class ActivityInterfaceTest extends TestCase {
         assertTrue(list.size() > 0);
     }
 
+    @Test
     public void testUserPhotos()
             throws FlickrException, IOException, SAXException {
         ActivityInterface actInterface = flickr.getActivityInterface();
@@ -75,6 +80,7 @@ public class ActivityInterfaceTest extends TestCase {
         assertTrue(list.size() > 0);
     }
 
+    @Test
     public void testCheckTimeframeArg() {
         ActivityInterface actInterface = flickr.getActivityInterface();
         assertTrue(actInterface.checkTimeframeArg("300d"));

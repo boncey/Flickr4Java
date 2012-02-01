@@ -1,12 +1,7 @@
 package com.flickr4java.flickr.test;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import junit.framework.TestCase;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.contacts.OnlineStatus;
 import com.flickr4java.flickr.people.User;
@@ -17,18 +12,27 @@ import com.flickr4java.flickr.photos.Permissions;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.Size;
 import com.flickr4java.flickr.tags.Tag;
+
+import org.junit.Test;
+
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 /**
  *
  * @author mago
  * @version $Id: ObjectTest.java,v 1.1 2009/07/23 20:41:03 x-mago Exp $
  */
-public class ObjectTest extends TestCase {
+public class ObjectTest {
     /**
      * Testing the equals-implementation.
      *
      * Don't test every single member, as they are covered in
      * equals() by reflection. Emphasis on the child-objects.
      */
+    @Test
     public void testPhoto() {
         Photo p1 = new Photo();
         Photo p2 = new Photo();

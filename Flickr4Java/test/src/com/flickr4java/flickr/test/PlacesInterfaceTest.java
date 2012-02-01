@@ -1,26 +1,14 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.places.Location;
 import com.flickr4java.flickr.places.Place;
@@ -30,18 +18,34 @@ import com.flickr4java.flickr.places.PlacesList;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Properties;
+
 /**
  * Tests for the PlacesInterface.
  *
  * @author mago
  * @version $Id: PlacesInterfaceTest.java,v 1.11 2009/07/11 20:30:27 x-mago Exp $
  */
-public class PlacesInterfaceTest extends TestCase {
+public class PlacesInterfaceTest {
     String sfWoeId = "2487956";
 
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws
       ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugRequest = false;
@@ -75,6 +79,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testFindByLonLat()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -93,6 +98,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals(13.376D, place.getLongitude());
     }
 
+    @Test
     public void testFind()      throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         PlacesList list = placesInterface.find("Alabama");
@@ -113,6 +119,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals(Place.TYPE_LOCALITY, place.getPlaceType());
     }
 
+    @Test
     public void testFind2()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -129,6 +136,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals(Place.TYPE_NEIGHBOURHOOD, place.getPlaceType());
     }
 
+    @Test
     public void testResolvePlaceId()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -136,6 +144,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         placeAssertions(location);
     }
 
+    @Test
     public void testResolvePlaceUrl()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -143,6 +152,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         placeAssertions(location);
     }
 
+    @Test
     public void testGetChildrenWithPhotosPublic()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -162,6 +172,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(list.size() > 40);
     }
 
+    @Test
     public void testGetInfo()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -173,6 +184,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals("/United+States/California/San+Francisco",loc.getPlaceUrl());
     }
 
+    @Test
     public void testGetInfoByUrl()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -183,6 +195,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals(loc.getPlaceId(), placeId);
     }
 
+    @Test
     public void testGetPlaceTypes()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -206,12 +219,14 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(placeTypes.size() > 5);
     }
 
+    @Test
     public void testGetTopPlacesList() throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         PlacesList places = placesInterface.getTopPlacesList(Place.TYPE_COUNTRY, null, null, sfWoeId);
         assertNotNull(places);
     }
 
+    @Test
     public void testPlacesForBoundingBox()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -226,6 +241,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals(Place.TYPE_LOCALITY, place.getPlaceType());
     }
 
+    @Test
     public void testPlacesForContacts()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -243,6 +259,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testPlacesForTags() throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         int placeTypeId = Place.TYPE_REGION;
@@ -277,6 +294,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals("/United+States/California", place.getPlaceUrl());
     }
 
+    @Test
     public void testPlacesForUser()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
@@ -302,6 +320,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testTagsForPlace()
       throws FlickrException, IOException, SAXException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();

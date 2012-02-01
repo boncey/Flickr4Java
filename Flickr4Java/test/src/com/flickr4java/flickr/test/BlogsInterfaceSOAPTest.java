@@ -2,16 +2,8 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -20,13 +12,27 @@ import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.blogs.BlogsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Properties;
+
 /**
  * @author Matt Ray
  */
-public class BlogsInterfaceSOAPTest extends TestCase {
+public class BlogsInterfaceSOAPTest {
 
     Flickr flickr = null;
 
+
+    @Before
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -35,16 +41,18 @@ public class BlogsInterfaceSOAPTest extends TestCase {
             properties.load(in);
 
             Flickr.debugStream = true;
-            
+
             SOAP soap = new SOAP(properties.getProperty("host"));
 
             flickr = new Flickr(properties.getProperty("apiKey"), soap);
-            
+
         } finally {
             IOUtilities.close(in);
         }
     }
 
+    @Ignore
+    @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         RequestContext requestContext = RequestContext.getRequestContext();
         BlogsInterface blogsInterface = flickr.getBlogsInterface();
@@ -53,8 +61,5 @@ public class BlogsInterfaceSOAPTest extends TestCase {
         assertEquals(1, blogs.size());
     }
 
-    public void testPostImage() {
-        RequestContext requestContext = RequestContext.getRequestContext();
-    }
 
 }

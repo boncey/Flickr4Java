@@ -4,16 +4,9 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -22,14 +15,27 @@ import com.flickr4java.flickr.reflection.Method;
 import com.flickr4java.flickr.reflection.ReflectionInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Properties;
+
 /**
  * @author Anthony Eden
  */
-public class ReflectionInterfaceSOAPTest extends TestCase {
+public class ReflectionInterfaceSOAPTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -45,6 +51,8 @@ public class ReflectionInterfaceSOAPTest extends TestCase {
         }
     }
 
+    @Ignore
+    @Test
     public void testGetMethodInfo() throws FlickrException, IOException, SAXException {
         String methodName = "flickr.urls.lookupGroup";
         ReflectionInterface reflectionInterface = flickr.getReflectionInterface();
@@ -53,6 +61,8 @@ public class ReflectionInterfaceSOAPTest extends TestCase {
         assertEquals(methodName, method.getName());
     }
 
+    @Ignore
+    @Test
     public void testGetMethods() throws FlickrException, IOException, SAXException {
         ReflectionInterface reflectionInterface = flickr.getReflectionInterface();
         Collection methods = reflectionInterface.getMethods();

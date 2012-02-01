@@ -4,39 +4,42 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.licenses.License;
 import com.flickr4java.flickr.photos.licenses.LicensesInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Properties;
+
 /**
  * @author Anthony Eden
  */
-public class LicensesInterfaceTest extends TestCase {
+public class LicensesInterfaceTest {
 
     Flickr flickr = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugStream = true;
         InputStream in = null;
@@ -65,6 +68,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         LicensesInterface iface = flickr.getLicensesInterface();
         Collection licenses = iface.getInfo();

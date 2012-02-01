@@ -11,6 +11,9 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.oauth.OAuthService;
@@ -21,17 +24,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 /**
  * @author Anthony Eden
  */
-public class AuthInterfaceSOAPTest extends TestCase {
+public class AuthInterfaceSOAPTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
-    @Override
+    
+    @Before
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -59,6 +61,8 @@ public class AuthInterfaceSOAPTest extends TestCase {
         }
     }
 
+    @Ignore
+    @Test
     public void testDoNothing() {
 
     }

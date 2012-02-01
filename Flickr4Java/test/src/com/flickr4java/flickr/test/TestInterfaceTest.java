@@ -2,6 +2,26 @@
 
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertNotNull;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.util.IOUtilities;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -9,34 +29,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.util.IOUtilities;
-
 /**
  * @author Anthony Eden
  * @version $Id: TestInterfaceTest.java,v 1.6 2008/01/28 23:01:45 x-mago Exp $
  */
-public class TestInterfaceTest extends TestCase {
+public class TestInterfaceTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         InputStream in = null;
         try {
@@ -67,6 +69,7 @@ public class TestInterfaceTest extends TestCase {
         }
     }
 
+    @Test
     public void testEcho() throws FlickrException, IOException, SAXException {
         TestInterface iface = flickr.getTestInterface();
         Map<String, String> params = new HashMap<String, String>();
@@ -75,6 +78,7 @@ public class TestInterfaceTest extends TestCase {
         assertNotNull(results);
     }
 
+    @Test
     public void testLogin() throws FlickrException, IOException, SAXException {
         TestInterface iface = flickr.getTestInterface();
         User user = iface.login();

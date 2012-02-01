@@ -2,42 +2,46 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.members.Member;
 import com.flickr4java.flickr.groups.members.MembersInterface;
 import com.flickr4java.flickr.groups.members.MembersList;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
+
 /**
  * @author mago
  * @version $Id: MembersInterfaceTest.java,v 1.3 2009/07/11 20:30:27 x-mago Exp $
  */
-public class MembersInterfaceTest extends TestCase {
+public class MembersInterfaceTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         //Flickr.debugStream = true;
 
@@ -71,6 +75,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         MembersInterface iface = flickr.getMembersInterface();
         // Group: Urban fragments

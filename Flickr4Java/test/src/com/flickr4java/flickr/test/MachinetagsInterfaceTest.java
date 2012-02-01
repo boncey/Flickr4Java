@@ -1,25 +1,12 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Calendar;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.machinetags.MachinetagsInterface;
 import com.flickr4java.flickr.machinetags.Namespace;
@@ -29,16 +16,31 @@ import com.flickr4java.flickr.machinetags.Predicate;
 import com.flickr4java.flickr.machinetags.Value;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Calendar;
+import java.util.Properties;
+
 /**
  * @author mago
  * @version $Id: MachinetagsInterfaceTest.java,v 1.2 2009/06/21 19:55:15 x-mago Exp $
  */
-public class MachinetagsInterfaceTest extends TestCase {
+public class MachinetagsInterfaceTest {
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws
-      ParserConfigurationException, IOException, FlickrException, SAXException {
+    ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugRequest = false;
         Flickr.debugStream = false;
         InputStream in = null;
@@ -47,31 +49,32 @@ public class MachinetagsInterfaceTest extends TestCase {
             properties = new Properties();
             properties.load(in);
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+                    .apiSecret(properties.getProperty("secret")).build();
             REST rest = new REST();
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
     }
 
+    @Test
     public void testGetNamespaces()
-      throws FlickrException, IOException, SAXException {
+            throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String predicate = "collection";
         int page = 1;
@@ -88,8 +91,9 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(contentFound);
     }
 
+    @Test
     public void testGetPredicates()
-      throws FlickrException, IOException, SAXException {
+            throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "all";
         int page = 1;
@@ -106,8 +110,9 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(contentFound);
     }
 
+    @Test
     public void testGetPairs()
-      throws FlickrException, IOException, SAXException {
+            throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "ceramics";
         String predicate = "material";
@@ -125,8 +130,9 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(contentFound);
     }
 
+    @Test
     public void testGetValues()
-      throws FlickrException, IOException, SAXException {
+            throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "ceramics";
         String predicate = "material";
@@ -144,13 +150,14 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(contentFound);
     }
 
+    @Test
     public void testGetRecentValues()
-      throws FlickrException, IOException, SAXException {
+            throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "ceramics";
         String predicate = "material";
         Calendar addedSince = Calendar.getInstance();
-        addedSince.add(Calendar.YEAR, -1);
+        addedSince.add(Calendar.YEAR, -5);
         NamespacesList list = machinetagsInterface.getRecentValues(namespace, predicate, addedSince.getTime());
         assertTrue(list.size() > 3);
         boolean contentFound = false;

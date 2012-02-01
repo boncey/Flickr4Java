@@ -2,18 +2,7 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertNotNull;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -22,14 +11,29 @@ import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * @author Anthony Eden
  */
-public class UploaderSOAPTest extends TestCase {
+public class UploaderSOAPTest {
 
     Uploader uploader = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -56,6 +60,8 @@ public class UploaderSOAPTest extends TestCase {
      * @throws FlickrException
      * @throws SAXException
      */
+    @Ignore
+    @Test
     public void testUploadByteArray() throws IOException, FlickrException, SAXException {
         File imageFile = new File(properties.getProperty("imagefile"));
         InputStream in = null;
@@ -83,6 +89,8 @@ public class UploaderSOAPTest extends TestCase {
      * @throws FlickrException
      * @throws SAXException
      */
+    @Ignore
+    @Test
     public void testUploadInputStream() throws IOException, FlickrException, SAXException {
         File imageFile = new File(properties.getProperty("imagefile"));
         InputStream in = null;

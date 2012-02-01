@@ -2,36 +2,41 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Category;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.GroupsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Properties;
+
 /**
  * @author Anthony Eden
  */
-public class GroupsInterfaceSOAPTest extends TestCase {
+public class GroupsInterfaceSOAPTest {
 
     Flickr flickr = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         InputStream in = null;
         try {
@@ -58,6 +63,8 @@ public class GroupsInterfaceSOAPTest extends TestCase {
         }
     }
 
+    @Ignore
+    @Test
     public void testBrowse() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Category cat = iface.browse(null);
@@ -86,6 +93,8 @@ public class GroupsInterfaceSOAPTest extends TestCase {
 //        }
     }
 
+    @Ignore
+    @Test
     public void testBrowseWithId() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Category cat = iface.browse("68"); // browse the Flickr category
@@ -102,6 +111,8 @@ public class GroupsInterfaceSOAPTest extends TestCase {
 //        System.out.println("category name: " + cat.getName());
     }
 
+    @Ignore
+    @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Group group = iface.getInfo("34427469792@N01");
@@ -111,6 +122,8 @@ public class GroupsInterfaceSOAPTest extends TestCase {
         System.out.println("group members: " + group.getMembers());
     }
 
+    @Ignore
+    @Test
     public void testSearch() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Collection groups = iface.search("java", -1, -1);

@@ -1,5 +1,10 @@
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -14,6 +19,8 @@ import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,17 +29,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 /**
  * @author Anthony Eden
  */
-public class PhotosetsInterfaceTest extends TestCase {
+public class PhotosetsInterfaceTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
-    @Override
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         //Flickr.debugStream = true;
 
@@ -63,6 +68,7 @@ public class PhotosetsInterfaceTest extends TestCase {
         }
     }
 
+    @Test
     public void testCreateAndDelete() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photoset photoset = iface.create("test", "A test photoset", properties.getProperty("photoid"));
@@ -72,14 +78,17 @@ public class PhotosetsInterfaceTest extends TestCase {
         iface.delete(photoset.getId());
     }
 
+    @Test
     public void testEditMeta() {
 
     }
 
+    @Test
     public void testEditPhotos() {
 
     }
 
+    @Test
     public void testGetContext() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         PhotoContext photoContext = iface
@@ -90,6 +99,7 @@ public class PhotosetsInterfaceTest extends TestCase {
         assertNotNull(nextPhoto);
     }
 
+    @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photoset photoset = iface.getInfo(properties.getProperty("photosetid"));
@@ -98,6 +108,7 @@ public class PhotosetsInterfaceTest extends TestCase {
         assertTrue(photoset.getPhotoCount() >= 1);
     }
 
+    @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photosets photosets = iface.getList(properties.getProperty("nsid"));
@@ -105,12 +116,14 @@ public class PhotosetsInterfaceTest extends TestCase {
         assertFalse(photosets.getPhotosets().isEmpty());
     }
 
+    @Test
     public void testGetList2() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photosets photosets = iface.getList("26095690@N00");
         assertNotNull(photosets);
     }
 
+    @Test
     public void testGetPhotos() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         PhotoList photos = iface.getPhotos(
@@ -124,6 +137,7 @@ public class PhotosetsInterfaceTest extends TestCase {
         assertEquals(properties.getProperty("nsid"), ((Photo) photos.get(0)).getOwner().getId());
     }
 
+    @Test
     public void testOrderSets() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         String[] photosetIds = {properties.getProperty("photosetid")};

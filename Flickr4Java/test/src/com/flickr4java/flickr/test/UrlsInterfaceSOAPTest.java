@@ -2,6 +2,8 @@
 
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertEquals;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
@@ -12,6 +14,9 @@ import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.urls.UrlsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.oauth.OAuthService;
@@ -23,17 +28,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 /**
  * @author Anthony Eden
  */
-public class UrlsInterfaceSOAPTest extends TestCase {
+public class UrlsInterfaceSOAPTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
-    @Override
+    @Before
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -60,12 +63,16 @@ public class UrlsInterfaceSOAPTest extends TestCase {
         }
     }
 
+    @Ignore
+    @Test
     public void testGetGroup() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getGroup(properties.getProperty("groupid"));
         assertEquals("http://www.flickr.com/groups/central/", url);
     }
 
+    @Ignore
+    @Test
     public void testGetUserPhotos() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserPhotos(properties.getProperty("nsid"));
@@ -73,6 +80,8 @@ public class UrlsInterfaceSOAPTest extends TestCase {
         assertEquals(String.format("http://www.flickr.com/photos/%s/", username), url);
     }
 
+    @Ignore
+    @Test
     public void testGetUserProfile() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserProfile(properties.getProperty("nsid"));
@@ -80,6 +89,8 @@ public class UrlsInterfaceSOAPTest extends TestCase {
         assertEquals(String.format("http://www.flickr.com/people/%s/", username), url);
     }
 
+    @Ignore
+    @Test
     public void testLookupGroup() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         Group group = iface.lookupGroup("http://www.flickr.com/groups/central/");
@@ -87,6 +98,8 @@ public class UrlsInterfaceSOAPTest extends TestCase {
         assertEquals("34427469792@N01", group.getId());
     }
 
+    @Ignore
+    @Test
     public void testLookupUser() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String username = properties.getProperty("username");

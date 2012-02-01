@@ -2,36 +2,40 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.people.PeopleInterface;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Properties;
+
 /**
  * @author Anthony Eden
  */
-public class PeopleInterfaceSOAPTest extends TestCase {
+public class PeopleInterfaceSOAPTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         InputStream in = null;
         try {
@@ -56,6 +60,8 @@ public class PeopleInterfaceSOAPTest extends TestCase {
         }
     }
 
+    @Ignore
+    @Test
     public void testFindByEmail() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.findByEmail(properties.getProperty("email"));
@@ -64,6 +70,8 @@ public class PeopleInterfaceSOAPTest extends TestCase {
         assertEquals(person.getUsername(), properties.getProperty("username"));
     }
 
+    @Ignore
+    @Test
     public void testFindByUsername() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.findByUsername(properties.getProperty("username"));
@@ -72,6 +80,8 @@ public class PeopleInterfaceSOAPTest extends TestCase {
         assertEquals(properties.getProperty("username"), person.getUsername());
     }
 
+    @Ignore
+    @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.getInfo(properties.getProperty("nsid"));
@@ -80,6 +90,8 @@ public class PeopleInterfaceSOAPTest extends TestCase {
         assertEquals(properties.getProperty("username"), person.getUsername());
     }
 
+    @Ignore
+    @Test
     public void testGetPublicGroups() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
         Collection groups = iface.getPublicGroups(properties.getProperty("nsid"));
@@ -87,6 +99,8 @@ public class PeopleInterfaceSOAPTest extends TestCase {
         assertEquals(229, groups.size());
     }
 
+    @Ignore
+    @Test
     public void testGetPublicPhotos() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
         Collection photos = iface.getPublicPhotos(properties.getProperty("nsid"), 0, 0);
@@ -94,6 +108,8 @@ public class PeopleInterfaceSOAPTest extends TestCase {
         assertEquals(100, photos.size());
     }
 
+    @Ignore
+    @Test
     public void testGetUploadStatus() {
 
     }

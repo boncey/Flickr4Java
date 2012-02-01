@@ -2,6 +2,11 @@
 
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -21,6 +26,8 @@ import com.flickr4java.flickr.photos.Size;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.oauth.OAuthService;
@@ -42,18 +49,16 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 /**
  * @author Anthony Eden
  * @version $Id: PhotosInterfaceTest.java,v 1.20 2009/07/23 21:49:35 x-mago Exp $
  */
-public class PhotosInterfaceTest extends TestCase {
+public class PhotosInterfaceTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
-    @Override
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
 
         InputStream in = null;
@@ -87,6 +92,7 @@ public class PhotosInterfaceTest extends TestCase {
         }
     }
 
+    @Test
     public void testAddAndRemoveTags() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -114,6 +120,7 @@ public class PhotosInterfaceTest extends TestCase {
         assertEquals(3, tags.size());
     }
 
+    @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Photo photo = iface.getInfo(properties.getProperty("photoid"), null);
@@ -152,6 +159,7 @@ public class PhotosInterfaceTest extends TestCase {
                 );
     }
 
+    @Test
     public void testGetContactsPhotos() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         PhotoList photos = iface.getContactsPhotos(0, false, false, false);
@@ -159,6 +167,7 @@ public class PhotosInterfaceTest extends TestCase {
         assertTrue(photos.size() > 0);
     }
 
+    @Test
     public void testGetContactsPublicPhotos() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Collection photos = iface.getContactsPublicPhotos(properties.getProperty("nsid"), 0, false, false, false);
@@ -166,12 +175,14 @@ public class PhotosInterfaceTest extends TestCase {
         assertTrue(photos.size() > 0);
     }
 
+    @Test
     public void testGetContext() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         PhotoContext photoContext = iface.getContext(properties.getProperty("photoid"));
         assertNotNull(photoContext);
     }
 
+    @Test
     public void testGetCounts() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Date[] dates = new Date[2];
@@ -187,24 +198,28 @@ public class PhotosInterfaceTest extends TestCase {
         }
     }
 
+    @Test
     public void testGetExif() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Collection exifs = iface.getExif(properties.getProperty("photoid"), null);
         assertNotNull(exifs);
     }
 
+    @Test
     public void testGetNotInSet() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Collection photos = iface.getNotInSet(-1, -1);
         assertNotNull(photos);
     }
 
+    @Test
     public void testGetPerms() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Permissions perms = iface.getPerms(properties.getProperty("photoid"));
         assertNotNull(perms);
     }
 
+    @Test
     public void testGetRecent() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Set extras = new HashSet();
@@ -212,18 +227,21 @@ public class PhotosInterfaceTest extends TestCase {
         assertNotNull(photos);
     }
 
+    @Test
     public void testGetSizes() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Collection sizes = iface.getSizes(properties.getProperty("photoid"));
         assertNotNull(sizes);
     }
 
+    @Test
     public void testGetUntagged() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         Collection photos = iface.getUntagged(0, 0);
         assertNotNull(photos);
     }
 
+    @Test
     public void testSearch() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         SearchParameters searchParams = new SearchParameters();
@@ -236,6 +254,7 @@ public class PhotosInterfaceTest extends TestCase {
         assertEquals(303, photos.getTotal());
     }
 
+    @Test
     public void testBoundingBoxSearch() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         SearchParameters searchParameters = new SearchParameters();
@@ -244,6 +263,7 @@ public class PhotosInterfaceTest extends TestCase {
         assertNotNull(photos);
     }
 
+    @Test
     public void testRadialGeoSearch() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         SearchParameters searchParameters = new SearchParameters();
@@ -255,6 +275,7 @@ public class PhotosInterfaceTest extends TestCase {
         assertNotNull(photos);
     }
 
+    @Test
     public void testTagSearch() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         SearchParameters searchParameters = new SearchParameters();
@@ -265,6 +286,7 @@ public class PhotosInterfaceTest extends TestCase {
     }
 
 
+    @Test
     public void testSetContentType() throws FlickrException, IOException, SAXException {
         Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"), properties.getProperty("tokensecret"));
         RequestContext.getRequestContext().setAuth(auth);
@@ -276,10 +298,12 @@ public class PhotosInterfaceTest extends TestCase {
                 );
     }
 
+    @Test
     public void testSetDates() {
 
     }
 
+    @Test
     public void testSetMeta() throws FlickrException, IOException, SAXException {
         Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"), properties.getProperty("tokensecret"));
         RequestContext.getRequestContext().setAuth(auth);
@@ -295,10 +319,12 @@ public class PhotosInterfaceTest extends TestCase {
         iface.setMeta(photo.getId(), oldTitle, "Description");
     }
 
+    @Test
     public void testSetPerms() {
 
     }
 
+    @Test
     public void testSetSafetyLevel() throws FlickrException, IOException, SAXException {
         Auth auth = flickr.getAuthInterface().checkToken(properties.getProperty("token"), properties.getProperty("tokensecret"));
         RequestContext.getRequestContext().setAuth(auth);
@@ -311,6 +337,7 @@ public class PhotosInterfaceTest extends TestCase {
                 );
     }
 
+    @Test
     public void testSetTags() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -343,6 +370,7 @@ public class PhotosInterfaceTest extends TestCase {
 
     }
 
+    @Test
     public void testGetSmallImage() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -356,6 +384,7 @@ public class PhotosInterfaceTest extends TestCase {
         ImageIO.write(image, "jpg", new File("out.small.jpg"));
     }
 
+    @Test
     public void testGetThumbnailImage() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -367,6 +396,7 @@ public class PhotosInterfaceTest extends TestCase {
         ImageIO.write(image, "jpg", new File("out.thumbnail.jpg"));
     }
 
+    @Test
     public void testGetSmallSquareImage() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -378,17 +408,8 @@ public class PhotosInterfaceTest extends TestCase {
         ImageIO.write(image, "jpg", new File("out.smallsquare.jpg"));
     }
 
-    /*    public void testGetOriginalImage() throws FlickrException, IOException, SAXException {
-        PhotosInterface iface = flickr.getPhotosInterface();
-        String photoId = properties.getProperty("photoidOriginal");
-        Photo photo = iface.getInfo(photoId, null);
-        BufferedImage image = iface.getImage(photo, Size.ORIGINAL);
-        assertNotNull(image);
-        assertEquals(600, image.getWidth());
-        assertEquals(450, image.getHeight());
-        ImageIO.write(image, "jpg", new File("out.original.jpg"));
-    } */
 
+    @Test
     public void testGetMediumImage() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -400,6 +421,7 @@ public class PhotosInterfaceTest extends TestCase {
         ImageIO.write(image, "jpg", new File("out.medium.jpg"));
     }
 
+    @Test
     public void testGetLargeImage() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -411,6 +433,7 @@ public class PhotosInterfaceTest extends TestCase {
         ImageIO.write(image, "jpg", new File("out.large.jpg"));
     }
 
+    @Test
     public void testGetPhoto() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = properties.getProperty("photoid");
@@ -422,6 +445,7 @@ public class PhotosInterfaceTest extends TestCase {
      * Testing the generation of URLs and the
      * overriding by setSizes().
      */
+    @Test
     public void testSetSizes() {
         List sizes = new ArrayList();
         Size size = new Size();

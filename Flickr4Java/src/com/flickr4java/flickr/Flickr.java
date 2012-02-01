@@ -37,7 +37,7 @@ import com.flickr4java.flickr.urls.UrlsInterface;
 import java.util.Set;
 
 /**
- * Main entry point for the Flickrj API.
+ * Main entry point for the Flickr4Java API.
  * This class is used to acquire Interface classes which wrap the Flickr API.<p>
  *
  * If you registered API keys, you find them with the shared secret at your

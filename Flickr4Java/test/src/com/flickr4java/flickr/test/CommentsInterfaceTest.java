@@ -1,74 +1,76 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.comments.Comment;
 import com.flickr4java.flickr.photos.comments.CommentsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
 /**
  *
  * @author till (Till Krech) flickr:extranoise
  * @version $Id: CommentsInterfaceTest.java,v 1.7 2009/06/30 18:48:59 x-mago Exp $
  */
-public class CommentsInterfaceTest extends TestCase {
+public class CommentsInterfaceTest {
     Flickr flickr = null;
     Properties properties = null;
 
-    public CommentsInterfaceTest(String arg0) {
-        super(arg0);
-    }
-
-	protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("/setup.properties");
             properties = new Properties();
             properties.load(in);
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
+            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
+                    .apiSecret(properties.getProperty("secret")).build();
             REST rest = new REST();
             rest.setHost(properties.getProperty("host"));
 
             flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                rest
-            );
+                    properties.getProperty("apiKey"),
+                    properties.getProperty("secret"),
+                    rest
+                    );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+            Auth auth = new Auth();
+            auth.setPermission(Permission.READ);
+            auth.setToken(properties.getProperty("token"));
+            auth.setTokenSecret(properties.getProperty("tokensecret"));
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
+            RequestContext requestContext = RequestContext.getRequestContext();
+            requestContext.setAuth(auth);
+            flickr.setAuth(auth);
         } finally {
             IOUtilities.close(in);
         }
     }
 
+    @Test
     public void testGetList() throws IOException, SAXException, FlickrException {
         String photoId = "245253195"; // http://www.flickr.com/photos/extranoise/245253195/
         CommentsInterface ci = flickr.getCommentsInterface();
@@ -88,6 +90,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testComment() throws IOException, SAXException, FlickrException {
         String photoId = "419231219"; // http://www.flickr.com/photos/javatest3/419231219/
         String txt1 = "This is a test for the flickr java api";
@@ -130,6 +133,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         return null;
     }
 
+    @Test
     public void testGetRecentForContacts() throws IOException, SAXException, FlickrException {
         CommentsInterface ci = flickr.getCommentsInterface();
         PhotoList photos = ci.getRecentForContacts(null, null, Extras.ALL_EXTRAS, 50, 1);

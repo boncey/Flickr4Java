@@ -2,26 +2,15 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Category;
 import com.flickr4java.flickr.groups.Group;
@@ -29,13 +18,28 @@ import com.flickr4java.flickr.groups.GroupList;
 import com.flickr4java.flickr.groups.GroupsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Properties;
+
 /**
  * @author Anthony Eden
  */
-public class GroupsInterfaceTest extends TestCase {
+public class GroupsInterfaceTest {
 
     Flickr flickr = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugRequest = false;
 
@@ -100,6 +104,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
     /*
      * It is not longer possible to browse the groups hierarchy
      *
+    @Test
     public void testBrowseWithId() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Category cat = iface.browse("68"); // browse the Flickr category
@@ -118,6 +123,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
 //        System.out.println("category name: " + cat.getName());
     } */
 
+    @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Group group = iface.getInfo("34427469792@N01");
@@ -131,6 +137,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         //System.out.println("group members: " + group.getMembers());
     }
 
+    @Test
     public void testSearch() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         GroupList groups = (GroupList) iface.search("java", 0, 0);
@@ -141,6 +148,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertTrue(groups.getTotal() > 0);
     }
 
+    @Test
     public void testSearchPage() throws FlickrException, IOException, SAXException {
         GroupsInterface iface = flickr.getGroupsInterface();
         GroupList groups = (GroupList) iface.search("java", 10, 1);

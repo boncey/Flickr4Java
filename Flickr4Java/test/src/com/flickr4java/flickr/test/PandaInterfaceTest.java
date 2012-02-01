@@ -2,41 +2,44 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.panda.Panda;
 import com.flickr4java.flickr.panda.PandaInterface;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Properties;
+
 /**
  * @author mago
  * @version $Id: PandaInterfaceTest.java,v 1.1 2009/06/18 21:56:43 x-mago Exp $
  */
-public class PandaInterfaceTest extends TestCase {
+public class PandaInterfaceTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         //Flickr.debugStream = true;
 
@@ -70,6 +73,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         }
     }
 
+    @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         PandaInterface iface = flickr.getPandaInterface();
         ArrayList list = iface.getList();
@@ -82,6 +86,7 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         assertEquals("wang wang", p.getName());
     }
 
+    @Test
     public void testGetPhotos() throws FlickrException, IOException, SAXException {
         PandaInterface iface = flickr.getPandaInterface();
         Panda p = new Panda();

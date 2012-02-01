@@ -39,6 +39,7 @@ public class AuthInterfaceTest {
     private Flickr flickr = null;
     private Properties properties = null;
 
+
     @Before
     public void setUp() throws IOException {
         Flickr.debugRequest = true;
@@ -67,7 +68,7 @@ public class AuthInterfaceTest {
     }
 
     @Test
-    //    @Ignore // Ignored as test is interactive so would fail a build
+    @Ignore // Ignored as test is interactive so would fail a build
     public void testAuthFlow() throws FlickrException, IOException, URISyntaxException {
 
         AuthInterface authInterface = flickr.getAuthInterface();

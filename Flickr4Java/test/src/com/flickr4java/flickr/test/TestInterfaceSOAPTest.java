@@ -1,17 +1,6 @@
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import junit.framework.TestCase;
-
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertNotNull;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -20,14 +9,29 @@ import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 /**
  * @author Matt Ray
  */
-public class TestInterfaceSOAPTest extends TestCase {
+public class TestInterfaceSOAPTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
+    @Before
     public void setUp() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
@@ -46,6 +50,8 @@ public class TestInterfaceSOAPTest extends TestCase {
         }
     }
 
+    @Ignore
+    @Test
     public void testEcho() throws FlickrException, IOException, SAXException {
         TestInterface iface = flickr.getTestInterface();
         Map<String, String> params = new HashMap<String, String>();
@@ -54,6 +60,8 @@ public class TestInterfaceSOAPTest extends TestCase {
         assertNotNull(results);
     }
 
+    @Ignore
+    @Test
     public void testLogin() throws FlickrException, IOException, SAXException {
         RequestContext requestContext = RequestContext.getRequestContext();
         TestInterface iface = flickr.getTestInterface();

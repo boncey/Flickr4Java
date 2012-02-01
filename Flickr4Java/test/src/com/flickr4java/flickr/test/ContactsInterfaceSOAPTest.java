@@ -2,6 +2,9 @@
 
 package com.flickr4java.flickr.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
@@ -11,6 +14,9 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.contacts.ContactsInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.SignatureType;
@@ -24,17 +30,15 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 /**
  * @author Matt Ray
  */
-public class ContactsInterfaceSOAPTest extends TestCase {
+public class ContactsInterfaceSOAPTest {
 
     Flickr flickr = null;
     Properties properties = null;
 
-    @Override
+    @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         InputStream in = null;
         try {
@@ -62,6 +66,8 @@ public class ContactsInterfaceSOAPTest extends TestCase {
         }
     }
 
+    @Ignore
+    @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         ContactsInterface iface = flickr.getContactsInterface();
         Collection contacts = iface.getList();
@@ -69,6 +75,8 @@ public class ContactsInterfaceSOAPTest extends TestCase {
         assertEquals(3, contacts.size());
     }
 
+    @Ignore
+    @Test
     public void testGetPublicList() throws FlickrException, IOException, SAXException {
         ContactsInterface iface = flickr.getContactsInterface();
         Collection contacts = iface.getPublicList(properties.getProperty("nsid"));

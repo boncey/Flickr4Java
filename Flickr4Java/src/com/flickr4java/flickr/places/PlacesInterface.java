@@ -29,26 +29,26 @@ From: kellan <kellan@yahoo-inc.com>
 Date: Fri, 11 Jan 2008 15:57:59 -0800
 Subject: [yws-flickr] Flickr and "Place IDs"
 
-At Flickr we've got a really big database that lists a significant 
-percentage of the places that exist in the world, and a few that don't. 
-When you geotag a photo we try to identify the "place" (neighborhood, 
-village, city, county, state, or country) where the photo was taken. And 
+At Flickr we've got a really big database that lists a significant
+percentage of the places that exist in the world, and a few that don't.
+When you geotag a photo we try to identify the "place" (neighborhood,
+village, city, county, state, or country) where the photo was taken. And
 we assign that photo a "place ID".
 
-A place ID is a globally unique identifier for a place on Earth.  A city 
-has a place ID, so do counties, states, and countries.  Even some 
-neighborhoods and landmarks have them, though Flickr isn't currently 
+A place ID is a globally unique identifier for a place on Earth.  A city
+has a place ID, so do counties, states, and countries.  Even some
+neighborhoods and landmarks have them, though Flickr isn't currently
 tracking those. And we're starting to expose these place IDs around Flickr.
 
 ### Place IDs and flickr.photos.search()
 
-The Flickr API method flickr.photos.search() now accepts place_id as an 
+The Flickr API method flickr.photos.search() now accepts place_id as an
 argument.  Along with all of the other parameters you can
-search on you can now scope your search to a given place.   Historically 
-you've been able to pass bounding boxes to the API, but calculating the 
-right bounding box for a city is tricky, and you can get noise and bad 
-results around the edge.  Now you can pass a single non-ambiguous string 
-and get photos geotagged in San Francisco, CA, or Ohio, or Beijing. 
+search on you can now scope your search to a given place.   Historically
+you've been able to pass bounding boxes to the API, but calculating the
+right bounding box for a city is tricky, and you can get noise and bad
+results around the edge.  Now you can pass a single non-ambiguous string
+and get photos geotagged in San Francisco, CA, or Ohio, or Beijing.
 (kH8dLOubBZRvX_YZ, LtkqzVqbApjAbJxv, and wpK7URqbAJnWB90W respectively)
 
 The documentation has been updated at:
@@ -57,9 +57,9 @@ http://www.flickr.com/services/api/flickr.photos.search.html
 ### Sources of Place IDs
 
 Place IDs are now returned from a number of source:
-   * flickr.photos.getInfo will return place IDs for geotagged photos
-   * available as a microformat on the appropriate Places page
-   * flickr.places.resolvePlaceURL, and flickr.places.resolvePlaceId are
+ * flickr.photos.getInfo will return place IDs for geotagged photos
+ * available as a microformat on the appropriate Places page
+ * flickr.places.resolvePlaceURL, and flickr.places.resolvePlaceId are
 available for round tripping Flickr Places URLs.
 
 http://www.flickr.com/services/api/flickr.photos.getInfo.html
@@ -68,15 +68,15 @@ http://www.flickr.com/services/api/flickr.places.resolvePlaceId.html
 
 ### More Place IDs
 
-Right now you can also place IDs in the places URL, and pass them to the 
+Right now you can also place IDs in the places URL, and pass them to the
 map like so:
 
-   * http://flickr.com/places/wpK7URqbAJnWB90W
-   * http://flickr.com/map?place_id=kH8dLOubBZRvX_YZ
+ * http://flickr.com/places/wpK7URqbAJnWB90W
+ * http://flickr.com/map?place_id=kH8dLOubBZRvX_YZ
 
 ### Place IDs elsewhere
 
-The especially eagle-eyed among you might recognize Place IDs.  Upcoming 
+The especially eagle-eyed among you might recognize Place IDs.  Upcoming
 has been quietly using them for months to uniquely identify their metros.
 
 See events from San Francisco at:
@@ -84,7 +84,7 @@ http://upcoming.yahoo.com/place/kH8dLOubBZRvX_YZ
 
 See photos from San Francisco at: http://flickr.com/places/kH8dLOubBZRvX_YZ
 
-Additionally Yahoo's skunkworks project FireEagle will also support 
+Additionally Yahoo's skunkworks project FireEagle will also support
 place IDs.
 
 And yes, there is more work to do, but we're exciting about this as a start.
@@ -113,9 +113,9 @@ public class PlacesInterface {
     private static final String METHOD_PLACES_FOR_USER = "flickr.places.placesForUser";
     private static final String METHOD_TAGS_FOR_PLACE = "flickr.places.tagsForPlace";
 
-    private String apiKey;
-    private String sharedSecret;
-    private Transport transportAPI;
+    private final String apiKey;
+    private final String sharedSecret;
+    private final Transport transportAPI;
 
     public PlacesInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
@@ -127,7 +127,7 @@ public class PlacesInterface {
      * Return a list of place IDs for a query string.
      *
      * The flickr.places.find method is not a geocoder.
-     * It will round "up" to the nearest place type to 
+     * It will round "up" to the nearest place type to
      * which place IDs apply. For example, if you pass
      * it a street level address it will return the city
      * that contains the address rather than the street,
@@ -142,8 +142,8 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList find(String query)
-      throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_FIND);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -198,9 +198,9 @@ public class PlacesInterface {
      * ignored but it would be better if you could use the forums for that sort
      * of thing.)<p>
      *
-     * Also, as we do on the site if we can not identify a location for a point 
-     * as a specific accuracy we pop up the stack and try again. For example, 
-     * if we can't find a city for a given set of coordinates we try instead to 
+     * Also, as we do on the site if we can not identify a location for a point
+     * as a specific accuracy we pop up the stack and try again. For example,
+     * if we can't find a city for a given set of coordinates we try instead to
      * locate the state.<p>
      *
      * As mentioned above, this method is not designed to serve as a general
@@ -224,11 +224,11 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList findByLatLon(
-        double latitude,
-        double longitude,
-        int accuracy
-    ) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            double latitude,
+            double longitude,
+            int accuracy
+            ) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_FIND_BY_LATLON);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -257,7 +257,7 @@ public class PlacesInterface {
     }
 
     /**
-     * <p>Return a list of locations with public photos that are parented by a 
+     * <p>Return a list of locations with public photos that are parented by a
      * Where on Earth (WOE) or Places ID.</p>
      *
      * <p>This method does not require authentication.</p>
@@ -270,8 +270,8 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList getChildrenWithPhotosPublic(String placeId, String woeId)
-      throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_GET_CHILDREN_WITH_PHOTOS_PUBLIC);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -305,7 +305,7 @@ public class PlacesInterface {
      *
      * <p>This method does not require authentication.</p>
      *
-     * @param placeId A Flickr Places ID. Optioal, can be null. (While optional, you must pass either a valid Places ID or a WOE ID.)
+     * @param placeId A Flickr Places ID. Optional, can be null. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @param woeId A Where On Earth (WOE) ID. Optional, can be null. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @return A Location
      * @throws FlickrException
@@ -313,8 +313,8 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public Location getInfo(String placeId, String woeId)
-      throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         Location loc = new Location();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -346,8 +346,8 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public Location getInfoByUrl(String url)
-      throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         Location loc = new Location();
         parameters.put("method", METHOD_GET_INFO_BY_URL);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -373,8 +373,8 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public ArrayList getPlaceTypes()
-      throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_GET_PLACETYPES);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -449,12 +449,12 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList getTopPlacesList(
-        int placeType,
-        Date date,
-        String placeId,
-        String woeId
-    ) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            int placeType,
+            Date date,
+            String placeId,
+            String woeId
+            ) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_GET_TOP_PLACES_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -510,10 +510,10 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList placesForBoundingBox(
-        int placeType,
-        String bbox
-    ) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            int placeType,
+            String bbox
+            ) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_BOUNDINGBOX);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -539,7 +539,7 @@ public class PlacesInterface {
     }
 
     /**
-     * Return a list of the top 100 unique places clustered by a given placetype for a user's contacts. 
+     * Return a list of the top 100 unique places clustered by a given placetype for a user's contacts.
      *
      * @param placeType Use Type-constants at {@link Place}
      * @param placeId A Flickr Places ID. Optional, can be null.
@@ -552,13 +552,13 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList placesForContacts(
-        int placeType,
-        String placeId,
-        String woeId,
-        String threshold,
-        String contacts
-    ) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            int placeType,
+            String placeId,
+            String woeId,
+            String threshold,
+            String contacts
+            ) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_CONTACTS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -619,18 +619,18 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList placesForTags(
-        int placeTypeId,
-        String woeId,
-        String placeId,
-        String threshold,
-        String[] tags,
-        String tagMode,
-        String machineTags,
-        String machineTagMode,
-        Date minUploadDate, Date maxUploadDate,
-        Date minTakenDate, Date maxTakenDate
-    ) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            int placeTypeId,
+            String woeId,
+            String placeId,
+            String threshold,
+            String[] tags,
+            String tagMode,
+            String machineTags,
+            String machineTagMode,
+            Date minUploadDate, Date maxUploadDate,
+            Date minTakenDate, Date maxTakenDate
+            ) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_TAGS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -704,14 +704,14 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public PlacesList placesForUser(
-        int placeType,
-        String woeId,
-        String placeId,
-        String threshold,
-        Date minUploadDate, Date maxUploadDate,
-        Date minTakenDate, Date maxTakenDate
-    ) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            int placeType,
+            String woeId,
+            String placeId,
+            String threshold,
+            Date minUploadDate, Date maxUploadDate,
+            Date minTakenDate, Date maxTakenDate
+            ) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_PLACES_FOR_USER);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -767,9 +767,10 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
+    @Deprecated
     public Location resolvePlaceId(String placeId)
-      throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_ID);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -798,9 +799,10 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
+    @Deprecated
     public Location resolvePlaceURL(String flickrPlacesUrl)
-      throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_URL);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -834,12 +836,12 @@ public class PlacesInterface {
      * @throws SAXException
      */
     public ArrayList tagsForPlace(
-        String woeId,
-        String placeId,
-        Date minUploadDate, Date maxUploadDate,
-        Date minTakenDate, Date maxTakenDate
-    ) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+            String woeId,
+            String placeId,
+            Date minUploadDate, Date maxUploadDate,
+            Date minTakenDate, Date maxTakenDate
+            ) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         ArrayList tagsList = new ArrayList();
         parameters.put("method", METHOD_TAGS_FOR_PLACE);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -895,22 +897,22 @@ public class PlacesInterface {
         location.setPlaceType(stringPlaceTypeToInt(locationElement.getAttribute("place_type")));
         try {
             location.setLocality(
-                parseLocationPlace(localityElement, Place.TYPE_LOCALITY)
-            );
+                    parseLocationPlace(localityElement, Place.TYPE_LOCALITY)
+                    );
         } catch (NullPointerException ex) {
         }
         try {
             location.setCounty(
-                parseLocationPlace(countyElement, Place.TYPE_COUNTY)
-            );
+                    parseLocationPlace(countyElement, Place.TYPE_COUNTY)
+                    );
         } catch (NullPointerException ex) {
         }
         location.setRegion(
-            parseLocationPlace(regionElement, Place.TYPE_REGION)
-        );
+                parseLocationPlace(regionElement, Place.TYPE_REGION)
+                );
         location.setCountry(
-            parseLocationPlace(countryElement, Place.TYPE_COUNTRY)
-        );
+                parseLocationPlace(countryElement, Place.TYPE_COUNTRY)
+                );
         return location;
     }
 

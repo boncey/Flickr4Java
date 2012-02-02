@@ -14,15 +14,9 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.GeoData;
 import com.flickr4java.flickr.photos.geo.GeoInterface;
 import com.flickr4java.flickr.photos.geo.GeoPermissions;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * 
@@ -32,40 +26,35 @@ import java.util.Properties;
 public class GeoInterfaceTest {
 
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws Exception {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            REST rest = new REST();
+        REST rest = new REST();
 
-            flickr = new Flickr(
-                    properties.getProperty("apiKey"),
-                    properties.getProperty("secret"),
-                    rest
-                    );
+        flickr = new Flickr(
+                testProperties.getApiKey(),
+                testProperties.getSecret(),
+                rest
+                );
 
-            Auth auth = new Auth();
-            auth.setPermission(Permission.READ);
-            auth.setToken(properties.getProperty("token"));
-            auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setAuth(auth);
-            flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
+
+        setGeoParameters(testProperties.getGeoWritePhotoId());
     }
 
     @Test
-    public void testGetLocation() throws IOException, SAXException, FlickrException {
-        String photoId = "240935723";
+    public void testGetLocation() throws FlickrException {
+        String photoId = testProperties.getGeoWritePhotoId();
         GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();
         GeoData location = geo.getLocation(photoId);
         assertNotNull(location);
@@ -76,8 +65,8 @@ public class GeoInterfaceTest {
     }
 
     @Test
-    public void testGetPerms() throws IOException, SAXException, FlickrException {
-        String photoId = properties.getProperty("geo.write.photoid");
+    public void testGetPerms() throws FlickrException {
+        String photoId = testProperties.getGeoWritePhotoId();
         GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();
         GeoPermissions perms = geo.getPerms(photoId);
         assertNotNull(perms);
@@ -88,8 +77,8 @@ public class GeoInterfaceTest {
     }
 
     @Test
-    public void testSetLocation() throws IOException, SAXException, FlickrException {
-        String photoId = properties.getProperty("geo.write.photoid");
+    public void testSetLocation() throws FlickrException {
+        String photoId = testProperties.getGeoWritePhotoId();
         GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();
         GeoData location = new GeoData();
         location.setLatitude(23.34f);
@@ -101,6 +90,15 @@ public class GeoInterfaceTest {
         assertEquals(location.getLongitude(), newLocation.getLongitude(), 0f);
         assertEquals(location.getAccuracy(), newLocation.getAccuracy(), 0f);
         geo.removeLocation(photoId);
+    }
+
+    private void setGeoParameters(String photoId) throws FlickrException {
+        GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();
+        GeoData location = new GeoData();
+        location.setLatitude(23.34f);
+        location.setLongitude(46.99f);
+        location.setAccuracy(13);
+        geo.setLocation(photoId, location);
     }
 
 }

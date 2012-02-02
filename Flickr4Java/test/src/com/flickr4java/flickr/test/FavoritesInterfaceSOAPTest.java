@@ -14,7 +14,6 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -27,10 +26,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -38,36 +35,30 @@ import java.util.Properties;
 public class FavoritesInterfaceSOAPTest {
 
     Flickr flickr = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            Properties properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            System.setProperty("http.proxyHost", "localhost");
-            System.setProperty("http.proxyPort", "8888");
-            Flickr.debugStream = true;
-            Flickr.debugRequest = true;
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
-            SOAP soap = new SOAP(service);
-            
-            flickr = new Flickr(properties.getProperty("apiKey"), soap);
+        System.setProperty("http.proxyHost", "localhost");
+        System.setProperty("http.proxyPort", "8888");
+        Flickr.debugStream = true;
+        Flickr.debugRequest = true;
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey())
+                .apiSecret(testProperties.getSecret()).build();
+        SOAP soap = new SOAP(service);
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), soap);
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
+
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Ignore

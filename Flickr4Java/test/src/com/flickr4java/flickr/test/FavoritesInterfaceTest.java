@@ -15,7 +15,6 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,10 +23,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -36,34 +33,27 @@ import java.util.Properties;
 public class FavoritesInterfaceTest {
 
     Flickr flickr = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            Properties properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
+        REST rest = new REST();
 
-            REST rest = new REST();
+        flickr = new Flickr(
+                testProperties.getApiKey(),
+                testProperties.getSecret(),
+                rest
+                );
 
-            flickr = new Flickr(
-                    properties.getProperty("apiKey"),
-                    properties.getProperty("secret"),
-                    rest
-                    );
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-            Auth auth = new Auth();
-            auth.setPermission(Permission.READ);
-            auth.setToken(properties.getProperty("token"));
-            auth.setTokenSecret(properties.getProperty("tokensecret"));
-
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setAuth(auth);
-            flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Test

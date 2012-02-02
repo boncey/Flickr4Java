@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -31,26 +30,19 @@ import java.util.Properties;
 public class UploaderSOAPTest {
 
     Uploader uploader = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            Flickr.debugStream = true;
-            SOAP soap = new SOAP(properties.getProperty("host"));
+        Flickr.debugStream = true;
+        SOAP soap = new SOAP(testProperties.getHost());
 
-            uploader = new Uploader(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret")
-            );
-        } finally {
-            IOUtilities.close(in);
-        }
+        uploader = new Uploader(
+                testProperties.getApiKey(),
+                testProperties.getSecret()
+                );
     }
 
     /**
@@ -63,9 +55,10 @@ public class UploaderSOAPTest {
     @Ignore
     @Test
     public void testUploadByteArray() throws IOException, FlickrException, SAXException {
-        File imageFile = new File(properties.getProperty("imagefile"));
-        InputStream in = null;
+        File imageFile = new File(testProperties.getImageFile());
         ByteArrayOutputStream out = null;
+        InputStream in = null;
+
         try {
             in = new FileInputStream(imageFile);
             out = new ByteArrayOutputStream();
@@ -92,8 +85,9 @@ public class UploaderSOAPTest {
     @Ignore
     @Test
     public void testUploadInputStream() throws IOException, FlickrException, SAXException {
-        File imageFile = new File(properties.getProperty("imagefile"));
+        File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
+
         try {
             in = new FileInputStream(imageFile);
             UploadMetaData metaData = new UploadMetaData();

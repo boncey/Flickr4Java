@@ -15,7 +15,6 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Category;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.GroupsInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -25,9 +24,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -35,32 +32,26 @@ import java.util.Properties;
 public class GroupsInterfaceSOAPTest {
 
     Flickr flickr = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            Properties properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            Flickr.debugStream = true;
-            SOAP soap = new SOAP(properties.getProperty("host"));
-            flickr = new Flickr(properties.getProperty("apiKey"), soap);
+        Flickr.debugStream = true;
+        SOAP soap = new SOAP(testProperties.getHost());
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), soap);
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setSharedSecret(properties.getProperty("secret"));
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setSharedSecret(testProperties.getSecret());
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Ignore
@@ -70,27 +61,27 @@ public class GroupsInterfaceSOAPTest {
         Category cat = iface.browse(null);
         assertNotNull(cat);
         assertEquals("/", cat.getName());
-//        System.out.println("category path: " + cat.getPath());
+        //        System.out.println("category path: " + cat.getPath());
 
         Collection groups = cat.getGroups();
         assertNotNull(groups);
         assertEquals(0, groups.size());
-//        Iterator groupsIter = groups.iterator();
-//        while (groupsIter.hasNext()) {
-//            Group group = (Group) groupsIter.next();
-//            System.out.println("group id: " + group.getId());
-//            System.out.println("group name: " + group.getName());
-//        }
+        //        Iterator groupsIter = groups.iterator();
+        //        while (groupsIter.hasNext()) {
+        //            Group group = (Group) groupsIter.next();
+        //            System.out.println("group id: " + group.getId());
+        //            System.out.println("group name: " + group.getName());
+        //        }
 
         Collection subcats = cat.getSubcategories();
         assertNotNull(subcats);
         assertTrue(subcats.size() > 0);
-//        Iterator subcatsIter = subcats.iterator();
-//        while (subcatsIter.hasNext()) {
-//            Subcategory subcategory = (Subcategory) subcatsIter.next();
-//            System.out.println("subcat id: " + subcategory.getId());
-//            System.out.println("subcat name: " + subcategory.getName());
-//        }
+        //        Iterator subcatsIter = subcats.iterator();
+        //        while (subcatsIter.hasNext()) {
+        //            Subcategory subcategory = (Subcategory) subcatsIter.next();
+        //            System.out.println("subcat id: " + subcategory.getId());
+        //            System.out.println("subcat name: " + subcategory.getName());
+        //        }
     }
 
     @Ignore
@@ -108,7 +99,7 @@ public class GroupsInterfaceSOAPTest {
         Collection subcats = cat.getSubcategories();
         assertNotNull(subcats);
         assertTrue(subcats.size() > 0);
-//        System.out.println("category name: " + cat.getName());
+        //        System.out.println("category name: " + cat.getName());
     }
 
     @Ignore

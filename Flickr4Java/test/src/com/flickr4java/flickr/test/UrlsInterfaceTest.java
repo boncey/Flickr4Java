@@ -12,7 +12,6 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.urls.UrlsInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +20,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -30,54 +27,47 @@ import java.util.Properties;
 public class UrlsInterfaceTest {
 
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            REST rest = new REST();
-            rest.setHost(properties.getProperty("host"));
+        REST rest = new REST();
+        rest.setHost(testProperties.getHost());
 
-            flickr = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), rest);
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
-            Auth auth = new Auth();
-            auth.setPermission(Permission.READ);
-            auth.setToken(properties.getProperty("token"));
-            auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setAuth(auth);
-            flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Test
     public void testGetGroup() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        String url = iface.getGroup(properties.getProperty("groupid"));
+        String url = iface.getGroup(testProperties.getGroupId());
         assertEquals("http://www.flickr.com/groups/central/", url);
     }
 
     @Test
     public void testGetUserPhotos() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        String url = iface.getUserPhotos(properties.getProperty("nsid"));
-        String username = properties.getProperty("username");
+        String url = iface.getUserPhotos(testProperties.getNsid());
+        String username = testProperties.getUsername();
         assertEquals(String.format("http://www.flickr.com/photos/%s/", username), url);
     }
 
     @Test
     public void testGetUserProfile() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        String url = iface.getUserProfile(properties.getProperty("nsid"));
-        String username = properties.getProperty("username");
+        String url = iface.getUserProfile(testProperties.getNsid());
+        String username = testProperties.getUsername();
         assertEquals(String.format("http://www.flickr.com/people/%s/", username), url);
     }
 
@@ -92,7 +82,7 @@ public class UrlsInterfaceTest {
     @Test
     public void testLookupUser() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        String username = properties.getProperty("username");
+        String username = testProperties.getUsername();
         String usernameOnFlickr = iface.lookupUser(String.format("http://www.flickr.com/people/%s/", username));
         assertEquals(username, usernameOnFlickr);
     }

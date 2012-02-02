@@ -34,7 +34,9 @@ public class UrlUtilities {
         // AuthUtilities.addAuthToken(parameters);
 
         StringBuffer buffer = new StringBuffer();
-        buffer.append("http://");
+        if (!host.startsWith("http://")) {
+            buffer.append("http://");
+        }
         buffer.append(host);
         if (port > 0) {
             buffer.append(":");

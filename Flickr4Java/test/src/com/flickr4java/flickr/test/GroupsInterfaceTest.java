@@ -16,21 +16,15 @@ import com.flickr4java.flickr.groups.Category;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.GroupList;
 import com.flickr4java.flickr.groups.GroupsInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -38,39 +32,30 @@ import java.util.Properties;
 public class GroupsInterfaceTest {
 
     Flickr flickr = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugRequest = false;
 
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            Properties properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
+        REST rest = new REST();
+        rest.setHost(testProperties.getHost());
 
-OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-    				.apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST();
-            rest.setHost(properties.getProperty("host"));
-
-            flickr = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
+        flickr = new Flickr(
+                testProperties.getApiKey(),
+                testProperties.getSecret(),
                 rest
-            );
+                );
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     public void deprecatedBrowse() throws FlickrException, IOException, SAXException {
@@ -78,27 +63,27 @@ OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(pro
         Category cat = iface.browse(null);
         assertNotNull(cat);
         assertEquals("/", cat.getName());
-//        System.out.println("category path: " + cat.getPath());
+        //        System.out.println("category path: " + cat.getPath());
 
         Collection groups = cat.getGroups();
         assertNotNull(groups);
         assertEquals(0, groups.size());
-//        Iterator groupsIter = groups.iterator();
-//        while (groupsIter.hasNext()) {
-//            Group group = (Group) groupsIter.next();
-//            System.out.println("group id: " + group.getId());
-//            System.out.println("group name: " + group.getName());
-//        }
+        //        Iterator groupsIter = groups.iterator();
+        //        while (groupsIter.hasNext()) {
+        //            Group group = (Group) groupsIter.next();
+        //            System.out.println("group id: " + group.getId());
+        //            System.out.println("group name: " + group.getName());
+        //        }
 
         Collection subcats = cat.getSubcategories();
         assertNotNull(subcats);
         assertTrue(subcats.size() > 0);
-//        Iterator subcatsIter = subcats.iterator();
-//        while (subcatsIter.hasNext()) {
-//            Subcategory subcategory = (Subcategory) subcatsIter.next();
-//            System.out.println("subcat id: " + subcategory.getId());
-//            System.out.println("subcat name: " + subcategory.getName());
-//        }
+        //        Iterator subcatsIter = subcats.iterator();
+        //        while (subcatsIter.hasNext()) {
+        //            Subcategory subcategory = (Subcategory) subcatsIter.next();
+        //            System.out.println("subcat id: " + subcategory.getId());
+        //            System.out.println("subcat name: " + subcategory.getName());
+        //        }
     }
 
     /*

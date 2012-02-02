@@ -11,7 +11,6 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.tags.RelatedTagsList;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.tags.TagsInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -21,10 +20,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -32,32 +29,25 @@ import java.util.Properties;
 public class TagsInterfaceSOAPTest {
 
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            Flickr.debugStream = true;
-            SOAP soap = new SOAP(properties.getProperty("host"));
-            flickr = new Flickr(properties.getProperty("apiKey"), soap);
+        Flickr.debugStream = true;
+        SOAP soap = new SOAP(testProperties.getHost());
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), soap);
 
-        } finally {
-            IOUtilities.close(in);
-        }
     }
 
     @Ignore
     @Test
     public void testGetListPhoto() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
-        Photo photo = iface.getListPhoto(properties.getProperty("photoid"));
+        Photo photo = iface.getListPhoto(testProperties.getPhotoId());
         assertNotNull(photo);
-        assertEquals(properties.getProperty("photoid"), photo.getId());
+        assertEquals(testProperties.getPhotoId(), photo.getId());
         assertNotNull(photo.getTags());
         assertEquals(3, photo.getTags().size());
     }
@@ -66,7 +56,7 @@ public class TagsInterfaceSOAPTest {
     @Test
     public void testGetListUser() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
-        Collection tags = iface.getListUser(properties.getProperty("nsid"));
+        Collection tags = iface.getListUser(testProperties.getNsid());
         assertNotNull(tags);
         assertEquals(756, tags.size());
     }
@@ -75,7 +65,7 @@ public class TagsInterfaceSOAPTest {
     @Test
     public void testListUserPopular() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
-        Collection tags = iface.getListUserPopular(properties.getProperty("nsid"));
+        Collection tags = iface.getListUserPopular(testProperties.getNsid());
         assertNotNull(tags);
         assertEquals(10, tags.size());
         Iterator iter = tags.iterator();

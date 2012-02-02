@@ -4,6 +4,7 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -14,21 +15,15 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.pools.PoolsInterface;
 import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -36,41 +31,32 @@ import java.util.Properties;
 public class PoolsInterfaceTest {
 
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugStream = true;
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-			OAuthService service = new ServiceBuilder().provider(FlickrApi.class)
-					.apiKey(properties.getProperty("apiKey")).apiSecret(properties.getProperty("secret")).build();
-			REST rest = new REST();
-			rest.setHost(properties.getProperty("host"));
+        REST rest = new REST();
+        rest.setHost(testProperties.getHost());
 
-            flickr = new Flickr(properties.getProperty("apiKey"), rest);
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
-			Auth auth = new Auth();
-			auth.setPermission(Permission.READ);
-			auth.setToken(properties.getProperty("token"));
-			auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-			RequestContext requestContext = RequestContext.getRequestContext();
-			requestContext.setAuth(auth);
-			flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Test
     public void testAddAndRemove() throws FlickrException, IOException, SAXException {
-        String photoId = properties.getProperty("photoid");
-        String groupId = properties.getProperty("testgroupid");
+        String photoId = testProperties.getPhotoId();
+        String groupId = testProperties.getTestGroupId();
         PoolsInterface iface = flickr.getPoolsInterface();
         iface.add(photoId, groupId);
         iface.remove(photoId, groupId);
@@ -86,12 +72,12 @@ public class PoolsInterfaceTest {
         PoolsInterface iface = flickr.getPoolsInterface();
         Collection<Group> groups = iface.getGroups();
         assertNotNull(groups);
-        assertEquals(248, groups.size());
+        assertTrue(groups.size() >= 1);
     }
 
     @Test
     public void testGetPhotos() throws FlickrException, IOException, SAXException {
-        String groupId = properties.getProperty("testgroupid");
+        String groupId = testProperties.getTestGroupId();
         PoolsInterface iface = flickr.getPoolsInterface();
         Collection<Photo> photos = iface.getPhotos(groupId, null, 0, 0);
         assertNotNull(photos);

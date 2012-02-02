@@ -226,17 +226,6 @@ public class Flickr {
      * Construct a new Flickr gateway instance.
      *
      * @param apiKey The API key, must be non-null
-     * @param transport The transport (REST or SOAP), must be non-null
-     */
-    public Flickr(String apiKey, Transport transport) {
-        setApiKey(apiKey);
-        setTransport(transport);
-    }
-
-    /**
-     * Construct a new Flickr gateway instance.
-     *
-     * @param apiKey The API key, must be non-null
      * @param sharedSecret
      * @param transport
      */

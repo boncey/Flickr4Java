@@ -15,21 +15,15 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.people.PeopleInterface;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.PhotoList;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -38,58 +32,49 @@ import java.util.Properties;
 public class PeopleInterfaceTest {
 
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         //Flickr.debugStream = true;
 
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-                    .apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST();
-            rest.setHost(properties.getProperty("host"));
+        REST rest = new REST();
+        rest.setHost(testProperties.getHost());
 
-            flickr = new Flickr(
-                    properties.getProperty("apiKey"),
-                    properties.getProperty("secret"),
-                    rest
-                    );
+        flickr = new Flickr(
+                testProperties.getApiKey(),
+                testProperties.getSecret(),
+                rest
+                );
 
-            Auth auth = new Auth();
-            auth.setPermission(Permission.READ);
-            auth.setToken(properties.getProperty("token"));
-            auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setAuth(auth);
-            flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Test
     public void testFindByEmail() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        User person = iface.findByEmail(properties.getProperty("email"));
+        User person = iface.findByEmail(testProperties.getEmail());
         assertNotNull(person);
-        assertEquals(person.getId(), properties.getProperty("nsid"));
-        assertEquals(person.getUsername(), properties.getProperty("username"));
+        assertEquals(person.getId(), testProperties.getNsid());
+        assertEquals(person.getUsername(), testProperties.getUsername());
     }
 
     @Test
     public void testFindByUsername() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        User person = iface.findByUsername(properties.getProperty("username"));
+        User person = iface.findByUsername(testProperties.getUsername());
         assertNotNull(person);
-        assertEquals(properties.getProperty("nsid"), person.getId());
-        assertEquals(properties.getProperty("username"), person.getUsername());
+        assertEquals(testProperties.getNsid(), person.getId());
+        assertEquals(testProperties.getUsername(), person.getUsername());
         // Do the UrlEcoding is correct?
         person = iface.findByUsername("K H A L E D");
         assertNotNull(person);
@@ -100,28 +85,28 @@ public class PeopleInterfaceTest {
     @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        User person = iface.getInfo(properties.getProperty("nsid"));
+        User person = iface.getInfo(testProperties.getNsid());
         assertNotNull(person);
-        assertEquals(properties.getProperty("nsid"), person.getId());
-        assertEquals(properties.getProperty("username"), person.getUsername());
+        assertEquals(testProperties.getNsid(), person.getId());
+        assertEquals(testProperties.getUsername(), person.getUsername());
         assertTrue(person.getMobileurl().startsWith("http://m.flickr.com/photostream.gne"));
-        assertEquals(person.getPhotosurl(), "http://www.flickr.com/photos/misteral/");
-        assertEquals(person.getProfileurl(), "http://www.flickr.com/people/misteral/");
+        assertEquals(person.getPhotosurl(), String.format("http://www.flickr.com/photos/%s/", testProperties.getUsername()));
+        assertEquals(person.getProfileurl(), String.format("http://www.flickr.com/people/%s/", testProperties.getUsername()));
         assertTrue(person.getBuddyIconUrl().startsWith("http://"));
     }
 
     @Test
     public void testGetPublicGroups() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        Collection groups = iface.getPublicGroups(properties.getProperty("nsid"));
+        Collection groups = iface.getPublicGroups(testProperties.getNsid());
         assertNotNull(groups);
-        assertTrue(groups.size() == 1);
+        assertTrue(groups.size() >= 1);
     }
 
     @Test
     public void testGetPublicPhotos() throws FlickrException, IOException, SAXException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        PhotoList photos = iface.getPublicPhotos(properties.getProperty("nsid"), 0, 0);
+        PhotoList photos = iface.getPublicPhotos(testProperties.getNsid(), 0, 0);
         assertNotNull(photos);
         assertTrue(photos.size() >= 1);
     }

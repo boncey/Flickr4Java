@@ -12,7 +12,6 @@ import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.contacts.ContactsInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -26,9 +25,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
-import java.util.Properties;
 
 /**
  * @author Matt Ray
@@ -36,34 +33,27 @@ import java.util.Properties;
 public class ContactsInterfaceSOAPTest {
 
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            Flickr.debugStream = true;
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-                    .apiSecret(properties.getProperty("secret")).signatureType(SignatureType.QueryString).build();
-            SOAP soap = new SOAP(service);
-            flickr = new Flickr(properties.getProperty("apiKey"),
-                    properties.getProperty("secret"), soap);
+        Flickr.debugStream = true;
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey())
+                .apiSecret(testProperties.getSecret()).signatureType(SignatureType.QueryString).build();
+        SOAP soap = new SOAP(service);
+        flickr = new Flickr(testProperties.getApiKey(),
+                testProperties.getSecret(), soap);
 
-            Auth auth = new Auth();
-            auth.setPermission(Permission.READ);
-            auth.setToken(properties.getProperty("token"));
-            auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setAuth(auth);
-            flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Ignore
@@ -79,7 +69,7 @@ public class ContactsInterfaceSOAPTest {
     @Test
     public void testGetPublicList() throws FlickrException, IOException, SAXException {
         ContactsInterface iface = flickr.getContactsInterface();
-        Collection contacts = iface.getPublicList(properties.getProperty("nsid"));
+        Collection contacts = iface.getPublicList(testProperties.getNsid());
         assertNotNull(contacts);
         assertEquals(1, contacts.size());
     }

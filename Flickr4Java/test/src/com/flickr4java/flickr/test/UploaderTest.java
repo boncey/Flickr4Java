@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -34,39 +33,32 @@ public class UploaderTest {
     Uploader uploader = null;
     PhotosInterface pint = null;
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws IOException, FlickrException {
-        InputStream in = null;
+        testProperties = new TestProperties();
         Flickr.debugRequest = false;
         Flickr.debugStream = false;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
 
-            REST rest = new REST();
+        REST rest = new REST();
 
-            flickr = new Flickr(
-                    properties.getProperty("apiKey"),
-                    properties.getProperty("secret"),
-                    rest
-                    );
-            uploader = flickr.getUploader();
-            pint = flickr.getPhotosInterface();
+        flickr = new Flickr(
+                testProperties.getApiKey(),
+                testProperties.getSecret(),
+                rest
+                );
+        uploader = flickr.getUploader();
+        pint = flickr.getPhotosInterface();
 
-            Auth auth = new Auth();
-            auth.setPermission(Permission.WRITE);
-            auth.setToken(properties.getProperty("token"));
-            auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.WRITE);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setAuth(auth);
-            flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     /**
@@ -78,8 +70,9 @@ public class UploaderTest {
      */
     @Test
     public void testUploadByteArray() throws IOException, FlickrException, SAXException {
-        File imageFile = new File(properties.getProperty("imagefile"));
+        File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
+
         ByteArrayOutputStream out = null;
         try {
             in = new FileInputStream(imageFile);
@@ -109,8 +102,9 @@ public class UploaderTest {
      */
     @Test
     public void testUploadInputStream() throws IOException, FlickrException, SAXException {
-        File imageFile = new File(properties.getProperty("imagefile"));
+        File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
+
         try {
             in = new FileInputStream(imageFile);
             UploadMetaData metaData = buildPrivatePhotoMetadata();
@@ -134,7 +128,7 @@ public class UploaderTest {
      */
     @Test
     public void testReplaceInputStream() throws IOException, FlickrException, SAXException {
-        File imageFile = new File(properties.getProperty("imagefile"));
+        File imageFile = new File(testProperties.getImageFile());
         InputStream uploadIS = null;
         String photoId = null;
         try {
@@ -175,7 +169,7 @@ public class UploaderTest {
      */
     @Test
     public void testReplaceByteArray() throws IOException, FlickrException, SAXException {
-        File imageFile = new File(properties.getProperty("imagefile"));
+        File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
         ByteArrayOutputStream out = null;
 

@@ -18,22 +18,16 @@ import com.flickr4java.flickr.tags.ClusterList;
 import com.flickr4java.flickr.tags.RelatedTagsList;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.tags.TagsInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 
 /**
  * @author Anthony Eden
@@ -41,39 +35,30 @@ import java.util.Properties;
 public class TagsInterfaceTest {
 
     Flickr flickr = null;
-    Properties properties = null;
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugStream = false;
-        InputStream in = null;
-        try {
-            in = getClass().getResourceAsStream("/setup.properties");
-            properties = new Properties();
-            properties.load(in);
+        testProperties = new TestProperties();
 
-            OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(properties.getProperty("apiKey"))
-                    .apiSecret(properties.getProperty("secret")).build();
-            REST rest = new REST();
-            rest.setHost(properties.getProperty("host"));
+        REST rest = new REST();
+        rest.setHost(testProperties.getHost());
 
-            flickr = new Flickr(
-                    properties.getProperty("apiKey"),
-                    properties.getProperty("secret"),
-                    rest
-                    );
+        flickr = new Flickr(
+                testProperties.getApiKey(),
+                testProperties.getSecret(),
+                rest
+                );
 
-            Auth auth = new Auth();
-            auth.setPermission(Permission.READ);
-            auth.setToken(properties.getProperty("token"));
-            auth.setTokenSecret(properties.getProperty("tokensecret"));
+        Auth auth = new Auth();
+        auth.setPermission(Permission.READ);
+        auth.setToken(testProperties.getToken());
+        auth.setTokenSecret(testProperties.getTokenSecret());
 
-            RequestContext requestContext = RequestContext.getRequestContext();
-            requestContext.setAuth(auth);
-            flickr.setAuth(auth);
-        } finally {
-            IOUtilities.close(in);
-        }
+        RequestContext requestContext = RequestContext.getRequestContext();
+        requestContext.setAuth(auth);
+        flickr.setAuth(auth);
     }
 
     @Test
@@ -100,9 +85,9 @@ public class TagsInterfaceTest {
     @Test
     public void testGetListPhoto() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
-        Photo photo = iface.getListPhoto(properties.getProperty("photoid"));
+        Photo photo = iface.getListPhoto(testProperties.getPhotoId());
         assertNotNull(photo);
-        assertEquals(properties.getProperty("photoid"), photo.getId());
+        assertEquals(testProperties.getPhotoId(), photo.getId());
         assertNotNull(photo.getTags());
         assertFalse(photo.getTags().isEmpty());
     }
@@ -118,7 +103,7 @@ public class TagsInterfaceTest {
     @Test
     public void testGetListUser() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
-        Collection tags = iface.getListUser(properties.getProperty("nsid"));
+        Collection tags = iface.getListUser(testProperties.getNsid());
         assertNotNull(tags);
         assertFalse(tags.isEmpty());
     }
@@ -126,7 +111,7 @@ public class TagsInterfaceTest {
     @Test
     public void testListUserPopular() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
-        Collection tags = iface.getListUserPopular(properties.getProperty("nsid"));
+        Collection tags = iface.getListUserPopular(testProperties.getNsid());
         assertNotNull(tags);
         assertEquals(10, tags.size());
         Iterator iter = tags.iterator();

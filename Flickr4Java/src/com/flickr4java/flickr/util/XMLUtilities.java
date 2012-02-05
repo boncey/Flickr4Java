@@ -21,13 +21,13 @@ public class XMLUtilities {
     private XMLUtilities() {
     }
 
-    public static Collection getChildElements(Node node) {
-        List elements = new ArrayList();
+    public static Collection<Element> getChildElements(Node node) {
+        List<Element> elements = new ArrayList<Element>();
         NodeList nodes = node.getChildNodes();
         for (int i = 0; i < nodes.getLength(); i++) {
             Node childNode = nodes.item(i);
             if (childNode instanceof Element) {
-                elements.add(childNode);
+                elements.add((Element)childNode);
             }
         }
         return elements;

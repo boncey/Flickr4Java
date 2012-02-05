@@ -1,6 +1,8 @@
 package com.flickr4java.flickr;
 
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.axis.message.SOAPBody;
 import org.apache.axis.message.SOAPEnvelope;
@@ -8,8 +10,7 @@ import org.apache.axis.message.SOAPFault;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import java.util.Collection;
-import java.util.Iterator;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Flickr SOAP Response object.
@@ -18,8 +19,7 @@ import java.util.Iterator;
  */
 public class SOAPResponse implements Response {
 
-    private String stat;
-    private Collection payload;
+    private List<Element> payload;
 
     private String errorCode;
     private String errorMessage;
@@ -45,11 +45,12 @@ public class SOAPResponse implements Response {
                 errorCode = fault.getFaultCode();
                 errorMessage = fault.getFaultString();
             } else {
-                for (Iterator i = body.getChildElements(); i.hasNext(); ) {
-                    Element bodyelement = (Element)i.next();
+                for (@SuppressWarnings("unchecked")
+                Iterator<Element> i = body.getChildElements(); i.hasNext(); ) {
+                    Element bodyelement = i.next();
                     bodyelement.normalize();
                     // TODO: Verify that the payload is always a single XML node
-                    payload = XMLUtilities.getChildElements(bodyelement);
+                    payload = (List<Element>)XMLUtilities.getChildElements(bodyelement);
                 }
             }
         } catch (Exception e) {
@@ -62,14 +63,13 @@ public class SOAPResponse implements Response {
     }
     
     public Element getPayload() {
-        Iterator iter = payload.iterator();
-        if (iter.hasNext()) {
-            return (Element) iter.next();
+        if(payload.isEmpty()) {
+            throw new RuntimeException("SOAP response payload has no elements");
         }
-        throw new RuntimeException("SOAP response payload has no elements");
+        return payload.get(0);
     }
 
-    public Collection getPayloadCollection() {
+    public Collection<Element> getPayloadCollection() {
         return payload;
     }
 

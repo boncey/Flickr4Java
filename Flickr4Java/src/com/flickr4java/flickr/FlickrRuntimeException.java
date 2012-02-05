@@ -9,6 +9,8 @@ package com.flickr4java.flickr;
  */
 public class FlickrRuntimeException extends RuntimeException {
 
+    private static final long serialVersionUID = 1303207981175254196L;
+
     public FlickrRuntimeException() {
     }
 

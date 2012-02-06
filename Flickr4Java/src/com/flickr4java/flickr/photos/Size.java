@@ -3,11 +3,11 @@
  */
 package com.flickr4java.flickr.photos;
 
-import com.flickr4java.flickr.util.StringUtilities;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;
+
+import com.flickr4java.flickr.util.StringUtilities;
 
 /**
  * This class descibes a Size of a Photo.<p>
@@ -16,7 +16,6 @@ import java.util.regex.Matcher;
  * @version $Id: Size.java,v 1.7 2009/07/23 20:41:03 x-mago Exp $
  */
 public class Size {
-	private static final long serialVersionUID = 12L;
 
 	/**
      * Thumbnail, 100 on longest side.

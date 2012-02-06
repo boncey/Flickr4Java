@@ -5,6 +5,17 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
@@ -14,20 +25,6 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * @author Anthony Eden
@@ -45,9 +42,7 @@ public class FavoritesInterfaceSOAPTest {
         System.setProperty("http.proxyPort", "8888");
         Flickr.debugStream = true;
         Flickr.debugRequest = true;
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey())
-                .apiSecret(testProperties.getSecret()).build();
-        SOAP soap = new SOAP(service);
+        SOAP soap = new SOAP();
 
         flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), soap);
 
@@ -65,7 +60,7 @@ public class FavoritesInterfaceSOAPTest {
     @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getList(null, 0, 0, null);
+        Collection<Photo> favorites = iface.getList(null, 0, 0, null);
         assertNotNull(favorites);
         assertEquals(1, favorites.size());
     }
@@ -74,7 +69,7 @@ public class FavoritesInterfaceSOAPTest {
     @Test
     public void testGetListWithExtras() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getList(null, 0, 0, Extras.ALL_EXTRAS);
+        Collection<Photo> favorites = iface.getList(null, 0, 0, Extras.ALL_EXTRAS);
         assertNotNull(favorites);
         assertEquals(1, favorites.size());
     }
@@ -83,7 +78,7 @@ public class FavoritesInterfaceSOAPTest {
     @Test
     public void testGetPublicList() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection favorites = iface.getPublicList("77348956@N00", 0, 0, null);
+        Collection<Photo> favorites = iface.getPublicList("77348956@N00", 0, 0, null);
         assertNotNull(favorites);
         assertEquals(1, favorites.size());
     }
@@ -96,7 +91,7 @@ public class FavoritesInterfaceSOAPTest {
         iface.add(photoId);
 
         Photo foundPhoto = null;
-        Iterator favorites = iface.getList(null, 0, 0, null).iterator();
+        Iterator<Photo> favorites = iface.getList(null, 0, 0, null).iterator();
         while (favorites.hasNext()) {
             Photo photo = (Photo) favorites.next();
             if (photo.getId().equals(photoId)) {

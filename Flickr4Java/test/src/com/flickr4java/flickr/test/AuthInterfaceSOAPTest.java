@@ -4,22 +4,19 @@
 
 package com.flickr4java.flickr.test;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
 
 /**
  * @author Anthony Eden
@@ -36,9 +33,7 @@ public class AuthInterfaceSOAPTest {
 
         Flickr.debugRequest = true;
         Flickr.debugStream = true;
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey())
-                .apiSecret(testProperties.getSecret()).build();
-        SOAP soap = new SOAP(service);
+        SOAP soap = new SOAP();
         flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), soap);
 
         Auth auth = new Auth();

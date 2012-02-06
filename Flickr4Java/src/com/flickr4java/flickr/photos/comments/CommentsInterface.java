@@ -4,6 +4,7 @@ import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.photos.PhotosInterface;
@@ -143,7 +144,7 @@ public class CommentsInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public List getList(String photoId)
+    public List<Comment> getList(String photoId)
             throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
@@ -154,7 +155,7 @@ public class CommentsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        List comments = new ArrayList();
+        List<Comment> comments = new ArrayList<Comment>();
         Element commentsElement = response.getPayload();
         NodeList commentNodes = commentsElement.getElementsByTagName("comment");
         int n = commentNodes.getLength();
@@ -206,8 +207,8 @@ public class CommentsInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList getRecentForContacts(Date lastComment, ArrayList contactsFilter, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
-        PhotoList photos = new PhotoList();
+    public PhotoList<Photo> getRecentForContacts(Date lastComment, ArrayList<String> contactsFilter, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+        PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);
         parameters.put(Flickr.API_KEY, apiKey);

@@ -8,7 +8,6 @@ package com.flickr4java.flickr.panda;
  * @see com.flickr4java.flickr.panda.PandaInterface#getPhotos(Panda, java.util.Set, int, int)
  */
 public class Panda {
-    private static final long serialVersionUID = 12L;
 
     String name;
 

@@ -54,7 +54,7 @@ public class LicensesInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getInfo() throws IOException, SAXException, FlickrException {
+    public Collection<License> getInfo() throws IOException, SAXException, FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -63,7 +63,7 @@ public class LicensesInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        List licenses = new ArrayList();
+        List<License> licenses = new ArrayList<License>();
         Element licensesElement = response.getPayload();
         NodeList licenseElements = licensesElement.getElementsByTagName("license");
         for (int i = 0; i < licenseElements.getLength(); i++) {

@@ -169,8 +169,8 @@ public class GroupsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection search(String text, int perPage, int page) throws FlickrException, IOException, SAXException {
-        GroupList groupList = new GroupList();
+    public Collection<Group> search(String text, int perPage, int page) throws FlickrException, IOException, SAXException {
+        GroupList<Group> groupList = new GroupList<Group>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SEARCH);
         parameters.put(Flickr.API_KEY, apiKey);

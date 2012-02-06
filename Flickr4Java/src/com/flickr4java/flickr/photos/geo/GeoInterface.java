@@ -1,23 +1,24 @@
 package com.flickr4java.flickr.photos.geo;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.photos.GeoData;
-import com.flickr4java.flickr.photos.PhotoList;
-import com.flickr4java.flickr.photos.PhotoUtils;
-import com.flickr4java.flickr.util.StringUtilities;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.photos.GeoData;
+import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.photos.PhotoList;
+import com.flickr4java.flickr.photos.PhotoUtils;
+import com.flickr4java.flickr.util.StringUtilities;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Access to the flickr.photos.geo methods.
@@ -309,13 +310,9 @@ public class GeoInterface {
      * @throws FlickrException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList photosForLocation(
-            GeoData location,
-            Set extras,
-            int perPage, int page
-            ) throws FlickrException {
+    public PhotoList<Photo> photosForLocation(GeoData location, Set<String> extras, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
         parameters.put("method", METHOD_PHOTOS_FOR_LOCATION);
         parameters.put(Flickr.API_KEY, apiKey);
 

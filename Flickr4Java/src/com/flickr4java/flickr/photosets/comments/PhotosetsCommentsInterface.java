@@ -4,6 +4,7 @@ import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.comments.Comment;
 import com.flickr4java.flickr.util.XMLUtilities;
 
@@ -134,7 +135,7 @@ public class PhotosetsCommentsInterface {
      * @throws IOException
      * @throws FlickrException
      */
-    public List getList(String photosetId) throws IOException, SAXException, FlickrException {
+    public List<Comment> getList(String photosetId) throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -172,7 +173,7 @@ public class PhotosetsCommentsInterface {
 		//        Second it's even better!!!!
 		//      </comment>
 		//     </comments>
-        List comments = new ArrayList();
+        List<Comment> comments = new ArrayList<Comment>();
         Element commentsElement = response.getPayload();
         NodeList commentNodes = commentsElement.getElementsByTagName("comment");
         int n = commentNodes.getLength();

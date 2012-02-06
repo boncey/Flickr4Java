@@ -65,7 +65,7 @@ public class MembersInterfaceTest {
         MembersInterface iface = flickr.getMembersInterface();
         // Group: Urban fragments
         String id = "64262537@N00";
-        Set memberTypes = new HashSet();
+        Set<String> memberTypes = new HashSet<String>();
         memberTypes.add(Member.TYPE_MEMBER);
         memberTypes.add(Member.TYPE_ADMIN);
         memberTypes.add(Member.TYPE_MODERATOR);

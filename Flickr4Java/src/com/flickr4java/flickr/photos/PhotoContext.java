@@ -8,7 +8,6 @@ package com.flickr4java.flickr.photos;
  * @author Anthony Eden
  */
 public class PhotoContext {
-	private static final long serialVersionUID = 12L;
 
     private Photo previousPhoto;
     private Photo nextPhoto;

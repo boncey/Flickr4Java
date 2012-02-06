@@ -90,7 +90,7 @@ public class ObjectTest {
         size2.setHeight(100);
         size2.setWidth(100);
         size2.setSource("url");
-        ArrayList sizes = new ArrayList();
+        ArrayList<Size> sizes = new ArrayList<Size>();
         sizes.add(size1);
         sizes.add(size2);
         p1.setSizes(sizes);
@@ -156,10 +156,10 @@ public class ObjectTest {
         note3.setAuthor("author");
         note3.setAuthorName("author");
         note3.setBounds(new Rectangle(0,1,2,3));
-        List notes1 = new ArrayList();
+        List<Note> notes1 = new ArrayList<Note>();
         notes1.add(note1);
         notes1.add(note2);
-        List notes2 = new ArrayList();
+        List<Note> notes2 = new ArrayList<Note>();
         notes2.add(note1);
         notes2.add(note3);
         p1.setNotes(notes1);
@@ -167,8 +167,8 @@ public class ObjectTest {
         p2.setNotes(notes2);
         assertTrue(p1.equals(p2));
 
-        List tags1 = new ArrayList();
-        List tags2 = new ArrayList();
+        List<Tag> tags1 = new ArrayList<Tag>();
+        List<Tag> tags2 = new ArrayList<Tag>();
         Tag tag1 = new Tag();
         Tag tag2 = new Tag();
         Tag tag3 = new Tag();

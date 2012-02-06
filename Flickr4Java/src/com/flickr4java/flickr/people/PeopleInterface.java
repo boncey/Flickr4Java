@@ -9,6 +9,7 @@ import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.photos.Extras;
+import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
@@ -177,9 +178,9 @@ public class PeopleInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getPublicGroups(String userId)
+    public Collection<Group> getPublicGroups(String userId)
       throws IOException, SAXException, FlickrException {
-        List groups = new ArrayList();
+        List<Group> groups = new ArrayList<Group>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_GROUPS);
@@ -205,7 +206,7 @@ public class PeopleInterface {
         return groups;
     }
 
-    public PhotoList getPublicPhotos(String userId, int perPage, int page)
+    public PhotoList<Photo> getPublicPhotos(String userId, int perPage, int page)
     throws IOException, SAXException, FlickrException {
         return getPublicPhotos(userId, Extras.MIN_EXTRAS, perPage, page);
     }
@@ -225,9 +226,9 @@ public class PeopleInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getPublicPhotos(String userId, Set extras, int perPage, int page) throws IOException, SAXException,
+    public PhotoList<Photo> getPublicPhotos(String userId, Set<String> extras, int perPage, int page) throws IOException, SAXException,
             FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);

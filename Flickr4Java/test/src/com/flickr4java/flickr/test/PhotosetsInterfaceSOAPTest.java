@@ -107,14 +107,14 @@ public class PhotosetsInterfaceSOAPTest {
     @Test
     public void testGetPhotos() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        PhotoList photos = iface.getPhotos(
+        PhotoList<Photo> photos = iface.getPhotos(
                 testProperties.getPhotoSetId(),
                 10,
                 1
                 );
         assertNotNull(photos);
         assertEquals(3, photos.size());
-        assertEquals("javatest", ((Photo) photos.get(0)).getOwner().getUsername());
+        assertEquals("javatest", photos.get(0).getOwner().getUsername());
     }
 
     @Ignore

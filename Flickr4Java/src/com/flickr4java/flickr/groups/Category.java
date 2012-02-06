@@ -11,13 +11,12 @@ import java.util.Collection;
  * @author Anthony Eden
  */
 public class Category {
-	private static final long serialVersionUID = 12L;
 
     private String name;
     private String path;
     private String pathIds;
-    private Collection subcategories;
-    private Collection groups;
+    private Collection<Subcategory> subcategories;
+    private Collection<Group> groups;
 
     public Category() {
 
@@ -47,19 +46,19 @@ public class Category {
         this.pathIds = pathIds;
     }
 
-    public Collection getSubcategories() {
+    public Collection<Subcategory> getSubcategories() {
         return subcategories;
     }
 
-    public void setSubcategories(Collection subcategories) {
+    public void setSubcategories(Collection<Subcategory> subcategories) {
         this.subcategories = subcategories;
     }
 
-    public Collection getGroups() {
+    public Collection<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(Collection groups) {
+    public void setGroups(Collection<Group> groups) {
         this.groups = groups;
     }
 

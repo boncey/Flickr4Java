@@ -160,7 +160,7 @@ public class PhotosInterfaceSOAPTest {
     @Test
     public void testGetRecent() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
-        Set hSet = new HashSet();
+        Set<String> hSet = new HashSet<String>();
         Collection photos = iface.getRecent(hSet, 0, 0);
         assertNotNull(photos);
     }

@@ -44,9 +44,9 @@ public class StringUtilities {
      * @param doQuote whether or not to quote the Strings
      * @return The joined String
      */
-    public static String join( Collection s, String delimiter, boolean doQuote ) {
+    public static String join( Collection<String> s, String delimiter, boolean doQuote ) {
         StringBuffer buffer = new StringBuffer();
-        Iterator iter = s.iterator();
+        Iterator<String> iter = s.iterator();
         while (iter.hasNext()) {
             if( doQuote ) {
               buffer.append( "\"" + iter.next() + "\"" );
@@ -68,7 +68,7 @@ public class StringUtilities {
      * @param delimiter The delimiter String
      * @return The joined String
      */
-    public static String join(Collection s, String delimiter) {
+    public static String join(Collection<String> s, String delimiter) {
       return join( s, delimiter, false );
     }
 

@@ -13,7 +13,6 @@ import com.flickr4java.flickr.util.UrlUtilities;
  * @version $Id: Contact.java,v 1.5 2009/07/12 22:43:07 x-mago Exp $
  */
 public class Contact implements BuddyIconable {
-	private static final long serialVersionUID = 12L;
 
     private String id;
     private String username;

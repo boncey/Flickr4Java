@@ -52,7 +52,7 @@ public class TestInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection echo(Map params) throws IOException, SAXException, FlickrException {
+    public Collection<Element> echo(Map<String, String> params) throws IOException, SAXException, FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ECHO);
         parameters.put(Flickr.API_KEY, apiKey);

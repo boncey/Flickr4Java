@@ -43,8 +43,8 @@ public class InterestingnessInterface {
     private static final String KEY_PER_PAGE = "per_page";
     private static final String KEY_PAGE = "page";
 
-    private static final ThreadLocal DATE_FORMATS = new ThreadLocal() {
-        protected synchronized Object initialValue() {
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
+        protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd");
         }
     };
@@ -78,9 +78,9 @@ public class InterestingnessInterface {
      * @throws SAXException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList getList(String date, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getList(String date, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         parameters.put(KEY_METHOD, METHOD_GET_LIST);
         parameters.put(KEY_API_KEY, apiKey);
@@ -131,7 +131,7 @@ public class InterestingnessInterface {
      * @throws SAXException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList getList(Date date, Set extras, int perPage, int page)
+    public PhotoList<Photo> getList(Date date, Set<String> extras, int perPage, int page)
       throws FlickrException, IOException, SAXException {
         String dateString = null;
         if (date != null) {
@@ -150,7 +150,7 @@ public class InterestingnessInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList getList() throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getList() throws FlickrException, IOException, SAXException {
         return getList((String) null, Extras.ALL_EXTRAS, 500, 1);
     }
 

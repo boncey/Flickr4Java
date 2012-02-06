@@ -32,7 +32,7 @@ public class Item {
     private int views = 0;
     private int faves = 0;
     private int more = 0;
-    private Collection events;
+    private Collection<Event> events;
 
 	public Item() {
 	}
@@ -117,11 +117,11 @@ public class Item {
 		this.views = views;
 	}
 
-	public Collection getEvents() {
+	public Collection<Event> getEvents() {
 		return events;
 	}
 
-	public void setEvents(Collection events) {
+	public void setEvents(Collection<Event> events) {
 		this.events = events;
 	}
 

@@ -3,24 +3,6 @@
  */
 package com.flickr4java.flickr.photos;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.photos.geo.GeoInterface;
-import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.util.StringUtilities;
-import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import javax.imageio.ImageIO;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +19,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.photos.geo.GeoInterface;
+import com.flickr4java.flickr.util.IOUtilities;
+import com.flickr4java.flickr.util.StringUtilities;
+import com.flickr4java.flickr.util.XMLUtilities;
+
 /**
  * Interface for working with Flickr Photos.
  *
@@ -44,7 +44,6 @@ import java.util.Set;
  * @version $Id: PhotosInterface.java,v 1.51 2010/07/20 20:11:16 x-mago Exp $
  */
 public class PhotosInterface {
-	private static final long serialVersionUID = 12L;
 
     public static final String METHOD_ADD_TAGS = "flickr.photos.addTags";
     public static final String METHOD_DELETE = "flickr.photos.delete";
@@ -74,8 +73,8 @@ public class PhotosInterface {
     public static final String METHOD_SET_TAGS = "flickr.photos.setTags";
     public static final String METHOD_GET_INTERESTINGNESS = "flickr.interestingness.getList";
 
-    private static final ThreadLocal DATE_FORMATS = new ThreadLocal() {
-        protected synchronized Object initialValue() {
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
+        protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
     };
@@ -166,8 +165,8 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public List getAllContexts(String photoId) throws IOException, SAXException, FlickrException {
-        List list = new ArrayList();
+    public List<PhotoPlace> getAllContexts(String photoId) throws IOException, SAXException, FlickrException {
+        List<PhotoPlace> list = new ArrayList<PhotoPlace>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_ALL_CONTEXTS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -179,10 +178,8 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
 
-        Collection coll = response.getPayloadCollection();
-        Iterator it = coll.iterator();
-        while (it.hasNext()) {
-            Element el = (Element) it.next();
+        Collection<Element> coll = response.getPayloadCollection();
+        for (Element el : coll) {
             String id = el.getAttribute("id");
             String title = el.getAttribute("title");
             String kind = el.getTagName();
@@ -206,9 +203,9 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getContactsPhotos(int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
+    public PhotoList<Photo> getContactsPhotos(int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
             throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTACTS_PHOTOS);
@@ -260,14 +257,14 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getContactsPublicPhotos(String userId, int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
+    public PhotoList<Photo> getContactsPublicPhotos(String userId, int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
       throws IOException, SAXException, FlickrException {
         return getContactsPublicPhotos(userId, Extras.MIN_EXTRAS, count, justFriends, singlePhoto, includeSelf);
     }
 
-    public PhotoList getContactsPublicPhotos(String userId, Set extras, int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
+    public PhotoList<Photo> getContactsPublicPhotos(String userId, Set<String> extras, int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
       throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTACTS_PUBLIC_PHOTOS);
@@ -290,7 +287,7 @@ public class PhotosInterface {
 
         if (extras != null) {
             StringBuffer sb = new StringBuffer();
-            Iterator it = extras.iterator();
+            Iterator<String> it = extras.iterator();
             for (int i = 0; it.hasNext(); i++) {
                 if (i > 0) {
                     sb.append(",");
@@ -341,10 +338,8 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         PhotoContext photoContext = new PhotoContext();
-        Collection payload = response.getPayloadCollection();
-        Iterator iter = payload.iterator();
-        while (iter.hasNext()) {
-            Element payloadElement = (Element) iter.next();
+        Collection<Element> payload = response.getPayloadCollection();
+        for (Element payloadElement : payload) {
             String tagName = payloadElement.getTagName();
             if (tagName.equals("prevphoto")) {
                 Photo photo = new Photo();
@@ -378,9 +373,9 @@ public class PhotosInterface {
      * counts for. They should be specified smallest first.
      * @return A Collection of Photocount objects
      */
-    public Collection getCounts(Date[] dates, Date[] takenDates)
+    public Collection<Photocount> getCounts(Date[] dates, Date[] takenDates)
         throws IOException, SAXException, FlickrException {
-        List photocounts = new ArrayList();
+        List<Photocount> photocounts = new ArrayList<Photocount>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_COUNTS);
@@ -391,7 +386,7 @@ public class PhotosInterface {
         }
 
         if (dates != null) {
-            List dateList = new ArrayList();
+            List<String> dateList = new ArrayList<String>();
             for (int i = 0; i < dates.length; i++) {
                 dateList.add(String.valueOf(dates[i].getTime() / 1000L));
             }
@@ -437,7 +432,7 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getExif(String photoId, String secret)
+    public Collection<Exif> getExif(String photoId, String secret)
         throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_EXIF);
@@ -452,7 +447,7 @@ public class PhotosInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        List exifs = new ArrayList();
+        List<Exif> exifs = new ArrayList<Exif>();
         Element photoElement = response.getPayload();
         NodeList exifElements = photoElement.getElementsByTagName("exif");
         for (int i = 0; i < exifElements.getLength(); i++) {
@@ -479,7 +474,7 @@ public class PhotosInterface {
      * @param page
      * @return List of {@link com.flickr4java.flickr.people.User}
      */
-    public Collection getFavorites(String photoId, int perPage, int page)
+    public Collection<User> getFavorites(String photoId, int perPage, int page)
         throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -500,7 +495,7 @@ public class PhotosInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        List users = new ArrayList();
+        List<User> users = new ArrayList<User>();
 
         Element userRoot = response.getPayload();
         NodeList userNodes = userRoot.getElementsByTagName("person");
@@ -560,8 +555,8 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getNotInSet(int perPage, int page) throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+    public PhotoList<Photo> getNotInSet(int perPage, int page) throws IOException, SAXException, FlickrException {
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);
@@ -569,7 +564,7 @@ public class PhotosInterface {
 
         RequestContext requestContext = RequestContext.getRequestContext();
 
-        List extras = requestContext.getExtras();
+        List<String> extras = requestContext.getExtras();
         if (extras.size() > 0) {
             parameters.put("extras", StringUtilities.join(extras, ","));
         }
@@ -647,7 +642,7 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getRecent(Set extras, int perPage, int page) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getRecent(Set<String> extras, int perPage, int page) throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_RECENT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -667,7 +662,7 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element photosElement = response.getPayload();
-        PhotoList photos = PhotoUtils.createPhotoList(photosElement);
+        PhotoList<Photo> photos = PhotoUtils.createPhotoList(photosElement);
         return photos;
     }
 
@@ -684,7 +679,7 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getSizes(String photoId) throws IOException, SAXException, FlickrException {
+    public Collection<Size> getSizes(String photoId) throws IOException, SAXException, FlickrException {
         return getSizes(photoId, false);
     }
 
@@ -702,8 +697,8 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getSizes(String photoId, boolean sign) throws IOException, SAXException, FlickrException {
-        List sizes = new ArrayList();
+    public Collection<Size> getSizes(String photoId, boolean sign) throws IOException, SAXException, FlickrException {
+        List<Size> sizes = new ArrayList<Size>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SIZES);
@@ -743,7 +738,7 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getUntagged(int perPage, int page)
+    public PhotoList<Photo> getUntagged(int perPage, int page)
         throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_UNTAGGED);
@@ -761,7 +756,7 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element photosElement = response.getPayload();
-        PhotoList photos = PhotoUtils.createPhotoList(photosElement);
+        PhotoList<Photo> photos = PhotoUtils.createPhotoList(photosElement);
         return photos;
     }
 
@@ -795,10 +790,10 @@ public class PhotosInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList getWithGeoData(
+    public PhotoList<Photo> getWithGeoData(
         Date minUploadDate, Date maxUploadDate,
         Date minTakenDate, Date maxTakenDate,
-        int privacyFilter, String sort, Set extras, int perPage, int page) 
+        int privacyFilter, String sort, Set<String> extras, int perPage, int page) 
         throws FlickrException, IOException, SAXException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_WITH_GEO_DATA);
@@ -837,7 +832,7 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element photosElement = response.getPayload();
-        PhotoList photos = PhotoUtils.createPhotoList(photosElement);
+        PhotoList<Photo> photos = PhotoUtils.createPhotoList(photosElement);
         return photos;
     }
 
@@ -871,7 +866,7 @@ public class PhotosInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList getWithoutGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getWithoutGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_WITHOUT_GEO_DATA);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -909,7 +904,7 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element photosElement = response.getPayload();
-        PhotoList photos = PhotoUtils.createPhotoList(photosElement);
+        PhotoList<Photo> photos = PhotoUtils.createPhotoList(photosElement);
         return photos;
     }
 
@@ -930,7 +925,7 @@ public class PhotosInterface {
      * @throws IOException 
      * @throws FlickrException
      */
-    public PhotoList recentlyUpdated(Date minDate, Set extras, int perPage, int page) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> recentlyUpdated(Date minDate, Set<String> extras, int perPage, int page) throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RECENTLY_UPDATED);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -952,7 +947,7 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element photosElement = response.getPayload();
-        PhotoList photos = PhotoUtils.createPhotoList(photosElement);
+        PhotoList<Photo> photos = PhotoUtils.createPhotoList(photosElement);
         return photos;
     }
 
@@ -990,9 +985,9 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList search(SearchParameters params, int perPage, int page)
+    public PhotoList<Photo> search(SearchParameters params, int perPage, int page)
         throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SEARCH);
@@ -1036,9 +1031,9 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList searchInterestingness(SearchParameters params, int perPage, int page)
+    public PhotoList<Photo> searchInterestingness(SearchParameters params, int perPage, int page)
         throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INTERESTINGNESS);

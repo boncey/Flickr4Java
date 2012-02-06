@@ -3,14 +3,6 @@
  */
 package com.flickr4java.flickr.photos;
 
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.tags.Tag;
-import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.util.StringUtilities;
-
-import javax.imageio.ImageIO;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,9 +16,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
+
+import javax.imageio.ImageIO;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.tags.Tag;
+import com.flickr4java.flickr.util.IOUtilities;
+import com.flickr4java.flickr.util.StringUtilities;
 
 /**
  * Class representing metadata about a Flickr photo. Instances do not actually
@@ -38,10 +37,9 @@ import java.util.regex.Matcher;
  * @version $Id: Photo.java,v 1.28 2009/07/23 21:49:35 x-mago Exp $
  */
 public class Photo {
-    private static final long serialVersionUID = 12L;
 
-    private static final ThreadLocal DATE_FORMATS = new ThreadLocal() {
-        protected synchronized Object initialValue() {
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
+        protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
     };
@@ -83,9 +81,9 @@ public class Photo {
     private int comments;
     private int views = -1;
     private int rotation;
-    private Collection notes;
+    private Collection<Note> notes;
     private Collection<Tag> tags;
-    private Collection urls;
+    private Collection<String> urls;
     private String iconServer;
     private String iconFarm;
     private String url;
@@ -312,11 +310,11 @@ public class Photo {
         if (comments != null) setComments(Integer.parseInt(comments));
     }
 
-    public Collection getNotes() {
+    public Collection<Note> getNotes() {
         return notes;
     }
 
-    public void setNotes(Collection notes) {
+    public void setNotes(Collection<Note> notes) {
         this.notes = notes;
     }
 
@@ -332,7 +330,7 @@ public class Photo {
      *
      * @return List of {@link PhotoUrl}
      */
-    public Collection getUrls() {
+    public Collection<String> getUrls() {
         return urls;
     }
 
@@ -340,7 +338,7 @@ public class Photo {
      *
      * @param urls List of {@link PhotoUrl}
      */
-    public void setUrls(Collection urls) {
+    public void setUrls(Collection<String> urls) {
         this.urls = urls;
     }
 
@@ -828,10 +826,8 @@ public class Photo {
      * @param sizes
      * @see com.flickr4java.flickr.photos.PhotosInterface#getSizes(String)
      */
-    public void setSizes(Collection sizes) {
-        Iterator it = sizes.iterator();
-        while (it.hasNext()) {
-            Size size = (Size) it.next();
+    public void setSizes(Collection<Size> sizes) {
+        for (Size size : sizes) {
             if (size.getLabel() == Size.SMALL) {
                 smallSize = size;
             } else if (size.getLabel() == Size.SQUARE) {

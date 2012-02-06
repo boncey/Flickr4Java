@@ -2,22 +2,23 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertTrue;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.activity.ActivityInterface;
-import com.flickr4java.flickr.activity.ItemList;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.activity.ActivityInterface;
+import com.flickr4java.flickr.activity.Item;
+import com.flickr4java.flickr.activity.ItemList;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.auth.Permission;
 
 /**
  *
@@ -58,7 +59,7 @@ public class ActivityInterfaceTest {
     public void testUserComments()
             throws FlickrException, IOException, SAXException {
         ActivityInterface actInterface = flickr.getActivityInterface();
-        ItemList list = actInterface.userComments(10, 1);
+        ItemList<Item> list = actInterface.userComments(10, 1);
         assertTrue(list.size() > 0);
     }
 
@@ -66,7 +67,7 @@ public class ActivityInterfaceTest {
     public void testUserPhotos()
             throws FlickrException, IOException, SAXException {
         ActivityInterface actInterface = flickr.getActivityInterface();
-        ItemList list = actInterface.userPhotos(10, 1, "6000d");
+        ItemList<Item> list = actInterface.userPhotos(10, 1, "6000d");
         assertTrue(list.size() > 0);
     }
 

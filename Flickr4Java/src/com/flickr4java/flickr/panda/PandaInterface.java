@@ -1,23 +1,24 @@
 package com.flickr4java.flickr.panda;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.photos.PhotoList;
-import com.flickr4java.flickr.photos.PhotoUtils;
-import com.flickr4java.flickr.util.StringUtilities;
-import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.photos.PhotoList;
+import com.flickr4java.flickr.photos.PhotoUtils;
+import com.flickr4java.flickr.util.StringUtilities;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Flickr Panda.
@@ -56,8 +57,8 @@ public class PandaInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public ArrayList getList() throws FlickrException, IOException, SAXException {
-        ArrayList pandas = new ArrayList();
+    public ArrayList<Panda> getList() throws FlickrException, IOException, SAXException {
+        ArrayList<Panda> pandas = new ArrayList<Panda>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -92,8 +93,7 @@ public class PandaInterface {
      * @throws SAXException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList getPhotos(Panda panda, Set extras, int perPage, int page) throws FlickrException, IOException, SAXException {
-        ArrayList pandas = new ArrayList();
+    public PhotoList<Photo> getPhotos(Panda panda, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -115,7 +115,7 @@ public class PandaInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element photosElement = response.getPayload();
-        PhotoList photos = PhotoUtils.createPhotoList(photosElement);
+        PhotoList<Photo> photos = PhotoUtils.createPhotoList(photosElement);
         return photos;
     }
 }

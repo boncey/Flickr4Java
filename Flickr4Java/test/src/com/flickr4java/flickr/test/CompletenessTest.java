@@ -68,7 +68,7 @@ public class CompletenessTest {
     @Test
     public void testIfComplete() throws IOException, SAXException, FlickrException {
         ReflectionInterface ri = flickr.getReflectionInterface();
-        Iterator mit = ri.getMethods().iterator();
+        Iterator<String> mit = ri.getMethods().iterator();
         int notFound = 0;
         while (mit.hasNext()) {
             String method = (String)mit.next();
@@ -122,6 +122,7 @@ public class CompletenessTest {
         String repl = replacements.getProperty(fullMethodName);
         if (repl == null) {
             String meth = fullMethodName.substring(fullMethodName.lastIndexOf('.') + 1);
+            @SuppressWarnings("rawtypes")
             Iterator keys = replacements.keySet().iterator();
             while (keys.hasNext()) {
                 String key = (String)keys.next();

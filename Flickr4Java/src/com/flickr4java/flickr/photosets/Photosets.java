@@ -11,10 +11,9 @@ import java.util.Collection;
  * @author Anthony Eden
  */
 public class Photosets {
-	private static final long serialVersionUID = 12L;
 
     private boolean canCreate;
-    private Collection photosets;
+    private Collection<Photoset> photosets;
 
     public Photosets() {
 
@@ -28,11 +27,11 @@ public class Photosets {
         this.canCreate = canCreate;
     }
 
-    public Collection getPhotosets() {
+    public Collection<Photoset> getPhotosets() {
         return photosets;
     }
 
-    public void setPhotosets(Collection photosets) {
+    public void setPhotosets(Collection<Photoset> photosets) {
         this.photosets = photosets;
     }
 

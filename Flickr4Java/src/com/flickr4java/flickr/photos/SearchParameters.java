@@ -18,7 +18,6 @@ import java.util.Set;
  * @version $Id: SearchParameters.java,v 1.20 2009/07/23 20:41:03 x-mago Exp $
  */
 public class SearchParameters {
-    private static final long serialVersionUID = 12L;
 
     private String userId;
     private String groupId;
@@ -34,7 +33,7 @@ public class SearchParameters {
     private Date maxTakenDate;
     private Date interestingnessDate;
     private String license;
-    private Set extras;
+    private Set<String> extras;
     private String[] bbox;
     private String placeId;
     private int accuracy = 0;
@@ -47,16 +46,16 @@ public class SearchParameters {
     private String radiusUnits;
     private boolean hasGeo = false;
 
-    public static final ThreadLocal DATE_FORMATS = new ThreadLocal() {
+    public static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
         @Override
-        protected synchronized Object initialValue() {
+        protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd");
         }
     };
 
-    public static final ThreadLocal MYSQL_DATE_FORMATS = new ThreadLocal() {
+    public static final ThreadLocal<SimpleDateFormat> MYSQL_DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
         @Override
-        protected synchronized Object initialValue() {
+        protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
     };
@@ -251,7 +250,7 @@ public class SearchParameters {
      * @see com.flickr4java.flickr.photos.Extras#ALL_EXTRAS
      * @see com.flickr4java.flickr.photos.Extras#MIN_EXTRAS
      */
-    public void setExtras(Set extras) {
+    public void setExtras(Set<String> extras) {
         this.extras = extras;
     }
 

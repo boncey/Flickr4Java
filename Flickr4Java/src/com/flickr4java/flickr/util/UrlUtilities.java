@@ -4,14 +4,10 @@
 
 package com.flickr4java.flickr.util;
 
-import com.flickr4java.flickr.Parameter;
-
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /** @author Anthony Eden */
@@ -92,26 +88,6 @@ public class UrlUtilities {
         }
         buffer.append(path);
         return new URL(buffer.toString());
-    }
-
-    private static String getMethod(List parameters) {
-        Iterator iter = parameters.iterator();
-        while (iter.hasNext()) {
-            Parameter parameter = (Parameter) iter.next();
-            if ("method".equals(parameter.getName())) {
-                return String.valueOf(parameter.getValue());
-            }
-        }
-        return null;
-    }
-
-    private static boolean ignoreMethod(String method) {
-        if (method != null) {
-            if ("flickr.auth.checkToken".equals(method)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

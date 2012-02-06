@@ -5,6 +5,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -12,17 +20,10 @@ import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Extras;
+import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.comments.Comment;
 import com.flickr4java.flickr.photos.comments.CommentsInterface;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 /**
  *
  * @author till (Till Krech) flickr:extranoise
@@ -59,10 +60,10 @@ public class CommentsInterfaceTest {
     public void testGetList() throws IOException, SAXException, FlickrException {
         String photoId = "245253195"; // http://www.flickr.com/photos/extranoise/245253195/
         CommentsInterface ci = flickr.getCommentsInterface();
-        List comments = ci.getList(photoId);
+        List<Comment> comments = ci.getList(photoId);
         assertNotNull(comments);
         assertTrue(comments.size() > 0);
-        Iterator commentsIterator = comments.iterator();
+        Iterator<Comment> commentsIterator = comments.iterator();
 
         while (commentsIterator.hasNext()) {
             Comment comment = (Comment)commentsIterator.next();
@@ -106,8 +107,8 @@ public class CommentsInterfaceTest {
     // helper function to find a comment by it's id for a specified photo
     private Comment findCommment(String photoId, String commentId) throws FlickrException, IOException, SAXException {
         CommentsInterface ci = flickr.getCommentsInterface();
-        List comments = ci.getList(photoId);
-        Iterator commentsIterator = comments.iterator();
+        List<Comment> comments = ci.getList(photoId);
+        Iterator<Comment> commentsIterator = comments.iterator();
 
         while (commentsIterator.hasNext()) {
             Comment comment = (Comment)commentsIterator.next();
@@ -121,7 +122,7 @@ public class CommentsInterfaceTest {
     @Test
     public void testGetRecentForContacts() throws IOException, SAXException, FlickrException {
         CommentsInterface ci = flickr.getCommentsInterface();
-        PhotoList photos = ci.getRecentForContacts(null, null, Extras.ALL_EXTRAS, 50, 1);
+        PhotoList<Photo> photos = ci.getRecentForContacts(null, null, Extras.ALL_EXTRAS, 50, 1);
         assertTrue(photos != null);
     }
 }

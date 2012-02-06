@@ -99,11 +99,9 @@ public class PoolsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Collection payload = response.getPayloadCollection();
-        Iterator iter = payload.iterator();
+        Collection<Element> payload = response.getPayloadCollection();
         PhotoContext photoContext = new PhotoContext();
-        while (iter.hasNext()) {
-            Element element = (Element) iter.next();
+        for(Element element : payload) {
             String elementName = element.getTagName();
             if (elementName.equals("prevphoto")) {
                 Photo photo = new Photo();
@@ -169,9 +167,9 @@ public class PoolsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getPhotos(String groupId, String[] tags, Set extras, int perPage, int page)
+    public PhotoList<Photo> getPhotos(String groupId, String[] tags, Set<String> extras, int perPage, int page)
       throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
@@ -190,7 +188,7 @@ public class PoolsInterface {
 
         if (extras != null) {
             StringBuffer sb = new StringBuffer();
-            Iterator it = extras.iterator();
+            Iterator<String> it = extras.iterator();
             for (int i = 0; it.hasNext(); i++) {
                 if (i > 0) {
                     sb.append(",");
@@ -231,7 +229,7 @@ public class PoolsInterface {
      * @param page The page offset (0 to ignore)
      * @return A Collection of Photo objects
      */
-    public PhotoList getPhotos(String groupId, String[] tags, int perPage, int page)
+    public PhotoList<Photo> getPhotos(String groupId, String[] tags, int perPage, int page)
       throws IOException, SAXException, FlickrException {
         return getPhotos(groupId, tags, Extras.MIN_EXTRAS, perPage, page);
     }

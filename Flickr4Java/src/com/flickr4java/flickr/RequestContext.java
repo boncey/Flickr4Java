@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.photos.Extras;
 
 /**
  * A thread local variable used to hold contextual information used in requests.  To get an instance of this class use
@@ -24,7 +23,7 @@ public class RequestContext {
 
     private Auth auth;
     private String sharedSecret;
-    private List<Extras> extras;
+    private List<String> extras;
 
     /**
      * Get the RequestContext instance for the current Thread.
@@ -70,15 +69,15 @@ public class RequestContext {
      *
      * @return List of extra return values requested
      */
-    public List<Extras> getExtras() {
+    public List<String> getExtras() {
         if (extras == null)
         {
-            extras = new ArrayList<Extras>();
+            extras = new ArrayList<String>();
         }
         return extras;
     }
 
-    public void setExtras(List<Extras> extras) {
+    public void setExtras(List<String> extras) {
         this.extras = extras;
     }
 

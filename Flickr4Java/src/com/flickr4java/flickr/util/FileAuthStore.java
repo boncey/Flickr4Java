@@ -26,11 +26,11 @@ import java.util.Map;
  */
 public class FileAuthStore implements AuthStore {
 
-	private Map auths;
+	private Map<String, Auth> auths;
 	private File authStoreDir;
 	
 	public FileAuthStore(File authStoreDir) throws IOException {
-		this.auths = new HashMap();
+		this.auths = new HashMap<String, Auth>();
 		this.authStoreDir = authStoreDir;
 		
 		if (!authStoreDir.exists()) authStoreDir.mkdir();
@@ -84,14 +84,14 @@ public class FileAuthStore implements AuthStore {
 	 * @see com.flickr4java.flickr.util.AuthStore#retrieve(java.lang.String)
 	 */
 	public Auth retrieve(String nsid) {
-		return (Auth) this.auths.get(nsid);
+		return this.auths.get(nsid);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.flickr4java.flickr.util.AuthStore#retrieveAll()
 	 */
 	public Auth[] retrieveAll() {
-		return (Auth[])this.auths.values().toArray(new Auth[this.auths.size()]);
+		return this.auths.values().toArray(new Auth[this.auths.size()]);
 	}
 
 	/* (non-Javadoc)

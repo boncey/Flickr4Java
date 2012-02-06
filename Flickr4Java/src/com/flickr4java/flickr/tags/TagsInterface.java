@@ -116,9 +116,9 @@ public class TagsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getClusterPhotos(String tag, String clusterId)
+    public PhotoList<Photo> getClusterPhotos(String tag, String clusterId)
       throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CLUSTER_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -153,7 +153,7 @@ public class TagsInterface {
      * @param count maximum is 200
      * @return The collection of HotlistTag objects
      */
-    public Collection getHotList(String period, int count) throws IOException, SAXException, FlickrException {
+    public Collection<HotlistTag> getHotList(String period, int count) throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_HOT_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -168,7 +168,7 @@ public class TagsInterface {
 
         Element tagsElement = response.getPayload();
 
-        List tags = new ArrayList();
+        List<HotlistTag> tags = new ArrayList<HotlistTag>();
         NodeList tagElements = tagsElement.getElementsByTagName("tag");
         for (int i = 0; i < tagElements.getLength(); i++) {
             Element tagElement = (Element) tagElements.item(i);
@@ -204,7 +204,7 @@ public class TagsInterface {
         Photo photo = new Photo();
         photo.setId(photoElement.getAttribute("id"));
 
-        List tags = new ArrayList();
+        List<Tag> tags = new ArrayList<Tag>();
         Element tagsElement = (Element) photoElement.getElementsByTagName("tags").item(0);
         NodeList tagElements = tagsElement.getElementsByTagName("tag");
         for (int i = 0; i < tagElements.getLength(); i++) {
@@ -232,7 +232,7 @@ public class TagsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getListUser(String userId) throws IOException, SAXException, FlickrException {
+    public Collection<Tag> getListUser(String userId) throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -246,7 +246,7 @@ public class TagsInterface {
 
         Element whoElement = response.getPayload();
 
-        List tags = new ArrayList();
+        List<Tag> tags = new ArrayList<Tag>();
         Element tagsElement = (Element) whoElement.getElementsByTagName("tags").item(0);
         NodeList tagElements = tagsElement.getElementsByTagName("tag");
         for (int i = 0; i < tagElements.getLength(); i++) {
@@ -269,7 +269,7 @@ public class TagsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getListUserPopular(String userId) throws IOException, SAXException, FlickrException {
+    public Collection<Tag> getListUserPopular(String userId) throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_POPULAR);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -283,7 +283,7 @@ public class TagsInterface {
 
         Element whoElement = response.getPayload();
 
-        List tags = new ArrayList();
+        List<Tag> tags = new ArrayList<Tag>();
         Element tagsElement = (Element) whoElement.getElementsByTagName("tags").item(0);
         NodeList tagElements = tagsElement.getElementsByTagName("tag");
         for (int i = 0; i < tagElements.getLength(); i++) {
@@ -307,7 +307,7 @@ public class TagsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getListUserRaw(String tagVal) throws IOException, SAXException, FlickrException {
+    public Collection<TagRaw> getListUserRaw(String tagVal) throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_RAW);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -323,7 +323,7 @@ public class TagsInterface {
 
         Element whoElement = response.getPayload();
 
-        List tags = new ArrayList();
+        List<TagRaw> tags = new ArrayList<TagRaw>();
         Element tagsElement = (Element) whoElement.getElementsByTagName("tags").item(0);
         NodeList tagElements = tagsElement.getElementsByTagName("tag");
         for (int i = 0; i < tagElements.getLength(); i++) {

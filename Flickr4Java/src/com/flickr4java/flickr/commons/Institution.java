@@ -9,13 +9,13 @@ import java.util.Date;
  * @version $Id: Institution.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
  */
 public class Institution {
-	private static final long serialVersionUID = 12L;
-    String id;
-    String name;
-    Date dateLaunch;
-    String siteUrl;
-    String licenseUrl;
-    String flickrUrl;
+
+    private String id;
+    private String name;
+    private Date dateLaunch;
+    private String siteUrl;
+    private String licenseUrl;
+    private String flickrUrl;
 
     public String getId() {
         return id;

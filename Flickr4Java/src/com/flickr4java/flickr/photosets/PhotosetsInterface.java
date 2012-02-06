@@ -217,11 +217,9 @@ public class PhotosetsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Collection payload = response.getPayloadCollection();
-        Iterator iter = payload.iterator();
+        Collection<Element> payload = response.getPayloadCollection();
         PhotoContext photoContext = new PhotoContext();
-        while (iter.hasNext()) {
-            Element element = (Element) iter.next();
+        for(Element element : payload) {
             String elementName = element.getTagName();
             if (elementName.equals("prevphoto")) {
                 Photo photo = new Photo();
@@ -319,7 +317,7 @@ public class PhotosetsInterface {
         }
         Photosets photosetsObject = new Photosets();
         Element photosetsElement = response.getPayload();
-        List photosets = new ArrayList();
+        List<Photoset> photosets = new ArrayList<Photoset>();
         NodeList photosetElements = photosetsElement.getElementsByTagName("photoset");
         for (int i = 0; i < photosetElements.getLength(); i++) {
             Element photosetElement = (Element) photosetElements.item(i);
@@ -374,10 +372,10 @@ public class PhotosetsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getPhotos(String photosetId, Set extras,
+    public PhotoList<Photo> getPhotos(String photosetId, Set<String> extras,
       int privacy_filter, int perPage, int page)
       throws IOException, SAXException, FlickrException {
-        PhotoList photos = new PhotoList();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -442,7 +440,7 @@ public class PhotosetsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList getPhotos(String photosetId, int perPage, int page) 
+    public PhotoList<Photo> getPhotos(String photosetId, int perPage, int page) 
       throws IOException, SAXException, FlickrException {
         return getPhotos(photosetId, Extras.MIN_EXTRAS, Flickr.PRIVACY_LEVEL_NO_FILTER, perPage, page);
     }

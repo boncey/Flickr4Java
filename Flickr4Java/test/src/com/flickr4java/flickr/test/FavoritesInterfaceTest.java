@@ -84,6 +84,12 @@ public class FavoritesInterfaceTest {
     public void testAddAndRemove() throws FlickrException, IOException, SAXException {
         String photoId = "2153378";
         FavoritesInterface iface = flickr.getFavoritesInterface();
+        
+        try {
+            iface.remove(photoId);
+        } catch (Exception e) {
+            // running the remove in case it's there before the add
+        }
         iface.add(photoId);
 
         Photo foundPhoto = null;

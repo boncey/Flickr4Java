@@ -4,10 +4,10 @@
 
 package com.flickr4java.flickr;
 
-import com.flickr4java.flickr.auth.Auth;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.flickr4java.flickr.auth.Auth;
 
 /**
  * A thread local variable used to hold contextual information used in requests.  To get an instance of this class use
@@ -23,7 +23,7 @@ public class RequestContext {
 
     private Auth auth;
     private String sharedSecret;
-    private List extras;
+    private List<String> extras;
 
     /**
      * Get the RequestContext instance for the current Thread.
@@ -69,22 +69,22 @@ public class RequestContext {
      *
      * @return List of extra return values requested
      */
-    public List getExtras() {
+    public List<String> getExtras() {
         if (extras == null)
         {
-            extras = new ArrayList();
+            extras = new ArrayList<String>();
         }
         return extras;
     }
 
-    public void setExtras(List extras) {
+    public void setExtras(List<String> extras) {
         this.extras = extras;
     }
 
-    private static class RequestContextThreadLocal extends ThreadLocal {
+    private static class RequestContextThreadLocal extends ThreadLocal<RequestContext> {
 
         @Override
-        protected Object initialValue() {
+        protected RequestContext initialValue() {
             return new RequestContext();
         }
 

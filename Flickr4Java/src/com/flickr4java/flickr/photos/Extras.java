@@ -13,7 +13,7 @@ import java.util.Set;
  * @version $Id: Extras.java,v 1.12 2009/07/23 20:41:03 x-mago Exp $
  */
 public class Extras {
-    private static final long serialVersionUID = 12L;
+
     public static final String KEY_EXTRAS = "extras";
 
     public static final String LICENSE = "license";
@@ -71,7 +71,7 @@ public class Extras {
      * @see com.flickr4java.flickr.interestingness.InterestingnessInterface#getList(java.util.Date, Set, int, int)
      * @see com.flickr4java.flickr.favorites.FavoritesInterface#getList(String, int, int, Set)
      */
-    public static final Set MIN_EXTRAS = new HashSet();
+    public static final Set<String> MIN_EXTRAS = new HashSet<String>();
 
     static {
         ALL_EXTRAS.add(DATE_TAKEN);

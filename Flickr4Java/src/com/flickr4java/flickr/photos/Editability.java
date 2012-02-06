@@ -13,7 +13,6 @@ import java.util.regex.Matcher;
  * @author Anthony Eden
  */
 public class Editability {
-	private static final long serialVersionUID = 12L;
 
     private boolean comment;
     private boolean addmeta;

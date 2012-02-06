@@ -6,24 +6,25 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.blogs.Blog;
 import com.flickr4java.flickr.blogs.BlogsInterface;
 import com.flickr4java.flickr.blogs.Service;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * @author Anthony Eden
@@ -57,7 +58,7 @@ public class BlogsInterfaceTest {
     @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         BlogsInterface blogsInterface = flickr.getBlogsInterface();
-        Collection blogs = blogsInterface.getList();
+        Collection<Blog> blogs = blogsInterface.getList();
         assertNotNull(blogs);
         assertEquals(0, blogs.size());
     }
@@ -65,8 +66,8 @@ public class BlogsInterfaceTest {
     @Test
     public void testGetServices() throws FlickrException, IOException, SAXException {
         BlogsInterface blogsInterface = flickr.getBlogsInterface();
-        Collection services = blogsInterface.getServices();
-        Iterator it = services.iterator();
+        Collection<Service> services = blogsInterface.getServices();
+        Iterator<Service> it = services.iterator();
         boolean bloggerFound = false;
         while (it.hasNext()) {
             Service ser = (Service) it.next();

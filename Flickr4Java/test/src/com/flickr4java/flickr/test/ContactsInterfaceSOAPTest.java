@@ -5,27 +5,24 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+import java.util.Collection;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.contacts.Contact;
 import com.flickr4java.flickr.contacts.ContactsInterface;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.model.SignatureType;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.Collection;
 
 /**
  * @author Matt Ray
@@ -40,9 +37,7 @@ public class ContactsInterfaceSOAPTest {
         testProperties = new TestProperties();
 
         Flickr.debugStream = true;
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey())
-                .apiSecret(testProperties.getSecret()).signatureType(SignatureType.QueryString).build();
-        SOAP soap = new SOAP(service);
+        SOAP soap = new SOAP();
         flickr = new Flickr(testProperties.getApiKey(),
                 testProperties.getSecret(), soap);
 
@@ -60,7 +55,7 @@ public class ContactsInterfaceSOAPTest {
     @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
         ContactsInterface iface = flickr.getContactsInterface();
-        Collection contacts = iface.getList();
+        Collection<Contact> contacts = iface.getList();
         assertNotNull(contacts);
         assertEquals(3, contacts.size());
     }
@@ -69,7 +64,7 @@ public class ContactsInterfaceSOAPTest {
     @Test
     public void testGetPublicList() throws FlickrException, IOException, SAXException {
         ContactsInterface iface = flickr.getContactsInterface();
-        Collection contacts = iface.getPublicList(testProperties.getNsid());
+        Collection<Contact> contacts = iface.getPublicList(testProperties.getNsid());
         assertNotNull(contacts);
         assertEquals(1, contacts.size());
     }

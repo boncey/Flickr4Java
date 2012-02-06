@@ -53,9 +53,9 @@ public class ActivityInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public ItemList userComments(int perPage, int page)
+    public ItemList<Item> userComments(int perPage, int page)
             throws IOException, SAXException, FlickrException {
-        ItemList items = new ItemList();
+        ItemList<Item> items = new ItemList<Item>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_COMMENTS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -100,9 +100,9 @@ public class ActivityInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public ItemList userPhotos(int perPage, int page, String timeframe)
+    public ItemList<Item> userPhotos(int perPage, int page, String timeframe)
             throws IOException, SAXException, FlickrException {
-        ItemList items = new ItemList();
+        ItemList<Item> items = new ItemList<Item>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -169,7 +169,7 @@ public class ActivityInterface {
 
         try {
             Element activityElement = (Element) itemElement.getElementsByTagName("activity").item(0);
-            List events = new ArrayList();
+            List<Event> events = new ArrayList<Event>();
             NodeList eventNodes = activityElement.getElementsByTagName("event");
             for (int i = 0; i < eventNodes.getLength(); i++) {
                 Element eventElement = (Element) eventNodes.item(i);

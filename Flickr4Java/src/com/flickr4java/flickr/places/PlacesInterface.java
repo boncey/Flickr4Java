@@ -141,10 +141,10 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList find(String query)
+    public PlacesList<Place> find(String query)
             throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -223,13 +223,9 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList findByLatLon(
-            double latitude,
-            double longitude,
-            int accuracy
-            ) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> findByLatLon(double latitude, double longitude, int accuracy) throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND_BY_LATLON);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -269,10 +265,10 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList getChildrenWithPhotosPublic(String placeId, String woeId)
+    public PlacesList<Place> getChildrenWithPhotosPublic(String placeId, String woeId)
             throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_CHILDREN_WITH_PHOTOS_PUBLIC);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -315,7 +311,6 @@ public class PlacesInterface {
     public Location getInfo(String placeId, String woeId)
             throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        Location loc = new Location();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -348,7 +343,6 @@ public class PlacesInterface {
     public Location getInfoByUrl(String url)
             throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        Location loc = new Location();
         parameters.put("method", METHOD_GET_INFO_BY_URL);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -372,10 +366,9 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public ArrayList getPlaceTypes()
+    public ArrayList<PlaceType> getPlaceTypes()
             throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
         parameters.put("method", METHOD_GET_PLACETYPES);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -383,7 +376,7 @@ public class PlacesInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        ArrayList placeTypeList = new ArrayList();
+        ArrayList<PlaceType> placeTypeList = new ArrayList<PlaceType>();
         Element placeTypeElement = response.getPayload();
         NodeList placeTypeNodes = placeTypeElement.getElementsByTagName("place_type");
         for (int i = 0; i < placeTypeNodes.getLength(); i++) {
@@ -412,10 +405,9 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public ArrayList getShapeHistory(String placeId, String woeId) throws FlickrException, IOException, SAXException {
-        ArrayList shapeList = new ArrayList();
+    public ArrayList<Element> getShapeHistory(String placeId, String woeId) throws FlickrException, IOException, SAXException {
+        ArrayList<Element> shapeList = new ArrayList<Element>();
         Map<String, Object> parameters = new HashMap<String, Object>();
-        Location loc = new Location();
         parameters.put("method", METHOD_GET_SHAPEHISTORY);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -430,7 +422,7 @@ public class PlacesInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Element shapeElement = response.getPayload();
+        //Element shapeElement = response.getPayload();
         return shapeList;
     }
 
@@ -448,14 +440,14 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList getTopPlacesList(
+    public PlacesList<Place> getTopPlacesList(
             int placeType,
             Date date,
             String placeId,
             String woeId
             ) throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_TOP_PLACES_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -509,12 +501,12 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList placesForBoundingBox(
+    public PlacesList<Place> placesForBoundingBox(
             int placeType,
             String bbox
             ) throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_BOUNDINGBOX);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -551,15 +543,10 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList placesForContacts(
-            int placeType,
-            String placeId,
-            String woeId,
-            String threshold,
-            String contacts
-            ) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> placesForContacts(int placeType, String placeId, String woeId, String threshold, String contacts) throws FlickrException,
+            IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_CONTACTS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -618,20 +605,11 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList placesForTags(
-            int placeTypeId,
-            String woeId,
-            String placeId,
-            String threshold,
-            String[] tags,
-            String tagMode,
-            String machineTags,
-            String machineTagMode,
-            Date minUploadDate, Date maxUploadDate,
-            Date minTakenDate, Date maxTakenDate
-            ) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> placesForTags(int placeTypeId, String woeId, String placeId, String threshold, String[] tags, String tagMode, String machineTags,
+            String machineTagMode, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate) throws FlickrException, IOException,
+            SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_TAGS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -703,16 +681,10 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public PlacesList placesForUser(
-            int placeType,
-            String woeId,
-            String placeId,
-            String threshold,
-            Date minUploadDate, Date maxUploadDate,
-            Date minTakenDate, Date maxTakenDate
-            ) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> placesForUser(int placeType, String woeId, String placeId, String threshold, Date minUploadDate, Date maxUploadDate,
+            Date minTakenDate, Date maxTakenDate) throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        PlacesList placesList = new PlacesList();
+        PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_USER);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -835,14 +807,10 @@ public class PlacesInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public ArrayList tagsForPlace(
-            String woeId,
-            String placeId,
-            Date minUploadDate, Date maxUploadDate,
-            Date minTakenDate, Date maxTakenDate
-            ) throws FlickrException, IOException, SAXException {
+    public ArrayList<Tag> tagsForPlace(String woeId, String placeId, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate)
+            throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        ArrayList tagsList = new ArrayList();
+        ArrayList<Tag> tagsList = new ArrayList<Tag>();
         parameters.put("method", METHOD_TAGS_FOR_PLACE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -936,7 +904,7 @@ public class PlacesInterface {
         place.setLatitude(placeElement.getAttribute("latitude"));
         place.setLongitude(placeElement.getAttribute("longitude"));
         place.setPhotoCount(placeElement.getAttribute("photo_count"));
-        String typeString = placeElement.getAttribute("place_type");
+        //String typeString = placeElement.getAttribute("place_type");
         // Now the place-Id is directly available
         place.setPlaceType(placeElement.getAttribute("place_type_id"));
         //place.setPlaceType(stringPlaceTypeToInt(typeString));

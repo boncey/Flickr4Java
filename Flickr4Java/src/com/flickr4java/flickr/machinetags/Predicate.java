@@ -6,7 +6,6 @@ package com.flickr4java.flickr.machinetags;
  * @version $Id: Predicate.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
  */
 public class Predicate {
-    private static final long serialVersionUID = 12L;
 
     int usage;
     int namespaces;

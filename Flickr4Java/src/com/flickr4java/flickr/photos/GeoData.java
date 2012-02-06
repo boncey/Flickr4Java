@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
  * @version $Id: GeoData.java,v 1.4 2009/07/23 20:41:03 x-mago Exp $
  */
 public class GeoData {
-    private static final long serialVersionUID = 12L;
+
     private float longitude;
     private float latitude;
     private int accuracy;

@@ -8,7 +8,6 @@ package com.flickr4java.flickr.groups.members;
  */
 
 public class Member {
-	private static final long serialVersionUID = 12L;
 
 	private String id;
     private String userName;

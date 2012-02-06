@@ -8,14 +8,13 @@ import java.util.Date;
  * @version $Id: Comment.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
  */
 public class Comment {
-    private static final long serialVersionUID = 12L;
 
-    String id;
-    String author;
-    String authorName;
-    Date dateCreate;
-    String permaLink;
-    String text;
+    private String id;
+    private String author;
+    private String authorName;
+    private Date dateCreate;
+    private String permaLink;
+    private String text;
     
     /**
      * @return the nsid of the comment author

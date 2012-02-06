@@ -3,13 +3,13 @@
  */
 package com.flickr4java.flickr;
 
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.Collection;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import java.util.Collection;
-import java.util.Iterator;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Flickr Response object.
@@ -19,7 +19,7 @@ import java.util.Iterator;
 public class RESTResponse implements Response {
 
     private String stat;
-    private Collection payload;
+    private List<Element> payload;
 
     private String errorCode;
     private String errorMessage;
@@ -30,7 +30,7 @@ public class RESTResponse implements Response {
         stat = rspElement.getAttribute("stat");
         if ("ok".equals(stat)) {
             // TODO: Verify that the payload is always a single XML node
-            payload = XMLUtilities.getChildElements(rspElement);
+            payload = (List<Element>) XMLUtilities.getChildElements(rspElement);
         } else if ("fail".equals(stat)) {
             Element errElement = (Element) rspElement.getElementsByTagName("err").item(0);
             errorCode = errElement.getAttribute("code");
@@ -43,15 +43,13 @@ public class RESTResponse implements Response {
     }
 
     public Element getPayload() {
-        Iterator iter = payload.iterator();
-        if (iter.hasNext()) {
-            return (Element) iter.next();
-        } else {
+        if(payload.isEmpty()) {
             throw new RuntimeException("REST response payload has no elements");
         }
+        return payload.get(0);
     }
 
-    public Collection getPayloadCollection() {
+    public Collection<Element> getPayloadCollection() {
         return payload;
     }
 

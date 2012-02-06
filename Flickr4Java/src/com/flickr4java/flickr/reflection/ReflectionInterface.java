@@ -93,7 +93,7 @@ public class ReflectionInterface {
         method.setResponse(XMLUtilities.getChildValue(methodElement, "response"));
         method.setExplanation(XMLUtilities.getChildValue(methodElement, "explanation"));
 
-        List arguments = new ArrayList();
+        List<Argument> arguments = new ArrayList<Argument>();
         Element argumentsElement = XMLUtilities.getChild(methodElement, "arguments");
         // tolerant fix for incorrect nesting of the <arguments> element
         // as observed in current flickr responses of this method
@@ -160,7 +160,7 @@ public class ReflectionInterface {
             	errorsElement = child;
             }
         }
-        List errors = new ArrayList();
+        List<Error> errors = new ArrayList<Error>();
         NodeList errorElements = errorsElement.getElementsByTagName("error");
         for (int i = 0; i < errorElements.getLength(); i++) {
             Error error = new Error();
@@ -183,7 +183,7 @@ public class ReflectionInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection getMethods() throws IOException, SAXException, FlickrException {
+    public Collection<String> getMethods() throws IOException, SAXException, FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_METHODS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -197,7 +197,7 @@ public class ReflectionInterface {
 
         Element methodsElement = response.getPayload();
 
-        List methods = new ArrayList();
+        List<String> methods = new ArrayList<String>();
         NodeList methodElements = methodsElement.getElementsByTagName("method");
         for (int i = 0; i < methodElements.getLength(); i++) {
             Element methodElement = (Element) methodElements.item(i);

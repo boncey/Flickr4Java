@@ -13,7 +13,6 @@ import java.util.regex.Matcher;
  * @author Anthony Eden
  */
 public class Tag {
-	private static final long serialVersionUID = 12L;
 
     private String id;
     private String author;

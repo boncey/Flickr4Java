@@ -50,13 +50,13 @@ public class UploadInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public List checkTickets(Set tickets) throws IOException, SAXException, FlickrException {
+    public List<Ticket> checkTickets(Set<String> tickets) throws IOException, SAXException, FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CHECK_TICKETS);
         parameters.put(Flickr.API_KEY, apiKey);
 
         StringBuffer sb = new StringBuffer();
-        Iterator it = tickets.iterator();
+        Iterator<String> it = tickets.iterator();
         while (it.hasNext()) {
             if (sb.length() > 0) {
                 sb.append(",");
@@ -83,7 +83,7 @@ public class UploadInterface {
         //  <ticket id="131" invalid="1" />
         // </uploader>
 
-        List list = new ArrayList();
+        List<Ticket> list = new ArrayList<Ticket>();
         Element uploaderElement = response.getPayload();
         NodeList ticketNodes = uploaderElement.getElementsByTagName("ticket");
         int n = ticketNodes.getLength();

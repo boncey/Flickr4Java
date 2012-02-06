@@ -6,6 +6,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -14,16 +23,6 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.commons.CommonsInterface;
 import com.flickr4java.flickr.commons.Institution;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * @author mago
@@ -62,12 +61,10 @@ public class CommonsInterfaceTest {
     @Test
     public void testGetInstitutions() throws FlickrException, IOException, SAXException {
         CommonsInterface iface = flickr.getCommonsInterface();
-        ArrayList list = iface.getInstitutions();
+        List<Institution> list = iface.getInstitutions();
         assertNotNull(list);
-        Iterator it = list.iterator();
         boolean museumFound = false;
-        while (it.hasNext()) {
-            Institution inst = (Institution) it.next();
+        for (Institution inst : list) {
             if (inst.getName().equals("Brooklyn Museum")) {
                 assertEquals(
                         1211958000000L,

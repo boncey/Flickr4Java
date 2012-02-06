@@ -6,7 +6,6 @@ package com.flickr4java.flickr.tags;
  * @version $Id: HotlistTag.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
  */
 public class HotlistTag {
-    private static final long serialVersionUID = 12L;
 
     private String value;
     private int score = 0;

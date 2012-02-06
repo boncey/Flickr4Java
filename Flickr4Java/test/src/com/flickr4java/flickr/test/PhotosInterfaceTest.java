@@ -212,7 +212,7 @@ public class PhotosInterfaceTest {
     @Test
     public void testGetRecent() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
-        Set extras = new HashSet();
+        Set<String> extras = new HashSet<String>();
         Collection photos = iface.getRecent(extras, 0, 0);
         assertNotNull(photos);
     }
@@ -424,7 +424,7 @@ public class PhotosInterfaceTest {
      */
     @Test
     public void testSetSizes() {
-        List sizes = new ArrayList();
+        List<Size> sizes = new ArrayList<Size>();
         Size size = new Size();
         size.setLabel("Square");
         size.setWidth("75");

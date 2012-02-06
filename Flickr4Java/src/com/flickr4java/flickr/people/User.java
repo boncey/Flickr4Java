@@ -24,8 +24,8 @@ import java.util.regex.Matcher;
 public class User implements Serializable, BuddyIconable {
     private static final long serialVersionUID = 12L;
 
-    private static final ThreadLocal DATE_FORMATS = new ThreadLocal() {
-        protected synchronized Object initialValue() {
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
+        protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
     };

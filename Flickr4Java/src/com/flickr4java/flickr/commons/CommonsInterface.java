@@ -72,7 +72,6 @@ public class CommonsInterface {
         inst.setId(mElement.getAttribute("nsid"));
         inst.setDateLaunch(mElement.getAttribute("date_launch"));
         inst.setName(XMLUtilities.getChildValue(mElement, "name"));
-        Element urlsElement = (Element) mElement.getElementsByTagName("urlss").item(0);
         NodeList urlNodes = mElement.getElementsByTagName("url");
         for (int i = 0; i < urlNodes.getLength(); i++) {
             Element urlElement = (Element) urlNodes.item(i);

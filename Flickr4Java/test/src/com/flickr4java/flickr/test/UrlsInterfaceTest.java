@@ -83,6 +83,7 @@ public class UrlsInterfaceTest {
     public void testLookupUser() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String username = testProperties.getUsername();
+        System.err.println(username);
         String usernameOnFlickr = iface.lookupUser(String.format("http://www.flickr.com/people/%s/", username));
         assertEquals(username, usernameOnFlickr);
     }

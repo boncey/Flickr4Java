@@ -67,7 +67,7 @@ public class Permission implements Serializable {
      */
     public static final Permission DELETE = new Permission(DELETE_TYPE);
 
-    private static final Map stringToPermissionMap = new HashMap();
+    private static final Map<String, Permission> stringToPermissionMap = new HashMap<String, Permission>();
     static {
         stringToPermissionMap.put("none", NONE);
         stringToPermissionMap.put("read", READ);

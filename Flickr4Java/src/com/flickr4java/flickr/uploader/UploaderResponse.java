@@ -92,7 +92,7 @@ public class UploaderResponse implements Response {
     /**
      * @see com.flickr4java.flickr.Response#getPayloadCollection()
      */
-    public Collection getPayloadCollection() {
+    public Collection<Element> getPayloadCollection() {
         return null;
     }
 

@@ -1,15 +1,15 @@
 package com.flickr4java.flickr.photos;
 
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.tags.Tag;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.tags.Tag;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Utilitiy-methods to transfer requested XML to Photo-objects.
@@ -18,7 +18,6 @@ import java.util.List;
  * @version $Id: PhotoUtils.java,v 1.20 2009/07/23 21:49:35 x-mago Exp $
  */
 public final class PhotoUtils {
-	private static final long serialVersionUID = 12L;
 
     private PhotoUtils() {
     }
@@ -87,7 +86,7 @@ public final class PhotoUtils {
         // If the attributes active that contain the image-urls,
         // Size-objects created from them, which are used to override
         // the Url-generation.
-        List sizes = new ArrayList();
+        List<Size> sizes = new ArrayList<Size>();
         String urlTmp = photoElement.getAttribute("url_t");
         if (urlTmp != null && urlTmp.startsWith("http")) {
             Size sizeT = new Size();
@@ -250,7 +249,7 @@ public final class PhotoUtils {
 
         try {
             Element notesElement = (Element) photoElement.getElementsByTagName("notes").item(0);
-            List notes = new ArrayList();
+            List<Note> notes = new ArrayList<Note>();
             NodeList noteNodes = notesElement.getElementsByTagName("note");
             for (int i = 0; i < noteNodes.getLength(); i++) {
                 Element noteElement = (Element) noteNodes.item(i);
@@ -265,9 +264,9 @@ public final class PhotoUtils {
             }
             photo.setNotes(notes);
         } catch (IndexOutOfBoundsException e) {
-            photo.setNotes(new ArrayList());
+            photo.setNotes(new ArrayList<Note>());
         } catch (NullPointerException e) {
-            photo.setNotes(new ArrayList());
+            photo.setNotes(new ArrayList<Note>());
         }
 
         // Tags coming as space-seperated attribute calling
@@ -275,7 +274,7 @@ public final class PhotoUtils {
         // Through PhotoInterface#getInfo() the Photo has a list of
         // Elements.
         try {
-            List tags = new ArrayList();
+            List<Tag> tags = new ArrayList<Tag>();
             String tagsAttr = photoElement.getAttribute("tags");
             if (!tagsAttr.equals("")) {
                 String[] values = tagsAttr.split("\\s+");
@@ -302,12 +301,12 @@ public final class PhotoUtils {
             }
             photo.setTags(tags);
         } catch (NullPointerException e) {
-            photo.setTags(new ArrayList());
+            photo.setTags(new ArrayList<Tag>());
         }
 
         try {
             Element urlsElement = (Element) photoElement.getElementsByTagName("urls").item(0);
-            List urls = new ArrayList();
+            List<String> urls = new ArrayList<String>();
             NodeList urlNodes = urlsElement.getElementsByTagName("url");
             for (int i = 0; i < urlNodes.getLength(); i++) {
                 Element urlElement = (Element) urlNodes.item(i);
@@ -321,7 +320,7 @@ public final class PhotoUtils {
             photo.setUrls(urls);
         } catch (IndexOutOfBoundsException e) {
         } catch (NullPointerException e) {
-            photo.setUrls(new ArrayList());
+            photo.setUrls(new ArrayList<String>());
         }
 
         String longitude = null;
@@ -359,8 +358,8 @@ public final class PhotoUtils {
      * @param photosElement
      * @return PhotoList
      */
-    public static final PhotoList createPhotoList(Element photosElement) {
-        PhotoList photos = new PhotoList();
+    public static final PhotoList<Photo> createPhotoList(Element photosElement) {
+        PhotoList<Photo> photos = new PhotoList<Photo>();
         photos.setPage(photosElement.getAttribute("page"));
         photos.setPages(photosElement.getAttribute("pages"));
         photos.setPerPage(photosElement.getAttribute("perpage"));

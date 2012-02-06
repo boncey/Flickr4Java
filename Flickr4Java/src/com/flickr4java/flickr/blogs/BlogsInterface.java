@@ -126,8 +126,8 @@ public class BlogsInterface {
      * @throws IOException
      * @throws SAXException
      */
-    public Collection getList() throws IOException, SAXException, FlickrException {
-        List blogs = new ArrayList();
+    public Collection<Blog> getList() throws IOException, SAXException, FlickrException {
+        List<Blog> blogs = new ArrayList<Blog>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);

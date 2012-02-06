@@ -5,21 +5,21 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.SOAP;
-import com.flickr4java.flickr.blogs.BlogsInterface;
+import java.io.IOException;
+import java.util.Collection;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.Collection;
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.SOAP;
+import com.flickr4java.flickr.blogs.Blog;
+import com.flickr4java.flickr.blogs.BlogsInterface;
 
 /**
  * @author Matt Ray
@@ -44,9 +44,8 @@ public class BlogsInterfaceSOAPTest {
     @Ignore
     @Test
     public void testGetList() throws FlickrException, IOException, SAXException {
-        RequestContext requestContext = RequestContext.getRequestContext();
         BlogsInterface blogsInterface = flickr.getBlogsInterface();
-        Collection blogs = blogsInterface.getList();
+        Collection<Blog> blogs = blogsInterface.getList();
         assertNotNull(blogs);
         assertEquals(1, blogs.size());
     }

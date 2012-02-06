@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.photos.Extras;
 
 /**
  * A thread local variable used to hold contextual information used in requests.  To get an instance of this class use

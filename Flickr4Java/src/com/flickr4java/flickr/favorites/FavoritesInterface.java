@@ -8,15 +8,18 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.photos.PhotoContext;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -29,11 +32,14 @@ import java.util.Set;
  */
 public class FavoritesInterface {
 
+    private static final Logger logger = Logger.getLogger(FavoritesInterface.class);
+    
     public static final String METHOD_ADD = "flickr.favorites.add";
     public static final String METHOD_GET_LIST = "flickr.favorites.getList";
     public static final String METHOD_GET_PUBLIC_LIST = "flickr.favorites.getPublicList";
     public static final String METHOD_REMOVE = "flickr.favorites.remove";
-
+    public static final String METHOD_GET_CONTEXT = "flickr.favorites.getContext";
+    
     private final String apiKey;
     private final String sharedSecret;
     private final Transport transportAPI;
@@ -186,4 +192,46 @@ public class FavoritesInterface {
         }
     }
 
+
+    /**
+     * Returns next and previous favorites for a photo in a user's favorites
+     *
+     * @param photoId The photo id
+     * @param photoId The user's ID
+     * @see http://www.flickr.com/services/api/flickr.favorites.getContext.html
+     */
+    public PhotoContext getContext(String photoId, String userId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_GET_CONTEXT);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("photo_id", photoId);
+        parameters.put("user_id", userId);
+
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+        
+        Collection<Element> payload = response.getPayloadCollection();
+        PhotoContext photoContext = new PhotoContext();
+        for (Element element : payload) {
+            String elementName = element.getTagName();
+            if (elementName.equals("prevphoto")) {
+                Photo photo = new Photo();
+                photo.setId(element.getAttribute("id"));
+                photoContext.setPreviousPhoto(photo);
+            } else if (elementName.equals("nextphoto")) {
+                Photo photo = new Photo();
+                photo.setId(element.getAttribute("id"));
+                photoContext.setNextPhoto(photo);
+            } else {
+                if (logger.isInfoEnabled()) {
+                    logger.info("unsupported element name: " + elementName);
+                }
+            }
+        }
+        return photoContext;
+    }
+        
 }

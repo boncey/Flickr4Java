@@ -15,6 +15,7 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.photos.PhotoContext;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -105,5 +106,15 @@ public class FavoritesInterfaceTest {
         assertEquals(photoId, foundPhoto.getId());
         iface.remove(photoId);
     }
+    
+    @Test
+    public void testGetContext() throws FlickrException, IOException, SAXException {
+        FavoritesInterface iface = flickr.getFavoritesInterface();
+        PhotoContext context = iface.getContext("5844052737", "77348956@N00");
+        assertNotNull(context);
+        assertEquals("5602817067", context.getPreviousPhoto().getId());
+        assertEquals("5844052415", context.getNextPhoto().getId());
+    }
+    
 
 }

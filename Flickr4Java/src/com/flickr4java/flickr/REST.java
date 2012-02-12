@@ -279,6 +279,9 @@ public class REST extends Transport {
                 if (Flickr.debugStream) {
                     System.out.println(strXml);
                 }
+                if(strXml.startsWith("oauth_problem=")) {
+                    throw new FlickrRuntimeException(strXml);
+                }
                 Document document = builder.parse(new InputSource(new StringReader(strXml)));
                 response = (com.flickr4java.flickr.Response) responseClass.newInstance();
                 response.parse(document);

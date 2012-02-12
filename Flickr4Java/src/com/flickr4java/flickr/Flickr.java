@@ -3,6 +3,8 @@
  */
 package com.flickr4java.flickr;
 
+import java.util.Set;
+
 import com.flickr4java.flickr.activity.ActivityInterface;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
@@ -10,6 +12,7 @@ import com.flickr4java.flickr.blogs.BlogsInterface;
 import com.flickr4java.flickr.commons.CommonsInterface;
 import com.flickr4java.flickr.contacts.ContactsInterface;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
+import com.flickr4java.flickr.galleries.GalleriesInterface;
 import com.flickr4java.flickr.groups.GroupsInterface;
 import com.flickr4java.flickr.groups.members.MembersInterface;
 import com.flickr4java.flickr.groups.pools.PoolsInterface;
@@ -33,8 +36,6 @@ import com.flickr4java.flickr.tags.TagsInterface;
 import com.flickr4java.flickr.test.TestInterface;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.urls.UrlsInterface;
-
-import java.util.Set;
 
 /**
  * Main entry point for the Flickr4Java API.
@@ -112,7 +113,8 @@ public class Flickr {
     private UploadInterface uploadInterface;
     private Uploader uploader;
     private UrlsInterface urlsInterface;
-
+    private GalleriesInterface galleriesInterface;
+    
     /**
      * @see com.flickr4java.flickr.photos.PhotosInterface#setContentType(String, String)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getContentType()
@@ -530,6 +532,16 @@ public class Flickr {
             urlsInterface = new UrlsInterface(apiKey, sharedSecret, transport);
         }
         return urlsInterface;
+    }
+
+    /**
+     * @return
+     */
+    public GalleriesInterface getGalleriesInterface() {
+        if (galleriesInterface == null) {
+            galleriesInterface = new GalleriesInterface(apiKey, sharedSecret, transport);
+        }
+        return galleriesInterface;
     }
 
 }

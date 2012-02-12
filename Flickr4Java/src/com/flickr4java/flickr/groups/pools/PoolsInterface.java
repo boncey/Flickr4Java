@@ -87,7 +87,7 @@ public class PoolsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoContext getContext(String photoId, String groupId) throws IOException, SAXException, FlickrException {
+    public PhotoContext getContext(String photoId, String groupId) throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTEXT);
         parameters.put(Flickr.API_KEY, apiKey);

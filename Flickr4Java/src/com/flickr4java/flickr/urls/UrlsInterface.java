@@ -29,7 +29,8 @@ public class UrlsInterface {
     public static final String METHOD_GET_USER_PROFILE = "flickr.urls.getUserProfile";
     public static final String METHOD_LOOKUP_GROUP = "flickr.urls.lookupGroup";
     public static final String METHOD_LOOKUP_USER = "flickr.urls.lookupUser";
-
+    public static final String METHOD_LOOKUP_GALLERY = "flickr.urls.lookupGallery";
+    
     private String apiKey;
     private String sharedSecret;
     private Transport transport;
@@ -165,7 +166,7 @@ public class UrlsInterface {
      */
     public String lookupUser(String url)
       throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOOKUP_USER);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -178,6 +179,33 @@ public class UrlsInterface {
 
         Element payload = response.getPayload();
         Element groupnameElement = (Element) payload.getElementsByTagName("username").item(0);
+        return ((Text) groupnameElement.getFirstChild()).getData();
+    }
+
+    /**
+     * Lookup the username for the specified User URL.
+     *
+     * @param url The user profile URL
+     * @return The username
+     * @throws IOException
+     * @throws SAXException
+     * @throws FlickrException
+     */
+    public String lookupGallery(String url)
+      throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_LOOKUP_GALLERY);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("url", url);
+
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+
+        Element payload = response.getPayload();
+        Element groupnameElement = (Element) payload.getElementsByTagName("title").item(0);
         return ((Text) groupnameElement.getFirstChild()).getData();
     }
 

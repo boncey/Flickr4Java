@@ -7,6 +7,7 @@ import com.flickr4java.flickr.activity.ActivityInterface;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.blogs.BlogsInterface;
+import com.flickr4java.flickr.collections.CollectionsInterface;
 import com.flickr4java.flickr.commons.CommonsInterface;
 import com.flickr4java.flickr.contacts.ContactsInterface;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
@@ -103,6 +104,7 @@ public class Flickr {
     private PhotosInterface photosInterface;
     private PhotosetsCommentsInterface photosetsCommentsInterface;
     private PhotosetsInterface photosetsInterface;
+    private CollectionsInterface collectionsInterface;
     private PlacesInterface placesInterface;
     private PrefsInterface prefsInterface;
     private ReflectionInterface reflectionInterface;
@@ -462,6 +464,13 @@ public class Flickr {
             photosetsInterface = new PhotosetsInterface(apiKey, sharedSecret, transport);
         }
         return photosetsInterface;
+    }
+
+    public CollectionsInterface getCollectionsInterface() {
+        if (collectionsInterface == null) {
+            collectionsInterface = new CollectionsInterface(apiKey, sharedSecret, transport);
+        }
+        return collectionsInterface;
     }
 
     public PlacesInterface getPlacesInterface() {

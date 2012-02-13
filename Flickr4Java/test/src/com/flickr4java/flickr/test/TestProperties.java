@@ -35,6 +35,7 @@ public class TestProperties {
     private String testGroupId;
     private String photoId;
     private String photoSetId;
+    private String collectionId;
     private String imageFile;
     private String geoWritePhotoId;
 
@@ -63,6 +64,7 @@ public class TestProperties {
         testGroupId = properties.getProperty("testgroupid");
         photoId = properties.getProperty("photoid");
         photoSetId = properties.getProperty("photosetid");
+        collectionId = properties.getProperty("collectionid");
         imageFile = properties.getProperty("imagefile");
         geoWritePhotoId = properties.getProperty("geo.write.photoid");
     }
@@ -151,6 +153,11 @@ public class TestProperties {
 
     public String getGeoWritePhotoId() {
         return geoWritePhotoId;
+    }
+
+
+    public String getCollectionId() {
+        return collectionId;
     }
 
 

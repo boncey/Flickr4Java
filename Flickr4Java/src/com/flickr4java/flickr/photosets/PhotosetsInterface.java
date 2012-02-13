@@ -3,6 +3,16 @@
  */
 package com.flickr4java.flickr.photosets;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -15,19 +25,6 @@ import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Interface for working with photosets.
@@ -48,6 +45,9 @@ public class PhotosetsInterface {
     public static final String METHOD_GET_PHOTOS = "flickr.photosets.getPhotos";
     public static final String METHOD_ORDER_SETS = "flickr.photosets.orderSets";
     public static final String METHOD_REMOVE_PHOTO = "flickr.photosets.removePhoto";
+    public static final String METHOD_REMOVE_PHOTOS = "flickr.photosets.removePhotos";
+    public static final String METHOD_REORDER_PHOTOS = "flickr.photosets.reorderPhotos";
+    public static final String METHOD_SET_PRIMARY_PHOTO = "flickr.photosets.setPrimaryPhoto";
 
     private String apiKey;
     private String sharedSecret;
@@ -71,7 +71,7 @@ public class PhotosetsInterface {
      * @param photosetId The photoset ID
      * @param photoId The photo ID
      */
-    public void addPhoto(String photosetId, String photoId) throws IOException, SAXException, FlickrException {
+    public void addPhoto(String photosetId, String photoId) throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -92,12 +92,10 @@ public class PhotosetsInterface {
      * @param description The photoset description
      * @param primaryPhotoId The primary photo id
      * @return The new Photset
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public Photoset create(String title, String description, String primaryPhotoId)
-            throws IOException, SAXException, FlickrException {
+            throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CREATE);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -121,11 +119,9 @@ public class PhotosetsInterface {
      * Delete the specified photoset.
      *
      * @param photosetId The photoset ID
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void delete(String photosetId) throws IOException, SAXException, FlickrException {
+    public void delete(String photosetId) throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -144,12 +140,10 @@ public class PhotosetsInterface {
      * @param photosetId The photoset ID
      * @param title A new title
      * @param description A new description (can be null)
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public void editMeta(String photosetId, String title, String description)
-            throws IOException, SAXException, FlickrException {
+            throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_META);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -172,12 +166,10 @@ public class PhotosetsInterface {
      * @param photosetId The photoset ID
      * @param primaryPhotoId The primary photo Id
      * @param photoIds The photo IDs for the photos in the set
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public void editPhotos(String photosetId, String primaryPhotoId, String[] photoIds)
-            throws IOException, SAXException, FlickrException {
+            throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -200,12 +192,10 @@ public class PhotosetsInterface {
      * @param photoId The photo ID
      * @param photosetId The photoset ID
      * @return The PhotoContext
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public PhotoContext getContext(String photoId, String photosetId)
-            throws IOException, SAXException, FlickrException {
+            throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTEXT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -246,10 +236,8 @@ public class PhotosetsInterface {
      * @param photosetId The photoset ID
      * @return The Photoset
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public Photoset getInfo(String photosetId) throws FlickrException, IOException, SAXException {
+    public Photoset getInfo(String photosetId) throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -298,11 +286,9 @@ public class PhotosetsInterface {
      *
      * @param userId The User id
      * @return The Photosets collection
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Photosets getList(String userId) throws IOException, SAXException, FlickrException {
+    public Photosets getList(String userId) throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -368,13 +354,11 @@ public class PhotosetsInterface {
      * @param perPage The number of photos per page
      * @param page The page offset
      * @return PhotoList The Collection of Photo objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public PhotoList<Photo> getPhotos(String photosetId, Set<String> extras,
       int privacy_filter, int perPage, int page)
-      throws IOException, SAXException, FlickrException {
+      throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
@@ -436,12 +420,10 @@ public class PhotosetsInterface {
      * @param perPage The number of photos per page
      * @param page The page offset
      * @return PhotoList The Collection of Photo objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public PhotoList<Photo> getPhotos(String photosetId, int perPage, int page) 
-      throws IOException, SAXException, FlickrException {
+      throws FlickrException {
         return getPhotos(photosetId, Extras.MIN_EXTRAS, Flickr.PRIVACY_LEVEL_NO_FILTER, perPage, page);
     }
 
@@ -451,11 +433,9 @@ public class PhotosetsInterface {
      * This method requires authentication with 'write' permission.
      *
      * @param photosetIds An array of Ids
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void orderSets(String[] photosetIds) throws IOException, SAXException, FlickrException {
+    public void orderSets(String[] photosetIds) throws FlickrException {
     	Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ORDER_SETS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -473,13 +453,75 @@ public class PhotosetsInterface {
      *
      * @param photosetId The photoset ID
      * @param photoId The photo ID
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void removePhoto(String photosetId, String photoId) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void removePhoto(String photosetId, String photoId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE_PHOTO);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("photoset_id", photosetId);
+        parameters.put("photo_id", photoId);
+
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+    }
+
+    /**
+     * Remove a photo from the set.
+     *
+     * @param photosetId The photoset ID
+     * @param photoId The ID's of the photos, in CVS format
+     * @throws FlickrException
+     */
+    public void removePhotos(String photosetId, String photoIds) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_REMOVE_PHOTOS);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("photoset_id", photosetId);
+        parameters.put("photo_ids", photoIds);
+
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+    }
+    
+
+    /**
+     * Remove a photo from the set.
+     *
+     * @param photosetId The photoset ID
+     * @param photoId The ID's of the photos, in CSV format, in the order they need to be in.
+     * @throws FlickrException
+     */
+    public void reorderPhoto(String photosetId, String photoIds) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_REORDER_PHOTOS);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("photoset_id", photosetId);
+        parameters.put("photo_ids", photoIds);
+
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+    }
+
+    /**
+     * Remove a photo from the set.
+     *
+     * @param photosetId The photoset ID
+     * @param photoId The photo ID that is being added
+     * @throws FlickrException
+     */
+    public void setPrimaryPhoto(String photosetId, String photoId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_SET_PRIMARY_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);

@@ -11,11 +11,9 @@ import java.util.Properties;
 /**
  * Wrapper for test properties.
  * 
- * @author Darren Greaves
- * Copyright (c) 2012 Darren Greaves.
+ * @author Darren Greaves Copyright (c) 2012 Darren Greaves.
  */
 public class TestProperties {
-
 
     /**
      * Logger for log4j.
@@ -34,18 +32,17 @@ public class TestProperties {
     private String groupId;
     private String testGroupId;
     private String photoId;
-    private String photoSetId;
+    private String photosetId;
     private String collectionId;
+    private String collectionUrlId;
     private String imageFile;
     private String geoWritePhotoId;
-
 
     public TestProperties() {
 
         Properties properties = load();
         populate(properties);
     }
-
 
     /**
      * 
@@ -63,12 +60,12 @@ public class TestProperties {
         groupId = properties.getProperty("groupid");
         testGroupId = properties.getProperty("testgroupid");
         photoId = properties.getProperty("photoid");
-        photoSetId = properties.getProperty("photosetid");
+        photosetId = properties.getProperty("photosetid");
         collectionId = properties.getProperty("collectionid");
+        collectionUrlId = properties.getProperty("collectionurlid");
         imageFile = properties.getProperty("imagefile");
         geoWritePhotoId = properties.getProperty("geo.write.photoid");
     }
-
 
     private Properties load() {
         Properties properties = new Properties();
@@ -85,80 +82,72 @@ public class TestProperties {
         return properties;
     }
 
-
     public String getHost() {
         return host;
     }
-
 
     public String getApiKey() {
         return apiKey;
     }
 
-
     public String getSecret() {
         return secret;
     }
-
 
     public String getToken() {
         return token;
     }
 
-
     public String getTokenSecret() {
         return tokenSecret;
     }
-
 
     public String getNsid() {
         return nsid;
     }
 
-
     public String getEmail() {
         return email;
     }
-
 
     public String getUsername() {
         return username;
     }
 
-
     public String getGroupId() {
         return groupId;
     }
-
 
     public String getTestGroupId() {
         return testGroupId;
     }
 
-
     public String getPhotoId() {
         return photoId;
     }
 
-
-    public String getPhotoSetId() {
-        return photoSetId;
+    public String getPhotosetId() {
+        return photosetId;
     }
-
 
     public String getImageFile() {
         return imageFile;
     }
 
-
     public String getGeoWritePhotoId() {
         return geoWritePhotoId;
     }
-
 
     public String getCollectionId() {
         return collectionId;
     }
 
+    public String getCollectionUrlId() {
+        return collectionUrlId;
+    }
+
+    public void setCollectionUrlId(String collectionUrlId) {
+        this.collectionUrlId = collectionUrlId;
+    }
 
 }

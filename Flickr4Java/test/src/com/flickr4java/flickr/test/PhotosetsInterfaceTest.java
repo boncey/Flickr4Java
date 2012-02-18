@@ -59,7 +59,7 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
     public void testGetContext() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         PhotoContext photoContext = iface
-                .getContext(testProperties.getPhotoId(), testProperties.getPhotoSetId());
+                .getContext(testProperties.getPhotoId(), testProperties.getPhotosetId());
         Photo previousPhoto = photoContext.getPreviousPhoto();
         Photo nextPhoto = photoContext.getNextPhoto();
         assertNotNull(previousPhoto);
@@ -69,7 +69,7 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        Photoset photoset = iface.getInfo(testProperties.getPhotoSetId());
+        Photoset photoset = iface.getInfo(testProperties.getPhotosetId());
         assertNotNull(photoset);
         assertNotNull(photoset.getPrimaryPhoto());
         assertTrue(photoset.getPhotoCount() >= 1);
@@ -93,7 +93,7 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testGetPhotos() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        PhotoList<Photo> photos = iface.getPhotos(testProperties.getPhotoSetId(), 10, 1);
+        PhotoList<Photo> photos = iface.getPhotos(testProperties.getPhotosetId(), 10, 1);
         assertNotNull(photos);
         assertTrue(photos.size() >= 1);
         assertEquals(testProperties.getUsername(), ((Photo) photos.get(0)).getOwner().getUsername());
@@ -103,7 +103,7 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testOrderSets() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        String[] photosetIds = {testProperties.getPhotoSetId()};
+        String[] photosetIds = {testProperties.getPhotosetId()};
         iface.orderSets(photosetIds);
     }
 /*    

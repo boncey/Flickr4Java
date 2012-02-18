@@ -8,6 +8,7 @@ testgroupid = 52240590759@N01
 photoid = 1088148233
 photosetid = 122485
 collectionid = (taken from a call to http://www.flickr.com/services/api/flickr.collections.getTree.htm)
+collectionurlid = (taken from the id in the collection URL)
 imagefile = path/to/test/image
 secret = af995d0f2bc3ee51
 token = your token (with delete privileges)

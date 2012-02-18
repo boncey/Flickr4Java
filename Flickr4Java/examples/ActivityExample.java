@@ -1,23 +1,23 @@
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.activity.ActivityInterface;
+import com.flickr4java.flickr.activity.Event;
+import com.flickr4java.flickr.activity.Item;
+import com.flickr4java.flickr.activity.ItemList;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.util.IOUtilities;
+
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
-import com.flickr4java.flickr.test.Flickr;
-import com.flickr4java.flickr.test.FlickrException;
-import com.flickr4java.flickr.test.REST;
-import com.flickr4java.flickr.test.RequestContext;
-import com.flickr4java.flickr.test.activity.ActivityInterface;
-import com.flickr4java.flickr.test.activity.Event;
-import com.flickr4java.flickr.test.activity.Item;
-import com.flickr4java.flickr.test.activity.ItemList;
-import com.flickr4java.flickr.test.auth.Auth;
-import com.flickr4java.flickr.test.auth.Permission;
-import com.flickr4java.flickr.test.util.IOUtilities;
 
 /**
  * Demonstration of howto use the ActivityInterface.
@@ -34,7 +34,7 @@ public class ActivityExample {
     Properties properties = null;
 
     public ActivityExample()
-      throws ParserConfigurationException, IOException {
+            throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("/setup.properties");
@@ -44,10 +44,10 @@ public class ActivityExample {
             IOUtilities.close(in);
         }
         f = new Flickr(
-            properties.getProperty("apiKey"),
-            properties.getProperty("secret"),
-            new REST()
-        );
+                properties.getProperty("apiKey"),
+                properties.getProperty("secret"),
+                new REST()
+                );
         requestContext = RequestContext.getRequestContext();
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);

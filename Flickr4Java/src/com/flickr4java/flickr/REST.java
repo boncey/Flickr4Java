@@ -9,6 +9,7 @@ import com.flickr4java.flickr.util.DebugInputStream;
 import com.flickr4java.flickr.util.IOUtilities;
 import com.flickr4java.flickr.util.UrlUtilities;
 
+import org.apache.log4j.Logger;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.OAuthRequest;
@@ -34,19 +35,26 @@ import java.util.Map.Entry;
 
 /**
  * Transport implementation using the REST interface.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: REST.java,v 1.26 2009/07/01 22:07:08 x-mago Exp $
  */
 public class REST extends Transport {
 
+    private static final Logger logger = Logger.getLogger(REST.class);
+
     public static final String PATH = "/services/rest/";
+
     private static final String CHARSET_NAME = "UTF-8";
 
     private boolean proxyAuth = false;
+
     private String proxyUser = "";
+
     private String proxyPassword = "";
+
     private final DocumentBuilder builder;
+
     private static Object mutex = new Object();
 
     /**
@@ -67,8 +75,9 @@ public class REST extends Transport {
 
     /**
      * Construct a new REST transport instance using the specified host endpoint.
-     *
-     * @param host The host endpoint
+     * 
+     * @param host
+     *            The host endpoint
      */
     public REST(String host) {
         this();
@@ -77,9 +86,11 @@ public class REST extends Transport {
 
     /**
      * Construct a new REST transport instance using the specified host and port endpoint.
-     *
-     * @param host The host endpoint
-     * @param port The port
+     * 
+     * @param host
+     *            The host endpoint
+     * @param port
+     *            The port
      */
     public REST(String host, int port) {
         this();
@@ -89,7 +100,7 @@ public class REST extends Transport {
 
     /**
      * Set a proxy for REST-requests.
-     *
+     * 
      * @param proxyHost
      * @param proxyPort
      */
@@ -101,27 +112,26 @@ public class REST extends Transport {
 
     /**
      * Set a proxy with authentication for REST-requests.
-     *
+     * 
      * @param proxyHost
      * @param proxyPort
      * @param username
      * @param password
      */
-    public void setProxy(
-            String proxyHost, int proxyPort,
-            String username, String password
-            ) {
-        setProxy (proxyHost, proxyPort);
+    public void setProxy(String proxyHost, int proxyPort, String username, String password) {
+        setProxy(proxyHost, proxyPort);
         proxyAuth = true;
         proxyUser = username;
         proxyPassword = password;
     }
 
     /**
-     * Invoke an HTTP GET request on a remote host.  You must close the InputStream after you are done with.
-     *
-     * @param path The request path
-     * @param parameters The parameters (collection of Parameter objects)
+     * Invoke an HTTP GET request on a remote host. You must close the InputStream after you are done with.
+     * 
+     * @param path
+     *            The request path
+     * @param parameters
+     *            The parameters (collection of Parameter objects)
      * @return The Response
      */
     @Override
@@ -140,17 +150,16 @@ public class REST extends Transport {
         Auth auth = requestContext.getAuth();
         Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
         OAuthService service = null;
-        if(Flickr.debugRequest) {
-            service = new ServiceBuilder().debug().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY)))
-                    .apiSecret(sharedSecret).build();
+        if (Flickr.debugRequest) {
+            service = new ServiceBuilder().debug().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
+                    .build();
         } else {
-            service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY)))
-                    .apiSecret(sharedSecret).build();
+            service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret).build();
         }
         service.signRequest(requestToken, request);
 
         if (Flickr.debugRequest) {
-            System.out.println("GET: " + request.getCompleteUrl());
+            logger.debug("GET: " + request.getCompleteUrl());
         }
         org.scribe.model.Response scribeResponse = request.send();
 
@@ -159,8 +168,8 @@ public class REST extends Transport {
             com.flickr4java.flickr.Response response = null;
             synchronized (mutex) {
                 String strXml = scribeResponse.getBody();
-                if(Flickr.debugStream) {
-                    System.out.println(strXml);
+                if (Flickr.debugStream) {
+                    logger.debug(strXml);
                 }
                 Document document = builder.parse(new InputSource(new StringReader(strXml)));
                 response = (com.flickr4java.flickr.Response) responseClass.newInstance();
@@ -182,9 +191,11 @@ public class REST extends Transport {
      * Invoke a non OAuth HTTP GET request on a remote host.
      * 
      * This is only used for the Flickr OAuth methods checkToken and getAccessToken.
-     *
-     * @param path The request path
-     * @param parameters The parameters
+     * 
+     * @param path
+     *            The request path
+     * @param parameters
+     *            The parameters
      * @return The Response
      */
     @Override
@@ -193,15 +204,12 @@ public class REST extends Transport {
         try {
             URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, parameters);
             if (Flickr.debugRequest) {
-                System.out.println("GET: " + url);
+                logger.debug("GET: " + url);
             }
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             if (proxyAuth) {
-                conn.setRequestProperty(
-                        "Proxy-Authorization",
-                        "Basic " + getProxyCredentials()
-                        );
+                conn.setRequestProperty("Proxy-Authorization", "Basic " + getProxyCredentials());
             }
             conn.connect();
 
@@ -233,9 +241,11 @@ public class REST extends Transport {
 
     /**
      * Invoke an HTTP POST request on a remote host.
-     *
-     * @param path The request path
-     * @param parameters The parameters (collection of Parameter objects)
+     * 
+     * @param path
+     *            The request path
+     * @param parameters
+     *            The parameters (collection of Parameter objects)
      * @return The Response object
      */
     @Override
@@ -252,8 +262,8 @@ public class REST extends Transport {
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
         Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY)))
-                .apiSecret(sharedSecret).debug().build();
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
+                .debug().build();
         service.signRequest(requestToken, request);
 
         if (multipart) {
@@ -267,7 +277,7 @@ public class REST extends Transport {
         }
 
         if (Flickr.debugRequest) {
-            System.out.println("POST: " + request.getCompleteUrl());
+            logger.debug("POST: " + request.getCompleteUrl());
         }
 
         org.scribe.model.Response scribeResponse = request.send();
@@ -277,9 +287,9 @@ public class REST extends Transport {
             synchronized (mutex) {
                 String strXml = scribeResponse.getBody();
                 if (Flickr.debugStream) {
-                    System.out.println(strXml);
+                    logger.debug(strXml);
                 }
-                if(strXml.startsWith("oauth_problem=")) {
+                if (strXml.startsWith("oauth_problem=")) {
                     throw new FlickrRuntimeException(strXml);
                 }
                 Document document = builder.parse(new InputSource(new StringReader(strXml)));
@@ -337,15 +347,12 @@ public class REST extends Transport {
     }
 
     /**
-     * Generates Base64-encoded credentials from locally stored
-     * username and password.
-     *
+     * Generates Base64-encoded credentials from locally stored username and password.
+     * 
      * @return credentials
      */
     public String getProxyCredentials() {
-        return new String(
-                Base64.encode((proxyUser + ":" + proxyPassword).getBytes())
-                );
+        return new String(Base64.encode((proxyUser + ":" + proxyPassword).getBytes()));
     }
 
     private byte[] buildMultipartBody(Map<String, Object> parameters, String boundary) {
@@ -363,13 +370,12 @@ public class REST extends Transport {
 
         if (Flickr.debugRequest) {
             String output = new String(buffer.toByteArray());
-            System.out.println("Multipart body:\n" + output);
+            logger.debug("Multipart body:\n" + output);
         }
         return buffer.toByteArray();
     }
 
-    private void writeParam(String name, Object value, ByteArrayOutputStream buffer, String boundary)
-            throws IOException {
+    private void writeParam(String name, Object value, ByteArrayOutputStream buffer, String boundary) throws IOException {
         if (value instanceof InputStream) {
             buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"image.jpg\";\r\n").getBytes(CHARSET_NAME));
             buffer.write(("Content-Type: image/jpeg" + "\r\n\r\n").getBytes(CHARSET_NAME));

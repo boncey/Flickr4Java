@@ -37,6 +37,7 @@ public class TestProperties {
     private String collectionUrlId;
     private String imageFile;
     private String geoWritePhotoId;
+    private String galleryId;
 
     public TestProperties() {
 
@@ -64,7 +65,9 @@ public class TestProperties {
         collectionId = properties.getProperty("collectionid");
         collectionUrlId = properties.getProperty("collectionurlid");
         imageFile = properties.getProperty("imagefile");
+        galleryId = properties.getProperty("galleryid");
         geoWritePhotoId = properties.getProperty("geo.write.photoid");
+        
     }
 
     private Properties load() {
@@ -144,6 +147,10 @@ public class TestProperties {
 
     public String getCollectionUrlId() {
         return collectionUrlId;
+    }
+
+    public String getGalleryId() {
+        return galleryId;
     }
 
     public void setCollectionUrlId(String collectionUrlId) {

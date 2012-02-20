@@ -3,6 +3,19 @@
  */
 package com.flickr4java.flickr.people;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -15,43 +28,49 @@ import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * Interface for finding Flickr users.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: PeopleInterface.java,v 1.28 2010/09/12 20:13:57 x-mago Exp $
  */
 public class PeopleInterface {
 
     public static final String METHOD_FIND_BY_EMAIL = "flickr.people.findByEmail";
+
     public static final String METHOD_FIND_BY_USERNAME = "flickr.people.findByUsername";
+
     public static final String METHOD_GET_INFO = "flickr.people.getInfo";
+
     public static final String METHOD_GET_ONLINE_LIST = "flickr.people.getOnlineList";
+
     public static final String METHOD_GET_PUBLIC_GROUPS = "flickr.people.getPublicGroups";
+
     public static final String METHOD_GET_PUBLIC_PHOTOS = "flickr.people.getPublicPhotos";
+
     public static final String METHOD_GET_UPLOAD_STATUS = "flickr.people.getUploadStatus";
 
+    public static final String METHOD_GET_GET_PHOTOS = "flickr.people.getPhotos";
+
+    public static final String METHOD_GET_PHOTOS_OF = "flickr.people.getPhotosOf";
+
+    public static final String METHOD_ADD = "flickr.photos.people.add";
+
+    public static final String METHOD_DELETE = "flickr.photos.people.delete";
+
+    public static final String METHOD_DELETE_COORDS = "flickr.photos.people.deleteCoords";
+
+    public static final String METHOD_EDIT_COORDS = "flickr.photos.people.editCoords";
+
+    public static final String METHOD_GET_LIST = "flickr.photos.people.getList";
+
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public PeopleInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public PeopleInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -59,10 +78,11 @@ public class PeopleInterface {
 
     /**
      * Find the user by their email address.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param email The email address
+     * 
+     * @param email
+     *            The email address
      * @return The User
      * @throws IOException
      * @throws SAXException
@@ -88,10 +108,11 @@ public class PeopleInterface {
 
     /**
      * Find a User by the username.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param username The username
+     * 
+     * @param username
+     *            The username
      * @return The User object
      * @throws IOException
      * @throws SAXException
@@ -117,10 +138,11 @@ public class PeopleInterface {
 
     /**
      * Get info about the specified user.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param userId The user ID
+     * 
+     * @param userId
+     *            The user ID
      * @return The User object
      * @throws IOException
      * @throws SAXException
@@ -165,21 +187,20 @@ public class PeopleInterface {
 
     /**
      * Get a collection of public groups for the user.
-     *
-     * The groups will contain only the members nsid, name, admin and eighteenplus.
-     * If you want the whole group-information, you have to call 
+     * 
+     * The groups will contain only the members nsid, name, admin and eighteenplus. If you want the whole group-information, you have to call
      * {@link com.flickr4java.flickr.groups.GroupsInterface#getInfo(String)}.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param userId The user ID
+     * 
+     * @param userId
+     *            The user ID
      * @return The public groups
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Group> getPublicGroups(String userId)
-      throws IOException, SAXException, FlickrException {
+    public Collection<Group> getPublicGroups(String userId) throws IOException, SAXException, FlickrException {
         List<Group> groups = new ArrayList<Group>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -206,28 +227,30 @@ public class PeopleInterface {
         return groups;
     }
 
-    public PhotoList<Photo> getPublicPhotos(String userId, int perPage, int page)
-    throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getPublicPhotos(String userId, int perPage, int page) throws IOException, SAXException, FlickrException {
         return getPublicPhotos(userId, Extras.MIN_EXTRAS, perPage, page);
     }
 
     /**
      * Get a collection of public photos for the specified user ID.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Extras
-     * @param userId The User ID
-     * @param extras Set of extra-attributes to include (may be null)
-     * @param perPage The number of photos per page
-     * @param page The page offset
+     * @param userId
+     *            The User ID
+     * @param extras
+     *            Set of extra-attributes to include (may be null)
+     * @param perPage
+     *            The number of photos per page
+     * @param page
+     *            The page offset
      * @return The PhotoList collection
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> getPublicPhotos(String userId, Set<String> extras, int perPage, int page) throws IOException, SAXException,
-            FlickrException {
+    public PhotoList<Photo> getPublicPhotos(String userId, Set<String> extras, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -253,9 +276,9 @@ public class PeopleInterface {
         }
         Element photosElement = response.getPayload();
         photos.setPage(photosElement.getAttribute("page"));
-		photos.setPages(photosElement.getAttribute("pages"));
-		photos.setPerPage(photosElement.getAttribute("perpage"));
-		photos.setTotal(photosElement.getAttribute("total"));
+        photos.setPages(photosElement.getAttribute("pages"));
+        photos.setPerPage(photosElement.getAttribute("perpage"));
+        photos.setTotal(photosElement.getAttribute("total"));
 
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         for (int i = 0; i < photoNodes.getLength(); i++) {
@@ -267,15 +290,15 @@ public class PeopleInterface {
 
     /**
      * Get upload status for the currently authenticated user.
-     *
+     * 
      * Requires authentication with 'read' permission using the new authentication API.
-     *
+     * 
      * @return A User object with upload status data fields filled
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public User getUploadStatus() throws IOException, SAXException, FlickrException {
+    public User getUploadStatus() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_UPLOAD_STATUS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -298,5 +321,129 @@ public class PeopleInterface {
         user.setFilesizeMax(filesizeElement.getAttribute("max"));
 
         return user;
+    }
+
+    public PhotoList<Photo> getPhotos(String userId, String safeSearch, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate,
+            String contentType, String privacyFilter, Set<String> extras, int perPage, int page) throws FlickrException {
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("user_id", userId);
+        if (safeSearch != null) {
+            parameters.put("safe_search", safeSearch);
+        }
+        if (minUploadDate != null) {
+            parameters.put("min_upload_date", minUploadDate);
+        }
+        if (maxUploadDate != null) {
+            parameters.put("max_upload_date", maxUploadDate);
+        }
+        if (minTakenDate != null) {
+            parameters.put("min_taken_date", minTakenDate);
+        }
+        if (maxTakenDate != null) {
+            parameters.put("max_taken_date", maxTakenDate);
+        }
+        if (contentType != null) {
+            parameters.put("content_type", contentType);
+        }
+        if (privacyFilter != null) {
+            parameters.put("privacy_filter", privacyFilter);
+        }
+        if (perPage > 0) {
+            parameters.put("per_page", "" + perPage);
+        }
+        if (page > 0) {
+            parameters.put("page", "" + page);
+        }
+        if (extras != null) {
+            parameters.put(Extras.KEY_EXTRAS, StringUtilities.join(extras, ","));
+        }
+
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+
+        Element photosElement = response.getPayload();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
+        photos.setPage(photosElement.getAttribute("page"));
+        photos.setPages(photosElement.getAttribute("pages"));
+        photos.setPerPage(photosElement.getAttribute("perpage"));
+        photos.setTotal(photosElement.getAttribute("total"));
+
+
+        NodeList photoNodes = photosElement.getElementsByTagName("photo");
+        for (int i = 0; i < photoNodes.getLength(); i++) {
+            Element photoElement = (Element) photoNodes.item(i);
+            Photo photo = new Photo();
+            photo.setId(photoElement.getAttribute("id"));
+            photo.setSecret(photoElement.getAttribute("secret"));
+
+            User owner = new User();
+            owner.setId(photoElement.getAttribute("owner"));
+            photo.setOwner(owner);
+            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setServer(photoElement.getAttribute("server"));
+            photo.setTitle(photoElement.getAttribute("title"));
+            photo.setPublicFlag("1".equals(photoElement.getAttribute("ispublic")));
+            photo.setFriendFlag("1".equals(photoElement.getAttribute("isfriend")));
+            photo.setFamilyFlag("1".equals(photoElement.getAttribute("isfamily")));
+            photos.add(photo);
+        }
+        return photos;
+    }
+
+    public PhotoList<Photo> getPhotosOf(String userId, String ownerId, Set<String> extras, int perPage, int page) throws FlickrException {
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("user_id", userId);
+        if (ownerId != null) {
+            parameters.put("owner_id", ownerId);
+        }
+        if (extras != null) {
+            parameters.put(Extras.KEY_EXTRAS, StringUtilities.join(extras, ","));
+        }
+        if (perPage > 0) {
+            parameters.put("per_page", "" + perPage);
+        }
+        if (page > 0) {
+            parameters.put("page", "" + page);
+        }
+
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+
+        Element photosElement = response.getPayload();
+        PhotoList<Photo> photos = new PhotoList<Photo>();
+        photos.setPage(photosElement.getAttribute("page"));
+        photos.setPerPage(photosElement.getAttribute("perpage"));
+
+        NodeList photoNodes = photosElement.getElementsByTagName("photo");
+        for (int i = 0; i < photoNodes.getLength(); i++) {
+            Element photoElement = (Element) photoNodes.item(i);
+            Photo photo = new Photo();
+            photo.setId(photoElement.getAttribute("id"));
+            photo.setSecret(photoElement.getAttribute("secret"));
+
+            User owner = new User();
+            owner.setId(photoElement.getAttribute("owner"));
+            photo.setOwner(owner);
+            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setServer(photoElement.getAttribute("server"));
+            photo.setTitle(photoElement.getAttribute("title"));
+            photo.setPublicFlag("1".equals(photoElement.getAttribute("ispublic")));
+            photo.setFriendFlag("1".equals(photoElement.getAttribute("isfriend")));
+            photo.setFamilyFlag("1".equals(photoElement.getAttribute("isfamily")));
+            photos.add(photo);
+        }
+        return photos;
     }
 }

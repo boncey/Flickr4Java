@@ -9,28 +9,42 @@ import com.flickr4java.flickr.util.UrlUtilities;
 
 /**
  * Class representing a Flickr Group.
- *
+ * 
  * @author Anthony Eden
  */
 public class Group implements BuddyIconable {
 
     private String id;
+
     private String name;
+
     private int members;
+
     private String privacy;
+
     private int iconFarm;
+
     private int iconServer;
+
     private String description;
+
     private Throttle throttle;
+
     private String lang;
+
     private boolean poolModerated;
 
     // the following seem not to exist anymore
     private int online;
+
     private String chatId;
+
     private int inChat;
+
     private boolean admin;
+
     private int photoCount;
+
     private boolean eighteenPlus;
 
     public Group() {
@@ -63,12 +77,12 @@ public class Group implements BuddyIconable {
 
     public void setMembers(String members) {
         try {
-            if (members != null) setMembers(Integer.parseInt(members));
+            if (members != null)
+                setMembers(Integer.parseInt(members));
         } catch (NumberFormatException nfe) {
             setMembers(0);
-            if (Flickr.tracing) 
-                System.out.println("trace: Group.setMembers(String) encountered a number format " + 
-                "exception.  members set to 0");
+            if (Flickr.tracing)
+                System.out.println("trace: Group.setMembers(String) encountered a number format " + "exception.  members set to 0");
         }
     }
 
@@ -93,14 +107,14 @@ public class Group implements BuddyIconable {
      * @param online
      */
     public void setOnline(String online) {
-    	try {
-    		if (online != null) setOnline(Integer.parseInt(online));
-    	} catch (NumberFormatException nfe) {
-    		setOnline(0);
-    		if (Flickr.tracing) 
-    			System.out.println("trace: Group.setOnline(String) encountered a number format " + 
-    			"exception.  online set to 0");
-    	}
+        try {
+            if (online != null)
+                setOnline(Integer.parseInt(online));
+        } catch (NumberFormatException nfe) {
+            setOnline(0);
+            if (Flickr.tracing)
+                System.out.println("trace: Group.setOnline(String) encountered a number format " + "exception.  online set to 0");
+        }
     }
 
     /**
@@ -141,12 +155,12 @@ public class Group implements BuddyIconable {
      */
     public void setInChat(String inChat) {
         try {
-            if (inChat != null) setInChat(Integer.parseInt(inChat));
+            if (inChat != null)
+                setInChat(Integer.parseInt(inChat));
         } catch (NumberFormatException nfe) {
             setInChat(0);
             if (Flickr.tracing) {
-                System.out.println("trace: Group.setInChat(String) encountered a number format " + 
-                "exception.  InChat set to 0");
+                System.out.println("trace: Group.setInChat(String) encountered a number format " + "exception.  InChat set to 0");
             }
         }
     }
@@ -190,8 +204,7 @@ public class Group implements BuddyIconable {
             } catch (NumberFormatException nfe) {
                 setPhotoCount(0);
                 if (Flickr.tracing) {
-                    System.out.println("trace: Group.setPhotoCount(String) encountered a number format " + 
-                    "exception.  PhotoCount set to 0");
+                    System.out.println("trace: Group.setPhotoCount(String) encountered a number format " + "exception.  PhotoCount set to 0");
                 }
             }
         }
@@ -266,11 +279,10 @@ public class Group implements BuddyIconable {
     }
 
     /**
-     * Construct the BuddyIconUrl.<p>
-     * If none available, return the 
-     * <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>,
-     * or an URL assembled from farm, iconserver and nsid.
-     *
+     * Construct the BuddyIconUrl.
+     * <p>
+     * If none available, return the <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>, or an URL assembled from farm, iconserver and nsid.
+     * 
      * @see <a href="http://flickr.com/services/api/misc.buddyicons.html">Flickr Documentation</a>
      * @return The BuddyIconUrl
      */

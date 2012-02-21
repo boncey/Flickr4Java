@@ -8,21 +8,30 @@ import com.flickr4java.flickr.util.UrlUtilities;
 
 /**
  * Class representing a Flickr contact.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: Contact.java,v 1.5 2009/07/12 22:43:07 x-mago Exp $
  */
 public class Contact implements BuddyIconable {
 
     private String id;
+
     private String username;
+
     private String realName;
+
     private boolean friend;
+
     private boolean family;
+
     private boolean ignored;
+
     private OnlineStatus online;
+
     private String awayMessage;
+
     private int iconFarm;
+
     private int iconServer;
 
     public Contact() {
@@ -86,8 +95,8 @@ public class Contact implements BuddyIconable {
     }
 
     /**
-     * Get the contact's away message.  This method may return null if the contact online status is not 'away'.
-     *
+     * Get the contact's away message. This method may return null if the contact online status is not 'away'.
+     * 
      * @return The away message or null
      */
     public String getAwayMessage() {
@@ -99,11 +108,10 @@ public class Contact implements BuddyIconable {
     }
 
     /**
-     * Construct the BuddyIconUrl.<p>
-     * If none available, return the
-     * <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>,
-     * or an URL assembled from farm, iconserver and nsid.
-     *
+     * Construct the BuddyIconUrl.
+     * <p>
+     * If none available, return the <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>, or an URL assembled from farm, iconserver and nsid.
+     * 
      * @see <a href="http://flickr.com/services/api/misc.buddyicons.html">Flickr Documentation</a>
      * @return The BuddyIconUrl
      */

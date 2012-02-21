@@ -24,28 +24,30 @@ import java.util.Map;
 public class NotesInterface {
 
     public static final String METHOD_ADD = "flickr.photos.notes.add";
+
     public static final String METHOD_DELETE = "flickr.photos.notes.delete";
+
     public static final String METHOD_EDIT = "flickr.photos.notes.edit";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public NotesInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public NotesInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
     }
 
     /**
-     * Add a note to a photo.  The Note object bounds and text must be specified.
-     *
-     * @param photoId The photo ID
-     * @param note The Note object
+     * Add a note to a photo. The Note object bounds and text must be specified.
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param note
+     *            The Note object
      * @return The updated Note object
      */
     public Note add(String photoId, Note note) throws IOException, SAXException, FlickrException {
@@ -78,8 +80,9 @@ public class NotesInterface {
 
     /**
      * Delete the specified note.
-     *
-     * @param noteId The node ID
+     * 
+     * @param noteId
+     *            The node ID
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
@@ -99,8 +102,9 @@ public class NotesInterface {
 
     /**
      * Update a note.
-     *
-     * @param note The Note to update
+     * 
+     * @param note
+     *            The Note to update
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException

@@ -29,6 +29,7 @@ import java.io.IOException;
 public class InterestingnessInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -37,11 +38,7 @@ public class InterestingnessInterfaceTest {
 
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -68,7 +65,7 @@ public class InterestingnessInterfaceTest {
         assertEquals(7, list.getPerPage());
         assertEquals(500, list.getTotal());
         assertTrue(list.get(0) instanceof Photo);
-        Photo photo = (Photo)list.get(1);
+        Photo photo = (Photo) list.get(1);
         assertNotNull(photo.getId());
         assertNotNull(photo.getLicense());
         assertNotNull(photo.getOwner());
@@ -77,14 +74,14 @@ public class InterestingnessInterfaceTest {
         assertNotNull(list);
         assertTrue(list.size() > 0);
 
-        list = ii.getList((String)null, Extras.ALL_EXTRAS, 100, 1);
+        list = ii.getList((String) null, Extras.ALL_EXTRAS, 100, 1);
         assertNotNull(list);
         assertEquals(100, list.size());
-        photo = (Photo)list.get(0);
+        photo = (Photo) list.get(0);
         for (int i = list.size() - 1; i >= 0; --i) {
-            photo = (Photo)list.get(i);
+            photo = (Photo) list.get(i);
             if (photo.hasGeoData()) {
-                //System.out.println(photo.getId() + " " + photo.getGeoData() + " " + photo.getUrl());
+                // System.out.println(photo.getId() + " " + photo.getGeoData() + " " + photo.getUrl());
             }
         }
 

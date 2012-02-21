@@ -30,22 +30,18 @@ import java.util.Calendar;
  */
 public class MachinetagsInterfaceTest {
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
-    public void setUp() throws
-    ParserConfigurationException, IOException, FlickrException, SAXException {
+    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
         Flickr.debugRequest = false;
         Flickr.debugStream = false;
         testProperties = new TestProperties();
 
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -58,8 +54,7 @@ public class MachinetagsInterfaceTest {
     }
 
     @Test
-    public void testGetNamespaces()
-            throws FlickrException, IOException, SAXException {
+    public void testGetNamespaces() throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String predicate = "collection";
         int page = 1;
@@ -67,9 +62,9 @@ public class MachinetagsInterfaceTest {
         NamespacesList list = machinetagsInterface.getNamespaces(predicate, perPage, page);
         assertTrue(list.size() > 3);
         boolean contentFound = false;
-        for(int i = 0;i < list.size();i++) {
+        for (int i = 0; i < list.size(); i++) {
             Namespace ns = (Namespace) list.get(i);
-            if(ns.getValue().equals("content")) {
+            if (ns.getValue().equals("content")) {
                 contentFound = true;
             }
         }
@@ -77,8 +72,7 @@ public class MachinetagsInterfaceTest {
     }
 
     @Test
-    public void testGetPredicates()
-            throws FlickrException, IOException, SAXException {
+    public void testGetPredicates() throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "all";
         int page = 1;
@@ -86,9 +80,9 @@ public class MachinetagsInterfaceTest {
         NamespacesList list = machinetagsInterface.getPredicates(namespace, perPage, page);
         assertTrue(list.size() > 3);
         boolean contentFound = false;
-        for(int i = 0;i < list.size();i++) {
+        for (int i = 0; i < list.size(); i++) {
             Predicate ns = (Predicate) list.get(i);
-            if(ns.getValue().equals("groups")) {
+            if (ns.getValue().equals("groups")) {
                 contentFound = true;
             }
         }
@@ -96,8 +90,7 @@ public class MachinetagsInterfaceTest {
     }
 
     @Test
-    public void testGetPairs()
-            throws FlickrException, IOException, SAXException {
+    public void testGetPairs() throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "ceramics";
         String predicate = "material";
@@ -116,8 +109,7 @@ public class MachinetagsInterfaceTest {
     }
 
     @Test
-    public void testGetValues()
-            throws FlickrException, IOException, SAXException {
+    public void testGetValues() throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "ceramics";
         String predicate = "material";
@@ -136,8 +128,7 @@ public class MachinetagsInterfaceTest {
     }
 
     @Test
-    public void testGetRecentValues()
-            throws FlickrException, IOException, SAXException {
+    public void testGetRecentValues() throws FlickrException, IOException, SAXException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
         String namespace = "ceramics";
         String predicate = "material";

@@ -70,7 +70,7 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testLookupGallery() throws FlickrException, IOException, SAXException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        
+
         Gallery gallery = iface.lookupGallery(String.format("http://www.flickr.com/photos/%s/",
                 testProperties.getUsername() + "/galleries/" + testProperties.getGalleryId()));
         assertNotNull(gallery);

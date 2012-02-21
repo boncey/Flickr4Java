@@ -26,6 +26,7 @@ import java.util.Map;
 public class TestInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

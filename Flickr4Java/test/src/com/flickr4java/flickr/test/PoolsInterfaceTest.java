@@ -31,6 +31,7 @@ import java.util.Collection;
 public class PoolsInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

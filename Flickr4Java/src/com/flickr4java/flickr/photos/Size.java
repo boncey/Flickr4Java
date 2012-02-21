@@ -10,16 +10,17 @@ import java.util.regex.Matcher;
 import com.flickr4java.flickr.util.StringUtilities;
 
 /**
- * This class descibes a Size of a Photo.<p>
- *
+ * This class descibes a Size of a Photo.
+ * <p>
+ * 
  * @author Anthony Eden
  * @version $Id: Size.java,v 1.7 2009/07/23 20:41:03 x-mago Exp $
  */
 public class Size {
 
-	/**
+    /**
      * Thumbnail, 100 on longest side.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Size#getLabel()
      * @see com.flickr4java.flickr.photos.Size#setLabel(int)
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
@@ -29,7 +30,7 @@ public class Size {
 
     /**
      * Small square 75x75.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Size#getLabel()
      * @see com.flickr4java.flickr.photos.Size#setLabel(int)
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
@@ -39,7 +40,7 @@ public class Size {
 
     /**
      * Small, 240 on longest side.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Size#getLabel()
      * @see com.flickr4java.flickr.photos.Size#setLabel(int)
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
@@ -49,7 +50,7 @@ public class Size {
 
     /**
      * Medium, 500 on longest side.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Size#getLabel()
      * @see com.flickr4java.flickr.photos.Size#setLabel(int)
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
@@ -59,7 +60,7 @@ public class Size {
 
     /**
      * Large, 1024 on longest side (only exists for very large original images).
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Size#getLabel()
      * @see com.flickr4java.flickr.photos.Size#setLabel(int)
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
@@ -70,7 +71,7 @@ public class Size {
     /**
      * Original image, either a jpg, gif or png, depending on source format.<br>
      * Only from pro-users original images are available!
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Size#getLabel()
      * @see com.flickr4java.flickr.photos.Size#setLabel(int)
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
@@ -79,9 +80,13 @@ public class Size {
     public static final int ORIGINAL = 5;
 
     private int label;
+
     private int width;
+
     private int height;
+
     private String source;
+
     private String url;
 
     public Size() {
@@ -90,7 +95,7 @@ public class Size {
 
     /**
      * Size of the Photo.
-     *
+     * 
      * @return label
      * @see com.flickr4java.flickr.photos.Size#THUMB
      * @see com.flickr4java.flickr.photos.Size#SQUARE
@@ -105,8 +110,9 @@ public class Size {
 
     /**
      * Set the String-representation of size.
-     *
+     * 
      * Like: Square, Thumbnail, Small, Medium, Large, Original.
+     * 
      * @param label
      */
     public void setLabel(String label) {
@@ -127,8 +133,9 @@ public class Size {
 
     /**
      * Size of the Photo.
-     *
-     * @param label The integer-representation of a size
+     * 
+     * @param label
+     *            The integer-representation of a size
      * @see com.flickr4java.flickr.photos.Size#THUMB
      * @see com.flickr4java.flickr.photos.Size#SQUARE
      * @see com.flickr4java.flickr.photos.Size#SMALL
@@ -170,7 +177,7 @@ public class Size {
 
     /**
      * URL of the image.
-     *
+     * 
      * @return Image-URL
      */
     public String getSource() {
@@ -183,7 +190,7 @@ public class Size {
 
     /**
      * URL of the photopage.
-     *
+     * 
      * @return Page-URL
      */
     public String getUrl() {
@@ -194,12 +201,12 @@ public class Size {
         this.url = url;
     }
 
-	@Override
-	public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-		// object must be GeoData at this point
+        // object must be GeoData at this point
         Size test = (Size) obj;
         Class cl = this.getClass();
         Method[] method = cl.getMethods();
@@ -212,20 +219,21 @@ public class Size {
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {
-                            if (!res.equals(resTest)) return false;
+                            if (!res.equals(resTest))
+                                return false;
                         } else {
-                            //return false;
+                            // return false;
                         }
                     } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer)resTest))) return false;
+                        if (!((Integer) res).equals(((Integer) resTest)))
+                            return false;
                     } else {
-                        System.out.println(method[i].getName() + "|" +
-                            method[i].getReturnType().toString());
+                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
                     }
                 } catch (IllegalAccessException ex) {
                     System.out.println("Size equals " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("equals " + method[i].getName() + " " + ex);
+                    // System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (Exception ex) {
                     System.out.println("Size equals " + method[i].getName() + " " + ex);
                 }
@@ -240,8 +248,10 @@ public class Size {
         hash += new Integer(label).hashCode();
         hash += new Integer(width).hashCode();
         hash += new Integer(height).hashCode();
-        if (source != null) hash += source.hashCode();
-        if (url != null) hash += url.hashCode();
+        if (source != null)
+            hash += source.hashCode();
+        if (url != null)
+            hash += url.hashCode();
         return hash;
     }
 }

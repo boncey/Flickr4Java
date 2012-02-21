@@ -6,21 +6,18 @@ package com.flickr4java.flickr.util;
 
 /**
  * Byte utilities.
- *
+ * 
  * @author Anthony Eden
  */
 public class ByteUtilities {
 
-    static char[] hexChar = {
-        '0', '1', '2', '3',
-        '4', '5', '6', '7',
-        '8', '9', 'a', 'b',
-        'c', 'd', 'e', 'f'};
+    static char[] hexChar = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
     /**
      * Convert a byte array to a hex string.
-     *
-     * @param b The byte array
+     * 
+     * @param b
+     *            The byte array
      * @return The hex String
      */
     public static String toHexString(byte[] b) {

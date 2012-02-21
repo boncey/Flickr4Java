@@ -15,10 +15,15 @@ import java.util.regex.Matcher;
 public class Permissions {
 
     private String id;
+
     private boolean publicFlag;
+
     private boolean friendFlag;
+
     private boolean familyFlag;
+
     private int comment = 0;
+
     private int addmeta = 0;
 
     public Permissions() {
@@ -66,7 +71,8 @@ public class Permissions {
     }
 
     public void setComment(String comment) {
-        if (comment != null) setComment(Integer.parseInt(comment));
+        if (comment != null)
+            setComment(Integer.parseInt(comment));
     }
 
     public int getAddmeta() {
@@ -78,15 +84,16 @@ public class Permissions {
     }
 
     public void setAddmeta(String addmeta) {
-        if (addmeta != null) setAddmeta(Integer.parseInt(addmeta));
+        if (addmeta != null)
+            setAddmeta(Integer.parseInt(addmeta));
     }
 
-	@Override
-	public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-		// object must be Permissions at this point
+        // object must be Permissions at this point
         Permissions test = (Permissions) obj;
         Class cl = this.getClass();
         Method[] method = cl.getMethods();
@@ -99,22 +106,24 @@ public class Permissions {
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {
-                            if (!res.equals(resTest)) return false;
+                            if (!res.equals(resTest))
+                                return false;
                         } else {
-                            //return false;
+                            // return false;
                         }
                     } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer)resTest))) return false;
+                        if (!((Integer) res).equals(((Integer) resTest)))
+                            return false;
                     } else if (retType.equals("boolean")) {
-                        if (!((Boolean) res).equals(((Boolean)resTest))) return false;
+                        if (!((Boolean) res).equals(((Boolean) resTest)))
+                            return false;
                     } else {
-                        System.out.println(method[i].getName() + "|" +
-                            method[i].getReturnType().toString());
+                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
                     }
                 } catch (IllegalAccessException ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("equals " + method[i].getName() + " " + ex);
+                    // System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (Exception ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 }

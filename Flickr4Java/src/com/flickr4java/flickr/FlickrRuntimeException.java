@@ -1,11 +1,10 @@
 package com.flickr4java.flickr;
 
-
 /**
  * {@link RuntimeException} wrapper for the various XML or IO Exceptions thrown.
+ * 
  * @author Darren Greaves
- * @version $Id$
- * Copyright (c) 2012 Darren Greaves.
+ * @version $Id$ Copyright (c) 2012 Darren Greaves.
  */
 public class FlickrRuntimeException extends RuntimeException {
 

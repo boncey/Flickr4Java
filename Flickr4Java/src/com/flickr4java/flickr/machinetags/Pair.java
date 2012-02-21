@@ -8,7 +8,9 @@ package com.flickr4java.flickr.machinetags;
 public class Pair {
 
     String namespace;
+
     String predicate;
+
     int usage;
 
     public String getNamespace() {
@@ -34,14 +36,15 @@ public class Pair {
     public void setUsage(String predicates) {
         try {
             setUsage(Integer.parseInt(predicates));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) {
+        }
     }
 
-	public void setUsage(int usage) {
-		this.usage = usage;
-	}
+    public void setUsage(int usage) {
+        this.usage = usage;
+    }
 
     public String getValue() {
-    	return namespace + ":" + predicate;
+        return namespace + ":" + predicate;
     }
 }

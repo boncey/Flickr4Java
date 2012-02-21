@@ -31,8 +31,11 @@ import java.io.InputStream;
 public class UploaderTest {
 
     Uploader uploader = null;
+
     PhotosInterface pint = null;
+
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -43,11 +46,7 @@ public class UploaderTest {
 
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
         uploader = flickr.getUploader();
         pint = flickr.getPhotosInterface();
 
@@ -63,7 +62,7 @@ public class UploaderTest {
 
     /**
      * Test photo uploading using a byte array.
-     *
+     * 
      * @throws IOException
      * @throws FlickrException
      * @throws SAXException
@@ -95,7 +94,7 @@ public class UploaderTest {
 
     /**
      * Test photo upload using an InputStream.
-     *
+     * 
      * @throws IOException
      * @throws FlickrException
      * @throws SAXException
@@ -121,7 +120,7 @@ public class UploaderTest {
 
     /**
      * Test photo replace using an InputStream.
-     *
+     * 
      * @throws IOException
      * @throws FlickrException
      * @throws SAXException
@@ -162,7 +161,7 @@ public class UploaderTest {
 
     /**
      * Test photo replace using a byte array.
-     *
+     * 
      * @throws IOException
      * @throws FlickrException
      * @throws SAXException
@@ -203,6 +202,7 @@ public class UploaderTest {
 
     /**
      * Build {@link UploadMetaData} with public set to false so uploaded photos are private.
+     * 
      * @return
      */
     private UploadMetaData buildPrivatePhotoMetadata() {

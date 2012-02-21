@@ -6,7 +6,7 @@ package com.flickr4java.flickr.reflection;
 
 /**
  * Describes an argument of a Flickr-method.
- *
+ * 
  * @author Anthony Eden
  * @see Method#getArguments()
  * @see Method#setArguments(java.util.Collection)
@@ -15,7 +15,9 @@ package com.flickr4java.flickr.reflection;
 public class Argument {
 
     private String name;
+
     private boolean optional;
+
     private String description;
 
     public String getName() {

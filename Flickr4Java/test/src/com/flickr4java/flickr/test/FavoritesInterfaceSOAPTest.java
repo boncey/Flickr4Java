@@ -32,6 +32,7 @@ import com.flickr4java.flickr.photos.Photo;
 public class FavoritesInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

@@ -9,23 +9,32 @@ import java.util.Collection;
 
 /**
  * Describes a method requested with {@link ReflectionInterface#getMethodInfo(String)}.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: Method.java,v 1.6 2007/11/18 22:48:09 x-mago Exp $
  */
 public class Method {
 
     public static final int READ_PERMISSION = 1;
+
     public static final int WRITE_PERMISSION = 2;
 
     private String name;
+
     private boolean needsLogin;
+
     private boolean needsSigning;
+
     private int requiredPerms;
+
     private String description;
+
     private String response;
+
     private String explanation;
+
     private Collection arguments;
+
     private Collection errors;
 
     public String getName() {

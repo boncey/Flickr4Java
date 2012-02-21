@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *
+ * 
  * @author till
  * @version $Id: InterestingnessInterface.java,v 1.9 2009/07/11 20:30:27 x-mago Exp $
  */
@@ -37,10 +37,15 @@ public class InterestingnessInterface {
     public static final String METHOD_GET_LIST = "flickr.interestingness.getList";
 
     private static final String KEY_METHOD = "method";
+
     private static final String KEY_API_KEY = Flickr.API_KEY;
+
     private static final String KEY_DATE = "date";
+
     private static final String KEY_EXTRAS = "extras";
+
     private static final String KEY_PER_PAGE = "per_page";
+
     private static final String KEY_PAGE = "page";
 
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
@@ -50,14 +55,12 @@ public class InterestingnessInterface {
     };
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public InterestingnessInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public InterestingnessInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -65,13 +68,17 @@ public class InterestingnessInterface {
 
     /**
      * Returns the list of interesting photos for the most recent day or a user-specified date.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @param date
-     * @param extras A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
-     * @param perPage The number of photos to show per page
-     * @param page The page offset
+     * @param extras
+     *            A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload,
+     *            date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
+     * @param perPage
+     *            The number of photos to show per page
+     * @param page
+     *            The page offset
      * @return PhotoList
      * @throws FlickrException
      * @throws IOException
@@ -79,14 +86,14 @@ public class InterestingnessInterface {
      * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList<Photo> getList(String date, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         parameters.put(KEY_METHOD, METHOD_GET_LIST);
         parameters.put(KEY_API_KEY, apiKey);
 
         if (date != null) {
-             parameters.put(KEY_DATE, date);
+            parameters.put(KEY_DATE, date);
         }
 
         if (extras != null) {
@@ -131,20 +138,18 @@ public class InterestingnessInterface {
      * @throws SAXException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList<Photo> getList(Date date, Set<String> extras, int perPage, int page)
-      throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getList(Date date, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
         String dateString = null;
         if (date != null) {
-            DateFormat df = (DateFormat)DATE_FORMATS.get();
+            DateFormat df = (DateFormat) DATE_FORMATS.get();
             dateString = df.format(date);
         }
         return getList(dateString, extras, perPage, page);
     }
 
     /**
-     * convenience method to get the list of all 500 most recent photos
-     * in flickr explore with all known extra attributes.
-     *
+     * convenience method to get the list of all 500 most recent photos in flickr explore with all known extra attributes.
+     * 
      * @return a List of Photos
      * @throws FlickrException
      * @throws IOException

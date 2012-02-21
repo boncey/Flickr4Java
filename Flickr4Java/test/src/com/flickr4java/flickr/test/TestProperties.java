@@ -22,21 +22,37 @@ public class TestProperties {
     private static Logger _log = Logger.getLogger(TestProperties.class);
 
     private String host;
+
     private String apiKey;
+
     private String secret;
+
     private String token;
+
     private String tokenSecret;
+
     private String nsid;
+
     private String email;
+
     private String username;
+
     private String groupId;
+
     private String testGroupId;
+
     private String photoId;
+
     private String photosetId;
+
     private String collectionId;
+
     private String collectionUrlId;
+
     private String imageFile;
+
     private String geoWritePhotoId;
+
     private String galleryId;
 
     public TestProperties() {
@@ -67,7 +83,7 @@ public class TestProperties {
         imageFile = properties.getProperty("imagefile");
         galleryId = properties.getProperty("galleryid");
         geoWritePhotoId = properties.getProperty("geo.write.photoid");
-        
+
     }
 
     private Properties load() {

@@ -1,31 +1,38 @@
 package com.flickr4java.flickr.photos;
 
 /**
- * Represents either a photo pool or a photo set with it's id and title. Instances of this
- * class are distinguished as set or pool by their <em>kind</em> property.
- * There are two possible kinds represented as public int constants:
+ * Represents either a photo pool or a photo set with it's id and title. Instances of this class are distinguished as set or pool by their <em>kind</em>
+ * property. There are two possible kinds represented as public int constants:
  * <ul>
- *  <li>SET this is a photo set</li>
- *     <li>POOL this is a groups photo pool</li>
+ * <li>SET this is a photo set</li>
+ * <li>POOL this is a groups photo pool</li>
  * </ul>
+ * 
  * @author till (Till Krech) flickr:extranoise
  * @version $Id: PhotoPlace.java,v 1.3 2009/07/12 22:43:07 x-mago Exp $
  */
 public class PhotoPlace {
     public static final int SET = 1;
+
     public static final int POOL = 2;
 
     private String id;
+
     private int kind;
+
     private String title;
 
     /**
      * creates a new one.
-     *
-     * @param kind either SET or POOL
-     * @param id id of the pool or set
-     * @param title name of the pool or set
-     * @throws IllegalArgumentException if kind is invalid
+     * 
+     * @param kind
+     *            either SET or POOL
+     * @param id
+     *            id of the pool or set
+     * @param title
+     *            name of the pool or set
+     * @throws IllegalArgumentException
+     *             if kind is invalid
      */
     public PhotoPlace(int kind, String id, String title) {
         setKind(kind);
@@ -35,11 +42,15 @@ public class PhotoPlace {
 
     /**
      * creates a new one where the kind may be specified as String "set" or "pool"
-     *
-     * @param kind either "set" or "pool"
-     * @param id id of the pool or set
-     * @param title name of the pool or set
-     * @throws IllegalArgumentException if kind is invalid
+     * 
+     * @param kind
+     *            either "set" or "pool"
+     * @param id
+     *            id of the pool or set
+     * @param title
+     *            name of the pool or set
+     * @throws IllegalArgumentException
+     *             if kind is invalid
      */
     public PhotoPlace(String kind, String id, String title) {
         setKind(kind);
@@ -102,8 +113,7 @@ public class PhotoPlace {
     }
 
     /**
-     * compares this to another object. Makes is possible to put PhotPlaces into a 
-     * Java Set.
+     * compares this to another object. Makes is possible to put PhotPlaces into a Java Set.
      */
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -137,19 +147,17 @@ public class PhotoPlace {
     }
 
     /**
-     * primitive hashCode.
-     * Makes is possible to put PhotPlaces into a 
-     * Java Set.
+     * primitive hashCode. Makes is possible to put PhotPlaces into a Java Set.
      */
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
 
     /**
-     * returns a human readable but ugly representation of this object 
+     * returns a human readable but ugly representation of this object
      */
     public String toString() {
-        return getClass().getName() + "[" + getKindAsString() + " id=\"" + id + "\" title=\"" + title +"\"]";
+        return getClass().getName() + "[" + getKindAsString() + " id=\"" + id + "\" title=\"" + title + "\"]";
     }
 
 }

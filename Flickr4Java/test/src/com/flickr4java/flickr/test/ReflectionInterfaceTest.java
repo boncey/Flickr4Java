@@ -36,6 +36,7 @@ import java.util.Iterator;
 public class ReflectionInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -70,28 +71,28 @@ public class ReflectionInterfaceTest {
         assertEquals(6, method.getArguments().size());
         Iterator argsIterator = method.getArguments().iterator();
 
-        Argument api_key = (Argument)argsIterator.next();
+        Argument api_key = (Argument) argsIterator.next();
         assertEquals(Flickr.API_KEY, api_key.getName());
         assertFalse(api_key.isOptional());
         assertNotNull(api_key.getDescription());
 
-        Argument date  = (Argument)argsIterator.next();
+        Argument date = (Argument) argsIterator.next();
         assertEquals("date", date.getName());
         assertTrue(date.isOptional());
 
-        Argument panda  = (Argument)argsIterator.next();
+        Argument panda = (Argument) argsIterator.next();
         assertEquals("use_panda", panda.getName());
         assertTrue(panda.isOptional());
 
-        Argument extras  = (Argument)argsIterator.next();
+        Argument extras = (Argument) argsIterator.next();
         assertEquals("extras", extras.getName());
         assertTrue(extras.isOptional());
 
-        Argument per_page  = (Argument)argsIterator.next();
+        Argument per_page = (Argument) argsIterator.next();
         assertEquals("per_page", per_page.getName());
         assertTrue(per_page.isOptional());
 
-        Argument page = (Argument)argsIterator.next();
+        Argument page = (Argument) argsIterator.next();
         assertEquals("page", page.getName());
         assertTrue(page.isOptional());
 
@@ -99,7 +100,7 @@ public class ReflectionInterfaceTest {
         assertNotNull(errors);
         assertTrue(errors.size() > 0);
         Iterator errorsIterator = errors.iterator();
-        Error error = (Error)errorsIterator.next();
+        Error error = (Error) errorsIterator.next();
         assertNotNull(error);
         assertTrue(error.getCode() > 0);
         assertNotNull(error.getMessage());
@@ -120,24 +121,22 @@ public class ReflectionInterfaceTest {
         assertTrue(method.needsLogin());
         assertEquals(Method.WRITE_PERMISSION, method.getRequiredPerms());
 
-
         Iterator argsIterator = method.getArguments().iterator();
 
-        Argument api_key = (Argument)argsIterator.next();
+        Argument api_key = (Argument) argsIterator.next();
         assertEquals(Flickr.API_KEY, api_key.getName());
         assertFalse(api_key.isOptional());
         assertNotNull(api_key.getDescription());
 
-        Argument photo_id  = (Argument)argsIterator.next();
+        Argument photo_id = (Argument) argsIterator.next();
         assertEquals("photo_id", photo_id.getName());
         assertFalse(photo_id.isOptional());
 
-        Argument tags  = (Argument)argsIterator.next();
+        Argument tags = (Argument) argsIterator.next();
         assertEquals("tags", tags.getName());
         assertFalse(tags.isOptional());
 
     }
-
 
     @Test
     public void testGetMethods() throws FlickrException, IOException, SAXException {
@@ -150,7 +149,7 @@ public class ReflectionInterfaceTest {
         boolean foundGetLocation = false;
 
         while (methodsIterator.hasNext()) {
-            String methodName = (String)methodsIterator.next();
+            String methodName = (String) methodsIterator.next();
             if ("flickr.photos.addTags".equals(methodName)) {
                 foundAddTags = true;
             }

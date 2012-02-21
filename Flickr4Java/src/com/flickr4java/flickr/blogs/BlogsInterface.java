@@ -23,18 +23,22 @@ import java.util.Map;
 
 /**
  * Interface for working with Flickr blog configurations.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: BlogsInterface.java,v 1.14 2009/07/11 20:30:27 x-mago Exp $
  */
 public class BlogsInterface {
 
     private static final String METHOD_GET_SERVICES = "flickr.blogs.getServices";
+
     private static final String METHOD_GET_LIST = "flickr.blogs.getList";
+
     private static final String METHOD_POST_PHOTO = "flickr.blogs.postPhoto";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
     public BlogsInterface(String apiKey, String sharedSecret, Transport transport) {
@@ -45,16 +49,15 @@ public class BlogsInterface {
 
     /**
      * Return a list of Flickr supported blogging services.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @return List of Services
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Service> getServices()
-      throws IOException, SAXException, FlickrException {
+    public Collection<Service> getServices() throws IOException, SAXException, FlickrException {
         List<Service> list = new ArrayList<Service>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SERVICES);
@@ -77,18 +80,20 @@ public class BlogsInterface {
     }
 
     /**
-     * Post the specified photo to a blog.  Note that the Photo.title and Photo.description are used for the blog entry
-     * title and body respectively.
-     *
-     * @param photo The photo metadata
-     * @param blogId The blog ID
-     * @param blogPassword The blog password
+     * Post the specified photo to a blog. Note that the Photo.title and Photo.description are used for the blog entry title and body respectively.
+     * 
+     * @param photo
+     *            The photo metadata
+     * @param blogId
+     *            The blog ID
+     * @param blogPassword
+     *            The blog password
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public void postPhoto(Photo photo, String blogId, String blogPassword) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_POST_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -108,9 +113,11 @@ public class BlogsInterface {
 
     /**
      * Post the specified photo to a blog.
-     *
-     * @param photo The photo metadata
-     * @param blogId The blog ID
+     * 
+     * @param photo
+     *            The photo metadata
+     * @param blogId
+     *            The blog ID
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
@@ -121,7 +128,7 @@ public class BlogsInterface {
 
     /**
      * Get the collection of configured blogs for the calling user.
-     *
+     * 
      * @return The Collection of configured blogs
      * @throws IOException
      * @throws SAXException

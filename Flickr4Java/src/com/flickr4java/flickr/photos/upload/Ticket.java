@@ -1,27 +1,34 @@
 package com.flickr4java.flickr.photos.upload;
 
 /**
- * Photo upload ticket.<p>
+ * Photo upload ticket.
+ * <p>
  * The ticketId attribute contains the ticket id.<br>
- * If the ticket wasn't found, the invalid attribute is set.<br> 
- * The status of the ticket is passed in the status attribute;<p>
- *  0 means not completed,<br>
- *  1 means completed and<br>
- *  2 means the ticket failed (indicating there was a problem converting the file).<p>
- *  When the status is 1, the photo id is passed in the photoid attribute. 
- *  The photo id can then be used as with the synchronous upload API.
- *
+ * If the ticket wasn't found, the invalid attribute is set.<br>
+ * The status of the ticket is passed in the status attribute;
+ * <p>
+ * 0 means not completed,<br>
+ * 1 means completed and<br>
+ * 2 means the ticket failed (indicating there was a problem converting the file).
+ * <p>
+ * When the status is 1, the photo id is passed in the photoid attribute. The photo id can then be used as with the synchronous upload API.
+ * 
  * @author till (Till Krech) extranoise:flickr
  * @version $Id: Ticket.java,v 1.2 2007/11/02 21:46:52 x-mago Exp $
  */
 public class Ticket {
     public static final int UNCOMPLETED = 0;
+
     public static final int COMPLETED = 1;
+
     public static final int FAILED = 2;
 
     private String ticketId;
+
     private boolean invalid;
+
     private String photoId;
+
     private int status;
 
     public boolean isInvalid() {

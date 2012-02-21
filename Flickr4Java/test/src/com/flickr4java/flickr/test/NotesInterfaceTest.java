@@ -10,7 +10,7 @@ import org.junit.Test;
 
 /**
  * @author acaplan
- *
+ * 
  */
 public class NotesInterfaceTest extends Flickr4JavaTest {
 

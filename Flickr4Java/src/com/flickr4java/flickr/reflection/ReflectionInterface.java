@@ -21,32 +21,35 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Interface for testing the complete implementation of all Flickr-methods.<p>
- *
+ * Interface for testing the complete implementation of all Flickr-methods.
+ * <p>
+ * 
  * @author Anthony Eden
  * @version $Id: ReflectionInterface.java,v 1.10 2008/01/28 23:01:45 x-mago Exp $
  */
 public class ReflectionInterface {
 
     public static final String METHOD_GET_METHOD_INFO = "flickr.reflection.getMethodInfo";
-    public static final String METHOD_GET_METHODS     = "flickr.reflection.getMethods";
+
+    public static final String METHOD_GET_METHODS = "flickr.reflection.getMethods";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transport;
 
     /**
      * Construct a ReflectionInterface.
-     *
-     * @param apiKey The API key
-     * @param sharedSecret The Shared Secret
-     * @param transport The Transport interface
+     * 
+     * @param apiKey
+     *            The API key
+     * @param sharedSecret
+     *            The Shared Secret
+     * @param transport
+     *            The Transport interface
      */
-    public ReflectionInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transport
-    ) {
+    public ReflectionInterface(String apiKey, String sharedSecret, Transport transport) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transport = transport;
@@ -54,20 +57,20 @@ public class ReflectionInterface {
 
     /**
      * Get the info for the specified method.
-     *
-     * @param methodName The method name
+     * 
+     * @param methodName
+     *            The method name
      * @return The Method object
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public Method getMethodInfo(String methodName) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_METHOD_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("method_name", methodName);
-
 
         Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
@@ -98,27 +101,27 @@ public class ReflectionInterface {
         // tolerant fix for incorrect nesting of the <arguments> element
         // as observed in current flickr responses of this method
         //
-        // specified as 
+        // specified as
         // <rsp>
-        //	<method>
-        //   <arguments>
-        //   <errors>
-        //  <method>
+        // <method>
+        // <arguments>
+        // <errors>
+        // <method>
         // </rsp>
         //
         // observed as
         // <rsp>
-        //  <method>
-        //  <arguments>
-        //  <errors>
+        // <method>
+        // <arguments>
+        // <errors>
         // </rsp>
         //
         if (argumentsElement == null) {
-        	//System.err.println("getMethodInfo: Using workaround for arguments array");
-            Element parent = (Element)methodElement.getParentNode();
+            // System.err.println("getMethodInfo: Using workaround for arguments array");
+            Element parent = (Element) methodElement.getParentNode();
             Element child = XMLUtilities.getChild(parent, "arguments");
             if (child != null) {
-            	argumentsElement = child;
+                argumentsElement = child;
             }
         }
         NodeList argumentElements = argumentsElement.getElementsByTagName("argument");
@@ -137,27 +140,27 @@ public class ReflectionInterface {
         // as observed in current flickr responses of this method
         // as of 2006-09-15
         //
-        // specified as 
+        // specified as
         // <rsp>
-        //	<method>
-        //   <arguments>
-        //   <errors>
-        //  <method>
+        // <method>
+        // <arguments>
+        // <errors>
+        // <method>
         // </rsp>
         //
         // observed as
         // <rsp>
-        //  <method>
-        //  <arguments>
-        //  <errors>
+        // <method>
+        // <arguments>
+        // <errors>
         // </rsp>
         //
         if (errorsElement == null) {
-           	//System.err.println("getMethodInfo: Using workaround for errors array");
-            Element parent = (Element)methodElement.getParentNode();
+            // System.err.println("getMethodInfo: Using workaround for errors array");
+            Element parent = (Element) methodElement.getParentNode();
             Element child = XMLUtilities.getChild(parent, "errors");
             if (child != null) {
-            	errorsElement = child;
+                errorsElement = child;
             }
         }
         List<Error> errors = new ArrayList<Error>();
@@ -177,18 +180,16 @@ public class ReflectionInterface {
 
     /**
      * Get a list of all methods.
-     *
+     * 
      * @return The method names
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public Collection<String> getMethods() throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_METHODS);
         parameters.put(Flickr.API_KEY, apiKey);
-
-
 
         Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {

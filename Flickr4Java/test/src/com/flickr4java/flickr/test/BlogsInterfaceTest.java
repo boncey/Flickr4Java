@@ -32,6 +32,7 @@ import com.flickr4java.flickr.blogs.Service;
 public class BlogsInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -39,11 +40,7 @@ public class BlogsInterfaceTest {
         testProperties = new TestProperties();
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -71,11 +68,10 @@ public class BlogsInterfaceTest {
         boolean bloggerFound = false;
         while (it.hasNext()) {
             Service ser = (Service) it.next();
-            if (ser.getId().equals("beta.blogger.com") &&
-                    ser.getName().equals("Blogger")) {
+            if (ser.getId().equals("beta.blogger.com") && ser.getName().equals("Blogger")) {
                 bloggerFound = true;
             }
-            //System.out.println(ser.getId() + " " + ser.getName());
+            // System.out.println(ser.getId() + " " + ser.getName());
         }
         assertTrue(bloggerFound);
     }

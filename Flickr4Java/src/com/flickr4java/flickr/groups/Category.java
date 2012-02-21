@@ -7,15 +7,19 @@ import java.util.Collection;
 
 /**
  * Class representing a group Category.
- *
+ * 
  * @author Anthony Eden
  */
 public class Category {
 
     private String name;
+
     private String path;
+
     private String pathIds;
+
     private Collection<Subcategory> subcategories;
+
     private Collection<Group> groups;
 
     public Category() {

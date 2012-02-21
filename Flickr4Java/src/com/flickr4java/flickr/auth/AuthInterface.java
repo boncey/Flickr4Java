@@ -29,7 +29,7 @@ import java.util.TreeMap;
 
 /**
  * Authentication interface.
- *
+ * 
  * @author Anthony Eden
  */
 public class AuthInterface {
@@ -40,10 +40,13 @@ public class AuthInterface {
     private static final String OUT_OF_BOUND_AUTH_METHOD = "oob";
 
     private static final String METHOD_CHECK_TOKEN = "flickr.auth.oauth.checkToken";
+
     private static final String METHOD_EXCHANGE_TOKEN = "flickr.auth.oauth.getAccessToken";
 
     private final String apiKey;
+
     private final String sharedSecret;
+
     private final Transport transportAPI;
 
     private final static Logger logger = Logger.getLogger(AuthInterface.class);
@@ -52,15 +55,13 @@ public class AuthInterface {
 
     /**
      * Construct the AuthInterface.
-     *
-     * @param apiKey The API key
-     * @param transport The Transport interface
+     * 
+     * @param apiKey
+     *            The API key
+     * @param transport
+     *            The Transport interface
      */
-    public AuthInterface(
-            String apiKey,
-            String sharedSecret,
-            Transport transport
-            ) {
+    public AuthInterface(String apiKey, String sharedSecret, Transport transport) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transport;
@@ -68,6 +69,7 @@ public class AuthInterface {
 
     /**
      * Get the OAuth request token - this is step one of authorization.
+     * 
      * @return the {@link Token}, store this for when the user returns from the Flickr website.
      */
     public Token getRequestToken() {
@@ -77,28 +79,30 @@ public class AuthInterface {
 
     /**
      * Get the OAuth request token - this is step one of authorization.
-     * @param callbackUrl optional callback URL - required for web auth flow, will be set to "oob" if not specified.
+     * 
+     * @param callbackUrl
+     *            optional callback URL - required for web auth flow, will be set to "oob" if not specified.
      * @return the {@link Token}, store this for when the user returns from the Flickr website.
      */
     public Token getRequestToken(String callbackUrl) {
 
         String callback = (callbackUrl != null) ? callbackUrl : OUT_OF_BOUND_AUTH_METHOD;
 
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey)
-                .apiSecret(sharedSecret).callback(callback).build();
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret).callback(callback).build();
 
         return service.getRequestToken();
     }
 
     /**
      * Get the auth URL, this is step two of authorization.
-     * @param oAuthRequestToken the token from a {@link AuthInterface#getRequestToken} call.
+     * 
+     * @param oAuthRequestToken
+     *            the token from a {@link AuthInterface#getRequestToken} call.
      * @return
      */
     public String getAuthorizationUrl(Token oAuthRequestToken, Permission permission) {
 
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey)
-                .apiSecret(sharedSecret).build();
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret).build();
 
         String authorizationUrl = service.getAuthorizationUrl(oAuthRequestToken);
         return String.format("%s&perms=%s", authorizationUrl, permission.toString());
@@ -106,15 +110,16 @@ public class AuthInterface {
 
     /**
      * Trade the request token for an access token, this is step three of authorization.
-     * @param oAuthRequestToken this is the token returned by the {@link AuthInterface#getRequestToken} call.
-     * @param verifier the Verifier created from the code entered by a user or passed back to a callback URL.
+     * 
+     * @param oAuthRequestToken
+     *            this is the token returned by the {@link AuthInterface#getRequestToken} call.
+     * @param verifier
+     *            the Verifier created from the code entered by a user or passed back to a callback URL.
      * @return
      */
     @SuppressWarnings("boxing")
-    public Token getAccessToken(Token oAuthRequestToken, Verifier verifier)
-    {
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey)
-                .apiSecret(sharedSecret).build();
+    public Token getAccessToken(Token oAuthRequestToken, Verifier verifier) {
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret).build();
 
         // Flickr seems to return invalid token sometimes so retry a few times.
         // See http://www.flickr.com/groups/api/discuss/72157628028927244/
@@ -147,19 +152,21 @@ public class AuthInterface {
 
     /**
      * Returns the credentials attached to an OAuth authentication token.
-     *
-     * @param accessToken The authentication token
+     * 
+     * @param accessToken
+     *            The authentication token
      * @return The Auth object
      * @throws FlickrException
      */
-    public Auth checkToken(Token accessToken) throws  FlickrException {
+    public Auth checkToken(Token accessToken) throws FlickrException {
 
         return checkToken(accessToken.getToken(), accessToken.getSecret());
     }
 
     /**
-     *
-     * @param authToken The authentication token
+     * 
+     * @param authToken
+     *            The authentication token
      * @param tokenSecret
      * @return The Auth object
      * @throws FlickrException
@@ -182,6 +189,7 @@ public class AuthInterface {
      * Exchange an auth token from the old Authentication API, to an OAuth access token.
      * 
      * Calling this method will delete the auth token used to make the request.
+     * 
      * @param authToken
      * @return
      * @throws FlickrException
@@ -258,15 +266,17 @@ public class AuthInterface {
 
     /**
      * Get a signature for a list of parameters using the given shared secret.
-     *
-     * @param sharedSecret The shared secret
-     * @param params The parameters
+     * 
+     * @param sharedSecret
+     *            The shared secret
+     * @param params
+     *            The parameters
      * @return The signature String
      */
     private String getSignature(String sharedSecret, Map<String, String> params) {
         StringBuffer buffer = new StringBuffer();
         buffer.append(sharedSecret);
-        for(Map.Entry<String, String> entry : params.entrySet()) {
+        for (Map.Entry<String, String> entry : params.entrySet()) {
             buffer.append(entry.getKey());
             buffer.append(entry.getValue());
         }
@@ -281,8 +291,7 @@ public class AuthInterface {
         }
     }
 
-    public void setMaxGetTokenRetries(int maxGetTokenRetries)
-    {
+    public void setMaxGetTokenRetries(int maxGetTokenRetries) {
 
         this.maxGetTokenRetries = maxGetTokenRetries;
     }

@@ -13,7 +13,7 @@ import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Utilitiy-methods to transfer requested XML to Photo-objects.
- *
+ * 
  * @author till, x-mago
  * @version $Id: PhotoUtils.java,v 1.20 2009/07/23 21:49:35 x-mago Exp $
  */
@@ -24,13 +24,12 @@ public final class PhotoUtils {
 
     /**
      * Try to get an attribute value from two elements.
-     *
+     * 
      * @param firstElement
      * @param secondElement
      * @return attribute value
      */
-    private static String getAttribute(String name, Element firstElement,
-            Element secondElement) {
+    private static String getAttribute(String name, Element firstElement, Element secondElement) {
         String val = firstElement.getAttribute(name);
         if (val.length() == 0 && secondElement != null) {
             val = secondElement.getAttribute(name);
@@ -39,9 +38,8 @@ public final class PhotoUtils {
     }
 
     /**
-     * Transfer the Information of a photo from a DOM-object
-     * to a Photo-object.
-     *
+     * Transfer the Information of a photo from a DOM-object to a Photo-object.
+     * 
      * @param photoElement
      * @return Photo
      */
@@ -50,15 +48,13 @@ public final class PhotoUtils {
     }
 
     /**
-     * Transfer the Information of a photo from a DOM-object
-     * to a Photo-object.
-     *
+     * Transfer the Information of a photo from a DOM-object to a Photo-object.
+     * 
      * @param photoElement
      * @param defaultElement
      * @return Photo
      */
-     public static final Photo createPhoto(Element photoElement,
-        Element defaultElement) {
+    public static final Photo createPhoto(Element photoElement, Element defaultElement) {
         Photo photo = new Photo();
         photo.setId(photoElement.getAttribute("id"));
         photo.setPlaceId(photoElement.getAttribute("place_id"));
@@ -257,8 +253,7 @@ public final class PhotoUtils {
                 note.setId(noteElement.getAttribute("id"));
                 note.setAuthor(noteElement.getAttribute("author"));
                 note.setAuthorName(noteElement.getAttribute("authorname"));
-                note.setBounds(noteElement.getAttribute("x"), noteElement.getAttribute("y"),
-                    noteElement.getAttribute("w"), noteElement.getAttribute("h"));
+                note.setBounds(noteElement.getAttribute("x"), noteElement.getAttribute("y"), noteElement.getAttribute("w"), noteElement.getAttribute("h"));
                 note.setText(noteElement.getTextContent());
                 notes.add(note);
             }
@@ -284,7 +279,7 @@ public final class PhotoUtils {
                     tags.add(tag);
                 }
             } else {
-                 try {
+                try {
                     Element tagsElement = (Element) photoElement.getElementsByTagName("tags").item(0);
                     NodeList tagNodes = tagsElement.getElementsByTagName("tag");
                     for (int i = 0; i < tagNodes.getLength(); i++) {
@@ -333,7 +328,7 @@ public final class PhotoUtils {
             accuracy = geoElement.getAttribute("accuracy");
         } catch (IndexOutOfBoundsException e) {
         } catch (NullPointerException e) {
-        	// Geodata may be available as attributes in the photo-tag itself!
+            // Geodata may be available as attributes in the photo-tag itself!
             try {
                 longitude = photoElement.getAttribute("longitude");
                 latitude = photoElement.getAttribute("latitude");
@@ -343,8 +338,7 @@ public final class PhotoUtils {
             }
         }
         if (longitude != null && latitude != null) {
-            if (longitude.length() > 0 && latitude.length() > 0
-                && !("0".equals(longitude) && "0".equals(latitude))) {
+            if (longitude.length() > 0 && latitude.length() > 0 && !("0".equals(longitude) && "0".equals(latitude))) {
                 photo.setGeoData(new GeoData(longitude, latitude, accuracy));
             }
         }
@@ -354,7 +348,7 @@ public final class PhotoUtils {
 
     /**
      * Parse a list of Photos from given Element.
-     *
+     * 
      * @param photosElement
      * @return PhotoList
      */

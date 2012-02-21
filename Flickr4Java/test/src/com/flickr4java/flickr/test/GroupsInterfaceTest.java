@@ -32,6 +32,7 @@ import java.util.Collection;
 public class GroupsInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -42,11 +43,7 @@ public class GroupsInterfaceTest {
         REST rest = new REST();
         rest.setHost(testProperties.getHost());
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -63,50 +60,41 @@ public class GroupsInterfaceTest {
         Category cat = iface.browse(null);
         assertNotNull(cat);
         assertEquals("/", cat.getName());
-        //        System.out.println("category path: " + cat.getPath());
+        // System.out.println("category path: " + cat.getPath());
 
         Collection groups = cat.getGroups();
         assertNotNull(groups);
         assertEquals(0, groups.size());
-        //        Iterator groupsIter = groups.iterator();
-        //        while (groupsIter.hasNext()) {
-        //            Group group = (Group) groupsIter.next();
-        //            System.out.println("group id: " + group.getId());
-        //            System.out.println("group name: " + group.getName());
-        //        }
+        // Iterator groupsIter = groups.iterator();
+        // while (groupsIter.hasNext()) {
+        // Group group = (Group) groupsIter.next();
+        // System.out.println("group id: " + group.getId());
+        // System.out.println("group name: " + group.getName());
+        // }
 
         Collection subcats = cat.getSubcategories();
         assertNotNull(subcats);
         assertTrue(subcats.size() > 0);
-        //        Iterator subcatsIter = subcats.iterator();
-        //        while (subcatsIter.hasNext()) {
-        //            Subcategory subcategory = (Subcategory) subcatsIter.next();
-        //            System.out.println("subcat id: " + subcategory.getId());
-        //            System.out.println("subcat name: " + subcategory.getName());
-        //        }
+        // Iterator subcatsIter = subcats.iterator();
+        // while (subcatsIter.hasNext()) {
+        // Subcategory subcategory = (Subcategory) subcatsIter.next();
+        // System.out.println("subcat id: " + subcategory.getId());
+        // System.out.println("subcat name: " + subcategory.getName());
+        // }
     }
 
     /*
      * It is not longer possible to browse the groups hierarchy
-     *
-    @Test
-    public void testBrowseWithId() throws FlickrException, IOException, SAXException {
-        GroupsInterface iface = flickr.getGroupsInterface();
-        Category cat = iface.browse("68"); // browse the Flickr category
-        assertNotNull(cat);
-        assertEquals("Flickr", cat.getName());
-        assertNotNull(cat.getPath());
-        assertNotNull(cat.getPathIds());
-
-        Collection groups = cat.getGroups();
-        assertNotNull(groups);
-        assertTrue(groups.size() > 0);
-
-        Collection subcats = cat.getSubcategories();
-        assertNotNull(subcats);
-        assertTrue(subcats.size() > 0);
-//        System.out.println("category name: " + cat.getName());
-    } */
+     * 
+     * @Test public void testBrowseWithId() throws FlickrException, IOException, SAXException { GroupsInterface iface = flickr.getGroupsInterface(); Category
+     * cat = iface.browse("68"); // browse the Flickr category assertNotNull(cat); assertEquals("Flickr", cat.getName()); assertNotNull(cat.getPath());
+     * assertNotNull(cat.getPathIds());
+     * 
+     * Collection groups = cat.getGroups(); assertNotNull(groups); assertTrue(groups.size() > 0);
+     * 
+     * Collection subcats = cat.getSubcategories(); assertNotNull(subcats); assertTrue(subcats.size() > 0); // System.out.println("category name: " +
+     * cat.getName()); }
+     */
 
     @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {
@@ -119,7 +107,7 @@ public class GroupsInterfaceTest {
         assertTrue(group.getMembers() > 0);
         assertTrue(group.getBuddyIconUrl().startsWith("http://farm"));
 
-        //System.out.println("group members: " + group.getMembers());
+        // System.out.println("group members: " + group.getMembers());
     }
 
     @Test

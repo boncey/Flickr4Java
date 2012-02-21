@@ -15,10 +15,15 @@ import java.util.regex.Matcher;
 public class Tag {
 
     private String id;
+
     private String author;
+
     private String authorName;
+
     private String raw;
+
     private String value;
+
     private int count;
 
     public Tag() {
@@ -77,12 +82,12 @@ public class Tag {
         setCount(Integer.parseInt(count));
     }
 
-	@Override
-	public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-		// object must be GeoData at this point
+        // object must be GeoData at this point
         Tag test = (Tag) obj;
         Class cl = this.getClass();
         Method[] method = cl.getMethods();
@@ -95,20 +100,21 @@ public class Tag {
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {
-                            if (!res.equals(resTest)) return false;
+                            if (!res.equals(resTest))
+                                return false;
                         } else {
-                            //return false;
+                            // return false;
                         }
                     } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer)resTest))) return false;
+                        if (!((Integer) res).equals(((Integer) resTest)))
+                            return false;
                     } else {
-                        System.out.println(method[i].getName() + "|" +
-                            method[i].getReturnType().toString());
+                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
                     }
                 } catch (IllegalAccessException ex) {
                     System.out.println("Size equals " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("equals " + method[i].getName() + " " + ex);
+                    // System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (Exception ex) {
                     System.out.println("Size equals " + method[i].getName() + " " + ex);
                 }
@@ -121,11 +127,16 @@ public class Tag {
     public int hashCode() {
         int hash = 1;
         hash += new Integer(count).hashCode();
-        if (value != null) hash += value.hashCode();
-        if (raw != null) hash += raw.hashCode();
-        if (author != null) hash += author.hashCode();
-        if (authorName != null) hash += authorName.hashCode();
-        if (id != null) hash += id.hashCode();
+        if (value != null)
+            hash += value.hashCode();
+        if (raw != null)
+            hash += raw.hashCode();
+        if (author != null)
+            hash += author.hashCode();
+        if (authorName != null)
+            hash += authorName.hashCode();
+        if (id != null)
+            hash += id.hashCode();
         return hash;
     }
 }

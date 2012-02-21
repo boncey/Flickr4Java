@@ -20,24 +20,24 @@ import java.util.Map;
 
 /**
  * Interface for testing Flickr connectivity.
- *
+ * 
  * @author Matt Ray
  */
 public class TestInterface {
 
     public static final String METHOD_ECHO = "flickr.test.echo";
+
     public static final String METHOD_LOGIN = "flickr.test.login";
+
     public static final String METHOD_NULL = "flickr.test.null";
 
     private final String apiKey;
+
     private final String sharedSecret;
+
     private final Transport transport;
 
-    public TestInterface(
-            String apiKey,
-            String sharedSecret,
-            Transport transportAPI
-            ) {
+    public TestInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transport = transportAPI;
@@ -45,8 +45,9 @@ public class TestInterface {
 
     /**
      * A testing method which echo's all paramaters back in the response.
-     *
-     * @param params The parameters
+     * 
+     * @param params
+     *            The parameters
      * @return The Collection of echoed elements
      * @throws IOException
      * @throws SAXException
@@ -67,7 +68,7 @@ public class TestInterface {
 
     /**
      * A testing method which checks if the caller is logged in then returns a User object.
-     *
+     * 
      * @return The User object
      * @throws IOException
      * @throws SAXException
@@ -77,7 +78,6 @@ public class TestInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOGIN);
         parameters.put(Flickr.API_KEY, apiKey);
-
 
         Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
@@ -94,8 +94,8 @@ public class TestInterface {
     }
 
     /**
-     * Null test.
-     * This method requires authentication with 'read' permission.
+     * Null test. This method requires authentication with 'read' permission.
+     * 
      * @throws SAXException
      * @throws IOException
      * @throws FlickrException
@@ -104,7 +104,6 @@ public class TestInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_NULL);
         parameters.put(Flickr.API_KEY, apiKey);
-
 
         Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {

@@ -30,6 +30,7 @@ import java.io.InputStream;
 public class UploaderSOAPTest {
 
     Uploader uploader = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -39,15 +40,12 @@ public class UploaderSOAPTest {
         Flickr.debugStream = true;
         SOAP soap = new SOAP(testProperties.getHost());
 
-        uploader = new Uploader(
-                testProperties.getApiKey(),
-                testProperties.getSecret()
-                );
+        uploader = new Uploader(testProperties.getApiKey(), testProperties.getSecret());
     }
 
     /**
      * Test photo uploading using a byte array.
-     *
+     * 
      * @throws IOException
      * @throws FlickrException
      * @throws SAXException
@@ -77,7 +75,7 @@ public class UploaderSOAPTest {
 
     /**
      * Test photo upload using an InputStream.
-     *
+     * 
      * @throws IOException
      * @throws FlickrException
      * @throws SAXException

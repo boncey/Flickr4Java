@@ -17,32 +17,36 @@ import java.util.Map;
 
 /**
  * Requesting preferences for the current authenticated user.
- *
+ * 
  * @author Martin Goebel
  * @version $Id: PrefsInterface.java,v 1.6 2008/06/28 22:30:04 x-mago Exp $
  */
 public class PrefsInterface {
     public static final String METHOD_GET_CONTENT_TYPE = "flickr.prefs.getContentType";
+
     public static final String METHOD_GET_HIDDEN = "flickr.prefs.getHidden";
+
     public static final String METHOD_GET_SAFETY_LEVEL = "flickr.prefs.getSafetyLevel";
+
     public static final String METHOD_GET_PRIVACY = "flickr.prefs.getPrivacy";
+
     public static final String METHOD_GET_GEO_PERMS = "flickr.prefs.getGeoPerms";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
     /**
      * Construct a PrefsInterface.
-     *
-     * @param apiKey The API key
-     * @param transportAPI The Transport interface
+     * 
+     * @param apiKey
+     *            The API key
+     * @param transportAPI
+     *            The Transport interface
      */
-    public PrefsInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public PrefsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -50,7 +54,7 @@ public class PrefsInterface {
 
     /**
      * Returns the default content type preference for the user.
-     *
+     * 
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
@@ -60,10 +64,9 @@ public class PrefsInterface {
      * @throws FlickrException
      */
     public String getContentType() throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTENT_TYPE);
         parameters.put(Flickr.API_KEY, apiKey);
-
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
@@ -76,7 +79,7 @@ public class PrefsInterface {
 
     /**
      * Returns the default privacy level for geographic information attached to the user's photos.
-     *
+     * 
      * @return privacy-level
      * @throws IOException
      * @throws SAXException
@@ -89,10 +92,9 @@ public class PrefsInterface {
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PRIVATE
      */
     public int getGeoPerms() throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GEO_PERMS);
         parameters.put(Flickr.API_KEY, apiKey);
-
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
@@ -112,17 +114,16 @@ public class PrefsInterface {
 
     /**
      * Returns the default hidden preference for the user.
-     *
+     * 
      * @return boolean hidden or not
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public boolean getHidden() throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_HIDDEN);
         parameters.put(Flickr.API_KEY, apiKey);
-
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
@@ -130,12 +131,12 @@ public class PrefsInterface {
         }
 
         Element personElement = response.getPayload();
-        return personElement.getAttribute("hidden").equals("1") ? true : false ;
+        return personElement.getAttribute("hidden").equals("1") ? true : false;
     }
 
     /**
      * Returns the default safety level preference for the user.
-     *
+     * 
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
@@ -145,10 +146,9 @@ public class PrefsInterface {
      * @throws FlickrException
      */
     public String getSafetyLevel() throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SAFETY_LEVEL);
         parameters.put(Flickr.API_KEY, apiKey);
-
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
@@ -161,7 +161,7 @@ public class PrefsInterface {
 
     /**
      * Returns the default privacy level preference for the user.
-     *
+     * 
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
@@ -174,10 +174,9 @@ public class PrefsInterface {
      * @return privacyLevel
      */
     public int getPrivacy() throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PRIVACY);
         parameters.put(Flickr.API_KEY, apiKey);
-
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {

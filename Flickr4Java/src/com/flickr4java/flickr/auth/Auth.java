@@ -14,27 +14,25 @@ import java.io.Serializable;
 public class Auth implements Serializable {
 
     private static final long serialVersionUID = -2254618470673679663L;
+
     private String token;
+
     private String tokenSecret;
 
     private Permission permission;
+
     private User user;
 
-
-    public Auth()
-    {
+    public Auth() {
 
     }
 
-
-    public Auth(Permission permission, User user)
-    {
+    public Auth(Permission permission, User user) {
 
         super();
         this.permission = permission;
         this.user = user;
     }
-
 
     /**
      * @return the tokenSecret
@@ -44,7 +42,8 @@ public class Auth implements Serializable {
     }
 
     /**
-     * @param tokenSecret the tokenSecret to set
+     * @param tokenSecret
+     *            the tokenSecret to set
      */
     public void setTokenSecret(String tokenSecret) {
         this.tokenSecret = tokenSecret;

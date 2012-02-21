@@ -6,13 +6,14 @@ package com.flickr4java.flickr.photosets;
 import java.util.Collection;
 
 /**
- * Photoset collection.  This class is required instead of a basic Collection object because of the cancreate flag.
- *
+ * Photoset collection. This class is required instead of a basic Collection object because of the cancreate flag.
+ * 
  * @author Anthony Eden
  */
 public class Photosets {
 
     private boolean canCreate;
+
     private Collection<Photoset> photosets;
 
     public Photosets() {

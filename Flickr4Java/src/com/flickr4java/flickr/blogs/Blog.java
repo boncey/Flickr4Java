@@ -7,14 +7,17 @@ import java.math.BigDecimal;
 
 /**
  * Class representing a Flickr blog configuration.
- *
+ * 
  * @author Anthony Eden
  */
 public class Blog {
 
     private BigDecimal id;
+
     private String name;
+
     private boolean needPassword;
+
     private String url;
 
     public Blog() {

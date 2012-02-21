@@ -8,6 +8,7 @@ package com.flickr4java.flickr.photos;
 public class PhotoUrl {
 
     private String url;
+
     private String type;
 
     public String getUrl() {
@@ -20,7 +21,7 @@ public class PhotoUrl {
 
     /**
      * Possible known type is photopage.
-     *
+     * 
      * @return Type of URL
      */
     public String getType() {

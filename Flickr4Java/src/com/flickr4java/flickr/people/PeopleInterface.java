@@ -374,7 +374,6 @@ public class PeopleInterface {
         photos.setPerPage(photosElement.getAttribute("perpage"));
         photos.setTotal(photosElement.getAttribute("total"));
 
-
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         for (int i = 0; i < photoNodes.getLength(); i++) {
             Element photoElement = (Element) photoNodes.item(i);

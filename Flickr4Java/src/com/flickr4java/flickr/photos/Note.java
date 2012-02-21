@@ -16,9 +16,13 @@ import java.util.regex.Matcher;
 public class Note {
 
     private String id;
+
     private String author;
+
     private String authorName;
+
     private Rectangle bounds;
+
     private String text;
 
     public Note() {
@@ -73,12 +77,12 @@ public class Note {
         this.text = text;
     }
 
-	@Override
-	public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-		// object must be Note at this point
+        // object must be Note at this point
         Note test = (Note) obj;
         Class cl = this.getClass();
         Method[] method = cl.getMethods();
@@ -91,23 +95,25 @@ public class Note {
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {
-                            //System.out.println("Note class: " + method[i].getName());
-                            if (!res.equals(resTest)) return false;
+                            // System.out.println("Note class: " + method[i].getName());
+                            if (!res.equals(resTest))
+                                return false;
                         } else {
-                            //return false;
+                            // return false;
                         }
                     } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer)resTest))) return false;
+                        if (!((Integer) res).equals(((Integer) resTest)))
+                            return false;
                     } else if (retType.equals("boolean")) {
-                        if (!((Boolean) res).equals(((Boolean)resTest))) return false;
+                        if (!((Boolean) res).equals(((Boolean) resTest)))
+                            return false;
                     } else {
-                        System.out.println(method[i].getName() + "|" +
-                            method[i].getReturnType().toString());
+                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
                     }
                 } catch (IllegalAccessException ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("equals " + method[i].getName() + " " + ex);
+                    // System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (Exception ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 }
@@ -119,11 +125,16 @@ public class Note {
     @Override
     public int hashCode() {
         int hash = 1;
-        if(id != null) hash += id.hashCode();
-        if(author != null) hash += author.hashCode();
-        if(authorName != null) hash += authorName.hashCode();
-        if(bounds != null) hash += bounds.hashCode();
-        if(text != null) hash += text.hashCode();
+        if (id != null)
+            hash += id.hashCode();
+        if (author != null)
+            hash += author.hashCode();
+        if (authorName != null)
+            hash += authorName.hashCode();
+        if (bounds != null)
+            hash += bounds.hashCode();
+        if (text != null)
+            hash += text.hashCode();
         return hash;
     }
 }

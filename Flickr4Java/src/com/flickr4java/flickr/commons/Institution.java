@@ -4,17 +4,22 @@ import java.util.Date;
 
 /**
  * A commons institution.
- *
+ * 
  * @author mago
  * @version $Id: Institution.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
  */
 public class Institution {
 
     private String id;
+
     private String name;
+
     private Date dateLaunch;
+
     private String siteUrl;
+
     private String licenseUrl;
+
     private String flickrUrl;
 
     public String getId() {
@@ -46,7 +51,8 @@ public class Institution {
     }
 
     public void setDateLaunch(String date) {
-        if (date == null || "".equals(date)) return;
+        if (date == null || "".equals(date))
+            return;
         setDateLaunch(Long.parseLong(date) * (long) 1000);
     }
 

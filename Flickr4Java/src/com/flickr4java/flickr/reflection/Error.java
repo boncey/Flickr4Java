@@ -6,7 +6,7 @@ package com.flickr4java.flickr.reflection;
 
 /**
  * Describes one possible error-code of a Flickr-method.
- *
+ * 
  * @author Anthony Eden
  * @see Method#getErrors()
  * @see Method#setErrors(java.util.Collection)
@@ -15,7 +15,9 @@ package com.flickr4java.flickr.reflection;
 public class Error {
 
     private int code;
+
     private String message;
+
     private String explaination;
 
     public int getCode() {

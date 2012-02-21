@@ -10,10 +10,15 @@ package com.flickr4java.flickr.photos;
 public class Exif {
 
     private String tagspace;
+
     private String tagspaceId;
+
     private String tag;
+
     private String label;
+
     private String raw;
+
     private String clean;
 
     public String getTagspace() {

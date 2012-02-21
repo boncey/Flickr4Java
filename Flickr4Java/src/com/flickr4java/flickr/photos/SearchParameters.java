@@ -20,30 +20,55 @@ import java.util.Set;
 public class SearchParameters {
 
     private String userId;
+
     private String groupId;
+
     private String woeId;
+
     private String media;
+
     private String contacts;
+
     private String[] tags;
+
     private String tagMode;
+
     private String text;
+
     private Date minUploadDate;
+
     private Date maxUploadDate;
+
     private Date minTakenDate;
+
     private Date maxTakenDate;
+
     private Date interestingnessDate;
+
     private String license;
+
     private Set<String> extras;
+
     private String[] bbox;
+
     private String placeId;
+
     private int accuracy = 0;
+
     private String safeSearch;
+
     private String[] machineTags;
+
     private String machineTagMode;
+
     private String latitude;
+
     private String longitude;
+
     private int radius = -1;
+
     private String radiusUnits;
+
     private boolean hasGeo = false;
 
     public static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
@@ -62,18 +87,25 @@ public class SearchParameters {
 
     /** order argument */
     public static int DATE_POSTED_DESC = 0;
+
     /** order argument */
     public static int DATE_POSTED_ASC = 1;
+
     /** order argument */
     public static int DATE_TAKEN_DESC = 2;
+
     /** order argument */
     public static int DATE_TAKEN_ASC = 3;
+
     /** order argument */
     public static int INTERESTINGNESS_DESC = 4;
+
     /** order argument */
     public static int INTERESTINGNESS_ASC = 5;
+
     /** order argument */
     public static int RELEVANCE = 6;
+
     private int sort = 0;
 
     public SearchParameters() {
@@ -81,10 +113,12 @@ public class SearchParameters {
     }
 
     /**
-     * Optional to use, if BBox is set.<p>
+     * Optional to use, if BBox is set.
+     * <p>
      * Defaults to maximum value if not specified.
-     *
-     * @param accuracy from 1 to 16
+     * 
+     * @param accuracy
+     *            from 1 to 16
      * @see com.flickr4java.flickr.Flickr#ACCURACY_WORLD
      * @see com.flickr4java.flickr.Flickr#ACCURACY_COUNTRY
      * @see com.flickr4java.flickr.Flickr#ACCURACY_REGION
@@ -104,9 +138,8 @@ public class SearchParameters {
     }
 
     /**
-     * The id of a group who's pool to search. If specified, only matching
-     * photos posted to the group's pool will be returned.
-     *
+     * The id of a group who's pool to search. If specified, only matching photos posted to the group's pool will be returned.
+     * 
      * @param groupId
      */
     public void setGroupId(String groupId) {
@@ -114,18 +147,16 @@ public class SearchParameters {
     }
 
     /**
-     * Any photo that has been geotagged.<p>
-     *
-     * Geo queries require some sort of limiting agent in order to prevent
-     * the database from crying. This is basically like the check against
-     * "parameterless searches" for queries without a geo component.<p>
-     *
-     * A tag, for instance, is considered a limiting agent as are user
-     * defined min_date_taken and min_date_upload parameters &emdash;
-     * If no limiting factor is passed flickr will return only photos
-     * added in the last 12 hours
-     * (though flickr may extend the limit in the future).
-     *
+     * Any photo that has been geotagged.
+     * <p>
+     * 
+     * Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against
+     * "parameterless searches" for queries without a geo component.
+     * <p>
+     * 
+     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is
+     * passed flickr will return only photos added in the last 12 hours (though flickr may extend the limit in the future).
+     * 
      * @param hasGeo
      */
     public void setHasGeo(boolean hasGeo) {
@@ -225,6 +256,7 @@ public class SearchParameters {
     public String[] getMachineTags() {
         return machineTags;
     }
+
     /**
      * Set the machine tags search mode to use when requesting photos
      * 
@@ -239,14 +271,11 @@ public class SearchParameters {
     }
 
     /**
-     * List of extra information to fetch for each returned
-     * record. Currently supported fields are:
-     * license, date_upload, date_taken, owner_name,
-     * icon_server, original_format, last_update, geo,
-     * tags, machine_tags, o_dims, views, media, path_alias,
-     * url_sq, url_t, url_s, url_m, url_l, url_o
-     *
-     * @param extras A set of extra-attributes
+     * List of extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server,
+     * original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_l, url_o
+     * 
+     * @param extras
+     *            A set of extra-attributes
      * @see com.flickr4java.flickr.photos.Extras#ALL_EXTRAS
      * @see com.flickr4java.flickr.photos.Extras#MIN_EXTRAS
      */
@@ -255,47 +284,32 @@ public class SearchParameters {
     }
 
     /**
-     * 4 values defining the Bounding Box of the area that
-     * will be searched.<p>
-     * The 4 values represent the bottom-left corner of the box
-     * and the top-right corner, minimum_longitude, minimum_latitude,
-     * maximum_longitude, maximum_latitude.<p>
-     *
-     * Longitude has a range of -180 to 180,
-     * latitude of -90 to 90. Defaults to -180,
-     * -90, 180, 90 if not specified.<p>
-     *
-     * Unlike standard photo queries, geo (or bounding box)
-     * queries will only return 250 results per page.<p>
-     *
-     * Geo queries require some sort of limiting agent in
-     * order to prevent the database from crying.
-     * This is basically like the check against "parameterless searches"
-     * for queries without a geo component.<p>
-     *
-     * A tag, for instance, is considered a limiting agent as are
-     * user defined min_date_taken and min_date_upload parameters.
-     * If no limiting factor is passed flickr returns only photos
-     * added in the last 12 hours (though flickr may extend the
-     * limit in the future).
-     *
+     * 4 values defining the Bounding Box of the area that will be searched.
+     * <p>
+     * The 4 values represent the bottom-left corner of the box and the top-right corner, minimum_longitude, minimum_latitude, maximum_longitude,
+     * maximum_latitude.
+     * <p>
+     * 
+     * Longitude has a range of -180 to 180, latitude of -90 to 90. Defaults to -180, -90, 180, 90 if not specified.
+     * <p>
+     * 
+     * Unlike standard photo queries, geo (or bounding box) queries will only return 250 results per page.
+     * <p>
+     * 
+     * Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against
+     * "parameterless searches" for queries without a geo component.
+     * <p>
+     * 
+     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters. If no limiting factor is passed
+     * flickr returns only photos added in the last 12 hours (though flickr may extend the limit in the future).
+     * 
      * @param minimum_longitude
      * @param minimum_latitude
      * @param maximum_longitude
      * @param maximum_latitude
      */
-    public void setBBox(
-            String minimum_longitude,
-            String minimum_latitude,
-            String maximum_longitude,
-            String maximum_latitude
-            ) {
-        this.bbox = new String[] {
-                minimum_longitude,
-                minimum_latitude,
-                maximum_longitude,
-                maximum_latitude
-        };
+    public void setBBox(String minimum_longitude, String minimum_latitude, String maximum_longitude, String maximum_latitude) {
+        this.bbox = new String[] { minimum_longitude, minimum_latitude, maximum_longitude, maximum_latitude };
     }
 
     public String[] getBBox() {
@@ -305,8 +319,9 @@ public class SearchParameters {
     /**
      * Optional safe search setting.<br>
      * Un-authed calls can only see Safe content.
-     *
-     * @param level 1, 2 or 3
+     * 
+     * @param level
+     *            1, 2 or 3
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
@@ -324,9 +339,10 @@ public class SearchParameters {
     }
 
     /**
-     * Set the sort-order.<p>
+     * Set the sort-order.
+     * <p>
      * The default is <a href="#DATE_POSTED_DESC">DATE_POSTED_DESC</a>
-     *
+     * 
      * @see com.flickr4java.flickr.photos.SearchParameters#DATE_POSTED_ASC
      * @see com.flickr4java.flickr.photos.SearchParameters#DATE_POSTED_DESC
      * @see com.flickr4java.flickr.photos.SearchParameters#DATE_TAKEN_ASC
@@ -351,15 +367,13 @@ public class SearchParameters {
     /**
      * PlaceId only used when bbox not set.
      * 
-     * Geo queries require some sort of limiting agent in order to prevent
-     * the database from crying. This is basically like the check against
-     * "parameterless searches" for queries without a geo component.<p>
-     *
-     * A tag, for instance, is considered a limiting agent as are user defined
-     * min_date_taken and min_date_upload parameters &emdash; If no limiting
-     * factor is passed we return only photos added in the last 12 hours
-     * (though we may extend the limit in the future).
-     *
+     * Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against
+     * "parameterless searches" for queries without a geo component.
+     * <p>
+     * 
+     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is
+     * passed we return only photos added in the last 12 hours (though we may extend the limit in the future).
+     * 
      * @param placeId
      * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
      * @see com.flickr4java.flickr.places.Place#getPlaceId()
@@ -376,17 +390,17 @@ public class SearchParameters {
     /**
      * A Where on Earth identifier to use to filter photo clusters.<br>
      * For example all the photos clustered by locality in the United States (WOE ID 23424977).<br>
-     * (not used if bbox argument is present).<p/>
-     *
-     * Geo queries require some sort of limiting agent in order to prevent
-     * the database from crying. This is basically like the check against
-     * "parameterless searches" for queries without a geo component.<p/>
-     *
-     * A tag, for instance, is considered a limiting agent as are user defined
-     * min_date_taken and min_date_upload parameters.  If no limiting
-     * factor is passed we return only photos added in the last 12 hours
-     * (though flickr may extend the limit in the future).<p/>
-     *
+     * (not used if bbox argument is present).
+     * <p/>
+     * 
+     * Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against
+     * "parameterless searches" for queries without a geo component.
+     * <p/>
+     * 
+     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters. If no limiting factor is passed we
+     * return only photos added in the last 12 hours (though flickr may extend the limit in the future).
+     * <p/>
+     * 
      * @param woeId
      * @see com.flickr4java.flickr.places.Place#getWoeId()
      * @see com.flickr4java.flickr.places.Location#getWoeId()
@@ -400,16 +414,12 @@ public class SearchParameters {
     }
 
     /**
-     * Filter results by media type. Possible values are all (default),
-     * photos or videos.
-     *
+     * Filter results by media type. Possible values are all (default), photos or videos.
+     * 
      * @param media
      */
     public void setMedia(String media) throws FlickrException {
-        if (media.equals("all") ||
-                media.equals("photos") ||
-                media.equals("videos")
-                ) {
+        if (media.equals("all") || media.equals("photos") || media.equals("videos")) {
             this.media = media;
         } else {
             throw new FlickrException("0", "Media type is not valid.");
@@ -421,13 +431,12 @@ public class SearchParameters {
     }
 
     /**
-     * Search your contacts. Valid arguments are either 'all' or 'ff'
-     * for just friends and family.<p/>
-     *
-     * It requires that the "user_id" field also be set and allows you to limit
-     * queries to only photos belonging to that user's photos. As in : All my
-     * contacts photos tagged "aaron". (Experimental)
-     *
+     * Search your contacts. Valid arguments are either 'all' or 'ff' for just friends and family.
+     * <p/>
+     * 
+     * It requires that the "user_id" field also be set and allows you to limit queries to only photos belonging to that user's photos. As in : All my contacts
+     * photos tagged "aaron". (Experimental)
+     * 
      * @param contacts
      */
     public void setContacts(String contacts) {
@@ -513,12 +522,12 @@ public class SearchParameters {
 
         Date minTakenDate = getMinTakenDate();
         if (minTakenDate != null) {
-            parameters.put("min_taken_date", ((DateFormat)MYSQL_DATE_FORMATS.get()).format(minTakenDate));
+            parameters.put("min_taken_date", ((DateFormat) MYSQL_DATE_FORMATS.get()).format(minTakenDate));
         }
 
         Date maxTakenDate = getMaxTakenDate();
         if (maxTakenDate != null) {
-            parameters.put("max_taken_date", ((DateFormat)MYSQL_DATE_FORMATS.get()).format(maxTakenDate));
+            parameters.put("max_taken_date", ((DateFormat) MYSQL_DATE_FORMATS.get()).format(maxTakenDate));
         }
 
         String license = getLicense();
@@ -528,7 +537,7 @@ public class SearchParameters {
 
         Date intrestingnessDate = getInterestingnessDate();
         if (intrestingnessDate != null) {
-            parameters.put("date", ((DateFormat)DATE_FORMATS.get()).format(intrestingnessDate));
+            parameters.put("date", ((DateFormat) DATE_FORMATS.get()).format(intrestingnessDate));
         }
 
         String[] bbox = getBBox();
@@ -560,25 +569,25 @@ public class SearchParameters {
 
         if (sort != DATE_POSTED_DESC) {
             String sortArg = null;
-            if(sort == DATE_POSTED_ASC) {
+            if (sort == DATE_POSTED_ASC) {
                 sortArg = "date-posted-asc";
             }
-            if(sort == DATE_TAKEN_DESC) {
+            if (sort == DATE_TAKEN_DESC) {
                 sortArg = "date-taken-desc";
             }
-            if(sort == DATE_TAKEN_ASC) {
+            if (sort == DATE_TAKEN_ASC) {
                 sortArg = "date-taken-asc";
             }
-            if(sort == INTERESTINGNESS_DESC) {
+            if (sort == INTERESTINGNESS_DESC) {
                 sortArg = "interestingness-desc";
             }
-            if(sort == INTERESTINGNESS_ASC) {
+            if (sort == INTERESTINGNESS_ASC) {
                 sortArg = "interestingness-asc";
             }
-            if(sort == RELEVANCE) {
+            if (sort == RELEVANCE) {
                 sortArg = "relevance";
             }
-            if(sortArg != null) {
+            if (sortArg != null) {
                 parameters.put("sort", sortArg);
             }
         }

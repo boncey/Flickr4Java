@@ -24,8 +24,8 @@ import com.flickr4java.flickr.auth.Permission;
 public class AuthInterfaceSOAPTest {
 
     Flickr flickr = null;
-    private TestProperties testProperties;
 
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException {

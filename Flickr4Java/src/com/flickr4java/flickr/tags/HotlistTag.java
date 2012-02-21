@@ -1,13 +1,14 @@
 package com.flickr4java.flickr.tags;
 
 /**
- *
+ * 
  * @author mago
  * @version $Id: HotlistTag.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
  */
 public class HotlistTag {
 
     private String value;
+
     private int score = 0;
 
     public HotlistTag() {

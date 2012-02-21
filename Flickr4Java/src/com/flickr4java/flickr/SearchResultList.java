@@ -8,16 +8,20 @@ import java.util.ArrayList;
 
 /**
  * Search result list with additional meta data.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: SearchResultList.java,v 1.3 2007/07/20 19:06:27 x-mago Exp $
  */
 public class SearchResultList<E> extends ArrayList<E> {
 
     private static final long serialVersionUID = -7962319033867024935L;
+
     private int page;
+
     private int pages;
+
     private int perPage;
+
     private int total;
 
     public int getPage() {

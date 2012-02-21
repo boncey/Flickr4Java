@@ -13,15 +13,17 @@ import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Flickr Response object.
- *
+ * 
  * @author Anthony Eden
  */
 public class RESTResponse implements Response {
 
     private String stat;
+
     private List<Element> payload;
 
     private String errorCode;
+
     private String errorMessage;
 
     public void parse(Document document) {
@@ -43,7 +45,7 @@ public class RESTResponse implements Response {
     }
 
     public Element getPayload() {
-        if(payload.isEmpty()) {
+        if (payload.isEmpty()) {
             throw new RuntimeException("REST response payload has no elements");
         }
         return payload.get(0);
@@ -64,7 +66,5 @@ public class RESTResponse implements Response {
     public String getErrorMessage() {
         return errorMessage;
     }
-
-
 
 }

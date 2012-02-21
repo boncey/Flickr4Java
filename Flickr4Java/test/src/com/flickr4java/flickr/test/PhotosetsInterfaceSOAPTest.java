@@ -29,6 +29,7 @@ import java.io.IOException;
 public class PhotosetsInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -107,11 +108,7 @@ public class PhotosetsInterfaceSOAPTest {
     @Test
     public void testGetPhotos() throws FlickrException, IOException, SAXException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        PhotoList<Photo> photos = iface.getPhotos(
-                testProperties.getPhotosetId(),
-                10,
-                1
-                );
+        PhotoList<Photo> photos = iface.getPhotos(testProperties.getPhotosetId(), 10, 1);
         assertNotNull(photos);
         assertEquals(3, photos.size());
         assertEquals("javatest", photos.get(0).getOwner().getUsername());
@@ -122,7 +119,7 @@ public class PhotosetsInterfaceSOAPTest {
     public void testOrderSets() throws FlickrException, IOException, SAXException {
         RequestContext requestContext = RequestContext.getRequestContext();
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        String[] photosetIds = {testProperties.getPhotosetId()};
+        String[] photosetIds = { testProperties.getPhotosetId() };
         iface.orderSets(photosetIds);
     }
 

@@ -11,7 +11,9 @@ import java.util.Date;
 public class Photocount {
 
     private int count;
+
     private Date fromDate;
+
     private Date toDate;
 
     public Photocount() {
@@ -27,7 +29,8 @@ public class Photocount {
     }
 
     public void setCount(String count) {
-        if (count != null) setCount(Integer.parseInt(count));
+        if (count != null)
+            setCount(Integer.parseInt(count));
     }
 
     public Date getFromDate() {
@@ -43,7 +46,8 @@ public class Photocount {
     }
 
     public void setFromDate(String fromDate) {
-        if (fromDate != null) setFromDate(Long.parseLong(fromDate));
+        if (fromDate != null)
+            setFromDate(Long.parseLong(fromDate));
     }
 
     public Date getToDate() {
@@ -59,7 +63,8 @@ public class Photocount {
     }
 
     public void setToDate(String toDate) {
-        if (toDate != null) setToDate(Long.parseLong(toDate));
+        if (toDate != null)
+            setToDate(Long.parseLong(toDate));
     }
 
 }

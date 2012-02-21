@@ -28,36 +28,47 @@ import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for working with photosets.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: PhotosetsInterface.java,v 1.27 2009/11/08 21:58:00 x-mago Exp $
  */
 public class PhotosetsInterface {
 
     public static final String METHOD_ADD_PHOTO = "flickr.photosets.addPhoto";
+
     public static final String METHOD_CREATE = "flickr.photosets.create";
+
     public static final String METHOD_DELETE = "flickr.photosets.delete";
+
     public static final String METHOD_EDIT_META = "flickr.photosets.editMeta";
+
     public static final String METHOD_EDIT_PHOTOS = "flickr.photosets.editPhotos";
+
     public static final String METHOD_GET_CONTEXT = "flickr.photosets.getContext";
+
     public static final String METHOD_GET_INFO = "flickr.photosets.getInfo";
+
     public static final String METHOD_GET_LIST = "flickr.photosets.getList";
+
     public static final String METHOD_GET_PHOTOS = "flickr.photosets.getPhotos";
+
     public static final String METHOD_ORDER_SETS = "flickr.photosets.orderSets";
+
     public static final String METHOD_REMOVE_PHOTO = "flickr.photosets.removePhoto";
+
     public static final String METHOD_REMOVE_PHOTOS = "flickr.photosets.removePhotos";
+
     public static final String METHOD_REORDER_PHOTOS = "flickr.photosets.reorderPhotos";
+
     public static final String METHOD_SET_PRIMARY_PHOTO = "flickr.photosets.setPrimaryPhoto";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public PhotosetsInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public PhotosetsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -67,12 +78,14 @@ public class PhotosetsInterface {
      * Add a photo to the end of the photoset.
      * <p/>
      * Note: requires authentication with the new authentication API with 'write' permission.
-     *
-     * @param photosetId The photoset ID
-     * @param photoId The photo ID
+     * 
+     * @param photosetId
+     *            The photoset ID
+     * @param photoId
+     *            The photo ID
      */
     public void addPhoto(String photosetId, String photoId) throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -87,16 +100,18 @@ public class PhotosetsInterface {
 
     /**
      * Create a new photoset.
-     *
-     * @param title The photoset title
-     * @param description The photoset description
-     * @param primaryPhotoId The primary photo id
+     * 
+     * @param title
+     *            The photoset title
+     * @param description
+     *            The photoset description
+     * @param primaryPhotoId
+     *            The primary photo id
      * @return The new Photset
      * @throws FlickrException
      */
-    public Photoset create(String title, String description, String primaryPhotoId)
-            throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public Photoset create(String title, String description, String primaryPhotoId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CREATE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -117,12 +132,13 @@ public class PhotosetsInterface {
 
     /**
      * Delete the specified photoset.
-     *
-     * @param photosetId The photoset ID
+     * 
+     * @param photosetId
+     *            The photoset ID
      * @throws FlickrException
      */
     public void delete(String photosetId) throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -136,15 +152,17 @@ public class PhotosetsInterface {
 
     /**
      * Modify the meta-data for a photoset.
-     *
-     * @param photosetId The photoset ID
-     * @param title A new title
-     * @param description A new description (can be null)
+     * 
+     * @param photosetId
+     *            The photoset ID
+     * @param title
+     *            A new title
+     * @param description
+     *            A new description (can be null)
      * @throws FlickrException
      */
-    public void editMeta(String photosetId, String title, String description)
-            throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void editMeta(String photosetId, String title, String description) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_META);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -162,15 +180,17 @@ public class PhotosetsInterface {
 
     /**
      * Edit which photos are in the photoset.
-     *
-     * @param photosetId The photoset ID
-     * @param primaryPhotoId The primary photo Id
-     * @param photoIds The photo IDs for the photos in the set
+     * 
+     * @param photosetId
+     *            The photoset ID
+     * @param primaryPhotoId
+     *            The primary photo Id
+     * @param photoIds
+     *            The photo IDs for the photos in the set
      * @throws FlickrException
      */
-    public void editPhotos(String photosetId, String primaryPhotoId, String[] photoIds)
-            throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void editPhotos(String photosetId, String primaryPhotoId, String[] photoIds) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -186,17 +206,18 @@ public class PhotosetsInterface {
 
     /**
      * Get a photo's context in the specified photo set.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param photoId The photo ID
-     * @param photosetId The photoset ID
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param photosetId
+     *            The photoset ID
      * @return The PhotoContext
      * @throws FlickrException
      */
-    public PhotoContext getContext(String photoId, String photosetId)
-            throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public PhotoContext getContext(String photoId, String photosetId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTEXT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -209,7 +230,7 @@ public class PhotosetsInterface {
         }
         Collection<Element> payload = response.getPayloadCollection();
         PhotoContext photoContext = new PhotoContext();
-        for(Element element : payload) {
+        for (Element element : payload) {
             String elementName = element.getTagName();
             if (elementName.equals("prevphoto")) {
                 Photo photo = new Photo();
@@ -220,7 +241,7 @@ public class PhotosetsInterface {
                 photo.setId(element.getAttribute("id"));
                 photoContext.setNextPhoto(photo);
             } else if (elementName.equals("count")) {
-            	// TODO: process this information
+                // TODO: process this information
             } else {
                 System.err.println("unsupported element name: " + elementName);
             }
@@ -230,15 +251,16 @@ public class PhotosetsInterface {
 
     /**
      * Get the information for a specified photoset.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param photosetId The photoset ID
+     * 
+     * @param photosetId
+     *            The photoset ID
      * @return The Photoset
      * @throws FlickrException
      */
     public Photoset getInfo(String photosetId) throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -248,7 +270,7 @@ public class PhotosetsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Element photosetElement = (Element)response.getPayload();
+        Element photosetElement = (Element) response.getPayload();
         Photoset photoset = new Photoset();
         photoset.setId(photosetElement.getAttribute("id"));
 
@@ -279,17 +301,16 @@ public class PhotosetsInterface {
 
     /**
      * Get a list of all photosets for the specified user.
-     *
-     * This method does not require authentication.
-     * But to get a Photoset into the list, that contains just private photos,
-     * the call needs to be authenticated.
-     *
-     * @param userId The User id
+     * 
+     * This method does not require authentication. But to get a Photoset into the list, that contains just private photos, the call needs to be authenticated.
+     * 
+     * @param userId
+     *            The User id
      * @return The Photosets collection
      * @throws FlickrException
      */
     public Photosets getList(String userId) throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -340,7 +361,7 @@ public class PhotosetsInterface {
      * Get a collection of Photo objects for the specified Photoset.
      * 
      * This method does not require authentication.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Extras
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
@@ -348,17 +369,20 @@ public class PhotosetsInterface {
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @param photosetId The photoset ID
-     * @param extras Set of extra-fields
-     * @param privacy_filter filter value for authenticated calls
-     * @param perPage The number of photos per page
-     * @param page The page offset
+     * @param photosetId
+     *            The photoset ID
+     * @param extras
+     *            Set of extra-fields
+     * @param privacy_filter
+     *            filter value for authenticated calls
+     * @param perPage
+     *            The number of photos per page
+     * @param page
+     *            The page offset
      * @return PhotoList The Collection of Photo objects
      * @throws FlickrException
      */
-    public PhotoList<Photo> getPhotos(String photosetId, Set<String> extras,
-      int privacy_filter, int perPage, int page)
-      throws FlickrException {
+    public PhotoList<Photo> getPhotos(String photosetId, Set<String> extras, int privacy_filter, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
@@ -404,11 +428,11 @@ public class PhotosetsInterface {
 
     /**
      * Convenience method.
-     *
+     * 
      * Calls getPhotos() with Extras.MIN_EXTRAS and Flickr.PRIVACY_LEVEL_NO_FILTER.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Extras
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
@@ -416,27 +440,30 @@ public class PhotosetsInterface {
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @param photosetId The photoset ID
-     * @param perPage The number of photos per page
-     * @param page The page offset
+     * @param photosetId
+     *            The photoset ID
+     * @param perPage
+     *            The number of photos per page
+     * @param page
+     *            The page offset
      * @return PhotoList The Collection of Photo objects
      * @throws FlickrException
      */
-    public PhotoList<Photo> getPhotos(String photosetId, int perPage, int page) 
-      throws FlickrException {
+    public PhotoList<Photo> getPhotos(String photosetId, int perPage, int page) throws FlickrException {
         return getPhotos(photosetId, Extras.MIN_EXTRAS, Flickr.PRIVACY_LEVEL_NO_FILTER, perPage, page);
     }
 
     /**
      * Set the order in which sets are returned for the user.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photosetIds An array of Ids
+     * 
+     * @param photosetIds
+     *            An array of Ids
      * @throws FlickrException
      */
     public void orderSets(String[] photosetIds) throws FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ORDER_SETS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -450,9 +477,11 @@ public class PhotosetsInterface {
 
     /**
      * Remove a photo from the set.
-     *
-     * @param photosetId The photoset ID
-     * @param photoId The photo ID
+     * 
+     * @param photosetId
+     *            The photoset ID
+     * @param photoId
+     *            The photo ID
      * @throws FlickrException
      */
     public void removePhoto(String photosetId, String photoId) throws FlickrException {
@@ -471,9 +500,11 @@ public class PhotosetsInterface {
 
     /**
      * Remove a photo from the set.
-     *
-     * @param photosetId The photoset ID
-     * @param photoId The ID's of the photos, in CVS format
+     * 
+     * @param photosetId
+     *            The photoset ID
+     * @param photoId
+     *            The ID's of the photos, in CVS format
      * @throws FlickrException
      */
     public void removePhotos(String photosetId, String photoIds) throws FlickrException {
@@ -489,13 +520,14 @@ public class PhotosetsInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
     }
-    
 
     /**
      * Remove a photo from the set.
-     *
-     * @param photosetId The photoset ID
-     * @param photoId The ID's of the photos, in CSV format, in the order they need to be in.
+     * 
+     * @param photosetId
+     *            The photoset ID
+     * @param photoId
+     *            The ID's of the photos, in CSV format, in the order they need to be in.
      * @throws FlickrException
      */
     public void reorderPhoto(String photosetId, String photoIds) throws FlickrException {
@@ -514,9 +546,11 @@ public class PhotosetsInterface {
 
     /**
      * Remove a photo from the set.
-     *
-     * @param photosetId The photoset ID
-     * @param photoId The photo ID that is being added
+     * 
+     * @param photosetId
+     *            The photoset ID
+     * @param photoId
+     *            The photo ID that is being added
      * @throws FlickrException
      */
     public void setPrimaryPhoto(String photosetId, String photoId) throws FlickrException {

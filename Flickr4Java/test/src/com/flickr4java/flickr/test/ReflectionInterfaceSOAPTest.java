@@ -30,6 +30,7 @@ import java.util.Collection;
 public class ReflectionInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

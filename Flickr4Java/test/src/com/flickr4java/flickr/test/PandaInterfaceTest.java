@@ -34,24 +34,20 @@ import java.util.ArrayList;
 public class PandaInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        //Flickr.debugStream = true;
+        // Flickr.debugStream = true;
 
         testProperties = new TestProperties();
 
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey())
-                .apiSecret(testProperties.getSecret()).build();
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey()).apiSecret(testProperties.getSecret()).build();
         REST rest = new REST();
         rest.setHost(testProperties.getHost());
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);

@@ -44,6 +44,7 @@ import java.util.Set;
 public class PhotosInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -69,7 +70,7 @@ public class PhotosInterfaceSOAPTest {
     public void testAddAndRemoveTags() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = testProperties.getPhotoId();
-        String[] tagsToAdd = {"test"};
+        String[] tagsToAdd = { "test" };
         iface.addTags(photoId, tagsToAdd);
         Photo photo = iface.getInfo(photoId, null);
         Collection tags = photo.getTags();
@@ -200,7 +201,7 @@ public class PhotosInterfaceSOAPTest {
     public void testTagSearch() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         SearchParameters searchParameters = new SearchParameters();
-        String[] tags = {"flowers"};
+        String[] tags = { "flowers" };
         searchParameters.setTags(tags);
         Collection photos = iface.search(searchParameters, -1, -1);
         assertNotNull(photos);
@@ -241,7 +242,7 @@ public class PhotosInterfaceSOAPTest {
     public void testSetTags() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = testProperties.getPhotoId();
-        String[] tagsToAdd = {"test"};
+        String[] tagsToAdd = { "test" };
         iface.setTags(photoId, tagsToAdd);
 
         Photo photo = iface.getInfo(photoId, null);
@@ -249,15 +250,15 @@ public class PhotosInterfaceSOAPTest {
         assertNotNull(tags);
         assertEquals(1, tags.size());
 
-        //        String tagId = null;
-        //        Iterator tagsIter = tags.iterator();
-        //        TAG_LOOP: while (tagsIter.hasNext()) {
-        //            Tag tag = (Tag) tagsIter.next();
-        //            if (tag.getValue().equals("test")) {
-        //                tagId = tag.getId();
-        //                break TAG_LOOP;
-        //            }
-        //        }
+        // String tagId = null;
+        // Iterator tagsIter = tags.iterator();
+        // TAG_LOOP: while (tagsIter.hasNext()) {
+        // Tag tag = (Tag) tagsIter.next();
+        // if (tag.getValue().equals("test")) {
+        // tagId = tag.getId();
+        // break TAG_LOOP;
+        // }
+        // }
 
         String[] tagsAfterRemove = {};
         iface.setTags(photoId, tagsAfterRemove);
@@ -278,8 +279,8 @@ public class PhotosInterfaceSOAPTest {
         assertNotNull(image);
         assertEquals(240, image.getWidth());
         assertEquals(180, image.getHeight());
-        //        System.out.println("Image width: " + image.getWidth());
-        //        System.out.println("Image height: " + image.getHeight());
+        // System.out.println("Image width: " + image.getWidth());
+        // System.out.println("Image height: " + image.getHeight());
         ImageIO.write(image, "jpg", new File("out.small.jpg"));
     }
 

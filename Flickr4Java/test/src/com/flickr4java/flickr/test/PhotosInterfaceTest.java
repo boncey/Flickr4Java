@@ -49,12 +49,17 @@ import java.util.Set;
 public class PhotosInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     private final File largeFile = new File("out.large.jpg");
+
     private final File mediumFile = new File("out.medium.jpg");
+
     private final File smallFile = new File("out.small.jpg");
+
     private final File smallSquareFile = new File("out.smallsquare.jpg");
+
     private final File thumbnailFile = new File("out.thumbnail.jpg");
 
     @Before
@@ -64,11 +69,7 @@ public class PhotosInterfaceTest {
 
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.WRITE);
@@ -96,7 +97,7 @@ public class PhotosInterfaceTest {
     public void testAddAndRemoveTags() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = testProperties.getPhotoId();
-        String[] tagsToAdd = {"test"};
+        String[] tagsToAdd = { "test" };
         iface.addTags(photoId, tagsToAdd);
         Photo photo = iface.getInfo(photoId, null);
         Collection tags = photo.getTags();
@@ -138,7 +139,7 @@ public class PhotosInterfaceTest {
         assertEquals("", photo.getIconServer());
         assertEquals("", photo.getIconFarm());
         assertFalse(photo.isFavorite());
-        //assertTrue(photo.getViews() > -1);
+        // assertTrue(photo.getViews() > -1);
 
         User owner = photo.getOwner();
         assertEquals(testProperties.getNsid(), owner.getId());
@@ -184,7 +185,7 @@ public class PhotosInterfaceTest {
         Iterator countsIter = counts.iterator();
         while (countsIter.hasNext()) {
             Photocount photocount = (Photocount) countsIter.next();
-            //System.out.println("count: " + photocount.getCount());
+            // System.out.println("count: " + photocount.getCount());
         }
     }
 
@@ -269,20 +270,16 @@ public class PhotosInterfaceTest {
     public void testTagSearch() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
         SearchParameters searchParameters = new SearchParameters();
-        String[] tags = {"flowers"};
+        String[] tags = { "flowers" };
         searchParameters.setTags(tags);
         Collection photos = iface.search(searchParameters, -1, -1);
         assertNotNull(photos);
     }
 
-
     @Test
     public void testSetContentType() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
-        iface.setContentType(
-                testProperties.getPhotoId(),
-                Flickr.CONTENTTYPE_PHOTO
-                );
+        iface.setContentType(testProperties.getPhotoId(), Flickr.CONTENTTYPE_PHOTO);
     }
 
     @Test
@@ -303,15 +300,10 @@ public class PhotosInterfaceTest {
         iface.setMeta(photo.getId(), oldTitle, "Description");
     }
 
-
     @Test
     public void testSetSafetyLevel() throws FlickrException, IOException, SAXException {
         PhotosInterface iface = flickr.getPhotosInterface();
-        iface.setSafetyLevel(
-                testProperties.getPhotoId(),
-                Flickr.SAFETYLEVEL_SAFE,
-                new Boolean(false)
-                );
+        iface.setSafetyLevel(testProperties.getPhotoId(), Flickr.SAFETYLEVEL_SAFE, new Boolean(false));
     }
 
     @Test
@@ -327,7 +319,7 @@ public class PhotosInterfaceTest {
         assertNotNull(tags);
         assertEquals(0, tags.size());
 
-        String[] tagsToAdd = {"green","grn","grngrn"};
+        String[] tagsToAdd = { "green", "grn", "grngrn" };
         iface.setTags(photoId, tagsToAdd);
 
         photo = iface.getInfo(photoId, null);
@@ -335,15 +327,15 @@ public class PhotosInterfaceTest {
         assertNotNull(tags);
         assertEquals(3, tags.size());
 
-        //        String tagId = null;
-        //        Iterator tagsIter = tags.iterator();
-        //        TAG_LOOP: while (tagsIter.hasNext()) {
-        //            Tag tag = (Tag) tagsIter.next();
-        //            if (tag.getValue().equals("test")) {
-        //                tagId = tag.getId();
-        //                break TAG_LOOP;
-        //            }
-        //        }
+        // String tagId = null;
+        // Iterator tagsIter = tags.iterator();
+        // TAG_LOOP: while (tagsIter.hasNext()) {
+        // Tag tag = (Tag) tagsIter.next();
+        // if (tag.getValue().equals("test")) {
+        // tagId = tag.getId();
+        // break TAG_LOOP;
+        // }
+        // }
 
     }
 
@@ -356,8 +348,8 @@ public class PhotosInterfaceTest {
         assertNotNull(image);
         assertNotNull(image.getWidth());
         assertNotNull(image.getHeight());
-        //        System.out.println("Image width: " + image.getWidth());
-        //        System.out.println("Image height: " + image.getHeight());
+        // System.out.println("Image width: " + image.getWidth());
+        // System.out.println("Image height: " + image.getHeight());
         ImageIO.write(image, "jpg", smallFile);
     }
 
@@ -384,7 +376,6 @@ public class PhotosInterfaceTest {
         assertEquals(75, image.getHeight());
         ImageIO.write(image, "jpg", smallSquareFile);
     }
-
 
     @Test
     public void testGetMediumImage() throws FlickrException, IOException, SAXException {
@@ -419,8 +410,7 @@ public class PhotosInterfaceTest {
     }
 
     /**
-     * Testing the generation of URLs and the
-     * overriding by setSizes().
+     * Testing the generation of URLs and the overriding by setSizes().
      */
     @Test
     public void testSetSizes() {
@@ -482,7 +472,8 @@ public class PhotosInterfaceTest {
         assertEquals("http://farm1.static.flickr.com/server/id_secret_b.jpg", p.getLargeUrl());
         try {
             assertEquals("http://farm1.static.flickr.com/server/id_osecret_o.jpg", p.getOriginalUrl());
-        } catch (FlickrException ex) {}
+        } catch (FlickrException ex) {
+        }
         // setSizes() to override the generated URLs.
         p.setSizes(sizes);
         assertEquals("urlSmall", p.getSmallUrl());
@@ -492,6 +483,7 @@ public class PhotosInterfaceTest {
         assertEquals("urlLarge", p.getLargeUrl());
         try {
             assertEquals("urlOriginal", p.getOriginalUrl());
-        } catch (FlickrException ex) {}
+        } catch (FlickrException ex) {
+        }
     }
 }

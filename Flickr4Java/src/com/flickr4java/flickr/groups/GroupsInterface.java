@@ -22,19 +22,24 @@ import java.util.Map;
 
 /**
  * Interface for working with Flickr Groups.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: GroupsInterface.java,v 1.19 2009/07/11 20:30:27 x-mago Exp $
  */
 public class GroupsInterface {
 
     public static final String METHOD_BROWSE = "flickr.groups.browse";
+
     public static final String METHOD_GET_ACTIVE_LIST = "flickr.groups.getActiveList";
+
     public static final String METHOD_GET_INFO = "flickr.groups.getInfo";
+
     public static final String METHOD_SEARCH = "flickr.groups.search";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
     public GroupsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
@@ -44,10 +49,10 @@ public class GroupsInterface {
     }
 
     /**
-     * Browse groups for the given category ID.  If a null value is passed for the category then the root category is
-     * used.
-     *
-     * @param catId The optional category id.  Null value will be ignored.
+     * Browse groups for the given category ID. If a null value is passed for the category then the root category is used.
+     * 
+     * @param catId
+     *            The optional category id. Null value will be ignored.
      * @return The Collection of Photo objects
      * @throws IOException
      * @throws SAXException
@@ -107,14 +112,15 @@ public class GroupsInterface {
 
     /**
      * Get the info for a specified group.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param groupId The group id
+     * 
+     * @param groupId
+     *            The group id
      * @return The Group object
      */
     public Group getInfo(String groupId) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("group_id", groupId);
@@ -159,13 +165,17 @@ public class GroupsInterface {
     }
 
     /**
-     * Search for groups. 18+ groups will only be returned for authenticated calls where the authenticated user is over 18.
-     * This method does not require authentication.
-     * @param text The text to search for.
-     * @param perPage Number of groups to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
-     * @param page The page of results to return. If this argument is 0, it defaults to 1.
+     * Search for groups. 18+ groups will only be returned for authenticated calls where the authenticated user is over 18. This method does not require
+     * authentication.
+     * 
+     * @param text
+     *            The text to search for.
+     * @param perPage
+     *            Number of groups to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
+     * @param page
+     *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return A GroupList Object. Only the fields <em>id</em>, <em>name</em> and <em>eighteenplus</em> in the Groups will be set.
-     * @throws IOException 
+     * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */

@@ -27,17 +27,17 @@ public class XMLUtilities {
         for (int i = 0; i < nodes.getLength(); i++) {
             Node childNode = nodes.item(i);
             if (childNode instanceof Element) {
-                elements.add((Element)childNode);
+                elements.add((Element) childNode);
             }
         }
         return elements;
     }
 
     /**
-     * Get the text value for the specified element.  If the element is null, or the element's body is empty then this
-     * method will return null.
-     *
-     * @param element The Element
+     * Get the text value for the specified element. If the element is null, or the element's body is empty then this method will return null.
+     * 
+     * @param element
+     *            The Element
      * @return The value String or null
      */
     public static String getValue(Element element) {
@@ -52,9 +52,11 @@ public class XMLUtilities {
 
     /**
      * Get the first child element with the given name.
-     *
-     * @param element The parent element
-     * @param name The child element name
+     * 
+     * @param element
+     *            The parent element
+     * @param name
+     *            The child element name
      * @return The child element or null
      */
     public static Element getChild(Element element, String name) {
@@ -63,9 +65,11 @@ public class XMLUtilities {
 
     /**
      * Get the value of the fist child element with the given name.
-     *
-     * @param element The parent element
-     * @param name The child element name
+     * 
+     * @param element
+     *            The parent element
+     * @param name
+     *            The child element name
      * @return The child element value or null
      */
     public static String getChildValue(Element element, String name) {
@@ -90,6 +94,5 @@ public class XMLUtilities {
         }
         return new Boolean(s).booleanValue();
     }
-
 
 }

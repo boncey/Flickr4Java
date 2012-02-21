@@ -17,7 +17,7 @@ import java.util.Set;
 
 /**
  * Members Interface.
- *
+ * 
  * @author mago
  * @version $Id: MembersInterface.java,v 1.1 2009/06/21 19:55:15 x-mago Exp $
  */
@@ -25,37 +25,36 @@ public class MembersInterface {
     public static final String METHOD_GET_LIST = "flickr.groups.members.getList";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public MembersInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public MembersInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
     }
 
     /**
-     * Get a list of the members of a group.
-     * The call must be signed on behalf of a Flickr member,
-     * and the ability to see the group membership will be
+     * Get a list of the members of a group. The call must be signed on behalf of a Flickr member, and the ability to see the group membership will be
      * determined by the Flickr member's group privileges.
-     *
-     * @param groupId Return a list of members for this group. The group must be viewable by the Flickr member on whose behalf the API call is made.
-     * @param memberTypes A set of Membertypes as available as constants in {@link Member}.
-     * @param perPage Number of records per page.
-     * @param page Result-section.
+     * 
+     * @param groupId
+     *            Return a list of members for this group. The group must be viewable by the Flickr member on whose behalf the API call is made.
+     * @param memberTypes
+     *            A set of Membertypes as available as constants in {@link Member}.
+     * @param perPage
+     *            Number of records per page.
+     * @param page
+     *            Result-section.
      * @return A members-list
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.members.getList.html">API Documentation</a>
      */
-    public MembersList<Member> getList(String groupId, Set<String> memberTypes, int perPage, int page)
-      throws FlickrException, IOException, SAXException {
+    public MembersList<Member> getList(String groupId, Set<String> memberTypes, int perPage, int page) throws FlickrException, IOException, SAXException {
         MembersList<Member> members = new MembersList<Member>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
@@ -70,8 +69,7 @@ public class MembersInterface {
             parameters.put("page", "" + page);
         }
         if (memberTypes != null) {
-            parameters.put("membertypes",
-                    StringUtilities.join(memberTypes, ","));
+            parameters.put("membertypes", StringUtilities.join(memberTypes, ","));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);

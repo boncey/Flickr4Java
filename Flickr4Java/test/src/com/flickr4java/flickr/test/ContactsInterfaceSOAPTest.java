@@ -30,6 +30,7 @@ import com.flickr4java.flickr.contacts.ContactsInterface;
 public class ContactsInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -38,8 +39,7 @@ public class ContactsInterfaceSOAPTest {
 
         Flickr.debugStream = true;
         SOAP soap = new SOAP();
-        flickr = new Flickr(testProperties.getApiKey(),
-                testProperties.getSecret(), soap);
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), soap);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);

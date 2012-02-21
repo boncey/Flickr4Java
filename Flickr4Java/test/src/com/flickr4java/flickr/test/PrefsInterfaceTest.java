@@ -25,6 +25,7 @@ import java.io.IOException;
 public class PrefsInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -33,11 +34,7 @@ public class PrefsInterfaceTest {
 
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -53,22 +50,14 @@ public class PrefsInterfaceTest {
     public void testGetContentType() throws FlickrException, IOException, SAXException {
         PrefsInterface iface = flickr.getPrefsInterface();
         String type = iface.getContentType();
-        assertTrue(
-                type.equals(Flickr.CONTENTTYPE_OTHER)
-                || type.equals(Flickr.CONTENTTYPE_PHOTO)
-                || type.equals(Flickr.CONTENTTYPE_SCREENSHOT)
-                );
+        assertTrue(type.equals(Flickr.CONTENTTYPE_OTHER) || type.equals(Flickr.CONTENTTYPE_PHOTO) || type.equals(Flickr.CONTENTTYPE_SCREENSHOT));
     }
 
     @Test
     public void testGetSafetyLevel() throws FlickrException, IOException, SAXException {
         PrefsInterface iface = flickr.getPrefsInterface();
         String level = iface.getSafetyLevel();
-        assertTrue(
-                level.equals(Flickr.SAFETYLEVEL_SAFE)
-                || level.equals(Flickr.SAFETYLEVEL_MODERATE)
-                || level.equals(Flickr.SAFETYLEVEL_RESTRICTED)
-                );
+        assertTrue(level.equals(Flickr.SAFETYLEVEL_SAFE) || level.equals(Flickr.SAFETYLEVEL_MODERATE) || level.equals(Flickr.SAFETYLEVEL_RESTRICTED));
     }
 
     @Test
@@ -82,14 +71,8 @@ public class PrefsInterfaceTest {
         PrefsInterface iface = flickr.getPrefsInterface();
         int geoPerm = iface.getGeoPerms();
         // check for known levels.
-        if (
-                geoPerm != Flickr.PRIVACY_LEVEL_NO_FILTER &&
-                geoPerm != Flickr.PRIVACY_LEVEL_FRIENDS &&
-                geoPerm != Flickr.PRIVACY_LEVEL_PUBLIC &&
-                geoPerm != Flickr.PRIVACY_LEVEL_PRIVATE &&
-                geoPerm != Flickr.PRIVACY_LEVEL_FRIENDS_FAMILY &&
-                geoPerm != Flickr.PRIVACY_LEVEL_FAMILY
-                ) {
+        if (geoPerm != Flickr.PRIVACY_LEVEL_NO_FILTER && geoPerm != Flickr.PRIVACY_LEVEL_FRIENDS && geoPerm != Flickr.PRIVACY_LEVEL_PUBLIC
+                && geoPerm != Flickr.PRIVACY_LEVEL_PRIVATE && geoPerm != Flickr.PRIVACY_LEVEL_FRIENDS_FAMILY && geoPerm != Flickr.PRIVACY_LEVEL_FAMILY) {
             assertTrue(false);
         }
     }

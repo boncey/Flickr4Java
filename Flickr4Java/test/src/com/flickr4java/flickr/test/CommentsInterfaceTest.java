@@ -24,13 +24,15 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.comments.Comment;
 import com.flickr4java.flickr.photos.comments.CommentsInterface;
+
 /**
- *
+ * 
  * @author till (Till Krech) flickr:extranoise
  * @version $Id: CommentsInterfaceTest.java,v 1.7 2009/06/30 18:48:59 x-mago Exp $
  */
 public class CommentsInterfaceTest {
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -40,11 +42,7 @@ public class CommentsInterfaceTest {
         REST rest = new REST();
         rest.setHost(testProperties.getHost());
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -66,7 +64,7 @@ public class CommentsInterfaceTest {
         Iterator<Comment> commentsIterator = comments.iterator();
 
         while (commentsIterator.hasNext()) {
-            Comment comment = (Comment)commentsIterator.next();
+            Comment comment = (Comment) commentsIterator.next();
             assertNotNull(comment.getId());
             assertNotNull(comment.getAuthor());
             assertNotNull(comment.getAuthorName());
@@ -84,7 +82,7 @@ public class CommentsInterfaceTest {
         CommentsInterface ci = flickr.getCommentsInterface();
         // add a comment
         String commentId = ci.addComment(photoId, txt1);
-        //System.out.println("Comment Id:" + commentId);
+        // System.out.println("Comment Id:" + commentId);
         assertNotNull(commentId);
         assertTrue(commentId.length() > 0);
         // verify if comment arrived on the photo page
@@ -111,7 +109,7 @@ public class CommentsInterfaceTest {
         Iterator<Comment> commentsIterator = comments.iterator();
 
         while (commentsIterator.hasNext()) {
-            Comment comment = (Comment)commentsIterator.next();
+            Comment comment = (Comment) commentsIterator.next();
             if (comment.getId().equals(commentId)) {
                 return comment;
             }

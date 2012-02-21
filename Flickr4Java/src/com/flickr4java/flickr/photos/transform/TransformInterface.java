@@ -24,34 +24,32 @@ public class TransformInterface {
     public static final String METHOD_ROTATE = "flickr.photos.transform.rotate";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public TransformInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public TransformInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
     }
 
     /**
-     * Rotate the specified photo.  The only allowed values for degrees are 90, 180 and 270.
-     *
-     * @param photoId The photo ID
-     * @param degrees The degrees to rotate (90, 170 or 270)
+     * Rotate the specified photo. The only allowed values for degrees are 90, 180 and 270.
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param degrees
+     *            The degrees to rotate (90, 170 or 270)
      */
-    public void rotate(String photoId, int degrees)
-        throws IOException, SAXException, FlickrException {
+    public void rotate(String photoId, int degrees) throws IOException, SAXException, FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ROTATE);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("degrees", String.valueOf(degrees));
-
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {

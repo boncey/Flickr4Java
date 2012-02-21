@@ -17,15 +17,19 @@ public class UrlUtilities {
 
     /**
      * Build a request URL.
-     * @param host The host
-     * @param port The port
-     * @param path The path
-     * @param parameters The parameters
+     * 
+     * @param host
+     *            The host
+     * @param port
+     *            The port
+     * @param path
+     *            The path
+     * @param parameters
+     *            The parameters
      * @return The URL
      * @throws MalformedURLException
      */
-    public static URL buildUrl(String host, int port, String path, Map<String, String> parameters)
-            throws MalformedURLException {
+    public static URL buildUrl(String host, int port, String path, Map<String, String> parameters) throws MalformedURLException {
         // see: AuthUtilities.getSignature()
         // AuthUtilities.addAuthToken(parameters);
 
@@ -65,12 +69,10 @@ public class UrlUtilities {
             }
         }
 
-        /*        RequestContext requestContext = RequestContext.getRequestContext();
-        Auth auth = requestContext.getAuth();
-        if (auth != null && !ignoreMethod(getMethod(parameters))) {
-            buffer.append("&api_sig=");
-            buffer.append(AuthUtilities.getSignature(sharedSecret, parameters));
-        } */
+        /*
+         * RequestContext requestContext = RequestContext.getRequestContext(); Auth auth = requestContext.getAuth(); if (auth != null &&
+         * !ignoreMethod(getMethod(parameters))) { buffer.append("&api_sig="); buffer.append(AuthUtilities.getSignature(sharedSecret, parameters)); }
+         */
 
         return new URL(buffer.toString());
     }
@@ -91,31 +93,23 @@ public class UrlUtilities {
     }
 
     /**
-     * Construct the BuddyIconUrl.<p>
-     * If none available, return the
-     * <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>,
-     * or an URL assembled from farm, iconserver and nsid.
-     *
+     * Construct the BuddyIconUrl.
+     * <p>
+     * If none available, return the <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>, or an URL assembled from farm, iconserver and nsid.
+     * 
      * @see <a href="http://flickr.com/services/api/misc.buddyicons.html">Flickr Documentation</a>
      * @param iconFarm
      * @param iconServer
      * @param id
      * @return The BuddyIconUrl
      */
-    public static String createBuddyIconUrl(
-            int iconFarm,
-            int iconServer,
-            String id
-            ) {
+    public static String createBuddyIconUrl(int iconFarm, int iconServer, String id) {
         /**
          * The default-URL, if the iconServer equals 0.
          */
         String iconUrl = "http://www.flickr.com/images/buddyicon.jpg";
         if (iconServer > 0) {
-            iconUrl = "http://farm"
-                    + iconFarm + ".static.flickr.com/"
-                    + iconServer + "/buddyicons/"
-                    + id + ".jpg";
+            iconUrl = "http://farm" + iconFarm + ".static.flickr.com/" + iconServer + "/buddyicons/" + id + ".jpg";
         }
         return iconUrl;
     }

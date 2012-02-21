@@ -40,16 +40,16 @@ import com.flickr4java.flickr.urls.UrlsInterface;
 import java.util.Set;
 
 /**
- * Main entry point for the Flickr4Java API.
- * This class is used to acquire Interface classes which wrap the Flickr API.<p>
- *
- * If you registered API keys, you find them with the shared secret at your
- * <a href="http://www.flickr.com/services/api/registered_keys.gne">list of API keys</a><p>
- *
- * The user who authenticates himself, can manage this permissions at
- * <a href="http://www.flickr.com/services/auth/list.gne">his list of Third-party applications</a>
- * (You -> Your account -> Extending Flickr -> Account Links -> edit).
- *
+ * Main entry point for the Flickr4Java API. This class is used to acquire Interface classes which wrap the Flickr API.
+ * <p>
+ * 
+ * If you registered API keys, you find them with the shared secret at your <a href="http://www.flickr.com/services/api/registered_keys.gne">list of API
+ * keys</a>
+ * <p>
+ * 
+ * The user who authenticates himself, can manage this permissions at <a href="http://www.flickr.com/services/auth/list.gne">his list of Third-party
+ * applications</a> (You -> Your account -> Extending Flickr -> Account Links -> edit).
+ * 
  * @author Anthony Eden
  * @version $Id: Flickr.java,v 1.45 2009/06/23 21:51:25 x-mago Exp $
  */
@@ -59,7 +59,6 @@ public class Flickr {
      * The default endpoint host.
      */
     public static final String DEFAULT_HOST = "api.flickr.com";
-
 
     /**
      * The key used when the API key is stored for passing to the Transport methods.
@@ -82,41 +81,75 @@ public class Flickr {
     public static boolean tracing = false;
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transport;
+
     private Auth auth;
 
     private AuthInterface authInterface;
+
     private ActivityInterface activityInterface;
+
     private BlogsInterface blogsInterface;
+
     private CommentsInterface commentsInterface;
+
     private CommonsInterface commonsInterface;
+
     private ContactsInterface contactsInterface;
+
     private FavoritesInterface favoritesInterface;
+
     private GeoInterface geoInterface;
+
     private GroupsInterface groupsInterface;
+
     private InterestingnessInterface interestingnessInterface;
+
     private LicensesInterface licensesInterface;
+
     private MembersInterface membersInterface;
+
     private MachinetagsInterface machinetagsInterface;
+
     private NotesInterface notesInterface;
+
     private PandaInterface pandaInterface;
+
     private PoolsInterface poolsInterface;
+
     private PeopleInterface peopleInterface;
+
     private PhotosInterface photosInterface;
+
     private PhotosetsCommentsInterface photosetsCommentsInterface;
+
     private PhotosetsInterface photosetsInterface;
+
     private CollectionsInterface collectionsInterface;
+
     private PlacesInterface placesInterface;
+
     private PrefsInterface prefsInterface;
+
     private ReflectionInterface reflectionInterface;
+
     private TagsInterface tagsInterface;
+
     private TestInterface testInterface;
+
     private TransformInterface transformInterface;
+
     private UploadInterface uploadInterface;
+
     private Uploader uploader;
+
     private UrlsInterface urlsInterface;
+
     private GalleriesInterface galleriesInterface;
+
     private StatsInterface statsInterface;
 
     /**
@@ -142,7 +175,7 @@ public class Flickr {
 
     /**
      * The lowest accuracy for bounding-box searches.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.SearchParameters#setAccuracy(int)
      */
     public static final int ACCURACY_WORLD = 1;
@@ -164,7 +197,7 @@ public class Flickr {
 
     /**
      * The highest accuracy for bounding-box searches.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.SearchParameters#setAccuracy(int)
      */
     public static final int ACCURACY_STREET = 16;
@@ -176,6 +209,7 @@ public class Flickr {
      * @see com.flickr4java.flickr.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_SAFE = "1";
+
     /**
      * @see com.flickr4java.flickr.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getSafetyLevel()
@@ -183,6 +217,7 @@ public class Flickr {
      * @see com.flickr4java.flickr.photos.SearchParameters#setSafeSearch(String)
      */
     public static final String SAFETYLEVEL_MODERATE = "2";
+
     /**
      * @see com.flickr4java.flickr.photos.PhotosInterface#setSafetyLevel(String, String, Boolean)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getSafetyLevel()
@@ -197,30 +232,35 @@ public class Flickr {
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_NO_FILTER = 0;
+
     /**
      * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_PUBLIC = 1;
+
     /**
      * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_FRIENDS = 2;
+
     /**
      * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_FAMILY = 3;
+
     /**
      * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getGeoPerms()
      */
     public static final int PRIVACY_LEVEL_FRIENDS_FAMILY = 4;
+
     /**
      * @see com.flickr4java.flickr.photosets.PhotosetsInterface#getPhotos(String, Set, int, int, int)
      * @see com.flickr4java.flickr.prefs.PrefsInterface#getPrivacy()
@@ -230,8 +270,9 @@ public class Flickr {
 
     /**
      * Construct a new Flickr gateway instance.
-     *
-     * @param apiKey The API key, must be non-null
+     * 
+     * @param apiKey
+     *            The API key, must be non-null
      * @param sharedSecret
      * @param transport
      */
@@ -243,7 +284,7 @@ public class Flickr {
 
     /**
      * Get the API key.
-     *
+     * 
      * @return The API key
      */
     public String getApiKey() {
@@ -252,8 +293,9 @@ public class Flickr {
 
     /**
      * Set the API key to use which must not be null.
-     *
-     * @param apiKey The API key which cannot be null
+     * 
+     * @param apiKey
+     *            The API key which cannot be null
      */
     public void setApiKey(String apiKey) {
         if (apiKey == null) {
@@ -268,7 +310,7 @@ public class Flickr {
 
     /**
      * Get the Auth-object.
-     *
+     * 
      * @return The Auth-object
      */
     public Auth getAuth() {
@@ -277,7 +319,7 @@ public class Flickr {
 
     /**
      * Get the Shared-Secret.
-     *
+     * 
      * @return The Shared-Secret
      */
     public String getSharedSecret() {
@@ -286,8 +328,9 @@ public class Flickr {
 
     /**
      * Set the Shared-Secret to use which must not be null.
-     *
-     * @param sharedSecret The Shared-Secret which cannot be null
+     * 
+     * @param sharedSecret
+     *            The Shared-Secret which cannot be null
      */
     public void setSharedSecret(String sharedSecret) {
         if (sharedSecret == null) {
@@ -298,7 +341,7 @@ public class Flickr {
 
     /**
      * Get the Transport interface.
-     *
+     * 
      * @return The Tranport interface
      */
     public Transport getTransport() {
@@ -307,7 +350,7 @@ public class Flickr {
 
     /**
      * Set the Transport which must not be null.
-     *
+     * 
      * @param transport
      */
     public void setTransport(Transport transport) {
@@ -319,7 +362,7 @@ public class Flickr {
 
     /**
      * Get the AuthInterface.
-     *
+     * 
      * @return The AuthInterface
      */
     public AuthInterface getAuthInterface() {
@@ -331,7 +374,7 @@ public class Flickr {
 
     /**
      * Get the ActivityInterface.
-     *
+     * 
      * @return The ActivityInterface
      */
     public ActivityInterface getActivityInterface() {
@@ -500,7 +543,7 @@ public class Flickr {
 
     /**
      * Get the TagsInterface for working with Flickr Tags.
-     *
+     * 
      * @return The TagsInterface
      */
     public TagsInterface getTagsInterface() {

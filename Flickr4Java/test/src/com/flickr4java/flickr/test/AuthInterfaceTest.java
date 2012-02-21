@@ -34,8 +34,8 @@ import java.util.Scanner;
 public class AuthInterfaceTest {
 
     private Flickr flickr = null;
-    private TestProperties testProperties;
 
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws IOException {
@@ -58,7 +58,8 @@ public class AuthInterfaceTest {
     }
 
     @Test
-    @Ignore // Ignored as test is interactive so would fail a build
+    @Ignore
+    // Ignored as test is interactive so would fail a build
     public void testAuthFlow() throws FlickrException, IOException, URISyntaxException {
 
         AuthInterface authInterface = flickr.getAuthInterface();
@@ -73,10 +74,12 @@ public class AuthInterfaceTest {
         String url = authInterface.getAuthorizationUrl(requestToken, Permission.READ);
 
         assertNotNull(url);
-        assertEquals(String.format("http://www.flickr.com/services/oauth/authorize?oauth_token=%s&perms=%s", requestToken.getToken(), Permission.READ.toString()), url);
+        assertEquals(
+                String.format("http://www.flickr.com/services/oauth/authorize?oauth_token=%s&perms=%s", requestToken.getToken(), Permission.READ.toString()),
+                url);
 
         Desktop desktop = Desktop.getDesktop();
-        if (!desktop.isSupported( java.awt.Desktop.Action.BROWSE )) {
+        if (!desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
             System.out.println("Paste this URL into your browser");
             System.out.println(url);
         } else {
@@ -108,7 +111,8 @@ public class AuthInterfaceTest {
     }
 
     @Test
-    @Ignore // Ignored as test is interactive so would fail a build
+    @Ignore
+    // Ignored as test is interactive so would fail a build
     public void testExchangeToken() throws FlickrException {
 
         AuthInterface authInterface = flickr.getAuthInterface();

@@ -24,16 +24,27 @@ public class Collection {
     private static Logger _log = Logger.getLogger(Collection.class);
 
     private String id;
+
     private String title;
+
     private String description;
+
     private int childCount;
+
     private Date dateCreated;
+
     private String iconLarge;
+
     private String iconSmall;
+
     private String server;
+
     private String secret;
+
     private List<Collection> collections;
+
     private List<Photoset> photosets;
+
     private List<Photo> photos;
 
     public Collection() {

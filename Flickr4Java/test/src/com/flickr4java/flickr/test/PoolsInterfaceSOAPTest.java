@@ -29,6 +29,7 @@ import java.util.Collection;
 public class PoolsInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

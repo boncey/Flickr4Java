@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * 
  * @author mago
  * @version $Id: CommonsInterface.java,v 1.2 2009/07/11 20:30:27 x-mago Exp $
  */
@@ -24,14 +24,12 @@ public class CommonsInterface {
     public static final String METHOD_GET_INSTITUTIONS = "flickr.commons.getInstitutions";
 
     private final String apiKey;
+
     private final String sharedSecret;
+
     private final Transport transportAPI;
 
-    public CommonsInterface(
-            String apiKey,
-            String sharedSecret,
-            Transport transportAPI
-            ) {
+    public CommonsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -39,9 +37,9 @@ public class CommonsInterface {
 
     /**
      * Retrieves a list of the current Commons institutions.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @return List of Institution
      * @throws FlickrException
      * @throws IOException

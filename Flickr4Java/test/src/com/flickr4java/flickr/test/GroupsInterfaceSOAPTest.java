@@ -32,6 +32,7 @@ import java.util.Collection;
 public class GroupsInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -61,27 +62,27 @@ public class GroupsInterfaceSOAPTest {
         Category cat = iface.browse(null);
         assertNotNull(cat);
         assertEquals("/", cat.getName());
-        //        System.out.println("category path: " + cat.getPath());
+        // System.out.println("category path: " + cat.getPath());
 
         Collection groups = cat.getGroups();
         assertNotNull(groups);
         assertEquals(0, groups.size());
-        //        Iterator groupsIter = groups.iterator();
-        //        while (groupsIter.hasNext()) {
-        //            Group group = (Group) groupsIter.next();
-        //            System.out.println("group id: " + group.getId());
-        //            System.out.println("group name: " + group.getName());
-        //        }
+        // Iterator groupsIter = groups.iterator();
+        // while (groupsIter.hasNext()) {
+        // Group group = (Group) groupsIter.next();
+        // System.out.println("group id: " + group.getId());
+        // System.out.println("group name: " + group.getName());
+        // }
 
         Collection subcats = cat.getSubcategories();
         assertNotNull(subcats);
         assertTrue(subcats.size() > 0);
-        //        Iterator subcatsIter = subcats.iterator();
-        //        while (subcatsIter.hasNext()) {
-        //            Subcategory subcategory = (Subcategory) subcatsIter.next();
-        //            System.out.println("subcat id: " + subcategory.getId());
-        //            System.out.println("subcat name: " + subcategory.getName());
-        //        }
+        // Iterator subcatsIter = subcats.iterator();
+        // while (subcatsIter.hasNext()) {
+        // Subcategory subcategory = (Subcategory) subcatsIter.next();
+        // System.out.println("subcat id: " + subcategory.getId());
+        // System.out.println("subcat name: " + subcategory.getName());
+        // }
     }
 
     @Ignore
@@ -99,7 +100,7 @@ public class GroupsInterfaceSOAPTest {
         Collection subcats = cat.getSubcategories();
         assertNotNull(subcats);
         assertTrue(subcats.size() > 0);
-        //        System.out.println("category name: " + cat.getName());
+        // System.out.println("category name: " + cat.getName());
     }
 
     @Ignore

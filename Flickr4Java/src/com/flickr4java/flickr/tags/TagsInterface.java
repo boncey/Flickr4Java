@@ -26,56 +26,66 @@ import java.util.Map;
 
 /**
  * Interface for working with Flickr tags.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: TagsInterface.java,v 1.19 2009/07/02 21:52:35 x-mago Exp $
  */
 public class TagsInterface {
 
     public static final String METHOD_GET_CLUSTERS = "flickr.tags.getClusters";
+
     public static final String METHOD_GET_HOT_LIST = "flickr.tags.getHotList";
+
     public static final String METHOD_GET_LIST_PHOTO = "flickr.tags.getListPhoto";
+
     public static final String METHOD_GET_LIST_USER = "flickr.tags.getListUser";
+
     public static final String METHOD_GET_LIST_USER_POPULAR = "flickr.tags.getListUserPopular";
+
     public static final String METHOD_GET_LIST_USER_RAW = "flickr.tags.getListUserRaw";
+
     public static final String METHOD_GET_RELATED = "flickr.tags.getRelated";
+
     public static final String METHOD_GET_CLUSTER_PHOTOS = "flickr.tags.getClusterPhotos";
 
     public static final String PERIOD_WEEK = "week";
+
     public static final String PERIOD_DAY = "day";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
     /**
      * Construct a TagsInterface.
-     *
-     * @param apiKey The API key
-     * @param transportAPI The Transport interface
+     * 
+     * @param apiKey
+     *            The API key
+     * @param transportAPI
+     *            The Transport interface
      */
-    public TagsInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public TagsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
     }
 
     /**
-     * Search for tag-clusters.<p/>
-     *
-     * <p>This method does not require authentication.</p>
-     *
+     * Search for tag-clusters.
+     * <p/>
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
      * @since 1.2
      * @param searchTag
      * @return a list of clusters
      */
-    public ClusterList getClusters(String searchTag)
-      throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public ClusterList getClusters(String searchTag) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CLUSTERS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -90,13 +100,10 @@ public class TagsInterface {
         NodeList clusterElements = clustersElement.getElementsByTagName("cluster");
         for (int i = 0; i < clusterElements.getLength(); i++) {
             Cluster cluster = new Cluster();
-            NodeList tagElements = ((Element) clusterElements.item(i))
-              .getElementsByTagName("tag");
+            NodeList tagElements = ((Element) clusterElements.item(i)).getElementsByTagName("tag");
             for (int j = 0; j < tagElements.getLength(); j++) {
                 Tag tag = new Tag();
-                tag.setValue(
-                    ((Text) tagElements.item(j).getFirstChild()).getData()
-                );
+                tag.setValue(((Text) tagElements.item(j).getFirstChild()).getData());
                 cluster.addTag(tag);
             }
             clusters.addCluster(cluster);
@@ -106,9 +113,11 @@ public class TagsInterface {
 
     /**
      * Returns the first 24 photos for a given tag cluster.
-     *
-     * <p>This method does not require authentication.</p>
-     *
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
      * @param tag
      * @param clusterId
      * @return PhotoList
@@ -116,8 +125,7 @@ public class TagsInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> getClusterPhotos(String tag, String clusterId)
-      throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getClusterPhotos(String tag, String clusterId) throws IOException, SAXException, FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CLUSTER_PHOTOS);
@@ -134,9 +142,9 @@ public class TagsInterface {
         Element photosElement = response.getPayload();
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         photos.setPage("1");
-		photos.setPages("1");
-		photos.setPerPage("" + photoNodes.getLength());
-		photos.setTotal("" + photoNodes.getLength());
+        photos.setPages("1");
+        photos.setPerPage("" + photoNodes.getLength());
+        photos.setTotal("" + photoNodes.getLength());
         for (int i = 0; i < photoNodes.getLength(); i++) {
             Element photoElement = (Element) photoNodes.item(i);
             photos.add(PhotoUtils.createPhoto(photoElement));
@@ -146,15 +154,19 @@ public class TagsInterface {
 
     /**
      * Returns a list of hot tags for the given period.
-     *
-     * <p>This method does not require authentication.</p>
-     *
-     * @param period valid values are 'day' or 'week'
-     * @param count maximum is 200
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
+     * @param period
+     *            valid values are 'day' or 'week'
+     * @param count
+     *            maximum is 200
      * @return The collection of HotlistTag objects
      */
     public Collection<HotlistTag> getHotList(String period, int count) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_HOT_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -182,14 +194,17 @@ public class TagsInterface {
 
     /**
      * Get a list of tags for the specified photo.
-     *
-     * <p>This method does not require authentication.</p>
-     *
-     * @param photoId The photo ID
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
+     * @param photoId
+     *            The photo ID
      * @return The collection of Tag objects
      */
     public Photo getListPhoto(String photoId) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -223,17 +238,20 @@ public class TagsInterface {
 
     /**
      * Get a collection of tags used by the specified user.
-     *
-     * <p>This method does not require authentication.</p>
-     *
-     * @param userId The User ID
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
+     * @param userId
+     *            The User ID
      * @return The User object
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public Collection<Tag> getListUser(String userId) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -260,17 +278,20 @@ public class TagsInterface {
 
     /**
      * Get a list of the user's popular tags.
-     *
-     * <p>This method does not require authentication.</p>
-     *
-     * @param userId The user ID
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
+     * @param userId
+     *            The user ID
      * @return The collection of Tag objects
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public Collection<Tag> getListUserPopular(String userId) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_POPULAR);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -298,17 +319,20 @@ public class TagsInterface {
 
     /**
      * Get a list of the user's (identified by token) popular tags.
-     *
-     * <p>This method does not require authentication.</p>
-     *
-     * @param tagVal a tag to search for, or null
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
+     * @param tagVal
+     *            a tag to search for, or null
      * @return The collection of Tag objects
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public Collection<TagRaw> getListUserRaw(String tagVal) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_RAW);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -342,17 +366,20 @@ public class TagsInterface {
 
     /**
      * Get the related tags.
-     *
-     * <p>This method does not require authentication.</p>
-     *
-     * @param tag The source tag
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
+     * @param tag
+     *            The source tag
      * @return A RelatedTagsList object
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public RelatedTagsList getRelated(String tag) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_RELATED);
         parameters.put(Flickr.API_KEY, apiKey);
 

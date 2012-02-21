@@ -39,38 +39,64 @@ import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for working with Flickr Photos.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: PhotosInterface.java,v 1.51 2010/07/20 20:11:16 x-mago Exp $
  */
 public class PhotosInterface {
 
     public static final String METHOD_ADD_TAGS = "flickr.photos.addTags";
+
     public static final String METHOD_DELETE = "flickr.photos.delete";
+
     public static final String METHOD_GET_ALL_CONTEXTS = "flickr.photos.getAllContexts";
+
     public static final String METHOD_GET_CONTACTS_PHOTOS = "flickr.photos.getContactsPhotos";
+
     public static final String METHOD_GET_CONTACTS_PUBLIC_PHOTOS = "flickr.photos.getContactsPublicPhotos";
+
     public static final String METHOD_GET_CONTEXT = "flickr.photos.getContext";
+
     public static final String METHOD_GET_COUNTS = "flickr.photos.getCounts";
+
     public static final String METHOD_GET_EXIF = "flickr.photos.getExif";
+
     public static final String METHOD_GET_FAVORITES = "flickr.photos.getFavorites";
+
     public static final String METHOD_GET_INFO = "flickr.photos.getInfo";
+
     public static final String METHOD_GET_NOT_IN_SET = "flickr.photos.getNotInSet";
+
     public static final String METHOD_GET_PERMS = "flickr.photos.getPerms";
+
     public static final String METHOD_GET_RECENT = "flickr.photos.getRecent";
+
     public static final String METHOD_GET_SIZES = "flickr.photos.getSizes";
+
     public static final String METHOD_GET_UNTAGGED = "flickr.photos.getUntagged";
+
     public static final String METHOD_GET_WITH_GEO_DATA = "flickr.photos.getWithGeoData";
+
     public static final String METHOD_GET_WITHOUT_GEO_DATA = "flickr.photos.getWithoutGeoData";
-    public static final String METHOD_RECENTLY_UPDATED ="flickr.photos.recentlyUpdated";
+
+    public static final String METHOD_RECENTLY_UPDATED = "flickr.photos.recentlyUpdated";
+
     public static final String METHOD_REMOVE_TAG = "flickr.photos.removeTag";
+
     public static final String METHOD_SEARCH = "flickr.photos.search";
+
     public static final String METHOD_SET_CONTENTTYPE = "flickr.photos.setContentType";
+
     public static final String METHOD_SET_DATES = "flickr.photos.setDates";
+
     public static final String METHOD_SET_META = "flickr.photos.setMeta";
+
     public static final String METHOD_SET_PERMS = "flickr.photos.setPerms";
+
     public static final String METHOD_SET_SAFETYLEVEL = "flickr.photos.setSafetyLevel";
+
     public static final String METHOD_SET_TAGS = "flickr.photos.setTags";
+
     public static final String METHOD_GET_INTERESTINGNESS = "flickr.interestingness.getList";
 
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
@@ -82,7 +108,9 @@ public class PhotosInterface {
     private GeoInterface geoInterface = null;
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transport;
 
     public PhotosInterface(String apiKey, String sharedSecret, Transport transport) {
@@ -93,6 +121,7 @@ public class PhotosInterface {
 
     /**
      * Get the geo interface.
+     * 
      * @return Access class to the flickr.photos.geo methods.
      */
     public synchronized GeoInterface getGeoInterface() {
@@ -104,17 +133,19 @@ public class PhotosInterface {
 
     /**
      * Add tags to a photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The photo ID
-     * @param tags The tags
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param tags
+     *            The tags
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public void addTags(String photoId, String[] tags) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_TAGS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -129,16 +160,15 @@ public class PhotosInterface {
 
     /**
      * Delete a photo from flickr.
-     *
+     * 
      * This method requires authentication with 'delete' permission.
-     *
+     * 
      * @param photoId
-     * @throws SAXException 
-     * @throws IOException 
-     * @throws FlickrException 
+     * @throws SAXException
+     * @throws IOException
+     * @throws FlickrException
      */
-    public void delete(String photoId)
-        throws IOException, SAXException, FlickrException {
+    public void delete(String photoId) throws IOException, SAXException, FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -150,16 +180,17 @@ public class PhotosInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        // This method has no specific response - It returns an empty 
+        // This method has no specific response - It returns an empty
         // sucess response if it completes without error.
     }
 
     /**
      * Returns all visble sets and pools the photo belongs to.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param photoId The photo to return information for.
+     * 
+     * @param photoId
+     *            The photo to return information for.
      * @return a list of {@link PhotoPlace} objects
      * @throws IOException
      * @throws SAXException
@@ -191,20 +222,24 @@ public class PhotosInterface {
 
     /**
      * Get photos from the user's contacts.
-     *
+     * 
      * This method requires authentication with 'read' permission.
-     *
-     * @param count The number of photos to return
-     * @param justFriends Set to true to only show friends photos
-     * @param singlePhoto Set to true to get a single photo
-     * @param includeSelf Set to true to include self
+     * 
+     * @param count
+     *            The number of photos to return
+     * @param justFriends
+     *            Set to true to only show friends photos
+     * @param singlePhoto
+     *            Set to true to get a single photo
+     * @param includeSelf
+     *            Set to true to include self
      * @return The Collection of photos
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> getContactsPhotos(int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
-            throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getContactsPhotos(int count, boolean justFriends, boolean singlePhoto, boolean includeSelf) throws IOException, SAXException,
+            FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -231,9 +266,9 @@ public class PhotosInterface {
         Element photosElement = response.getPayload();
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         photos.setPage("1");
-		photos.setPages("1");
-		photos.setPerPage("" + photoNodes.getLength());
-		photos.setTotal("" + photoNodes.getLength());
+        photos.setPages("1");
+        photos.setPerPage("" + photoNodes.getLength());
+        photos.setTotal("" + photoNodes.getLength());
         for (int i = 0; i < photoNodes.getLength(); i++) {
             Element photoElement = (Element) photoNodes.item(i);
             photos.add(PhotoUtils.createPhoto(photoElement));
@@ -243,27 +278,32 @@ public class PhotosInterface {
 
     /**
      * Get public photos from the user's contacts.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Extras
-     * @param userId The user ID
-     * @param count The number of photos to return
-     * @param justFriends True to include friends
-     * @param singlePhoto True to get a single photo
-     * @param includeSelf True to include self
+     * @param userId
+     *            The user ID
+     * @param count
+     *            The number of photos to return
+     * @param justFriends
+     *            True to include friends
+     * @param singlePhoto
+     *            True to get a single photo
+     * @param includeSelf
+     *            True to include self
      * @return A collection of Photo objects
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public PhotoList<Photo> getContactsPublicPhotos(String userId, int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
-      throws IOException, SAXException, FlickrException {
+            throws IOException, SAXException, FlickrException {
         return getContactsPublicPhotos(userId, Extras.MIN_EXTRAS, count, justFriends, singlePhoto, includeSelf);
     }
 
     public PhotoList<Photo> getContactsPublicPhotos(String userId, Set<String> extras, int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
-      throws IOException, SAXException, FlickrException {
+            throws IOException, SAXException, FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -304,9 +344,9 @@ public class PhotosInterface {
         Element photosElement = response.getPayload();
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         photos.setPage("1");
-		photos.setPages("1");
-		photos.setPerPage("" + photoNodes.getLength());
-		photos.setTotal("" + photoNodes.getLength());
+        photos.setPages("1");
+        photos.setPerPage("" + photoNodes.getLength());
+        photos.setTotal("" + photoNodes.getLength());
         for (int i = 0; i < photoNodes.getLength(); i++) {
             Element photoElement = (Element) photoNodes.item(i);
             photos.add(PhotoUtils.createPhoto(photoElement));
@@ -316,18 +356,18 @@ public class PhotosInterface {
 
     /**
      * Get the context for the specified photo.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param photoId The photo ID
+     * 
+     * @param photoId
+     *            The photo ID
      * @return The PhotoContext
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoContext getContext(String photoId)
-      throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public PhotoContext getContext(String photoId) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTEXT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -364,17 +404,16 @@ public class PhotosInterface {
 
     /**
      * Gets a collection of photo counts for the given date ranges for the calling user.
-     *
+     * 
      * This method requires authentication with 'read' permission.
-     *
-     * @param dates An array of dates, denoting the periods to return counts for.
-     * They should be specified smallest first.
-     * @param takenDates An array of dates, denoting the periods to return 
-     * counts for. They should be specified smallest first.
+     * 
+     * @param dates
+     *            An array of dates, denoting the periods to return counts for. They should be specified smallest first.
+     * @param takenDates
+     *            An array of dates, denoting the periods to return counts for. They should be specified smallest first.
      * @return A Collection of Photocount objects
      */
-    public Collection<Photocount> getCounts(Date[] dates, Date[] takenDates)
-        throws IOException, SAXException, FlickrException {
+    public Collection<Photocount> getCounts(Date[] dates, Date[] takenDates) throws IOException, SAXException, FlickrException {
         List<Photocount> photocounts = new ArrayList<Photocount>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -422,19 +461,20 @@ public class PhotosInterface {
      * Get the Exif data for the photo.
      * 
      * The calling user must have permission to view the photo.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param photoId The photo ID
-     * @param secret The secret
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param secret
+     *            The secret
      * @return A collection of Exif objects
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Exif> getExif(String photoId, String secret)
-        throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public Collection<Exif> getExif(String photoId, String secret) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_EXIF);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -466,17 +506,16 @@ public class PhotosInterface {
 
     /**
      * Returns the list of people who have favorited a given photo.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @param photoId
      * @param perPage
      * @param page
      * @return List of {@link com.flickr4java.flickr.people.User}
      */
-    public Collection<User> getFavorites(String photoId, int perPage, int page)
-        throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public Collection<User> getFavorites(String photoId, int perPage, int page) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
 
         parameters.put("method", METHOD_GET_FAVORITES);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -512,20 +551,22 @@ public class PhotosInterface {
 
     /**
      * Get all info for the specified photo.
-     *
+     * 
      * The calling user must have permission to view the photo.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param photoId The photo Id
-     * @param secret The optional secret String
+     * 
+     * @param photoId
+     *            The photo Id
+     * @param secret
+     *            The optional secret String
      * @return The Photo
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public Photo getInfo(String photoId, String secret) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -545,11 +586,13 @@ public class PhotosInterface {
 
     /**
      * Return a collection of Photo objects not in part of any sets.
-     *
+     * 
      * This method requires authentication with 'read' permission.
-     *
-     * @param perPage The per page
-     * @param page The page
+     * 
+     * @param perPage
+     *            The per page
+     * @param page
+     *            The page
      * @return The collection of Photo objects
      * @throws IOException
      * @throws SAXException
@@ -594,20 +637,20 @@ public class PhotosInterface {
         return photos;
     }
 
-
     /**
      * Get the permission information for the specified photo.
-     *
+     * 
      * This method requires authentication with 'read' permission.
-     *
-     * @param photoId The photo id
+     * 
+     * @param photoId
+     *            The photo id
      * @return The Permissions object
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public Permissions getPerms(String photoId) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PERMS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -627,23 +670,25 @@ public class PhotosInterface {
         return permissions;
     }
 
-
     /**
      * Get a collection of recent photos.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Extras
-     * @param extras Set of extra-fields
-     * @param perPage The number of photos per page
-     * @param page The page offset
+     * @param extras
+     *            Set of extra-fields
+     * @param perPage
+     *            The number of photos per page
+     * @param page
+     *            The page offset
      * @return A collection of Photo objects
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public PhotoList<Photo> getRecent(Set<String> extras, int perPage, int page) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_RECENT);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -668,12 +713,13 @@ public class PhotosInterface {
 
     /**
      * Get the available sizes of a Photo.
-     *
+     * 
      * The calling user must have permission to view the photo.
-     *
+     * 
      * This method uses no authentication.
-     *
-     * @param photoId The photo ID
+     * 
+     * @param photoId
+     *            The photo ID
      * @return A collection of {@link Size}
      * @throws IOException
      * @throws SAXException
@@ -689,9 +735,11 @@ public class PhotosInterface {
      * The boolean toggle allows to (api-)sign the call.
      * 
      * This way the calling user can retrieve sizes for <b>his own</b> private photos.
-     *
-     * @param photoId The photo ID
-     * @param sign toggle to allow optionally signing the call (Authenticate)
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param sign
+     *            toggle to allow optionally signing the call (Authenticate)
      * @return A collection of {@link Size}
      * @throws IOException
      * @throws SAXException
@@ -725,12 +773,11 @@ public class PhotosInterface {
         return sizes;
     }
 
-
     /**
      * Get the collection of untagged photos.
-     *
+     * 
      * This method requires authentication with 'read' permission.
-     *
+     * 
      * @param perPage
      * @param page
      * @return A Collection of Photos
@@ -738,9 +785,8 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> getUntagged(int perPage, int page)
-        throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public PhotoList<Photo> getUntagged(int perPage, int page) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_UNTAGGED);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -760,42 +806,49 @@ public class PhotosInterface {
         return photos;
     }
 
-
     /**
      * Returns a list of your geo-tagged photos.
-     *
+     * 
      * This method requires authentication with 'read' permission.
-     *
-     * @param minUploadDate Minimum upload date. Photos with an upload date greater than or equal to this value will be returned. Set to null to not specify a date.
-     * @param maxUploadDate Maximum upload date. Photos with an upload date less than or equal to this value will be returned. Set to null to not specify a date.
-     * @param minTakenDate Minimum taken date. Photos with an taken date greater than or equal to this value will be returned. Set to null to not specify a date.
-     * @param maxTakenDate Maximum taken date. Photos with an taken date less than or equal to this value will be returned. Set to null to not specify a date.
-     * @param privacyFilter Return photos only matching a certain privacy level. Valid values are:
-     * <ul>
-     * <li>1 public photos</li>
-     * <li>2 private photos visible to friends</li>
-     * <li>3 private photos visible to family</li>
-     * <li>4 private photos visible to friends & family</li>
-     * <li>5 completely private photos</li>
-     * </ul>
-     * Set to 0 to not specify a privacy Filter.
-     *
+     * 
+     * @param minUploadDate
+     *            Minimum upload date. Photos with an upload date greater than or equal to this value will be returned. Set to null to not specify a date.
+     * @param maxUploadDate
+     *            Maximum upload date. Photos with an upload date less than or equal to this value will be returned. Set to null to not specify a date.
+     * @param minTakenDate
+     *            Minimum taken date. Photos with an taken date greater than or equal to this value will be returned. Set to null to not specify a date.
+     * @param maxTakenDate
+     *            Maximum taken date. Photos with an taken date less than or equal to this value will be returned. Set to null to not specify a date.
+     * @param privacyFilter
+     *            Return photos only matching a certain privacy level. Valid values are:
+     *            <ul>
+     *            <li>1 public photos</li>
+     *            <li>2 private photos visible to friends</li>
+     *            <li>3 private photos visible to family</li>
+     *            <li>4 private photos visible to friends & family</li>
+     *            <li>5 completely private photos</li>
+     *            </ul>
+     *            Set to 0 to not specify a privacy Filter.
+     * 
      * @see com.flickr4java.flickr.photos.Extras
-     * @param sort The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, and interestingness-asc.
-     * @param extras A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
-     * @param perPage Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
-     * @param page The page of results to return. If this argument is 0, it defaults to 1.
+     * @param sort
+     *            The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc,
+     *            date-taken-asc, date-taken-desc, interestingness-desc, and interestingness-asc.
+     * @param extras
+     *            A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload,
+     *            date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
+     * @param perPage
+     *            Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
+     * @param page
+     *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return photos
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList<Photo> getWithGeoData(
-        Date minUploadDate, Date maxUploadDate,
-        Date minTakenDate, Date maxTakenDate,
-        int privacyFilter, String sort, Set<String> extras, int perPage, int page) 
-        throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public PhotoList<Photo> getWithGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort,
+            Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_WITH_GEO_DATA);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -812,7 +865,7 @@ public class PhotosInterface {
             parameters.put("max_taken_date", Long.toString(maxTakenDate.getTime() / 1000L));
         }
         if (privacyFilter > 0) {
-            parameters.put("privacy_filter", Integer.toString(privacyFilter));        	
+            parameters.put("privacy_filter", Integer.toString(privacyFilter));
         }
         if (sort != null) {
             parameters.put("sort", sort);
@@ -836,38 +889,49 @@ public class PhotosInterface {
         return photos;
     }
 
-
     /**
      * Returns a list of your photos which haven't been geo-tagged.
-     *
+     * 
      * This method requires authentication with 'read' permission.
-     *
-     * @param minUploadDate Minimum upload date. Photos with an upload date greater than or equal to this value will be returned. Set to null to not specify a date.
-     * @param maxUploadDate Maximum upload date. Photos with an upload date less than or equal to this value will be returned. Set to null to not specify a date.
-     * @param minTakenDate Minimum taken date. Photos with an taken date greater than or equal to this value will be returned. Set to null to not specify a date.
-     * @param maxTakenDate Maximum taken date. Photos with an taken date less than or equal to this value will be returned. Set to null to not specify a date.
-     * @param privacyFilter Return photos only matching a certain privacy level. Valid values are:
-     * <ul>
-     * <li>1 public photos</li>
-     * <li>2 private photos visible to friends</li>
-     * <li>3 private photos visible to family</li>
-     * <li>4 private photos visible to friends & family</li>
-     * <li>5 completely private photos</li>
-     * </ul>
-     * Set to 0 to not specify a privacy Filter.
-     *
+     * 
+     * @param minUploadDate
+     *            Minimum upload date. Photos with an upload date greater than or equal to this value will be returned. Set to null to not specify a date.
+     * @param maxUploadDate
+     *            Maximum upload date. Photos with an upload date less than or equal to this value will be returned. Set to null to not specify a date.
+     * @param minTakenDate
+     *            Minimum taken date. Photos with an taken date greater than or equal to this value will be returned. Set to null to not specify a date.
+     * @param maxTakenDate
+     *            Maximum taken date. Photos with an taken date less than or equal to this value will be returned. Set to null to not specify a date.
+     * @param privacyFilter
+     *            Return photos only matching a certain privacy level. Valid values are:
+     *            <ul>
+     *            <li>1 public photos</li>
+     *            <li>2 private photos visible to friends</li>
+     *            <li>3 private photos visible to family</li>
+     *            <li>4 private photos visible to friends & family</li>
+     *            <li>5 completely private photos</li>
+     *            </ul>
+     *            Set to 0 to not specify a privacy Filter.
+     * 
      * @see com.flickr4java.flickr.photos.Extras
-     * @param sort The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, and interestingness-asc.
-     * @param extras A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
-     * @param perPage Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
-     * @param page The page of results to return. If this argument is 0, it defaults to 1.
+     * @param sort
+     *            The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc,
+     *            date-taken-asc, date-taken-desc, interestingness-desc, and interestingness-asc.
+     * @param extras
+     *            A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload,
+     *            date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
+     * @param perPage
+     *            Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
+     * @param page
+     *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return a photo list
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList<Photo> getWithoutGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public PhotoList<Photo> getWithoutGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort,
+            Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_WITHOUT_GEO_DATA);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -884,7 +948,7 @@ public class PhotosInterface {
             parameters.put("max_taken_date", Long.toString(maxTakenDate.getTime() / 1000L));
         }
         if (privacyFilter > 0) {
-            parameters.put("privacy_filter", Long.toString(privacyFilter));        	
+            parameters.put("privacy_filter", Long.toString(privacyFilter));
         }
         if (sort != null) {
             parameters.put("sort", sort);
@@ -908,29 +972,33 @@ public class PhotosInterface {
         return photos;
     }
 
-
     /**
-     * Return a list of your photos that have been recently created or which have been recently modified. 
-     * Recently modified may mean that the photo's metadata (title, description, tags) may have been changed or a comment has been added (or just modified somehow :-)
-     *
+     * Return a list of your photos that have been recently created or which have been recently modified. Recently modified may mean that the photo's metadata
+     * (title, description, tags) may have been changed or a comment has been added (or just modified somehow :-)
+     * 
      * This method requires authentication with 'read' permission.
-     *
+     * 
      * @see com.flickr4java.flickr.photos.Extras
-     * @param minDate Date indicating the date from which modifications should be compared. Must be given.
-     * @param extras A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
-     * @param perPage Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
-     * @param page The page of results to return. If this argument is 0, it defaults to 1.
+     * @param minDate
+     *            Date indicating the date from which modifications should be compared. Must be given.
+     * @param extras
+     *            A set of Strings controlling the extra information to fetch for each returned record. Currently supported fields are: license, date_upload,
+     *            date_taken, owner_name, icon_server, original_format, last_update, geo. Set to null or an empty set to not specify any extras.
+     * @param perPage
+     *            Number of photos to return per page. If this argument is 0, it defaults to 100. The maximum allowed value is 500.
+     * @param page
+     *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return a list of photos
-     * @throws SAXException 
-     * @throws IOException 
+     * @throws SAXException
+     * @throws IOException
      * @throws FlickrException
      */
     public PhotoList<Photo> recentlyUpdated(Date minDate, Set<String> extras, int perPage, int page) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RECENTLY_UPDATED);
         parameters.put(Flickr.API_KEY, apiKey);
 
-        parameters.put("min_date", Long.toString( minDate.getTime() / 1000L));
+        parameters.put("min_date", Long.toString(minDate.getTime() / 1000L));
 
         if (extras != null && !extras.isEmpty()) {
             parameters.put("extras", StringUtilities.join(extras, ","));
@@ -953,16 +1021,17 @@ public class PhotosInterface {
 
     /**
      * Remove a tag from a photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param tagId The tag ID
+     * 
+     * @param tagId
+     *            The tag ID
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
     public void removeTag(String tagId) throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE_TAG);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -976,17 +1045,19 @@ public class PhotosInterface {
 
     /**
      * Search for photos which match the given search parameters.
-     *
-     * @param params The search parameters
-     * @param perPage The number of photos to show per page
-     * @param page The page offset
+     * 
+     * @param params
+     *            The search parameters
+     * @param perPage
+     *            The number of photos to show per page
+     * @param page
+     *            The page offset
      * @return A PhotoList
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> search(SearchParameters params, int perPage, int page)
-        throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> search(SearchParameters params, int perPage, int page) throws IOException, SAXException, FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1022,17 +1093,19 @@ public class PhotosInterface {
 
     /**
      * Search for interesting photos using the Flickr Interestingness algorithm.
-     *
-     * @param params Any search parameters
-     * @param perPage Number of items per page
-     * @param page The page to start on
+     * 
+     * @param params
+     *            Any search parameters
+     * @param perPage
+     *            Number of items per page
+     * @param page
+     *            The page to start on
      * @return A PhotoList
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> searchInterestingness(SearchParameters params, int perPage, int page)
-        throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> searchInterestingness(SearchParameters params, int perPage, int page) throws IOException, SAXException, FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1050,8 +1123,7 @@ public class PhotosInterface {
 
         Response response = transport.get(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response
-                .getErrorMessage());
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element photosElement = response.getPayload();
         photos.setPage(photosElement.getAttribute("page"));
@@ -1073,12 +1145,9 @@ public class PhotosInterface {
             photo.setServer(photoElement.getAttribute("server"));
             photo.setFarm(photoElement.getAttribute("farm"));
             photo.setTitle(photoElement.getAttribute("title"));
-            photo.setPublicFlag("1".equals(photoElement
-                .getAttribute("ispublic")));
-            photo.setFriendFlag("1".equals(photoElement
-                .getAttribute("isfriend")));
-            photo.setFamilyFlag("1".equals(photoElement
-                .getAttribute("isfamily")));
+            photo.setPublicFlag("1".equals(photoElement.getAttribute("ispublic")));
+            photo.setFriendFlag("1".equals(photoElement.getAttribute("isfriend")));
+            photo.setFamilyFlag("1".equals(photoElement.getAttribute("isfamily")));
             photos.add(photo);
         }
         return photos;
@@ -1086,21 +1155,22 @@ public class PhotosInterface {
 
     /**
      * Set the content type of a photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
+     * 
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
-     * @param photoId The photo ID
-     * @param contentType The contentType to set
+     * @param photoId
+     *            The photo ID
+     * @param contentType
+     *            The contentType to set
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public void setContentType(String photoId, String contentType) throws IOException,
-            SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void setContentType(String photoId, String contentType) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_CONTENTTYPE);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -1115,31 +1185,34 @@ public class PhotosInterface {
 
     /**
      * Set the dates for the specified photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The photo ID
-     * @param datePosted The date the photo was posted or null
-     * @param dateTaken The date the photo was taken or null
-     * @param dateTakenGranularity The granularity of the taken date or null
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param datePosted
+     *            The date the photo was posted or null
+     * @param dateTaken
+     *            The date the photo was taken or null
+     * @param dateTakenGranularity
+     *            The granularity of the taken date or null
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public void setDates(String photoId, Date datePosted, Date dateTaken, String dateTakenGranularity)
-            throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void setDates(String photoId, Date datePosted, Date dateTaken, String dateTakenGranularity) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_DATES);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
 
         if (datePosted != null) {
-            parameters.put("date_posted",  Long.toString(datePosted.getTime() / 1000));
+            parameters.put("date_posted", Long.toString(datePosted.getTime() / 1000));
         }
 
         if (dateTaken != null) {
-            parameters.put("date_taken", ((DateFormat)DATE_FORMATS.get()).format(dateTaken));
+            parameters.put("date_taken", ((DateFormat) DATE_FORMATS.get()).format(dateTaken));
         }
 
         if (dateTakenGranularity != null) {
@@ -1154,19 +1227,21 @@ public class PhotosInterface {
 
     /**
      * Set the meta data for the photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The photo ID
-     * @param title The new title
-     * @param description The new description
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param title
+     *            The new title
+     * @param description
+     *            The new description
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public void setMeta(String photoId, String title, String description)
-        throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void setMeta(String photoId, String title, String description) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_META);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -1182,18 +1257,19 @@ public class PhotosInterface {
 
     /**
      * Set the permissions for the photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The photo ID
-     * @param permissions The permissions object
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param permissions
+     *            The permissions object
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public void setPerms(String photoId, Permissions permissions) throws IOException,
-            SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void setPerms(String photoId, Permissions permissions) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_PERMS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -1211,13 +1287,17 @@ public class PhotosInterface {
     }
 
     /**
-     * Set the safety level (adultness) of a photo.<p>
-     *
+     * Set the safety level (adultness) of a photo.
+     * <p>
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The photo ID
-     * @param safetyLevel The safety level of the photo or null
-     * @param hidden Hidden from public searches or not or null
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param safetyLevel
+     *            The safety level of the photo or null
+     * @param hidden
+     *            Hidden from public searches or not or null
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
@@ -1225,9 +1305,8 @@ public class PhotosInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public void setSafetyLevel(String photoId, String safetyLevel, Boolean hidden)
-            throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void setSafetyLevel(String photoId, String safetyLevel, Boolean hidden) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_SAFETYLEVEL);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -1249,18 +1328,19 @@ public class PhotosInterface {
 
     /**
      * Set the tags for a photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The photo ID
-     * @param tags The tag array
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param tags
+     *            The tag array
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public void setTags(String photoId, String[] tags)
-        throws IOException, SAXException, FlickrException {
-    	Map<String, Object> parameters = new HashMap<String, Object>();
+    public void setTags(String photoId, String[] tags) throws IOException, SAXException, FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_TAGS);
         parameters.put(Flickr.API_KEY, apiKey);
 
@@ -1269,18 +1349,15 @@ public class PhotosInterface {
 
         Response response = transport.post(transport.getPath(), parameters, sharedSecret);
         if (response.isError()) {
-            throw new FlickrException(
-                response.getErrorCode(),
-                response.getErrorMessage()
-            );
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
     }
 
     /**
-     * Get the photo for the specified ID.
-     * Currently maps to the getInfo() method.
-     *
-     * @param id The ID
+     * Get the photo for the specified ID. Currently maps to the getInfo() method.
+     * 
+     * @param id
+     *            The ID
      * @return The Photo
      * @throws IOException
      * @throws FlickrException
@@ -1291,11 +1368,12 @@ public class PhotosInterface {
     }
 
     /**
-     * Get the photo for the specified ID with the given secret.
-     * Currently maps to the getInfo() method.
-     *
-     * @param id The ID
-     * @param secret The secret
+     * Get the photo for the specified ID with the given secret. Currently maps to the getInfo() method.
+     * 
+     * @param id
+     *            The ID
+     * @param secret
+     *            The secret
      * @return The Photo
      * @throws IOException
      * @throws FlickrException
@@ -1307,18 +1385,20 @@ public class PhotosInterface {
 
     /**
      * Request an image from the Flickr-servers.<br>
-     * Callers must close the stream upon completion.<p>
-     *
+     * Callers must close the stream upon completion.
+     * <p>
+     * 
      * At {@link Size} you can find constants for the available sizes.
-     *
-     * @param photo A photo-object
-     * @param size The Size
+     * 
+     * @param photo
+     *            A photo-object
+     * @param size
+     *            The Size
      * @return InputStream The InputStream
      * @throws IOException
      * @throws FlickrException
      */
-    public InputStream getImageAsStream(Photo photo, int size)
-      throws IOException, FlickrException {
+    public InputStream getImageAsStream(Photo photo, int size) throws IOException, FlickrException {
         String urlStr = "";
         if (size == Size.SQUARE) {
             urlStr = photo.getSmallSquareUrl();
@@ -1339,10 +1419,7 @@ public class PhotosInterface {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         if (transport instanceof REST) {
             if (((REST) transport).isProxyAuth()) {
-                conn.setRequestProperty(
-                    "Proxy-Authorization",
-                    "Basic " + ((REST) transport).getProxyCredentials()
-                );
+                conn.setRequestProperty("Proxy-Authorization", "Basic " + ((REST) transport).getProxyCredentials());
             }
         }
         conn.connect();
@@ -1350,38 +1427,37 @@ public class PhotosInterface {
     }
 
     /**
-     * Request an image from the Flickr-servers.<p>
-     *
+     * Request an image from the Flickr-servers.
+     * <p>
+     * 
      * At {@link Size} you can find constants for the available sizes.
-     *
-     * @param photo A photo-object
-     * @param size The size
+     * 
+     * @param photo
+     *            A photo-object
+     * @param size
+     *            The size
      * @return An Image
      * @throws IOException
      * @throws FlickrException
      */
-    public BufferedImage getImage(Photo photo, int size)
-      throws IOException, FlickrException {
+    public BufferedImage getImage(Photo photo, int size) throws IOException, FlickrException {
         return ImageIO.read(getImageAsStream(photo, size));
     }
 
     /**
      * Download of an image by URL.
-     *
-     * @param urlStr The URL of a Photo
+     * 
+     * @param urlStr
+     *            The URL of a Photo
      * @return BufferedImage The The Image
      * @throws IOException
      */
-    public BufferedImage getImage(String urlStr)
-      throws IOException {
+    public BufferedImage getImage(String urlStr) throws IOException {
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         if (transport instanceof REST) {
             if (((REST) transport).isProxyAuth()) {
-                conn.setRequestProperty(
-                    "Proxy-Authorization",
-                    "Basic " + ((REST) transport).getProxyCredentials()
-                );
+                conn.setRequestProperty("Proxy-Authorization", "Basic " + ((REST) transport).getProxyCredentials());
             }
         }
         conn.connect();

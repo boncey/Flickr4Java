@@ -33,22 +33,19 @@ import java.util.Set;
 public class MembersInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        //Flickr.debugStream = true;
+        // Flickr.debugStream = true;
 
         testProperties = new TestProperties();
 
         REST rest = new REST();
         rest.setHost(testProperties.getHost());
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);

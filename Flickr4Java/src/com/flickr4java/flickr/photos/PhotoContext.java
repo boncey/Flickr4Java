@@ -3,13 +3,13 @@
  */
 package com.flickr4java.flickr.photos;
 
-
 /**
  * @author Anthony Eden
  */
 public class PhotoContext {
 
     private Photo previousPhoto;
+
     private Photo nextPhoto;
 
     public PhotoContext() {

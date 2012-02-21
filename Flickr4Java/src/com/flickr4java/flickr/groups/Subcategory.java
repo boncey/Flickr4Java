@@ -5,13 +5,15 @@ package com.flickr4java.flickr.groups;
 
 /**
  * Class representing a subcategory.
- *
+ * 
  * @author Anthony Eden
  */
 public class Subcategory {
 
     private int id;
+
     private String name;
+
     private int count;
 
     public Subcategory() {

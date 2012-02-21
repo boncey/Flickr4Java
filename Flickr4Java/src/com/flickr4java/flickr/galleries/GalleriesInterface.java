@@ -24,17 +24,27 @@ import com.flickr4java.flickr.util.XMLUtilities;
 public class GalleriesInterface {
 
     public static final String METHOD_ADD_PHOTO = "flickr.galleries.addPhoto";
+
     public static final String METHOD_CREATE = "flickr.galleries.create";
+
     public static final String METHOD_EDIT_META = "flickr.galleries.editMeta";
+
     public static final String METHOD_EDIT_PHOTO = "flickr.galleries.editPhoto";
+
     public static final String METHOD_EDIT_PHOTOS = "flickr.galleries.editPhotos";
+
     public static final String METHOD_GET_INFO = "flickr.galleries.getInfo";
+
     public static final String METHOD_GET_LIST = "flickr.galleries.getList";
+
     public static final String METHOD_GET_LIST_FOR_PHOTO = "flickr.galleries.getListForPhoto";
+
     public static final String METHOD_GET_PHOTOS = "flickr.galleries.getPhotos";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transport;
 
     /**
@@ -202,30 +212,15 @@ public class GalleriesInterface {
     }
 
     /*
-    public Gallery create(String strTitle, String strDescription, String primaryPhotoId) throws FlickrException {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_CREATE);
-        parameters.put(Flickr.API_KEY, apiKey);
-        parameters.put("title", strTitle);
-        parameters.put("description", strDescription);
-        if (primaryPhotoId != null) {
-            parameters.put("primary_photo_id ", primaryPhotoId);
-        }
-
-        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
-        if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
-        }
-
-        Element element = response.getPayload();
-        NodeList galleryNodes = element.getElementsByTagName("gallery");
-        Element galleryElement = (Element) galleryNodes.item(0);
-        Gallery gallery = new Gallery();
-        gallery.setId(galleryElement.getAttribute("id"));
-        gallery.setUrl(galleryElement.getAttribute("url"));
-        gallery.setTitle(strTitle);
-        gallery.setDesc(strDescription);
-        return gallery;
-    }
-*/
+     * public Gallery create(String strTitle, String strDescription, String primaryPhotoId) throws FlickrException { Map<String, Object> parameters = new
+     * HashMap<String, Object>(); parameters.put("method", METHOD_CREATE); parameters.put(Flickr.API_KEY, apiKey); parameters.put("title", strTitle);
+     * parameters.put("description", strDescription); if (primaryPhotoId != null) { parameters.put("primary_photo_id ", primaryPhotoId); }
+     * 
+     * Response response = transport.post(transport.getPath(), parameters, sharedSecret); if (response.isError()) { throw new
+     * FlickrException(response.getErrorCode(), response.getErrorMessage()); }
+     * 
+     * Element element = response.getPayload(); NodeList galleryNodes = element.getElementsByTagName("gallery"); Element galleryElement = (Element)
+     * galleryNodes.item(0); Gallery gallery = new Gallery(); gallery.setId(galleryElement.getAttribute("id"));
+     * gallery.setUrl(galleryElement.getAttribute("url")); gallery.setTitle(strTitle); gallery.setDesc(strDescription); return gallery; }
+     */
 }

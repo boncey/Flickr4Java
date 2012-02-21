@@ -31,6 +31,7 @@ import java.io.IOException;
 public class UrlsInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -38,8 +39,7 @@ public class UrlsInterfaceSOAPTest {
         testProperties = new TestProperties();
 
         Flickr.debugStream = true;
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey())
-                .apiSecret(testProperties.getSecret()).build();
+        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey()).apiSecret(testProperties.getSecret()).build();
         SOAP soap = new SOAP(service);
         flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), soap);
 

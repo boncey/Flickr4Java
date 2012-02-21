@@ -19,13 +19,14 @@ import java.util.Map;
 
 /**
  * Interface for flickr.collections.* methods.
+ * 
  * @author Darren Greaves
- * @version $Id$
- * Copyright (c) 2012 Darren Greaves.
+ * @version $Id$ Copyright (c) 2012 Darren Greaves.
  */
 public class CollectionsInterface {
 
     private static final String METHOD_GET_INFO = "flickr.collections.getInfo";
+
     private static final String METHOD_GET_TREE = "flickr.collections.getTree";
 
     /**
@@ -35,14 +36,12 @@ public class CollectionsInterface {
     private static Logger _log = Logger.getLogger(CollectionsInterface.class);
 
     private final String apiKey;
+
     private final String sharedSecret;
+
     private final Transport transportAPI;
 
-    public CollectionsInterface(
-            String apiKey,
-            String sharedSecret,
-            Transport transportAPI
-            ) {
+    public CollectionsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -50,11 +49,12 @@ public class CollectionsInterface {
 
     /**
      * Retrieves info on the given Flickr {@link Collection} (of {@link Photoset}s).
-     *
+     * 
      * This method requires authentication.
      * 
-     * @param collectionId the id of the collection (from the getTree call, not from the collection URL).
-     *
+     * @param collectionId
+     *            the id of the collection (from the getTree call, not from the collection URL).
+     * 
      * @return the given Collection
      * @throws FlickrException
      */
@@ -76,17 +76,18 @@ public class CollectionsInterface {
 
     /**
      * Retrieves a list of the current Commons institutions.
-     *
+     * 
      * This method does not require authentication.
      * 
-     * @param collectionId the id of the collection (optional - returns all if not specified).
-     * @param userId the user id of the collection owner (optional - defaults to calling user).
-     *
+     * @param collectionId
+     *            the id of the collection (optional - returns all if not specified).
+     * @param userId
+     *            the user id of the collection owner (optional - defaults to calling user).
+     * 
      * @return List of Institution
      * @throws FlickrException
      */
-    public List<Collection> getTree(String collectionId, String userId) throws FlickrException
-    {
+    public List<Collection> getTree(String collectionId, String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_TREE);
         if (collectionId != null) {
@@ -115,12 +116,13 @@ public class CollectionsInterface {
 
     /**
      * Parse the XML for a collection as returned by getInfo call.
+     * 
      * @param collectionElement
      * @return
      */
     private Collection parseCollection(Element collectionElement) {
 
-        Collection collection  = new Collection();
+        Collection collection = new Collection();
         collection.setId(collectionElement.getAttribute("id"));
         collection.setServer(collectionElement.getAttribute("server"));
         collection.setSecret(collectionElement.getAttribute("secret"));
@@ -145,12 +147,13 @@ public class CollectionsInterface {
 
     /**
      * Parse the XML for a collection as returned by getTree call.
+     * 
      * @param collectionElement
      * @return
      */
     private Collection parseTreeCollection(Element collectionElement) {
 
-        Collection collection  = new Collection();
+        Collection collection = new Collection();
         parseCommonFields(collectionElement, collection);
         collection.setTitle(collectionElement.getAttribute("title"));
         collection.setDescription(collectionElement.getAttribute("description"));

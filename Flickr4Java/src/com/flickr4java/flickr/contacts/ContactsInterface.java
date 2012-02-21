@@ -23,25 +23,25 @@ import java.util.Map;
 
 /**
  * Interface for working with Flickr contacts.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: ContactsInterface.java,v 1.18 2009/07/11 20:30:27 x-mago Exp $
  */
 public class ContactsInterface {
 
     private static final String METHOD_GET_LIST = "flickr.contacts.getList";
+
     private static final String METHOD_GET_LIST_RECENTLY_UPLOADED = "flickr.contacts.getListRecentlyUploaded";
+
     private static final String METHOD_GET_PUBLIC_LIST = "flickr.contacts.getPublicList";
 
     private final String apiKey;
+
     private final String sharedSecret;
+
     private final Transport transportAPI;
 
-    public ContactsInterface(
-            String apiKey,
-            String sharedSecret,
-            Transport transportAPI
-            ) {
+    public ContactsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -49,7 +49,7 @@ public class ContactsInterface {
 
     /**
      * Get the collection of contacts for the calling user.
-     *
+     * 
      * @return The Collection of Contact objects
      * @throws IOException
      * @throws SAXException
@@ -90,19 +90,21 @@ public class ContactsInterface {
     }
 
     /**
-     * Return a list of contacts for a user who have recently uploaded photos
-     * along with the total count of photos uploaded.
-     *
-     * @param lastUpload Limits the resultset to contacts that have uploaded photos since this date. The date should be in the form of a Unix timestamp. The default, and maximum, offset is (1) hour. (Optional, can be null)
-     * @param filter Limit the result set to all contacts or only those who are friends or family.<br/>Valid options are: <b>ff</b> -&gt; friends and family, <b>all</b> -&gt; all your contacts. (Optional, can be null)
-     *
+     * Return a list of contacts for a user who have recently uploaded photos along with the total count of photos uploaded.
+     * 
+     * @param lastUpload
+     *            Limits the resultset to contacts that have uploaded photos since this date. The date should be in the form of a Unix timestamp. The default,
+     *            and maximum, offset is (1) hour. (Optional, can be null)
+     * @param filter
+     *            Limit the result set to all contacts or only those who are friends or family.<br/>
+     *            Valid options are: <b>ff</b> -&gt; friends and family, <b>all</b> -&gt; all your contacts. (Optional, can be null)
+     * 
      * @return List of Contacts
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter)
-            throws IOException, SAXException, FlickrException {
+    public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter) throws IOException, SAXException, FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -146,10 +148,11 @@ public class ContactsInterface {
 
     /**
      * Get the collection of public contacts for the specified user ID.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param userId The user ID
+     * 
+     * @param userId
+     *            The user ID
      * @return The Collection of Contact objects
      * @throws IOException
      * @throws SAXException

@@ -20,17 +20,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 /**
- *
+ * 
  * @author mago
  * @version $Id: ObjectTest.java,v 1.1 2009/07/23 20:41:03 x-mago Exp $
  */
 public class ObjectTest {
     /**
      * Testing the equals-implementation.
-     *
-     * Don't test every single member, as they are covered in
-     * equals() by reflection. Emphasis on the child-objects.
+     * 
+     * Don't test every single member, as they are covered in equals() by reflection. Emphasis on the child-objects.
      */
     @Test
     public void testPhoto() {
@@ -147,15 +147,15 @@ public class ObjectTest {
         note1.setId("id");
         note1.setAuthor("author");
         note1.setAuthorName("author");
-        note1.setBounds(new Rectangle(0,1,2,3));
+        note1.setBounds(new Rectangle(0, 1, 2, 3));
         note2.setId("id");
         note2.setAuthor("author");
         note2.setAuthorName("author");
-        note2.setBounds(new Rectangle(0,1,2,3));
+        note2.setBounds(new Rectangle(0, 1, 2, 3));
         note3.setId("id");
         note3.setAuthor("author");
         note3.setAuthorName("author");
-        note3.setBounds(new Rectangle(0,1,2,3));
+        note3.setBounds(new Rectangle(0, 1, 2, 3));
         List<Note> notes1 = new ArrayList<Note>();
         notes1.add(note1);
         notes1.add(note2);

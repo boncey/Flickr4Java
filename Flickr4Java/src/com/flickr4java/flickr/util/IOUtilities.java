@@ -11,7 +11,7 @@ import java.io.Writer;
 
 /**
  * Common IO utilities.
- *
+ * 
  * @author Anthony Eden
  */
 public class IOUtilities {

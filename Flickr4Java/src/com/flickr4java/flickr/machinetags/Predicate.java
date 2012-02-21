@@ -8,7 +8,9 @@ package com.flickr4java.flickr.machinetags;
 public class Predicate {
 
     int usage;
+
     int namespaces;
+
     String value;
 
     public String getValue() {
@@ -23,10 +25,11 @@ public class Predicate {
         return usage;
     }
 
-	public void setUsage(String predicates) {
+    public void setUsage(String predicates) {
         try {
             setUsage(Integer.parseInt(predicates));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) {
+        }
     }
 
     public void setUsage(int usage) {
@@ -37,13 +40,14 @@ public class Predicate {
         return namespaces;
     }
 
-	public void setNamespaces(String namespaces) {
+    public void setNamespaces(String namespaces) {
         try {
             setNamespaces(Integer.parseInt(namespaces));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) {
+        }
     }
 
-	public void setNamespaces(int namespaces) {
+    public void setNamespaces(int namespaces) {
         this.namespaces = namespaces;
     }
 

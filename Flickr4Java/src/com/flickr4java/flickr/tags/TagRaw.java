@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * 
  * @see com.flickr4java.flickr.tags.TagsInterface#getListUserRaw
  * @author mago
  * @version $Id: TagRaw.java,v 1.2 2009/07/12 22:43:07 x-mago Exp $
@@ -12,7 +12,9 @@ import java.util.List;
 public class TagRaw {
 
     private String owner;
+
     private String clean;
+
     private List<String> raw = new ArrayList<String>();
 
     public TagRaw() {

@@ -25,26 +25,28 @@ import java.util.Set;
 
 /**
  * Work on Comments.
- *
+ * 
  * @author till (Till Krech) flickr:extranoise
  * @version $Id: CommentsInterface.java,v 1.4 2009/07/11 20:30:27 x-mago Exp $
  */
 public class CommentsInterface {
-    public static final String METHOD_ADD_COMMENT    = "flickr.photos.comments.addComment";
+    public static final String METHOD_ADD_COMMENT = "flickr.photos.comments.addComment";
+
     public static final String METHOD_DELETE_COMMENT = "flickr.photos.comments.deleteComment";
-    public static final String METHOD_EDIT_COMMENT   = "flickr.photos.comments.editComment";
-    public static final String METHOD_GET_LIST       = "flickr.photos.comments.getList";
-    public static final String METHOD_GET_RECENT     = "flickr.photos.comments.getRecentForContacts";
+
+    public static final String METHOD_EDIT_COMMENT = "flickr.photos.comments.editComment";
+
+    public static final String METHOD_GET_LIST = "flickr.photos.comments.getList";
+
+    public static final String METHOD_GET_RECENT = "flickr.photos.comments.getRecentForContacts";
 
     private final String apiKey;
+
     private final String sharedSecret;
+
     private final Transport transportAPI;
 
-    public CommentsInterface(
-            String apiKey,
-            String sharedSecret,
-            Transport transport
-            ) {
+    public CommentsInterface(String apiKey, String sharedSecret, Transport transport) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transport;
@@ -52,11 +54,13 @@ public class CommentsInterface {
 
     /**
      * Add comment to a photo as the currently authenticated user.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The id of the photo to add a comment to.
-     * @param commentText Text of the comment.
+     * 
+     * @param photoId
+     *            The id of the photo to add a comment to.
+     * @param commentText
+     *            Text of the comment.
      * @return a unique comment id.
      * @throws SAXException
      * @throws IOException
@@ -70,7 +74,7 @@ public class CommentsInterface {
         parameters.put("photo_id", photoId);
         parameters.put("comment_text", commentText);
 
-        //Note: This method requires an HTTP POST request.
+        // Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
@@ -81,10 +85,11 @@ public class CommentsInterface {
 
     /**
      * Delete a comment as the currently authenticated user.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param commentId The id of the comment to delete.
+     * 
+     * @param commentId
+     *            The id of the comment to delete.
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
@@ -96,7 +101,7 @@ public class CommentsInterface {
 
         parameters.put("comment_id", commentId);
 
-        //Note: This method requires an HTTP POST request.
+        // Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
@@ -107,11 +112,13 @@ public class CommentsInterface {
 
     /**
      * Edit the text of a comment as the currently authenticated user.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param commentId The id of the comment to edit.
-     * @param commentText Update the comment to this text.
+     * 
+     * @param commentId
+     *            The id of the comment to edit.
+     * @param commentText
+     *            Update the comment to this text.
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException
@@ -124,7 +131,7 @@ public class CommentsInterface {
         parameters.put("comment_id", commentId);
         parameters.put("comment_text", commentText);
 
-        //Note: This method requires an HTTP POST request.
+        // Note: This method requires an HTTP POST request.
         Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
@@ -135,17 +142,17 @@ public class CommentsInterface {
 
     /**
      * Returns the comments for a photo.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param photoId The id of the photo to fetch comments for.
+     * 
+     * @param photoId
+     *            The id of the photo to fetch comments for.
      * @return a List of {@link Comment} objects.
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
      */
-    public List<Comment> getList(String photoId)
-            throws FlickrException, IOException, SAXException {
+    public List<Comment> getList(String photoId) throws FlickrException, IOException, SAXException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -161,7 +168,7 @@ public class CommentsInterface {
         int n = commentNodes.getLength();
         for (int i = 0; i < n; i++) {
             Comment comment = new Comment();
-            Element commentElement = (Element)commentNodes.item(i);
+            Element commentElement = (Element) commentNodes.item(i);
             comment.setId(commentElement.getAttribute("id"));
             comment.setAuthor(commentElement.getAttribute("author"));
             comment.setAuthorName(commentElement.getAttribute("authorname"));
@@ -182,32 +189,44 @@ public class CommentsInterface {
     }
 
     /**
-     * <p>Returns the list of photos belonging to your contacts that have been commented on recently.</p>
-     *
-     * <p>There is an emphasis on the recent part with this method, which is
-     * fancy-talk for "in the last hour".</p>
-     *
-     * <p>It is not meant to be a general purpose, get all the comments ever,
-     * but rather a quick and easy way to bubble up photos that people are
-     * talking about ("about") now.</p>
-     *
-     * <p>It has the added bonus / side-effect of bubbling up photos a person
-     * may have missed because they were uploaded before the photo owner was
-     * made a contact or the business of life got in the way.</p>
-     *
+     * <p>
+     * Returns the list of photos belonging to your contacts that have been commented on recently.
+     * </p>
+     * 
+     * <p>
+     * There is an emphasis on the recent part with this method, which is fancy-talk for "in the last hour".
+     * </p>
+     * 
+     * <p>
+     * It is not meant to be a general purpose, get all the comments ever, but rather a quick and easy way to bubble up photos that people are talking about
+     * ("about") now.
+     * </p>
+     * 
+     * <p>
+     * It has the added bonus / side-effect of bubbling up photos a person may have missed because they were uploaded before the photo owner was made a contact
+     * or the business of life got in the way.
+     * </p>
+     * 
      * This method requires authentication with 'read' permission.
-     *
-     * @param lastComment Limits the resultset to photos that have been commented on since this date. The default, and maximum, offset is (1) hour. Optional, can be null.
-     * @param contactsFilter A list of contact NSIDs to limit the scope of the query to. Optional, can be null.
-     * @param extras A list of extra information to fetch for each returned record. Optional, can be null.
-     * @param perPage The number of photos per page.
-     * @param page The page offset.
+     * 
+     * @param lastComment
+     *            Limits the resultset to photos that have been commented on since this date. The default, and maximum, offset is (1) hour. Optional, can be
+     *            null.
+     * @param contactsFilter
+     *            A list of contact NSIDs to limit the scope of the query to. Optional, can be null.
+     * @param extras
+     *            A list of extra information to fetch for each returned record. Optional, can be null.
+     * @param perPage
+     *            The number of photos per page.
+     * @param page
+     *            The page offset.
      * @return List of photos
      * @throws FlickrException
      * @throws IOException
      * @throws SAXException
      */
-    public PhotoList<Photo> getRecentForContacts(Date lastComment, ArrayList<String> contactsFilter, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getRecentForContacts(Date lastComment, ArrayList<String> contactsFilter, Set<String> extras, int perPage, int page)
+            throws FlickrException, IOException, SAXException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);

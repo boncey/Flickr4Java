@@ -34,6 +34,7 @@ import java.util.Iterator;
 public class FavoritesInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -41,11 +42,7 @@ public class FavoritesInterfaceTest {
         testProperties = new TestProperties();
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -85,7 +82,7 @@ public class FavoritesInterfaceTest {
     public void testAddAndRemove() throws FlickrException, IOException, SAXException {
         String photoId = "2153378";
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        
+
         try {
             iface.remove(photoId);
         } catch (Exception e) {
@@ -106,7 +103,7 @@ public class FavoritesInterfaceTest {
         assertEquals(photoId, foundPhoto.getId());
         iface.remove(photoId);
     }
-    
+
     @Test
     public void testGetContext() throws FlickrException, IOException, SAXException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
@@ -115,6 +112,5 @@ public class FavoritesInterfaceTest {
         assertEquals("5602817067", context.getPreviousPhoto().getId());
         assertEquals("5844052415", context.getNextPhoto().getId());
     }
-    
 
 }

@@ -27,6 +27,7 @@ import com.flickr4java.flickr.blogs.BlogsInterface;
 public class BlogsInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -49,6 +50,5 @@ public class BlogsInterfaceSOAPTest {
         assertNotNull(blogs);
         assertEquals(1, blogs.size());
     }
-
 
 }

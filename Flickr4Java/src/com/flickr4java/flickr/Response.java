@@ -21,8 +21,8 @@ public interface Response {
     String getErrorCode();
 
     String getErrorMessage();
-    
+
     Element getPayload();
-    
+
     Collection<Element> getPayloadCollection();
 }

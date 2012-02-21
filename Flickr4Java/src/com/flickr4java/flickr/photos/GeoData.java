@@ -8,14 +8,16 @@ import java.util.regex.Matcher;
 
 /**
  * A geographic position.
- *
+ * 
  * @author mago
  * @version $Id: GeoData.java,v 1.4 2009/07/23 20:41:03 x-mago Exp $
  */
 public class GeoData {
 
     private float longitude;
+
     private float latitude;
+
     private int accuracy;
 
     public GeoData() {
@@ -33,10 +35,11 @@ public class GeoData {
     }
 
     /**
-     * Set the accuracy level.<p>
-     *
+     * Set the accuracy level.
+     * <p>
+     * 
      * World level is 1, Country is ~3, Region ~6, City ~11, Street ~16.
-     *
+     * 
      * @param accuracy
      * @see com.flickr4java.flickr.Flickr#ACCURACY_WORLD
      * @see com.flickr4java.flickr.Flickr#ACCURACY_COUNTRY
@@ -65,16 +68,15 @@ public class GeoData {
     }
 
     public String toString() {
-        return "GeoData[longitude=" + longitude +
-        " latitude=" + latitude + " accuracy=" + accuracy + "]";
+        return "GeoData[longitude=" + longitude + " latitude=" + latitude + " accuracy=" + accuracy + "]";
     }
 
-	@Override
-	public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-		// object must be GeoData at this point
+        // object must be GeoData at this point
         GeoData test = (GeoData) obj;
         Class cl = this.getClass();
         Method[] method = cl.getMethods();
@@ -87,22 +89,24 @@ public class GeoData {
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {
-                            if (!res.equals(resTest)) return false;
+                            if (!res.equals(resTest))
+                                return false;
                         } else {
-                            //return false;
+                            // return false;
                         }
                     } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer)resTest))) return false;
+                        if (!((Integer) res).equals(((Integer) resTest)))
+                            return false;
                     } else if (retType.equals("float")) {
-                        if (!((Float) res).equals(((Float)resTest))) return false;
+                        if (!((Float) res).equals(((Float) resTest)))
+                            return false;
                     } else {
-                        System.out.println(method[i].getName() + "|" +
-                            method[i].getReturnType().toString());
+                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
                     }
                 } catch (IllegalAccessException ex) {
                     System.out.println("GeoData equals " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("equals " + method[i].getName() + " " + ex);
+                    // System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (Exception ex) {
                     System.out.println("GeoData equals " + method[i].getName() + " " + ex);
                 }

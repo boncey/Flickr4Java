@@ -4,9 +4,9 @@ import org.apache.log4j.Logger;
 
 /**
  * Referrer information as returned by the stats interface.
+ * 
  * @author Darren Greaves
- * @version $Id$
- * Copyright (c) 2012 Darren Greaves.
+ * @version $Id$ Copyright (c) 2012 Darren Greaves.
  */
 public class Referrer {
 

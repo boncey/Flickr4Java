@@ -7,7 +7,8 @@ package com.flickr4java.flickr.blogs;
  */
 public class Service {
 
-	private String id;
+    private String id;
+
     private String name;
 
     public String getId() {

@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 public class Editability {
 
     private boolean comment;
+
     private boolean addmeta;
 
     public Editability() {
@@ -37,12 +38,12 @@ public class Editability {
         this.addmeta = addmeta;
     }
 
-	@Override
-	public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-		// object must be Editability at this point
+        // object must be Editability at this point
         Editability test = (Editability) obj;
         Class cl = this.getClass();
         Method[] method = cl.getMethods();
@@ -55,22 +56,24 @@ public class Editability {
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {
-                            if (!res.equals(resTest)) return false;
+                            if (!res.equals(resTest))
+                                return false;
                         } else {
-                            //return false;
+                            // return false;
                         }
                     } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer)resTest))) return false;
+                        if (!((Integer) res).equals(((Integer) resTest)))
+                            return false;
                     } else if (retType.equals("boolean")) {
-                        if (!((Boolean) res).equals(((Boolean)resTest))) return false;
+                        if (!((Boolean) res).equals(((Boolean) resTest)))
+                            return false;
                     } else {
-                        System.out.println(method[i].getName() + "|" +
-                            method[i].getReturnType().toString());
+                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
                     }
                 } catch (IllegalAccessException ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("equals " + method[i].getName() + " " + ex);
+                    // System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (Exception ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 }

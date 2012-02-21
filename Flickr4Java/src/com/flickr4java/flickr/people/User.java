@@ -31,28 +31,51 @@ public class User implements Serializable, BuddyIconable {
     };
 
     private String id;
+
     private String username;
+
     private boolean admin;
+
     private boolean pro;
+
     private int iconFarm;
+
     private int iconServer;
+
     private String realName;
+
     private String location;
+
     private Date photosFirstDate;
+
     private Date photosFirstDateTaken;
+
     private Date faveDate;
+
     private int photosCount;
+
     private OnlineStatus online;
+
     private String awayMessage;
+
     private long bandwidthMax;
+
     private long bandwidthUsed;
+
     private long filesizeMax;
+
     private String mbox_sha1sum;
+
     private String photosurl;
+
     private String profileurl;
+
     private String mobileurl;
+
     private boolean revContact;
+
     private boolean revFriend;
+
     private boolean revFamily;
 
     public User() {
@@ -99,7 +122,8 @@ public class User implements Serializable, BuddyIconable {
     }
 
     public void setIconFarm(String iconFarm) {
-        if (iconFarm != null) setIconFarm(Integer.parseInt(iconFarm));
+        if (iconFarm != null)
+            setIconFarm(Integer.parseInt(iconFarm));
     }
 
     public int getIconServer() {
@@ -111,7 +135,8 @@ public class User implements Serializable, BuddyIconable {
     }
 
     public void setIconServer(String iconServer) {
-        if (iconServer != null) setIconServer(Integer.parseInt(iconServer));
+        if (iconServer != null)
+            setIconServer(Integer.parseInt(iconServer));
     }
 
     public String getRealName() {
@@ -127,11 +152,10 @@ public class User implements Serializable, BuddyIconable {
     }
 
     /**
-     * Construct the BuddyIconUrl.<p>
-     * If none available, return the 
-     * <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>,
-     * or an URL assembled from farm, iconserver and nsid.
-     *
+     * Construct the BuddyIconUrl.
+     * <p>
+     * If none available, return the <a href="http://www.flickr.com/images/buddyicon.jpg">default</a>, or an URL assembled from farm, iconserver and nsid.
+     * 
      * @see <a href="http://flickr.com/services/api/misc.buddyicons.html">Flickr Documentation</a>
      * @return The BuddyIconUrl
      */
@@ -172,7 +196,7 @@ public class User implements Serializable, BuddyIconable {
     public void setPhotosFirstDateTaken(String photosFirstDateTaken) {
         if (photosFirstDateTaken != null) {
             try {
-                setPhotosFirstDateTaken(((DateFormat)DATE_FORMATS.get()).parse(photosFirstDateTaken));
+                setPhotosFirstDateTaken(((DateFormat) DATE_FORMATS.get()).parse(photosFirstDateTaken));
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
@@ -189,9 +213,8 @@ public class User implements Serializable, BuddyIconable {
 
     /**
      * Date when User has faved a Photo.<br>
-     * flickr.photos.getFavorites returns person-data where this
-     * Date will be set.
-     *
+     * flickr.photos.getFavorites returns person-data where this Date will be set.
+     * 
      * @param faveDate
      */
     public void setFaveDate(Date faveDate) {
@@ -200,9 +223,8 @@ public class User implements Serializable, BuddyIconable {
 
     /**
      * The Date, when a User has favourited a Photo.<br>
-     * This value is set, when a User is created by
-     * {@link com.flickr4java.flickr.photos.PhotosInterface#getFavorites(String, int, int)}.
-     *
+     * This value is set, when a User is created by {@link com.flickr4java.flickr.photos.PhotosInterface#getFavorites(String, int, int)}.
+     * 
      * @return faveDate
      */
     public Date getFaveDate() {
@@ -294,7 +316,7 @@ public class User implements Serializable, BuddyIconable {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-		// object must be User at this point
+        // object must be User at this point
         User test = (User) obj;
         Class cl = this.getClass();
         Method[] method = cl.getMethods();
@@ -307,7 +329,8 @@ public class User implements Serializable, BuddyIconable {
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {
-                            if (!res.equals(resTest)) return false;
+                            if (!res.equals(resTest))
+                                return false;
                         } else {
                             if (res == null && resTest == null) {
                                 // nop
@@ -317,19 +340,21 @@ public class User implements Serializable, BuddyIconable {
                             }
                         }
                     } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer)resTest))) return false;
+                        if (!((Integer) res).equals(((Integer) resTest)))
+                            return false;
                     } else if (retType.equals("boolean")) {
-                        if (!((Boolean) res).equals(((Boolean)resTest))) return false;
+                        if (!((Boolean) res).equals(((Boolean) resTest)))
+                            return false;
                     } else if (retType.equals("long")) {
-                        if (!((Long) res).equals(((Long)resTest))) return false;
+                        if (!((Long) res).equals(((Long) resTest)))
+                            return false;
                     } else {
-                        System.out.println("User#equals() missing type " + method[i].getName() + "|" +
-                            method[i].getReturnType().toString());
+                        System.out.println("User#equals() missing type " + method[i].getName() + "|" + method[i].getReturnType().toString());
                     }
                 } catch (IllegalAccessException ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("equals " + method[i].getName() + " " + ex);
+                    // System.out.println("equals " + method[i].getName() + " " + ex);
                 } catch (Exception ex) {
                     System.out.println("equals " + method[i].getName() + " " + ex);
                 }
@@ -355,7 +380,7 @@ public class User implements Serializable, BuddyIconable {
                 } catch (IllegalAccessException ex) {
                     System.out.println("hashCode " + method[i].getName() + " " + ex);
                 } catch (InvocationTargetException ex) {
-                    //System.out.println("hashCode " + method[i].getName() + " " + ex);
+                    // System.out.println("hashCode " + method[i].getName() + " " + ex);
                 }
                 if (res != null) {
                     if (res instanceof Boolean) {
@@ -382,75 +407,72 @@ public class User implements Serializable, BuddyIconable {
         return hash;
     }
 
-	/**
-	 * @return the photosurl
-	 */
-	public String getPhotosurl() {
-		return photosurl;
-	}
+    /**
+     * @return the photosurl
+     */
+    public String getPhotosurl() {
+        return photosurl;
+    }
 
-	/**
-	 * @param photosurl the photosurl to set
-	 */
-	public void setPhotosurl(String photosurl) {
-		this.photosurl = photosurl;
-	}
+    /**
+     * @param photosurl
+     *            the photosurl to set
+     */
+    public void setPhotosurl(String photosurl) {
+        this.photosurl = photosurl;
+    }
 
-	/**
-	 * @return the profileurl
-	 */
-	public String getProfileurl() {
-		return profileurl;
-	}
+    /**
+     * @return the profileurl
+     */
+    public String getProfileurl() {
+        return profileurl;
+    }
 
-	/**
-	 * @param profileurl the profileurl to set
-	 */
-	public void setProfileurl(String profileurl) {
-		this.profileurl = profileurl;
-	}
+    /**
+     * @param profileurl
+     *            the profileurl to set
+     */
+    public void setProfileurl(String profileurl) {
+        this.profileurl = profileurl;
+    }
 
-	/**
-	 * @return the mobileurl
-	 */
-	public String getMobileurl() {
-		return mobileurl;
-	}
+    /**
+     * @return the mobileurl
+     */
+    public String getMobileurl() {
+        return mobileurl;
+    }
 
-	/**
-	 * @param mobileurl the mobileurl to set
-	 */
-	public void setMobileurl(String mobileurl) {
-		this.mobileurl = mobileurl;
-	}
+    /**
+     * @param mobileurl
+     *            the mobileurl to set
+     */
+    public void setMobileurl(String mobileurl) {
+        this.mobileurl = mobileurl;
+    }
 
-    public void setRevContact(boolean revContact)
-    {
+    public void setRevContact(boolean revContact) {
         this.revContact = revContact;
     }
 
-    public boolean isRevContact()
-    {
+    public boolean isRevContact() {
         return revContact;
     }
 
-    public void setRevFriend(boolean revFriend)
-    {
+    public void setRevFriend(boolean revFriend) {
         this.revFriend = revFriend;
     }
 
-    public boolean isRevFriend()
-    {
+    public boolean isRevFriend() {
         return revFriend;
     }
 
-    public void setRevFamily(boolean revFamily)
-    {
+    public void setRevFamily(boolean revFamily) {
         this.revFamily = revFamily;
     }
 
-    public boolean isRevFamily()
-    {
+    public boolean isRevFamily() {
         return revFamily;
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * List (tag-)clusters.
- *
+ * 
  * @author mago
  * @since 1.2
  * @version $Id: ClusterList.java,v 1.1 2008/07/19 14:42:54 x-mago Exp $

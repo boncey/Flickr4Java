@@ -12,17 +12,29 @@ import com.flickr4java.flickr.people.User;
 public class Gallery {
 
     private String strCreateDate;
+
     private String strUpdateDate;
+
     private String strPrimaryPhotoId;
+
     private String strPrimaryPhotoServer;
+
     private String strPrimaryPhotoFarm;
+
     private String strPrimaryPhotoSecret;
+
     private String strPhotoCount;
+
     private String strVideoCount;
+
     private String strTitle;
+
     private String strDesc;
+
     private String strUrl;
+
     private User owner;
+
     private String id;
 
     public Gallery() {
@@ -212,7 +224,8 @@ public class Gallery {
     }
 
     /**
-     * @param id the id to set
+     * @param id
+     *            the id to set
      */
     public void setId(String id) {
         this.id = id;

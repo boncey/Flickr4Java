@@ -30,6 +30,7 @@ import java.util.Collection;
 public class PeopleInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

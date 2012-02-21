@@ -60,6 +60,7 @@ public class ImageUtilities {
     class ImageLoadStatus {
 
         public boolean widthDone = false;
+
         public boolean heightDone = false;
     }
 

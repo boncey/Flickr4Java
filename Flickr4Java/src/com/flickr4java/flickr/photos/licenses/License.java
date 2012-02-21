@@ -11,7 +11,9 @@ public class License {
     private static final long serialVersionUID = 12L;
 
     private String id;
+
     private String name;
+
     private String url;
 
     public String getId() {

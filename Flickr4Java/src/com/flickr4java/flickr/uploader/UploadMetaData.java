@@ -8,21 +8,30 @@ import java.util.Collection;
 
 /**
  * Metadata that describe a photo.
- *
+ * 
  * @author Anthony Eden
  * @version $Id: UploadMetaData.java,v 1.7 2007/11/02 21:46:52 x-mago Exp $
  */
 public class UploadMetaData {
 
     private String title;
+
     private String description;
+
     private Collection<String> tags;
+
     private boolean publicFlag;
+
     private boolean friendFlag;
+
     private boolean familyFlag;
+
     private boolean async = false;
+
     private Boolean hidden;
+
     private String safetyLevel;
+
     private String contentType;
 
     public String getTitle() {
@@ -75,7 +84,7 @@ public class UploadMetaData {
 
     /**
      * Get the Content-type of the Photo.
-     *
+     * 
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
@@ -87,7 +96,7 @@ public class UploadMetaData {
 
     /**
      * Set the Content-type of the Photo.
-     *
+     * 
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_OTHER
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
@@ -107,7 +116,7 @@ public class UploadMetaData {
 
     /**
      * Get the safety-level.
-     *
+     * 
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
@@ -118,8 +127,9 @@ public class UploadMetaData {
     }
 
     /**
-     * Set the safety level (adultness) of a photo.<p>
-     *
+     * Set the safety level (adultness) of a photo.
+     * <p>
+     * 
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
@@ -134,11 +144,13 @@ public class UploadMetaData {
     }
 
     /**
-     * Switch the Uploader behaviour - sychronous or asyncrounous.<p>
-     *
+     * Switch the Uploader behaviour - sychronous or asyncrounous.
+     * <p>
+     * 
      * The default is sychronous.
-     *
-     * @param async boolean
+     * 
+     * @param async
+     *            boolean
      */
     public void setAsync(boolean async) {
         this.async = async;

@@ -14,7 +14,7 @@ import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Flickr SOAP Response object.
- *
+ * 
  * @author Matt Ray
  */
 public class SOAPResponse implements Response {
@@ -22,35 +22,36 @@ public class SOAPResponse implements Response {
     private List<Element> payload;
 
     private String errorCode;
+
     private String errorMessage;
-    
+
     private SOAPEnvelope envelope;
 
-    public SOAPResponse(SOAPEnvelope envelope){
+    public SOAPResponse(SOAPEnvelope envelope) {
         this.envelope = envelope;
     }
-    
+
     public void parse(Document document) {
         try {
-            SOAPBody body = (SOAPBody)envelope.getBody();
+            SOAPBody body = (SOAPBody) envelope.getBody();
 
             if (Flickr.debugStream) {
                 System.out.println("SOAP RESPONSE.parse");
                 System.out.println(body.getAsString());
             }
-            
-            SOAPFault fault = (SOAPFault)body.getFault();
+
+            SOAPFault fault = (SOAPFault) body.getFault();
             if (fault != null) {
-                System.err.println("FAULT: "+fault.getAsString());
+                System.err.println("FAULT: " + fault.getAsString());
                 errorCode = fault.getFaultCode();
                 errorMessage = fault.getFaultString();
             } else {
                 for (@SuppressWarnings("unchecked")
-                Iterator<Element> i = body.getChildElements(); i.hasNext(); ) {
+                Iterator<Element> i = body.getChildElements(); i.hasNext();) {
                     Element bodyelement = i.next();
                     bodyelement.normalize();
                     // TODO: Verify that the payload is always a single XML node
-                    payload = (List<Element>)XMLUtilities.getChildElements(bodyelement);
+                    payload = (List<Element>) XMLUtilities.getChildElements(bodyelement);
                 }
             }
         } catch (Exception e) {
@@ -61,9 +62,9 @@ public class SOAPResponse implements Response {
     public String getStat() {
         return null;
     }
-    
+
     public Element getPayload() {
-        if(payload.isEmpty()) {
+        if (payload.isEmpty()) {
             throw new RuntimeException("SOAP response payload has no elements");
         }
         return payload.get(0);
@@ -84,7 +85,5 @@ public class SOAPResponse implements Response {
     public String getErrorMessage() {
         return errorMessage;
     }
-
-
 
 }

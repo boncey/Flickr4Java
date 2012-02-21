@@ -11,7 +11,7 @@ import java.io.OutputStream;
 
 /**
  * A FilterInputStream which will print all read data to the specified PrintWriter.
- *
+ * 
  * @author Anthony Eden
  */
 public class DebugInputStream extends FilterInputStream {
@@ -19,11 +19,10 @@ public class DebugInputStream extends FilterInputStream {
     private OutputStream debugOut;
 
     /**
-     * Creates a <code>FilterInputStream</code> by assigning the  argument <code>in</code> to the field
-     * <code>this.in</code> so as to remember it for later use.
-     *
-     * @param in the underlying input stream, or <code>null</code> if this instance is to be created without an
-     * underlying stream.
+     * Creates a <code>FilterInputStream</code> by assigning the argument <code>in</code> to the field <code>this.in</code> so as to remember it for later use.
+     * 
+     * @param in
+     *            the underlying input stream, or <code>null</code> if this instance is to be created without an underlying stream.
      */
     public DebugInputStream(InputStream in, OutputStream debugOut) {
         super(in);

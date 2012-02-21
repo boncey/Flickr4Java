@@ -33,6 +33,7 @@ import java.util.Iterator;
 public class LicensesInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

@@ -24,13 +24,16 @@ import java.util.Properties;
 
 /**
  * Tests the basic completeness of the api.
+ * 
  * @author till (Till Krech) flickr:extranoise
- *
+ * 
  */
 public class CompletenessTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
+
     Properties replacements;
 
     @Before
@@ -38,11 +41,7 @@ public class CompletenessTest {
         testProperties = new TestProperties();
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -71,7 +70,7 @@ public class CompletenessTest {
         Iterator<String> mit = ri.getMethods().iterator();
         int notFound = 0;
         while (mit.hasNext()) {
-            String method = (String)mit.next();
+            String method = (String) mit.next();
             if (!checkMethod(method)) {
                 notFound++;
             }
@@ -88,13 +87,13 @@ public class CompletenessTest {
                 return true;
             }
             fqClassName = repl.substring(0, repl.lastIndexOf('.'));
-            methodName = repl.substring(repl.lastIndexOf('.')+1);
+            methodName = repl.substring(repl.lastIndexOf('.') + 1);
         } else {
             int dotIdx = fullMethodName.lastIndexOf('.');
             String pack = fullMethodName.substring(0, dotIdx);
             methodName = fullMethodName.substring(dotIdx + 1);
             dotIdx = pack.lastIndexOf('.');
-            String candidate = pack.substring(dotIdx+1);
+            String candidate = pack.substring(dotIdx + 1);
             String javaPack = "com.flickr4java." + pack;
             String className = Character.toUpperCase(candidate.charAt(0)) + candidate.substring(1) + "Interface";
             fqClassName = javaPack + "." + className;
@@ -113,7 +112,7 @@ public class CompletenessTest {
                 System.out.println("ATTENTION: Method not implemented in Flickr4Java: " + fqClassName + "." + methodName);
             }
         } catch (ClassNotFoundException e) {
-            System.out.println("ATTENTION:  Class not implemented in Flickr4Java: [" + fqClassName + "] (Method: " + methodName +")");
+            System.out.println("ATTENTION:  Class not implemented in Flickr4Java: [" + fqClassName + "] (Method: " + methodName + ")");
         }
         return found;
     }
@@ -125,9 +124,9 @@ public class CompletenessTest {
             @SuppressWarnings("rawtypes")
             Iterator keys = replacements.keySet().iterator();
             while (keys.hasNext()) {
-                String key = (String)keys.next();
+                String key = (String) keys.next();
                 if (key.endsWith(".*")) {
-                    String keyPack = key.substring(0, key.length()-2);
+                    String keyPack = key.substring(0, key.length() - 2);
                     String methPack = fullMethodName.substring(0, fullMethodName.lastIndexOf('.'));
                     if (keyPack.equals(methPack)) {
                         String cls = replacements.getProperty(key);

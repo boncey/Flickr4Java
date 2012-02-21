@@ -23,18 +23,17 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * Upload a photo.<p>
- *
- * Setting {@link com.flickr4java.flickr.uploader.UploadMetaData#setAsync(boolean)}
- * you can switch between synchronous and asynchronous uploads.<p>
- *
- * Synchronous uploads return the photoId, whilst asynchronous uploads
- * return a ticketId.<p>
- *
- * TicketId's can be tracked with
- * {@link com.flickr4java.flickr.photos.upload.UploadInterface#checkTickets(Set)}
- * for completion.
- *
+ * Upload a photo.
+ * <p>
+ * 
+ * Setting {@link com.flickr4java.flickr.uploader.UploadMetaData#setAsync(boolean)} you can switch between synchronous and asynchronous uploads.
+ * <p>
+ * 
+ * Synchronous uploads return the photoId, whilst asynchronous uploads return a ticketId.
+ * <p>
+ * 
+ * TicketId's can be tracked with {@link com.flickr4java.flickr.photos.upload.UploadInterface#checkTickets(Set)} for completion.
+ * 
  * @author Anthony Eden
  * @version $Id: Uploader.java,v 1.12 2009/12/15 20:57:49 x-mago Exp $
  */
@@ -43,18 +42,23 @@ public class Uploader {
      * 
      */
     private static final String SERVICES_REPLACE_PATH = "/services/replace/";
+
     /**
      * 
      */
     private static final String SERVICES_UPLOAD_PATH = "/services/upload/";
+
     private final String apiKey;
+
     private final String sharedSecret;
+
     private final Transport transport;
 
     /**
      * Construct an Uploader.
-     *
-     * @param apiKey The API key
+     * 
+     * @param apiKey
+     *            The API key
      */
     public Uploader(String apiKey, String sharedSecret) {
         this.apiKey = apiKey;
@@ -65,9 +69,11 @@ public class Uploader {
 
     /**
      * Upload a photo from a byte-array.
-     *
-     * @param data The photo data as a byte array
-     * @param metaData The meta data
+     * 
+     * @param data
+     *            The photo data as a byte array
+     * @param metaData
+     *            The meta data
      * @return photoId or ticketId
      * @throws FlickrException
      */
@@ -82,17 +88,18 @@ public class Uploader {
 
     /**
      * Upload a photo from a File.
-     *
-     * @param file the photo file
-     * @param metaData The meta data
+     * 
+     * @param file
+     *            the photo file
+     * @param metaData
+     *            The meta data
      * @return photoId or ticketId
      * @throws FlickrException
      */
     public String upload(File file, UploadMetaData metaData) throws FlickrException {
         InputStream in = null;
 
-        try
-        {
+        try {
             in = new FileInputStream(file);
             return upload(in, metaData);
         } catch (IOException e) {
@@ -104,7 +111,7 @@ public class Uploader {
 
     /**
      * Upload a photo from an InputStream.
-     *
+     * 
      * @param in
      * @param metaData
      * @return photoId or ticketId
@@ -121,7 +128,7 @@ public class Uploader {
 
     /**
      * Replace a photo from an InputStream.
-     *
+     * 
      * @param in
      * @return photoId or ticketId
      * @throws FlickrException
@@ -137,7 +144,7 @@ public class Uploader {
 
     /**
      * Replace a photo from an InputStream.
-     *
+     * 
      * @param data
      * @param flickrId
      * @param async
@@ -156,7 +163,7 @@ public class Uploader {
 
     /**
      * Replace a photo from a File.
-     *
+     * 
      * @param file
      * @param flickrId
      * @param async
@@ -166,8 +173,7 @@ public class Uploader {
     public String replace(File file, String flickrId, boolean async) throws FlickrException {
         InputStream in = null;
 
-        try
-        {
+        try {
             in = new FileInputStream(file);
             return replace(in, flickrId, async);
         } catch (FileNotFoundException e) {
@@ -179,6 +185,7 @@ public class Uploader {
 
     /**
      * Call the post multipart end point.
+     * 
      * @param parameters
      * @param path
      * @return
@@ -220,14 +227,12 @@ public class Uploader {
         parameters.put(Flickr.API_KEY, apiKey);
 
         String title = metaData.getTitle();
-        if (title != null)
-        {
+        if (title != null) {
             parameters.put("title", title);
         }
 
         String description = metaData.getDescription();
-        if (description != null)
-        {
+        if (description != null) {
             parameters.put("description", description);
         }
 

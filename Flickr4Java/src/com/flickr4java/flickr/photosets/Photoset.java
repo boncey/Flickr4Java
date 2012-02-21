@@ -7,23 +7,32 @@ import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.Photo;
 
 /**
- * Meta information about a photoset.  To retrieve the photos in the photoset use PhotosetsInterface.getPhotos().
- *
+ * Meta information about a photoset. To retrieve the photos in the photoset use PhotosetsInterface.getPhotos().
+ * 
  * @author Anthony Eden
  * @version $Id: Photoset.java,v 1.7 2009/07/12 22:43:07 x-mago Exp $
  */
 public class Photoset {
-	private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 12L;
 
     private String id;
+
     private String url;
+
     private User owner;
+
     private Photo primaryPhoto;
+
     private String secret;
+
     private String server;
+
     private String farm;
+
     private int photoCount;
+
     private String title;
+
     private String description;
 
     public Photoset() {
@@ -39,7 +48,7 @@ public class Photoset {
     }
 
     public String getUrl() {
-    	if(url == null) {
+        if (url == null) {
             StringBuffer sb = new StringBuffer();
             sb.append("http://www.flickr.com/photos/");
             sb.append(getOwner().getId());

@@ -35,6 +35,7 @@ import java.util.Iterator;
 public class TagsInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -45,11 +46,7 @@ public class TagsInterfaceTest {
         REST rest = new REST();
         rest.setHost(testProperties.getHost());
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -65,7 +62,7 @@ public class TagsInterfaceTest {
     public void testGetClusters() throws FlickrException, IOException, SAXException {
         TagsInterface iface = flickr.getTagsInterface();
         ClusterList clusters = iface.getClusters("api");
-        //System.out.println("size " + clusters.getClusters().get(2).getTags().size());
+        // System.out.println("size " + clusters.getClusters().get(2).getTags().size());
         assertTrue(clusters.getClusters().size() >= 3);
         Cluster cluster = clusters.getClusters().get(0);
         assertTrue(cluster.getTags().size() >= 1);
@@ -118,7 +115,7 @@ public class TagsInterfaceTest {
         while (iter.hasNext()) {
             Tag tag = (Tag) iter.next();
             assertNotNull(tag.getValue());
-            //System.out.println(tag.getValue() + ":" + tag.getCount());
+            // System.out.println(tag.getValue() + ":" + tag.getCount());
         }
     }
 

@@ -30,23 +30,19 @@ import com.flickr4java.flickr.commons.Institution;
  */
 public class CommonsInterfaceTest {
     Flickr flickr = null;
-    private TestProperties testProperties;
 
+    private TestProperties testProperties;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        //Flickr.debugStream = true;
+        // Flickr.debugStream = true;
 
         testProperties = new TestProperties();
 
         REST rest = new REST();
         rest.setHost(testProperties.getHost());
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -66,22 +62,10 @@ public class CommonsInterfaceTest {
         boolean museumFound = false;
         for (Institution inst : list) {
             if (inst.getName().equals("Brooklyn Museum")) {
-                assertEquals(
-                        1211958000000L,
-                        inst.getDateLaunch().getTime()
-                        );
-                assertEquals(
-                        "http://www.brooklynmuseum.org/",
-                        inst.getSiteUrl()
-                        );
-                assertEquals(
-                        "http://www.brooklynmuseum.org/flickr_commons.php",
-                        inst.getLicenseUrl()
-                        );
-                assertEquals(
-                        "http://flickr.com/photos/brooklyn_museum/",
-                        inst.getFlickrUrl()
-                        );
+                assertEquals(1211958000000L, inst.getDateLaunch().getTime());
+                assertEquals("http://www.brooklynmuseum.org/", inst.getSiteUrl());
+                assertEquals("http://www.brooklynmuseum.org/flickr_commons.php", inst.getLicenseUrl());
+                assertEquals("http://flickr.com/photos/brooklyn_museum/", inst.getFlickrUrl());
                 museumFound = true;
             }
         }

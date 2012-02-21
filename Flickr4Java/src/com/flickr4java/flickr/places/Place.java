@@ -2,15 +2,13 @@ package com.flickr4java.flickr.places;
 
 /**
  * Describes a place inside a {@link Location}.
- *
- * Each place contain its place ID, corresponding URL
- * (underneath <a href="http://www.flickr.com/places/"
- * target="_top">http://www.flickr.com/places/</a>)
- * and place type for disambiguating different locations with the same name.<p>
- *
- * A place delivered by find contains an URL, whereas the URL is missing if
- * delivered by resolvePlaceId and resolvePlaceUrl.
- *
+ * 
+ * Each place contain its place ID, corresponding URL (underneath <a href="http://www.flickr.com/places/" target="_top">http://www.flickr.com/places/</a>) and
+ * place type for disambiguating different locations with the same name.
+ * <p>
+ * 
+ * A place delivered by find contains an URL, whereas the URL is missing if delivered by resolvePlaceId and resolvePlaceUrl.
+ * 
  * @author mago
  * @version $Id: Place.java,v 1.7 2009/07/12 22:43:07 x-mago Exp $
  */
@@ -18,23 +16,36 @@ public class Place {
     private static final long serialVersionUID = 12L;
 
     public static final int TYPE_UNSET = 0;
+
     public static final int TYPE_LOCALITY = 7;
+
     public static final int TYPE_COUNTY = 9;
+
     public static final int TYPE_REGION = 8;
+
     public static final int TYPE_COUNTRY = 12;
+
     public static final int TYPE_CONTINENT = 29;
+
     public static final int TYPE_NEIGHBOURHOOD = 22;
 
     private String name = "";
+
     private String placeId = "";
+
     private String woeId = "";
+
     private double latitude = 0.0;
+
     private double longitude = 0.0;
+
     /**
      * Set only if requested by find.
      */
     private String placeUrl = "";
+
     private int placeType = 0;
+
     private int photoCount = 0;
 
     public Place() {
@@ -69,7 +80,7 @@ public class Place {
 
     /**
      * The PlaceType.
-     *
+     * 
      * @return The PlaceType
      * @see Place#TYPE_COUNTRY
      * @see Place#TYPE_COUNTY
@@ -82,7 +93,7 @@ public class Place {
 
     /**
      * The PlaceType.
-     *
+     * 
      * @param placeType
      * @see Place#TYPE_COUNTRY
      * @see Place#TYPE_COUNTY
@@ -98,7 +109,8 @@ public class Place {
     public void setPlaceType(String placeType) {
         try {
             setPlaceType(Integer.parseInt(placeType));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) {
+        }
     }
 
     public String getPlaceUrl() {
@@ -124,7 +136,8 @@ public class Place {
     public void setLatitude(String latitude) {
         try {
             setLatitude(Double.parseDouble(latitude));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) {
+        }
     }
 
     public void setLatitude(double latitude) {
@@ -138,7 +151,8 @@ public class Place {
     public void setLongitude(String longitude) {
         try {
             setLongitude(Double.parseDouble(longitude));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) {
+        }
     }
 
     public void setLongitude(double longitude) {
@@ -152,7 +166,8 @@ public class Place {
     public void setPhotoCount(String photoCount) {
         try {
             setPhotoCount(Integer.parseInt(photoCount));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) {
+        }
     }
 
     public void setPhotoCount(int photoCount) {

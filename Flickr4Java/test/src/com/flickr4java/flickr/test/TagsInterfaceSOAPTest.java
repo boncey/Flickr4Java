@@ -29,6 +29,7 @@ import java.util.Iterator;
 public class TagsInterfaceSOAPTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before

@@ -22,23 +22,22 @@ import java.util.Map;
 
 /**
  * Interface for working with copyright licenses.
- *
+ * 
  * @author Anthony Eden
  */
 public class LicensesInterface {
 
-    public static final String METHOD_GET_INFO    = "flickr.photos.licenses.getInfo";
+    public static final String METHOD_GET_INFO = "flickr.photos.licenses.getInfo";
+
     public static final String METHOD_SET_LICENSE = "flickr.photos.licenses.setLicense";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public LicensesInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public LicensesInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -46,9 +45,9 @@ public class LicensesInterface {
 
     /**
      * Fetches a list of available photo licenses for Flickr.
-     *
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @return A collection of License objects
      * @throws IOException
      * @throws SAXException
@@ -79,11 +78,13 @@ public class LicensesInterface {
 
     /**
      * Sets the license for a photo.
-     *
+     * 
      * This method requires authentication with 'write' permission.
-     *
-     * @param photoId The photo to update the license for.
-     * @param licenseId The license to apply, or 0 (zero) to remove the current license.
+     * 
+     * @param photoId
+     *            The photo to update the license for.
+     * @param licenseId
+     *            The license to apply, or 0 (zero) to remove the current license.
      * @throws IOException
      * @throws SAXException
      * @throws FlickrException

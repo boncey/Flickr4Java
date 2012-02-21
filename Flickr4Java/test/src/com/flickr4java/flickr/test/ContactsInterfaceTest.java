@@ -31,6 +31,7 @@ import com.flickr4java.flickr.contacts.ContactsInterface;
 public class ContactsInterfaceTest {
 
     Flickr flickr = null;
+
     private TestProperties testProperties;
 
     @Before
@@ -39,11 +40,7 @@ public class ContactsInterfaceTest {
 
         REST rest = new REST();
 
-        flickr = new Flickr(
-                testProperties.getApiKey(),
-                testProperties.getSecret(),
-                rest
-                );
+        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);
@@ -63,7 +60,7 @@ public class ContactsInterfaceTest {
         assertTrue("No Contacts. (You need to have contacts for this test to succceed)", contacts.size() > 0);
         Iterator<Contact> it = contacts.iterator();
         for (int i = 0; it.hasNext() && i < 10; i++) {
-            Contact contact = (Contact)it.next();
+            Contact contact = (Contact) it.next();
             assertNotNull(contact.getUsername());
             assertNotNull(contact.getRealName());
             assertNotNull(contact.getId());
@@ -80,7 +77,7 @@ public class ContactsInterfaceTest {
         assertTrue("No Contacts. (You need to have contacts for this test to succceed)", contacts.size() > 0);
         Iterator<Contact> it = contacts.iterator();
         for (int i = 0; it.hasNext() && i < 10; i++) {
-            Contact contact = (Contact)it.next();
+            Contact contact = (Contact) it.next();
             assertNotNull(contact.getUsername());
             assertNotNull(contact.getId());
             assertTrue(contact.getIconFarm() > 0);

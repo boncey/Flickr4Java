@@ -22,36 +22,34 @@ import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Flickr Panda.
- *
+ * 
  * @author mago
  * @version $Id: PandaInterface.java,v 1.3 2009/07/11 20:30:27 x-mago Exp $
  * @see <a href="http://www.flickr.com/explore/panda">Flickr Panda</a>
  */
 public class PandaInterface {
     private static final String METHOD_GET_PHOTOS = "flickr.panda.getPhotos";
+
     private static final String METHOD_GET_LIST = "flickr.panda.getList";
 
     private String apiKey;
+
     private String sharedSecret;
+
     private Transport transportAPI;
 
-    public PandaInterface(
-        String apiKey,
-        String sharedSecret,
-        Transport transportAPI
-    ) {
+    public PandaInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
     }
 
     /**
-     * Return a list of Flickr pandas, from whom you can request photos using
-     * the {@link com.flickr4java.flickr.panda.PandaInterface#getPhotos(Panda, Set, int, int)}
-     * API method.
-     *
+     * Return a list of Flickr pandas, from whom you can request photos using the
+     * {@link com.flickr4java.flickr.panda.PandaInterface#getPhotos(Panda, Set, int, int)} API method.
+     * 
      * This method does not require authentication.
-     *
+     * 
      * @return A list of pandas
      * @throws FlickrException
      * @throws IOException
@@ -80,13 +78,17 @@ public class PandaInterface {
 
     /**
      * Ask the Flickr Pandas for a list of recent public (and "safe") photos.
-     *
+     * 
      * This method does not require authentication.
-     *
-     * @param panda The panda to ask for photos from.
-     * @param extras A set of Strings controlling the extra information to fetch for each returned record. {@link com.flickr4java.flickr.photos.Extras#ALL_EXTRAS}
-     * @param perPage The number of photos to show per page
-     * @param page The page offset
+     * 
+     * @param panda
+     *            The panda to ask for photos from.
+     * @param extras
+     *            A set of Strings controlling the extra information to fetch for each returned record. {@link com.flickr4java.flickr.photos.Extras#ALL_EXTRAS}
+     * @param perPage
+     *            The number of photos to show per page
+     * @param page
+     *            The page offset
      * @return A PhotoList
      * @throws FlickrException
      * @throws IOException

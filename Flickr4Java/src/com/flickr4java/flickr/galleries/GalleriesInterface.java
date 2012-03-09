@@ -3,18 +3,25 @@
  */
 package com.flickr4java.flickr.galleries;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.photos.Extras;
+import com.flickr4java.flickr.photos.Photo;
+import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
@@ -211,16 +218,186 @@ public class GalleriesInterface {
         return gallery;
     }
 
-    /*
-     * public Gallery create(String strTitle, String strDescription, String primaryPhotoId) throws FlickrException { Map<String, Object> parameters = new
-     * HashMap<String, Object>(); parameters.put("method", METHOD_CREATE); parameters.put(Flickr.API_KEY, apiKey); parameters.put("title", strTitle);
-     * parameters.put("description", strDescription); if (primaryPhotoId != null) { parameters.put("primary_photo_id ", primaryPhotoId); }
+    /**
      * 
-     * Response response = transport.post(transport.getPath(), parameters, sharedSecret); if (response.isError()) { throw new
-     * FlickrException(response.getErrorCode(), response.getErrorMessage()); }
-     * 
-     * Element element = response.getPayload(); NodeList galleryNodes = element.getElementsByTagName("gallery"); Element galleryElement = (Element)
-     * galleryNodes.item(0); Gallery gallery = new Gallery(); gallery.setId(galleryElement.getAttribute("id"));
-     * gallery.setUrl(galleryElement.getAttribute("url")); gallery.setTitle(strTitle); gallery.setDesc(strDescription); return gallery; }
+     * @param strTitle
+     * @param strDescription
+     * @param primaryPhotoId
+     * @return
+     * @throws FlickrException
      */
+    public Gallery create(String strTitle, String strDescription, String primaryPhotoId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_CREATE);
+        parameters.put(Flickr.API_KEY, apiKey);
+        parameters.put("title", strTitle);
+        parameters.put("description", strDescription);
+        if (primaryPhotoId != null) {
+            parameters.put("primary_photo_id ", primaryPhotoId);
+        }
+
+        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+
+        Element element = response.getPayload();
+        NodeList galleryNodes = element.getElementsByTagName("gallery");
+        Element galleryElement = (Element) galleryNodes.item(0);
+        Gallery gallery = new Gallery();
+        gallery.setId(galleryElement.getAttribute("id"));
+        gallery.setUrl(galleryElement.getAttribute("url"));
+        gallery.setTitle(strTitle);
+        gallery.setDesc(strDescription);
+        return gallery;
+    }
+
+    /**
+     * Get the photos for the specified gallery
+     * 
+     * This method does not require authentication.
+     * 
+     * @param galleryId
+     *            The group ID
+     * @param tags
+     *            The optional tags (may be null)
+     * @param extras
+     *            Set of extra-attributes to include (may be null)
+     * @param perPage
+     *            The number of photos per page (0 to ignore)
+     * @param page
+     *            The page offset (0 to ignore)
+     * @return A Collection of Photo objects
+     * @throws IOException
+     * @throws SAXException
+     * @throws FlickrException
+     */
+    public PhotoList<Photo> getPhotos(String galleryId, Set<String> extras, int perPage, int page) throws IOException, SAXException, FlickrException {
+        PhotoList<Photo> photos = new PhotoList<Photo>();
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_GET_PHOTOS);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("gallery_id", galleryId);
+
+        if (extras != null) {
+            StringBuffer sb = new StringBuffer();
+            Iterator<String> it = extras.iterator();
+            for (int i = 0; it.hasNext(); i++) {
+                if (i > 0) {
+                    sb.append(",");
+                }
+                sb.append(it.next());
+            }
+            parameters.put(Extras.KEY_EXTRAS, sb.toString());
+        }
+
+        if (perPage > 0) {
+            parameters.put("per_page", String.valueOf(perPage));
+        }
+        if (page > 0) {
+            parameters.put("page", String.valueOf(page));
+        }
+
+        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+        Element photosElement = response.getPayload();
+        photos.setPage(photosElement.getAttribute("page"));
+        photos.setPages(photosElement.getAttribute("pages"));
+        photos.setPerPage(photosElement.getAttribute("perpage"));
+        photos.setTotal(photosElement.getAttribute("total"));
+
+        NodeList photoNodes = photosElement.getElementsByTagName("photo");
+        for (int i = 0; i < photoNodes.getLength(); i++) {
+            Element photoElement = (Element) photoNodes.item(i);
+            Photo photo = new Photo();
+            photo.setId(photoElement.getAttribute("id"));
+            photo.setSecret(photoElement.getAttribute("secret"));
+
+            User owner = new User();
+            owner.setId(photoElement.getAttribute("owner"));
+            photo.setOwner(owner);
+            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setServer(photoElement.getAttribute("server"));
+            photo.setFarm(photoElement.getAttribute("farm"));
+            photo.setTitle(photoElement.getAttribute("title"));
+            photo.setPublicFlag("1".equals(photoElement.getAttribute("ispublic")));
+            photo.setFriendFlag("1".equals(photoElement.getAttribute("isfriend")));
+            photo.setFamilyFlag("1".equals(photoElement.getAttribute("isfamily")));
+            photo.setPrimary("1".equals(photoElement.getAttribute("is_primary")));
+            photo.setComments(photoElement.getAttribute("has_comment"));
+            photos.add(photo);
+        }
+
+        return photos;
+    }
+
+    /**
+     * 
+     * This method does not require authentication.
+     * 
+     * @param photoId
+     *            The photo ID
+     * @param perPage
+     *            The number of photos per page (0 to ignore)
+     * @param page
+     *            The page offset (0 to ignore)
+     * @return A Collection of Photo objects
+     * @throws IOException
+     * @throws SAXException
+     * @throws FlickrException
+     */
+    public PhotoList<Photo> getListForPhoto(String photoId, int perPage, int page) throws FlickrException {
+        PhotoList<Photo> photos = new PhotoList<Photo>();
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_GET_LIST_FOR_PHOTO);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        parameters.put("photo_id", photoId);
+
+        if (perPage > 0) {
+            parameters.put("per_page", String.valueOf(perPage));
+        }
+        if (page > 0) {
+            parameters.put("page", String.valueOf(page));
+        }
+
+        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+        Element photosElement = response.getPayload();
+        photos.setPage(photosElement.getAttribute("page"));
+        photos.setPages(photosElement.getAttribute("pages"));
+        photos.setPerPage(photosElement.getAttribute("perpage"));
+        photos.setTotal(photosElement.getAttribute("total"));
+
+        NodeList photoNodes = photosElement.getElementsByTagName("photo");
+        for (int i = 0; i < photoNodes.getLength(); i++) {
+            Element photoElement = (Element) photoNodes.item(i);
+            Photo photo = new Photo();
+            photo.setId(photoElement.getAttribute("id"));
+            photo.setSecret(photoElement.getAttribute("secret"));
+
+            User owner = new User();
+            owner.setId(photoElement.getAttribute("owner"));
+            photo.setOwner(owner);
+            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setServer(photoElement.getAttribute("server"));
+            photo.setFarm(photoElement.getAttribute("farm"));
+            photo.setTitle(photoElement.getAttribute("title"));
+            photo.setPublicFlag("1".equals(photoElement.getAttribute("ispublic")));
+            photo.setFriendFlag("1".equals(photoElement.getAttribute("isfriend")));
+            photo.setFamilyFlag("1".equals(photoElement.getAttribute("isfamily")));
+            photo.setPrimary("1".equals(photoElement.getAttribute("is_primary")));
+            photo.setComments(photoElement.getAttribute("has_comment"));
+            photos.add(photo);
+        }
+
+        return photos;
+    }
 }

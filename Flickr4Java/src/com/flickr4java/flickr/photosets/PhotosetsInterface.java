@@ -530,7 +530,7 @@ public class PhotosetsInterface {
      *            The ID's of the photos, in CSV format, in the order they need to be in.
      * @throws FlickrException
      */
-    public void reorderPhoto(String photosetId, String photoIds) throws FlickrException {
+    public void reorderPhotos(String photosetId, String photoIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REORDER_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);

@@ -67,10 +67,15 @@ public class GalleriesInterfaceTest {
     }
 
     /*
-     * @Test public void testCreate() throws FlickrException, IOException, SAXException { GalleriesInterface iface = flickr.getGalleriesInterface(); Gallery
-     * gallery = iface.create("test_gallery", "test gallery", "2732893596"); assertNotNull(gallery); assertNotNull(gallery.getId());
-     * assertEquals("test_gallery", gallery.getTitle()); assertEquals("test gallery", gallery.getDesc()); }
-     */
+    @Test
+    public void testCreate() throws FlickrException, IOException, SAXException {
+        GalleriesInterface iface = flickr.getGalleriesInterface();
+        Gallery gallery = iface.create("test_gallery", "test gallery", "2732893596");
+        assertNotNull(gallery);
+        assertNotNull(gallery.getId());
+        assertEquals("test_gallery", gallery.getTitle());
+        assertEquals("test gallery", gallery.getDesc());
+    }*/
 
     @Test
     public void testGetInfo() throws FlickrException, IOException, SAXException {

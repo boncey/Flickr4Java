@@ -13,6 +13,7 @@ imagefile = path/to/test/image
 secret = af995d0f2bc3ee51
 token = your token (with delete privileges)
 tokensecret = your token secret (as returned by OAuth)
+galleryid = 72157629277637049
 
 # id of a photo in your stream
 # which the tests can use to set, get and remove geo data

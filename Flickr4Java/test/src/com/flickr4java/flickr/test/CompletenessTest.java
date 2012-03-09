@@ -63,7 +63,6 @@ public class CompletenessTest {
 
     }
 
-    @Ignore
     @Test
     public void testIfComplete() throws IOException, SAXException, FlickrException {
         ReflectionInterface ri = flickr.getReflectionInterface();

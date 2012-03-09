@@ -21,6 +21,7 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.groups.Group;
+import com.flickr4java.flickr.groups.GroupList;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
@@ -54,16 +55,8 @@ public class PeopleInterface {
 
     public static final String METHOD_GET_PHOTOS_OF = "flickr.people.getPhotosOf";
 
-    public static final String METHOD_ADD = "flickr.photos.people.add";
-
-    public static final String METHOD_DELETE = "flickr.photos.people.delete";
-
-    public static final String METHOD_DELETE_COORDS = "flickr.photos.people.deleteCoords";
-
-    public static final String METHOD_EDIT_COORDS = "flickr.photos.people.editCoords";
-
-    public static final String METHOD_GET_LIST = "flickr.photos.people.getList";
-
+    public static final String METHOD_GET_GROUPS = "flickr.people.getGroups";
+    
     private String apiKey;
 
     private String sharedSecret;
@@ -88,7 +81,7 @@ public class PeopleInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public User findByEmail(String email) throws IOException, SAXException, FlickrException {
+    public User findByEmail(String email) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_FIND_BY_EMAIL);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -118,7 +111,7 @@ public class PeopleInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public User findByUsername(String username) throws IOException, SAXException, FlickrException {
+    public User findByUsername(String username) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_FIND_BY_USERNAME);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -148,7 +141,7 @@ public class PeopleInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public User getInfo(String userId) throws IOException, SAXException, FlickrException {
+    public User getInfo(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -200,7 +193,7 @@ public class PeopleInterface {
      * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Group> getPublicGroups(String userId) throws IOException, SAXException, FlickrException {
+    public Collection<Group> getPublicGroups(String userId) throws FlickrException {
         List<Group> groups = new ArrayList<Group>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -227,7 +220,7 @@ public class PeopleInterface {
         return groups;
     }
 
-    public PhotoList<Photo> getPublicPhotos(String userId, int perPage, int page) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getPublicPhotos(String userId, int perPage, int page) throws FlickrException {
         return getPublicPhotos(userId, Extras.MIN_EXTRAS, perPage, page);
     }
 
@@ -445,4 +438,117 @@ public class PeopleInterface {
         }
         return photos;
     }
+
+    /**
+     * Add the given person to the photo. Optionally, send in co-ordinates
+     * 
+     * @param photoId
+     * @param userId
+     * @param personX
+     * @param personY
+     * @param personW
+     * @param personH
+     * @throws FlickrException
+     */
+    public void add(String photoId, String userId, String personX, String personY, String personW, String personH) throws FlickrException {
+
+        // Delegating this to photos.people.PeopleInterface - Naming standard would be to use PeopleInterface but having 2 the same name can cause issues
+        com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
+        pi.add(photoId, userId, personX, personY, personW, personH);
+    }
+
+    /**
+     * Delete the person from the photo
+     * 
+     * @param photoId
+     * @param userId
+     * @throws FlickrException
+     */
+    public void delete(String photoId, String userId) throws FlickrException {
+
+        // Delegating this to photos.people.PeopleInterface - Naming standard would be to use PeopleInterface but having 2 the same name can cause issues
+        com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
+        pi.delete(photoId, userId);
+    }
+
+    /**
+     * Delete the co-ordinates that the user is shown in
+     * 
+     * @param photoId
+     * @param userId
+     * @throws FlickrException
+     */
+    public void deleteCoords(String photoId, String userId) throws FlickrException {
+
+        // Delegating this to photos.people.PeopleInterface - Naming standard would be to use PeopleInterface but having 2 the same name can cause issues
+        com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
+        pi.deleteCoords(photoId, userId);
+    }
+
+    /**
+     * Edit the co-ordinates that the user shows in
+     * 
+     * @param photoId
+     * @param userId
+     * @param personX
+     * @param personY
+     * @param personW
+     * @param personH
+     * @throws FlickrException
+     */
+    public void editCoords(String photoId, String userId, String personX, String personY, String personW, String personH) throws FlickrException {
+
+        // Delegating this to photos.people.PeopleInterface - Naming standard would be to use PeopleInterface but having 2 the same name can cause issues
+        com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
+        pi.editCoords(photoId, userId, personX, personY, personW, personH);
+    }
+    
+    /**
+     * 
+     * @param photoId
+     * @throws FlickrException
+     */
+    public UserList<User> getList(String photoId) throws FlickrException {
+
+        // Delegating this to photos.people.PeopleInterface - Naming standard would be to use PeopleInterface but having 2 the same name can cause issues
+        com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
+        return pi.getList(photoId);
+    }
+
+    /**
+     * 
+     * @param photoId
+     * @throws FlickrException
+     */
+    public GroupList<Group> getGroups() throws FlickrException {
+
+        GroupList<Group> groupList = new GroupList<Group>();
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_GET_GROUPS);
+        parameters.put(Flickr.API_KEY, apiKey);
+
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+        Element groupsElement = response.getPayload();
+        NodeList groupNodes = groupsElement.getElementsByTagName("group");
+        groupList.setPage(XMLUtilities.getIntAttribute(groupsElement, "page"));
+        groupList.setPages(XMLUtilities.getIntAttribute(groupsElement, "pages"));
+        groupList.setPerPage(XMLUtilities.getIntAttribute(groupsElement, "perpage"));
+        groupList.setTotal(XMLUtilities.getIntAttribute(groupsElement, "total"));
+        for (int i = 0; i < groupNodes.getLength(); i++) {
+            Element groupElement = (Element) groupNodes.item(i);
+            Group group = new Group();
+            group.setId(groupElement.getAttribute("nsid"));
+            group.setName(groupElement.getAttribute("name"));
+            group.setAdmin("1".equals(groupElement.getAttribute("admin")));
+            group.setEighteenPlus("1".equals(groupElement.getAttribute("eighteenplus")));
+            group.setInvitationOnly("1".equals(groupElement.getAttribute("invitation_only")));
+            groupList.add(group);
+        }
+        return groupList;
+
+    }
+
 }

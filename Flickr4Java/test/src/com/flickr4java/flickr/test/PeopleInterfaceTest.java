@@ -6,24 +6,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
 import java.util.Collection;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Group;
+import com.flickr4java.flickr.groups.GroupList;
 import com.flickr4java.flickr.people.PeopleInterface;
 import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.people.UserList;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 
@@ -31,35 +23,10 @@ import com.flickr4java.flickr.photos.PhotoList;
  * @author Anthony Eden
  * @version $Id: PeopleInterfaceTest.java,v 1.15 2010/07/12 19:11:30 x-mago Exp $
  */
-public class PeopleInterfaceTest {
-
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
-
-    @Before
-    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        // Flickr.debugStream = true;
-
-        testProperties = new TestProperties();
-
-        REST rest = new REST();
-        rest.setHost(testProperties.getHost());
-
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.READ);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-    }
+public class PeopleInterfaceTest extends Flickr4JavaTest {
 
     @Test
-    public void testFindByEmail() throws FlickrException, IOException, SAXException {
+    public void testFindByEmail() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.findByEmail(testProperties.getEmail());
         assertNotNull(person);
@@ -68,7 +35,7 @@ public class PeopleInterfaceTest {
     }
 
     @Test
-    public void testFindByUsername() throws FlickrException, IOException, SAXException {
+    public void testFindByUsername() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.findByUsername(testProperties.getUsername());
         assertNotNull(person);
@@ -82,7 +49,7 @@ public class PeopleInterfaceTest {
     }
 
     @Test
-    public void testGetInfo() throws FlickrException, IOException, SAXException {
+    public void testGetInfo() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.getInfo(testProperties.getNsid());
         assertNotNull(person);
@@ -95,7 +62,7 @@ public class PeopleInterfaceTest {
     }
 
     @Test
-    public void testGetPublicGroups() throws FlickrException, IOException, SAXException {
+    public void testGetPublicGroups() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         Collection<Group> groups = iface.getPublicGroups(testProperties.getNsid());
         assertNotNull(groups);
@@ -103,7 +70,7 @@ public class PeopleInterfaceTest {
     }
 
     @Test
-    public void testGetPublicPhotos() throws FlickrException, IOException, SAXException {
+    public void testGetPublicPhotos() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         PhotoList<Photo> photos = iface.getPublicPhotos(testProperties.getNsid(), 0, 0);
         assertNotNull(photos);
@@ -111,12 +78,16 @@ public class PeopleInterfaceTest {
     }
 
     @Test
-    public void testGetUploadStatus() {
+    public void testGetUploadStatus() throws FlickrException {
+        PeopleInterface iface = flickr.getPeopleInterface();
+        User usr = iface.getUploadStatus();
+        assertNotNull(usr);
+        assertTrue(usr.getBandwidthMax() > 0);
 
     }
 
     @Test
-    public void testGetPhotos() throws FlickrException, IOException, SAXException {
+    public void testGetPhotos() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         PhotoList<Photo> photos = iface.getPhotos(testProperties.getNsid(), null, null, null, null, null, null, null, null, 15, 1);
         assertNotNull(photos);
@@ -124,11 +95,30 @@ public class PeopleInterfaceTest {
     }
 
     @Test
-    public void testGetPhotosOf() throws FlickrException, IOException, SAXException {
+    public void testGetPhotosOf() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         PhotoList<Photo> photos = iface.getPhotosOf(testProperties.getNsid(), null, null, 10, 1);
         assertNotNull(photos);
         assertEquals(10, photos.size());
     }
 
+    @Test
+    public void testAddDelete() throws FlickrException {
+        PeopleInterface iface = flickr.getPeopleInterface();
+        iface.add(testProperties.getPhotoId(), testProperties.getNsid(), null, null, null, null);
+        UserList<User> usrs = iface.getList(testProperties.getPhotoId());
+        assertNotNull(usrs);
+        assertEquals(1, usrs.size());
+        iface.delete(testProperties.getPhotoId(), testProperties.getNsid());
+        usrs = iface.getList(testProperties.getPhotoId());
+        assertNotNull(usrs);
+        assertEquals(0, usrs.size());
+    }
+
+    @Test
+    public void testGetGroups() throws FlickrException {
+        PeopleInterface iface = flickr.getPeopleInterface();
+        GroupList<Group> g = iface.getGroups();
+        assertNotNull(g);
+    }
 }

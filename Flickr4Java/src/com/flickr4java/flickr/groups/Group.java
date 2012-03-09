@@ -34,6 +34,8 @@ public class Group implements BuddyIconable {
 
     private boolean poolModerated;
 
+    private boolean invitationOnly;
+
     // the following seem not to exist anymore
     private int online;
 
@@ -296,6 +298,21 @@ public class Group implements BuddyIconable {
 
     public void setThrottle(Throttle throttle) {
         this.throttle = throttle;
+    }
+
+    /**
+     * @return the invitationOnly
+     */
+    public boolean isInvitationOnly() {
+        return invitationOnly;
+    }
+
+    /**
+     * @param invitationOnly
+     *            the invitationOnly to set
+     */
+    public void setInvitationOnly(boolean invitationOnly) {
+        this.invitationOnly = invitationOnly;
     }
 
 }

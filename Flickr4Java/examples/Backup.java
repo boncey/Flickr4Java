@@ -31,11 +31,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * A simple program to backup all of a users private and public photos in a photoset aware manner.  If photos
- * are classified in multiple photosets, they will be copied.  Its a sample, its not perfect :-)
- *
+ * A simple program to backup all of a users private and public photos in a photoset aware manner. If photos are classified in multiple photosets, they will be
+ * copied. Its a sample, its not perfect :-)
+ * 
  * This sample also uses the AuthStore interface, so users will only be asked to authorize on the first run.
- *
+ * 
  * @author Matthew MacKenzie
  * @version $Id: Backup.java,v 1.6 2009/01/01 16:44:57 x-mago Exp $
  */
@@ -43,11 +43,12 @@ import java.util.Scanner;
 public class Backup {
 
     private final String nsid;
+
     private final Flickr flickr;
+
     private AuthStore authStore;
 
-    public Backup(String apiKey, String nsid, String sharedSecret, File authsDir)
-            throws IOException {
+    public Backup(String apiKey, String nsid, String sharedSecret, File authsDir) throws IOException {
         flickr = new Flickr(apiKey, sharedSecret, new REST());
         this.nsid = nsid;
 
@@ -69,7 +70,6 @@ public class Backup {
         String tokenKey = new Scanner(System.in).nextLine();
 
         Token requestToken = authInterface.getAccessToken(accessToken, new Verifier(tokenKey));
-
 
         Auth auth = authInterface.checkToken(requestToken);
         RequestContext.getRequestContext().setAuth(auth);
@@ -93,7 +93,6 @@ public class Backup {
             }
         }
 
-
         PhotosetsInterface pi = flickr.getPhotosetsInterface();
         PhotosInterface photoInt = flickr.getPhotosInterface();
         Map<String, Collection> allPhotos = new HashMap<String, Collection>();
@@ -101,7 +100,7 @@ public class Backup {
         Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
 
         while (sets.hasNext()) {
-            Photoset set = (Photoset)sets.next();
+            Photoset set = (Photoset) sets.next();
             PhotoList photos = pi.getPhotos(set.getId(), 500, 1);
             allPhotos.put(set.getTitle(), photos);
         }
@@ -117,8 +116,6 @@ public class Backup {
             notInSetPage++;
         }
         allPhotos.put("NotInASet", notInASet);
-
-
 
         Iterator allIter = allPhotos.keySet().iterator();
 
@@ -136,7 +133,7 @@ public class Backup {
                 String url = p.getLargeUrl();
                 URL u = new URL(url);
                 String filename = u.getFile();
-                filename = filename.substring(filename.lastIndexOf("/") + 1 , filename.length());
+                filename = filename.substring(filename.lastIndexOf("/") + 1, filename.length());
                 System.out.println("Now writing " + filename + " to " + setDirectory.getCanonicalPath());
                 BufferedInputStream inStream = new BufferedInputStream(photoInt.getImageAsStream(p, Size.LARGE));
                 File newFile = new File(setDirectory, filename);
@@ -158,7 +155,7 @@ public class Backup {
 
     private String makeSafeFilename(String input) {
         byte[] fname = input.getBytes();
-        byte[] bad = new byte[] {'\\', '/', '"'};
+        byte[] bad = new byte[] { '\\', '/', '"' };
         byte replace = '_';
         for (int i = 0; i < fname.length; i++) {
             for (byte element : bad) {
@@ -175,8 +172,7 @@ public class Backup {
             System.out.println("Usage: java " + Backup.class.getName() + " api_key nsid shared_secret output_dir");
             System.exit(1);
         }
-        Backup bf = new Backup(args[0], args[1], args[2],
-                new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth"));
+        Backup bf = new Backup(args[0], args[1], args[2], new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth"));
         bf.doBackup(new File(args[3]));
     }
 }

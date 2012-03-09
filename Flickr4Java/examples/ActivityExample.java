@@ -21,20 +21,24 @@ import java.util.Properties;
 
 /**
  * Demonstration of howto use the ActivityInterface.
- *
+ * 
  * @author mago
  * @version $Id: ActivityExample.java,v 1.3 2008/07/05 22:19:48 x-mago Exp $
  */
 public class ActivityExample {
     static String apiKey;
+
     static String sharedSecret;
+
     Flickr f;
+
     REST rest;
+
     RequestContext requestContext;
+
     Properties properties = null;
 
-    public ActivityExample()
-            throws ParserConfigurationException, IOException {
+    public ActivityExample() throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("/setup.properties");
@@ -43,11 +47,7 @@ public class ActivityExample {
         } finally {
             IOUtilities.close(in);
         }
-        f = new Flickr(
-                properties.getProperty("apiKey"),
-                properties.getProperty("secret"),
-                new REST()
-                );
+        f = new Flickr(properties.getProperty("apiKey"), properties.getProperty("secret"), new REST());
         requestContext = RequestContext.getRequestContext();
         Auth auth = new Auth();
         auth.setPermission(Permission.READ);

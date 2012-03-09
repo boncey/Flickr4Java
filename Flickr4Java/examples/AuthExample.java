@@ -26,7 +26,7 @@ import java.util.Scanner;
  */
 public class AuthExample {
 
-    public static void auth() throws  IOException, FlickrException {
+    public static void auth() throws IOException, FlickrException {
         Properties properties;
         InputStream in = null;
         try {

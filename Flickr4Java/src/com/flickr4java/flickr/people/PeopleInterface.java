@@ -56,7 +56,7 @@ public class PeopleInterface {
     public static final String METHOD_GET_PHOTOS_OF = "flickr.people.getPhotosOf";
 
     public static final String METHOD_GET_GROUPS = "flickr.people.getGroups";
-    
+
     private String apiKey;
 
     private String sharedSecret;
@@ -502,7 +502,7 @@ public class PeopleInterface {
         com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
         pi.editCoords(photoId, userId, personX, personY, personW, personH);
     }
-    
+
     /**
      * 
      * @param photoId

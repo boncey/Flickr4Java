@@ -37,7 +37,7 @@ public class Flickr4JavaTest {
         auth.setPermission(Permission.READ);
         auth.setToken(testProperties.getToken());
         auth.setTokenSecret(testProperties.getTokenSecret());
-        
+
         RequestContext requestContext = RequestContext.getRequestContext();
         requestContext.setAuth(auth);
         flickr.setAuth(auth);

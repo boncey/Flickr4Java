@@ -1,2 +1,4 @@
+*.properties*
+*.class
 com
 overview.html

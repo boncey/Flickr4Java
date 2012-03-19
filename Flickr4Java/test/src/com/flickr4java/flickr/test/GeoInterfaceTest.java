@@ -4,48 +4,26 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.photos.GeoData;
-import com.flickr4java.flickr.photos.geo.GeoInterface;
-import com.flickr4java.flickr.photos.geo.GeoPermissions;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.photos.GeoData;
+import com.flickr4java.flickr.photos.geo.GeoInterface;
+import com.flickr4java.flickr.photos.geo.GeoPermissions;
 
 /**
  * 
  * @author till
  * @version $Id: GeoInterfaceTest.java,v 1.4 2008/01/28 23:01:45 x-mago Exp $
  */
-public class GeoInterfaceTest {
-
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
+public class GeoInterfaceTest extends Flickr4JavaTest {
 
     @Before
-    public void setUp() throws Exception {
-        testProperties = new TestProperties();
-
-        REST rest = new REST();
-
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.READ);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-
+    public void setUp() throws FlickrException {
+        super.setUp();
         setGeoParameters(testProperties.getGeoWritePhotoId());
     }
 
@@ -89,13 +67,17 @@ public class GeoInterfaceTest {
         geo.removeLocation(photoId);
     }
 
-    private void setGeoParameters(String photoId) throws FlickrException {
+    private void setGeoParameters(String photoId) {
         GeoInterface geo = flickr.getPhotosInterface().getGeoInterface();
         GeoData location = new GeoData();
         location.setLatitude(23.34f);
         location.setLongitude(46.99f);
         location.setAccuracy(13);
-        geo.setLocation(photoId, location);
+        try {
+            geo.setLocation(photoId, location);
+        } catch (FlickrException e) {
+            fail(e.getMessage());
+        }
     }
 
 }

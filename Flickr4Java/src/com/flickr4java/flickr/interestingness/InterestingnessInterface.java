@@ -5,6 +5,16 @@
  */
 package com.flickr4java.flickr.interestingness;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -14,18 +24,6 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * 
@@ -81,11 +79,9 @@ public class InterestingnessInterface {
      *            The page offset
      * @return PhotoList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList<Photo> getList(String date, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getList(String date, Set<String> extras, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
@@ -134,11 +130,9 @@ public class InterestingnessInterface {
      * @param page
      * @return PhotoList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList<Photo> getList(Date date, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getList(Date date, Set<String> extras, int perPage, int page) throws FlickrException {
         String dateString = null;
         if (date != null) {
             DateFormat df = (DateFormat) DATE_FORMATS.get();
@@ -152,10 +146,8 @@ public class InterestingnessInterface {
      * 
      * @return a List of Photos
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public PhotoList<Photo> getList() throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getList() throws FlickrException {
         return getList((String) null, Extras.ALL_EXTRAS, 500, 1);
     }
 

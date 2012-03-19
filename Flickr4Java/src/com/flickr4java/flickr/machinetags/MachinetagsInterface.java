@@ -1,19 +1,17 @@
 package com.flickr4java.flickr.machinetags;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A more precise way to tag and to search photos.
@@ -265,10 +263,8 @@ public class MachinetagsInterface {
      * @param page
      * @return NamespacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public NamespacesList<Namespace> getNamespaces(String predicate, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public NamespacesList<Namespace> getNamespaces(String predicate, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList<Namespace> nsList = new NamespacesList<Namespace>();
         parameters.put("method", METHOD_GET_NAMESPACES);
@@ -316,10 +312,8 @@ public class MachinetagsInterface {
      *            The page offset
      * @return NamespacesList containing Pair-objects
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public NamespacesList<Pair> getPairs(String namespace, String predicate, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public NamespacesList<Pair> getPairs(String namespace, String predicate, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList<Pair> nsList = new NamespacesList<Pair>();
         parameters.put("method", METHOD_GET_PAIRS);
@@ -368,10 +362,8 @@ public class MachinetagsInterface {
      *            The page offset
      * @return NamespacesList containing Predicate
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public NamespacesList<Predicate> getPredicates(String namespace, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public NamespacesList<Predicate> getPredicates(String namespace, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList<Predicate> nsList = new NamespacesList<Predicate>();
         parameters.put("method", METHOD_GET_PREDICATES);
@@ -419,10 +411,8 @@ public class MachinetagsInterface {
      *            The page offset
      * @return NamespacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public NamespacesList<Value> getValues(String namespace, String predicate, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public NamespacesList<Value> getValues(String namespace, String predicate, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList<Value> valuesList = new NamespacesList<Value>();
         parameters.put("method", METHOD_GET_VALUES);
@@ -471,10 +461,8 @@ public class MachinetagsInterface {
      *            Only return machine tags values that have been added since this Date.
      * @return NamespacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public NamespacesList<Value> getRecentValues(String namespace, String predicate, Date addedSince) throws FlickrException, IOException, SAXException {
+    public NamespacesList<Value> getRecentValues(String namespace, String predicate, Date addedSince) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         NamespacesList<Value> valuesList = new NamespacesList<Value>();
         parameters.put("method", METHOD_GET_RECENTVALUES);

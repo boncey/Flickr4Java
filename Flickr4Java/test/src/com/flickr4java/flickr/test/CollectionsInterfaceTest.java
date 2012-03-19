@@ -4,51 +4,20 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import com.flickr4java.flickr.Flickr;
+import java.util.List;
+
+import org.junit.Test;
+
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.collections.Collection;
 import com.flickr4java.flickr.collections.CollectionsInterface;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photosets.Photoset;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
 /**
  * @author Darren Greaves
  */
-public class CollectionsInterfaceTest {
-
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
-
-    @Before
-    public void setUp() {
-        Flickr.debugStream = true;
-        Flickr.debugRequest = true;
-
-        testProperties = new TestProperties();
-
-        REST rest = new REST();
-
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.READ);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-    }
+public class CollectionsInterfaceTest extends Flickr4JavaTest {
 
     @Test
     public void testGetInfo() throws FlickrException {

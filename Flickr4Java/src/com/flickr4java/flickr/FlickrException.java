@@ -16,6 +16,11 @@ public class FlickrException extends Exception {
 
     private String errorMessage;
 
+    public FlickrException(String errorMessage) {
+
+        super(errorMessage);
+    }
+
     public FlickrException(String errorMessage, Throwable rootCause) {
 
         super(errorMessage, rootCause);

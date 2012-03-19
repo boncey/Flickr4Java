@@ -1,5 +1,14 @@
 package com.flickr4java.flickr.places;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -8,17 +17,6 @@ import com.flickr4java.flickr.photos.SearchParameters;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Lookup Flickr Places.
@@ -155,10 +153,8 @@ public class PlacesInterface {
      * @param query
      * @return PlacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public PlacesList<Place> find(String query) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> find(String query) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND);
@@ -236,10 +232,8 @@ public class PlacesInterface {
      * @param accuracy
      * @return A PlacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public PlacesList<Place> findByLatLon(double latitude, double longitude, int accuracy) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> findByLatLon(double latitude, double longitude, int accuracy) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND_BY_LATLON);
@@ -281,10 +275,8 @@ public class PlacesInterface {
      *            A Where On Earth (WOE) ID. Can be null. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @return List of Places
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public PlacesList<Place> getChildrenWithPhotosPublic(String placeId, String woeId) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> getChildrenWithPhotosPublic(String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_CHILDREN_WITH_PHOTOS_PUBLIC);
@@ -327,10 +319,8 @@ public class PlacesInterface {
      *            A Where On Earth (WOE) ID. Optional, can be null. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @return A Location
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public Location getInfo(String placeId, String woeId) throws FlickrException, IOException, SAXException {
+    public Location getInfo(String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -360,10 +350,8 @@ public class PlacesInterface {
      * @param url
      * @return A Location
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public Location getInfoByUrl(String url) throws FlickrException, IOException, SAXException {
+    public Location getInfoByUrl(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO_BY_URL);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -387,10 +375,8 @@ public class PlacesInterface {
      * 
      * @return A list of placetypes
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public ArrayList<PlaceType> getPlaceTypes() throws FlickrException, IOException, SAXException {
+    public ArrayList<PlaceType> getPlaceTypes() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PLACETYPES);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -430,10 +416,8 @@ public class PlacesInterface {
      *            A Where On Earth (WOE) ID. Optional, can be null.
      * @return A list of shapes
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public ArrayList<Element> getShapeHistory(String placeId, String woeId) throws FlickrException, IOException, SAXException {
+    public ArrayList<Element> getShapeHistory(String placeId, String woeId) throws FlickrException {
         ArrayList<Element> shapeList = new ArrayList<Element>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SHAPEHISTORY);
@@ -470,10 +454,8 @@ public class PlacesInterface {
      *            A Where On Earth (WOE) ID. Optional, can be null.
      * @return PlacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public PlacesList<Place> getTopPlacesList(int placeType, Date date, String placeId, String woeId) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> getTopPlacesList(int placeType, Date date, String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_TOP_PLACES_LIST);
@@ -530,10 +512,8 @@ public class PlacesInterface {
      * @param placeType
      * @return A PlacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public PlacesList<Place> placesForBoundingBox(int placeType, String bbox) throws FlickrException, IOException, SAXException {
+    public PlacesList<Place> placesForBoundingBox(int placeType, String bbox) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_BOUNDINGBOX);
@@ -575,11 +555,8 @@ public class PlacesInterface {
      *            Search your contacts. Either 'all' or 'ff' for just friends and family. (Optional, default is all)
      * @return A PlacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public PlacesList<Place> placesForContacts(int placeType, String placeId, String woeId, String threshold, String contacts) throws FlickrException,
-            IOException, SAXException {
+    public PlacesList<Place> placesForContacts(int placeType, String placeId, String woeId, String threshold, String contacts) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_CONTACTS);
@@ -648,12 +625,9 @@ public class PlacesInterface {
      *            Optional, can be null.
      * @return A PlacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
     public PlacesList<Place> placesForTags(int placeTypeId, String woeId, String placeId, String threshold, String[] tags, String tagMode, String machineTags,
-            String machineTagMode, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate) throws FlickrException, IOException,
-            SAXException {
+            String machineTagMode, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate) throws FlickrException{
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_TAGS);
@@ -733,11 +707,9 @@ public class PlacesInterface {
      *            Optional, can be null.
      * @return A PlacesList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
     public PlacesList<Place> placesForUser(int placeType, String woeId, String placeId, String threshold, Date minUploadDate, Date maxUploadDate,
-            Date minTakenDate, Date maxTakenDate) throws FlickrException, IOException, SAXException {
+            Date minTakenDate, Date maxTakenDate) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_USER);
@@ -790,11 +762,9 @@ public class PlacesInterface {
      * @param placeId
      * @return A Location
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
     @Deprecated
-    public Location resolvePlaceId(String placeId) throws FlickrException, IOException, SAXException {
+    public Location resolvePlaceId(String placeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_ID);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -820,11 +790,9 @@ public class PlacesInterface {
      * @param flickrPlacesUrl
      * @return A Location
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
     @Deprecated
-    public Location resolvePlaceURL(String flickrPlacesUrl) throws FlickrException, IOException, SAXException {
+    public Location resolvePlaceURL(String flickrPlacesUrl) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_URL);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -860,11 +828,9 @@ public class PlacesInterface {
      *            Optional, can be null.
      * @return A list of Tags
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
     public ArrayList<Tag> tagsForPlace(String woeId, String placeId, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate)
-            throws FlickrException, IOException, SAXException {
+            throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         ArrayList<Tag> tagsList = new ArrayList<Tag>();
         parameters.put("method", METHOD_TAGS_FOR_PLACE);

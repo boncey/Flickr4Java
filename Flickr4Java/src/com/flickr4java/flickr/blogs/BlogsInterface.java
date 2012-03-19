@@ -3,23 +3,21 @@
  */
 package com.flickr4java.flickr.blogs;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Interface for working with Flickr blog configurations.
@@ -53,11 +51,9 @@ public class BlogsInterface {
      * This method does not require authentication.
      * 
      * @return List of Services
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Service> getServices() throws IOException, SAXException, FlickrException {
+    public Collection<Service> getServices() throws FlickrException {
         List<Service> list = new ArrayList<Service>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SERVICES);
@@ -88,11 +84,9 @@ public class BlogsInterface {
      *            The blog ID
      * @param blogPassword
      *            The blog password
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void postPhoto(Photo photo, String blogId, String blogPassword) throws IOException, SAXException, FlickrException {
+    public void postPhoto(Photo photo, String blogId, String blogPassword) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_POST_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -118,11 +112,9 @@ public class BlogsInterface {
      *            The photo metadata
      * @param blogId
      *            The blog ID
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void postPhoto(Photo photo, String blogId) throws IOException, SAXException, FlickrException {
+    public void postPhoto(Photo photo, String blogId) throws FlickrException {
         postPhoto(photo, blogId, null);
     }
 
@@ -130,10 +122,8 @@ public class BlogsInterface {
      * Get the collection of configured blogs for the calling user.
      * 
      * @return The Collection of configured blogs
-     * @throws IOException
-     * @throws SAXException
      */
-    public Collection<Blog> getList() throws IOException, SAXException, FlickrException {
+    public Collection<Blog> getList() throws FlickrException {
         List<Blog> blogs = new ArrayList<Blog>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();

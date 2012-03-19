@@ -3,7 +3,6 @@
  */
 package com.flickr4java.flickr.galleries;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -268,11 +266,9 @@ public class GalleriesInterface {
      * @param page
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> getPhotos(String galleryId, Set<String> extras, int perPage, int page) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getPhotos(String galleryId, Set<String> extras, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -346,8 +342,6 @@ public class GalleriesInterface {
      * @param page
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public PhotoList<Photo> getListForPhoto(String photoId, int perPage, int page) throws FlickrException {

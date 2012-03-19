@@ -3,6 +3,15 @@
  */
 package com.flickr4java.flickr.favorites;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -12,17 +21,6 @@ import com.flickr4java.flickr.photos.PhotoContext;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
-
-import org.apache.log4j.Logger;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Interface for working with Flickr favorites.
@@ -61,11 +59,9 @@ public class FavoritesInterface {
      * 
      * @param photoId
      *            The photo ID
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void add(String photoId) throws IOException, SAXException, FlickrException {
+    public void add(String photoId) throws  FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -90,10 +86,8 @@ public class FavoritesInterface {
      *            a Set Strings representing extra parameters to send
      * @return The Collection of Photo objects
      * @see com.flickr4java.flickr.photos.Extras
-     * @throws IOException
-     * @throws SAXException
      */
-    public PhotoList<Photo> getList(String userId, int perPage, int page, Set<String> extras) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getList(String userId, int perPage, int page, Set<String> extras) throws  FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -145,12 +139,10 @@ public class FavoritesInterface {
      * @param extras
      *            A Set of extra parameters to send
      * @return A Collection of Photo objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList<Photo> getPublicList(String userId, int perPage, int page, Set<String> extras) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getPublicList(String userId, int perPage, int page, Set<String> extras) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();

@@ -3,23 +3,21 @@
  */
 package com.flickr4java.flickr.contacts;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for working with Flickr contacts.
@@ -51,10 +49,8 @@ public class ContactsInterface {
      * Get the collection of contacts for the calling user.
      * 
      * @return The Collection of Contact objects
-     * @throws IOException
-     * @throws SAXException
      */
-    public Collection<Contact> getList() throws IOException, SAXException, FlickrException {
+    public Collection<Contact> getList() throws FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -100,11 +96,9 @@ public class ContactsInterface {
      *            Valid options are: <b>ff</b> -&gt; friends and family, <b>all</b> -&gt; all your contacts. (Optional, can be null)
      * 
      * @return List of Contacts
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter) throws IOException, SAXException, FlickrException {
+    public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter) throws FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -154,11 +148,9 @@ public class ContactsInterface {
      * @param userId
      *            The user ID
      * @return The Collection of Contact objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Contact> getPublicList(String userId) throws IOException, SAXException, FlickrException {
+    public Collection<Contact> getPublicList(String userId) throws FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();

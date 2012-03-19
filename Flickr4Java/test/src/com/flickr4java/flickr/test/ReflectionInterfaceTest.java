@@ -9,55 +9,25 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collection;
+import java.util.Iterator;
+
+import org.junit.Test;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.reflection.Argument;
 import com.flickr4java.flickr.reflection.Error;
 import com.flickr4java.flickr.reflection.Method;
 import com.flickr4java.flickr.reflection.ReflectionInterface;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
-
 /**
  * @author Anthony Eden
  */
-public class ReflectionInterfaceTest {
-
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
-
-    @Before
-    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        testProperties = new TestProperties();
-
-        REST rest = new REST();
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.READ);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-    }
+public class ReflectionInterfaceTest extends Flickr4JavaTest {
 
     @Test
-    public void testGetMethodInfo_public() throws FlickrException, IOException, SAXException {
+    public void testGetMethodInfo_public() throws FlickrException {
         String methodName = "flickr.interestingness.getList";
         ReflectionInterface reflectionInterface = flickr.getReflectionInterface();
         Method method = reflectionInterface.getMethodInfo(methodName);
@@ -69,38 +39,39 @@ public class ReflectionInterfaceTest {
 
         assertNotNull(method.getArguments());
         assertEquals(6, method.getArguments().size());
-        Iterator argsIterator = method.getArguments().iterator();
+        Collection<Argument> args = method.getArguments();
+        Iterator<Argument> argsIterator = args.iterator();
 
-        Argument api_key = (Argument) argsIterator.next();
+        Argument api_key = argsIterator.next();
         assertEquals(Flickr.API_KEY, api_key.getName());
         assertFalse(api_key.isOptional());
         assertNotNull(api_key.getDescription());
 
-        Argument date = (Argument) argsIterator.next();
+        Argument date = argsIterator.next();
         assertEquals("date", date.getName());
         assertTrue(date.isOptional());
 
-        Argument panda = (Argument) argsIterator.next();
+        Argument panda = argsIterator.next();
         assertEquals("use_panda", panda.getName());
         assertTrue(panda.isOptional());
 
-        Argument extras = (Argument) argsIterator.next();
+        Argument extras = argsIterator.next();
         assertEquals("extras", extras.getName());
         assertTrue(extras.isOptional());
 
-        Argument per_page = (Argument) argsIterator.next();
+        Argument per_page = argsIterator.next();
         assertEquals("per_page", per_page.getName());
         assertTrue(per_page.isOptional());
 
-        Argument page = (Argument) argsIterator.next();
+        Argument page = argsIterator.next();
         assertEquals("page", page.getName());
         assertTrue(page.isOptional());
 
-        Collection errors = method.getErrors();
+        Collection<Error> errors = method.getErrors();
         assertNotNull(errors);
-        assertTrue(errors.size() > 0);
-        Iterator errorsIterator = errors.iterator();
-        Error error = (Error) errorsIterator.next();
+        assertTrue(!errors.isEmpty());
+        Iterator<Error> errorsIterator = errors.iterator();
+        Error error = errorsIterator.next();
         assertNotNull(error);
         assertTrue(error.getCode() > 0);
         assertNotNull(error.getMessage());
@@ -108,7 +79,7 @@ public class ReflectionInterfaceTest {
     }
 
     @Test
-    public void testGetMethodInfo_withPerms() throws FlickrException, IOException, SAXException {
+    public void testGetMethodInfo_withPerms() throws FlickrException {
         String methodName = "flickr.photos.addTags";
         ReflectionInterface reflectionInterface = flickr.getReflectionInterface();
         Method method = reflectionInterface.getMethodInfo(methodName);
@@ -121,30 +92,31 @@ public class ReflectionInterfaceTest {
         assertTrue(method.needsLogin());
         assertEquals(Method.WRITE_PERMISSION, method.getRequiredPerms());
 
-        Iterator argsIterator = method.getArguments().iterator();
+        Collection<Argument> c = method.getArguments();
+        Iterator<Argument> argsIterator = c.iterator();
 
-        Argument api_key = (Argument) argsIterator.next();
+        Argument api_key = argsIterator.next();
         assertEquals(Flickr.API_KEY, api_key.getName());
         assertFalse(api_key.isOptional());
         assertNotNull(api_key.getDescription());
 
-        Argument photo_id = (Argument) argsIterator.next();
+        Argument photo_id = argsIterator.next();
         assertEquals("photo_id", photo_id.getName());
         assertFalse(photo_id.isOptional());
 
-        Argument tags = (Argument) argsIterator.next();
+        Argument tags = argsIterator.next();
         assertEquals("tags", tags.getName());
         assertFalse(tags.isOptional());
 
     }
 
     @Test
-    public void testGetMethods() throws FlickrException, IOException, SAXException {
+    public void testGetMethods() throws FlickrException {
         ReflectionInterface reflectionInterface = flickr.getReflectionInterface();
-        Collection methods = reflectionInterface.getMethods();
+        Collection<String> methods = reflectionInterface.getMethods();
         assertNotNull(methods);
         assertTrue("There are no methods in the method list", methods.size() > 0);
-        Iterator methodsIterator = methods.iterator();
+        Iterator<String> methodsIterator = methods.iterator();
         boolean foundAddTags = false;
         boolean foundGetLocation = false;
 

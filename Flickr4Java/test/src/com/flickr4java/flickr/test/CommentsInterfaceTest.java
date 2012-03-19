@@ -5,20 +5,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
@@ -30,32 +22,10 @@ import com.flickr4java.flickr.photos.comments.CommentsInterface;
  * @author till (Till Krech) flickr:extranoise
  * @version $Id: CommentsInterfaceTest.java,v 1.7 2009/06/30 18:48:59 x-mago Exp $
  */
-public class CommentsInterfaceTest {
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
-
-    @Before
-    public void setUp() throws Exception {
-        testProperties = new TestProperties();
-
-        REST rest = new REST();
-        rest.setHost(testProperties.getHost());
-
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.READ);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-    }
+public class CommentsInterfaceTest extends Flickr4JavaTest {
 
     @Test
-    public void testGetList() throws IOException, SAXException, FlickrException {
+    public void testGetList() throws FlickrException {
         String photoId = "245253195"; // http://www.flickr.com/photos/extranoise/245253195/
         CommentsInterface ci = flickr.getCommentsInterface();
         List<Comment> comments = ci.getList(photoId);
@@ -75,7 +45,7 @@ public class CommentsInterfaceTest {
     }
 
     @Test
-    public void testComment() throws IOException, SAXException, FlickrException {
+    public void testComment() throws FlickrException {
         String photoId = "419231219"; // http://www.flickr.com/photos/javatest3/419231219/
         String txt1 = "This is a test for the flickr java api";
         String txt2 = "This is an edited comment for the java flickr api";
@@ -103,7 +73,7 @@ public class CommentsInterfaceTest {
     }
 
     // helper function to find a comment by it's id for a specified photo
-    private Comment findCommment(String photoId, String commentId) throws FlickrException, IOException, SAXException {
+    private Comment findCommment(String photoId, String commentId) throws FlickrException {
         CommentsInterface ci = flickr.getCommentsInterface();
         List<Comment> comments = ci.getList(photoId);
         Iterator<Comment> commentsIterator = comments.iterator();
@@ -118,7 +88,7 @@ public class CommentsInterfaceTest {
     }
 
     @Test
-    public void testGetRecentForContacts() throws IOException, SAXException, FlickrException {
+    public void testGetRecentForContacts() throws FlickrException {
         CommentsInterface ci = flickr.getCommentsInterface();
         PhotoList<Photo> photos = ci.getRecentForContacts(null, null, Extras.ALL_EXTRAS, 50, 1);
         assertTrue(photos != null);

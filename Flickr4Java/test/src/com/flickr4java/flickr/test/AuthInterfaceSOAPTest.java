@@ -4,10 +4,6 @@
 
 package com.flickr4java.flickr.test;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,7 +24,7 @@ public class AuthInterfaceSOAPTest {
     private TestProperties testProperties;
 
     @Before
-    public void setUp() throws ParserConfigurationException, IOException {
+    public void setUp() {
         testProperties = new TestProperties();
 
         Flickr.debugRequest = true;

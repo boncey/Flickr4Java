@@ -4,25 +4,24 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.IOUtilities;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * @author Anthony Eden
@@ -48,11 +47,10 @@ public class UploaderSOAPTest {
      * 
      * @throws IOException
      * @throws FlickrException
-     * @throws SAXException
      */
     @Ignore
     @Test
-    public void testUploadByteArray() throws IOException, FlickrException, SAXException {
+    public void testUploadByteArray() throws IOException, FlickrException {
         File imageFile = new File(testProperties.getImageFile());
         ByteArrayOutputStream out = null;
         InputStream in = null;
@@ -78,11 +76,10 @@ public class UploaderSOAPTest {
      * 
      * @throws IOException
      * @throws FlickrException
-     * @throws SAXException
      */
     @Ignore
     @Test
-    public void testUploadInputStream() throws IOException, FlickrException, SAXException {
+    public void testUploadInputStream() throws IOException, FlickrException {
         File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
 

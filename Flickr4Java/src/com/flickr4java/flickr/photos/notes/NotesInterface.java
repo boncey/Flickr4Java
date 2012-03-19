@@ -4,19 +4,17 @@
 
 package com.flickr4java.flickr.photos.notes;
 
+import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.w3c.dom.Element;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.photos.Note;
-
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
-
-import java.awt.Rectangle;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Anthony Eden
@@ -50,7 +48,7 @@ public class NotesInterface {
      *            The Note object
      * @return The updated Note object
      */
-    public Note add(String photoId, Note note) throws IOException, SAXException, FlickrException {
+    public Note add(String photoId, Note note) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -83,11 +81,9 @@ public class NotesInterface {
      * 
      * @param noteId
      *            The node ID
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void delete(String noteId) throws IOException, SAXException, FlickrException {
+    public void delete(String noteId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -105,11 +101,9 @@ public class NotesInterface {
      * 
      * @param note
      *            The Note to update
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void edit(Note note) throws IOException, SAXException, FlickrException {
+    public void edit(Note note) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT);
         parameters.put(Flickr.API_KEY, apiKey);

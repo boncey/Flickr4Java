@@ -3,9 +3,14 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoContext;
@@ -13,15 +18,6 @@ import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photosets.Photoset;
 import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
 
 /**
  * @author Anthony Eden
@@ -33,7 +29,7 @@ public class PhotosetsInterfaceSOAPTest {
     private TestProperties testProperties;
 
     @Before
-    public void setUp() throws ParserConfigurationException, IOException {
+    public void setUp() throws ParserConfigurationException {
         testProperties = new TestProperties();
 
         Flickr.debugStream = true;
@@ -44,8 +40,7 @@ public class PhotosetsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testCreateAndDelete() throws FlickrException, IOException, SAXException {
-        RequestContext requestContext = RequestContext.getRequestContext();
+    public void testCreateAndDelete() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photoset photoset = iface.create("test", "A test photoset", testProperties.getPhotoId());
         assertNotNull(photoset);
@@ -68,8 +63,7 @@ public class PhotosetsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetContext() throws FlickrException, IOException, SAXException {
-        RequestContext requestContext = RequestContext.getRequestContext();
+    public void testGetContext() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         PhotoContext photoContext = iface.getContext(testProperties.getPhotoId(), testProperties.getPhotosetId());
         Photo previousPhoto = photoContext.getPreviousPhoto();
@@ -80,7 +74,7 @@ public class PhotosetsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetInfo() throws FlickrException, IOException, SAXException {
+    public void testGetInfo() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photoset photoset = iface.getInfo(testProperties.getPhotosetId());
         assertNotNull(photoset);
@@ -89,7 +83,7 @@ public class PhotosetsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetList() throws FlickrException, IOException, SAXException {
+    public void testGetList() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photosets photosets = iface.getList(testProperties.getNsid());
         assertNotNull(photosets);
@@ -98,7 +92,7 @@ public class PhotosetsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetList2() throws FlickrException, IOException, SAXException {
+    public void testGetList2() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photosets photosets = iface.getList("26095690@N00");
         assertNotNull(photosets);
@@ -106,7 +100,7 @@ public class PhotosetsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetPhotos() throws FlickrException, IOException, SAXException {
+    public void testGetPhotos() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         PhotoList<Photo> photos = iface.getPhotos(testProperties.getPhotosetId(), 10, 1);
         assertNotNull(photos);
@@ -116,8 +110,7 @@ public class PhotosetsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testOrderSets() throws FlickrException, IOException, SAXException {
-        RequestContext requestContext = RequestContext.getRequestContext();
+    public void testOrderSets() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         String[] photosetIds = { testProperties.getPhotosetId() };
         iface.orderSets(photosetIds);

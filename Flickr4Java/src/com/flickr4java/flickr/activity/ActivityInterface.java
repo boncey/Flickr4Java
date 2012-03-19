@@ -1,21 +1,19 @@
 package com.flickr4java.flickr.activity;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Gather activity information belonging to the calling user.
@@ -48,11 +46,9 @@ public class ActivityInterface {
      * @param perPage
      * @param page
      * @return ItemList
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public ItemList<Item> userComments(int perPage, int page) throws IOException, SAXException, FlickrException {
+    public ItemList<Item> userComments(int perPage, int page) throws FlickrException {
         ItemList<Item> items = new ItemList<Item>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_COMMENTS);
@@ -94,11 +90,9 @@ public class ActivityInterface {
      * @param page
      * @param timeframe
      * @return ItemList
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public ItemList<Item> userPhotos(int perPage, int page, String timeframe) throws IOException, SAXException, FlickrException {
+    public ItemList<Item> userPhotos(int perPage, int page, String timeframe) throws FlickrException {
         ItemList<Item> items = new ItemList<Item>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_PHOTOS);

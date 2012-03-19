@@ -48,7 +48,7 @@ public class Backup {
 
     private AuthStore authStore;
 
-    public Backup(String apiKey, String nsid, String sharedSecret, File authsDir) throws IOException {
+    public Backup(String apiKey, String nsid, String sharedSecret, File authsDir) throws FlickrException {
         flickr = new Flickr(apiKey, sharedSecret, new REST());
         this.nsid = nsid;
 

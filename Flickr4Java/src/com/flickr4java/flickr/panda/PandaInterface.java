@@ -1,6 +1,5 @@
 package com.flickr4java.flickr.panda;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +7,6 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -52,10 +50,8 @@ public class PandaInterface {
      * 
      * @return A list of pandas
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public ArrayList<Panda> getList() throws FlickrException, IOException, SAXException {
+    public ArrayList<Panda> getList() throws FlickrException {
         ArrayList<Panda> pandas = new ArrayList<Panda>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
@@ -91,11 +87,9 @@ public class PandaInterface {
      *            The page offset
      * @return A PhotoList
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      * @see com.flickr4java.flickr.photos.Extras
      */
-    public PhotoList<Photo> getPhotos(Panda panda, Set<String> extras, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public PhotoList<Photo> getPhotos(Panda panda, Set<String> extras, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);

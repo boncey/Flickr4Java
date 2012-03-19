@@ -33,9 +33,9 @@ public class Method {
 
     private String explanation;
 
-    private Collection arguments;
+    private Collection<Argument> arguments;
 
-    private Collection errors;
+    private Collection<Error> errors;
 
     public String getName() {
         return name;
@@ -93,25 +93,25 @@ public class Method {
         this.explanation = explanation;
     }
 
-    public Collection getArguments() {
+    public Collection<Argument> getArguments() {
         if (arguments == null) {
-            arguments = new ArrayList();
+            arguments = new ArrayList<Argument>();
         }
         return arguments;
     }
 
-    public void setArguments(Collection arguments) {
+    public void setArguments(Collection<Argument> arguments) {
         this.arguments = arguments;
     }
 
-    public Collection getErrors() {
+    public Collection<Error> getErrors() {
         if (errors == null) {
-            errors = new ArrayList();
+            errors = new ArrayList<Error>();
         }
         return errors;
     }
 
-    public void setErrors(Collection errors) {
+    public void setErrors(Collection<Error> errors) {
         this.errors = errors;
     }
 

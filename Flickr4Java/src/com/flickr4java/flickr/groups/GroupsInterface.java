@@ -3,22 +3,20 @@
  */
 package com.flickr4java.flickr.groups;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for working with Flickr Groups.
@@ -54,12 +52,10 @@ public class GroupsInterface {
      * @param catId
      *            The optional category id. Null value will be ignored.
      * @return The Collection of Photo objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      * @deprecated Flickr returns just empty results
      */
-    public Category browse(String catId) throws IOException, SAXException, FlickrException {
+    public Category browse(String catId) throws FlickrException {
         List<Subcategory> subcategories = new ArrayList<Subcategory>();
         List<Group> groups = new ArrayList<Group>();
 
@@ -119,7 +115,7 @@ public class GroupsInterface {
      *            The group id
      * @return The Group object
      */
-    public Group getInfo(String groupId) throws IOException, SAXException, FlickrException {
+    public Group getInfo(String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -175,11 +171,9 @@ public class GroupsInterface {
      * @param page
      *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return A GroupList Object. Only the fields <em>id</em>, <em>name</em> and <em>eighteenplus</em> in the Groups will be set.
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Group> search(String text, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public Collection<Group> search(String text, int perPage, int page) throws FlickrException {
         GroupList<Group> groupList = new GroupList<Group>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SEARCH);

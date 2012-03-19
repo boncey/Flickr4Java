@@ -1,23 +1,20 @@
 package com.flickr4java.flickr.photosets.comments;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.photos.Photo;
-import com.flickr4java.flickr.photos.comments.Comment;
-import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.photos.comments.Comment;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Access to the <b>flickr.photosets.comments</b> methods.
@@ -55,10 +52,8 @@ public class PhotosetsCommentsInterface {
      *            Text of the comment
      * @return the comment id
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public String addComment(String photosetId, String commentText) throws FlickrException, IOException, SAXException {
+    public String addComment(String photosetId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -83,10 +78,8 @@ public class PhotosetsCommentsInterface {
      * @param commentId
      *            The id of the comment to delete from a photoset.
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public void deleteComment(String commentId) throws FlickrException, IOException, SAXException {
+    public void deleteComment(String commentId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -108,11 +101,9 @@ public class PhotosetsCommentsInterface {
      *            The id of the comment to edit.
      * @param commentText
      *            Update the comment to this text.
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void editComment(String commentId, String commentText) throws IOException, SAXException, FlickrException {
+    public void editComment(String commentId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -136,11 +127,9 @@ public class PhotosetsCommentsInterface {
      * @param photosetId
      *            The id of the photoset to fetch comments for.
      * @return a list of {@link Comment} objects
-     * @throws SAXException
-     * @throws IOException
      * @throws FlickrException
      */
-    public List<Comment> getList(String photosetId) throws IOException, SAXException, FlickrException {
+    public List<Comment> getList(String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);

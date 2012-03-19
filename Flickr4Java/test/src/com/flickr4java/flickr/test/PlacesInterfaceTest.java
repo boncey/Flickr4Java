@@ -4,12 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import org.junit.Test;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.places.Location;
 import com.flickr4java.flickr.places.Place;
 import com.flickr4java.flickr.places.PlaceType;
@@ -17,57 +19,19 @@ import com.flickr4java.flickr.places.PlacesInterface;
 import com.flickr4java.flickr.places.PlacesList;
 import com.flickr4java.flickr.tags.Tag;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-
 /**
  * Tests for the PlacesInterface.
  * 
  * @author mago
  * @version $Id: PlacesInterfaceTest.java,v 1.11 2009/07/11 20:30:27 x-mago Exp $
  */
-public class PlacesInterfaceTest {
+public class PlacesInterfaceTest extends Flickr4JavaTest {
     String sfWoeId = "2487956";
 
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
-
-    @Before
-    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
-        Flickr.debugRequest = false;
-        Flickr.debugStream = false;
-        testProperties = new TestProperties();
-
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(testProperties.getApiKey()).apiSecret(testProperties.getSecret()).build();
-        REST rest = new REST();
-
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.READ);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-    }
-
     @Test
-    public void testFindByLonLat() throws FlickrException, IOException, SAXException {
+    public void testFindByLonLat() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
-        PlacesList list = placesInterface.findByLatLon(52.524577D, 13.412247D, Flickr.ACCURACY_CITY);
+        PlacesList<Place> list = placesInterface.findByLatLon(52.524577D, 13.412247D, Flickr.ACCURACY_CITY);
         assertTrue(list.getTotal() == 1);
         Place place = (Place) list.get(0);
         assertEquals("zot2ouJXUbKOJRM", place.getPlaceId());
@@ -79,9 +43,9 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testFind() throws FlickrException, IOException, SAXException {
+    public void testFind() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
-        PlacesList list = placesInterface.find("Alabama");
+        PlacesList<Place> list = placesInterface.find("Alabama");
         assertTrue(list.getTotal() == 3);
         Place place = (Place) list.get(0);
         assertEquals("KSb302RTUb74OxqL", place.getPlaceId());
@@ -100,9 +64,9 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testFind2() throws FlickrException, IOException, SAXException {
+    public void testFind2() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
-        PlacesList list = placesInterface.find("Europe");
+        PlacesList<Place> list = placesInterface.find("Europe");
         assertTrue(list.getTotal() == 2);
         Place place = (Place) list.get(0);
         assertEquals("6dCBhRRTVrJiB5xOrg", place.getPlaceId());
@@ -116,25 +80,25 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testResolvePlaceId() throws FlickrException, IOException, SAXException {
+    public void testResolvePlaceId() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         Location location = placesInterface.resolvePlaceId("7.MJR8tTVrIO1EgB"); // SF
         placeAssertions(location);
     }
 
     @Test
-    public void testResolvePlaceUrl() throws FlickrException, IOException, SAXException {
+    public void testResolvePlaceUrl() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         Location location = placesInterface.resolvePlaceURL("/United+States/California/San+Francisco");
         placeAssertions(location);
     }
 
     @Test
-    public void testGetChildrenWithPhotosPublic() throws FlickrException, IOException, SAXException {
+    public void testGetChildrenWithPhotosPublic() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         String woeId = "2487956";
         String placeId = "kH8dLOubBZRvX_YZ";
-        PlacesList list = placesInterface.getChildrenWithPhotosPublic(placeId, woeId);
+        PlacesList<Place> list = placesInterface.getChildrenWithPhotosPublic(placeId, woeId);
         boolean presidioFound = false;
         for (int i = 0; i < list.size(); i++) {
             Place place = (Place) list.get(i);
@@ -149,7 +113,7 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testGetInfo() throws FlickrException, IOException, SAXException {
+    public void testGetInfo() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         String woeId = "2487956";
         String placeId = "7.MJR8tTVrIO1EgB";
@@ -160,7 +124,7 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testGetInfoByUrl() throws FlickrException, IOException, SAXException {
+    public void testGetInfoByUrl() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         String placeId = "7.MJR8tTVrIO1EgB";
         String url = "/United+States/California/San+Francisco";
@@ -169,9 +133,9 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testGetPlaceTypes() throws FlickrException, IOException, SAXException {
+    public void testGetPlaceTypes() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
-        ArrayList placeTypes = placesInterface.getPlaceTypes();
+        List<PlaceType> placeTypes = placesInterface.getPlaceTypes();
         boolean neighbourhoodFound = false;
         boolean regionFound = false;
         for (int i = 0; i < placeTypes.size(); i++) {
@@ -190,18 +154,18 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testGetTopPlacesList() throws FlickrException, IOException, SAXException {
+    public void testGetTopPlacesList() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
-        PlacesList places = placesInterface.getTopPlacesList(Place.TYPE_COUNTRY, null, null, sfWoeId);
+        PlacesList<Place> places = placesInterface.getTopPlacesList(Place.TYPE_COUNTRY, null, null, sfWoeId);
         assertNotNull(places);
     }
 
     @Test
-    public void testPlacesForBoundingBox() throws FlickrException, IOException, SAXException {
+    public void testPlacesForBoundingBox() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         String bbox = "-122.42307100000001,37.773779,-122.381071,37.815779";
         int placeType = Place.TYPE_LOCALITY;
-        PlacesList places = placesInterface.placesForBoundingBox(placeType, bbox);
+        PlacesList<Place> places = placesInterface.placesForBoundingBox(placeType, bbox);
         assertTrue((places.size() > 0));
         Place place = (Place) places.get(0);
         assertEquals(sfWoeId, place.getWoeId());
@@ -211,14 +175,14 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testPlacesForContacts() throws FlickrException, IOException, SAXException {
+    public void testPlacesForContacts() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         int placeType = Place.TYPE_REGION;
         String placeId = null;
         String woeId = null;
         String threshold = null;
         String contacts = "all";
-        PlacesList places = placesInterface.placesForContacts(placeType, placeId, woeId, threshold, contacts);
+        PlacesList<Place> places = placesInterface.placesForContacts(placeType, placeId, woeId, threshold, contacts);
         assertTrue((places.size() > 0));
         for (int i = 0; i < places.size(); i++) {
             Place place = (Place) places.get(i);
@@ -228,7 +192,7 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testPlacesForTags() throws FlickrException, IOException, SAXException {
+    public void testPlacesForTags() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         int placeTypeId = Place.TYPE_REGION;
         String placeId = null;
@@ -243,7 +207,7 @@ public class PlacesInterfaceTest {
         Calendar maxTakenDate = Calendar.getInstance();
         minUploadDate.roll(Calendar.YEAR, -3);
         minTakenDate.roll(Calendar.YEAR, -3);
-        PlacesList places = placesInterface.placesForTags(placeTypeId, sfWoeId, placeId, threshold, tags, tagMode, machineTags, machineTagMode,
+        PlacesList<Place> places = placesInterface.placesForTags(placeTypeId, sfWoeId, placeId, threshold, tags, tagMode, machineTags, machineTagMode,
                 minUploadDate.getTime(), maxUploadDate.getTime(), minTakenDate.getTime(), maxTakenDate.getTime());
         assertTrue((places.size() == 1));
         Place place = (Place) places.get(0);
@@ -253,7 +217,7 @@ public class PlacesInterfaceTest {
     }
 
     @Test
-    public void testPlacesForUser() throws FlickrException, IOException, SAXException {
+    public void testPlacesForUser() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         int placeType = Place.TYPE_REGION;
         String placeId = null;
@@ -265,17 +229,16 @@ public class PlacesInterfaceTest {
         Calendar maxTakenDate = Calendar.getInstance();
         minUploadDate.roll(Calendar.YEAR, -3);
         minTakenDate.roll(Calendar.YEAR, -3);
-        PlacesList places = placesInterface.placesForUser(placeType, woeId, placeId, threshold, minUploadDate.getTime(), maxUploadDate.getTime(),
+        PlacesList<Place> places = placesInterface.placesForUser(placeType, woeId, placeId, threshold, minUploadDate.getTime(), maxUploadDate.getTime(),
                 minTakenDate.getTime(), maxTakenDate.getTime());
         assertTrue((places.size() > 0));
-        for (int i = 0; i < places.size(); i++) {
-            Place place = (Place) places.get(i);
-            // System.out.println(place.getName() + " " + place.getPlaceUrl());
+        for (Place place : places) {
+            assertNotNull(place);
         }
     }
 
     @Test
-    public void testTagsForPlace() throws FlickrException, IOException, SAXException {
+    public void testTagsForPlace() throws FlickrException {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         String placeId = null;
         Calendar minUploadDate = Calendar.getInstance();
@@ -284,12 +247,11 @@ public class PlacesInterfaceTest {
         Calendar maxTakenDate = Calendar.getInstance();
         minUploadDate.roll(Calendar.YEAR, -3);
         minTakenDate.roll(Calendar.YEAR, -3);
-        ArrayList tags = placesInterface.tagsForPlace(sfWoeId, placeId, minUploadDate.getTime(), maxUploadDate.getTime(), minTakenDate.getTime(),
+        ArrayList<Tag> tags = placesInterface.tagsForPlace(sfWoeId, placeId, minUploadDate.getTime(), maxUploadDate.getTime(), minTakenDate.getTime(),
                 maxTakenDate.getTime());
         assertTrue((tags.size() > 0));
         boolean calFound = false;
-        for (int i = 0; i < tags.size(); i++) {
-            Tag tag = (Tag) tags.get(i);
+        for (Tag tag : tags) {
             if (tag.getValue().equals("california") && tag.getCount() > 140000) {
                 calFound = true;
             }

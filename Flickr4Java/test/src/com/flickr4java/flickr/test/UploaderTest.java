@@ -4,73 +4,37 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.photos.PhotosInterface;
-import com.flickr4java.flickr.uploader.UploadMetaData;
-import com.flickr4java.flickr.uploader.Uploader;
-import com.flickr4java.flickr.util.IOUtilities;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.junit.Test;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.photos.PhotosInterface;
+import com.flickr4java.flickr.uploader.UploadMetaData;
+import com.flickr4java.flickr.uploader.Uploader;
+import com.flickr4java.flickr.util.IOUtilities;
+
 /**
  * @author Anthony Eden
  */
-public class UploaderTest {
-
-    Uploader uploader = null;
-
-    PhotosInterface pint = null;
-
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
-
-    @Before
-    public void setUp() throws IOException, FlickrException {
-        testProperties = new TestProperties();
-        Flickr.debugRequest = false;
-        Flickr.debugStream = false;
-
-        REST rest = new REST();
-
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-        uploader = flickr.getUploader();
-        pint = flickr.getPhotosInterface();
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.WRITE);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-    }
+public class UploaderTest extends Flickr4JavaTest {
 
     /**
      * Test photo uploading using a byte array.
      * 
      * @throws IOException
      * @throws FlickrException
-     * @throws SAXException
      */
     @Test
-    public void testUploadByteArray() throws IOException, FlickrException, SAXException {
+    public void testUploadByteArray() throws IOException, FlickrException {
         File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
+        Uploader uploader = flickr.getUploader();
+        PhotosInterface pint = flickr.getPhotosInterface();
 
         ByteArrayOutputStream out = null;
         try {
@@ -97,12 +61,13 @@ public class UploaderTest {
      * 
      * @throws IOException
      * @throws FlickrException
-     * @throws SAXException
      */
     @Test
-    public void testUploadInputStream() throws IOException, FlickrException, SAXException {
+    public void testUploadInputStream() throws IOException, FlickrException {
         File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
+        Uploader uploader = flickr.getUploader();
+        PhotosInterface pint = flickr.getPhotosInterface();
 
         try {
             in = new FileInputStream(imageFile);
@@ -123,10 +88,11 @@ public class UploaderTest {
      * 
      * @throws IOException
      * @throws FlickrException
-     * @throws SAXException
      */
     @Test
-    public void testReplaceInputStream() throws IOException, FlickrException, SAXException {
+    public void testReplaceInputStream() throws IOException, FlickrException {
+        Uploader uploader = flickr.getUploader();
+        PhotosInterface pint = flickr.getPhotosInterface();
         File imageFile = new File(testProperties.getImageFile());
         InputStream uploadIS = null;
         String photoId = null;
@@ -164,13 +130,14 @@ public class UploaderTest {
      * 
      * @throws IOException
      * @throws FlickrException
-     * @throws SAXException
      */
     @Test
-    public void testReplaceByteArray() throws IOException, FlickrException, SAXException {
+    public void testReplaceByteArray() throws IOException, FlickrException {
         File imageFile = new File(testProperties.getImageFile());
         InputStream in = null;
         ByteArrayOutputStream out = null;
+        Uploader uploader = flickr.getUploader();
+        PhotosInterface pint = flickr.getPhotosInterface();
 
         try {
             in = new FileInputStream(imageFile);

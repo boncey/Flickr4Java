@@ -39,7 +39,7 @@ public class UrlUtilities {
         }
         buffer.append(host);
         if (port > 0) {
-            buffer.append(":");
+            buffer.append(':');
             buffer.append(port);
         }
         if (path == null) {
@@ -48,12 +48,12 @@ public class UrlUtilities {
         buffer.append(path);
 
         if (!parameters.isEmpty()) {
-            buffer.append("?");
+            buffer.append('?');
         }
         int size = parameters.size();
         for (Map.Entry<String, String> entry : parameters.entrySet()) {
             buffer.append(entry.getKey());
-            buffer.append("=");
+            buffer.append('=');
             Object value = entry.getValue();
             if (value != null) {
                 String string = value.toString();
@@ -65,7 +65,7 @@ public class UrlUtilities {
                 buffer.append(string);
             }
             if (--size != 0) {
-                buffer.append("&");
+                buffer.append('&');
             }
         }
 
@@ -82,7 +82,7 @@ public class UrlUtilities {
         buffer.append("http://");
         buffer.append(host);
         if (port > 0) {
-            buffer.append(":");
+            buffer.append(':');
             buffer.append(port);
         }
         if (path == null) {

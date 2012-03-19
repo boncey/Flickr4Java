@@ -1,19 +1,17 @@
 package com.flickr4java.flickr.groups.members;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.util.StringUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Members Interface.
@@ -50,11 +48,9 @@ public class MembersInterface {
      *            Result-section.
      * @return A members-list
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.members.getList.html">API Documentation</a>
      */
-    public MembersList<Member> getList(String groupId, Set<String> memberTypes, int perPage, int page) throws FlickrException, IOException, SAXException {
+    public MembersList<Member> getList(String groupId, Set<String> memberTypes, int perPage, int page) throws FlickrException {
         MembersList<Member> members = new MembersList<Member>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);

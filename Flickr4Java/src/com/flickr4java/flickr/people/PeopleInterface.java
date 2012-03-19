@@ -3,7 +3,7 @@
  */
 package com.flickr4java.flickr.people;
 
-import java.io.IOException;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -14,7 +14,6 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -77,8 +76,6 @@ public class PeopleInterface {
      * @param email
      *            The email address
      * @return The User
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public User findByEmail(String email) throws FlickrException {
@@ -107,8 +104,6 @@ public class PeopleInterface {
      * @param username
      *            The username
      * @return The User object
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public User findByUsername(String username) throws FlickrException {
@@ -137,8 +132,6 @@ public class PeopleInterface {
      * @param userId
      *            The user ID
      * @return The User object
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public User getInfo(String userId) throws FlickrException {
@@ -189,8 +182,6 @@ public class PeopleInterface {
      * @param userId
      *            The user ID
      * @return The public groups
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public Collection<Group> getPublicGroups(String userId) throws FlickrException {
@@ -239,8 +230,6 @@ public class PeopleInterface {
      * @param page
      *            The page offset
      * @return The PhotoList collection
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public PhotoList<Photo> getPublicPhotos(String userId, Set<String> extras, int perPage, int page) throws FlickrException {
@@ -287,8 +276,6 @@ public class PeopleInterface {
      * Requires authentication with 'read' permission using the new authentication API.
      * 
      * @return A User object with upload status data fields filled
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public User getUploadStatus() throws FlickrException {
@@ -444,17 +431,14 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @param personX
-     * @param personY
-     * @param personW
-     * @param personH
+     * @param bounds
      * @throws FlickrException
      */
-    public void add(String photoId, String userId, String personX, String personY, String personW, String personH) throws FlickrException {
+    public void add(String photoId, String userId, Rectangle bounds) throws FlickrException {
 
         // Delegating this to photos.people.PeopleInterface - Naming standard would be to use PeopleInterface but having 2 the same name can cause issues
         com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
-        pi.add(photoId, userId, personX, personY, personW, personH);
+        pi.add(photoId, userId, bounds);
     }
 
     /**
@@ -490,17 +474,14 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @param personX
-     * @param personY
-     * @param personW
-     * @param personH
+     * @param bounds
      * @throws FlickrException
      */
-    public void editCoords(String photoId, String userId, String personX, String personY, String personW, String personH) throws FlickrException {
+    public void editCoords(String photoId, String userId, Rectangle bounds) throws FlickrException {
 
         // Delegating this to photos.people.PeopleInterface - Naming standard would be to use PeopleInterface but having 2 the same name can cause issues
         com.flickr4java.flickr.photos.people.PeopleInterface pi = new com.flickr4java.flickr.photos.people.PeopleInterface(apiKey, sharedSecret, transportAPI);
-        pi.editCoords(photoId, userId, personX, personY, personW, personH);
+        pi.editCoords(photoId, userId, bounds);
     }
 
     /**

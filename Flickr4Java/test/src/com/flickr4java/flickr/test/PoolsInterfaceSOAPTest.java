@@ -5,23 +5,23 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Collection;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.SOAP;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
+import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.pools.PoolsInterface;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.util.Collection;
+import com.flickr4java.flickr.photos.Photo;
 
 /**
  * @author Anthony Eden
@@ -33,7 +33,7 @@ public class PoolsInterfaceSOAPTest {
     private TestProperties testProperties;
 
     @Before
-    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
+    public void setUp() throws ParserConfigurationException, FlickrException {
         testProperties = new TestProperties();
 
         Flickr.debugStream = true;
@@ -52,7 +52,7 @@ public class PoolsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testAddAndRemove() throws FlickrException, IOException, SAXException {
+    public void testAddAndRemove() throws FlickrException {
         String photoId = testProperties.getPhotoId();
         String groupId = testProperties.getTestGroupId();
         PoolsInterface iface = flickr.getPoolsInterface();
@@ -68,19 +68,19 @@ public class PoolsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetGroups() throws FlickrException, IOException, SAXException {
+    public void testGetGroups() throws FlickrException {
         PoolsInterface iface = flickr.getPoolsInterface();
-        Collection groups = iface.getGroups();
+        Collection<Group> groups = iface.getGroups();
         assertNotNull(groups);
         assertEquals(4, groups.size());
     }
 
     @Ignore
     @Test
-    public void testGetPhotos() throws FlickrException, IOException, SAXException {
+    public void testGetPhotos() throws FlickrException {
         String groupId = testProperties.getTestGroupId();
         PoolsInterface iface = flickr.getPoolsInterface();
-        Collection photos = iface.getPhotos(groupId, null, 0, 0);
+        Collection<Photo> photos = iface.getPhotos(groupId, null, 0, 0);
         assertNotNull(photos);
         assertEquals(4, photos.size());
     }

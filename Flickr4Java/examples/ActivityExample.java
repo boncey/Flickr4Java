@@ -38,7 +38,7 @@ public class ActivityExample {
 
     Properties properties = null;
 
-    public ActivityExample() throws ParserConfigurationException, IOException {
+    public ActivityExample() throws IOException {
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("/setup.properties");

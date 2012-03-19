@@ -3,6 +3,17 @@
  */
 package com.flickr4java.flickr.groups.pools;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -14,19 +25,6 @@ import com.flickr4java.flickr.photos.PhotoContext;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Anthony Eden
@@ -64,7 +62,7 @@ public class PoolsInterface {
      * @param groupId
      *            The group ID
      */
-    public void add(String photoId, String groupId) throws IOException, SAXException, FlickrException {
+    public void add(String photoId, String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -88,8 +86,6 @@ public class PoolsInterface {
      * @param groupId
      *            The group ID
      * @return The PhotoContext
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
     public PhotoContext getContext(String photoId, String groupId) throws FlickrException {
@@ -127,11 +123,9 @@ public class PoolsInterface {
      * Get a collection of all of the user's groups.
      * 
      * @return A Collection of Group objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Group> getGroups() throws IOException, SAXException, FlickrException {
+    public Collection<Group> getGroups() throws FlickrException {
         List<Group> groups = new ArrayList<Group>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -173,12 +167,9 @@ public class PoolsInterface {
      * @param page
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> getPhotos(String groupId, String[] tags, Set<String> extras, int perPage, int page) throws IOException, SAXException,
-            FlickrException {
+    public PhotoList<Photo> getPhotos(String groupId, String[] tags, Set<String> extras, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -243,7 +234,7 @@ public class PoolsInterface {
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
      */
-    public PhotoList<Photo> getPhotos(String groupId, String[] tags, int perPage, int page) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getPhotos(String groupId, String[] tags, int perPage, int page) throws FlickrException {
         return getPhotos(groupId, tags, Extras.MIN_EXTRAS, perPage, page);
     }
 
@@ -254,11 +245,9 @@ public class PoolsInterface {
      *            The photo ID
      * @param groupId
      *            The group ID
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void remove(String photoId, String groupId) throws IOException, SAXException, FlickrException {
+    public void remove(String photoId, String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE);
         parameters.put(Flickr.API_KEY, apiKey);

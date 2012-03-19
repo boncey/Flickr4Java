@@ -4,21 +4,19 @@
 
 package com.flickr4java.flickr.photos.licenses;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
 
 /**
  * Interface for working with copyright licenses.
@@ -49,11 +47,9 @@ public class LicensesInterface {
      * This method does not require authentication.
      * 
      * @return A collection of License objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<License> getInfo() throws IOException, SAXException, FlickrException {
+    public Collection<License> getInfo() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -85,11 +81,9 @@ public class LicensesInterface {
      *            The photo to update the license for.
      * @param licenseId
      *            The license to apply, or 0 (zero) to remove the current license.
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void setLicense(String photoId, int licenseId) throws IOException, SAXException, FlickrException {
+    public void setLicense(String photoId, int licenseId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_LICENSE);
         parameters.put(Flickr.API_KEY, apiKey);

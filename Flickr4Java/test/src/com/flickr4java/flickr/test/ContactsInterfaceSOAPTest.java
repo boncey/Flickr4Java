@@ -5,7 +5,6 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,7 +12,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -34,7 +32,7 @@ public class ContactsInterfaceSOAPTest {
     private TestProperties testProperties;
 
     @Before
-    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
+    public void setUp() throws ParserConfigurationException, FlickrException {
         testProperties = new TestProperties();
 
         Flickr.debugStream = true;
@@ -53,7 +51,7 @@ public class ContactsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetList() throws FlickrException, IOException, SAXException {
+    public void testGetList() throws FlickrException {
         ContactsInterface iface = flickr.getContactsInterface();
         Collection<Contact> contacts = iface.getList();
         assertNotNull(contacts);
@@ -62,7 +60,7 @@ public class ContactsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetPublicList() throws FlickrException, IOException, SAXException {
+    public void testGetPublicList() throws FlickrException {
         ContactsInterface iface = flickr.getContactsInterface();
         Collection<Contact> contacts = iface.getPublicList(testProperties.getNsid());
         assertNotNull(contacts);

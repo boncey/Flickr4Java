@@ -1,12 +1,13 @@
 package com.flickr4java.flickr.test;
 
-import com.flickr4java.flickr.util.IOUtilities;
-
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
+
+import com.flickr4java.flickr.FlickrRuntimeException;
+import com.flickr4java.flickr.util.IOUtilities;
 
 /**
  * Wrapper for test properties.
@@ -93,7 +94,7 @@ public class TestProperties {
             in = getClass().getResourceAsStream("/setup.properties");
             properties.load(in);
         } catch (IOException e) {
-            throw new RuntimeException("Problem loading setup.properties", e);
+            throw new FlickrRuntimeException("Problem loading setup.properties", e);
         } finally {
             IOUtilities.close(in);
         }

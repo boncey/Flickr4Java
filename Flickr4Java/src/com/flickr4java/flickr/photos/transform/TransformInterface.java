@@ -9,9 +9,6 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +40,7 @@ public class TransformInterface {
      * @param degrees
      *            The degrees to rotate (90, 170 or 270)
      */
-    public void rotate(String photoId, int degrees) throws IOException, SAXException, FlickrException {
+    public void rotate(String photoId, int degrees) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ROTATE);
         parameters.put(Flickr.API_KEY, apiKey);

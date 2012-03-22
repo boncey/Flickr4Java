@@ -1,5 +1,15 @@
 package com.flickr4java.flickr.photos.comments;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -10,18 +20,6 @@ import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Work on Comments.
@@ -62,11 +60,9 @@ public class CommentsInterface {
      * @param commentText
      *            Text of the comment.
      * @return a unique comment id.
-     * @throws SAXException
-     * @throws IOException
      * @throws FlickrException
      */
-    public String addComment(String photoId, String commentText) throws IOException, SAXException, FlickrException {
+    public String addComment(String photoId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -90,11 +86,9 @@ public class CommentsInterface {
      * 
      * @param commentId
      *            The id of the comment to delete.
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void deleteComment(String commentId) throws IOException, SAXException, FlickrException {
+    public void deleteComment(String commentId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -119,11 +113,9 @@ public class CommentsInterface {
      *            The id of the comment to edit.
      * @param commentText
      *            Update the comment to this text.
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public void editComment(String commentId, String commentText) throws IOException, SAXException, FlickrException {
+    public void editComment(String commentId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_COMMENT);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -149,10 +141,8 @@ public class CommentsInterface {
      *            The id of the photo to fetch comments for.
      * @return a List of {@link Comment} objects.
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
-    public List<Comment> getList(String photoId) throws FlickrException, IOException, SAXException {
+    public List<Comment> getList(String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -222,11 +212,9 @@ public class CommentsInterface {
      *            The page offset.
      * @return List of photos
      * @throws FlickrException
-     * @throws IOException
-     * @throws SAXException
      */
     public PhotoList<Photo> getRecentForContacts(Date lastComment, ArrayList<String> contactsFilter, Set<String> extras, int perPage, int page)
-            throws FlickrException, IOException, SAXException {
+            throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", PhotosInterface.METHOD_GET_NOT_IN_SET);

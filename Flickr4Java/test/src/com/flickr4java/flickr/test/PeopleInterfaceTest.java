@@ -105,7 +105,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testAddDelete() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        iface.add(testProperties.getPhotoId(), testProperties.getNsid(), null, null, null, null);
+        iface.add(testProperties.getPhotoId(), testProperties.getNsid(), null);
         UserList<User> usrs = iface.getList(testProperties.getPhotoId());
         assertNotNull(usrs);
         assertEquals(1, usrs.size());

@@ -3,9 +3,6 @@
  */
 package com.flickr4java.flickr.util;
 
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.people.User;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,6 +12,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.people.User;
 
 /**
  * 
@@ -29,7 +30,7 @@ public class FileAuthStore implements AuthStore {
 
     private File authStoreDir;
 
-    public FileAuthStore(File authStoreDir) throws IOException {
+    public FileAuthStore(File authStoreDir) throws FlickrException {
         this.auths = new HashMap<String, Auth>();
         this.authStoreDir = authStoreDir;
 
@@ -37,30 +38,38 @@ public class FileAuthStore implements AuthStore {
             authStoreDir.mkdir();
 
         if (!authStoreDir.canRead()) {
-            throw new IOException("Cannot read " + authStoreDir.getCanonicalPath());
+            try {
+                throw new FlickrException("Cannot read " + authStoreDir.getCanonicalPath());
+            } catch (IOException e) {
+                throw new FlickrException(e.getMessage(), e);
+            }
         }
 
         this.load();
     }
 
-    private void load() throws IOException {
-        File[] authFiles = authStoreDir.listFiles(new AuthFilenameFilter());
+    private void load() throws FlickrException {
+        try {
+            File[] authFiles = authStoreDir.listFiles(new AuthFilenameFilter());
 
-        for (int i = 0; i < authFiles.length; i++) {
-            if (authFiles[i].isFile() && authFiles[i].canRead()) {
-                ObjectInputStream authStream = new ObjectInputStream(new FileInputStream(authFiles[i]));
-                Auth authInst = null;
-                try {
-                    authInst = (Auth) authStream.readObject();
-                } catch (ClassCastException cce) {
-                    // ignore. Its not an auth, so we won't store it. simple as that :-);
-                } catch (ClassNotFoundException e) {
-                    // yep, ignoring. LALALALALLALAL. I can't hear you :-)
-                }
-                if (authInst != null) {
-                    this.auths.put(authInst.getUser().getId(), authInst);
+            for (int i = 0; i < authFiles.length; i++) {
+                if (authFiles[i].isFile() && authFiles[i].canRead()) {
+                    ObjectInputStream authStream = new ObjectInputStream(new FileInputStream(authFiles[i]));
+                    Auth authInst = null;
+                    try {
+                        authInst = (Auth) authStream.readObject();
+                    } catch (ClassCastException cce) {
+                        // ignore. Its not an auth, so we won't store it. simple as that :-);
+                    } catch (ClassNotFoundException e) {
+                        // yep, ignoring. LALALALALLALAL. I can't hear you :-)
+                    }
+                    if (authInst != null) {
+                        this.auths.put(authInst.getUser().getId(), authInst);
+                    }
                 }
             }
+        } catch (IOException e) {
+            throw new FlickrException(e.getMessage(), e);
         }
     }
 

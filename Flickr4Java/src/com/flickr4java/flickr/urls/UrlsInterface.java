@@ -3,13 +3,11 @@
  */
 package com.flickr4java.flickr.urls;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -65,11 +63,9 @@ public class UrlsInterface {
      * @param groupId
      *            The group ID
      * @return The group URL
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public String getGroup(String groupId) throws IOException, SAXException, FlickrException {
+    public String getGroup(String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GROUP);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -91,11 +87,9 @@ public class UrlsInterface {
      * @param userId
      *            The user ID
      * @return The user photo URL
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public String getUserPhotos(String userId) throws IOException, SAXException, FlickrException {
+    public String getUserPhotos(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_USER_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -117,11 +111,9 @@ public class UrlsInterface {
      * @param userId
      *            The user ID
      * @return The URL
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public String getUserProfile(String userId) throws IOException, SAXException, FlickrException {
+    public String getUserProfile(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_USER_PROFILE);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -143,11 +135,9 @@ public class UrlsInterface {
      * @param url
      *            The url
      * @return The group
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Group lookupGroup(String url) throws IOException, SAXException, FlickrException {
+    public Group lookupGroup(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOOKUP_GROUP);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -173,11 +163,9 @@ public class UrlsInterface {
      * @param url
      *            The user profile URL
      * @return The username
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public String lookupUser(String url) throws IOException, SAXException, FlickrException {
+    public String lookupUser(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOOKUP_USER);
         parameters.put(Flickr.API_KEY, apiKey);

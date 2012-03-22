@@ -3,6 +3,16 @@
  */
 package com.flickr4java.flickr.tags;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -11,18 +21,6 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Interface for working with Flickr tags.
@@ -84,7 +82,7 @@ public class TagsInterface {
      * @param searchTag
      * @return a list of clusters
      */
-    public ClusterList getClusters(String searchTag) throws IOException, SAXException, FlickrException {
+    public ClusterList getClusters(String searchTag) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CLUSTERS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -121,11 +119,9 @@ public class TagsInterface {
      * @param tag
      * @param clusterId
      * @return PhotoList
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public PhotoList<Photo> getClusterPhotos(String tag, String clusterId) throws IOException, SAXException, FlickrException {
+    public PhotoList<Photo> getClusterPhotos(String tag, String clusterId) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CLUSTER_PHOTOS);
@@ -165,7 +161,7 @@ public class TagsInterface {
      *            maximum is 200
      * @return The collection of HotlistTag objects
      */
-    public Collection<HotlistTag> getHotList(String period, int count) throws IOException, SAXException, FlickrException {
+    public Collection<HotlistTag> getHotList(String period, int count) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_HOT_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -203,7 +199,7 @@ public class TagsInterface {
      *            The photo ID
      * @return The collection of Tag objects
      */
-    public Photo getListPhoto(String photoId) throws IOException, SAXException, FlickrException {
+    public Photo getListPhoto(String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -246,11 +242,9 @@ public class TagsInterface {
      * @param userId
      *            The User ID
      * @return The User object
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Tag> getListUser(String userId) throws IOException, SAXException, FlickrException {
+    public Collection<Tag> getListUser(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -286,11 +280,9 @@ public class TagsInterface {
      * @param userId
      *            The user ID
      * @return The collection of Tag objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Tag> getListUserPopular(String userId) throws IOException, SAXException, FlickrException {
+    public Collection<Tag> getListUserPopular(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_POPULAR);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -327,11 +319,9 @@ public class TagsInterface {
      * @param tagVal
      *            a tag to search for, or null
      * @return The collection of Tag objects
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<TagRaw> getListUserRaw(String tagVal) throws IOException, SAXException, FlickrException {
+    public Collection<TagRaw> getListUserRaw(String tagVal) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_RAW);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -374,11 +364,9 @@ public class TagsInterface {
      * @param tag
      *            The source tag
      * @return A RelatedTagsList object
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public RelatedTagsList getRelated(String tag) throws IOException, SAXException, FlickrException {
+    public RelatedTagsList getRelated(String tag) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_RELATED);
         parameters.put(Flickr.API_KEY, apiKey);

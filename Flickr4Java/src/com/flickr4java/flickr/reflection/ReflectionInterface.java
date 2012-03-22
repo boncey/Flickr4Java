@@ -3,22 +3,20 @@
  */
 package com.flickr4java.flickr.reflection;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for testing the complete implementation of all Flickr-methods.
@@ -61,11 +59,9 @@ public class ReflectionInterface {
      * @param methodName
      *            The method name
      * @return The Method object
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Method getMethodInfo(String methodName) throws IOException, SAXException, FlickrException {
+    public Method getMethodInfo(String methodName) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_METHOD_INFO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -182,11 +178,9 @@ public class ReflectionInterface {
      * Get a list of all methods.
      * 
      * @return The method names
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<String> getMethods() throws IOException, SAXException, FlickrException {
+    public Collection<String> getMethods() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_METHODS);
         parameters.put(Flickr.API_KEY, apiKey);

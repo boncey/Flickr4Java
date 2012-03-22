@@ -2,23 +2,21 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.SOAP;
-import com.flickr4java.flickr.people.User;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.SOAP;
+import com.flickr4java.flickr.people.User;
 
 /**
  * @author Matt Ray
@@ -43,18 +41,16 @@ public class TestInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testEcho() throws FlickrException, IOException, SAXException {
+    public void testEcho() throws FlickrException {
         TestInterface iface = flickr.getTestInterface();
         Map<String, String> params = new HashMap<String, String>();
         params.put("test", "test");
         Collection results = iface.echo(params);
         assertNotNull(results);
     }
-
     @Ignore
     @Test
-    public void testLogin() throws FlickrException, IOException, SAXException {
-        RequestContext requestContext = RequestContext.getRequestContext();
+    public void testLogin() throws FlickrException {
         TestInterface iface = flickr.getTestInterface();
         User user = iface.login();
         assertNotNull(user);

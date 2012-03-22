@@ -1,21 +1,19 @@
 package com.flickr4java.flickr.photos.upload;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
 
 /**
  * Checks the status of asynchronous photo upload tickets.
@@ -44,11 +42,9 @@ public class UploadInterface {
      * @param tickets
      *            a set of ticket ids (Strings) or {@link Ticket} objects containing ids
      * @return a list of {@link Ticket} objects.
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public List<Ticket> checkTickets(Set<String> tickets) throws IOException, SAXException, FlickrException {
+    public List<Ticket> checkTickets(Set<String> tickets) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CHECK_TICKETS);
         parameters.put(Flickr.API_KEY, apiKey);

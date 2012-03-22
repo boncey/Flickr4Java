@@ -4,6 +4,13 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.oauth.OAuthService;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.RequestContext;
@@ -12,18 +19,6 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.urls.UrlsInterface;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.oauth.OAuthService;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
 
 /**
  * @author Anthony Eden
@@ -35,7 +30,7 @@ public class UrlsInterfaceSOAPTest {
     private TestProperties testProperties;
 
     @Before
-    public void setUp() throws ParserConfigurationException, IOException {
+    public void setUp() {
         testProperties = new TestProperties();
 
         Flickr.debugStream = true;
@@ -55,7 +50,7 @@ public class UrlsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetGroup() throws FlickrException, IOException, SAXException {
+    public void testGetGroup() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getGroup(testProperties.getGroupId());
         assertEquals("http://www.flickr.com/groups/central/", url);
@@ -63,7 +58,7 @@ public class UrlsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetUserPhotos() throws FlickrException, IOException, SAXException {
+    public void testGetUserPhotos() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserPhotos(testProperties.getNsid());
         String username = testProperties.getUsername();
@@ -72,7 +67,7 @@ public class UrlsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetUserProfile() throws FlickrException, IOException, SAXException {
+    public void testGetUserProfile() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserProfile(testProperties.getNsid());
         String username = testProperties.getUsername();
@@ -81,7 +76,7 @@ public class UrlsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testLookupGroup() throws FlickrException, IOException, SAXException {
+    public void testLookupGroup() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         Group group = iface.lookupGroup("http://www.flickr.com/groups/central/");
         assertEquals("FlickrCentral", group.getName());
@@ -90,7 +85,7 @@ public class UrlsInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testLookupUser() throws FlickrException, IOException, SAXException {
+    public void testLookupUser() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String username = testProperties.getUsername();
         String usernameOnFlickr = iface.lookupUser(String.format("http://www.flickr.com/people/%s/", username));

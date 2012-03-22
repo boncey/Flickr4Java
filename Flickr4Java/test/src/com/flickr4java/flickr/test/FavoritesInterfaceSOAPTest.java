@@ -5,7 +5,6 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -14,7 +13,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -36,7 +34,7 @@ public class FavoritesInterfaceSOAPTest {
     private TestProperties testProperties;
 
     @Before
-    public void setUp() throws ParserConfigurationException, IOException, FlickrException, SAXException {
+    public void setUp() throws ParserConfigurationException, FlickrException {
         testProperties = new TestProperties();
 
         System.setProperty("http.proxyHost", "localhost");
@@ -59,7 +57,7 @@ public class FavoritesInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetList() throws FlickrException, IOException, SAXException {
+    public void testGetList() throws FlickrException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection<Photo> favorites = iface.getList(null, 0, 0, null);
         assertNotNull(favorites);
@@ -68,7 +66,7 @@ public class FavoritesInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetListWithExtras() throws FlickrException, IOException, SAXException {
+    public void testGetListWithExtras() throws FlickrException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection<Photo> favorites = iface.getList(null, 0, 0, Extras.ALL_EXTRAS);
         assertNotNull(favorites);
@@ -77,7 +75,7 @@ public class FavoritesInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testGetPublicList() throws FlickrException, IOException, SAXException {
+    public void testGetPublicList() throws FlickrException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection<Photo> favorites = iface.getPublicList("77348956@N00", 0, 0, null);
         assertNotNull(favorites);
@@ -86,7 +84,7 @@ public class FavoritesInterfaceSOAPTest {
 
     @Ignore
     @Test
-    public void testAddAndRemove() throws FlickrException, IOException, SAXException {
+    public void testAddAndRemove() throws FlickrException {
         String photoId = "2153378";
         FavoritesInterface iface = flickr.getFavoritesInterface();
         iface.add(photoId);

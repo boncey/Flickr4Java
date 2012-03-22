@@ -1,20 +1,7 @@
 package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertEquals;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.auth.Permission;
-import com.flickr4java.flickr.reflection.ReflectionInterface;
-import com.flickr4java.flickr.util.IOUtilities;
-
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,41 +9,33 @@ import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.reflection.ReflectionInterface;
+import com.flickr4java.flickr.util.IOUtilities;
+
 /**
  * Tests the basic completeness of the api.
  * 
  * @author till (Till Krech) flickr:extranoise
  * 
  */
-public class CompletenessTest {
-
-    Flickr flickr = null;
-
-    private TestProperties testProperties;
+public class CompletenessTest extends Flickr4JavaTest {
 
     Properties replacements;
 
     @Before
-    public void setUp() throws Exception {
-        testProperties = new TestProperties();
-        REST rest = new REST();
-
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
-
-        Auth auth = new Auth();
-        auth.setPermission(Permission.READ);
-        auth.setToken(testProperties.getToken());
-        auth.setTokenSecret(testProperties.getTokenSecret());
-
-        RequestContext requestContext = RequestContext.getRequestContext();
-        requestContext.setAuth(auth);
-        flickr.setAuth(auth);
-
+    public void setUp() throws FlickrException {
+        super.setUp();
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("/completenesstest.properties");
             replacements = new Properties();
             replacements.load(in);
+        } catch (IOException e) {
+            fail(e.getMessage());
         } finally {
             IOUtilities.close(in);
         }
@@ -64,7 +43,7 @@ public class CompletenessTest {
     }
 
     @Test
-    public void testIfComplete() throws IOException, SAXException, FlickrException {
+    public void testIfComplete() throws FlickrException {
         ReflectionInterface ri = flickr.getReflectionInterface();
         Iterator<String> mit = ri.getMethods().iterator();
         int notFound = 0;

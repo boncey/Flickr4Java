@@ -3,20 +3,19 @@
  */
 package com.flickr4java.flickr.test;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.people.User;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.people.User;
 
 /**
  * Interface for testing Flickr connectivity.
@@ -49,11 +48,9 @@ public class TestInterface {
      * @param params
      *            The parameters
      * @return The Collection of echoed elements
-     * @throws IOException
-     * @throws SAXException
      * @throws FlickrException
      */
-    public Collection<Element> echo(Map<String, String> params) throws IOException, SAXException, FlickrException {
+    public Collection<Element> echo(Map<String, String> params) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ECHO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -70,11 +67,10 @@ public class TestInterface {
      * A testing method which checks if the caller is logged in then returns a User object.
      * 
      * @return The User object
-     * @throws IOException
      * @throws SAXException
      * @throws FlickrException
      */
-    public User login() throws IOException, SAXException, FlickrException {
+    public User login() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOGIN);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -96,11 +92,9 @@ public class TestInterface {
     /**
      * Null test. This method requires authentication with 'read' permission.
      * 
-     * @throws SAXException
-     * @throws IOException
      * @throws FlickrException
      */
-    public void null_() throws IOException, SAXException, FlickrException {
+    public void null_() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_NULL);
         parameters.put(Flickr.API_KEY, apiKey);

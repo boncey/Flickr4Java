@@ -3,6 +3,7 @@
  */
 package com.flickr4java.flickr.photos.people;
 
+import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,18 +56,18 @@ public class PeopleInterface {
      * @param personH
      * @throws FlickrException
      */
-    public void add(String photoId, String userId, String personX, String personY, String personW, String personH) throws FlickrException {
+    public void add(String photoId, String userId, Rectangle bounds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("user_id", userId);
-        if (personX != null && personY != null && personW != null && personH != null) {
-            parameters.put("person_x", personX);
-            parameters.put("person_y", personY);
-            parameters.put("person_w", personW);
-            parameters.put("person_h", personH);
+        if (bounds != null) {
+            parameters.put("person_x", bounds.x);
+            parameters.put("person_y", bounds.y);
+            parameters.put("person_w", bounds.width);
+            parameters.put("person_h", bounds.height);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
@@ -128,17 +129,17 @@ public class PeopleInterface {
      * @param personH
      * @throws FlickrException
      */
-    public void editCoords(String photoId, String userId, String personX, String personY, String personW, String personH) throws FlickrException {
+    public void editCoords(String photoId, String userId, Rectangle bounds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_COORDS);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("user_id", userId);
-        parameters.put("person_x", personX);
-        parameters.put("person_y", personY);
-        parameters.put("person_w", personW);
-        parameters.put("person_h", personH);
+        parameters.put("person_x", bounds.x);
+        parameters.put("person_y", bounds.y);
+        parameters.put("person_w", bounds.width);
+        parameters.put("person_h", bounds.height);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {

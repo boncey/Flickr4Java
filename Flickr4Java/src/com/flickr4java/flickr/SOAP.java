@@ -1,9 +1,11 @@
 package com.flickr4java.flickr;
 
 import java.io.ByteArrayInputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.xml.rpc.ServiceException;
 import javax.xml.soap.Name;
@@ -41,6 +43,10 @@ public class SOAP extends Transport {
     public static final String BODYELEMENT = "FlickrRequest";
 
     public static final String PATH = "/services/soap/";
+
+    private Integer connectTimeoutMs;
+
+    private Integer readTimeoutMs;
 
     // TODO [DJG] Configure service internally
     private OAuthService service;
@@ -135,6 +141,7 @@ public class SOAP extends Transport {
             call.setTargetEndpointAddress(url);
 
             request.addPayload(env.getAsString());
+            setTimeouts(request);
 
             // SOAPEnvelope envelope = call.invoke(env);
 
@@ -178,5 +185,32 @@ public class SOAP extends Transport {
         // TODO
 
         return null;
+    }
+
+
+    private void setTimeouts(HttpURLConnection conn) {
+        if (connectTimeoutMs != null) {
+            conn.setConnectTimeout(connectTimeoutMs);
+        }
+        if (readTimeoutMs != null) {
+            conn.setReadTimeout(readTimeoutMs);
+        }
+    }
+    
+    private void setTimeouts(OAuthRequest request) {
+        if (connectTimeoutMs != null) {
+            request.setConnectTimeout(connectTimeoutMs, TimeUnit.MILLISECONDS);
+        }
+        if (readTimeoutMs != null) {
+            request.setReadTimeout(readTimeoutMs, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    public void setConnectTimeoutMs(Integer connectTimeoutMs) {
+        this.connectTimeoutMs = connectTimeoutMs;
+    }
+
+    public void setReadTimeoutMs(Integer readTimeoutMs) {
+        this.readTimeoutMs = readTimeoutMs;
     }
 }

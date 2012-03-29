@@ -3,6 +3,7 @@
  */
 package com.flickr4java.flickr.people;
 
+import com.flickr4java.flickr.contacts.Contact;
 import com.flickr4java.flickr.contacts.OnlineStatus;
 import com.flickr4java.flickr.util.BuddyIconable;
 import com.flickr4java.flickr.util.StringUtilities;
@@ -77,6 +78,8 @@ public class User implements Serializable, BuddyIconable {
     private boolean revFriend;
 
     private boolean revFamily;
+    
+    private String pathAlias;
 
     public User() {
     }
@@ -474,5 +477,21 @@ public class User implements Serializable, BuddyIconable {
 
     public boolean isRevFamily() {
         return revFamily;
+    }
+
+    /**
+     * Get the user's path alias, which may appear instead of nsid in urls published by Flickr. For example feeds have urls of the form
+     * .../photos/${NSID_OR_PATHALIAS}/${PHOTO_ID} & .../people/${NSID_OR_PATHALIAS}. This allows clients to look up a {@link User} given such a url. (Note
+     * that <code>&lt;author&gt;</code> elements in feeds have a <code>&lt;flickr:nsid&gt;</code> child which could be used instead of the lookup this method
+     * enables.)
+     * 
+     * @return the path alias, or null
+     */
+    String getPathAlias() {
+        return pathAlias;
+    }
+
+    void setPathAlias(String pathAlias) {
+        this.pathAlias = pathAlias;
     }
 }

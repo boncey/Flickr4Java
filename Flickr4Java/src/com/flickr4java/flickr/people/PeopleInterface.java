@@ -155,6 +155,8 @@ public class PeopleInterface {
         user.setRevContact("1".equals(userElement.getAttribute("revcontact")));
         user.setRevFriend("1".equals(userElement.getAttribute("revfriend")));
         user.setRevFamily("1".equals(userElement.getAttribute("revfamily")));
+        String lPathAlias = userElement.getAttribute("path_alias");
+        user.setPathAlias(lPathAlias == null || "".equals(lPathAlias) ? null : lPathAlias);
         user.setUsername(XMLUtilities.getChildValue(userElement, "username"));
         user.setRealName(XMLUtilities.getChildValue(userElement, "realname"));
         user.setLocation(XMLUtilities.getChildValue(userElement, "location"));

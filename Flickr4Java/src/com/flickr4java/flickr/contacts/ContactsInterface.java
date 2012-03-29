@@ -73,6 +73,8 @@ public class ContactsInterface {
             contact.setFriend("1".equals(contactElement.getAttribute("friend")));
             contact.setFamily("1".equals(contactElement.getAttribute("family")));
             contact.setIgnored("1".equals(contactElement.getAttribute("ignored")));
+            String lPathAlias = contactElement.getAttribute("path_alias");
+            contact.setPathAlias(lPathAlias == null || "".equals(lPathAlias) ? null : lPathAlias);
             contact.setOnline(OnlineStatus.fromType(contactElement.getAttribute("online")));
             contact.setIconFarm(contactElement.getAttribute("iconfarm"));
             contact.setIconServer(contactElement.getAttribute("iconserver"));

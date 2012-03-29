@@ -6,18 +6,13 @@ package com.flickr4java.flickr.photos;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.regex.Matcher;
 
 import javax.imageio.ImageIO;
 
@@ -27,7 +22,6 @@ import com.flickr4java.flickr.stats.Stats;
 import com.flickr4java.flickr.stats.StatsInterface;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.util.StringUtilities;
 
 /**
  * Class representing metadata about a Flickr photo. Instances do not actually contain the photo data, however you can obtain the photo data by calling
@@ -971,157 +965,32 @@ public class Photo {
         this.stats = stats;
     }
 
-    /**
-     * @see java.lang.Object#equals(java.lang.Object)
-     * @see <a href="http://www.ibm.com/developerworks/library/j-dyn0603/">http://www.ibm.com/developerworks/library/j-dyn0603/</a>
-     */
     @Override
     public boolean equals(Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-        // object must be Photo at this point
-        Photo test = (Photo) obj;
-        Class cl = this.getClass();
-        Method[] method = cl.getMethods();
-        for (int i = 0; i < method.length; i++) {
-            Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
-            if (m.find() && !method[i].getName().equals("getClass")) {
-                try {
-                    Object res = method[i].invoke(this, null);
-                    Object resTest = method[i].invoke(test, null);
-                    String retType = method[i].getReturnType().toString();
-                    if (retType.indexOf("class") == 0) {
-                        if (res != null && resTest != null) {
-                            // System.out.println("class: " + method[i].getName());
-                            if (!res.equals(resTest)) {
-                                return false;
-                            }
-                        } else {
-                            if (res == null && resTest == null) {
-                                // nop
-                            } else if (res == null || resTest == null) {
-                                // one is set and one is null
-                                return false;
-                            }
-                        }
-                    } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(resTest)) {
-                            return false;
-                        }
-                    } else if (retType.equals("boolean")) {
-                        if (!((Boolean) res).equals(resTest)) {
-                            return false;
-                        }
-                    } else if (retType.equals("interface java.util.Collection")) {
-                        if (res != null && resTest != null) {
-                            List col = (List) res;
-                            List colTest = (List) resTest;
-                            if (col.size() != colTest.size()) {
-                                return false;
-                            }
-                            for (int j = 0; j < col.size(); j++) {
-                                Object tobj1 = col.get(j);
-                                Object tobj2 = colTest.get(j);
-                                if (tobj1 instanceof Tag) {
-                                    Tag tag1 = (Tag) tobj1;
-                                    Tag tag2 = (Tag) tobj2;
-                                    if (!tag1.equals(tag2)) {
-                                        return false;
-                                    }
-                                } else if (tobj1 instanceof PhotoUrl) {
-                                    PhotoUrl url1 = (PhotoUrl) tobj1;
-                                    PhotoUrl url2 = (PhotoUrl) tobj2;
-                                    if (!url1.equals(url2)) {
-                                        return false;
-                                    }
-                                } else if (tobj1 instanceof Note) {
-                                    Note note1 = (Note) tobj1;
-                                    Note note2 = (Note) tobj2;
-                                    if (!note1.equals(note2)) {
-                                        return false;
-                                    }
-                                } else {
-                                    System.out.println("Photo unhandled object: " + tobj1.getClass().getName());
-                                }
-                            }
-                        } else {
-                            if (res == null && resTest != null) {
-                                return false;
-                            }
-                            if (res != null && resTest == null) {
-                                return false;
-                            }
-                        }
-                    } else {
-                        System.out.println("Photo#equals() missing type " + method[i].getName() + "|" + method[i].getReturnType().toString());
-                    }
-                } catch (IllegalAccessException ex) {
-                    System.out.println("equals " + method[i].getName() + " " + ex);
-                } catch (InvocationTargetException ex) {
-                    // System.out.println("equals " + method[i].getName() + " " + ex);
-                } catch (Exception ex) {
-                    System.out.println("equals " + method[i].getName() + " " + ex);
-                }
-            }
+        if (obj == this) {
+            return true;
         }
-        return true;
+        Photo test = (Photo) obj;
+        // TODO: not sure if these tests are sufficient
+        return areEqual(id, test.id) && areEqual(secret, test.secret);
     }
 
-    /**
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
-        int hash = 1;
-        Class cl = this.getClass();
-        Method[] method = cl.getMethods();
-        for (int i = 0; i < method.length; i++) {
-            Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
-            if (m.find() && !method[i].getName().equals("getClass")) {
-                Object res = null;
-                try {
-                    res = method[i].invoke(this, null);
-                } catch (IllegalAccessException ex) {
-                    System.out.println("Photo hashCode " + method[i].getName() + " " + ex);
-                } catch (InvocationTargetException ex) {
-                    // System.out.println("hashCode " + method[i].getName() + " " + ex);
-                }
-                if (res != null) {
-                    if (res instanceof Boolean) {
-                        Boolean bool = (Boolean) res;
-                        hash += bool.hashCode();
-                    } else if (res instanceof Integer) {
-                        Integer inte = (Integer) res;
-                        hash += inte.hashCode();
-                    } else if (res instanceof String) {
-                        String str = (String) res;
-                        hash += str.hashCode();
-                    } else if (res instanceof Editability) {
-                        Editability edit = (Editability) res;
-                        hash += edit.hashCode();
-                    } else if (res instanceof GeoData) {
-                        GeoData edit = (GeoData) res;
-                        hash += edit.hashCode();
-                    } else if (res instanceof Size) {
-                        Size size = (Size) res;
-                        hash += size.hashCode();
-                    } else if (res instanceof Permissions) {
-                        Permissions perm = (Permissions) res;
-                        hash += perm.hashCode();
-                    } else if (res instanceof User) {
-                        User user = (User) res;
-                        hash += user.hashCode();
-                    } else if (res instanceof ArrayList) {
-                        ArrayList list = (ArrayList) res;
-                        hash += list.hashCode();
-                    } else {
-                        System.out.println("Photo hashCode unrecognised object: " + res.getClass().getName());
-                    }
-                }
-            }
+        int hash = 83;
+        if (id != null) {
+            hash ^= id.hashCode();
+        }
+        if (secret != null) {
+            hash ^= secret.hashCode();
         }
         return hash;
     }
 
+    private boolean areEqual(Object x, Object y) {
+        return x == null ? y == null : x.equals(y);
+    }
 }

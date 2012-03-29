@@ -3,12 +3,6 @@
  */
 package com.flickr4java.flickr.tags;
 
-import com.flickr4java.flickr.util.StringUtilities;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.regex.Matcher;
-
 /**
  * @author Anthony Eden
  */
@@ -87,40 +81,12 @@ public class Tag {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-        // object must be GeoData at this point
-        Tag test = (Tag) obj;
-        Class cl = this.getClass();
-        Method[] method = cl.getMethods();
-        for (int i = 0; i < method.length; i++) {
-            Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
-            if (m.find() && !method[i].getName().equals("getClass")) {
-                try {
-                    Object res = method[i].invoke(this, null);
-                    Object resTest = method[i].invoke(test, null);
-                    String retType = method[i].getReturnType().toString();
-                    if (retType.indexOf("class") == 0) {
-                        if (res != null && resTest != null) {
-                            if (!res.equals(resTest))
-                                return false;
-                        } else {
-                            // return false;
-                        }
-                    } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer) resTest)))
-                            return false;
-                    } else {
-                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
-                    }
-                } catch (IllegalAccessException ex) {
-                    System.out.println("Size equals " + method[i].getName() + " " + ex);
-                } catch (InvocationTargetException ex) {
-                    // System.out.println("equals " + method[i].getName() + " " + ex);
-                } catch (Exception ex) {
-                    System.out.println("Size equals " + method[i].getName() + " " + ex);
-                }
-            }
+        if (obj == this) {
+            return true;
         }
-        return true;
+        Tag test = (Tag) obj;
+        return count == test.count && areEqual(value, test.value) && areEqual(raw, test.raw) && areEqual(author, test.author)
+                && areEqual(authorName, test.authorName) && areEqual(id, test.id);
     }
 
     @Override
@@ -138,5 +104,9 @@ public class Tag {
         if (id != null)
             hash += id.hashCode();
         return hash;
+    }
+
+    private boolean areEqual(Object x, Object y) {
+        return x == null ? y == null : x.equals(y);
     }
 }

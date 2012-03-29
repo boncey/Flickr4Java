@@ -3,12 +3,6 @@
  */
 package com.flickr4java.flickr.photos;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.regex.Matcher;
-
-import com.flickr4java.flickr.util.StringUtilities;
-
 /**
  * This class descibes a Size of a Photo.
  * <p>
@@ -206,40 +200,11 @@ public class Size {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-        // object must be GeoData at this point
-        Size test = (Size) obj;
-        Class cl = this.getClass();
-        Method[] method = cl.getMethods();
-        for (int i = 0; i < method.length; i++) {
-            Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
-            if (m.find() && !method[i].getName().equals("getClass")) {
-                try {
-                    Object res = method[i].invoke(this, null);
-                    Object resTest = method[i].invoke(test, null);
-                    String retType = method[i].getReturnType().toString();
-                    if (retType.indexOf("class") == 0) {
-                        if (res != null && resTest != null) {
-                            if (!res.equals(resTest))
-                                return false;
-                        } else {
-                            // return false;
-                        }
-                    } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer) resTest)))
-                            return false;
-                    } else {
-                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
-                    }
-                } catch (IllegalAccessException ex) {
-                    System.out.println("Size equals " + method[i].getName() + " " + ex);
-                } catch (InvocationTargetException ex) {
-                    // System.out.println("equals " + method[i].getName() + " " + ex);
-                } catch (Exception ex) {
-                    System.out.println("Size equals " + method[i].getName() + " " + ex);
-                }
-            }
+        if (obj == this) {
+            return true;
         }
-        return true;
+        Size test = (Size) obj;
+        return label == test.label && width == test.width && height == test.height && areEqual(source, test.source) && areEqual(url, test.url);
     }
 
     @Override
@@ -253,5 +218,9 @@ public class Size {
         if (url != null)
             hash += url.hashCode();
         return hash;
+    }
+
+    private boolean areEqual(Object x, Object y) {
+        return x == null ? y == null : x.equals(y);
     }
 }

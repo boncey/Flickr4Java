@@ -1,11 +1,5 @@
 package com.flickr4java.flickr.photos;
 
-import com.flickr4java.flickr.util.StringUtilities;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.regex.Matcher;
-
 /**
  * A geographic position.
  * 
@@ -76,43 +70,11 @@ public class GeoData {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-        // object must be GeoData at this point
-        GeoData test = (GeoData) obj;
-        Class cl = this.getClass();
-        Method[] method = cl.getMethods();
-        for (int i = 0; i < method.length; i++) {
-            Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
-            if (m.find() && !method[i].getName().equals("getClass")) {
-                try {
-                    Object res = method[i].invoke(this, null);
-                    Object resTest = method[i].invoke(test, null);
-                    String retType = method[i].getReturnType().toString();
-                    if (retType.indexOf("class") == 0) {
-                        if (res != null && resTest != null) {
-                            if (!res.equals(resTest))
-                                return false;
-                        } else {
-                            // return false;
-                        }
-                    } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer) resTest)))
-                            return false;
-                    } else if (retType.equals("float")) {
-                        if (!((Float) res).equals(((Float) resTest)))
-                            return false;
-                    } else {
-                        System.out.println(method[i].getName() + "|" + method[i].getReturnType().toString());
-                    }
-                } catch (IllegalAccessException ex) {
-                    System.out.println("GeoData equals " + method[i].getName() + " " + ex);
-                } catch (InvocationTargetException ex) {
-                    // System.out.println("equals " + method[i].getName() + " " + ex);
-                } catch (Exception ex) {
-                    System.out.println("GeoData equals " + method[i].getName() + " " + ex);
-                }
-            }
+        if (obj == this) {
+            return true;
         }
-        return true;
+        GeoData test = (GeoData) obj;
+        return longitude == test.longitude && latitude == test.latitude && accuracy == test.accuracy;
     }
 
     @Override

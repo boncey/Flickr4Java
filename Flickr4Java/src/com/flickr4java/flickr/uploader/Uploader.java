@@ -277,4 +277,14 @@ public class Uploader {
         return parameters;
     }
 
+    /**
+     * Return the {@link REST} impl used by this instance so that properties can
+     * be set on it, eg {@link REST#setConnectTimeoutMs(Integer)}.  TODO: should
+     * return a wrapper that only allows "safe" properties to be set.
+     * 
+     * @return The {@link REST} transport used by this instance
+     */
+    public REST getTransport() {
+        return (REST) transport;
+    }
 }

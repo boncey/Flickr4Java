@@ -214,8 +214,8 @@ public class Size {
             Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
             if (m.find() && !method[i].getName().equals("getClass")) {
                 try {
-                    Object res = method[i].invoke(this, null);
-                    Object resTest = method[i].invoke(test, null);
+                    Object res = method[i].invoke(this);
+                    Object resTest = method[i].invoke(test);
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {

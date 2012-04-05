@@ -57,6 +57,14 @@ public class Photo {
 
     private static final String LARGE_IMAGE_SUFFIX = "_b.jpg";
 
+    private static final String SQUARE_LARGE_IMAGE_SUFFIX = "_q.jpg";
+
+    private static final String SQUARE_320_IMAGE_SUFFIX = "_n.jpg";
+
+    private static final String MEDIUM_640_IMAGE_SUFFIX = "_z.jpg";
+
+    private static final String MEDIUM_800_IMAGE_SUFFIX = "_c.jpg";
+
     private Size squareSize;
 
     private Size smallSize;
@@ -68,6 +76,14 @@ public class Photo {
     private Size largeSize;
 
     private Size originalSize;
+
+    private Size squareLargeSize;
+
+    private Size small320Size;
+
+    private Size medium640Size;
+
+    private Size medium800Size;
 
     private String id;
 
@@ -718,6 +734,41 @@ public class Photo {
         }
     }
 
+    public String getSquareLargeUrl() {
+        if (squareLargeSize == null) {
+            return getBaseImageUrl() + SQUARE_LARGE_IMAGE_SUFFIX;
+        } else {
+            return squareLargeSize.getSource();
+        }
+    }
+
+
+    public String getSmall320Url() {
+        if (small320Size == null) {
+            return getBaseImageUrl() + SQUARE_320_IMAGE_SUFFIX;
+        } else {
+            return small320Size.getSource();
+        }
+    }
+
+
+    public String getMedium640Url() {
+        if (medium640Size == null) {
+            return getBaseImageUrl() + MEDIUM_640_IMAGE_SUFFIX;
+        } else {
+            return medium640Size.getSource();
+        }
+    }
+
+
+    public String getMedium800Url() {
+        if (medium800Size == null) {
+            return getBaseImageUrl() + MEDIUM_800_IMAGE_SUFFIX;
+        } else {
+            return medium800Size.getSource();
+        }
+    }
+
     /**
      * Get an image using the specified URL suffix.
      * 
@@ -920,6 +971,14 @@ public class Photo {
                 largeSize = size;
             } else if (size.getLabel() == Size.ORIGINAL) {
                 originalSize = size;
+            } else if (size.getLabel() == Size.SQUARE_LARGE) {
+                squareLargeSize = size;
+            } else if (size.getLabel() == Size.SMALL_320) {
+                small320Size = size;
+            } else if (size.getLabel() == Size.MEDIUM_640) {
+                medium640Size = size;
+            } else if (size.getLabel() == Size.MEDIUM_800) {
+                medium800Size = size;
             }
         }
     }
@@ -943,9 +1002,25 @@ public class Photo {
     public Size getLargeSize() {
         return largeSize;
     }
-
+    
     public Size getOriginalSize() {
         return originalSize;
+    }
+
+    public Size getSquareLargeSize() {
+        return squareLargeSize;
+    }
+
+    public Size getSmall320Size() {
+        return small320Size;
+    }
+
+    public Size getMedium640Size() {
+        return medium640Size;
+    }
+
+    public Size getMedium800Size() {
+        return medium800Size;
     }
 
     /**

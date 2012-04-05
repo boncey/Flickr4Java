@@ -325,8 +325,8 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         Photo photo = iface.getInfo(photoId, null);
         BufferedImage image = iface.getImage(photo, Size.THUMB);
         assertNotNull(image);
-        assertEquals(100, image.getWidth());
-        assertEquals(75, image.getHeight());
+        assertEquals(67, image.getWidth());
+        assertEquals(100, image.getHeight());
         ImageIO.write(image, "jpg", thumbnailFile);
     }
 
@@ -381,18 +381,18 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
     public void testSetSizes() {
         List<Size> sizes = new ArrayList<Size>();
         Size size = new Size();
-        size.setLabel("Square");
-        size.setWidth("75");
-        size.setHeight("75");
-        size.setSource("urlSquare");
-        size.setUrl("urlSquarePage");
-        sizes.add(size);
-        size = new Size();
         size.setLabel("Thumbnail");
         size.setWidth("100");
         size.setHeight("75");
         size.setSource("urlThumb");
         size.setUrl("urlThumbPage");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Square");
+        size.setWidth("75");
+        size.setHeight("75");
+        size.setSource("urlSquare");
+        size.setUrl("urlSquarePage");
         sizes.add(size);
         size = new Size();
         size.setLabel("Small");
@@ -422,6 +422,34 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         size.setSource("urlLarge");
         size.setUrl("urlLargePage");
         sizes.add(size);
+        size = new Size();
+        size.setLabel("Square Large");
+        size.setWidth("150");
+        size.setHeight("150");
+        size.setSource("urlSquareLarge");
+        size.setUrl("urlSquareLargePage");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Small 320");
+        size.setWidth("320");
+        size.setHeight("240");
+        size.setSource("urlSmall320");
+        size.setUrl("urlSmall320Page");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Medium 640");
+        size.setWidth("640");
+        size.setHeight("320");
+        size.setSource("urlMedium640");
+        size.setUrl("urlMedium640Page");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Medium 800");
+        size.setWidth("800");
+        size.setHeight("500");
+        size.setSource("urlMedium800");
+        size.setUrl("urlMedium800Page");
+        sizes.add(size);
 
         Photo p = new Photo();
         p.setId("id");
@@ -435,6 +463,10 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         assertEquals("http://farm1.static.flickr.com/server/id_secret_t.jpg", p.getThumbnailUrl());
         assertEquals("http://farm1.static.flickr.com/server/id_secret.jpg", p.getMediumUrl());
         assertEquals("http://farm1.static.flickr.com/server/id_secret_b.jpg", p.getLargeUrl());
+        assertEquals("http://farm1.static.flickr.com/server/id_secret_q.jpg", p.getSquareLargeUrl());
+        assertEquals("http://farm1.static.flickr.com/server/id_secret_n.jpg", p.getSmall320Url());
+        assertEquals("http://farm1.static.flickr.com/server/id_secret_z.jpg", p.getMedium640Url());
+        assertEquals("http://farm1.static.flickr.com/server/id_secret_c.jpg", p.getMedium800Url());
         try {
             assertEquals("http://farm1.static.flickr.com/server/id_osecret_o.jpg", p.getOriginalUrl());
         } catch (FlickrException ex) {
@@ -446,6 +478,10 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         assertEquals("urlThumb", p.getThumbnailUrl());
         assertEquals("urlMedium", p.getMediumUrl());
         assertEquals("urlLarge", p.getLargeUrl());
+        assertEquals("urlSquareLarge", p.getSquareLargeUrl());
+        assertEquals("urlSmall320", p.getSmall320Url());
+        assertEquals("urlMedium640", p.getMedium640Url());
+        assertEquals("urlMedium800", p.getMedium800Url());
         try {
             assertEquals("urlOriginal", p.getOriginalUrl());
         } catch (FlickrException ex) {

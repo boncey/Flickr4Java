@@ -1355,6 +1355,14 @@ public class PhotosInterface {
                 urlStr = photo.getLargeUrl();
             } else if (size == Size.ORIGINAL) {
                 urlStr = photo.getOriginalUrl();
+            } else if (size == Size.SQUARE_LARGE) {
+                urlStr = photo.getSquareLargeUrl();
+            } else if (size == Size.SMALL_320) {
+                urlStr = photo.getSmall320Url();
+            } else if (size == Size.MEDIUM_640) {
+                urlStr = photo.getMedium640Url();
+            } else if (size == Size.MEDIUM_800) {
+                urlStr = photo.getMedium800Url();
             } else {
                 throw new FlickrException("0", "Unknown Photo-size");
             }

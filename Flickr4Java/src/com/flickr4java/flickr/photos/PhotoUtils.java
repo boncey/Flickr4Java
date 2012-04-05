@@ -125,6 +125,34 @@ public final class PhotoUtils {
             sizeT.setSource(urlTmp);
             sizes.add(sizeT);
         }
+        urlTmp = photoElement.getAttribute("url_q");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.SQUARE_LARGE);
+            sizeT.setSource(urlTmp);
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_n");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.SMALL_320);
+            sizeT.setSource(urlTmp);
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_z");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.MEDIUM_640);
+            sizeT.setSource(urlTmp);
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_c");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.MEDIUM_800);
+            sizeT.setSource(urlTmp);
+            sizes.add(sizeT);
+        }
         if (sizes.size() > 0) {
             photo.setSizes(sizes);
         }

@@ -1,167 +1,19 @@
-Release 1.0a1 (Feburary 21, 2005):
+Release 1. ():
  - Initial release.
 
-Release 1.0a2 (February 24, 2005):
- - Added photo upload support.
- - Implemented PoolsInterface.
- - Added more JavaDocs.
+Release 2. (April 5, 2012):
+ - Completeness Release
+ - Implemented API Methods for the following:
++ URL API
++ Stats API
++ Photosets API
++ PhotosetsComments API
++ People API
++ Collections API
++ Galleries API
+ - Suggestion and Push API's remain unimplemented, as the functionality is yet to be released from Flickr
+ - Cleaned up use of Exceptions. Flickr4Java will throw a FlickrException, cleaned up API to reflect this
+ - Implemented some JUnit tests
 
-Release 1.0a3 (March 8, 2005):
- - Authentication is now specified in a ThreadLocal instance of the RequestContext class.
- - Added simplified constructors to Flickr and Uploader.
- - Fixed README.
 
-Release 1.0a4 (March 31, 2005):
- - Fixed bug in PhotosInterface reported by Rozim.
- - Fixed bug reported by tomandkate.
-
-Release 1.0a5 (April 1, 2005):
- - Photo now includes methods for obtaining BufferedImage objects.
-
-Release 1.0a6 (April 15, 2005):
- - Updated FavoritesInterfaceTest to use RequestContext for authentication
- - Bug in blogs interface: needpassword should be needspassword
- - Bug in ContactsInterface.getList(): id should be nsid
- - Added realName field to Contact
- - Bug in ContactsInterface.getPublicList(): id should be nsid
- - Fixed bug in FavoritesInterface.getList(): per_page and page parameters were not correctly specified
- - Added extras parameter to FavoritesInterface.getList() and getPublicList()
- - Fixed bug in FavoritesInterface: returned attribute "name" should be "title"
- - Photo.setDateTaken and Photo.setDatePosted now ignore empty and null Strings as values
- - Added DebugInputStream for printing the responses sent from Flickr
-
-Release 1.0a7 (April 21, 2005):
- - Added fix for case where returned contact element has no online status attribute
- - Fixed photosets cases where an empty description is returned
- - Started changing all element value retrieval to use the XMLUtilities class
- - Added reflection package which implements the flickr.reflection methods
- - Added implementation for flickr.tags.getRelated
-
-Release 1.0a8 (May 21, 2005):
- - Implemented PhotosInterface methods: getContext(), getExif(), getNotInSet()
- - Fixed problem in UserIterface with empty returned elements
- - Fixed problem in GroupsIterface with empty returned elements
- - Updated test cases
- - Added note about lack of thread safety in the README
- - Added PhotoList class which is returned from PhotosInterface.search() and which
-   contains additional metadata about the search results.
-
-Release 1.0a9 (August 31, 2005):
- - Added SOAP implementation (courtesy of Matthew Ray)
- - Added new authentication API implementation
- - Deprecated methods which are being removed from the Flickr API
- - Implemented getUrls() in Photo class. Implemented getUrl() using first value from getUrls()
- - Added getXXXUrl() methods for getting URLs to get to different image sizes.
- - Fixed the getTitle() bug
-
-Release 1.0b1 (October 2, 2006):
- - Updated to support changes to Flickr APIs
- 
-Release 1.0b2 (February 25, 2007):
- - Added farm-attribute to photo-URL
- - PoolsInterface.getPhotos() now returns a PhotoList
- - Added Throttle to Group
- - XMLUtilities has two new helper functions getIntAttribute and getBooleanAttribute
- - Fixed Auth-Issue
- - More Interfaces that read lists of Photos now return PhotoList
- - changed TransformationInterface degree-format from double to int
- - generating timestamps from Dates in PhotosInterface.getCounts()
- 
-Release 1.0b3 (February 26, 2007):
- - The PhotoList requested in PeopleList contains no originalformat.
-   PhotoUtils.createPhoto() now sets jpg as originalformat if none is available.
-
-Release 1.0b4 (July 23, 2007):
- - Fixed bug in PeopleInterface.getPublicGroups()
- - PhotosetsInterface.getPhotos() now has full functionality.
- - PeoplesInterface.getPhotos() added missing extras
- - Added ActivityInterface
- - Added PhotosInterface.getFavorites()
- - Added TagsInterface.getHotList()
- - Added TagsInterface.getListUserRaw()
- - Photo.getOriginalUrl() now throws Exception if originalsecret is not available!
- - UrlsInterface.lookupGroup() now returns a Group. Not only the groupname!
- - The default for extrasOriginalFormat in SearchParameters is no true.
- - Uploader uses a less memory-consuming way to upload large images (by Vijay)
- - Urlencoding SearchParameters.setText(). Encoding is done in UrlUtilities.
- - added TagsInterface.getHotList()
- - added TagsInterface.getListUserRaw()
- - PhotoSetsInterface.getList() the argument (userId) is now optional. Can be null.
- - FavoritesInterface uses PhotoUtils.createPhoto() on getList()/getPublicList()
-   to generate correct Photos
- - PhotoUtils.createPhoto() setting of The flags isPublic, isFriend and isFamily fixed.
- - SearchResultList added checks to prevent NumberFormatException
- - User.setPhotosFirstDateTaken() and User.setPhotosFirstDate() args can be null.
- - Two new methods in PhotosInterface setContentType() and setSafetyLevel()
- - Added PrefsInterface
- 
- Release 1.0b5 (November 04, 2007):
- - PeopleInterface#getInfo now knows the iconFarm-attribute.
- - User now has the convenience-method getBuddyIconUrl().
- - The methods setViews() and setRotation() set the value -1, if not available
- - Added BBox and safeSearch to SearchParameters
- - Added missing URL-encoding at REST-Post request.
- - com.flickr4java.flickr.test.photos.Size got constants for the sizes.
- - Fix of wrong tags-parsing in PhotoUtil for InterestingnessInterface#getList()
- - Set extras-constants in InterestingnessInterface deprecated,
-   as they belong to photos.Extras
- - The argument for extras changed from String-array to Set of Strings
-   in FavoritesInterface#getList() and FavoritesInterface#getPublicList()
- - moved privacy-level constants to Flickr
- - added PrefsInterface#getPrivacy()
- - corrected flickr-method name setContentType in PhotosInterface
- - completed asynchronous upload
- 
- Release 1.0 (December 09, 2007)
- - added proxy-setting for REST-requests
- - set the image-getters in Photo deprecated
- - PhotosInterface now has getImage() and getImagesAsStream to replace the deprecated getters
- - removed deprecated stuff
- - requesting UTF-8 encoding generating signatures in AuthUtilties
- - added Base64 taken from Xerces
- - added machine-tags to SearchParameters (patch by Matt Pettey)
- - User - Changed bandwidthMax, bandwidthUsed, filesizeMax to long (patch by Matt Pettey)
- 
- Release 1.1 (July 10, 2008)
- - added trailing slash to auth-URL (reported by Stephan Borchert).
- - In PhotosInterface.getFavorites creation of user-object moved into the right context (reported by hallijo)
- - fixed filename-extraction from URL in Backup-example (reported by Stephan Borchert)
- - corrected wrong parsing of long-values in User
- - updated javadoc in PhotosetsInterface#editMeta() (reported by Stephan Borchert).
- - added iconFarm to Group.
- - added createBuddyIconUrl() to UrlUtilities. Used by Group and User. 
- - Added missing raw-attribute in getListPhoto
- - replaced custom photo-creation with PhotoUtils.createPhoto() in getNotInSet()
- - Fixed NPE on TagsInterface.getHotList()
- - Fixed wrong method-constant in PhotosInterface#setPerms()
- - Added missing setDateTaken(), setDatePosted(), setLastUpdate() in PhotoUtils#createPhoto()
- - Extended PhotoUtils#createPhoto() to make User-Info of a Photoset available for Photos of PhotosetsInterface#getPhotos()
- - Dateformats are now thread-safe (Robert Tsai)
- - Added PrefsInterface#getGeoPerms()
- - Added media and woe_id to SearchParameters
- - GroupsInterface#browse() is deprecated, as the results from Flickr are empty for some time now
- 
- Release 1.2 (July 24, 2009)
- - added PlacesInterface
- - Radial geo search added (Sean Sullivan)
- - added SearchParameters#setHasGeo()
- - GeoInterface#batchCorrectLocation()
- - GeoInterface#correctLocation()
- - GeoInterface#photosForLocation()
- - GeoInterface#setContext()
- - added PlacesInterface#placesForBoundingBox()
- - added PlacesInterface#placesForContacts()
- - Extras has new attributes o_dims, views, media
- - added bad char to Backup#makeSafeFilename() (Benjamin Hill)
- - applied patch to Contact to implement BuddyIconable (Richard Barnett)
- - Set the place-type (Place) constants to the place-type ids as returned by getPlaceTypes()
- - added ContactsInterface#getListRecentlyUploaded()
- - added PlacesInterface#getShapeHistory()
- - API-Url changed to api.flickr.com
- - Bug 2648788 fixed
- - added CommentsInterface#getRecentForContacts()
- - added PandaInterface
- - removed api_sig from all methods, that can be called without authentication.
- - equals() and hashCode() implementation on Photo and its members.
- - SearchParameters - replaced the boolean toggles for extra attributes with Set of Extra's
  

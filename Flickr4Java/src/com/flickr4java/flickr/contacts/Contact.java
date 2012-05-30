@@ -153,11 +153,11 @@ public class Contact implements BuddyIconable {
      * 
      * @return the path alias, or null
      */
-    String getPathAlias() {
+    public String getPathAlias() {
         return pathAlias;
     }
 
-    void setPathAlias(String pathAlias) {
+    public void setPathAlias(String pathAlias) {
         this.pathAlias = pathAlias;
     }
 }

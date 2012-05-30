@@ -50,7 +50,7 @@ public class PeopleInterface {
 
     public static final String METHOD_GET_UPLOAD_STATUS = "flickr.people.getUploadStatus";
 
-    public static final String METHOD_GET_GET_PHOTOS = "flickr.people.getPhotos";
+    public static final String METHOD_GET_PHOTOS = "flickr.people.getPhotos";
 
     public static final String METHOD_GET_PHOTOS_OF = "flickr.people.getPhotosOf";
 
@@ -309,7 +309,7 @@ public class PeopleInterface {
             String contentType, String privacyFilter, Set<String> extras, int perPage, int page) throws FlickrException {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
+        parameters.put("method", METHOD_GET_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
@@ -380,7 +380,7 @@ public class PeopleInterface {
     public PhotoList<Photo> getPhotosOf(String userId, String ownerId, Set<String> extras, int perPage, int page) throws FlickrException {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
+        parameters.put("method", METHOD_GET_PHOTOS_OF);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);

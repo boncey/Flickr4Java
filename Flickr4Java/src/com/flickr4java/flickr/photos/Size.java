@@ -5,6 +5,9 @@ package com.flickr4java.flickr.photos;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 
 import com.flickr4java.flickr.util.StringUtilities;
@@ -79,6 +82,46 @@ public class Size {
      */
     public static final int ORIGINAL = 5;
 
+    /**
+     * Large Square 150x150
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int SQUARE_LARGE = 6;
+
+    /**
+     * Small, 320 px on the longest side
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int SMALL_320 = 7;
+
+    /**
+     * Medium, 640 px on the longest side
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int MEDIUM_640 = 8;
+
+    /**
+     * Medium, 640 px on the longest side
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int MEDIUM_800 = 9;
+
     private int label;
 
     private int width;
@@ -103,10 +146,16 @@ public class Size {
      * @see com.flickr4java.flickr.photos.Size#MEDIUM
      * @see com.flickr4java.flickr.photos.Size#LARGE
      * @see com.flickr4java.flickr.photos.Size#ORIGINAL
+     * @see com.flickr4java.flickr.photos.Size#LARGE_SQUARE
+     * @see com.flickr4java.flickr.photos.Size#SMALL_320
+     * @see com.flickr4java.flickr.photos.Size#MEDIUM_640
+     * @see com.flickr4java.flickr.photos.Size#MEDIUM_800
      */
     public int getLabel() {
         return label;
     }
+    
+    private final List<String> lstSizes = Arrays.asList("Thumbnail", "Square", "Small", "Medium", "Large", "Original", "Square Large", "Small 320", "Medium 640", "Medium 800");
 
     /**
      * Set the String-representation of size.
@@ -116,18 +165,9 @@ public class Size {
      * @param label
      */
     public void setLabel(String label) {
-        if (label.equals("Square")) {
-            setLabel(SQUARE);
-        } else if (label.equals("Thumbnail")) {
-            setLabel(THUMB);
-        } else if (label.equals("Small")) {
-            setLabel(SMALL);
-        } else if (label.equals("Medium")) {
-            setLabel(MEDIUM);
-        } else if (label.equals("Large")) {
-            setLabel(LARGE);
-        } else if (label.equals("Original")) {
-            setLabel(ORIGINAL);
+        int ix = lstSizes.indexOf(label);
+        if (ix != -1) {
+            setLabel(ix);
         }
     }
 
@@ -214,8 +254,8 @@ public class Size {
             Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
             if (m.find() && !method[i].getName().equals("getClass")) {
                 try {
-                    Object res = method[i].invoke(this, null);
-                    Object resTest = method[i].invoke(test, null);
+                    Object res = method[i].invoke(this);
+                    Object resTest = method[i].invoke(test);
                     String retType = method[i].getReturnType().toString();
                     if (retType.indexOf("class") == 0) {
                         if (res != null && resTest != null) {

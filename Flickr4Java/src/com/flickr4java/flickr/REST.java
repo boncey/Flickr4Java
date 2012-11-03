@@ -149,13 +149,7 @@ public class REST extends Transport {
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
         Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-        OAuthService service = null;
-        if (Flickr.debugRequest) {
-            service = new ServiceBuilder().debug().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
-                    .build();
-        } else {
-            service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret).build();
-        }
+        OAuthService service = createOAuthService(parameters, sharedSecret);
         service.signRequest(requestToken, request);
 
         if (Flickr.debugRequest) {
@@ -262,8 +256,7 @@ public class REST extends Transport {
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
         Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
-                .debug().build();
+        OAuthService service = createOAuthService(parameters, sharedSecret);
         service.signRequest(requestToken, request);
 
         if (multipart) {
@@ -306,6 +299,25 @@ public class REST extends Transport {
         } catch (IOException e) {
             throw new FlickrRuntimeException(e);
         }
+    }
+
+    /**
+     * 
+     * @param parameters
+     * @param sharedSecret
+     * @return
+     */
+    private OAuthService createOAuthService(Map<String, Object> parameters, String sharedSecret) {
+        OAuthService serviceBuilder;
+        if (Flickr.debugRequest) {
+            serviceBuilder = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
+                    .debug().build();
+        } else {
+            serviceBuilder = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
+                    .build();
+        }
+
+        return serviceBuilder;
     }
 
     /**

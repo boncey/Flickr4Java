@@ -309,13 +309,21 @@ public class PhotosetsInterface {
      * @return The Photosets collection
      * @throws FlickrException
      */
-    public Photosets getList(String userId) throws FlickrException {
+    public Photosets getList(String userId, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
 
         if (userId != null) {
             parameters.put("user_id", userId);
+        }
+        
+        if (perPage > 0) {
+            parameters.put("per_page", String.valueOf(perPage));
+        }
+
+        if (page > 0) {
+            parameters.put("page", String.valueOf(page));
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);

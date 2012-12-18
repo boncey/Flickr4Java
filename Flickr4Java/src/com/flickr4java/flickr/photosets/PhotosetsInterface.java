@@ -309,6 +309,25 @@ public class PhotosetsInterface {
      * @return The Photosets collection
      * @throws FlickrException
      */
+    @Deprecated
+    public Photosets getList(String userId) throws FlickrException {
+	    return getList(userId, 0, 0);
+	}
+    
+    /**
+     * Get a list of all photosets for the specified user.
+     * 
+     * This method does not require authentication. But to get a Photoset into the list, that contains just private photos, the call needs to be authenticated.
+     * 
+	 * @param userId
+     *            The User id
+	 * @param perPage
+     *            The number of photosets per page
+     * @param page
+     *            The page offset
+	 * @return The Photosets collection
+	 * @throws FlickrException
+	 */
     public Photosets getList(String userId, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
@@ -363,6 +382,37 @@ public class PhotosetsInterface {
 
         photosetsObject.setPhotosets(photosets);
         return photosetsObject;
+    }
+    
+    /**
+     * Convenience method.
+     * 
+     * Get the total number of sets belonging to a user
+     * @param userId
+     *            The User id
+	 * @return int The number of photosets
+	 * @throws FlickrException
+	 */
+	public int getPhotosetCount(String userId) throws FlickrException{
+		Map<String, Object> parameters = new HashMap<String, Object>();
+	    parameters.put("method", METHOD_GET_LIST);
+	    parameters.put(Flickr.API_KEY, apiKey);
+
+	    if (userId != null) {
+	        parameters.put("user_id", userId);
+	    }        
+	 
+        // Request the bare minimum
+	    parameters.put("per_page", String.valueOf(1));
+	    parameters.put("page", String.valueOf(1));
+	        
+	    Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+	    if (response.isError()) {
+	        throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+	    }
+	    Element photosetsElement = response.getPayload();
+	    
+	    return Integer.valueOf(photosetsElement.getAttribute("total"));
     }
 
     /**

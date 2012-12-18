@@ -5,17 +5,18 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-
-import java.util.Collection;
-import java.util.Iterator;
-
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoContext;
+
+import org.junit.Test;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * @author Anthony Eden
@@ -42,9 +43,9 @@ public class FavoritesInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testGetPublicList() throws FlickrException {
         FavoritesInterface iface = flickr.getFavoritesInterface();
-        Collection<Photo> favorites = iface.getPublicList("77348956@N00", 0, 0, null);
+        Collection<Photo> favorites = iface.getPublicList(testProperties.getNsid(), 0, 0, null);
         assertNotNull(favorites);
-        assertEquals(14, favorites.size());
+        assertTrue(favorites.size() > 10);
     }
 
     @Test

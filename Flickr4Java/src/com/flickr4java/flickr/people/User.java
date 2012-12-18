@@ -5,17 +5,13 @@ package com.flickr4java.flickr.people;
 
 import com.flickr4java.flickr.contacts.OnlineStatus;
 import com.flickr4java.flickr.util.BuddyIconable;
-import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.UrlUtilities;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Matcher;
 
 /**
  * @author Anthony Eden
@@ -25,6 +21,7 @@ public class User implements Serializable, BuddyIconable {
     private static final long serialVersionUID = 12L;
 
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
+        @Override
         protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
@@ -78,6 +75,8 @@ public class User implements Serializable, BuddyIconable {
 
     private boolean revFamily;
 
+    private String pathAlias;
+
     public User() {
     }
 
@@ -122,8 +121,9 @@ public class User implements Serializable, BuddyIconable {
     }
 
     public void setIconFarm(String iconFarm) {
-        if (iconFarm != null)
+        if (iconFarm != null) {
             setIconFarm(Integer.parseInt(iconFarm));
+        }
     }
 
     public int getIconServer() {
@@ -135,8 +135,9 @@ public class User implements Serializable, BuddyIconable {
     }
 
     public void setIconServer(String iconServer) {
-        if (iconServer != null)
+        if (iconServer != null) {
             setIconServer(Integer.parseInt(iconServer));
+        }
     }
 
     public String getRealName() {
@@ -181,7 +182,7 @@ public class User implements Serializable, BuddyIconable {
 
     public void setPhotosFirstDate(String photosFirstDate) {
         if (photosFirstDate != null) {
-            setPhotosFirstDate(Long.parseLong(photosFirstDate) * (long) 1000);
+            setPhotosFirstDate(Long.parseLong(photosFirstDate) * 1000);
         }
     }
 
@@ -204,7 +205,7 @@ public class User implements Serializable, BuddyIconable {
     }
 
     public void setFaveDate(String faveDate) {
-        setFaveDate(Long.parseLong(faveDate) * (long) 1000);
+        setFaveDate(Long.parseLong(faveDate) * 1000);
     }
 
     public void setFaveDate(long faveDate) {
@@ -316,93 +317,18 @@ public class User implements Serializable, BuddyIconable {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
-        // object must be User at this point
-        User test = (User) obj;
-        Class cl = this.getClass();
-        Method[] method = cl.getMethods();
-        for (int i = 0; i < method.length; i++) {
-            Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
-            if (m.find() && !method[i].getName().equals("getClass")) {
-                try {
-                    Object res = method[i].invoke(this);
-                    Object resTest = method[i].invoke(test);
-                    String retType = method[i].getReturnType().toString();
-                    if (retType.indexOf("class") == 0) {
-                        if (res != null && resTest != null) {
-                            if (!res.equals(resTest))
-                                return false;
-                        } else {
-                            if (res == null && resTest == null) {
-                                // nop
-                            } else if (res == null || resTest == null) {
-                                // one ist set and one is null
-                                return false;
-                            }
-                        }
-                    } else if (retType.equals("int")) {
-                        if (!((Integer) res).equals(((Integer) resTest)))
-                            return false;
-                    } else if (retType.equals("boolean")) {
-                        if (!((Boolean) res).equals(((Boolean) resTest)))
-                            return false;
-                    } else if (retType.equals("long")) {
-                        if (!((Long) res).equals(((Long) resTest)))
-                            return false;
-                    } else {
-                        System.out.println("User#equals() missing type " + method[i].getName() + "|" + method[i].getReturnType().toString());
-                    }
-                } catch (IllegalAccessException ex) {
-                    System.out.println("equals " + method[i].getName() + " " + ex);
-                } catch (InvocationTargetException ex) {
-                    // System.out.println("equals " + method[i].getName() + " " + ex);
-                } catch (Exception ex) {
-                    System.out.println("equals " + method[i].getName() + " " + ex);
-                }
-            }
+        if (obj == this) {
+            return true;
         }
-        return true;
+        User test = (User) obj;
+        return id == null ? test.id == null : id.equals(test.id);
     }
 
-    /**
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
-        int hash = 1;
-        Class cl = this.getClass();
-        Method[] method = cl.getMethods();
-        for (int i = 0; i < method.length; i++) {
-            Matcher m = StringUtilities.getterPattern.matcher(method[i].getName());
-            if (m.find() && !method[i].getName().equals("getClass")) {
-                Object res = null;
-                try {
-                    res = method[i].invoke(this);
-                } catch (IllegalAccessException ex) {
-                    System.out.println("hashCode " + method[i].getName() + " " + ex);
-                } catch (InvocationTargetException ex) {
-                    // System.out.println("hashCode " + method[i].getName() + " " + ex);
-                }
-                if (res != null) {
-                    if (res instanceof Boolean) {
-                        Boolean bool = (Boolean) res;
-                        hash += bool.hashCode();
-                    } else if (res instanceof Integer) {
-                        Integer inte = (Integer) res;
-                        hash += inte.hashCode();
-                    } else if (res instanceof String) {
-                        String str = (String) res;
-                        hash += str.hashCode();
-                    } else if (res instanceof Long) {
-                        Long lon = (Long) res;
-                        hash += lon.hashCode();
-                    } else if (res instanceof OnlineStatus) {
-                        OnlineStatus os = (OnlineStatus) res;
-                        hash += os.hashCode();
-                    } else {
-                        System.out.println("User hashCode unrecognised object: " + res.getClass().getName());
-                    }
-                }
-            }
+        int hash = 83;
+        if (id != null) {
+            hash ^= id.hashCode();
         }
         return hash;
     }
@@ -474,5 +400,21 @@ public class User implements Serializable, BuddyIconable {
 
     public boolean isRevFamily() {
         return revFamily;
+    }
+
+    /**
+     * Get the user's path alias, which may appear instead of nsid in urls published by Flickr. For example feeds have urls of the form
+     * .../photos/${NSID_OR_PATHALIAS}/${PHOTO_ID} & .../people/${NSID_OR_PATHALIAS}. This allows clients to look up a {@link User} given such a url. (Note that
+     * <code>&lt;author&gt;</code> elements in feeds have a <code>&lt;flickr:nsid&gt;</code> child which could be used instead of the lookup this method
+     * enables.)
+     * 
+     * @return the path alias, or null
+     */
+    public String getPathAlias() {
+        return pathAlias;
+    }
+
+    public void setPathAlias(String pathAlias) {
+        this.pathAlias = pathAlias;
     }
 }

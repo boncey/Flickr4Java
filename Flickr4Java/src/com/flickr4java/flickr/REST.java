@@ -32,6 +32,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Transport implementation using the REST interface.
@@ -56,6 +57,10 @@ public class REST extends Transport {
     private final DocumentBuilder builder;
 
     private static Object mutex = new Object();
+
+    private Integer connectTimeoutMs;
+
+    private Integer readTimeoutMs;
 
     /**
      * Construct a new REST transport instance.
@@ -155,6 +160,7 @@ public class REST extends Transport {
         if (Flickr.debugRequest) {
             logger.debug("GET: " + request.getCompleteUrl());
         }
+        setTimeouts(request);
         org.scribe.model.Response scribeResponse = request.send();
 
         try {
@@ -205,6 +211,7 @@ public class REST extends Transport {
             if (proxyAuth) {
                 conn.setRequestProperty("Proxy-Authorization", "Basic " + getProxyCredentials());
             }
+            setTimeouts(conn);
             conn.connect();
 
             if (Flickr.debugStream) {
@@ -412,4 +419,29 @@ public class REST extends Transport {
         }
     }
 
+    private void setTimeouts(HttpURLConnection conn) {
+        if (connectTimeoutMs != null) {
+            conn.setConnectTimeout(connectTimeoutMs);
+        }
+        if (readTimeoutMs != null) {
+            conn.setReadTimeout(readTimeoutMs);
+        }
+    }
+
+    private void setTimeouts(OAuthRequest request) {
+        if (connectTimeoutMs != null) {
+            request.setConnectTimeout(connectTimeoutMs, TimeUnit.MILLISECONDS);
+        }
+        if (readTimeoutMs != null) {
+            request.setReadTimeout(readTimeoutMs, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    public void setConnectTimeoutMs(Integer connectTimeoutMs) {
+        this.connectTimeoutMs = connectTimeoutMs;
+    }
+
+    public void setReadTimeoutMs(Integer readTimeoutMs) {
+        this.readTimeoutMs = readTimeoutMs;
+    }
 }

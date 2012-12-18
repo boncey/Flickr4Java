@@ -34,6 +34,8 @@ public class Contact implements BuddyIconable {
 
     private int iconServer;
 
+    private String pathAlias;
+
     public Contact() {
 
     }
@@ -141,5 +143,21 @@ public class Contact implements BuddyIconable {
 
     public void setIconServer(String iconServer) {
         setIconServer(Integer.parseInt(iconServer));
+    }
+
+    /**
+     * Get the contact's path alias, which may appear instead of nsid in urls published by Flickr. For example feeds have urls of the form
+     * .../photos/${NSID_OR_PATHALIAS}/${PHOTO_ID} & .../people/${NSID_OR_PATHALIAS}. This allows clients to look up a {@link Contact} given such a url. (Note
+     * that <code>&lt;author&gt;</code> elements in feeds have a <code>&lt;flickr:nsid&gt;</code> child which could be used instead of the lookup this method
+     * enables.)
+     * 
+     * @return the path alias, or null
+     */
+    public String getPathAlias() {
+        return pathAlias;
+    }
+
+    public void setPathAlias(String pathAlias) {
+        this.pathAlias = pathAlias;
     }
 }

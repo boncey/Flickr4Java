@@ -3,18 +3,6 @@
  */
 package com.flickr4java.flickr.people;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -27,6 +15,18 @@ import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Interface for finding Flickr users.
@@ -50,17 +50,17 @@ public class PeopleInterface {
 
     public static final String METHOD_GET_UPLOAD_STATUS = "flickr.people.getUploadStatus";
 
-    public static final String METHOD_GET_GET_PHOTOS = "flickr.people.getPhotos";
+    public static final String METHOD_GET_PHOTOS = "flickr.people.getPhotos";
 
     public static final String METHOD_GET_PHOTOS_OF = "flickr.people.getPhotosOf";
 
     public static final String METHOD_GET_GROUPS = "flickr.people.getGroups";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transportAPI;
+    private final Transport transportAPI;
 
     public PeopleInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
@@ -155,6 +155,8 @@ public class PeopleInterface {
         user.setRevContact("1".equals(userElement.getAttribute("revcontact")));
         user.setRevFriend("1".equals(userElement.getAttribute("revfriend")));
         user.setRevFamily("1".equals(userElement.getAttribute("revfamily")));
+        String lPathAlias = userElement.getAttribute("path_alias");
+        user.setPathAlias(lPathAlias == null || "".equals(lPathAlias) ? null : lPathAlias);
         user.setUsername(XMLUtilities.getChildValue(userElement, "username"));
         user.setRealName(XMLUtilities.getChildValue(userElement, "realname"));
         user.setLocation(XMLUtilities.getChildValue(userElement, "location"));
@@ -307,7 +309,7 @@ public class PeopleInterface {
             String contentType, String privacyFilter, Set<String> extras, int perPage, int page) throws FlickrException {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
+        parameters.put("method", METHOD_GET_PHOTOS);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
@@ -378,7 +380,7 @@ public class PeopleInterface {
     public PhotoList<Photo> getPhotosOf(String userId, String ownerId, Set<String> extras, int perPage, int page) throws FlickrException {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
+        parameters.put("method", METHOD_GET_PHOTOS_OF);
         parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
@@ -498,15 +500,16 @@ public class PeopleInterface {
 
     /**
      * 
-     * @param photoId
+     * @param userId
      * @throws FlickrException
      */
-    public GroupList<Group> getGroups() throws FlickrException {
+    public GroupList<Group> getGroups(String userId) throws FlickrException {
 
         GroupList<Group> groupList = new GroupList<Group>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GROUPS);
         parameters.put(Flickr.API_KEY, apiKey);
+        parameters.put("user_id", userId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
         if (response.isError()) {

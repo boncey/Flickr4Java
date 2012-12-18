@@ -4,15 +4,15 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.collections.Collection;
 import com.flickr4java.flickr.collections.CollectionsInterface;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photosets.Photoset;
+
+import org.junit.Test;
+
+import java.util.List;
 
 /**
  * @author Darren Greaves
@@ -37,8 +37,6 @@ public class CollectionsInterfaceTest extends Flickr4JavaTest {
         assertNotNull(photos);
         for (Photo photo : photos) {
             assertNotNull(photo.getId());
-            assertNotNull(photo.getTitle());
-            assertNotNull(photo.getDescription());
         }
         assertTrue(collection.getChildCount() >= 1);
     }

@@ -6,10 +6,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Collection;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.GroupList;
@@ -18,6 +14,10 @@ import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.people.UserList;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
+
+import org.junit.Test;
+
+import java.util.Collection;
 
 /**
  * @author Anthony Eden
@@ -118,7 +118,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testGetGroups() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        GroupList<Group> g = iface.getGroups();
+        GroupList<Group> g = iface.getGroups(testProperties.getNsid());
         assertNotNull(g);
     }
 }

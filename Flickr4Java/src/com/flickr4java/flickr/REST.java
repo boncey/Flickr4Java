@@ -264,9 +264,11 @@ public class REST extends Transport {
 
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
-        Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-        OAuthService service = createOAuthService(parameters, sharedSecret);
-        service.signRequest(requestToken, request);
+        if (auth != null){
+            Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
+            OAuthService service = createOAuthService(parameters, sharedSecret);
+            service.signRequest(requestToken, request);   
+        }
 
         if (multipart) {
             // Ensure all parameters (including oauth) are added to payload so signature matches

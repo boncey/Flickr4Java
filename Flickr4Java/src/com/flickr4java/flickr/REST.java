@@ -405,10 +405,9 @@ public class REST extends Transport {
             InputStream in = (InputStream) value;
             byte[] buf = new byte[512];
 
-            @SuppressWarnings("unused")
             int res = -1;
             while ((res = in.read(buf)) != -1) {
-                buffer.write(buf);
+                buffer.write(buf,0,res);
             }
             buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
         } else if (value instanceof byte[]) {

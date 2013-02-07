@@ -38,6 +38,8 @@ public class TestProperties {
 
     private String username;
 
+    private String displayname;
+
     private String groupId;
 
     private String testGroupId;
@@ -74,6 +76,7 @@ public class TestProperties {
         tokenSecret = properties.getProperty("tokensecret");
         nsid = properties.getProperty("nsid");
         email = properties.getProperty("email");
+        setDisplayname(properties.getProperty("displayname"));
         username = properties.getProperty("username");
         groupId = properties.getProperty("groupid");
         testGroupId = properties.getProperty("testgroupid");
@@ -172,6 +175,14 @@ public class TestProperties {
 
     public void setCollectionUrlId(String collectionUrlId) {
         this.collectionUrlId = collectionUrlId;
+    }
+
+    public String getDisplayname() {
+        return displayname;
+    }
+
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
     }
 
 }

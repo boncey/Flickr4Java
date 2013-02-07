@@ -3,10 +3,13 @@
  */
 package com.flickr4java.flickr;
 
+import java.util.Set;
+
 import com.flickr4java.flickr.activity.ActivityInterface;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.blogs.BlogsInterface;
+import com.flickr4java.flickr.cameras.CamerasInterface;
 import com.flickr4java.flickr.collections.CollectionsInterface;
 import com.flickr4java.flickr.commons.CommonsInterface;
 import com.flickr4java.flickr.contacts.ContactsInterface;
@@ -36,8 +39,6 @@ import com.flickr4java.flickr.tags.TagsInterface;
 import com.flickr4java.flickr.test.TestInterface;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.urls.UrlsInterface;
-
-import java.util.Set;
 
 /**
  * Main entry point for the Flickr4Java API. This class is used to acquire Interface classes which wrap the Flickr API.
@@ -151,6 +152,8 @@ public class Flickr {
     private GalleriesInterface galleriesInterface;
 
     private StatsInterface statsInterface;
+
+    private CamerasInterface cameraInterface;
 
     /**
      * @see com.flickr4java.flickr.photos.PhotosInterface#setContentType(String, String)
@@ -600,6 +603,13 @@ public class Flickr {
             statsInterface = new StatsInterface(apiKey, sharedSecret, transport);
         }
         return statsInterface;
+    }
+
+    public CamerasInterface getCamerasInterface() {
+        if (cameraInterface == null) {
+            cameraInterface = new CamerasInterface(apiKey, sharedSecret, transport);
+        }
+        return cameraInterface;
     }
 
 }

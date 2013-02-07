@@ -31,13 +31,13 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         User person = iface.findByEmail(testProperties.getEmail());
         assertNotNull(person);
         assertEquals(person.getId(), testProperties.getNsid());
-        assertEquals(person.getUsername(), testProperties.getUsername());
+        assertEquals(person.getUsername(), testProperties.getDisplayname());
     }
 
     @Test
     public void testFindByUsername() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        User person = iface.findByUsername(testProperties.getUsername());
+        User person = iface.findByUsername(testProperties.getDisplayname());
         assertNotNull(person);
         assertEquals(testProperties.getNsid(), person.getId());
         assertEquals(testProperties.getUsername(), person.getUsername());
@@ -54,7 +54,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         User person = iface.getInfo(testProperties.getNsid());
         assertNotNull(person);
         assertEquals(testProperties.getNsid(), person.getId());
-        assertEquals(testProperties.getUsername(), person.getUsername());
+        assertEquals(testProperties.getDisplayname(), person.getUsername());
         assertTrue(person.getMobileurl().startsWith("http://m.flickr.com/photostream.gne"));
         assertEquals(person.getPhotosurl(), String.format("http://www.flickr.com/photos/%s/", testProperties.getUsername()));
         assertEquals(person.getProfileurl(), String.format("http://www.flickr.com/people/%s/", testProperties.getUsername()));

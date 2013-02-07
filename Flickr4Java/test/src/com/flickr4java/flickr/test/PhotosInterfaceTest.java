@@ -110,7 +110,7 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
 
         User owner = photo.getOwner();
         assertEquals(testProperties.getNsid(), owner.getId());
-        assertEquals(testProperties.getUsername(), owner.getUsername());
+        assertEquals(testProperties.getDisplayname(), owner.getUsername());
 
         List<Tag> tags = (List<Tag>) photo.getTags();
         assertEquals("green", (tags.get(0)).getValue());

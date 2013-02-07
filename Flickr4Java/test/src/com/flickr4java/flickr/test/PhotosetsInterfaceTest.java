@@ -115,7 +115,7 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
         PhotoList<Photo> photos = iface.getPhotos(testProperties.getPhotosetId(), 10, 1);
         assertNotNull(photos);
         assertTrue(photos.size() >= 1);
-        assertEquals(testProperties.getUsername(), ((Photo) photos.get(0)).getOwner().getUsername());
+        assertEquals(testProperties.getDisplayname(), ((Photo) photos.get(0)).getOwner().getUsername());
         assertEquals(testProperties.getNsid(), ((Photo) photos.get(0)).getOwner().getId());
     }
 

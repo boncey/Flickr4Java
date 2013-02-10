@@ -1,2 +1,2 @@
-bin
-/.pmd
+.gradle
+build/

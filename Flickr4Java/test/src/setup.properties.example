@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 host = www.flickr.com
 apiKey = f48f2e5ac98e94a7231aae79594e944c
 email = allancaplan
@@ -20,27 +19,4 @@ galleryid = 72157629277637049
 # id of a photo in your stream
 # which the tests can use to set, get and remove geo data
 # existing geo data will be destroyed!
-=======
-host = www.flickr.com
-apiKey = f48f2e5ac98e94a7231aae79594e944c
-email = allancaplan
-username = I_am_Allan
-displayname = I_am_Allan
-nsid = 84454580@N00
-groupid = 34427469792@N01
-testgroupid = 52240590759@N01
-photoid = 1088148233
-photosetid = 122485
-collectionid = (taken from a call to http://www.flickr.com/services/api/flickr.collections.getTree.htm)
-collectionurlid = (taken from the id in the collection URL)
-imagefile = path/to/test/image
-secret = af995d0f2bc3ee51
-token = your token (with delete privileges)
-tokensecret = your token secret (as returned by OAuth)
-galleryid = 72157629277637049
-
-# id of a photo in your stream
-# which the tests can use to set, get and remove geo data
-# existing geo data will be destroyed!
->>>>>>> 8080af10a7f34bdce972d0e96765084e14e113f0
 geo.write.photoid = 1088148233

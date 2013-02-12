@@ -1,8 +1,11 @@
 Build users gradle (http://www.gradle.org)
 
-To clean up:                        gradle clean
-To compile (inc examples):          gradle compileJava
-To build & test:                    gradle build
+Clean up:                        gradle clean
+Compile (inc examples):          gradle compileJava
+Compile & test:                  gradle build
+Create docs:                     gradle javadocs
+Create docs jar:                 gradle javadocJar
+Create src jar:                  gradle sourcesJar
 
 NOTE: Copy src/test/resources/setup.properties.example to src/test/resources/setup.properties and fill out appropriately to run the integration tests
 

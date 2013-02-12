@@ -3,11 +3,11 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
-version = '2.1-SNAPSHOT'
+version = '2.2-SNAPSHOT'
 group = 'com.flicr4java.flickr'
 
-//sourceCompatibility = '1.5'
-//targetCompatibility = '1.5'
+sourceCompatibility = '1.5'
+targetCompatibility = '1.5'
 
 repositories {
     mavenCentral()
@@ -32,4 +32,21 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
+//create a javadoc jar for maven repo
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
 
+//create sources jar for maven repo
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+//so that source and javadoc jars are included
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}

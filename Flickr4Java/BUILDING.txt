@@ -1,11 +1,14 @@
-To build flickrj you must download the source code from CVS.
+Build users gradle (http://www.gradle.org)
 
-flickrj is built with Ant.  Install the current version of Ant, cd into the 
-flickrj/api directory downloaded from CVS and type 'ant'.
+To clean up:                        gradle clean
+To compile (inc examples):          gradle compileJava
+To build & test:                    gradle build
 
-You should be able to build flickrj with either JDK 1.4 or 1.5. 
-The default distribution is built to JDK 1.4.  This can now be changed by
-editing the build.properties and changing the javac.source and javac.target to 
-the desired target VM.  
+NOTE: Copy src/test/resources/setup.properties.example to src/test/resources/setup.properties and fill out appropriately to run the integration tests
 
-To execute tests cd into flickrj/api/test and type 'ant test'.
+To generate Eclipse project files:  gradle cleanEclipse eclipse
+To generate Idea project files:     gradle cleanIdea idea
+
+To show dependencies (libs etc):    gradle dependencies
+
+

@@ -15,30 +15,16 @@ repositories {
 
 // add examples in the same way as "main" and "test"
 sourceSets {
-    examples {
+    main {
         java {
             srcDir 'src/examples/java'
         }
         resources {
             srcDir 'src/examples/resources'
         }
-        //add app classes to examples classpath
-        compileClasspath = compileClasspath + files(sourceSets.main.output.classesDir)
     }
 }
 
-//make sure app is compiled before we try to compile examples
-compileExamplesJava.dependsOn compileJava
-
-//inherit dependencies from the main app configurations
-configurations {
-    examplesCompile {
-        extendsFrom compile
-    }
-    examplesRuntime {
-        extendsFrom runtime
-    }
-}
 dependencies {
     compile 'org.scribe:scribe:1.3.3'
     compile 'axis:axis:1.4'

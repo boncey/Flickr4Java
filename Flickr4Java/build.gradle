@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+version = '2.2-SNAPSHOT'
+group = 'com.flicr4java.flickr'
+
+sourceCompatibility = '1.5'
+targetCompatibility = '1.5'
+
+repositories {
+    mavenCentral()
+}
+
+// add examples in the same way as "main" and "test"
+sourceSets {
+    main {
+        java {
+            srcDir 'src/examples/java'
+        }
+        resources {
+            srcDir 'src/examples/resources'
+        }
+    }
+}
+
+dependencies {
+    compile 'org.scribe:scribe:1.3.3'
+    compile 'axis:axis:1.4'
+    compile 'log4j:log4j:1.2.17'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+//create a javadoc jar for maven repo
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+//create sources jar for maven repo
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+//so that source and javadoc jars are included
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}

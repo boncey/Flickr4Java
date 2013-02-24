@@ -33,4 +33,4 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 Download
 ===
 
-See [Downloads Page](https://github.com/callmeal/Flickr4Java/downloads) for latest release.
+[Download the latest version](https://github.com/callmeal/Flickr4Java/archive/master.zip).

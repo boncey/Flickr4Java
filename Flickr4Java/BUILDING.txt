@@ -1,9 +1,9 @@
-Build users gradle (http://www.gradle.org)
+Build uses gradle (http://www.gradle.org)
 
 Clean up:                        gradle clean
 Compile (inc examples):          gradle compileJava
 Compile & test:                  gradle build
-Create docs:                     gradle javadocs
+Create docs:                     gradle javadoc
 Create docs jar:                 gradle javadocJar
 Create src jar:                  gradle sourcesJar
 

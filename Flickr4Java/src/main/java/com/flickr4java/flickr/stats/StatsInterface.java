@@ -134,7 +134,6 @@ public class StatsInterface {
     /**
      * Returns a list of URLs for text files containing all your stats data (from November 26th 2007 onwards) for the currently auth'd user.
      * 
-     * @return
      * @throws FlickrException
      * 
      * @see "http://www.flickr.com/services/api/flickr.stats.getCSVFiles.html"
@@ -348,7 +347,6 @@ public class StatsInterface {
      * @param date
      *            (Optional) Stats will be returned for this date. A day according to Flickr Stats starts at midnight GMT for all users, and timestamps will
      *            automatically be rounded down to the start of the day. If no date is provided, all time view counts will be returned.
-     * @return
      * @throws FlickrException
      * 
      * @see "http://www.flickr.com/services/api/flickr.stats.getTotalViews.html"
@@ -477,7 +475,6 @@ public class StatsInterface {
     /**
      * 
      * @param element
-     * @return
      */
     private Stats parseStats(Element element) {
         Stats stats = new Stats();
@@ -577,7 +574,6 @@ public class StatsInterface {
     /**
      * 
      * @param response
-     * @return
      */
     private PhotoList<Photo> parsePopularPhotos(Response response) {
 

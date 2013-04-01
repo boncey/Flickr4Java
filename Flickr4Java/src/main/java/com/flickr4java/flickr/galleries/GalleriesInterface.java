@@ -78,7 +78,7 @@ public class GalleriesInterface {
      * @return gallery
      * @throws FlickrException
      * 
-     * @see http://www.flickr.com/services/api/flickr.galleries.getList.html
+     * @see <a hrerf="http://www.flickr.com/services/api/flickr.galleries.getList.html">flickr.galleries.getList</a>
      */
     public List<Gallery> getList(String userId, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -221,7 +221,6 @@ public class GalleriesInterface {
      * @param strTitle
      * @param strDescription
      * @param primaryPhotoId
-     * @return
      * @throws FlickrException
      */
     public Gallery create(String strTitle, String strDescription, String primaryPhotoId) throws FlickrException {
@@ -257,8 +256,6 @@ public class GalleriesInterface {
      * 
      * @param galleryId
      *            The group ID
-     * @param tags
-     *            The optional tags (may be null)
      * @param extras
      *            Set of extra-attributes to include (may be null)
      * @param perPage

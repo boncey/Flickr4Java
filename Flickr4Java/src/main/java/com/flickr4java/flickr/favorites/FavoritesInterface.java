@@ -203,9 +203,9 @@ public class FavoritesInterface {
      * 
      * @param photoId
      *            The photo id
-     * @param photoId
+     * @param userId
      *            The user's ID
-     * @see http://www.flickr.com/services/api/flickr.favorites.getContext.html
+     * @see <a href="http://www.flickr.com/services/api/flickr.favorites.getContext.html">flickr.favorites.getContext</a>
      */
     public PhotoContext getContext(String photoId, String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

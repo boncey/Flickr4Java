@@ -50,10 +50,7 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @param personX
-     * @param personY
-     * @param personW
-     * @param personH
+     * @param bounds
      * @throws FlickrException
      */
     public void add(String photoId, String userId, Rectangle bounds) throws FlickrException {
@@ -123,10 +120,7 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @param personX
-     * @param personY
-     * @param personW
-     * @param personH
+     * @param bounds
      * @throws FlickrException
      */
     public void editCoords(String photoId, String userId, Rectangle bounds) throws FlickrException {

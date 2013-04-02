@@ -22,6 +22,8 @@ import com.flickr4java.flickr.groups.Subcategory;
  */
 public class GroupsInterfaceTest extends Flickr4JavaTest {
 
+    public static final String TEST_JOIN_GROUP = "2173840@N20";
+
     public void deprecatedBrowse() throws FlickrException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Category cat = iface.browse(null);
@@ -98,4 +100,21 @@ public class GroupsInterfaceTest extends Flickr4JavaTest {
         assertTrue(groups.getTotal() > 0);
     }
 
+    @Test
+    public void testJoinLeave() throws FlickrException {
+
+        GroupsInterface iface = flickr.getGroupsInterface();
+
+        Group group = iface.getInfo(TEST_JOIN_GROUP);
+        int cntBeforeJoin = group.getMembers();
+        iface.join(TEST_JOIN_GROUP, null);
+        group = iface.getInfo(TEST_JOIN_GROUP);
+        int cntAfterJoin = group.getMembers();
+        assertTrue("Member count increased by 1", cntBeforeJoin + 1 == cntAfterJoin);
+
+        iface.leave(TEST_JOIN_GROUP, false);
+        group = iface.getInfo(TEST_JOIN_GROUP);
+        int cntAfterLeave = group.getMembers();
+        assertTrue("Member count decreasted by 1", cntAfterLeave == cntBeforeJoin);
+    }
 }

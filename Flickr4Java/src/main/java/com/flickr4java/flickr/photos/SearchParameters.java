@@ -592,6 +592,10 @@ public class SearchParameters {
             }
         }
 
+        if (placeId != null && !placeId.isEmpty()) {
+            parameters.put("place_id", placeId);
+        }
+
         return parameters;
     }
 

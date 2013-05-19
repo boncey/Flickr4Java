@@ -34,6 +34,12 @@ public class GroupsInterface {
 
     public static final String METHOD_SEARCH = "flickr.groups.search";
 
+    public static final String METHOD_JOIN = "flickr.groups.join";
+
+    public static final String METHOD_JOIN_REQUEST = "flickr.groups.joinRequest";
+
+    public static final String METHOD_LEAVE = "flickr.groups.leave";
+
     private String apiKey;
 
     private String sharedSecret;
@@ -206,5 +212,80 @@ public class GroupsInterface {
             groupList.add(group);
         }
         return groupList;
+    }
+
+    /**
+     * Join a group as a public member.
+     *
+     * Note: if a group has rules - the client must display the rules to the user and the
+     * user must accept them prior to joining the group. The acceptRules parameter indicates
+     * that the user has accepted those rules.
+     *
+     * @param groupId - the id of the group to join
+     * @param acceptRules - if a group has rules, true indicates the user has accepted the rules
+     *
+     * @see <a href="http://www.flickr.com/services/api/flickr.groups.join.html">flickr.groups.join</a>
+     */
+    public void join(String groupId, Boolean acceptRules) throws FlickrException {
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_JOIN);
+        parameters.put(Flickr.API_KEY, apiKey);
+        parameters.put("group_id", groupId);
+        if (acceptRules != null) {
+            parameters.put("accept_rules",acceptRules);
+        }
+
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+    }
+
+    /**
+     * Request to join a group.
+     *
+     * Note: if a group has rules, the client must display the rules to the user and the user must
+     * accept them (which is indicated by passing a true value to acceptRules) prior to making the
+     * join request.
+     *
+     * @param groupId - groupId parameter
+     * @param message - (required) message to group administrator
+     * @param acceptRules - (required) parameter indicating user has accepted groups rules
+     */
+    public void joinRequest(String groupId,String message, boolean acceptRules) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_JOIN_REQUEST);
+        parameters.put(Flickr.API_KEY, apiKey);
+        parameters.put("group_id", groupId);
+        parameters.put("message", message);
+        parameters.put("accept_rules", acceptRules);
+
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+    }
+
+    /**
+     * Leave a group.
+     *
+     * @see <a href="http://www.flickr.com/services/api/flickr.groups.leave.html">lickr.groups.leave</a> for
+     * a description of the various behaviors possible when a user leaves a group.
+     *
+     * @param groupId - the id of the group to leave
+     * @param deletePhotos - delete photos by this user from group
+     */
+    public void leave(String groupId, Boolean deletePhotos) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_LEAVE);
+        parameters.put(Flickr.API_KEY, apiKey);
+        parameters.put("group_id", groupId);
+        parameters.put("delete_photos", deletePhotos);
+
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
     }
 }

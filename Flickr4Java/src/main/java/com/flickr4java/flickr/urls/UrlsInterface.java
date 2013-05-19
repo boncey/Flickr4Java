@@ -185,7 +185,7 @@ public class UrlsInterface {
     /**
      * Lookup the Gallery for the specified ID.
      * 
-     * @param url
+     * @param galleryId
      *            The user profile URL
      * @return The Gallery
      * @throws FlickrException

@@ -561,7 +561,7 @@ public class PhotosetsInterface {
      * 
      * @param photosetId
      *            The photoset ID
-     * @param photoId
+     * @param photoIds
      *            The ID's of the photos, in CVS format
      * @throws FlickrException
      */
@@ -584,7 +584,7 @@ public class PhotosetsInterface {
      * 
      * @param photosetId
      *            The photoset ID
-     * @param photoId
+     * @param photoIds
      *            The ID's of the photos, in CSV format, in the order they need to be in.
      * @throws FlickrException
      */

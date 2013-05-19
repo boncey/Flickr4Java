@@ -98,7 +98,6 @@ public class AuthInterface {
      * 
      * @param oAuthRequestToken
      *            the token from a {@link AuthInterface#getRequestToken} call.
-     * @return
      */
     public String getAuthorizationUrl(Token oAuthRequestToken, Permission permission) {
 
@@ -115,7 +114,6 @@ public class AuthInterface {
      *            this is the token returned by the {@link AuthInterface#getRequestToken} call.
      * @param verifier
      *            the Verifier created from the code entered by a user or passed back to a callback URL.
-     * @return
      */
     @SuppressWarnings("boxing")
     public Token getAccessToken(Token oAuthRequestToken, Verifier verifier) {
@@ -191,7 +189,6 @@ public class AuthInterface {
      * Calling this method will delete the auth token used to make the request.
      * 
      * @param authToken
-     * @return
      * @throws FlickrException
      * @see "http://www.flickr.com/services/api/flickr.auth.oauth.getAccessToken.html"
      */
@@ -213,7 +210,6 @@ public class AuthInterface {
      * 
      * @param authToken
      * @param method
-     * @return
      */
     private Map<String, String> constructNonOAuthParameters(String authToken, String method) {
         // Use TreeMap so keys are automatically sorted alphabetically
@@ -231,7 +227,6 @@ public class AuthInterface {
      * @param response
      * @param tokenSecret
      * @param authToken
-     * @return
      */
     private Auth constructAuth(Response response, String authToken, String tokenSecret) {
         Auth auth = new Auth();
@@ -253,7 +248,6 @@ public class AuthInterface {
      * Construct a Access Token from a Flickr Response.
      * 
      * @param response
-     * @return
      */
     private Token constructToken(Response response) {
         Element authElement = response.getPayload();

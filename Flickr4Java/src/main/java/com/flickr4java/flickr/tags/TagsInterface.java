@@ -323,15 +323,12 @@ public class TagsInterface {
      * This method does not require authentication.
      * </p>
      * 
-     * @param userId
-     *            a user id to search for (required)
-     * 
      * @return The collection of Tag objects
      * @throws FlickrException
      */
-    public Collection<TagRaw> getListUserRaw(String userId) throws FlickrException {
+    public Collection<TagRaw> getListUserRaw() throws FlickrException {
 
-        return getListUserRaw(userId, null);
+        return getListUserRaw(null);
     }
 
     /**
@@ -341,15 +338,13 @@ public class TagsInterface {
      * This method does not require authentication.
      * </p>
      * 
-     * @param userId
-     *            a user id to search for (required)
      * @param tagVal
      *            a tag to search for (optional)
      * 
      * @return The collection of Tag objects
      * @throws FlickrException
      */
-    public Collection<TagRaw> getListUserRaw(String userId, String tagVal) throws FlickrException {
+    public Collection<TagRaw> getListUserRaw(String tagVal) throws FlickrException {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_RAW);
@@ -357,9 +352,6 @@ public class TagsInterface {
 
         if (tagVal != null) {
             parameters.put("tag", tagVal);
-        }
-        if (userId != null) {
-            parameters.put("user_id", userId);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);

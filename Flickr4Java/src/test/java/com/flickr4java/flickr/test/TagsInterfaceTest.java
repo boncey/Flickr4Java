@@ -81,7 +81,7 @@ public class TagsInterfaceTest extends Flickr4JavaTest {
     public void testGetListUserRaw() throws FlickrException {
 
         TagsInterface iface = flickr.getTagsInterface();
-        Collection<TagRaw> tags = iface.getListUserRaw(testProperties.getNsid());
+        Collection<TagRaw> tags = iface.getListUserRaw();
         assertNotNull(tags);
         assertFalse(tags.isEmpty());
     }

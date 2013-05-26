@@ -3,16 +3,6 @@
  */
 package com.flickr4java.flickr.tags;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -21,6 +11,16 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Interface for working with Flickr tags.
@@ -50,11 +50,11 @@ public class TagsInterface {
 
     public static final String PERIOD_DAY = "day";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transportAPI;
+    private final Transport transportAPI;
 
     /**
      * Construct a TagsInterface.
@@ -65,6 +65,7 @@ public class TagsInterface {
      *            The Transport interface
      */
     public TagsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
+
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
         this.transportAPI = transportAPI;
@@ -83,6 +84,7 @@ public class TagsInterface {
      * @return a list of clusters
      */
     public ClusterList getClusters(String searchTag) throws FlickrException {
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CLUSTERS);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -122,6 +124,7 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public PhotoList<Photo> getClusterPhotos(String tag, String clusterId) throws FlickrException {
+
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CLUSTER_PHOTOS);
@@ -162,6 +165,7 @@ public class TagsInterface {
      * @return The collection of HotlistTag objects
      */
     public Collection<HotlistTag> getHotList(String period, int count) throws FlickrException {
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_HOT_LIST);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -200,6 +204,7 @@ public class TagsInterface {
      * @return The collection of Tag objects
      */
     public Photo getListPhoto(String photoId) throws FlickrException {
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_PHOTO);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -245,6 +250,7 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public Collection<Tag> getListUser(String userId) throws FlickrException {
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -283,6 +289,7 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public Collection<Tag> getListUserPopular(String userId) throws FlickrException {
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_POPULAR);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -316,12 +323,29 @@ public class TagsInterface {
      * This method does not require authentication.
      * </p>
      * 
+     * @return The collection of Tag objects
+     * @throws FlickrException
+     */
+    public Collection<TagRaw> getListUserRaw() throws FlickrException {
+
+        return getListUserRaw(null);
+    }
+
+    /**
+     * Get a list of the user's (identified by token) popular tags.
+     * 
+     * <p>
+     * This method does not require authentication.
+     * </p>
+     * 
      * @param tagVal
-     *            a tag to search for, or null
+     *            a tag to search for (optional)
+     * 
      * @return The collection of Tag objects
      * @throws FlickrException
      */
     public Collection<TagRaw> getListUserRaw(String tagVal) throws FlickrException {
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST_USER_RAW);
         parameters.put(Flickr.API_KEY, apiKey);
@@ -367,6 +391,7 @@ public class TagsInterface {
      * @throws FlickrException
      */
     public RelatedTagsList getRelated(String tag) throws FlickrException {
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_RELATED);
         parameters.put(Flickr.API_KEY, apiKey);

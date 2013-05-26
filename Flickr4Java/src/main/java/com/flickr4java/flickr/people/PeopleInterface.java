@@ -30,7 +30,7 @@ import java.util.Set;
 
 /**
  * Interface for finding Flickr users.
- * 
+ *
  * @author Anthony Eden
  * @version $Id: PeopleInterface.java,v 1.28 2010/09/12 20:13:57 x-mago Exp $
  */
@@ -70,9 +70,9 @@ public class PeopleInterface {
 
     /**
      * Find the user by their email address.
-     * 
+     *
      * This method does not require authentication.
-     * 
+     *
      * @param email
      *            The email address
      * @return The User
@@ -98,9 +98,9 @@ public class PeopleInterface {
 
     /**
      * Find a User by the username.
-     * 
+     *
      * This method does not require authentication.
-     * 
+     *
      * @param username
      *            The username
      * @return The User object
@@ -126,9 +126,9 @@ public class PeopleInterface {
 
     /**
      * Get info about the specified user.
-     * 
+     *
      * This method does not require authentication.
-     * 
+     *
      * @param userId
      *            The user ID
      * @return The User object
@@ -175,12 +175,12 @@ public class PeopleInterface {
 
     /**
      * Get a collection of public groups for the user.
-     * 
+     *
      * The groups will contain only the members nsid, name, admin and eighteenplus. If you want the whole group-information, you have to call
      * {@link com.flickr4java.flickr.groups.GroupsInterface#getInfo(String)}.
-     * 
+     *
      * This method does not require authentication.
-     * 
+     *
      * @param userId
      *            The user ID
      * @return The public groups
@@ -219,9 +219,9 @@ public class PeopleInterface {
 
     /**
      * Get a collection of public photos for the specified user ID.
-     * 
+     *
      * This method does not require authentication.
-     * 
+     *
      * @see com.flickr4java.flickr.photos.Extras
      * @param userId
      *            The User ID
@@ -274,9 +274,9 @@ public class PeopleInterface {
 
     /**
      * Get upload status for the currently authenticated user.
-     * 
+     *
      * Requires authentication with 'read' permission using the new authentication API.
-     * 
+     *
      * @return A User object with upload status data fields filled
      * @throws FlickrException
      */
@@ -359,20 +359,7 @@ public class PeopleInterface {
         NodeList photoNodes = photosElement.getElementsByTagName("photo");
         for (int i = 0; i < photoNodes.getLength(); i++) {
             Element photoElement = (Element) photoNodes.item(i);
-            Photo photo = new Photo();
-            photo.setId(photoElement.getAttribute("id"));
-            photo.setSecret(photoElement.getAttribute("secret"));
-
-            User owner = new User();
-            owner.setId(photoElement.getAttribute("owner"));
-            photo.setOwner(owner);
-            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
-            photo.setServer(photoElement.getAttribute("server"));
-            photo.setTitle(photoElement.getAttribute("title"));
-            photo.setPublicFlag("1".equals(photoElement.getAttribute("ispublic")));
-            photo.setFriendFlag("1".equals(photoElement.getAttribute("isfriend")));
-            photo.setFamilyFlag("1".equals(photoElement.getAttribute("isfamily")));
-            photos.add(photo);
+            photos.add(PhotoUtils.createPhoto(photoElement));
         }
         return photos;
     }
@@ -430,7 +417,7 @@ public class PeopleInterface {
 
     /**
      * Add the given person to the photo. Optionally, send in co-ordinates
-     * 
+     *
      * @param photoId
      * @param userId
      * @param bounds
@@ -445,7 +432,7 @@ public class PeopleInterface {
 
     /**
      * Delete the person from the photo
-     * 
+     *
      * @param photoId
      * @param userId
      * @throws FlickrException
@@ -459,7 +446,7 @@ public class PeopleInterface {
 
     /**
      * Delete the co-ordinates that the user is shown in
-     * 
+     *
      * @param photoId
      * @param userId
      * @throws FlickrException
@@ -473,7 +460,7 @@ public class PeopleInterface {
 
     /**
      * Edit the co-ordinates that the user shows in
-     * 
+     *
      * @param photoId
      * @param userId
      * @param bounds
@@ -487,7 +474,7 @@ public class PeopleInterface {
     }
 
     /**
-     * 
+     *
      * @param photoId
      * @throws FlickrException
      */
@@ -499,7 +486,7 @@ public class PeopleInterface {
     }
 
     /**
-     * 
+     *
      * @param userId
      * @throws FlickrException
      */

@@ -38,48 +38,60 @@ public class UploadMetaData {
         return title;
     }
 
-    public void setTitle(String title) {
+    public UploadMetaData setTitle(String title) {
         this.title = title;
+
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public UploadMetaData setDescription(String description) {
         this.description = description;
+
+        return this;
     }
 
     public Collection<String> getTags() {
         return tags;
     }
 
-    public void setTags(Collection<String> tags) {
+    public UploadMetaData setTags(Collection<String> tags) {
         this.tags = tags;
+
+        return this;
     }
 
     public boolean isPublicFlag() {
         return publicFlag;
     }
 
-    public void setPublicFlag(boolean publicFlag) {
+    public UploadMetaData setPublicFlag(boolean publicFlag) {
         this.publicFlag = publicFlag;
+
+        return this;
     }
 
     public boolean isFriendFlag() {
         return friendFlag;
     }
 
-    public void setFriendFlag(boolean friendFlag) {
+    public UploadMetaData setFriendFlag(boolean friendFlag) {
         this.friendFlag = friendFlag;
+
+        return this;
     }
 
     public boolean isFamilyFlag() {
         return familyFlag;
     }
 
-    public void setFamilyFlag(boolean familyFlag) {
+    public UploadMetaData setFamilyFlag(boolean familyFlag) {
         this.familyFlag = familyFlag;
+
+        return this;
     }
 
     /**
@@ -102,16 +114,20 @@ public class UploadMetaData {
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
      * @param contentType
      */
-    public void setContentType(String contentType) {
+    public UploadMetaData setContentType(String contentType) {
         this.contentType = contentType;
+
+        return this;
     }
 
     public Boolean isHidden() {
         return hidden;
     }
 
-    public void setHidden(Boolean hidden) {
+    public UploadMetaData setHidden(Boolean hidden) {
         this.hidden = hidden;
+
+        return this;
     }
 
     /**
@@ -135,8 +151,10 @@ public class UploadMetaData {
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
      * @param safetyLevel
      */
-    public void setSafetyLevel(String safetyLevel) {
+    public UploadMetaData setSafetyLevel(String safetyLevel) {
         this.safetyLevel = safetyLevel;
+
+        return this;
     }
 
     public boolean isAsync() {
@@ -152,8 +170,10 @@ public class UploadMetaData {
      * @param async
      *            boolean
      */
-    public void setAsync(boolean async) {
+    public UploadMetaData setAsync(boolean async) {
         this.async = async;
+
+        return this;
     }
 
 }

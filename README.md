@@ -26,9 +26,11 @@ __Please note:__ this library is not thread safe.
 
 Requirements
 ===
-This API has been tested with JDK 1.4 and JDK 1.5. The default distribution is build with JDK 1.5.
+This API has been tested with JDK 1.4 and JDK 1.5. The default distribution is built with JDK 1.5 (it should build under 1.6 and 1.7 too though).
 
 An API key is required to use this API.  You can [request one on Flickr](http://www.flickr.com/services/api/).
+
+The [scribe-java jar](https://github.com/downloads/fernandezpablo85/scribe-java/scribe-1.3.0.jar) is also required for the OAuth functionality.
 
 Download
 ===

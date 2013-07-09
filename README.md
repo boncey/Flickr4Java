@@ -30,7 +30,7 @@ This API has been tested with JDK 1.4 and JDK 1.5. The default distribution is b
 
 An API key is required to use this API.  You can [request one on Flickr](http://www.flickr.com/services/api/).
 
-The [scribe-java jar](https://github.com/downloads/fernandezpablo85/scribe-java/scribe-1.3.0.jar) is also required for the OAuth functionality.
+[scribe-java (v.1.3.2)](https://github.com/fernandezpablo85/scribe-java/wiki/Getting-Started) is also required for the OAuth functionality.
 
 Download
 ===

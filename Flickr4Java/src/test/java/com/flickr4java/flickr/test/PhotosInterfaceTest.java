@@ -367,6 +367,30 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
     }
 
     @Test
+    public void testGetLarge1600Image() throws FlickrException, IOException {
+        PhotosInterface iface = flickr.getPhotosInterface();
+        String photoId = testProperties.getPhotoId();
+        Photo photo = iface.getInfo(photoId, null);
+        BufferedImage image = iface.getImage(photo, Size.LARGE_1600);
+        assertNotNull(image);
+        assertNotNull(image.getWidth());
+        assertNotNull(image.getHeight());
+        ImageIO.write(image, "jpg", largeFile);
+    }
+
+    @Test
+    public void testGetLarge2048Image() throws FlickrException, IOException {
+        PhotosInterface iface = flickr.getPhotosInterface();
+        String photoId = testProperties.getPhotoId();
+        Photo photo = iface.getInfo(photoId, null);
+        BufferedImage image = iface.getImage(photo, Size.LARGE_2048);
+        assertNotNull(image);
+        assertNotNull(image.getWidth());
+        assertNotNull(image.getHeight());
+        ImageIO.write(image, "jpg", largeFile);
+    }
+
+    @Test
     public void testGetPhoto() throws FlickrException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = testProperties.getPhotoId();
@@ -450,6 +474,41 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         size.setSource("urlMedium800");
         size.setUrl("urlMedium800Page");
         sizes.add(size);
+        size = new Size();
+        size.setLabel("Large 1600");
+        size.setWidth("1600");
+        size.setHeight("1024");
+        size.setSource("urlLarge1600");
+        size.setUrl("urlLarge1600Page");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Large 2048");
+        size.setWidth("2048");
+        size.setHeight("1600");
+        size.setSource("urlLarge2048");
+        size.setUrl("urlLarge2048Page");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Video Player");
+        size.setWidth("320");
+        size.setHeight("240");
+        size.setSource("urlVideoPlayer");
+        size.setUrl("urlVideoPlayerPage");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Site MP4");
+        size.setWidth("320");
+        size.setHeight("240");
+        size.setSource("urlSiteMP4");
+        size.setUrl("urlSiteMP4Page");
+        sizes.add(size);
+        size = new Size();
+        size.setLabel("Video Original");
+        size.setWidth("960");
+        size.setHeight("720");
+        size.setSource("urlVideoOriginal");
+        size.setUrl("urlVideoOriginalPage");
+        sizes.add(size);
 
         Photo p = new Photo();
         p.setId("id");
@@ -467,6 +526,8 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         assertEquals("http://farm1.static.flickr.com/server/id_secret_n.jpg", p.getSmall320Url());
         assertEquals("http://farm1.static.flickr.com/server/id_secret_z.jpg", p.getMedium640Url());
         assertEquals("http://farm1.static.flickr.com/server/id_secret_c.jpg", p.getMedium800Url());
+        assertEquals("http://farm1.static.flickr.com/server/id_secret_h.jpg", p.getLarge1600Url());
+        assertEquals("http://farm1.static.flickr.com/server/id_secret_k.jpg", p.getLarge2048Url());
         try {
             assertEquals("http://farm1.static.flickr.com/server/id_osecret_o.jpg", p.getOriginalUrl());
         } catch (FlickrException ex) {
@@ -482,6 +543,11 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         assertEquals("urlSmall320", p.getSmall320Url());
         assertEquals("urlMedium640", p.getMedium640Url());
         assertEquals("urlMedium800", p.getMedium800Url());
+        assertEquals("urlLarge1600", p.getLarge1600Url());
+        assertEquals("urlLarge2048", p.getLarge2048Url());
+        assertEquals("urlVideoPlayer", p.getVideoPlayerUrl());
+        assertEquals("urlSiteMP4", p.getSiteMP4Url());
+        assertEquals("urlVideoOriginal", p.getVideoOriginalUrl());
         try {
             assertEquals("urlOriginal", p.getOriginalUrl());
         } catch (FlickrException ex) {

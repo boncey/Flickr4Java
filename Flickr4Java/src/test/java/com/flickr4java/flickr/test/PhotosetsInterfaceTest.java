@@ -18,27 +18,29 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author Anthony Eden
  */
 public class PhotosetsInterfaceTest extends Flickr4JavaTest {
 
-    private Photoset testSet = null;
+    private Photoset testSet;
 
-    private final String[] setPics = new String[] { "6883063595", "4271899426", "4263038141" };
-
-    private final String[] reordered = new String[] { "", "4263038141", "4271899426", "6883063595" };
+    private List<String> setPics;
 
     @Override
     @Before
     public void setUp() throws FlickrException {
         super.setUp();
-        // @TODO need to get this into the test.properties
+
+        setPics = testProperties.getPhotosetPhotos();
+
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        testSet = iface.create("PhotosetsInterfaceTest", "JUnit test, should be deleted", setPics[0]);
-        iface.addPhoto(testSet.getId(), setPics[1]);
-        iface.addPhoto(testSet.getId(), setPics[2]);
-        reordered[0] = testProperties.getPhotosetId();
+        testSet = iface.create("PhotosetsInterfaceTest", "JUnit test, should be deleted", setPics.get(0));
+        iface.addPhoto(testSet.getId(), setPics.get(1));
+        iface.addPhoto(testSet.getId(), setPics.get(2));
     }
 
     @After
@@ -65,13 +67,17 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testEditPhotos() throws FlickrException {
 
+        List<String> reordered = setPics;
+        reordered.add(testProperties.getPhotoId());
+        Collections.reverse(reordered);
+
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         iface.addPhoto(testSet.getId(), testProperties.getPhotoId());
-        iface.editPhotos(testSet.getId(), testProperties.getPhotoId(), reordered);
+        iface.editPhotos(testSet.getId(), testProperties.getPhotoId(), reordered.toArray(new String[setPics.size()]));
 
         Photoset ps = iface.getInfo(testSet.getId());
         assertNotNull(ps);
-        assertEquals(testProperties.getPhotoId(), ps.getPrimaryPhoto());
+        assertEquals(testProperties.getPhotoId(), ps.getPrimaryPhoto().getId());
         assertEquals(4, ps.getPhotoCount());
     }
 

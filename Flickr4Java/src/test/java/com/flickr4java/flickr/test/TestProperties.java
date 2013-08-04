@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -58,8 +61,11 @@ public class TestProperties {
 
     private String galleryId;
 
+    private final List<String> photosetPhotos;
+
     public TestProperties() {
 
+        photosetPhotos = new ArrayList<String>();
         Properties properties = load();
         populate(properties);
     }
@@ -76,7 +82,7 @@ public class TestProperties {
         tokenSecret = properties.getProperty("tokensecret");
         nsid = properties.getProperty("nsid");
         email = properties.getProperty("email");
-        setDisplayname(properties.getProperty("displayname"));
+        displayname = properties.getProperty("displayname");
         username = properties.getProperty("username");
         groupId = properties.getProperty("groupid");
         testGroupId = properties.getProperty("testgroupid");
@@ -88,6 +94,12 @@ public class TestProperties {
         galleryId = properties.getProperty("galleryid");
         geoWritePhotoId = properties.getProperty("geo.write.photoid");
 
+        String photosetPhotosCSV = properties.getProperty("photosetphotos");
+        String[] photosetPhotos = photosetPhotosCSV != null ? photosetPhotosCSV.split(",") : new String[0];
+        for (String photosetPhoto : photosetPhotos) {
+            this.photosetPhotos.add(photosetPhoto.trim());
+        }
+        Collections.sort(this.photosetPhotos);
     }
 
     private Properties load() {
@@ -173,16 +185,12 @@ public class TestProperties {
         return galleryId;
     }
 
-    public void setCollectionUrlId(String collectionUrlId) {
-        this.collectionUrlId = collectionUrlId;
-    }
-
     public String getDisplayname() {
         return displayname;
     }
 
-    public void setDisplayname(String displayname) {
-        this.displayname = displayname;
+    public List<String> getPhotosetPhotos() {
+        return photosetPhotos;
     }
 
 }

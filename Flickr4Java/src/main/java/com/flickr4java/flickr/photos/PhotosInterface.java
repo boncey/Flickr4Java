@@ -3,6 +3,23 @@
  */
 package com.flickr4java.flickr.photos;
 
+import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.REST;
+import com.flickr4java.flickr.RequestContext;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.photos.geo.GeoInterface;
+import com.flickr4java.flickr.util.IOUtilities;
+import com.flickr4java.flickr.util.StringUtilities;
+import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import javax.imageio.ImageIO;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,24 +35,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.imageio.ImageIO;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.REST;
-import com.flickr4java.flickr.RequestContext;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.photos.geo.GeoInterface;
-import com.flickr4java.flickr.util.IOUtilities;
-import com.flickr4java.flickr.util.StringUtilities;
-import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for working with Flickr Photos.
@@ -100,6 +99,7 @@ public class PhotosInterface {
     public static final String METHOD_GET_INTERESTINGNESS = "flickr.interestingness.getList";
 
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
+        @Override
         protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
@@ -107,11 +107,11 @@ public class PhotosInterface {
 
     private GeoInterface geoInterface = null;
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transport;
+    private final Transport transport;
 
     public PhotosInterface(String apiKey, String sharedSecret, Transport transport) {
         this.apiKey = apiKey;
@@ -562,7 +562,7 @@ public class PhotosInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Element photoElement = (Element) response.getPayload();
+        Element photoElement = response.getPayload();
 
         return PhotoUtils.createPhoto(photoElement);
     }
@@ -741,6 +741,7 @@ public class PhotosInterface {
             size.setHeight(sizeElement.getAttribute("height"));
             size.setSource(sizeElement.getAttribute("source"));
             size.setUrl(sizeElement.getAttribute("url"));
+            size.setMedia(sizeElement.getAttribute("media"));
             sizes.add(size);
         }
         return sizes;
@@ -1306,7 +1307,6 @@ public class PhotosInterface {
      * @param id
      *            The ID
      * @return The Photo
-     * @throws SAXException
      */
     public Photo getPhoto(String id) throws FlickrException {
         return getPhoto(id, null);
@@ -1320,7 +1320,6 @@ public class PhotosInterface {
      * @param secret
      *            The secret
      * @return The Photo
-     * @throws SAXException
      */
     public Photo getPhoto(String id, String secret) throws FlickrException {
         return getInfo(id, secret);
@@ -1353,6 +1352,10 @@ public class PhotosInterface {
                 urlStr = photo.getMediumUrl();
             } else if (size == Size.LARGE) {
                 urlStr = photo.getLargeUrl();
+            } else if (size == Size.LARGE_1600) {
+                urlStr = photo.getLarge1600Url();
+            } else if (size == Size.LARGE_2048) {
+                urlStr = photo.getLarge2048Url();
             } else if (size == Size.ORIGINAL) {
                 urlStr = photo.getOriginalUrl();
             } else if (size == Size.SQUARE_LARGE) {

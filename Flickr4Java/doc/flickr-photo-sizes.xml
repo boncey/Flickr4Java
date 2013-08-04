@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+  <sizes canblog="1" canprint="0" candownload="0">
+    <size label="Square" width="75" height="75" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_s.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/sq/" media="photo" />
+    <size label="Large Square" width="150" height="150" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_q.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/q/" media="photo" />
+    <size label="Thumbnail" width="100" height="46" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_t.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/t/" media="photo" />
+    <size label="Small" width="240" height="111" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_m.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/s/" media="photo" />
+    <size label="Small 320" width="320" height="148" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_n.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/n/" media="photo" />
+    <size label="Medium" width="500" height="232" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/m/" media="photo" />
+    <size label="Medium 640" width="640" height="297" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_z.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/z/" media="photo" />
+    <size label="Medium 800" width="800" height="371" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_c.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/c/" media="photo" />
+    <size label="Large" width="1024" height="475" source="http://farm8.staticflickr.com/7444/9232046055_1b83d6ac99_b.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/l/" media="photo" />
+    <size label="Large 1600" width="1600" height="742" source="http://farm8.staticflickr.com/7444/9232046055_01da35ed4f_h.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/h/" media="photo" />
+    <size label="Large 2048" width="2048" height="949" source="http://farm8.staticflickr.com/7444/9232046055_0ce35ecc61_k.jpg" url="http://www.flickr.com/photos/watcher24/9232046055/sizes/k/" media="photo" />
+  </sizes>
+</rsp>

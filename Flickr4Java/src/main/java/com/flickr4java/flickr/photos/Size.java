@@ -176,6 +176,8 @@ public class Size {
 
     private String url;
 
+    private Media media;
+
     public Size() {
 
     }
@@ -201,7 +203,7 @@ public class Size {
     }
 
     private final List<String> lstSizes = Arrays.asList("Thumbnail", "Square", "Small", "Medium", "Large", "Original", "Square Large", "Small 320",
-            "Medium 640", "Medium 800");
+            "Medium 640", "Medium 800", "Large 1600", "Large 2048", "Site MP4", "Video Player", "Video Original");
 
     /**
      * Set the String-representation of size.
@@ -297,6 +299,18 @@ public class Size {
     public void setUrl(String url) {
 
         this.url = url;
+    }
+
+    public Media getMedia() {
+        return media;
+    }
+
+    public void setMedia(Media media) {
+        this.media = media;
+    }
+
+    public void setMedia(String media) {
+        this.media = Media.valueOf(media);
     }
 
     @Override

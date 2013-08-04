@@ -91,7 +91,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         PeopleInterface iface = flickr.getPeopleInterface();
         PhotoList<Photo> photos = iface.getPhotos(testProperties.getNsid(), null, null, null, null, null, null, null, null, 15, 1);
         assertNotNull(photos);
-        assertEquals(15, photos.size());
+        assertTrue(photos.size() > 1);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         PeopleInterface iface = flickr.getPeopleInterface();
         PhotoList<Photo> photos = iface.getPhotosOf(testProperties.getNsid(), null, null, 10, 1);
         assertNotNull(photos);
-        assertEquals(10, photos.size());
+        assertTrue(photos.size() > 1);
     }
 
     @Test

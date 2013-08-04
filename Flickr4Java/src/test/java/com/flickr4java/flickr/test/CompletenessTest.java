@@ -3,18 +3,18 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.reflection.ReflectionInterface;
+import com.flickr4java.flickr.util.IOUtilities;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Properties;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.reflection.ReflectionInterface;
-import com.flickr4java.flickr.util.IOUtilities;
 
 /**
  * Tests the basic completeness of the api.
@@ -26,6 +26,7 @@ public class CompletenessTest extends Flickr4JavaTest {
 
     Properties replacements;
 
+    @Override
     @Before
     public void setUp() throws FlickrException {
         super.setUp();
@@ -48,7 +49,7 @@ public class CompletenessTest extends Flickr4JavaTest {
         Iterator<String> mit = ri.getMethods().iterator();
         int notFound = 0;
         while (mit.hasNext()) {
-            String method = (String) mit.next();
+            String method = mit.next();
             if (!checkMethod(method)) {
                 notFound++;
             }

@@ -4,13 +4,14 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.galleries.Gallery;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.urls.UrlsInterface;
+
+import org.junit.Test;
 
 /**
  * @author Anthony Eden
@@ -45,7 +46,7 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
         UrlsInterface iface = flickr.getUrlsInterface();
         Group group = iface.lookupGroup("http://www.flickr.com/groups/central/");
         assertEquals("FlickrCentral", group.getName());
-        assertEquals("34427469792@N01", group.getId());
+        assertEquals(testProperties.getGroupId(), group.getId());
     }
 
     @Test
@@ -63,7 +64,7 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
         Gallery gallery = iface.lookupGallery(String.format("http://www.flickr.com/photos/%s/",
                 testProperties.getUsername() + "/galleries/" + testProperties.getGalleryId()));
         assertNotNull(gallery);
-        assertEquals("1979953-" + testProperties.getGalleryId(), gallery.getId());
+        assertTrue(gallery.getId().endsWith(testProperties.getGalleryId()));
     }
 
 }

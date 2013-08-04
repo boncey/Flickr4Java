@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+  <sizes canblog="1" canprint="1" candownload="1">
+    <size label="Square" width="75" height="75" source="http://farm4.staticflickr.com/3029/2873640658_771e573639_s.jpg" url="http://www.flickr.com/photos/boncey/2873640658/sizes/sq/" media="photo" />
+    <size label="Large Square" width="150" height="150" source="http://farm4.staticflickr.com/3029/2873640658_771e573639_q.jpg" url="http://www.flickr.com/photos/boncey/2873640658/sizes/q/" media="photo" />
+    <size label="Thumbnail" width="100" height="75" source="http://farm4.staticflickr.com/3029/2873640658_771e573639_t.jpg" url="http://www.flickr.com/photos/boncey/2873640658/sizes/t/" media="photo" />
+    <size label="Small" width="240" height="180" source="http://farm4.staticflickr.com/3029/2873640658_771e573639_m.jpg" url="http://www.flickr.com/photos/boncey/2873640658/sizes/s/" media="photo" />
+    <size label="Medium" width="320" height="240" source="http://farm4.staticflickr.com/3029/2873640658_771e573639.jpg" url="http://www.flickr.com/photos/boncey/2873640658/sizes/m/" media="photo" />
+    <size label="Original" width="320" height="240" source="http://farm4.staticflickr.com/3029/2873640658_d10823e83a_o.png" url="http://www.flickr.com/photos/boncey/2873640658/sizes/o/" media="photo" />
+    <size label="Video Player" width="320" height="240" source="http://www.flickr.com/apps/video/stewart.swf?v=109786&photo_id=2873640658&photo_secret=771e573639" url="http://www.flickr.com/photos/boncey/2873640658/" media="video" />
+    <size label="Site MP4" width="320" height="240" source="http://www.flickr.com/photos/boncey/2873640658/play/site/771e573639/" url="http://www.flickr.com/photos/boncey/2873640658/" media="video" />
+    <size label="Video Original" width="320" height="240" source="http://www.flickr.com/photos/boncey/2873640658/play/orig/d10823e83a/" url="http://www.flickr.com/photos/boncey/2873640658/" media="video" />
+  </sizes>
+</rsp>

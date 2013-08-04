@@ -3,16 +3,6 @@
  */
 package com.flickr4java.flickr.photosets;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
@@ -25,6 +15,16 @@ import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Interface for working with photosets.
@@ -62,11 +62,11 @@ public class PhotosetsInterface {
 
     public static final String METHOD_SET_PRIMARY_PHOTO = "flickr.photosets.setPrimaryPhoto";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transportAPI;
+    private final Transport transportAPI;
 
     public PhotosetsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
@@ -123,7 +123,7 @@ public class PhotosetsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Element photosetElement = (Element) response.getPayload();
+        Element photosetElement = response.getPayload();
         Photoset photoset = new Photoset();
         photoset.setId(photosetElement.getAttribute("id"));
         photoset.setUrl(photosetElement.getAttribute("url"));
@@ -270,7 +270,7 @@ public class PhotosetsInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        Element photosetElement = (Element) response.getPayload();
+        Element photosetElement = response.getPayload();
         Photoset photoset = new Photoset();
         photoset.setId(photosetElement.getAttribute("id"));
 
@@ -309,25 +309,24 @@ public class PhotosetsInterface {
      * @return The Photosets collection
      * @throws FlickrException
      */
-    @Deprecated
     public Photosets getList(String userId) throws FlickrException {
-	    return getList(userId, 0, 0);
-	}
-    
+        return getList(userId, 0, 0);
+    }
+
     /**
      * Get a list of all photosets for the specified user.
      * 
      * This method does not require authentication. But to get a Photoset into the list, that contains just private photos, the call needs to be authenticated.
      * 
-	 * @param userId
+     * @param userId
      *            The User id
-	 * @param perPage
+     * @param perPage
      *            The number of photosets per page
      * @param page
      *            The page offset
-	 * @return The Photosets collection
-	 * @throws FlickrException
-	 */
+     * @return The Photosets collection
+     * @throws FlickrException
+     */
     public Photosets getList(String userId, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
@@ -336,7 +335,7 @@ public class PhotosetsInterface {
         if (userId != null) {
             parameters.put("user_id", userId);
         }
-        
+
         if (perPage > 0) {
             parameters.put("per_page", String.valueOf(perPage));
         }
@@ -383,36 +382,37 @@ public class PhotosetsInterface {
         photosetsObject.setPhotosets(photosets);
         return photosetsObject;
     }
-    
+
     /**
      * Convenience method.
      * 
      * Get the total number of sets belonging to a user
+     * 
      * @param userId
      *            The User id
-	 * @return int The number of photosets
-	 * @throws FlickrException
-	 */
-	public int getPhotosetCount(String userId) throws FlickrException{
-		Map<String, Object> parameters = new HashMap<String, Object>();
-	    parameters.put("method", METHOD_GET_LIST);
-	    parameters.put(Flickr.API_KEY, apiKey);
+     * @return int The number of photosets
+     * @throws FlickrException
+     */
+    public int getPhotosetCount(String userId) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("method", METHOD_GET_LIST);
+        parameters.put(Flickr.API_KEY, apiKey);
 
-	    if (userId != null) {
-	        parameters.put("user_id", userId);
-	    }        
-	 
+        if (userId != null) {
+            parameters.put("user_id", userId);
+        }
+
         // Request the bare minimum
-	    parameters.put("per_page", String.valueOf(1));
-	    parameters.put("page", String.valueOf(1));
-	        
-	    Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
-	    if (response.isError()) {
-	        throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
-	    }
-	    Element photosetsElement = response.getPayload();
-	    
-	    return Integer.valueOf(photosetsElement.getAttribute("total"));
+        parameters.put("per_page", String.valueOf(1));
+        parameters.put("page", String.valueOf(1));
+
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+        Element photosetsElement = response.getPayload();
+
+        return Integer.valueOf(photosetsElement.getAttribute("total"));
     }
 
     /**

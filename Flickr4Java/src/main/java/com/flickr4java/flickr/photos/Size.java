@@ -12,8 +12,6 @@ import java.util.List;
  * 
  * @author Anthony Eden
  * @version $Id: Size.java,v 1.7 2009/07/23 20:41:03 x-mago Exp $
- * 
- *          TODO This could probably be changed to be an enum
  */
 public class Size {
 
@@ -118,6 +116,56 @@ public class Size {
      */
     public static final int MEDIUM_800 = 9;
 
+    /**
+     * Large, 1600 px on the longest side
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int LARGE_1600 = 10;
+
+    /**
+     * Large, 2048 px on the longest side
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int LARGE_2048 = 11;
+
+    /**
+     * Video, for playback on the site.
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int SITE_MP4 = 12;
+
+    /**
+     * Video, for playback on the site.
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int VIDEO_PLAYER = 13;
+
+    /**
+     * Video, the original for download.
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int VIDEO_ORIGINAL = 14;
+
     private int label;
 
     private int width;
@@ -148,6 +196,7 @@ public class Size {
      * @see com.flickr4java.flickr.photos.Size#MEDIUM_800
      */
     public int getLabel() {
+
         return label;
     }
 
@@ -162,6 +211,7 @@ public class Size {
      * @param label
      */
     public void setLabel(String label) {
+
         int ix = lstSizes.indexOf(label);
         if (ix != -1) {
             setLabel(ix);
@@ -181,32 +231,39 @@ public class Size {
      * @see com.flickr4java.flickr.photos.Size#ORIGINAL
      */
     public void setLabel(int label) {
+
         this.label = label;
     }
 
     public int getWidth() {
+
         return width;
     }
 
     public void setWidth(int width) {
+
         this.width = width;
     }
 
     public void setWidth(String width) {
+
         if (width != null) {
             setWidth(Integer.parseInt(width));
         }
     }
 
     public int getHeight() {
+
         return height;
     }
 
     public void setHeight(int height) {
+
         this.height = height;
     }
 
     public void setHeight(String height) {
+
         if (height != null) {
             setHeight(Integer.parseInt(height));
         }
@@ -218,10 +275,12 @@ public class Size {
      * @return Image-URL
      */
     public String getSource() {
+
         return source;
     }
 
     public void setSource(String source) {
+
         this.source = source;
     }
 
@@ -231,15 +290,18 @@ public class Size {
      * @return Page-URL
      */
     public String getUrl() {
+
         return url;
     }
 
     public void setUrl(String url) {
+
         this.url = url;
     }
 
     @Override
     public boolean equals(Object obj) {
+
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }
@@ -252,6 +314,7 @@ public class Size {
 
     @Override
     public int hashCode() {
+
         int hash = 1;
         hash += new Integer(label).hashCode();
         hash += new Integer(width).hashCode();
@@ -266,6 +329,7 @@ public class Size {
     }
 
     private boolean areEqual(Object x, Object y) {
+
         return x == null ? y == null : x.equals(y);
     }
 }

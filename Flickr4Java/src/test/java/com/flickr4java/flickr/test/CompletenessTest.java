@@ -8,6 +8,7 @@ import com.flickr4java.flickr.reflection.ReflectionInterface;
 import com.flickr4java.flickr.util.IOUtilities;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -43,6 +44,8 @@ public class CompletenessTest extends Flickr4JavaTest {
 
     }
 
+    // Test disabled in normal circumstances - just enable when you want to test completeness
+    @Ignore
     @Test
     public void testIfComplete() throws FlickrException {
         ReflectionInterface ri = flickr.getReflectionInterface();

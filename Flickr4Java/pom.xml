@@ -4,12 +4,11 @@
 
     <groupId>com.flickr4java</groupId>
     <artifactId>flickr</artifactId>
-    <version>${flickr4javaVersion}</version>
+    <version>2.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>flickr4java</name>
 
     <properties>
-        <flickr4javaVersion>2.4</flickr4javaVersion>
         <javaVersion>1.6</javaVersion>
         <log4jVersion>1.2.17</log4jVersion>
         <junitVersion>4.11</junitVersion>
@@ -51,6 +50,15 @@
                     <target>${javaVersion}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
         </plugins>
 
         <resources>
@@ -66,5 +74,48 @@
             </resource>
         </resources>
     </build>
-
+    <scm>
+        <connection>scm:git:https://github.com/callmeal/Flickr4Java.git</connection>
+        <developerConnection>scm:git:git@github.com:callmeal/Flickr4Java.git</developerConnection>
+        <url>https://github.com/callmeal/Flickr4Java</url>
+        <tag>HEAD</tag>
+    </scm>
+    <distributionManagement>
+        <repository>
+            <id>bintray-boncey-Flickr4Java-Flickr4Java</id>
+            <name>boncey-Flickr4Java-Flickr4Java</name>
+            <url>https://api.bintray.com/maven/boncey/Flickr4Java/Flickr4Java</url>
+        </repository>
+    </distributionManagement>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

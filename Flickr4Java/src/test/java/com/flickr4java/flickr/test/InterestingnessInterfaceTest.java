@@ -5,13 +5,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.interestingness.InterestingnessInterface;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
+
+import org.junit.Test;
 
 /**
  * 
@@ -34,7 +34,7 @@ public class InterestingnessInterfaceTest extends Flickr4JavaTest {
         assertEquals(7, list.getPerPage());
         assertEquals(500, list.getTotal());
         assertTrue(list.get(0) instanceof Photo);
-        Photo photo = (Photo) list.get(1);
+        Photo photo = list.get(1);
         assertNotNull(photo.getId());
         assertNotNull(photo.getLicense());
         assertNotNull(photo.getOwner());
@@ -45,10 +45,10 @@ public class InterestingnessInterfaceTest extends Flickr4JavaTest {
 
         list = ii.getList((String) null, Extras.ALL_EXTRAS, 100, 1);
         assertNotNull(list);
-        assertEquals(100, list.size());
-        photo = (Photo) list.get(0);
+        assertTrue(list.size() > 1);
+        photo = list.get(0);
         for (int i = list.size() - 1; i >= 0; --i) {
-            photo = (Photo) list.get(i);
+            photo = list.get(i);
             if (photo.hasGeoData()) {
                 // System.out.println(photo.getId() + " " + photo.getGeoData() + " " + photo.getUrl());
             }

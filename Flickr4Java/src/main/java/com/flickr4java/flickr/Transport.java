@@ -18,8 +18,10 @@ public abstract class Transport {
 
     public static final String SOAP = "SOAP";
 
-    protected static final String API_HOST = "http://api.flickr.com";
+    protected static final String API_HOST = "api.flickr.com";
 
+    protected static final String DEFAULT_SCHEME = "https";
+    
     private String transportType;
 
     protected Class<?> responseClass;
@@ -28,7 +30,9 @@ public abstract class Transport {
 
     private String host;
 
-    private int port = 80;
+    private int port = 443;
+    
+    private String scheme;
 
     public String getHost() {
         return host;
@@ -60,6 +64,14 @@ public abstract class Transport {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getScheme() {
+        return scheme;
+    }
+
+    public void setScheme(String scheme) {
+        this.scheme = scheme;
     }
 
     /**

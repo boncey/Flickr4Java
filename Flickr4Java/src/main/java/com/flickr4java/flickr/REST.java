@@ -69,6 +69,7 @@ public class REST extends Transport {
         setTransportType(REST);
         setHost(API_HOST);
         setPath(PATH);
+        setScheme(DEFAULT_SCHEME);
         setResponseClass(RESTResponse.class);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         try {
@@ -204,7 +205,7 @@ public class REST extends Transport {
     public Response getNonOAuth(String path, Map<String, String> parameters) {
         InputStream in = null;
         try {
-            URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, parameters);
+            URL url = UrlUtilities.buildUrl(getScheme(), getHost(), getPort(), path, parameters);
             if (Flickr.debugRequest) {
                 logger.debug("GET: " + url);
             }

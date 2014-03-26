@@ -22,7 +22,7 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
     public void testGetGroup() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getGroup(testProperties.getGroupId());
-        assertEquals("http://www.flickr.com/groups/central/", url);
+        assertEquals("https://www.flickr.com/groups/central/", url);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserPhotos(testProperties.getNsid());
         String username = testProperties.getUsername();
-        assertEquals(String.format("http://www.flickr.com/photos/%s/", username), url);
+        assertEquals(String.format("https://www.flickr.com/photos/%s/", username), url);
     }
 
     @Test
@@ -38,13 +38,13 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
         UrlsInterface iface = flickr.getUrlsInterface();
         String url = iface.getUserProfile(testProperties.getNsid());
         String username = testProperties.getUsername();
-        assertEquals(String.format("http://www.flickr.com/people/%s/", username), url);
+        assertEquals(String.format("https://www.flickr.com/people/%s/", username), url);
     }
 
     @Test
     public void testLookupGroup() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
-        Group group = iface.lookupGroup("http://www.flickr.com/groups/central/");
+        Group group = iface.lookupGroup("https://www.flickr.com/groups/central/");
         assertEquals("FlickrCentral", group.getName());
         assertEquals(testProperties.getGroupId(), group.getId());
     }
@@ -53,7 +53,7 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
     public void testLookupUser() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String username = testProperties.getUsername();
-        String usernameOnFlickr = iface.lookupUser(String.format("http://www.flickr.com/people/%s/", username));
+        String usernameOnFlickr = iface.lookupUser(String.format("https://www.flickr.com/people/%s/", username));
         assertEquals(username, usernameOnFlickr);
     }
 
@@ -61,7 +61,7 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
     public void testLookupGallery() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
 
-        Gallery gallery = iface.lookupGallery(String.format("http://www.flickr.com/photos/%s/",
+        Gallery gallery = iface.lookupGallery(String.format("https://www.flickr.com/photos/%s/",
                 testProperties.getUsername() + "/galleries/" + testProperties.getGalleryId()));
         assertNotNull(gallery);
         assertTrue(gallery.getId().endsWith(testProperties.getGalleryId()));

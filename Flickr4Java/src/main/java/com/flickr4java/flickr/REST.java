@@ -143,7 +143,7 @@ public class REST extends Transport {
     @Override
     public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String sharedSecret) {
 
-        OAuthRequest request = new OAuthRequest(Verb.GET, API_HOST + path);
+        OAuthRequest request = new OAuthRequest(Verb.GET, getScheme() + "://" + getHost() + path);
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
             request.addQuerystringParameter(entry.getKey(), String.valueOf(entry.getValue()));
         }
@@ -255,7 +255,7 @@ public class REST extends Transport {
     @Override
     public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String sharedSecret, boolean multipart) {
 
-        OAuthRequest request = new OAuthRequest(Verb.POST, API_HOST + path);
+        OAuthRequest request = new OAuthRequest(Verb.POST, getScheme() + "://" + getHost() + path);
 
         if (multipart) {
             buildMultipartRequest(parameters, request);

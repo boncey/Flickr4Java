@@ -3,6 +3,10 @@
  */
 package com.flickr4java.flickr.util;
 
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.auth.Auth;
+import com.flickr4java.flickr.people.User;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,10 +16,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.auth.Auth;
-import com.flickr4java.flickr.people.User;
 
 /**
  * 

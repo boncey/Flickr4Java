@@ -1,20 +1,19 @@
 package com.flickr4java.flickr.photosets.comments;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.photos.comments.Comment;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Access to the <b>flickr.photosets.comments</b> methods.
@@ -56,13 +55,12 @@ public class PhotosetsCommentsInterface {
     public String addComment(String photosetId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_COMMENT);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("comment_text", commentText);
 
         // Note: This method requires an HTTP POST request.
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -82,12 +80,11 @@ public class PhotosetsCommentsInterface {
     public void deleteComment(String commentId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE_COMMENT);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("comment_id", commentId);
 
         // Note: This method requires an HTTP POST request.
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -106,13 +103,12 @@ public class PhotosetsCommentsInterface {
     public void editComment(String commentId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_COMMENT);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("comment_id", commentId);
         parameters.put("comment_text", commentText);
 
         // Note: This method requires an HTTP POST request.
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -132,11 +128,10 @@ public class PhotosetsCommentsInterface {
     public List<Comment> getList(String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

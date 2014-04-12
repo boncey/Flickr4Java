@@ -6,16 +6,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Collection;
-import java.util.Iterator;
-
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.blogs.Blog;
 import com.flickr4java.flickr.blogs.BlogsInterface;
 import com.flickr4java.flickr.blogs.Service;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * @author Anthony Eden

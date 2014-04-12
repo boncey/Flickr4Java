@@ -3,16 +3,15 @@
  */
 package com.flickr4java.flickr.photos.suggestions;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
+
+import org.w3c.dom.Element;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author acaplan
@@ -57,10 +56,9 @@ public class SuggestionsInterface {
     private void act(String suggestionId, String method) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", method);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("suggestion_id", suggestionId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -69,7 +67,6 @@ public class SuggestionsInterface {
     public void suggestLocation(String photoId, double lat, double lon, int accuracy, String woe_id, String place_id, String note) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SUGGEST_LOCATION);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
         parameters.put("lat", lat);
         parameters.put("lon", lon);
@@ -86,7 +83,7 @@ public class SuggestionsInterface {
             parameters.put("note", note);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -95,11 +92,10 @@ public class SuggestionsInterface {
     public List getList(String photoId, String statusId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("photo_id", photoId);
         parameters.put("status_id", statusId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

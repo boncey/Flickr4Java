@@ -114,4 +114,9 @@ public class Tag {
     private boolean areEqual(Object x, Object y) {
         return x == null ? y == null : x.equals(y);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Tag [value=%s, count=%s]", value, count);
+    }
 }

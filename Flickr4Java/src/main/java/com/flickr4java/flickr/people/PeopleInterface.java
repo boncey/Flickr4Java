@@ -3,7 +3,6 @@
  */
 package com.flickr4java.flickr.people;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -81,11 +80,10 @@ public class PeopleInterface {
     public User findByEmail(String email) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_FIND_BY_EMAIL);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("find_email", email);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -109,11 +107,10 @@ public class PeopleInterface {
     public User findByUsername(String username) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_FIND_BY_USERNAME);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("username", username);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -137,11 +134,10 @@ public class PeopleInterface {
     public User getInfo(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -191,11 +187,10 @@ public class PeopleInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_GROUPS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -239,7 +234,6 @@ public class PeopleInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PUBLIC_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
 
@@ -254,7 +248,7 @@ public class PeopleInterface {
             parameters.put(Extras.KEY_EXTRAS, StringUtilities.join(extras, ","));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -283,9 +277,8 @@ public class PeopleInterface {
     public User getUploadStatus() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_UPLOAD_STATUS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -310,7 +303,6 @@ public class PeopleInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
         if (safeSearch != null) {
@@ -344,7 +336,7 @@ public class PeopleInterface {
             parameters.put(Extras.KEY_EXTRAS, StringUtilities.join(extras, ","));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -368,7 +360,6 @@ public class PeopleInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS_OF);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("user_id", userId);
         if (ownerId != null) {
@@ -384,7 +375,7 @@ public class PeopleInterface {
             parameters.put("page", "" + page);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -495,10 +486,9 @@ public class PeopleInterface {
         GroupList<Group> groupList = new GroupList<Group>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GROUPS);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("user_id", userId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

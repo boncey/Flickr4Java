@@ -1,19 +1,18 @@
 package com.flickr4java.flickr.activity;
 
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Gather activity information belonging to the calling user.
@@ -52,7 +51,6 @@ public class ActivityInterface {
         ItemList<Item> items = new ItemList<Item>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_COMMENTS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (perPage > 0) {
             parameters.put("per_page", "" + perPage);
@@ -62,7 +60,7 @@ public class ActivityInterface {
             parameters.put("page", "" + page);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -96,7 +94,6 @@ public class ActivityInterface {
         ItemList<Item> items = new ItemList<Item>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_USER_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (perPage > 0) {
             parameters.put("per_page", "" + perPage);
@@ -114,7 +111,7 @@ public class ActivityInterface {
             }
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

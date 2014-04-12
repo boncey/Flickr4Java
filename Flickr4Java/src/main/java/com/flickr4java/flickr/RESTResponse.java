@@ -3,13 +3,13 @@
  */
 package com.flickr4java.flickr;
 
-import java.util.Collection;
-import java.util.List;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Flickr Response object.

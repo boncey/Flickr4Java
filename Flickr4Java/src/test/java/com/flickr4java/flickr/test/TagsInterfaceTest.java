@@ -45,7 +45,7 @@ public class TagsInterfaceTest extends Flickr4JavaTest {
 
         TagsInterface iface = flickr.getTagsInterface();
         PhotoList<Photo> photos = iface.getClusterPhotos("ducati", "999-1098-848");
-        assertTrue(photos.getTotal() == 24);
+        assertEquals(23, photos.getTotal());
     }
 
     @Test

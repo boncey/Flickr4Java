@@ -3,19 +3,18 @@
  */
 package com.flickr4java.flickr.test;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.people.User;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.people.User;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Interface for testing Flickr connectivity.
@@ -53,10 +52,9 @@ public class TestInterface {
     public Collection<Element> echo(Map<String, String> params) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ECHO);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.putAll(params);
 
-        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
+        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -73,9 +71,8 @@ public class TestInterface {
     public User login() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOGIN);
-        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transport.post(transport.getPath(), parameters, sharedSecret);
+        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -97,9 +94,8 @@ public class TestInterface {
     public void null_() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_NULL);
-        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transport.get(transport.getPath(), parameters, sharedSecret);
+        Response response = transport.get(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

@@ -367,30 +367,6 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
     }
 
     @Test
-    public void testGetLarge1600Image() throws FlickrException, IOException {
-        PhotosInterface iface = flickr.getPhotosInterface();
-        String photoId = testProperties.getPhotoId();
-        Photo photo = iface.getInfo(photoId, null);
-        BufferedImage image = iface.getImage(photo, Size.LARGE_1600);
-        assertNotNull(image);
-        assertNotNull(image.getWidth());
-        assertNotNull(image.getHeight());
-        ImageIO.write(image, "jpg", largeFile);
-    }
-
-    @Test
-    public void testGetLarge2048Image() throws FlickrException, IOException {
-        PhotosInterface iface = flickr.getPhotosInterface();
-        String photoId = testProperties.getPhotoId();
-        Photo photo = iface.getInfo(photoId, null);
-        BufferedImage image = iface.getImage(photo, Size.LARGE_2048);
-        assertNotNull(image);
-        assertNotNull(image.getWidth());
-        assertNotNull(image.getHeight());
-        ImageIO.write(image, "jpg", largeFile);
-    }
-
-    @Test
     public void testGetPhoto() throws FlickrException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = testProperties.getPhotoId();

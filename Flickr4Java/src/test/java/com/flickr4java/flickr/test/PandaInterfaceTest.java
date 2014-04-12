@@ -5,15 +5,15 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.ArrayList;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.panda.Panda;
 import com.flickr4java.flickr.panda.PandaInterface;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
+
+import org.junit.Test;
+
+import java.util.ArrayList;
 
 /**
  * @author mago

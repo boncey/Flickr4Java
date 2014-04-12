@@ -4,12 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.places.Location;
@@ -18,6 +12,12 @@ import com.flickr4java.flickr.places.PlaceType;
 import com.flickr4java.flickr.places.PlacesInterface;
 import com.flickr4java.flickr.places.PlacesList;
 import com.flickr4java.flickr.tags.Tag;
+
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Tests for the PlacesInterface.
@@ -33,7 +33,7 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         PlacesList<Place> list = placesInterface.findByLatLon(52.524577D, 13.412247D, Flickr.ACCURACY_CITY);
         assertTrue(list.getTotal() == 1);
-        Place place = (Place) list.get(0);
+        Place place = list.get(0);
         assertEquals("zot2ouJXUbKOJRM", place.getPlaceId());
         assertEquals("/Germany/Berlin/Berlin", place.getPlaceUrl());
         assertEquals(Place.TYPE_LOCALITY, place.getPlaceType());
@@ -47,17 +47,17 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         PlacesList<Place> list = placesInterface.find("Alabama");
         assertTrue(list.getTotal() == 3);
-        Place place = (Place) list.get(0);
+        Place place = list.get(0);
         assertEquals("KSb302RTUb74OxqL", place.getPlaceId());
         assertEquals("/United+States/Alabama", place.getPlaceUrl());
         assertEquals(Place.TYPE_REGION, place.getPlaceType());
 
-        place = (Place) list.get(1);
+        place = list.get(1);
         assertEquals("D_36GGlTUb8R9C_Y", place.getPlaceId());
         assertEquals("/United+States/New+York/Alabama", place.getPlaceUrl());
         assertEquals(Place.TYPE_LOCALITY, place.getPlaceType());
 
-        place = (Place) list.get(2);
+        place = list.get(2);
         assertEquals("3BCBV2pQV70Ei4_4", place.getPlaceId());
         assertEquals("/South+Africa/North-west/Alabama", place.getPlaceUrl());
         assertEquals(Place.TYPE_LOCALITY, place.getPlaceType());
@@ -68,14 +68,14 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         PlacesInterface placesInterface = flickr.getPlacesInterface();
         PlacesList<Place> list = placesInterface.find("Europe");
         assertTrue(list.getTotal() == 2);
-        Place place = (Place) list.get(0);
+        Place place = list.get(0);
         assertEquals("6dCBhRRTVrJiB5xOrg", place.getPlaceId());
         assertEquals("/6dCBhRRTVrJiB5xOrg", place.getPlaceUrl());
         assertEquals(Place.TYPE_CONTINENT, place.getPlaceType());
 
-        place = (Place) list.get(1);
+        place = list.get(1);
         assertEquals("SmLXwKZUV7JlnVvxUA", place.getPlaceId());
-        assertEquals("/France/Ile-de-France/Paris/Europe", place.getPlaceUrl());
+        assertEquals("/France/%C3%8Ele-de-France/Paris/Europe", place.getPlaceUrl());
         assertEquals(Place.TYPE_NEIGHBOURHOOD, place.getPlaceType());
     }
 
@@ -101,7 +101,7 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         PlacesList<Place> list = placesInterface.getChildrenWithPhotosPublic(placeId, woeId);
         boolean presidioFound = false;
         for (int i = 0; i < list.size(); i++) {
-            Place place = (Place) list.get(i);
+            Place place = list.get(i);
             // System.out.println(place.getName());
             if (place.getPlaceId().equals("uSdaoQpTUb.eNcX1Jg")) {
                 assertEquals("Presidio, San Francisco, CA, US, United States", place.getName());
@@ -139,7 +139,7 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         boolean neighbourhoodFound = false;
         boolean regionFound = false;
         for (int i = 0; i < placeTypes.size(); i++) {
-            PlaceType placeType = (PlaceType) placeTypes.get(i);
+            PlaceType placeType = placeTypes.get(i);
             if (placeType.getPlaceTypeName().equals("neighbourhood") && placeType.getPlaceTypeId() == 22) {
                 neighbourhoodFound = true;
             }
@@ -167,7 +167,7 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         int placeType = Place.TYPE_LOCALITY;
         PlacesList<Place> places = placesInterface.placesForBoundingBox(placeType, bbox);
         assertTrue((places.size() > 0));
-        Place place = (Place) places.get(0);
+        Place place = places.get(0);
         assertEquals(sfWoeId, place.getWoeId());
         assertEquals("7.MJR8tTVrIO1EgB", place.getPlaceId());
         assertEquals("/United+States/California/San+Francisco", place.getPlaceUrl());
@@ -185,7 +185,7 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         PlacesList<Place> places = placesInterface.placesForContacts(placeType, placeId, woeId, threshold, contacts);
         assertTrue((places.size() > 0));
         for (int i = 0; i < places.size(); i++) {
-            Place place = (Place) places.get(i);
+            Place place = places.get(i);
             assertTrue(place.getPhotoCount() > 0);
             // System.out.println(place.getName() + " " + place.getPlaceUrl());
         }
@@ -210,7 +210,7 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         PlacesList<Place> places = placesInterface.placesForTags(placeTypeId, sfWoeId, placeId, threshold, tags, tagMode, machineTags, machineTagMode,
                 minUploadDate.getTime(), maxUploadDate.getTime(), minTakenDate.getTime(), maxTakenDate.getTime());
         assertTrue((places.size() == 1));
-        Place place = (Place) places.get(0);
+        Place place = places.get(0);
         assertEquals("NsbUWfBTUb4mbyVu", place.getPlaceId());
         assertEquals(Place.TYPE_REGION, place.getPlaceType());
         assertEquals("/United+States/California", place.getPlaceUrl());
@@ -227,8 +227,8 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         Calendar maxUploadDate = Calendar.getInstance();
         Calendar minTakenDate = Calendar.getInstance();
         Calendar maxTakenDate = Calendar.getInstance();
-        minUploadDate.roll(Calendar.YEAR, -3);
-        minTakenDate.roll(Calendar.YEAR, -3);
+        minUploadDate.roll(Calendar.YEAR, -5);
+        minTakenDate.roll(Calendar.YEAR, -5);
         PlacesList<Place> places = placesInterface.placesForUser(placeType, woeId, placeId, threshold, minUploadDate.getTime(), maxUploadDate.getTime(),
                 minTakenDate.getTime(), maxTakenDate.getTime());
         assertTrue((places.size() > 0));
@@ -245,17 +245,16 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         Calendar maxUploadDate = Calendar.getInstance();
         Calendar minTakenDate = Calendar.getInstance();
         Calendar maxTakenDate = Calendar.getInstance();
-        minUploadDate.roll(Calendar.YEAR, -3);
-        minTakenDate.roll(Calendar.YEAR, -3);
+        minUploadDate.roll(Calendar.YEAR, -5);
+        minTakenDate.roll(Calendar.YEAR, -5);
         ArrayList<Tag> tags = placesInterface.tagsForPlace(sfWoeId, placeId, minUploadDate.getTime(), maxUploadDate.getTime(), minTakenDate.getTime(),
                 maxTakenDate.getTime());
         assertTrue((tags.size() > 0));
         boolean calFound = false;
         for (Tag tag : tags) {
-            if (tag.getValue().equals("california") && tag.getCount() > 140000) {
+            if (tag.getValue().equals("usa") && tag.getCount() > 100000) {
                 calFound = true;
             }
-            // System.out.println(tag.getValue() + " " + tag.getCount());
         }
         assertTrue(calFound);
     }

@@ -4,7 +4,6 @@
 
 package com.flickr4java.flickr.photos.transform;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -43,12 +42,11 @@ public class TransformInterface {
     public void rotate(String photoId, int degrees) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ROTATE);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("degrees", String.valueOf(degrees));
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

@@ -4,15 +4,15 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.people.User;
 
 import org.junit.Test;
 import org.w3c.dom.Element;
 
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.people.User;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Anthony Eden

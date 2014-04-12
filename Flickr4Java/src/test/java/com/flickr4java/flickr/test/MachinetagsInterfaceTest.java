@@ -2,10 +2,6 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Calendar;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.machinetags.MachinetagsInterface;
 import com.flickr4java.flickr.machinetags.Namespace;
@@ -13,6 +9,10 @@ import com.flickr4java.flickr.machinetags.NamespacesList;
 import com.flickr4java.flickr.machinetags.Pair;
 import com.flickr4java.flickr.machinetags.Predicate;
 import com.flickr4java.flickr.machinetags.Value;
+
+import org.junit.Test;
+
+import java.util.Calendar;
 
 /**
  * @author mago
@@ -30,7 +30,7 @@ public class MachinetagsInterfaceTest extends Flickr4JavaTest {
         assertTrue(list.size() > 3);
         boolean contentFound = false;
         for (int i = 0; i < list.size(); i++) {
-            Namespace ns = (Namespace) list.get(i);
+            Namespace ns = list.get(i);
             if (ns.getValue().equals("content")) {
                 contentFound = true;
             }
@@ -98,10 +98,10 @@ public class MachinetagsInterfaceTest extends Flickr4JavaTest {
         Calendar addedSince = Calendar.getInstance();
         addedSince.add(Calendar.YEAR, -5);
         NamespacesList<Value> list = machinetagsInterface.getRecentValues(namespace, predicate, addedSince.getTime());
-        assertTrue(list.size() > 3);
+        assertTrue(list.size() >= 3);
         boolean contentFound = false;
         for (Value value : list) {
-            if (value.getValue().equals("porcelain")) {
+            if (value.getValue().equals("mixed_media")) {
                 contentFound = true;
             }
         }

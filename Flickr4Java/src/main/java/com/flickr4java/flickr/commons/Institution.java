@@ -53,7 +53,7 @@ public class Institution {
     public void setDateLaunch(String date) {
         if (date == null || "".equals(date))
             return;
-        setDateLaunch(Long.parseLong(date) * (long) 1000);
+        setDateLaunch(Long.parseLong(date) * 1000);
     }
 
     public String getSiteUrl() {
@@ -78,6 +78,11 @@ public class Institution {
 
     public void setFlickrUrl(String flickrUrl) {
         this.flickrUrl = flickrUrl;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Institution [name=%s]", name);
     }
 
 }

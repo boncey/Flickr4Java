@@ -5,17 +5,6 @@
  */
 package com.flickr4java.flickr.interestingness;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -24,6 +13,16 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -36,8 +35,6 @@ public class InterestingnessInterface {
 
     private static final String KEY_METHOD = "method";
 
-    private static final String KEY_API_KEY = Flickr.API_KEY;
-
     private static final String KEY_DATE = "date";
 
     private static final String KEY_EXTRAS = "extras";
@@ -47,16 +44,17 @@ public class InterestingnessInterface {
     private static final String KEY_PAGE = "page";
 
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
+        @Override
         protected synchronized SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd");
         }
     };
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transportAPI;
+    private final Transport transportAPI;
 
     public InterestingnessInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
@@ -86,7 +84,6 @@ public class InterestingnessInterface {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         parameters.put(KEY_METHOD, METHOD_GET_LIST);
-        parameters.put(KEY_API_KEY, apiKey);
 
         if (date != null) {
             parameters.put(KEY_DATE, date);
@@ -103,7 +100,7 @@ public class InterestingnessInterface {
             parameters.put(KEY_PAGE, String.valueOf(page));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -135,7 +132,7 @@ public class InterestingnessInterface {
     public PhotoList<Photo> getList(Date date, Set<String> extras, int perPage, int page) throws FlickrException {
         String dateString = null;
         if (date != null) {
-            DateFormat df = (DateFormat) DATE_FORMATS.get();
+            DateFormat df = DATE_FORMATS.get();
             dateString = df.format(date);
         }
         return getList(dateString, extras, perPage, page);

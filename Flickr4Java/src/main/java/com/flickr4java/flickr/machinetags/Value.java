@@ -60,7 +60,7 @@ public class Value {
     public void setFirstAdded(String timestamp) {
         if (timestamp == null || "".equals(timestamp))
             return;
-        setFirstAdded(Long.parseLong(timestamp) * (long) 1000);
+        setFirstAdded(Long.parseLong(timestamp) * 1000);
     }
 
     public void setLastAdded(Date date) {
@@ -74,7 +74,7 @@ public class Value {
     public void setLastAdded(String timestamp) {
         if (timestamp == null || "".equals(timestamp))
             return;
-        setLastAdded(Long.parseLong(timestamp) * (long) 1000);
+        setLastAdded(Long.parseLong(timestamp) * 1000);
     }
 
     public void setUsage(String predicates) {
@@ -86,5 +86,11 @@ public class Value {
 
     public void setUsage(int usage) {
         this.usage = usage;
+    }
+
+    @Override
+    public String toString() {
+
+        return String.format("%s:%s=%s", namespace, predicate, value);
     }
 }

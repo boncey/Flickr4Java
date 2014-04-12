@@ -4,17 +4,16 @@
 
 package com.flickr4java.flickr.photos.notes;
 
-import java.awt.Rectangle;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.photos.Note;
+
+import org.w3c.dom.Element;
+
+import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Anthony Eden
@@ -51,7 +50,6 @@ public class NotesInterface {
     public Note add(String photoId, Note note) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         Rectangle bounds = note.getBounds();
@@ -66,7 +64,7 @@ public class NotesInterface {
             parameters.put("note_text", text);
         }
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -86,11 +84,10 @@ public class NotesInterface {
     public void delete(String noteId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("note_id", noteId);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -106,7 +103,6 @@ public class NotesInterface {
     public void edit(Note note) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("note_id", note.getId());
         Rectangle bounds = note.getBounds();
@@ -121,7 +117,7 @@ public class NotesInterface {
             parameters.put("note_text", text);
         }
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

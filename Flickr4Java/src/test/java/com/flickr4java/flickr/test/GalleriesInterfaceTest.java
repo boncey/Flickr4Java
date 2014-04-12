@@ -7,15 +7,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.galleries.GalleriesInterface;
+import com.flickr4java.flickr.galleries.Gallery;
 
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.galleries.GalleriesInterface;
-import com.flickr4java.flickr.galleries.Gallery;
+import java.util.List;
 
 /**
  * @author acaplan

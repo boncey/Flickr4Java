@@ -6,13 +6,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.commons.CommonsInterface;
 import com.flickr4java.flickr.commons.Institution;
+
+import org.junit.Test;
+
+import java.util.List;
 
 /**
  * @author mago
@@ -27,11 +27,11 @@ public class CommonsInterfaceTest extends Flickr4JavaTest {
         assertNotNull(list);
         boolean museumFound = false;
         for (Institution inst : list) {
-            if (inst.getName().equals("Brooklyn Museum")) {
-                assertEquals(1211958000000L, inst.getDateLaunch().getTime());
-                assertEquals("http://www.brooklynmuseum.org/", inst.getSiteUrl());
-                assertEquals("http://www.brooklynmuseum.org/flickr_commons.php", inst.getLicenseUrl());
-                assertEquals("http://flickr.com/photos/brooklyn_museum/", inst.getFlickrUrl());
+            if (inst.getName().equals("The British Library")) {
+                assertEquals(1386975388000L, inst.getDateLaunch().getTime());
+                assertEquals("www.bl.uk", inst.getSiteUrl());
+                assertEquals("http://www.bl.uk/aboutus/terms/copyright/index.html", inst.getLicenseUrl());
+                assertEquals("http://flickr.com/photos/britishlibrary/", inst.getFlickrUrl());
                 museumFound = true;
             }
         }

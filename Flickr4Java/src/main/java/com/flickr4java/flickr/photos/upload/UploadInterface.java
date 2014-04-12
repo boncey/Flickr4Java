@@ -1,19 +1,18 @@
 package com.flickr4java.flickr.photos.upload;
 
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
 
 /**
  * Checks the status of asynchronous photo upload tickets.
@@ -47,7 +46,6 @@ public class UploadInterface {
     public List<Ticket> checkTickets(Set<String> tickets) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CHECK_TICKETS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         StringBuffer sb = new StringBuffer();
         Iterator<String> it = tickets.iterator();
@@ -64,7 +62,7 @@ public class UploadInterface {
         }
         parameters.put("tickets", sb.toString());
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

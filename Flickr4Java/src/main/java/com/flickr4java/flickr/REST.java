@@ -140,7 +140,7 @@ public class REST extends Transport {
      * @return The Response
      */
     @Override
-    public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String sharedSecret) {
+    public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) {
 
         OAuthRequest request = new OAuthRequest(Verb.GET, API_HOST + path);
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
@@ -153,9 +153,9 @@ public class REST extends Transport {
 
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
-        if (auth != null){
+        if (auth != null) {
             Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-            OAuthService service = createOAuthService(parameters, sharedSecret);
+            OAuthService service = createOAuthService(parameters, apiKey, sharedSecret);
             service.signRequest(requestToken, request);
         }
 
@@ -252,7 +252,7 @@ public class REST extends Transport {
      * @return The Response object
      */
     @Override
-    public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String sharedSecret, boolean multipart) {
+    public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret, boolean multipart) {
 
         OAuthRequest request = new OAuthRequest(Verb.POST, API_HOST + path);
 
@@ -264,10 +264,10 @@ public class REST extends Transport {
 
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
-        if (auth != null){
+        if (auth != null) {
             Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-            OAuthService service = createOAuthService(parameters, sharedSecret);
-            service.signRequest(requestToken, request);   
+            OAuthService service = createOAuthService(parameters, apiKey, sharedSecret);
+            service.signRequest(requestToken, request);
         }
 
         if (multipart) {
@@ -318,17 +318,13 @@ public class REST extends Transport {
      * @param sharedSecret
      * @return
      */
-    private OAuthService createOAuthService(Map<String, Object> parameters, String sharedSecret) {
-        OAuthService serviceBuilder;
+    private OAuthService createOAuthService(Map<String, Object> parameters, String apiKey, String sharedSecret) {
+        ServiceBuilder serviceBuilder = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret);
         if (Flickr.debugRequest) {
-            serviceBuilder = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
-                    .debug().build();
-        } else {
-            serviceBuilder = new ServiceBuilder().provider(FlickrApi.class).apiKey(String.valueOf(parameters.get(Flickr.API_KEY))).apiSecret(sharedSecret)
-                    .build();
+            serviceBuilder = serviceBuilder.debug();
         }
 
-        return serviceBuilder;
+        return serviceBuilder.build();
     }
 
     /**
@@ -407,7 +403,7 @@ public class REST extends Transport {
 
             int res = -1;
             while ((res = in.read(buf)) != -1) {
-                buffer.write(buf,0,res);
+                buffer.write(buf, 0, res);
             }
             buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
         } else if (value instanceof byte[]) {

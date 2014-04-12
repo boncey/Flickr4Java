@@ -3,21 +3,20 @@
  */
 package com.flickr4java.flickr.blogs;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Interface for working with Flickr blog configurations.
@@ -57,9 +56,8 @@ public class BlogsInterface {
         List<Service> list = new ArrayList<Service>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SERVICES);
-        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -89,7 +87,6 @@ public class BlogsInterface {
     public void postPhoto(Photo photo, String blogId, String blogPassword) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_POST_PHOTO);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("blog_id", blogId);
         parameters.put("photo_id", photo.getId());
@@ -99,7 +96,7 @@ public class BlogsInterface {
             parameters.put("blog_password", blogPassword);
         }
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -128,9 +125,8 @@ public class BlogsInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

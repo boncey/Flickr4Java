@@ -3,7 +3,6 @@
  */
 package com.flickr4java.flickr.cameras;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -59,9 +58,8 @@ public class CamerasInterface {
     public List<Brand> getBrands() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_BRANDS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -92,10 +90,9 @@ public class CamerasInterface {
     public List<Camera> getBrandModels(String strBrand) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_BRAND_MODELS);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("brand", strBrand);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

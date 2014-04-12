@@ -4,7 +4,6 @@
 
 package com.flickr4java.flickr.auth;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -215,7 +214,6 @@ public class AuthInterface {
         // Use TreeMap so keys are automatically sorted alphabetically
         Map<String, String> parameters = new TreeMap<String, String>();
         parameters.put("method", method);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("oauth_token", authToken);
         // This method call must be signed using Flickr (not OAuth) style signing
         parameters.put("api_sig", getSignature(sharedSecret, parameters));

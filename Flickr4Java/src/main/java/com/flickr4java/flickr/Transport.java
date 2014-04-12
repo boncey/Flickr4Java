@@ -69,11 +69,12 @@ public abstract class Transport {
      *            The request path
      * @param parameters
      *            The parameters (collection of Parameter objects)
+     * @param apiKey
      * @param sharedSecret
      * @return The Response
      * @throws FlickrException
      */
-    public abstract Response get(String path, Map<String, Object> parameters, String sharedSecret) throws FlickrException;
+    public abstract Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException;
 
     /**
      * Invoke an HTTP POST request on a remote host.
@@ -82,11 +83,12 @@ public abstract class Transport {
      *            The request path
      * @param parameters
      *            The parameters (List of Parameter objects)
+     * @param apiKey
      * @param sharedSecret
      * @return The Response object
      * @throws FlickrException
      */
-    public abstract Response post(String path, Map<String, Object> parameters, String sharedSecret, boolean multipart) throws FlickrException;
+    public abstract Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret, boolean multipart) throws FlickrException;
 
     /**
      * Invoke an HTTP POST request on a remote host.
@@ -95,13 +97,14 @@ public abstract class Transport {
      *            The request path
      * @param parameters
      *            The parameters (List of Parameter objects)
+     * @param apiKey
      * @param sharedSecret
      * @return The Response object
      * @throws FlickrException
      */
-    public Response post(String path, Map<String, Object> parameters, String sharedSecret) throws FlickrException {
+    public Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException {
 
-        return post(path, parameters, sharedSecret, false);
+        return post(path, parameters, apiKey, sharedSecret, false);
     }
 
     /**

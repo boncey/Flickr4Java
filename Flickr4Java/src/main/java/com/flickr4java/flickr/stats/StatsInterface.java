@@ -1,6 +1,5 @@
 package com.flickr4java.flickr.stats;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.FlickrRuntimeException;
 import com.flickr4java.flickr.Response;
@@ -141,9 +140,8 @@ public class StatsInterface {
     public List<Csv> getCSVFiles() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CSV_FILES);
-        parameters.put(Flickr.API_KEY, apiKey);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -324,7 +322,6 @@ public class StatsInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_POPULAR_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
         if (date != null) {
             parameters.put("date", String.valueOf(date.getTime() / 1000L));
         }
@@ -333,7 +330,7 @@ public class StatsInterface {
         }
         addPaginationParameters(parameters, perPage, page);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -354,12 +351,11 @@ public class StatsInterface {
     public Totals getTotalViews(Date date) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_TOTAL_VIEWS);
-        parameters.put(Flickr.API_KEY, apiKey);
         if (date != null) {
             parameters.put("date", String.valueOf(date.getTime() / 1000L));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -372,14 +368,13 @@ public class StatsInterface {
     private DomainList getDomains(String method, String idKey, String idValue, Date date, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", method);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("date", String.valueOf(date.getTime() / 1000L));
         if (idValue != null) {
             parameters.put(idKey, idValue);
         }
         addPaginationParameters(parameters, perPage, page);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -414,14 +409,13 @@ public class StatsInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", method);
         parameters.put("domain", domain);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("date", String.valueOf(date.getTime() / 1000L));
         if (idValue != null) {
             parameters.put(idKey, idValue);
         }
         addPaginationParameters(parameters, perPage, page);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -456,13 +450,12 @@ public class StatsInterface {
     private Stats getStats(String method, String idKey, String idValue, Date date) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", method);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("date", String.valueOf(date.getTime() / 1000L));
         if (idValue != null) {
             parameters.put(idKey, idValue);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

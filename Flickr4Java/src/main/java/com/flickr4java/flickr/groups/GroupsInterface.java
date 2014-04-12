@@ -3,20 +3,19 @@
  */
 package com.flickr4java.flickr.groups;
 
+import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.Response;
+import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
-import com.flickr4java.flickr.FlickrException;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Interface for working with Flickr Groups.
@@ -67,13 +66,12 @@ public class GroupsInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_BROWSE);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (catId != null) {
             parameters.put("cat_id", catId);
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -124,10 +122,9 @@ public class GroupsInterface {
     public Group getInfo(String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("group_id", groupId);
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -183,7 +180,6 @@ public class GroupsInterface {
         GroupList<Group> groupList = new GroupList<Group>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SEARCH);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("text", text);
 
@@ -194,7 +190,7 @@ public class GroupsInterface {
             parameters.put("page", String.valueOf(page));
         }
 
-        Response response = transportAPI.get(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -230,13 +226,12 @@ public class GroupsInterface {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_JOIN);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("group_id", groupId);
         if (acceptRules != null) {
             parameters.put("accept_rules",acceptRules);
         }
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -256,12 +251,11 @@ public class GroupsInterface {
     public void joinRequest(String groupId,String message, boolean acceptRules) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_JOIN_REQUEST);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("group_id", groupId);
         parameters.put("message", message);
         parameters.put("accept_rules", acceptRules);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -279,11 +273,10 @@ public class GroupsInterface {
     public void leave(String groupId, Boolean deletePhotos) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LEAVE);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("group_id", groupId);
         parameters.put("delete_photos", deletePhotos);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, sharedSecret);
+        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

@@ -9,17 +9,17 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Collection;
-import java.util.Iterator;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.reflection.Argument;
 import com.flickr4java.flickr.reflection.Error;
 import com.flickr4java.flickr.reflection.Method;
 import com.flickr4java.flickr.reflection.ReflectionInterface;
+
+import org.junit.Test;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * @author Anthony Eden
@@ -38,7 +38,7 @@ public class ReflectionInterfaceTest extends Flickr4JavaTest {
         assertFalse(method.needsLogin());
 
         assertNotNull(method.getArguments());
-        assertEquals(6, method.getArguments().size());
+        assertEquals(7, method.getArguments().size());
         Collection<Argument> args = method.getArguments();
         Iterator<Argument> argsIterator = args.iterator();
 
@@ -54,6 +54,10 @@ public class ReflectionInterfaceTest extends Flickr4JavaTest {
         Argument panda = argsIterator.next();
         assertEquals("use_panda", panda.getName());
         assertTrue(panda.isOptional());
+
+        Argument offsetDays = argsIterator.next();
+        assertEquals("offset_days", offsetDays.getName());
+        assertTrue(offsetDays.isOptional());
 
         Argument extras = argsIterator.next();
         assertEquals("extras", extras.getName());
@@ -121,7 +125,7 @@ public class ReflectionInterfaceTest extends Flickr4JavaTest {
         boolean foundGetLocation = false;
 
         while (methodsIterator.hasNext()) {
-            String methodName = (String) methodsIterator.next();
+            String methodName = methodsIterator.next();
             if ("flickr.photos.addTags".equals(methodName)) {
                 foundAddTags = true;
             }

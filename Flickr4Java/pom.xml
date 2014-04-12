@@ -4,7 +4,7 @@
 
     <groupId>com.flickr4java</groupId>
     <artifactId>flickr4java</artifactId>
-    <version>2.6</version>
+    <version>2.7-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>flickr4java</name>
 
@@ -78,7 +78,7 @@
         <connection>scm:git:https://github.com/callmeal/Flickr4Java.git</connection>
         <developerConnection>scm:git:git@github.com:callmeal/Flickr4Java.git</developerConnection>
         <url>https://github.com/callmeal/Flickr4Java</url>
-        <tag>flickr4java-2.6</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>

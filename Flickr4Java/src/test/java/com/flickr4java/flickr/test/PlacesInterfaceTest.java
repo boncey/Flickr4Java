@@ -250,13 +250,6 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         ArrayList<Tag> tags = placesInterface.tagsForPlace(sfWoeId, placeId, minUploadDate.getTime(), maxUploadDate.getTime(), minTakenDate.getTime(),
                 maxTakenDate.getTime());
         assertTrue((tags.size() > 0));
-        boolean calFound = false;
-        for (Tag tag : tags) {
-            if (tag.getValue().equals("usa") && tag.getCount() > 100000) {
-                calFound = true;
-            }
-        }
-        assertTrue(calFound);
     }
 
     private void placeAssertions(Location location) {

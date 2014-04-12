@@ -6,16 +6,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Collection;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.groups.Category;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.GroupList;
 import com.flickr4java.flickr.groups.GroupsInterface;
 import com.flickr4java.flickr.groups.Subcategory;
+
+import org.junit.Test;
+
+import java.util.Collection;
 
 /**
  * @author Anthony Eden
@@ -73,7 +73,7 @@ public class GroupsInterfaceTest extends Flickr4JavaTest {
         assertEquals("34427469792@N01", group.getId());
         assertEquals("FlickrCentral", group.getName());
         assertTrue(group.getMembers() > 0);
-        assertTrue(group.getBuddyIconUrl().startsWith("https://farm"));
+        assertTrue(group.getSecureBuddyIconUrl().startsWith("https://farm"));
 
         // System.out.println("group members: " + group.getMembers());
     }

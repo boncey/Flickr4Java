@@ -28,7 +28,6 @@ public class GalleriesInterfaceTest extends Flickr4JavaTest {
         flickr = null;
     }
 
-    @Ignore
     @Test
     public void testGetList() throws FlickrException {
         GalleriesInterface iface = flickr.getGalleriesInterface();

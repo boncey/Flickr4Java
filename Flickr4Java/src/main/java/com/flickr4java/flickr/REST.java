@@ -69,6 +69,7 @@ public class REST extends Transport {
         setTransportType(REST);
         setHost(API_HOST);
         setPath(PATH);
+        setScheme(DEFAULT_SCHEME);
         setResponseClass(RESTResponse.class);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         try {
@@ -142,7 +143,7 @@ public class REST extends Transport {
     @Override
     public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) {
 
-        OAuthRequest request = new OAuthRequest(Verb.GET, API_HOST + path);
+        OAuthRequest request = new OAuthRequest(Verb.GET, getScheme() + "://" + getHost() + path);
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
             request.addQuerystringParameter(entry.getKey(), String.valueOf(entry.getValue()));
         }
@@ -204,7 +205,7 @@ public class REST extends Transport {
     public Response getNonOAuth(String path, Map<String, String> parameters) {
         InputStream in = null;
         try {
-            URL url = UrlUtilities.buildUrl(getHost(), getPort(), path, parameters);
+            URL url = UrlUtilities.buildUrl(getScheme(), getHost(), getPort(), path, parameters);
             if (Flickr.debugRequest) {
                 logger.debug("GET: " + url);
             }
@@ -254,7 +255,7 @@ public class REST extends Transport {
     @Override
     public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret, boolean multipart) {
 
-        OAuthRequest request = new OAuthRequest(Verb.POST, API_HOST + path);
+        OAuthRequest request = new OAuthRequest(Verb.POST, getScheme() + "://" + getHost() + path);
 
         if (multipart) {
             buildMultipartRequest(parameters, request);

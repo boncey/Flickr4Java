@@ -116,9 +116,23 @@ public class Contact implements BuddyIconable {
      * 
      * @see <a href="http://flickr.com/services/api/misc.buddyicons.html">Flickr Documentation</a>
      * @return The BuddyIconUrl
+     * @deprecated use {@link #getSecureBuddyIconUrl() }
      */
+    @Deprecated
     public String getBuddyIconUrl() {
         return UrlUtilities.createBuddyIconUrl(iconFarm, iconServer, id);
+    }
+
+    /**
+     * Construct the BuddyIconUrl using {@code https} scheme.
+     * <p>
+     * If none available, return the <a href="https://www.flickr.com/images/buddyicon.jpg">default</a>, or an URL assembled from farm, iconserver and nsid.
+     * 
+     * @see <a href="http://flickr.com/services/api/misc.buddyicons.html">Flickr Documentation</a>
+     * @return The BuddyIconUrl
+     */
+    public String getSecureBuddyIconUrl() {
+        return UrlUtilities.createSecureBuddyIconUrl(iconFarm, iconServer, id);
     }
 
     public int getIconFarm() {

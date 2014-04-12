@@ -73,7 +73,7 @@ public class GroupsInterfaceTest extends Flickr4JavaTest {
         assertEquals("34427469792@N01", group.getId());
         assertEquals("FlickrCentral", group.getName());
         assertTrue(group.getMembers() > 0);
-        assertTrue(group.getBuddyIconUrl().startsWith("http://farm"));
+        assertTrue(group.getBuddyIconUrl().startsWith("https://farm"));
 
         // System.out.println("group members: " + group.getMembers());
     }

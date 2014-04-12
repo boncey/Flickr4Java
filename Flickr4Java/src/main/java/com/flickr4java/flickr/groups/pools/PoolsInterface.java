@@ -154,6 +154,8 @@ public class PoolsInterface {
      * @see com.flickr4java.flickr.photos.Extras
      * @param groupId
      *            The group ID
+     * @param userId
+     *            The user ID (may be null)
      * @param tags
      *            The optional tags (may be null)
      * @param extras
@@ -165,13 +167,16 @@ public class PoolsInterface {
      * @return A Collection of Photo objects
      * @throws FlickrException
      */
-    public PhotoList<Photo> getPhotos(String groupId, String[] tags, Set<String> extras, int perPage, int page) throws FlickrException {
+    public PhotoList<Photo> getPhotos(String groupId, String userId, String[] tags, Set<String> extras, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
 
         parameters.put("group_id", groupId);
+        if (userId != null) {
+            parameters.put("user_id", userId);
+        }
         if (tags != null) {
             parameters.put("tags", StringUtilities.join(tags, " "));
         }
@@ -211,6 +216,29 @@ public class PoolsInterface {
         }
 
         return photos;
+    }
+
+    /**
+     * Convenience/Compatibility method.
+     * 
+     * This method does not require authentication.
+     * 
+     * @see com.flickr4java.flickr.photos.Extras
+     * @param groupId
+     *            The group ID
+     * @param tags
+     *            The optional tags (may be null)
+     * @param extras
+     *            Set of extra-attributes to include (may be null)
+     * @param perPage
+     *            The number of photos per page (0 to ignore)
+     * @param page
+     *            The page offset (0 to ignore)
+     * @return A Collection of Photo objects
+     * @throws FlickrException
+     */
+    public PhotoList<Photo> getPhotos(String groupId, String[] tags, Set<String> extras, int perPage, int page) throws FlickrException {
+        return getPhotos(groupId, null, tags, extras, perPage, page);
     }
 
     /**

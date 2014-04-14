@@ -140,6 +140,8 @@ public class GroupsInterface {
         group.setDescription(XMLUtilities.getChildValue(groupElement, "description"));
         group.setMembers(XMLUtilities.getChildValue(groupElement, "members"));
         group.setPrivacy(XMLUtilities.getChildValue(groupElement, "privacy"));
+        group.setPoolCount(XMLUtilities.getChildValue(groupElement, "pool_count"));
+        group.setTopicCount(XMLUtilities.getChildValue(groupElement, "topic_count"));
 
         NodeList throttleNodes = groupElement.getElementsByTagName("throttle");
         int n = throttleNodes.getLength();
@@ -158,6 +160,37 @@ public class GroupsInterface {
             }
         } else if (n > 1) {
             System.err.println("WARNING: more than one throttle element in group");
+        }
+        
+        NodeList restrictionNodes = groupElement.getElementsByTagName("restrictions");
+        n = restrictionNodes.getLength();
+        if (n == 1) {
+	        Element restrictionElement = (Element) restrictionNodes.item(0);
+	        Restriction restriction = new Restriction();
+	        group.setRestriction(restriction);
+	        restriction.setIsPhotosOk("1".equals(restrictionElement.getAttribute("photos_ok")));
+	        restriction.setIsVideosOk("1".equals(restrictionElement.getAttribute("videos_ok")));
+	        restriction.setIsImagesOk("1".equals(restrictionElement.getAttribute("images_ok")));
+	        restriction.setIsScreensOk("1".equals(restrictionElement.getAttribute("screens_ok")));
+	        restriction.setIsArtOk("1".equals(restrictionElement.getAttribute("art_ok")));
+	        restriction.setIsSafeOk("1".equals(restrictionElement.getAttribute("safe_ok")));
+	        restriction.setIsModerateOk("1".equals(restrictionElement.getAttribute("moderate_ok")));
+	        restriction.setIsRestrictedOk("1".equals(restrictionElement.getAttribute("restricted_ok")));
+	        restriction.setIsHasGeo("1".equals(restrictionElement.getAttribute("has_geo")));
+        } else if (n > 1) {
+        	System.err.println("WARNING: more than one throttle element in group");
+        }
+        NodeList blastNodes = groupElement.getElementsByTagName("blast");
+        n = blastNodes.getLength();
+        if (n == 1) {
+	        Element blastElement = (Element) blastNodes.item(0);
+	        Blast blast = new Blast();
+	        group.setBlast(blast);
+	        blast.setUserId(blastElement.getAttribute("user_id"));
+	        blast.setDateBlastAdded(blastElement.getAttribute("date_blast_added"));
+	        blast.setBlast(XMLUtilities.getChildValue(groupElement,"blast"));
+        } else if (n > 1) {
+        	System.err.println("WARNING: more than one throttle element in group");
         }
 
         return group;

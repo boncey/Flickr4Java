@@ -7,6 +7,7 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.groups.Group;
+import com.flickr4java.flickr.groups.GroupList;
 import com.flickr4java.flickr.photos.Extras;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoContext;
@@ -123,7 +124,7 @@ public class PoolsInterface {
      * @throws FlickrException
      */
     public Collection<Group> getGroups() throws FlickrException {
-        List<Group> groups = new ArrayList<Group>();
+    	GroupList<Group> groups = new GroupList<Group>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GROUPS);
@@ -133,6 +134,10 @@ public class PoolsInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element groupsElement = response.getPayload();
+        groups.setPage(groupsElement.getAttribute("page"));
+        groups.setPages(groupsElement.getAttribute("pages"));
+        groups.setPerPage(groupsElement.getAttribute("perpage"));
+        groups.setTotal(groupsElement.getAttribute("total"));
         NodeList groupNodes = groupsElement.getElementsByTagName("group");
         for (int i = 0; i < groupNodes.getLength(); i++) {
             Element groupElement = (Element) groupNodes.item(i);
@@ -141,6 +146,9 @@ public class PoolsInterface {
             group.setName(groupElement.getAttribute("name"));
             group.setAdmin("1".equals(groupElement.getAttribute("admin")));
             group.setPrivacy(groupElement.getAttribute("privacy"));
+            group.setIconServer(groupElement.getAttribute("iconserver"));
+            group.setIconFarm(groupElement.getAttribute("iconfarm"));
+            group.setPhotoCount(groupElement.getAttribute("photos"));
             groups.add(group);
         }
         return groups;

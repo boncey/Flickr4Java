@@ -8,8 +8,6 @@ import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.people.PersonTag;
 import com.flickr4java.flickr.people.PersonTagList;
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.people.UserList;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

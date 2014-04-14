@@ -26,6 +26,7 @@ import com.flickr4java.flickr.photos.comments.CommentsInterface;
 import com.flickr4java.flickr.photos.geo.GeoInterface;
 import com.flickr4java.flickr.photos.licenses.LicensesInterface;
 import com.flickr4java.flickr.photos.notes.NotesInterface;
+import com.flickr4java.flickr.photos.suggestions.SuggestionsInterface;
 import com.flickr4java.flickr.photos.transform.TransformInterface;
 import com.flickr4java.flickr.photos.upload.UploadInterface;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
@@ -155,6 +156,8 @@ public class Flickr {
     private StatsInterface statsInterface;
 
     private CamerasInterface cameraInterface;
+    
+    private SuggestionsInterface suggestionsInterface;
     
     private GroupDiscussInterface discussionInterface;
 
@@ -616,10 +619,22 @@ public class Flickr {
     }
     
     /**
+     * Get the SuggestionsInterface.
+     * 
+     * @return The SuggestionsInterface
+     */
+        public SuggestionsInterface getSuggestionsInterface() {
+            if (suggestionsInterface == null) {
+            	suggestionsInterface = new SuggestionsInterface(apiKey, sharedSecret, transport);
+            }
+            return suggestionsInterface;
+        }
+    
+    /**
     * Get the GroupDiscussInterface.
     * 
     * @return The GroupDiscussInterface
-     */
+    */
       
     public GroupDiscussInterface getDiscussionInterface() {
     if (discussionInterface == null) {

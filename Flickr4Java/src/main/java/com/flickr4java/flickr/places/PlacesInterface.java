@@ -1,5 +1,15 @@
 package com.flickr4java.flickr.places;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -7,15 +17,6 @@ import com.flickr4java.flickr.photos.SearchParameters;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Lookup Flickr Places.
@@ -157,6 +158,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("query", query);
 
@@ -235,6 +237,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND_BY_LATLON);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("lat", "" + Double.toString(latitude));
         parameters.put("lon", "" + Double.toString(longitude));
@@ -277,6 +280,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_CHILDREN_WITH_PHOTOS_PUBLIC);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -319,6 +323,7 @@ public class PlacesInterface {
     public Location getInfo(String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -349,6 +354,7 @@ public class PlacesInterface {
     public Location getInfoByUrl(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO_BY_URL);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", url);
 
@@ -373,6 +379,7 @@ public class PlacesInterface {
     public ArrayList<PlaceType> getPlaceTypes() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PLACETYPES);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
@@ -410,10 +417,11 @@ public class PlacesInterface {
      * @return A list of shapes
      * @throws FlickrException
      */
-    public ArrayList<Element> getShapeHistory(String placeId, String woeId) throws FlickrException {
-        ArrayList<Element> shapeList = new ArrayList<Element>();
+    public ShapeDataList<ShapeData> getShapeHistory(String placeId, String woeId) throws FlickrException {
+    	ShapeDataList<ShapeData> shapeList = new ShapeDataList<ShapeData>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SHAPEHISTORY);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -426,7 +434,30 @@ public class PlacesInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        // Element shapeElement = response.getPayload();
+        Element shapeElements = response.getPayload();
+        shapeList.setTotal(Integer.parseInt(shapeElements.getAttribute("total")));
+        shapeList.setWoeId(shapeElements.getAttribute("woe_id"));
+        shapeList.setPlaceId(shapeElements.getAttribute("place_id"));
+        shapeList.setPlaceType(shapeElements.getAttribute("place_type"));
+        shapeList.setPlaceTypeId(Integer.parseInt(shapeElements.getAttribute("place_type_id")));
+        NodeList shapeNodes = shapeElements.getElementsByTagName("shape");
+        for (int i = 0; i < shapeNodes.getLength(); i++) {
+        	Element shapeElement = (Element) shapeNodes.item(i);
+        	ShapeData data = new ShapeData();
+	        data.setAlpha( Double.parseDouble(shapeElement.getAttribute("alpha")) );
+	        data.setCountEdges(Integer.parseInt(shapeElement.getAttribute("count_edges")));
+	        data.setCountPoints(Integer.parseInt(shapeElement.getAttribute("count_points")));
+	        data.setCreated(shapeElement.getAttribute("created"));
+	        data.setIsDonutHole("1".equals(shapeElement.getAttribute("is_donuthole")));
+	        data.setHasDonuthole("1".equals(shapeElement.getAttribute("has_donuthole")));
+	        
+	        Element polyElement = XMLUtilities.getChild(shapeElement , "polylines");
+	        data.setPolyline(XMLUtilities.getChildValue(polyElement, "polyline"));
+	        Element urlElement = XMLUtilities.getChild(shapeElement, "urls");
+	        data.setShapefile(XMLUtilities.getChildValue(urlElement, "shapefile"));
+	        shapeList.add(data);
+        }
+        
         return shapeList;
     }
 
@@ -451,6 +482,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_TOP_PLACES_LIST);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -508,6 +540,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_BOUNDINGBOX);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         parameters.put("bbox", bbox);
@@ -522,6 +555,8 @@ public class PlacesInterface {
         placesList.setPages("1");
         placesList.setPerPage("" + placesNodes.getLength());
         placesList.setTotal("" + placesNodes.getLength());
+        placesList.setBBox(placesElement.getAttribute("bbox"));
+        placesList.setPlaceType(placesElement.getAttribute("place_type"));
         for (int i = 0; i < placesNodes.getLength(); i++) {
             Element placeElement = (Element) placesNodes.item(i);
             placesList.add(parsePlace(placeElement));
@@ -550,6 +585,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_CONTACTS);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -620,6 +656,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_TAGS);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type_id", Integer.toString(placeTypeId));
         if (woeId != null) {
@@ -701,6 +738,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_USER);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -754,6 +792,7 @@ public class PlacesInterface {
     public Location resolvePlaceId(String placeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_ID);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_id", placeId);
 
@@ -781,6 +820,7 @@ public class PlacesInterface {
     public Location resolvePlaceURL(String flickrPlacesUrl) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_URL);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", flickrPlacesUrl);
 
@@ -819,6 +859,7 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         ArrayList<Tag> tagsList = new ArrayList<Tag>();
         parameters.put("method", METHOD_TAGS_FOR_PLACE);
+        parameters.put(Flickr.API_KEY, apiKey);
 
         if (woeId != null) {
             parameters.put("woe_id", woeId);
@@ -868,6 +909,10 @@ public class PlacesInterface {
         location.setWoeId(locationElement.getAttribute("woeid"));
         location.setLatitude(locationElement.getAttribute("latitude"));
         location.setLongitude(locationElement.getAttribute("longitude"));
+        location.setTimezone(locationElement.getAttribute("timezone"));
+        location.setName(locationElement.getAttribute("name"));
+        location.setWoeName(locationElement.getAttribute("woe_name"));
+        location.setIsHasShapeData("1".equals(locationElement.getAttribute("has_shapedata")));
         location.setPlaceType(stringPlaceTypeToInt(locationElement.getAttribute("place_type")));
         try {
             location.setLocality(parseLocationPlace(localityElement, Place.TYPE_LOCALITY));
@@ -879,6 +924,24 @@ public class PlacesInterface {
         }
         location.setRegion(parseLocationPlace(regionElement, Place.TYPE_REGION));
         location.setCountry(parseLocationPlace(countryElement, Place.TYPE_COUNTRY));
+        
+        ShapeData data = new ShapeData();
+        
+        Element shapeElement = XMLUtilities.getChild(locationElement, "shapedata");
+        data.setAlpha( Double.parseDouble(shapeElement.getAttribute("alpha")) );
+        data.setCountEdges(Integer.parseInt(shapeElement.getAttribute("count_edges")));
+        data.setCountPoints(Integer.parseInt(shapeElement.getAttribute("count_points")));
+        data.setCreated(shapeElement.getAttribute("created"));
+        data.setIsDonutHole("1".equals(shapeElement.getAttribute("is_donuthole")));
+        data.setHasDonuthole("1".equals(shapeElement.getAttribute("has_donuthole")));
+        
+        Element polyElement = XMLUtilities.getChild(locationElement, "polylines");
+        data.setPolyline(XMLUtilities.getChildValue(polyElement, "polyline"));
+        Element urlElement = XMLUtilities.getChild(locationElement, "urls");
+        data.setShapefile(XMLUtilities.getChildValue(urlElement, "shapefile"));
+        
+        location.setShapedata(data);
+        
         return location;
     }
 

@@ -20,6 +20,8 @@ public class Location {
 
     private Place locality = null;
 
+    private int accuracy = 0;
+    
     private Place county = null;
 
     private Place region = null;
@@ -31,6 +33,16 @@ public class Location {
     private double longitude = 0.0;
 
     private int placeType = 0;
+    
+    private String timezone;
+    
+    private String name;
+    
+    private String woeName;
+    
+    private boolean hasShapeData;
+    
+    private ShapeData shapeData;
 
     public Location() {
     }
@@ -133,5 +145,55 @@ public class Location {
     public void setPlaceType(int placeType) {
         this.placeType = placeType;
     }
+
+	public int getAccuracy() {
+		return accuracy;
+	}
+
+	public void setAccuracy(int accuracy) {
+		this.accuracy = accuracy;
+	}
+
+	public String getTimezone() {
+		return timezone;
+	}
+
+	public void setTimezone(String timezone) {
+		this.timezone = timezone;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getWoeName() {
+		return woeName;
+	}
+
+	public void setWoeName(String woeName) {
+		this.woeName = woeName;
+	}
+
+	public boolean isHasShapeData() {
+		return hasShapeData;
+	}
+
+	public void setIsHasShapeData(boolean hasShapeData) {
+		this.hasShapeData = hasShapeData;
+	}
+
+	public ShapeData getShapedata() {
+		return shapeData;
+	}
+
+	public void setShapedata(ShapeData shapeData) {
+		this.shapeData = shapeData;
+	}
+
+
 
 }

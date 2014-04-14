@@ -158,7 +158,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("query", query);
 
@@ -237,7 +236,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_FIND_BY_LATLON);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("lat", "" + Double.toString(latitude));
         parameters.put("lon", "" + Double.toString(longitude));
@@ -280,7 +278,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_CHILDREN_WITH_PHOTOS_PUBLIC);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -323,7 +320,6 @@ public class PlacesInterface {
     public Location getInfo(String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -354,7 +350,6 @@ public class PlacesInterface {
     public Location getInfoByUrl(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO_BY_URL);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", url);
 
@@ -379,7 +374,6 @@ public class PlacesInterface {
     public ArrayList<PlaceType> getPlaceTypes() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PLACETYPES);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
@@ -421,7 +415,6 @@ public class PlacesInterface {
     	ShapeDataList<ShapeData> shapeList = new ShapeDataList<ShapeData>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SHAPEHISTORY);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (placeId != null) {
             parameters.put("place_id", placeId);
@@ -482,7 +475,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_GET_TOP_PLACES_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -540,7 +532,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_BOUNDINGBOX);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         parameters.put("bbox", bbox);
@@ -585,7 +576,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_CONTACTS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -656,7 +646,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_TAGS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type_id", Integer.toString(placeTypeId));
         if (woeId != null) {
@@ -738,7 +727,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_USER);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_type", intPlaceTypeToString(placeType));
         if (placeId != null) {
@@ -792,7 +780,6 @@ public class PlacesInterface {
     public Location resolvePlaceId(String placeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_ID);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("place_id", placeId);
 
@@ -820,7 +807,6 @@ public class PlacesInterface {
     public Location resolvePlaceURL(String flickrPlacesUrl) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_RESOLVE_PLACE_URL);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("url", flickrPlacesUrl);
 
@@ -859,7 +845,6 @@ public class PlacesInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         ArrayList<Tag> tagsList = new ArrayList<Tag>();
         parameters.put("method", METHOD_TAGS_FOR_PLACE);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (woeId != null) {
             parameters.put("woe_id", woeId);

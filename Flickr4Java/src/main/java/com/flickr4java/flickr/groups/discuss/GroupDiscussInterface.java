@@ -55,7 +55,6 @@ public class GroupDiscussInterface {
     	TopicList<Topic> topicList = new TopicList<Topic>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_TOPICS_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("group_id", groupId);
 
@@ -106,7 +105,6 @@ public class GroupDiscussInterface {
     public Topic getTopicInfo(String topicId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_TOPICS_GET_INFO);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("topic_id", topicId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
@@ -134,7 +132,6 @@ public class GroupDiscussInterface {
     	TopicList<Topic> topic = new TopicList<Topic>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REPLIES_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("topic_id", topicId);
 
@@ -186,7 +183,6 @@ public class GroupDiscussInterface {
     public Reply getReplyInfo(String topicId, String replyId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REPLIES_GET_INFO);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("topic_id", topicId);
         parameters.put("reply_id", replyId);
 

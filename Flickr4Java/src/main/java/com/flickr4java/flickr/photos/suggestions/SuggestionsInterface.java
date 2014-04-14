@@ -63,7 +63,6 @@ public class SuggestionsInterface {
     private void act(String suggestionId, String method) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", method);
-        parameters.put(Flickr.API_KEY, apiKey);
         parameters.put("suggestion_id", suggestionId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
@@ -75,7 +74,7 @@ public class SuggestionsInterface {
     public void suggestLocation(String photoId, double lat, double lon, int accuracy, String woe_id, String place_id, String note) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SUGGEST_LOCATION);
-        parameters.put(Flickr.API_KEY, apiKey);
+
         parameters.put("photo_id", photoId);
         parameters.put("lat", lat);
         parameters.put("lon", lon);
@@ -102,7 +101,7 @@ public class SuggestionsInterface {
     	SuggestionList<Suggestion> suggestionList = new SuggestionList<Suggestion>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
+
         parameters.put("photo_id", photoId);
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);

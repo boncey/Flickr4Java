@@ -87,7 +87,6 @@ public class PhotosetsInterface {
     public void addPhoto(String photosetId, String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ADD_PHOTO);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("photo_id", photoId);
@@ -113,7 +112,6 @@ public class PhotosetsInterface {
     public Photoset create(String title, String description, String primaryPhotoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_CREATE);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("title", title);
         parameters.put("description", description);
@@ -140,7 +138,6 @@ public class PhotosetsInterface {
     public void delete(String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_DELETE);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
 
@@ -164,7 +161,6 @@ public class PhotosetsInterface {
     public void editMeta(String photosetId, String title, String description) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_META);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("title", title);
@@ -192,7 +188,6 @@ public class PhotosetsInterface {
     public void editPhotos(String photosetId, String primaryPhotoId, String[] photoIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_EDIT_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("primary_photo_id", primaryPhotoId);
@@ -219,7 +214,6 @@ public class PhotosetsInterface {
     public PhotoContext getContext(String photoId, String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_CONTEXT);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photo_id", photoId);
         parameters.put("photoset_id", photosetId);
@@ -262,7 +256,6 @@ public class PhotosetsInterface {
     public Photoset getInfo(String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_INFO);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
 
@@ -337,7 +330,6 @@ public class PhotosetsInterface {
     public Photosets getList(String userId, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (userId != null) {
             parameters.put("user_id", userId);
@@ -420,7 +412,6 @@ public class PhotosetsInterface {
     public int getPhotosetCount(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         if (userId != null) {
             parameters.put("user_id", userId);
@@ -468,7 +459,6 @@ public class PhotosetsInterface {
         PhotoList<Photo> photos = new PhotoList<Photo>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
 
@@ -546,8 +536,7 @@ public class PhotosetsInterface {
      */
     public void orderSets(String[] photosetIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_ORDER_SETS);
-        parameters.put(Flickr.API_KEY, apiKey);
+        parameters.put("method", METHOD_ORDER_SETS);;
 
         parameters.put("photoset_ids", StringUtilities.join(photosetIds, ","));
 
@@ -569,7 +558,6 @@ public class PhotosetsInterface {
     public void removePhoto(String photosetId, String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE_PHOTO);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("photo_id", photoId);
@@ -592,7 +580,6 @@ public class PhotosetsInterface {
     public void removePhotos(String photosetId, String photoIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REMOVE_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("photo_ids", photoIds);
@@ -615,7 +602,6 @@ public class PhotosetsInterface {
     public void reorderPhotos(String photosetId, String photoIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REORDER_PHOTOS);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("photo_ids", photoIds);
@@ -638,7 +624,6 @@ public class PhotosetsInterface {
     public void setPrimaryPhoto(String photosetId, String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_SET_PRIMARY_PHOTO);
-        parameters.put(Flickr.API_KEY, apiKey);
 
         parameters.put("photoset_id", photosetId);
         parameters.put("photo_id", photoId);

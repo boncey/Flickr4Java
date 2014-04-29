@@ -38,7 +38,7 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 
     <dependency>
       <groupId>com.flickr4java</groupId>
-      <artifactId>flickr</artifactId>
+      <artifactId>flickr4java</artifactId>
       <version>2.6</version>
     </dependency>
 

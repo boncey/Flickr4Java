@@ -4,6 +4,7 @@
 
 package com.flickr4java.flickr.auth;
 
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -171,7 +172,13 @@ public class AuthInterface {
      */
     public Auth checkToken(String authToken, String tokenSecret) throws FlickrException {
 
-        Map<String, String> parameters = constructNonOAuthParameters(authToken, METHOD_CHECK_TOKEN);
+        // Use TreeMap so keys are automatically sorted alphabetically
+        Map<String, String> parameters = new TreeMap<String, String>();
+        parameters.put("method", METHOD_CHECK_TOKEN);
+        parameters.put("oauth_token", authToken);
+        parameters.put(Flickr.API_KEY, apiKey);
+        // This method call must be signed using Flickr (not OAuth) style signing
+        parameters.put("api_sig", getSignature(sharedSecret, parameters));
 
         Response response = transportAPI.getNonOAuth(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -193,7 +200,12 @@ public class AuthInterface {
      */
     public Token exchangeAuthToken(String authToken) throws FlickrException {
 
-        Map<String, String> parameters = constructNonOAuthParameters(authToken, METHOD_EXCHANGE_TOKEN);
+        // Use TreeMap so keys are automatically sorted alphabetically
+        Map<String, String> parameters = new TreeMap<String, String>();
+        parameters.put("method", METHOD_EXCHANGE_TOKEN);
+        parameters.put(Flickr.API_KEY, apiKey);
+        // This method call must be signed using Flickr (not OAuth) style signing
+        parameters.put("api_sig", getSignature(sharedSecret, parameters));
 
         Response response = transportAPI.getNonOAuth(transportAPI.getPath(), parameters);
         if (response.isError()) {
@@ -203,21 +215,6 @@ public class AuthInterface {
         Token accessToken = constructToken(response);
 
         return accessToken;
-    }
-
-    /**
-     * 
-     * @param authToken
-     * @param method
-     */
-    private Map<String, String> constructNonOAuthParameters(String authToken, String method) {
-        // Use TreeMap so keys are automatically sorted alphabetically
-        Map<String, String> parameters = new TreeMap<String, String>();
-        parameters.put("method", method);
-        parameters.put("oauth_token", authToken);
-        // This method call must be signed using Flickr (not OAuth) style signing
-        parameters.put("api_sig", getSignature(sharedSecret, parameters));
-        return parameters;
     }
 
     /**

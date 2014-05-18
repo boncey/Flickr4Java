@@ -1,36 +1,36 @@
 package com.flickr4java.flickr.groups.discuss;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.util.XMLUtilities;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GroupDiscussInterface {
 
-	/**
-	 * Group.Discuss Interface.
-	 * 
-	 * @author Jonathan Willis
-	 */
+    /**
+     * Group.Discuss Interface.
+     * 
+     * @author Jonathan Willis
+     */
     public static final String METHOD_TOPICS_GET_LIST = "flickr.groups.discuss.topics.getList";
+
     public static final String METHOD_TOPICS_GET_INFO = "flickr.groups.discuss.topics.getInfo";
-    
+
     public static final String METHOD_REPLIES_GET_LIST = "flickr.groups.discuss.replies.getList";
-    public static final String METHOD_REPLIES_GET_INFO = "flickr.groups.discuss.topics.getInfo";
 
-    private String apiKey;
+    public static final String METHOD_REPLIES_GET_INFO = "flickr.groups.discuss.replies.getInfo";
 
-    private String sharedSecret;
+    private final String apiKey;
 
-    private Transport transportAPI;
+    private final String sharedSecret;
+
+    private final Transport transportAPI;
 
     public GroupDiscussInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
@@ -39,7 +39,7 @@ public class GroupDiscussInterface {
     }
 
     /**
-     * Get a list of topics from a group. 
+     * Get a list of topics from a group.
      * 
      * @param groupId
      *            Unique identifier of a group returns a list of topics for a given group {@link Group}.
@@ -52,7 +52,7 @@ public class GroupDiscussInterface {
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.discuss.topics.getList.html">API Documentation</a>
      */
     public TopicList<Topic> getTopicsList(String groupId, int perPage, int page) throws FlickrException {
-    	TopicList<Topic> topicList = new TopicList<Topic>();
+        TopicList<Topic> topicList = new TopicList<Topic>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_TOPICS_GET_LIST);
 
@@ -64,13 +64,12 @@ public class GroupDiscussInterface {
         if (page > 0) {
             parameters.put("page", "" + page);
         }
-        
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        
+
         Element topicElements = response.getPayload();
         topicList.setPage(topicElements.getAttribute("page"));
         topicList.setPages(topicElements.getAttribute("pages"));
@@ -84,7 +83,7 @@ public class GroupDiscussInterface {
         topicList.setPrivacy(Integer.parseInt(topicElements.getAttribute("privacy")));
         topicList.setLanguage(topicElements.getAttribute("lang"));
         topicList.setIsPoolModerated("1".equals(topicElements.getAttribute("ispoolmoderated")));
-        
+
         NodeList topicNodes = topicElements.getElementsByTagName("topic");
         for (int i = 0; i < topicNodes.getLength(); i++) {
             Element element = (Element) topicNodes.item(i);
@@ -92,9 +91,9 @@ public class GroupDiscussInterface {
         }
         return topicList;
     }
-    
+
     /**
-     * Get info for a given topic 
+     * Get info for a given topic
      * 
      * @param topicId
      *            Unique identifier of a topic for a given group {@link Topic}.
@@ -111,13 +110,12 @@ public class GroupDiscussInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        
+
         Element topicElement = response.getPayload();
-       
+
         return parseTopic(topicElement);
     }
 
-    
     /**
      * Get list of replies
      * 
@@ -127,9 +125,9 @@ public class GroupDiscussInterface {
      * @throws FlickrException
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.discuss.replies.getList.html">API Documentation</a>
      */
-    public ReplyObject getReplyList(String topicId,  int perPage, int page) throws FlickrException {
-    	ReplyList<Reply> reply = new ReplyList<Reply>();
-    	TopicList<Topic> topic = new TopicList<Topic>();
+    public ReplyObject getReplyList(String topicId, int perPage, int page) throws FlickrException {
+        ReplyList<Reply> reply = new ReplyList<Reply>();
+        TopicList<Topic> topic = new TopicList<Topic>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_REPLIES_GET_LIST);
 
@@ -146,31 +144,30 @@ public class GroupDiscussInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        
+
         Element replyElements = response.getPayload();
         ReplyObject ro = new ReplyObject();
         NodeList replyNodes = replyElements.getElementsByTagName("reply");
         for (int i = 0; i < replyNodes.getLength(); i++) {
-        	Element replyNodeElement = (Element) replyNodes.item(i);
-        	//Element replyElement = XMLUtilities.getChild(replyNodeElement, "reply");
-        	reply.add(parseReply(replyNodeElement));
-        	ro.setReplyList(reply);
-	        
+            Element replyNodeElement = (Element) replyNodes.item(i);
+            // Element replyElement = XMLUtilities.getChild(replyNodeElement, "reply");
+            reply.add(parseReply(replyNodeElement));
+            ro.setReplyList(reply);
+
         }
         NodeList topicNodes = replyElements.getElementsByTagName("topic");
         for (int i = 0; i < topicNodes.getLength(); i++) {
-        	Element replyNodeElement = (Element) replyNodes.item(i);
-            //Element topicElement = XMLUtilities.getChild(replyNodeElement, "topic");
+            Element replyNodeElement = (Element) replyNodes.item(i);
+            // Element topicElement = XMLUtilities.getChild(replyNodeElement, "topic");
             topic.add(parseTopic(replyNodeElement));
             ro.setTopicList(topic);
         }
-       
+
         return ro;
     }
-    
-    
+
     /**
-     * Get info for a given topic reply 
+     * Get info for a given topic reply
      * 
      * @param topicId
      *            Unique identifier of a topic for a given group {@link Topic}.
@@ -190,12 +187,12 @@ public class GroupDiscussInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
-        
+
         Element replyElement = response.getPayload();
-       
+
         return parseReply(replyElement);
     }
-    
+
     private Topic parseTopic(Element tElement) {
         Topic topic = new Topic();
         topic.setAuthorId(tElement.getAttribute("author"));
@@ -203,8 +200,8 @@ public class GroupDiscussInterface {
         topic.setIsCanDelete("1".equals(tElement.getAttribute("can_delete")));
         topic.setIsCanEdit("1".equals(tElement.getAttribute("can_edit")));
         topic.setIsCanReply("1".equals(tElement.getAttribute("can_reply")));
-        if(!tElement.getAttribute("count_replies").equals("")){
-        	topic.setCountReplies(Integer.parseInt(tElement.getAttribute("count_replies")));
+        if (!tElement.getAttribute("count_replies").equals("")) {
+            topic.setCountReplies(Integer.parseInt(tElement.getAttribute("count_replies")));
         }
         topic.setDatecreate(tElement.getAttribute("datecreate"));
         topic.setDatelastpost(tElement.getAttribute("datelastpost"));
@@ -237,5 +234,5 @@ public class GroupDiscussInterface {
         reply.setIsPro("1".equals(rElement.getAttribute("is_pro")));
         return reply;
     }
-	
+
 }

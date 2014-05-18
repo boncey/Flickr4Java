@@ -6,8 +6,8 @@ package com.flickr4java.flickr.photos.people;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.people.UserList;
+import com.flickr4java.flickr.people.PersonTag;
+import com.flickr4java.flickr.people.PersonTagList;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -136,7 +136,7 @@ public class PeopleInterface {
         }
     }
 
-    public UserList<User> getList(String photoId) throws FlickrException {
+    	public PersonTagList<PersonTag> getList(String photoId) throws FlickrException{
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
 
@@ -149,20 +149,30 @@ public class PeopleInterface {
 
         // @TODO this isn't a complete list ...
         Element usersElement = response.getPayload();
-        UserList<User> ul = new UserList<User>();
+        PersonTagList<PersonTag> pt = new PersonTagList<PersonTag>();
+        pt.setTotal(Integer.parseInt(usersElement.getAttribute("total")));
+        pt.setHeight(Integer.parseInt(usersElement.getAttribute("photo_height")));
+        pt.setWidth(Integer.parseInt(usersElement.getAttribute("photo_width")));
         NodeList usernodes = usersElement.getElementsByTagName("person");
         for (int i = 0; i < usernodes.getLength(); i++) {
             Element userElement = (Element) usernodes.item(i);
 
-            User user = new User();
+            PersonTag user = new PersonTag();
             user.setId(userElement.getAttribute("nsid"));
             user.setUsername(userElement.getAttribute("username"));
-            user.setIconFarm(userElement.getAttribute("iconfarm"));
-            user.setIconServer(userElement.getAttribute("iconserver"));
+            user.setIconFarm(Integer.parseInt(userElement.getAttribute("iconfarm")));
+            user.setIconServer(Integer.parseInt(userElement.getAttribute("iconserver")));
             user.setRealName(userElement.getAttribute("realname"));
-            ul.add(user);
+            user.setAddedById(userElement.getAttribute("added_by"));
+            user.setPathAlias(userElement.getAttribute("path_alias"));
+            if(!userElement.getAttribute("x").equals("")){
+	            user.setX(Integer.parseInt(userElement.getAttribute("x")));
+	            user.setY(Integer.parseInt(userElement.getAttribute("y")));
+	            user.setW(Integer.parseInt(userElement.getAttribute("w")));
+	            user.setH(Integer.parseInt(userElement.getAttribute("h")));
+            }
         }
-        return ul;
+        return pt;
 
     }
 }

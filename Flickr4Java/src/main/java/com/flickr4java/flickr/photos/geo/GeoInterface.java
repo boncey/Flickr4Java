@@ -119,6 +119,7 @@ public class GeoInterface {
         perms.setContact("1".equals(permsElement.getAttribute("iscontact")));
         perms.setFriend("1".equals(permsElement.getAttribute("isfriend")));
         perms.setFamily("1".equals(permsElement.getAttribute("isfamily")));
+        perms.setId(permsElement.getAttribute("id"));
         // I ignore the id attribute. should be the same as the given
         // photo id.
         return perms;

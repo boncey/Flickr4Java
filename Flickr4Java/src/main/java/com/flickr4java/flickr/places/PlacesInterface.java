@@ -1,15 +1,5 @@
 package com.flickr4java.flickr.places;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -17,6 +7,15 @@ import com.flickr4java.flickr.photos.SearchParameters;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Lookup Flickr Places.
@@ -412,7 +411,7 @@ public class PlacesInterface {
      * @throws FlickrException
      */
     public ShapeDataList<ShapeData> getShapeHistory(String placeId, String woeId) throws FlickrException {
-    	ShapeDataList<ShapeData> shapeList = new ShapeDataList<ShapeData>();
+        ShapeDataList<ShapeData> shapeList = new ShapeDataList<ShapeData>();
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SHAPEHISTORY);
 
@@ -435,22 +434,22 @@ public class PlacesInterface {
         shapeList.setPlaceTypeId(Integer.parseInt(shapeElements.getAttribute("place_type_id")));
         NodeList shapeNodes = shapeElements.getElementsByTagName("shape");
         for (int i = 0; i < shapeNodes.getLength(); i++) {
-        	Element shapeElement = (Element) shapeNodes.item(i);
-        	ShapeData data = new ShapeData();
-	        data.setAlpha( Double.parseDouble(shapeElement.getAttribute("alpha")) );
-	        data.setCountEdges(Integer.parseInt(shapeElement.getAttribute("count_edges")));
-	        data.setCountPoints(Integer.parseInt(shapeElement.getAttribute("count_points")));
-	        data.setCreated(shapeElement.getAttribute("created"));
-	        data.setIsDonutHole("1".equals(shapeElement.getAttribute("is_donuthole")));
-	        data.setHasDonuthole("1".equals(shapeElement.getAttribute("has_donuthole")));
-	        
-	        Element polyElement = XMLUtilities.getChild(shapeElement , "polylines");
-	        data.setPolyline(XMLUtilities.getChildValue(polyElement, "polyline"));
-	        Element urlElement = XMLUtilities.getChild(shapeElement, "urls");
-	        data.setShapefile(XMLUtilities.getChildValue(urlElement, "shapefile"));
-	        shapeList.add(data);
+            Element shapeElement = (Element) shapeNodes.item(i);
+            ShapeData data = new ShapeData();
+            data.setAlpha(Double.parseDouble(shapeElement.getAttribute("alpha")));
+            data.setCountEdges(Integer.parseInt(shapeElement.getAttribute("count_edges")));
+            data.setCountPoints(Integer.parseInt(shapeElement.getAttribute("count_points")));
+            data.setCreated(shapeElement.getAttribute("created"));
+            data.setIsDonutHole("1".equals(shapeElement.getAttribute("is_donuthole")));
+            data.setHasDonuthole("1".equals(shapeElement.getAttribute("has_donuthole")));
+
+            Element polyElement = XMLUtilities.getChild(shapeElement, "polylines");
+            data.setPolyline(XMLUtilities.getChildValue(polyElement, "polyline"));
+            Element urlElement = XMLUtilities.getChild(shapeElement, "urls");
+            data.setShapefile(XMLUtilities.getChildValue(urlElement, "shapefile"));
+            shapeList.add(data);
         }
-        
+
         return shapeList;
     }
 
@@ -642,7 +641,7 @@ public class PlacesInterface {
      * @throws FlickrException
      */
     public PlacesList<Place> placesForTags(int placeTypeId, String woeId, String placeId, String threshold, String[] tags, String tagMode, String machineTags,
-            String machineTagMode, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate) throws FlickrException{
+            String machineTagMode, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         PlacesList<Place> placesList = new PlacesList<Place>();
         parameters.put("method", METHOD_PLACES_FOR_TAGS);
@@ -909,24 +908,7 @@ public class PlacesInterface {
         }
         location.setRegion(parseLocationPlace(regionElement, Place.TYPE_REGION));
         location.setCountry(parseLocationPlace(countryElement, Place.TYPE_COUNTRY));
-        
-        ShapeData data = new ShapeData();
-        
-        Element shapeElement = XMLUtilities.getChild(locationElement, "shapedata");
-        data.setAlpha( Double.parseDouble(shapeElement.getAttribute("alpha")) );
-        data.setCountEdges(Integer.parseInt(shapeElement.getAttribute("count_edges")));
-        data.setCountPoints(Integer.parseInt(shapeElement.getAttribute("count_points")));
-        data.setCreated(shapeElement.getAttribute("created"));
-        data.setIsDonutHole("1".equals(shapeElement.getAttribute("is_donuthole")));
-        data.setHasDonuthole("1".equals(shapeElement.getAttribute("has_donuthole")));
-        
-        Element polyElement = XMLUtilities.getChild(locationElement, "polylines");
-        data.setPolyline(XMLUtilities.getChildValue(polyElement, "polyline"));
-        Element urlElement = XMLUtilities.getChild(locationElement, "urls");
-        data.setShapefile(XMLUtilities.getChildValue(urlElement, "shapefile"));
-        
-        location.setShapedata(data);
-        
+
         return location;
     }
 

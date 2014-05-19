@@ -19,6 +19,10 @@ public class Group implements BuddyIconable {
     private String name;
 
     private int members;
+    
+    private int poolCount;
+    
+    private int topicCount;
 
     private String privacy;
 
@@ -29,6 +33,10 @@ public class Group implements BuddyIconable {
     private String description;
 
     private Throttle throttle;
+    
+    private Blast blast;
+    
+    private Restriction restriction;
 
     private String lang;
 
@@ -85,6 +93,42 @@ public class Group implements BuddyIconable {
             setMembers(0);
             if (Flickr.tracing)
                 System.out.println("trace: Group.setMembers(String) encountered a number format " + "exception.  members set to 0");
+        }
+    }
+    public int getPoolCount() {
+        return poolCount;
+    }
+
+    public void setPoolCount(int poolCount) {
+        this.poolCount = poolCount;
+    }
+
+    public void setPoolCount(String poolCount) {
+        try {
+            if (poolCount != null)
+                setPoolCount(Integer.parseInt(poolCount));
+        } catch (NumberFormatException nfe) {
+            setPoolCount(0);
+            if (Flickr.tracing)
+                System.out.println("trace: Group.setPoolCount(String) encountered a number format " + "exception.  poolCount set to 0");
+        }
+    }
+    public int getTopicCount() {
+        return topicCount;
+    }
+
+    public void setTopicCount(int topicCount) {
+        this.topicCount = topicCount;
+    }
+
+    public void setTopicCount(String topicCount) {
+        try {
+            if (topicCount != null)
+                setTopicCount(Integer.parseInt(topicCount));
+        } catch (NumberFormatException nfe) {
+            setPoolCount(0);
+            if (Flickr.tracing)
+                System.out.println("trace: Group.setTopicCount(String) encountered a number format " + "exception.  topicCount set to 0");
         }
     }
 
@@ -188,7 +232,7 @@ public class Group implements BuddyIconable {
     }
 
     /**
-     * @deprecated
+     *
      * @param photoCount
      */
     public void setPhotoCount(int photoCount) {
@@ -196,7 +240,7 @@ public class Group implements BuddyIconable {
     }
 
     /**
-     * @deprecated
+     * 
      * @param photoCount
      */
     public void setPhotoCount(String photoCount) {
@@ -312,6 +356,22 @@ public class Group implements BuddyIconable {
 
     public void setThrottle(Throttle throttle) {
         this.throttle = throttle;
+    }
+    
+    public Blast getBlast() {
+        return blast;
+    }
+
+    public void setBlast(Blast blast) {
+        this.blast = blast;
+    }
+    
+    public Restriction getRestriction() {
+        return restriction;
+    }
+
+    public void setRestriction(Restriction restriction) {
+        this.restriction = restriction;
     }
 
     /**

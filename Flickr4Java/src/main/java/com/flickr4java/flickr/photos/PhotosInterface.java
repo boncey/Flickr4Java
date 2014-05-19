@@ -184,11 +184,14 @@ public class PhotosInterface {
      * 
      * @param photoId
      *            The photo to return information for.
-     * @return a list of {@link PhotoPlace} objects
+     * @return a list of {@link PhotoContext} objects
      * @throws FlickrException
      */
-    public List<PhotoPlace> getAllContexts(String photoId) throws FlickrException {
-        List<PhotoPlace> list = new ArrayList<PhotoPlace>();
+    public PhotoAllContext getAllContexts(String photoId) throws FlickrException {
+    	PhotoSetList<PhotoSet> setList = new PhotoSetList<PhotoSet>();
+    	PoolList<Pool> poolList = new PoolList<Pool>();
+    	PhotoAllContext allContext = new PhotoAllContext();
+    	     
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_ALL_CONTEXTS);
 
@@ -198,16 +201,39 @@ public class PhotosInterface {
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
+        Collection<Element> photosElement = response.getPayloadCollection();
 
-        Collection<Element> coll = response.getPayloadCollection();
-        for (Element el : coll) {
-            String id = el.getAttribute("id");
-            String title = el.getAttribute("title");
-            String kind = el.getTagName();
+    	for (Element setElement : photosElement) {
+    		if(setElement.getTagName().equals("set")){
+	            PhotoSet pset = new PhotoSet();
+	            pset.setTitle(setElement.getAttribute("title"));
+	            pset.setSecret(setElement.getAttribute("secret"));
+	            pset.setId(setElement.getAttribute("id"));
+	            pset.setFarm(setElement.getAttribute("farm"));
+	            pset.setPrimary(setElement.getAttribute("primary"));
+	            pset.setServer(setElement.getAttribute("server"));
+	            pset.setViewCount(Integer.parseInt(setElement.getAttribute("view_count")));
+	            pset.setCommentCount(Integer.parseInt(setElement.getAttribute("comment_count")));
+	            pset.setCountPhoto(Integer.parseInt(setElement.getAttribute("count_photo")));
+	            pset.setCountVideo(Integer.parseInt(setElement.getAttribute("count_video")));
+	            setList.add(pset);
+	            allContext.setPhotoSetList(setList);
+        	}else if(setElement.getTagName().equals("pool")){
+        		Pool pool = new Pool();
+        		pool.setTitle(setElement.getAttribute("title"));
+        		pool.setId(setElement.getAttribute("id"));
+        		pool.setUrl(setElement.getAttribute("url"));
+        		pool.setIconServer(setElement.getAttribute("iconserver"));
+        		pool.setIconFarm(setElement.getAttribute("iconfarm"));
+        		pool.setMemberCount(Integer.parseInt(setElement.getAttribute("members")));
+        		pool.setPoolCount(Integer.parseInt(setElement.getAttribute("pool_count")));
+ 	            poolList.add(pool);
+ 	            allContext.setPoolList(poolList);
+        	}
+    	}
+                
+        return allContext;
 
-            list.add(new PhotoPlace(kind, id, title));
-        }
-        return list;
     }
 
     /**
@@ -631,6 +657,7 @@ public class PhotosInterface {
         permissions.setId(permissionsElement.getAttribute("id"));
         permissions.setPublicFlag("1".equals(permissionsElement.getAttribute("ispublic")));
         permissions.setFamilyFlag("1".equals(permissionsElement.getAttribute("isfamily")));
+        permissions.setFriendFlag("1".equals(permissionsElement.getAttribute("isFriend")));
         permissions.setComment(permissionsElement.getAttribute("permcomment"));
         permissions.setAddmeta(permissionsElement.getAttribute("permaddmeta"));
         return permissions;
@@ -705,7 +732,7 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public Collection<Size> getSizes(String photoId, boolean sign) throws FlickrException {
-        List<Size> sizes = new ArrayList<Size>();
+    	SizeList<Size> sizes = new  SizeList<Size>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SIZES);
@@ -717,6 +744,9 @@ public class PhotosInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
         Element sizesElement = response.getPayload();
+        sizes.setIsCanBlog("1".equals(sizesElement.getAttribute("canblog")));
+        sizes.setIsCanDownload("1".equals(sizesElement.getAttribute("candownload")));
+        sizes.setIsCanPrint("1".equals(sizesElement.getAttribute("canprint")));
         NodeList sizeNodes = sizesElement.getElementsByTagName("size");
         for (int i = 0; i < sizeNodes.getLength(); i++) {
             Element sizeElement = (Element) sizeNodes.item(i);

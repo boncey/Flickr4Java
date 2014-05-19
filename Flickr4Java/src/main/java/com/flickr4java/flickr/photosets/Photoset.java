@@ -30,10 +30,26 @@ public class Photoset {
     private String farm;
 
     private int photoCount;
+    
+    private int videoCount;
+    
+    private int viewCount;
+    
+    private int commentCount;
+    
+    private String dateCreate;
+    
+    private String dateUpdate;
 
     private String title;
 
     private String description;
+    
+    private boolean isVisible;
+    
+    private boolean canComment;
+    
+    private boolean needsInterstitial;
 
     public Photoset() {
 
@@ -134,5 +150,71 @@ public class Photoset {
     public void setDescription(String description) {
         this.description = description;
     }
+
+	public int getVideoCount() {
+		return videoCount;
+	}
+
+	public void setVideoCount(int videoCount) {
+		this.videoCount = videoCount;
+	}
+
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	public String getDateCreate() {
+		return dateCreate;
+	}
+
+	public void setDateCreate(String dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
+	public String getDateUpdate() {
+		return dateUpdate;
+	}
+
+	public void setDateUpdate(String dateUpdate) {
+		this.dateUpdate = dateUpdate;
+	}
+
+	public boolean isVisible() {
+		return isVisible;
+	}
+
+	public void setIsVisible(boolean isVisible) {
+		this.isVisible = isVisible;
+	}
+
+
+
+	public boolean isNeedsInterstitial() {
+		return needsInterstitial;
+	}
+
+	public void setIsNeedsInterstitial(boolean needsInterstitial) {
+		this.needsInterstitial = needsInterstitial;
+	}
+
+	public boolean isCanComment() {
+		return canComment;
+	}
+
+	public void setIsCanComment(boolean canComment) {
+		this.canComment = canComment;
+	}
 
 }

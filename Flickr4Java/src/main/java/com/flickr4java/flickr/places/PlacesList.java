@@ -10,7 +10,27 @@ import com.flickr4java.flickr.SearchResultList;
  */
 public class PlacesList<E> extends SearchResultList<Place> {
     private static final long serialVersionUID = -6773614467896936754L;
-
+    private String bBox;
+    private String placeType;
+    
     public PlacesList() {
     }
+
+	public String getBBox() {
+		return bBox;
+	}
+
+	public void setBBox(String bBox) {
+		this.bBox = bBox;
+	}
+
+	public String getPlaceType() {
+		return placeType;
+	}
+
+	public void setPlaceType(String placeType) {
+		this.placeType = placeType;
+	}
+
+	
 }

@@ -10,6 +10,8 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.groups.GroupList;
 import com.flickr4java.flickr.people.PeopleInterface;
+import com.flickr4java.flickr.people.PersonTag;
+import com.flickr4java.flickr.people.PersonTagList;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.people.UserList;
 import com.flickr4java.flickr.photos.Photo;
@@ -106,7 +108,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
     public void testAddDelete() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         iface.add(testProperties.getPhotoId(), testProperties.getNsid(), null);
-        UserList<User> usrs = iface.getList(testProperties.getPhotoId());
+        PersonTagList<PersonTag> usrs = iface.getList(testProperties.getPhotoId());
         assertNotNull(usrs);
         assertEquals(1, usrs.size());
         iface.delete(testProperties.getPhotoId(), testProperties.getNsid());

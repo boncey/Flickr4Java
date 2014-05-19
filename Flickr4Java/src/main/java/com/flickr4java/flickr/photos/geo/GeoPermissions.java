@@ -16,6 +16,8 @@ public class GeoPermissions {
     private boolean friend;
 
     private boolean family;
+    
+    private String id;
 
     /**
      * @return true if contacts may see the geo data
@@ -84,4 +86,18 @@ public class GeoPermissions {
     public void setPublic(boolean enable) {
         this.pub = enable;
     }
+    
+	/**
+	 * @return the the photo_id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	* @param id the photo_id
+	*/
+	public void setId(String id) {
+		this.id = id;
+	}
 }

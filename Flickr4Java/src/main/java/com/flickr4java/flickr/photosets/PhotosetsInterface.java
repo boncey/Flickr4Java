@@ -283,7 +283,14 @@ public class PhotosetsInterface {
         photoset.setSecret(photosetElement.getAttribute("secret"));
         photoset.setServer(photosetElement.getAttribute("server"));
         photoset.setFarm(photosetElement.getAttribute("farm"));
-        photoset.setPhotoCount(photosetElement.getAttribute("photos"));
+        photoset.setPhotoCount(photosetElement.getAttribute("count_photos"));
+        photoset.setVideoCount(Integer.parseInt(photosetElement.getAttribute("count_videos")));
+        photoset.setViewCount(Integer.parseInt(photosetElement.getAttribute("count_views")));
+        photoset.setCommentCount(Integer.parseInt(photosetElement.getAttribute("count_comments")));
+        photoset.setDateCreate(photosetElement.getAttribute("date_create"));
+        photoset.setDateUpdate(photosetElement.getAttribute("date_update"));
+      
+        photoset.setIsCanComment("1".equals(photosetElement.getAttribute("can_comment")));
 
         photoset.setTitle(XMLUtilities.getChildValue(photosetElement, "title"));
         photoset.setDescription(XMLUtilities.getChildValue(photosetElement, "description"));
@@ -342,6 +349,11 @@ public class PhotosetsInterface {
         }
         Photosets photosetsObject = new Photosets();
         Element photosetsElement = response.getPayload();
+        photosetsObject.setCanCreate(XMLUtilities.getBooleanAttribute(photosetsElement, "cancreate"));
+        photosetsObject.setPage(XMLUtilities.getIntAttribute(photosetsElement, "page"));
+        photosetsObject.setPages(XMLUtilities.getIntAttribute(photosetsElement, "pages"));
+        photosetsObject.setPerPage(XMLUtilities.getIntAttribute(photosetsElement, "perpage"));
+        photosetsObject.setTotal(XMLUtilities.getIntAttribute(photosetsElement, "total"));
         List<Photoset> photosets = new ArrayList<Photoset>();
         NodeList photosetElements = photosetsElement.getElementsByTagName("photoset");
         for (int i = 0; i < photosetElements.getLength(); i++) {
@@ -364,7 +376,18 @@ public class PhotosetsInterface {
             photoset.setServer(photosetElement.getAttribute("server"));
             photoset.setFarm(photosetElement.getAttribute("farm"));
             photoset.setPhotoCount(photosetElement.getAttribute("photos"));
-
+            photoset.setVideoCount(Integer.parseInt(photosetElement.getAttribute("videos")));
+            photoset.setViewCount(Integer.parseInt(photosetElement.getAttribute("count_views")));
+            photoset.setCommentCount(Integer.parseInt(photosetElement.getAttribute("count_comments")));
+            photoset.setDateCreate(photosetElement.getAttribute("date_create"));
+            photoset.setDateUpdate(photosetElement.getAttribute("date_update"));
+          
+            photoset.setIsCanComment("1".equals(photosetElement.getAttribute("can_comment")));
+            photoset.setIsNeedsInterstitial("1".equals(photosetElement.getAttribute("needs_interstitial")));
+            photoset.setIsVisible("1".equals(photosetElement.getAttribute("visibility_can_see_set")));
+            photoset.setDescription(XMLUtilities.getChildValue(photosetElement, "description"));
+            
+            
             photoset.setTitle(XMLUtilities.getChildValue(photosetElement, "title"));
             photoset.setDescription(XMLUtilities.getChildValue(photosetElement, "description"));
 
@@ -372,6 +395,7 @@ public class PhotosetsInterface {
         }
 
         photosetsObject.setPhotosets(photosets);
+        
         return photosetsObject;
     }
 
@@ -512,7 +536,7 @@ public class PhotosetsInterface {
      */
     public void orderSets(String[] photosetIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_ORDER_SETS);
+        parameters.put("method", METHOD_ORDER_SETS);;
 
         parameters.put("photoset_ids", StringUtilities.join(photosetIds, ","));
 

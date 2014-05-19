@@ -14,6 +14,7 @@ import com.flickr4java.flickr.contacts.ContactsInterface;
 import com.flickr4java.flickr.favorites.FavoritesInterface;
 import com.flickr4java.flickr.galleries.GalleriesInterface;
 import com.flickr4java.flickr.groups.GroupsInterface;
+import com.flickr4java.flickr.groups.discuss.GroupDiscussInterface;
 import com.flickr4java.flickr.groups.members.MembersInterface;
 import com.flickr4java.flickr.groups.pools.PoolsInterface;
 import com.flickr4java.flickr.interestingness.InterestingnessInterface;
@@ -25,6 +26,7 @@ import com.flickr4java.flickr.photos.comments.CommentsInterface;
 import com.flickr4java.flickr.photos.geo.GeoInterface;
 import com.flickr4java.flickr.photos.licenses.LicensesInterface;
 import com.flickr4java.flickr.photos.notes.NotesInterface;
+import com.flickr4java.flickr.photos.suggestions.SuggestionsInterface;
 import com.flickr4java.flickr.photos.transform.TransformInterface;
 import com.flickr4java.flickr.photos.upload.UploadInterface;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
@@ -154,6 +156,10 @@ public class Flickr {
     private StatsInterface statsInterface;
 
     private CamerasInterface cameraInterface;
+    
+    private SuggestionsInterface suggestionsInterface;
+    
+    private GroupDiscussInterface discussionInterface;
 
     /**
      * @see com.flickr4java.flickr.photos.PhotosInterface#setContentType(String, String)
@@ -610,6 +616,31 @@ public class Flickr {
             cameraInterface = new CamerasInterface(apiKey, sharedSecret, transport);
         }
         return cameraInterface;
+    }
+    
+    /**
+     * Get the SuggestionsInterface.
+     * 
+     * @return The SuggestionsInterface
+     */
+        public SuggestionsInterface getSuggestionsInterface() {
+            if (suggestionsInterface == null) {
+            	suggestionsInterface = new SuggestionsInterface(apiKey, sharedSecret, transport);
+            }
+            return suggestionsInterface;
+        }
+    
+    /**
+    * Get the GroupDiscussInterface.
+    * 
+    * @return The GroupDiscussInterface
+    */
+      
+    public GroupDiscussInterface getDiscussionInterface() {
+    if (discussionInterface == null) {
+    	discussionInterface= new GroupDiscussInterface(apiKey, sharedSecret, transport);
+    }
+    	return discussionInterface;
     }
 
 }

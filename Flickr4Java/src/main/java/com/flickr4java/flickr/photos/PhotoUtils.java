@@ -1,15 +1,15 @@
 package com.flickr4java.flickr.photos;
 
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.tags.Tag;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.tags.Tag;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 /**
  * Utilitiy-methods to transfer requested XML to Photo-objects.
@@ -78,6 +78,13 @@ public final class PhotoUtils {
         photo.setMedia(photoElement.getAttribute("media"));
         photo.setMediaStatus(photoElement.getAttribute("media_status"));
         photo.setPathAlias(photoElement.getAttribute("pathalias"));
+        
+        Element peopleElement = (Element) photoElement.getElementsByTagName("people").item(0);
+        if(peopleElement != null){
+        	photo.setIsHasPeople("1".equals(peopleElement.getAttribute("haspeople")));
+        }else{
+        	photo.setIsHasPeople(false);
+        }
 
         // If the attributes active that contain the image-urls,
         // Size-objects created from them, which are used to override
@@ -244,13 +251,18 @@ public final class PhotoUtils {
             photo.setDateTaken(photoElement.getAttribute("datetaken"));
         }
 
-        NodeList permissionsNodes = photoElement.getElementsByTagName("permissions");
-        if (permissionsNodes.getLength() > 0) {
-            Element permissionsElement = (Element) permissionsNodes.item(0);
+       
+        try {
+            Element permissionsElement = (Element) photoElement.getElementsByTagName("permissions").item(0);
             Permissions permissions = new Permissions();
             permissions.setComment(permissionsElement.getAttribute("permcomment"));
             permissions.setAddmeta(permissionsElement.getAttribute("permaddmeta"));
+            photo.setPermissions(permissions);
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
+            // nop
         }
+        
 
         try {
             Element editabilityElement = (Element) photoElement.getElementsByTagName("editability").item(0);
@@ -258,6 +270,31 @@ public final class PhotoUtils {
             editability.setComment("1".equals(editabilityElement.getAttribute("cancomment")));
             editability.setAddmeta("1".equals(editabilityElement.getAttribute("canaddmeta")));
             photo.setEditability(editability);
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
+            // nop
+        }
+        
+        try {
+            Element publicEditabilityElement = (Element) photoElement.getElementsByTagName("publiceditability").item(0);
+            Editability publicEditability = new Editability();
+            publicEditability.setComment("1".equals(publicEditabilityElement.getAttribute("cancomment")));
+            publicEditability.setAddmeta("1".equals(publicEditabilityElement.getAttribute("canaddmeta")));
+            photo.setPublicEditability(publicEditability);
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
+            // nop
+        }
+        
+        try {
+            Element usageElement = (Element) photoElement.getElementsByTagName("usage").item(0);
+            Usage usage = new Usage();
+            
+            usage.setIsCanBlog("1".equals(usageElement.getAttribute("canblog")));
+            usage.setIsCanDownload("1".equals(usageElement.getAttribute("candownload")));
+            usage.setIsCanShare("1".equals(usageElement.getAttribute("canshare")));
+            usage.setIsCanPrint("1".equals(usageElement.getAttribute("canprint")));
+            photo.setUsage(usage);
         } catch (IndexOutOfBoundsException e) {
         } catch (NullPointerException e) {
             // nop
@@ -334,12 +371,16 @@ public final class PhotoUtils {
             for (int i = 0; i < urlNodes.getLength(); i++) {
                 Element urlElement = (Element) urlNodes.item(i);
                 PhotoUrl photoUrl = new PhotoUrl();
+                photo.setPhotoUrl(photoUrl);
                 photoUrl.setType(urlElement.getAttribute("type"));
                 photoUrl.setUrl(XMLUtilities.getValue(urlElement));
                 if (photoUrl.getType().equals("photopage")) {
                     photo.setUrl(photoUrl.getUrl());
+                    urls.add(photoUrl.getUrl());
                 }
+                
             }
+            
             photo.setUrls(urls);
         } catch (IndexOutOfBoundsException e) {
         } catch (NullPointerException e) {

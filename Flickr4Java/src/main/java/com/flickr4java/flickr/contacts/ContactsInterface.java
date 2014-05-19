@@ -50,8 +50,8 @@ public class ContactsInterface {
      * @return The Collection of Contact objects
      */
     public Collection<Contact> getList() throws FlickrException {
-        List<Contact> contacts = new ArrayList<Contact>();
-
+    	 ContactList<Contact> contacts = new ContactList<Contact>();
+        
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
 
@@ -61,6 +61,10 @@ public class ContactsInterface {
         }
 
         Element contactsElement = response.getPayload();
+        contacts.setPage(contactsElement.getAttribute("page"));
+        contacts.setPages(contactsElement.getAttribute("pages"));
+        contacts.setPerPage(contactsElement.getAttribute("perpage"));
+        contacts.setTotal(contactsElement.getAttribute("total"));
         NodeList contactNodes = contactsElement.getElementsByTagName("contact");
         for (int i = 0; i < contactNodes.getLength(); i++) {
             Element contactElement = (Element) contactNodes.item(i);

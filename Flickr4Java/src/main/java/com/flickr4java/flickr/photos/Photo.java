@@ -132,6 +132,8 @@ public class Photo {
     private Permissions permissions;
 
     private Editability editability;
+    
+    private Editability publicEditability;
 
     private int comments;
 
@@ -168,11 +170,19 @@ public class Photo {
     private int originalWidth;
 
     private int originalHeight;
+    
+    private PhotoUrl photoUrl;
+    
+    private Usage usage;
+    
+    private boolean hasPeople;
 
     /**
      * Stats on views, comments and favorites. Only set on {@link StatsInterface#getPopularPhotos} call.
      */
     private Stats stats;
+
+	
 
     public Photo() {
     }
@@ -1149,4 +1159,40 @@ public class Photo {
     private boolean areEqual(Object x, Object y) {
         return x == null ? y == null : x.equals(y);
     }
+    
+    public PhotoUrl getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(PhotoUrl photoUrl) {
+		this.photoUrl = photoUrl;
+		
+	}
+	
+	public Usage getUsage() {
+		return usage;
+	}
+
+	public void setUsage(Usage usage) {
+		this.usage = usage;
+		
+	}
+
+	public Editability getPublicEditability() {
+		return publicEditability;
+	}
+
+	public void setPublicEditability(Editability publicEditability) {
+		this.publicEditability = publicEditability;
+	}
+
+	public boolean isHasPeople() {
+		return hasPeople;
+	}
+
+	public void setIsHasPeople(boolean hasPeople) {
+		this.hasPeople = hasPeople;
+	}
+
+	
 }

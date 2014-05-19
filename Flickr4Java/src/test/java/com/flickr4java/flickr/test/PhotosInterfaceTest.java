@@ -66,13 +66,23 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
     public void testAddAndRemoveTags() throws FlickrException {
         PhotosInterface iface = flickr.getPhotosInterface();
         String photoId = testProperties.getPhotoId();
+        Photo photo = iface.getInfo(photoId, null);
+
+        // Find number of existing tags
+        int preCount = photo.getTags().size();
+        int postCount = preCount + 1;
+
+        // Add a tag
         String[] tagsToAdd = { "test" };
         iface.addTags(photoId, tagsToAdd);
-        Photo photo = iface.getInfo(photoId, null);
+
+        // Check that it was added
+        photo = iface.getInfo(photoId, null);
         Collection<Tag> tags = photo.getTags();
         assertNotNull(tags);
-        assertEquals(4, tags.size());
+        assertEquals(postCount, tags.size());
 
+        // Get the added tag's ID
         String tagId = null;
         for (Tag tag : tags) {
             if (tag.getValue().equals("test")) {
@@ -81,11 +91,12 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
             }
         }
 
+        // Remove and check that it was removed
         iface.removeTag(tagId);
         photo = iface.getInfo(photoId, null);
         tags = photo.getTags();
         assertNotNull(tags);
-        assertEquals(3, tags.size());
+        assertEquals(preCount, tags.size());
     }
 
     @Test
@@ -110,7 +121,7 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
 
         User owner = photo.getOwner();
         assertEquals(testProperties.getNsid(), owner.getId());
-        assertEquals(testProperties.getDisplayname(), owner.getUsername());
+        assertEquals(testProperties.getUsername(), owner.getUsername());
 
         List<Tag> tags = (List<Tag>) photo.getTags();
         assertEquals("green", (tags.get(0)).getValue());
@@ -325,7 +336,7 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         Photo photo = iface.getInfo(photoId, null);
         BufferedImage image = iface.getImage(photo, Size.THUMB);
         assertNotNull(image);
-        assertEquals(67, image.getWidth());
+        assertTrue(67==image.getWidth() || 68==image.getWidth());
         assertEquals(100, image.getHeight());
         ImageIO.write(image, "jpg", thumbnailFile);
     }

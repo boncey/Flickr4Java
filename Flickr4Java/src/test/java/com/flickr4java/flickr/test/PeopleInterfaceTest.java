@@ -31,13 +31,13 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         User person = iface.findByEmail(testProperties.getEmail());
         assertNotNull(person);
         assertEquals(person.getId(), testProperties.getNsid());
-        assertEquals(person.getUsername(), testProperties.getDisplayname());
+        assertEquals(person.getUsername(), testProperties.getUsername());
     }
 
     @Test
     public void testFindByUsername() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        User person = iface.findByUsername(testProperties.getDisplayname());
+        User person = iface.findByUsername(testProperties.getUsername());
         assertNotNull(person);
         assertEquals(testProperties.getNsid(), person.getId());
         assertEquals(testProperties.getUsername(), person.getUsername());
@@ -54,7 +54,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         User person = iface.getInfo(testProperties.getNsid());
         assertNotNull(person);
         assertEquals(testProperties.getNsid(), person.getId());
-        assertEquals(testProperties.getDisplayname(), person.getUsername());
+        assertEquals(testProperties.getDisplayname(), person.getRealName());
         assertTrue(person.getMobileurl().startsWith("https://m.flickr.com/photostream.gne"));
         assertEquals(person.getPhotosurl(), String.format("https://www.flickr.com/photos/%s/", testProperties.getUsername()));
         assertEquals(person.getProfileurl(), String.format("https://www.flickr.com/people/%s/", testProperties.getUsername()));
@@ -91,7 +91,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         PeopleInterface iface = flickr.getPeopleInterface();
         PhotoList<Photo> photos = iface.getPhotos(testProperties.getNsid(), null, null, null, null, null, null, null, null, 15, 1);
         assertNotNull(photos);
-        assertTrue(photos.size() > 1);
+        assertTrue(photos.size() > 0);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         PeopleInterface iface = flickr.getPeopleInterface();
         PhotoList<Photo> photos = iface.getPhotosOf(testProperties.getNsid(), null, null, 10, 1);
         assertNotNull(photos);
-        assertTrue(photos.size() > 1);
+        assertTrue(photos.size() > 0);
     }
 
     @Test

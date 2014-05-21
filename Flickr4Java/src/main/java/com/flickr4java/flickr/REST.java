@@ -158,6 +158,8 @@ public class REST extends Transport {
             Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
             OAuthService service = createOAuthService(parameters, apiKey, sharedSecret);
             service.signRequest(requestToken, request);
+        } else {
+            request.addQuerystringParameter("api_key", apiKey);
         }
 
         if (Flickr.debugRequest) {

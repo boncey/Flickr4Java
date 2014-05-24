@@ -11,6 +11,7 @@ import com.flickr4java.flickr.util.UrlUtilities;
 
 import org.apache.log4j.Logger;
 import org.scribe.builder.ServiceBuilder;
+
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Token;
@@ -159,6 +160,12 @@ public class REST extends Transport {
             OAuthService service = createOAuthService(parameters, apiKey, sharedSecret);
             service.signRequest(requestToken, request);
         }
+        else {
+        	// For calls that do not require authorization e.g. flickr.people.findByUsername which could be the
+        	// 		first call if the user did not supply the user-id (i.e. nsid).
+        	if(!parameters.containsKey(Flickr.API_KEY))
+        		request.addQuerystringParameter(Flickr.API_KEY, apiKey);        	
+        }
 
         if (Flickr.debugRequest) {
             logger.debug("GET: " + request.getCompleteUrl());
@@ -173,6 +180,9 @@ public class REST extends Transport {
                 String strXml = scribeResponse.getBody();
                 if (Flickr.debugStream) {
                     logger.debug(strXml);
+                }
+                if (strXml.startsWith("oauth_problem=")) {
+                    throw new FlickrRuntimeException(strXml);
                 }
                 Document document = builder.parse(new InputSource(new StringReader(strXml)));
                 response = (com.flickr4java.flickr.Response) responseClass.newInstance();
@@ -348,7 +358,7 @@ public class REST extends Transport {
         request.addHeader("Content-Type", "multipart/form-data; boundary=" + getMultipartBoundary());
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
             String key = entry.getKey();
-            if (!key.equals("photo")) {
+            if (!key.equals("photo") && !key.equals("filename") &&  !key.equals("filemimetype")) {
                 request.addQuerystringParameter(key, String.valueOf(entry.getValue()));
             }
         }
@@ -379,10 +389,19 @@ public class REST extends Transport {
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
+        	String filename = (String) parameters.get("filename");
+        	if(filename == null)
+        		filename = "image.jpg";
+
+        	String filemimetype = (String) parameters.get("filemimetype");
+        	if(filemimetype == null)
+        		filemimetype = "image/jpeg";
+        	
             buffer.write(("--" + boundary + "\r\n").getBytes(CHARSET_NAME));
             for (Entry<String, Object> entry : parameters.entrySet()) {
                 String key = entry.getKey();
-                writeParam(key, entry.getValue(), buffer, boundary);
+                if(!key.equals("filename") && !key.equals("filemimetype"))
+                	writeParam(key, entry.getValue(), buffer, boundary, filename, filemimetype);
             }
         } catch (IOException e) {
             throw new FlickrRuntimeException(e);
@@ -395,10 +414,10 @@ public class REST extends Transport {
         return buffer.toByteArray();
     }
 
-    private void writeParam(String name, Object value, ByteArrayOutputStream buffer, String boundary) throws IOException {
+    private void writeParam(String name, Object value, ByteArrayOutputStream buffer, String boundary, String filename, String filemimetype) throws IOException {
         if (value instanceof InputStream) {
-            buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"image.jpg\";\r\n").getBytes(CHARSET_NAME));
-            buffer.write(("Content-Type: image/jpeg" + "\r\n\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\";\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Type: " + filemimetype + "\r\n\r\n").getBytes(CHARSET_NAME));
             InputStream in = (InputStream) value;
             byte[] buf = new byte[512];
 
@@ -408,8 +427,8 @@ public class REST extends Transport {
             }
             buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
         } else if (value instanceof byte[]) {
-            buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"image.jpg\";\r\n").getBytes(CHARSET_NAME));
-            buffer.write(("Content-Type: image/jpeg" + "\r\n\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\";\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Type: " + filemimetype + "\r\n\r\n").getBytes(CHARSET_NAME));
             buffer.write((byte[]) value);
             buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
         } else {

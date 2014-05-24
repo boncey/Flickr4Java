@@ -66,7 +66,7 @@ public class Photoset {
     public String getUrl() {
         if (url == null) {
             StringBuffer sb = new StringBuffer();
-            sb.append("http://www.flickr.com/photos/");
+            sb.append("https://www.flickr.com/photos/");
             sb.append(getOwner().getId());
             sb.append("/sets/");
             sb.append(getId());

@@ -93,6 +93,10 @@ public class Photo {
 
     private Size videoOriginal;
 
+    private Size mobileMp4;
+    
+    private Size hd_MP4;
+    
     private String id;
 
     private User owner;
@@ -824,6 +828,22 @@ public class Photo {
         }
     }
 
+    public String getMobileMP4Url() {
+        if (mobileMp4 == null) {
+            return "";
+        } else {
+            return mobileMp4.getSource();
+        }
+    }
+
+    public String getHD_MP4Url() {
+        if (hd_MP4 == null) {
+            return "";
+        } else {
+            return hd_MP4.getSource();
+        }
+    }
+
     /**
      * Get an image using the specified URL suffix.
      * 
@@ -938,7 +958,7 @@ public class Photo {
 
     private StringBuffer _getBaseImageUrl() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append("http://farm");
+        buffer.append("https://farm");
         buffer.append(getFarm());
         buffer.append(".static.flickr.com/");
         buffer.append(getServer());
@@ -1045,6 +1065,12 @@ public class Photo {
             } else if (size.getLabel() == Size.VIDEO_ORIGINAL) {
                 videoOriginal = size;
             }
+            else if (size.getLabel() == Size.Mobile_MP4) {
+            	mobileMp4 = size;
+            }
+            else if (size.getLabel() == Size.HD_MP4) {
+            	hd_MP4 = size;
+            }
         }
     }
 
@@ -1107,6 +1133,34 @@ public class Photo {
     public Size getVideoOriginalSize() {
         return videoOriginal;
     }
+
+    /**
+   	 * @return the mobileMp4
+   	 */
+   	public Size getMobileMp4() {
+   		return mobileMp4;
+   	}
+
+   	/**
+   	 * @param mobileMp4 the mobileMp4 to set
+   	 */
+   	public void setMobileMp4(Size mobileMp4) {
+   		this.mobileMp4 = mobileMp4;
+   	}
+
+   	/**
+   	 * @return the hd_MP4
+   	 */
+   	public Size getHD_MP4() {
+   		return hd_MP4;
+   	}
+
+   	/**
+   	 * @param hd_MP4 the hd_MP4 to set
+   	 */
+   	public void setHd_MP4(Size hd_MP4) {
+   		this.hd_MP4 = hd_MP4;
+   	}
 
     /**
      * @return the pathAlias

@@ -304,7 +304,7 @@ public class GalleriesInterface {
             User owner = new User();
             owner.setId(photoElement.getAttribute("owner"));
             photo.setOwner(owner);
-            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setUrl("https://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
             photo.setServer(photoElement.getAttribute("server"));
             photo.setFarm(photoElement.getAttribute("farm"));
             photo.setTitle(photoElement.getAttribute("title"));
@@ -367,7 +367,7 @@ public class GalleriesInterface {
             User owner = new User();
             owner.setId(photoElement.getAttribute("owner"));
             photo.setOwner(owner);
-            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setUrl("https://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
             photo.setServer(photoElement.getAttribute("server"));
             photo.setFarm(photoElement.getAttribute("farm"));
             photo.setTitle(photoElement.getAttribute("title"));

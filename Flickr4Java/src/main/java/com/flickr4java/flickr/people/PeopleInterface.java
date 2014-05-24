@@ -420,7 +420,7 @@ public class PeopleInterface {
             User owner = new User();
             owner.setId(photoElement.getAttribute("owner"));
             photo.setOwner(owner);
-            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setUrl("https://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
             photo.setServer(photoElement.getAttribute("server"));
             photo.setTitle(photoElement.getAttribute("title"));
             photo.setPublicFlag("1".equals(photoElement.getAttribute("ispublic")));

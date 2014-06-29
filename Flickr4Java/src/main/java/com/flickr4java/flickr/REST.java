@@ -159,7 +159,11 @@ public class REST extends Transport {
             OAuthService service = createOAuthService(parameters, apiKey, sharedSecret);
             service.signRequest(requestToken, request);
         } else {
-            request.addQuerystringParameter("api_key", apiKey);
+            // For calls that do not require authorization e.g. flickr.people.findByUsername which could be the
+            // first call if the user did not supply the user-id (i.e. nsid).
+            if (!parameters.containsKey(Flickr.API_KEY)) {
+                request.addQuerystringParameter(Flickr.API_KEY, apiKey);
+            }
         }
 
         if (Flickr.debugRequest) {

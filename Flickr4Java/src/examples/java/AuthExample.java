@@ -53,6 +53,7 @@ public class AuthExample {
         System.out.print(">>");
 
         String tokenKey = scanner.nextLine();
+        scanner.close();
 
         Token requestToken = authInterface.getAccessToken(token, new Verifier(tokenKey));
         System.out.println("Authentication success");

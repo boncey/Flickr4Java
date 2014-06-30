@@ -45,7 +45,7 @@ public class FavoritesInterfaceTest extends Flickr4JavaTest {
         FavoritesInterface iface = flickr.getFavoritesInterface();
         Collection<Photo> favorites = iface.getPublicList(testProperties.getNsid(), 0, 0, null);
         assertNotNull(favorites);
-        assertTrue(favorites.size() > 1);
+        assertTrue(favorites.size() > 0);
     }
 
     @Test

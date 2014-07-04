@@ -227,11 +227,11 @@ public class Uploader {
         	filename = "image.jpg";  // Will NOT work for videos, filename must be passed.
         parameters.put("filename", filename);
 
-        String filemimetype = metaData.getFilemimetype();
-        if(filemimetype == null || filemimetype.equals(""))
-        	filemimetype = "image/jpeg";
+        String fileMimeType = metaData.getFilemimetype();
+        if(fileMimeType == null || fileMimeType.equals(""))
+        	fileMimeType = "image/jpeg";
         
-        parameters.put("filemimetype", filemimetype);
+        parameters.put("filemimetype", fileMimeType);
       
         String title = metaData.getTitle();
         if (title != null) {

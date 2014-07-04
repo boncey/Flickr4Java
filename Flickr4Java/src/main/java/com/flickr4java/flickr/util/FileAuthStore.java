@@ -27,13 +27,13 @@ import java.util.Map;
 public class FileAuthStore implements AuthStore {
 
     private Map<String, Auth> auths;
-    private Map<String, Auth> auths_by_user; // Separate HashMap due to retrieveAll.
+    private Map<String, Auth> authsByUser; // Separate HashMap due to retrieveAll.
 
     private File authStoreDir;
 
     public FileAuthStore(File authStoreDir) throws FlickrException {
         this.auths = new HashMap<String, Auth>();
-        this.auths_by_user = new HashMap<String, Auth>();
+        this.authsByUser = new HashMap<String, Auth>();
 
         this.authStoreDir = authStoreDir;
 
@@ -70,7 +70,7 @@ public class FileAuthStore implements AuthStore {
                         this.auths.put(authInst.getUser().getId(), authInst);
                         
                         // Also store by user-name since it is generally easier to remember.
-                        this.auths_by_user.put(authInst.getUser().getUsername(), authInst);
+                        this.authsByUser.put(authInst.getUser().getUsername(), authInst);
                     }
                     authStream.close();
                 }
@@ -87,7 +87,7 @@ public class FileAuthStore implements AuthStore {
      */
     public void store(Auth token) throws IOException {
         this.auths.put(token.getUser().getId(), token);
-        this.auths_by_user.put(token.getUser().getUsername(), token);
+        this.authsByUser.put(token.getUser().getUsername(), token);
 
         String filename = token.getUser().getId() + ".auth";
         File outFile = new File(this.authStoreDir, filename);
@@ -110,7 +110,7 @@ public class FileAuthStore implements AuthStore {
     	if(auth != null)
     		return auth;
     	else
-    		return this.auths_by_user.get(nsid);
+    		return this.authsByUser.get(nsid);
     }
 
     /*
@@ -129,7 +129,7 @@ public class FileAuthStore implements AuthStore {
      */
     public void clearAll() {
         this.auths.clear();
-        this.auths_by_user.clear();
+        this.authsByUser.clear();
         File[] auths = this.authStoreDir.listFiles(new AuthFilenameFilter());
         for (int i = 0; i < auths.length; i++) {
             auths[i].delete();
@@ -144,10 +144,10 @@ public class FileAuthStore implements AuthStore {
     public void clear(String nsid) {
     	Auth a =  this.auths.get(nsid);
     	if(a != null) {
-            this.auths_by_user.remove(a.getUser().getUsername());
+            this.authsByUser.remove(a.getUser().getUsername());
     	}
     	this.auths.remove(nsid);
-        this.auths_by_user.remove(nsid); // in case username is passed.
+        this.authsByUser.remove(nsid); // in case username is passed.
         File auth = new File(this.authStoreDir, nsid + ".auth");
         if (auth.exists())
             auth.delete();

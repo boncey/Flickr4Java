@@ -166,12 +166,6 @@ public class REST extends Transport {
                 request.addQuerystringParameter(Flickr.API_KEY, apiKey);
             }
         }
-        else {
-        	// For calls that do not require authorization e.g. flickr.people.findByUsername which could be the
-        	// 		first call if the user did not supply the user-id (i.e. nsid).
-        	if(!parameters.containsKey(Flickr.API_KEY))
-        		request.addQuerystringParameter(Flickr.API_KEY, apiKey);        	
-        }
 
         if (Flickr.debugRequest) {
             logger.debug("GET: " + request.getCompleteUrl());
@@ -399,15 +393,15 @@ public class REST extends Transport {
         	if(filename == null)
         		filename = "image.jpg";
 
-        	String filemimetype = (String) parameters.get("filemimetype");
-        	if(filemimetype == null)
-        		filemimetype = "image/jpeg";
+        	String fileMimeType = (String) parameters.get("filemimetype");
+        	if(fileMimeType == null)
+        		fileMimeType = "image/jpeg";
         	
             buffer.write(("--" + boundary + "\r\n").getBytes(CHARSET_NAME));
             for (Entry<String, Object> entry : parameters.entrySet()) {
                 String key = entry.getKey();
                 if(!key.equals("filename") && !key.equals("filemimetype"))
-                	writeParam(key, entry.getValue(), buffer, boundary, filename, filemimetype);
+                	writeParam(key, entry.getValue(), buffer, boundary, filename, fileMimeType);
             }
         } catch (IOException e) {
             throw new FlickrRuntimeException(e);
@@ -420,10 +414,10 @@ public class REST extends Transport {
         return buffer.toByteArray();
     }
 
-    private void writeParam(String name, Object value, ByteArrayOutputStream buffer, String boundary, String filename, String filemimetype) throws IOException {
+    private void writeParam(String name, Object value, ByteArrayOutputStream buffer, String boundary, String filename, String fileMimeType) throws IOException {
         if (value instanceof InputStream) {
             buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\";\r\n").getBytes(CHARSET_NAME));
-            buffer.write(("Content-Type: " + filemimetype + "\r\n\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Type: " + fileMimeType + "\r\n\r\n").getBytes(CHARSET_NAME));
             InputStream in = (InputStream) value;
             byte[] buf = new byte[512];
 
@@ -434,7 +428,7 @@ public class REST extends Transport {
             buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
         } else if (value instanceof byte[]) {
             buffer.write(("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\";\r\n").getBytes(CHARSET_NAME));
-            buffer.write(("Content-Type: " + filemimetype + "\r\n\r\n").getBytes(CHARSET_NAME));
+            buffer.write(("Content-Type: " + fileMimeType + "\r\n\r\n").getBytes(CHARSET_NAME));
             buffer.write((byte[]) value);
             buffer.write(("\r\n" + "--" + boundary + "\r\n").getBytes(CHARSET_NAME));
         } else {

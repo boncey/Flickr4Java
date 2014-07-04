@@ -70,6 +70,9 @@ import com.flickr4java.flickr.prefs.PrefsInterface;
  * 
  * This sample also uses the AuthStore interface, so users will only be asked to authorize on the first run.
  * 
+ * Please NOTE that this needs Java 7 to work. Java 7 was released on July 28, 2011 and soon Java 6 may not
+ * be supported anymore ( Jul 2014).
+ * 
  * @author Keyur Parikh
  */
 
@@ -85,14 +88,14 @@ public class UploadPhoto {
     private final Flickr flickr;
 
     private AuthStore authStore;
-	public boolean flickr_debug = false;
-	private boolean setorigfilenametag = true;
-    private boolean replace_spaces = false;
+	public boolean flickrDebug = false;
+	private boolean setOrigFilenameTag = true;
+    private boolean replaceSpaces = false;
 
 	private int privacy = -1;
 
-    HashMap<String, Photoset> all_sets_map = new HashMap<String, Photoset>();
-    HashMap<String, ArrayList<String>> set_name_to_id = new HashMap<String, ArrayList<String>>();
+    HashMap<String, Photoset> allSetsMap = new HashMap<String, Photoset>();
+    HashMap<String, ArrayList<String>> setNameToId = new HashMap<String, ArrayList<String>>();
     public static final SimpleDateFormat smp = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss a");
 
     public UploadPhoto(String apiKey, String nsid, String sharedSecret, File authsDir, String username) throws FlickrException {
@@ -108,13 +111,13 @@ public class UploadPhoto {
         
         // If one of them is not filled in, find and populate it.
         if(username == null || username.equals(""))
-        	set_username();
+        	setUserName();
         if(nsid == null || nsid.equals(""))
-            	set_nsid(); 
+            	setNsid(); 
 
      }
 
-    private void set_username() throws FlickrException {
+    private void setUserName() throws FlickrException {
     	if(nsid != null && !nsid.equals("")) {
     		Auth auth = null;
     		if (authStore != null) {
@@ -123,13 +126,13 @@ public class UploadPhoto {
     				username = auth.getUser().getUsername();
     			}
     		}
-    		// For this to work: REST.java or PeopleInterface needs to change to pass api_key
+    		// For this to work: REST.java or PeopleInterface needs to change to pass apiKey
     		//		as the parameter to the call which is not authenticated.
 
     		if(auth == null) {
     			// Get nsid using flickr.people.findByUsername
-    			PeopleInterface people_i = flickr.getPeopleInterface();
-    			User u = people_i.getInfo(nsid);
+    			PeopleInterface peopleInterf = flickr.getPeopleInterface();
+    			User u = peopleInterf.getInfo(nsid);
     			if(u != null) {
     				username = u.getUsername();
     			}
@@ -143,7 +146,7 @@ public class UploadPhoto {
      * @throws FlickrException
      */
 
-	    private void set_nsid() throws FlickrException {
+	    private void setNsid() throws FlickrException {
     
 		if(username != null && !username.equals("")) {
 			Auth auth = null;
@@ -158,20 +161,20 @@ public class UploadPhoto {
 			if(auth != null)
 				return;
 
-			Auth[] all_auths = authStore.retrieveAll();
-			for(int i = 0 ; i < all_auths.length; i++) {
-				if(username.equals(all_auths[i].getUser().getUsername())) {
-					nsid = all_auths[i].getUser().getId();
+			Auth[] allAuths = authStore.retrieveAll();
+			for(int i = 0 ; i < allAuths.length; i++) {
+				if(username.equals(allAuths[i].getUser().getUsername())) {
+					nsid = allAuths[i].getUser().getId();
 					return;
 				}
 			}
 			
-			// For this to work: REST.java or PeopleInterface needs to change to pass api_key
+			// For this to work: REST.java or PeopleInterface needs to change to pass apiKey
 			//		as the parameter to the call which is not authenticated.
 
 			// Get nsid using flickr.people.findByUsername
-			PeopleInterface people_i = flickr.getPeopleInterface();
-			User u = people_i.findByUsername(username);
+			PeopleInterface peopleInterf = flickr.getPeopleInterface();
+			User u = peopleInterf.findByUsername(username);
 			if(u != null) {
 				nsid = u.getId();
 			}
@@ -231,12 +234,12 @@ public class UploadPhoto {
         return auth;
     }
 
-    public void setAuth(String authToken, String username, String token_secret) throws IOException, SAXException, FlickrException {
+    public void setAuth(String authToken, String username, String tokenSecret) throws IOException, SAXException, FlickrException {
         RequestContext rc = RequestContext.getRequestContext();
         Auth auth = null;
      
-        if(authToken != null && !authToken.equals("") && token_secret != null && !token_secret.equals("")) {
-        	auth = constructAuth(authToken, token_secret, username);
+        if(authToken != null && !authToken.equals("") && tokenSecret != null && !tokenSecret.equals("")) {
+        	auth = constructAuth(authToken, tokenSecret, username);
         	rc.setAuth(auth);
     	}
         else {
@@ -269,13 +272,13 @@ public class UploadPhoto {
                     fname[i] = replace;
                 }
             }
-            if(replace_spaces && fname[i] == ' ')
+            if(replaceSpaces && fname[i] == ' ')
             	fname[i] = '_';
         }
         return new String(fname);
     }
 
-    public String uploadfile(String filename, String inp_title) throws Exception {
+    public String uploadfile(String filename, String inpTitle) throws Exception {
     	String photoId;
 
     	RequestContext rc = RequestContext.getRequestContext();
@@ -317,8 +320,8 @@ public class UploadPhoto {
 		basefilename = filename; // "image.jpg";
 	
 	String title = basefilename;
-	boolean setmimetype = true;	// change during testing. Doesn't seem to be supported at this time in flickr.
-	if(setmimetype) {
+	boolean setMimeType = true;	// change during testing. Doesn't seem to be supported at this time in flickr.
+	if(setMimeType) {
 		if(basefilename.lastIndexOf('.') > 0) {
 			title = basefilename.substring(0, basefilename.lastIndexOf('.') );
 			String suffix = basefilename.substring(basefilename.lastIndexOf('.')+1);
@@ -341,9 +344,9 @@ public class UploadPhoto {
 	logger.debug(" File : " + filename );
 	logger.debug(" basefilename : " + basefilename );
 	
-	if(inp_title != null && !inp_title.equals("")) {
-		title = inp_title;
-		logger.debug(" title : " + inp_title );	
+	if(inpTitle != null && !inpTitle.equals("")) {
+		title = inpTitle;
+		logger.debug(" title : " + inpTitle );	
         metaData.setTitle(title);	
 	} // flickr defaults the title field from file name.
 
@@ -352,7 +355,7 @@ public class UploadPhoto {
 	// Tags are getting mangled by yahoo stripping off the = ,  '.' and many other punctuation characters
 	//	and converting to lower case: use the raw tag field to find the real value for checking and
 	//	for download.
-	if(setorigfilenametag) {
+	if(setOrigFilenameTag) {
 		List<String> tags = new ArrayList<String>();
 		String tmp = basefilename;
 		basefilename = makeSafeFilename(basefilename);
@@ -402,49 +405,49 @@ public class UploadPhoto {
         return(photoId);
     }
 
-    public void get_photosets_info() {
+    public void getPhotosetsInfo() {
     	
         PhotosetsInterface pi = flickr.getPhotosetsInterface();
         try {
-        	int sets_page = 1;
+        	int setsPage = 1;
         	while (true) {
-        		Photosets photosets = pi.getList(nsid, 500, sets_page);
-        		Collection<Photoset> sets_coll = photosets.getPhotosets();
-        		Iterator<Photoset> sets_iter = sets_coll.iterator();
-        		while (sets_iter.hasNext()) {
-        			Photoset set = sets_iter.next();
-        			all_sets_map.put(set.getId(), set);
+        		Photosets photosets = pi.getList(nsid, 500, setsPage);
+        		Collection<Photoset> setsColl = photosets.getPhotosets();
+        		Iterator<Photoset> setsIter = setsColl.iterator();
+        		while (setsIter.hasNext()) {
+        			Photoset set = setsIter.next();
+        			allSetsMap.put(set.getId(), set);
 
         			// 2 or more sets can in theory have the same name. !!!
-        			ArrayList<String> set_idarr = set_name_to_id.get(set.getTitle());
-        			if(set_idarr == null) {
-        				set_idarr = new ArrayList<String>();
-        				set_idarr.add(new String(set.getId()));
-        				set_name_to_id.put(set.getTitle(), set_idarr);
+        			ArrayList<String> setIdarr = setNameToId.get(set.getTitle());
+        			if(setIdarr == null) {
+        				setIdarr = new ArrayList<String>();
+        				setIdarr.add(new String(set.getId()));
+        				setNameToId.put(set.getTitle(), setIdarr);
         			}
         			else {
-        				set_idarr.add(new String(set.getId()));
+        				setIdarr.add(new String(set.getId()));
         			}
         		}
 
-        		if (sets_coll.size() < 500) {
+        		if (setsColl.size() < 500) {
         			break;
         		}
-        		sets_page++;
+        		setsPage++;
         	}
-        	logger.debug(" Sets retrieved: " + all_sets_map.size());
+        	logger.debug(" Sets retrieved: " + allSetsMap.size());
         	// all_sets_retrieved = true;
         	// Print dups if any.
 
-        	Set<String> keys = set_name_to_id.keySet();
+        	Set<String> keys = setNameToId.keySet();
         	Iterator<String> iter = keys.iterator();
         	while(iter.hasNext()) {
         		String name = iter.next();
-        		ArrayList<String> set_idarr = set_name_to_id.get(name);
-        		if(set_idarr != null && set_idarr.size() > 1) {
-        			System.out.println("There is more than 1 set with this name : " + set_name_to_id.get(name));
-        			for(int j = 0; j < set_idarr.size(); j++) {
-        				System.out.println("           id: " + set_idarr.get(j));
+        		ArrayList<String> setIdarr = setNameToId.get(name);
+        		if(setIdarr != null && setIdarr.size() > 1) {
+        			System.out.println("There is more than 1 set with this name : " + setNameToId.get(name));
+        			for(int j = 0; j < setIdarr.size(); j++) {
+        				System.out.println("           id: " + setIdarr.get(j));
         			}
         		}
         	}
@@ -457,7 +460,7 @@ public class UploadPhoto {
     private String setid = null;
     private String basefilename = null;
 	private PhotoList<Photo> photos = new PhotoList<Photo>();
-    private HashMap<String, Photo> file_photos = new HashMap<String, Photo>();
+    private HashMap<String, Photo> filePhotos = new HashMap<String, Photo>();
 
 	private static void Usage() {
         System.out.println("Usage: java " + UploadPhoto.class.getName() + "  [ -n nsid | -u username ] -s setName { File../Directories}");
@@ -468,23 +471,23 @@ public class UploadPhoto {
 	}
 
     /**
-	 * @return the setorigfilenametag
+	 * @return the setOrigFilenameTag
 	 */
 	public boolean isSetorigfilenametag() {
-		return setorigfilenametag;
+		return setOrigFilenameTag;
 	}
 
 	/**
-	 * @param setorigfilenametag the setorigfilenametag to set
+	 * @param setOrigFilenameTag the setOrigFilenameTag to set
 	 */
-	public void setSetorigfilenametag(boolean setorigfilenametag) {
-		this.setorigfilenametag = setorigfilenametag;
+	public void setSetorigfilenametag(boolean setOrigFilenameTag) {
+		this.setOrigFilenameTag = setOrigFilenameTag;
 	}
 
 	public static void main(String[] args) throws Exception {
     	
-        String api_key = null; // args[0];
-        String shared_secret = null; // args[1];
+        String apiKey = null; // args[0];
+        String sharedSecret = null; // args[1];
 
         Properties properties = new Properties();
         InputStream in = null;
@@ -492,9 +495,9 @@ public class UploadPhoto {
             in = UploadPhoto.class.getResourceAsStream("/setup.properties");
             if(in != null) {
                     properties.load(in);
-                	api_key = properties.getProperty("apiKey");
-                    shared_secret = properties.getProperty("secret");
-                    if(api_key != null && shared_secret != null)
+                	apiKey = properties.getProperty("apiKey");
+                    sharedSecret = properties.getProperty("secret");
+                    if(apiKey != null && sharedSecret != null)
                     	logger.debug("Found setup.properties in classpath and set apiKey and shared secret");
             }
         } catch (Exception e) {
@@ -510,19 +513,19 @@ public class UploadPhoto {
     			System.exit(1);
     	}
     	
-    	ArrayList<String> uploadfile_args = new ArrayList<String>();
-    	ArrayList<String> option_args = new ArrayList<String>();
+    	ArrayList<String> uploadfileArgs = new ArrayList<String>();
+    	ArrayList<String> optionArgs = new ArrayList<String>();
 
     	// Flickr.debugRequest = true;		// keep it false else entire file will be in stdout.
 
     	// Flickr.debugStream = true;
 
-    	String authsDir_str = System.getProperty("user.home") + File.separatorChar + ".flickrAuth";
+    	String authsDirStr = System.getProperty("user.home") + File.separatorChar + ".flickrAuth";
 
         String nsid = null;
-        String user_name = null;
-        String access_token = null; // Optional entry.
-        String token_secret = null;	// Optional entry.
+        String username = null;
+        String accessToken = null; // Optional entry.
+        String tokenSecret = null;	// Optional entry.
     	String setName = null; 
     	
     	boolean settagname = true;	// Default to true to add tag while uploading.
@@ -541,34 +544,34 @@ public class UploadPhoto {
         								nsid = args[++i];
         							break;
         	case "-u":				if(i < args.length)
-        								user_name = args[++i];
+        								username = args[++i];
         							break;
         	case "-apiKey":			if(i < args.length)
-        								api_key = args[++i];
+        								apiKey = args[++i];
 									break;
 									
         	case "-secret":			if(i < args.length)
-        								shared_secret = args[++i];
+        								sharedSecret = args[++i];
 									break;
         	case "-notags" :		if(i < args.length)
         								settagname = false;
         							break;
 									
         	case "-a" :				if(i < args.length)
-        								access_token = args[++i];
+        								accessToken = args[++i];
 									break;
         	case "-t" :				if(i < args.length)
-    									token_secret = args[++i];
+    									tokenSecret = args[++i];
         							break;
         	case "-s" :            	if(i < args.length)
 										setName = args[++i];
 									break;
         	case "-option":			
 							if(i < args.length)
-        								option_args.add(args[++i]);
+        								optionArgs.add(args[++i]);
         							break;
         	default : 			    if(setName != null)
-        								uploadfile_args.add(args[i]);
+        								uploadfileArgs.add(args[i]);
         							else {
         								Usage();
         								System.exit(1);
@@ -576,52 +579,52 @@ public class UploadPhoto {
         	}
         }
         
-        if(api_key == null || shared_secret == null ||
-        		(user_name == null && nsid == null) || (setName == null ) || 
-        			(uploadfile_args.size() == 0) ) {
+        if(apiKey == null || sharedSecret == null ||
+        		(username == null && nsid == null) || (setName == null ) || 
+        			(uploadfileArgs.size() == 0) ) {
         	Usage();
 			System.exit(1);        	
         }
     	
-    	UploadPhoto bf = new UploadPhoto(api_key, nsid, shared_secret, new File(authsDir_str), user_name);
-        for(i = 0; i < option_args.size(); i++) {
-        	bf.add_option( option_args.get(i));
+    	UploadPhoto bf = new UploadPhoto(apiKey, nsid, sharedSecret, new File(authsDirStr), username);
+        for(i = 0; i < optionArgs.size(); i++) {
+        	bf.addOption( optionArgs.get(i));
         }
     	bf.setSetorigfilenametag(settagname);
-    	bf.setAuth(access_token, user_name, token_secret );
+    	bf.setAuth(accessToken, username, tokenSecret );
 
-    	if(!bf.can_upload())
+    	if(!bf.canUpload())
     		System.exit(1);
 
     	bf.getPrivacy();
     	
-    	bf.get_photosets_info();
+    	bf.getPhotosetsInfo();
 
     	if(setName != null && !setName.equals("")) {
     		
-    		bf.get_set_photos(setName);
+    		bf.getSetPhotos(setName);
     	}
 
     	// String photoid; 
 
-    	for( i = 0; i < uploadfile_args.size(); i++) {
-    		String filename = uploadfile_args.get(i);
+    	for( i = 0; i < uploadfileArgs.size(); i++) {
+    		String filename = uploadfileArgs.get(i);
     		
     		File f = new File(filename);
     		if(f.isDirectory()) {
     			String[] filelist = f.list(new UploadFilenameFilter());
-    			logger.debug("Processing directory  : " + uploadfile_args.get(i) );
+    			logger.debug("Processing directory  : " + uploadfileArgs.get(i) );
     			for(int j = 0; j < filelist.length; j++) {
-        			bf.process_file_arg( uploadfile_args.get(i) + File.separatorChar + filelist[j],  setName);
+        			bf.processFileArg( uploadfileArgs.get(i) + File.separatorChar + filelist[j],  setName);
     			}
     		}
     		else {
-    			bf.process_file_arg( filename,  setName);
+    			bf.processFileArg( filename,  setName);
     		}
     	}
     }
     
-    private static final String[] photo_suffixes = {
+    private static final String[] photoSuffixes = {
 		"jpg"
 		,"jpeg"
 		,"png"
@@ -629,7 +632,7 @@ public class UploadPhoto {
 		,"bmp"
 		,"tif","tiff" };
 	
-    private static final String[] video_suffixes = {
+    private static final String[] videoSuffixes = {
     				"3gp","3gp","avi","mov","mp4","mpg","mpeg","wmv","ogg","ogv","m2v"};
     
     static class UploadFilenameFilter implements FilenameFilter {
@@ -638,7 +641,7 @@ public class UploadPhoto {
     	// for videos and photos separately.
 
         public boolean accept(File dir, String name) {
-        	if(is_valid_suffix(name))
+        	if(isValidSuffix(name))
         		return true;
         	else
         		return false;
@@ -646,24 +649,24 @@ public class UploadPhoto {
 
     }
 
-    private static boolean is_valid_suffix(String basefilename) {
+    private static boolean isValidSuffix(String basefilename) {
     	if(basefilename.lastIndexOf('.') <= 0) {
     		return false;
     	}
 		String suffix = basefilename.substring(basefilename.lastIndexOf('.')+1).toLowerCase();
-		for(int i = 0; i < photo_suffixes.length; i++) {
-			if(photo_suffixes[i].equals(suffix))
+		for(int i = 0; i < photoSuffixes.length; i++) {
+			if(photoSuffixes[i].equals(suffix))
 				return true;
 		}
-		for(int i = 0; i < video_suffixes.length; i++) {
-			if(video_suffixes[i].equals(suffix))
+		for(int i = 0; i < videoSuffixes.length; i++) {
+			if(videoSuffixes[i].equals(suffix))
 				return true;
 		}
 		logger.debug(basefilename + " does not have a valid suffix, skipped.");
         return false;    	
     }
     
-    private void process_file_arg(String filename, String setName) throws Exception {
+    private void processFileArg(String filename, String setName) throws Exception {
     	String photoid; 
 		if(filename.equals(""))  {
 			System.out.println("filename must be entered for uploadfile " );
@@ -674,10 +677,10 @@ public class UploadPhoto {
 		else
 			basefilename = filename;
 
-		boolean file_uploaded = check_if_loaded(filename);
+		boolean fileUploaded = checkIfLoaded(filename);
 
-		if(! file_uploaded) {
-        	if(!is_valid_suffix(basefilename)) {
+		if(! fileUploaded) {
+        	if(!isValidSuffix(basefilename)) {
         		System.out.println(" File: " + basefilename + " is not a supported filetype for flickr (invalid suffix)");
         		return;
         	}
@@ -693,19 +696,19 @@ public class UploadPhoto {
 			photoid = uploadfile(filename, null);
 			// Add to Set. Create set if it does not exist.
 			if(photoid != null) {
-				add_photo_to_set( photoid, setName);
+				addPhotoToSet( photoid, setName);
 			}
 			logger.info("Upload of " + filename + " finished at: " + smp.format(new Date()) + "\n");
 	        
 		} else {
-			logger.info(" File: " + filename + " has already been loaded on " + get_uploaded_time(filename) );
+			logger.info(" File: " + filename + " has already been loaded on " + getUploadedTime(filename) );
 		}    	
     }
 
-	private void add_option(String opt) {
+	private void addOption(String opt) {
 
 		switch(opt) {
-		case "replace_spaces":		replace_spaces = true;
+		case "replaceSpaces":		replaceSpaces = true;
 							break;
 
 		case "notags":		setSetorigfilenametag(false);
@@ -718,7 +721,7 @@ public class UploadPhoto {
 	}
 
     
-    private boolean can_upload() {
+    private boolean canUpload() {
     	RequestContext rc = RequestContext.getRequestContext();
     	Auth auth = null;
     	auth = rc.getAuth();
@@ -742,7 +745,7 @@ public class UploadPhoto {
  * @param filename
  * @return
  */
-    private  boolean check_if_loaded(String filename) {
+    private  boolean checkIfLoaded(String filename) {
 
     	String title;
 		if(basefilename.lastIndexOf('.') > 0)
@@ -750,20 +753,20 @@ public class UploadPhoto {
 		else
 			return false;
 		
-		if(file_photos.containsKey(title))
+		if(filePhotos.containsKey(title))
 			return true;
 		
 		return false;
 	}
 
-    private  String get_uploaded_time(String filename) {
+    private  String getUploadedTime(String filename) {
 
     	String title = "";
 		if(basefilename.lastIndexOf('.') > 0)
 			title = basefilename.substring(0, basefilename.lastIndexOf('.') );
 		
-		if(file_photos.containsKey(title)) {
-			Photo p = file_photos.get(title);
+		if(filePhotos.containsKey(title)) {
+			Photo p = filePhotos.get(title);
 			if(p.getDatePosted() != null) {
 				return(smp.format(p.getDatePosted()));
 			}
@@ -772,13 +775,13 @@ public class UploadPhoto {
 		return "";
 	}
 
-	private  void get_set_photos(String setName) throws FlickrException {
+	private  void getSetPhotos(String setName) throws FlickrException {
     	// Check if this is an existing set. If it is get all the photo list to avoid reloading already
     	// 	loaded photos.
-	    ArrayList<String> set_idarr ;
-	    set_idarr = set_name_to_id.get(setName);
-    	if(set_idarr != null) {
-    		setid = set_idarr.get(0);
+	    ArrayList<String> setIdarr ;
+	    setIdarr = setNameToId.get(setName);
+    	if(setIdarr != null) {
+    		setid = setIdarr.get(0);
     	    PhotosetsInterface pi = flickr.getPhotosetsInterface();
 
     	    Set<String> extras = new HashSet<String>();
@@ -797,57 +800,57 @@ public class UploadPhoto {
 
     		int setPage = 1;
     		while (true) {
-    		    PhotoList<Photo> tmp_set = pi.getPhotos(setid, extras, Flickr.PRIVACY_LEVEL_NO_FILTER, 500, setPage);
+    		    PhotoList<Photo> tmpSet = pi.getPhotos(setid, extras, Flickr.PRIVACY_LEVEL_NO_FILTER, 500, setPage);
     		   
-    		    int tmp_set_size = tmp_set.size();
-    		    photos.addAll(tmp_set);
-    		    if (tmp_set_size < 500) {
+    		    int tmpSetSize = tmpSet.size();
+    		    photos.addAll(tmpSet);
+    		    if (tmpSetSize < 500) {
     		    	break;
     		    }
     		    setPage++;
     		}
     		for(int i = 0; i < photos.size(); i++) {
-    			file_photos.put(photos.get(i).getTitle(), photos.get(i));
+    			filePhotos.put(photos.get(i).getTitle(), photos.get(i));
     		}
-        	if(flickr_debug) {
+        	if(flickrDebug) {
         		logger.debug("Set title: " + setName + "  id:  " + setid + " found");
         		logger.debug("   Photos in Set already loaded: " +  photos.size() );
         	}
     	}
 	}
 
-	public void add_photo_to_set(String photoid, String setName) throws Exception {
+	public void addPhotoToSet(String photoid, String setName) throws Exception {
 
-	    ArrayList<String> set_idarr ;
+	    ArrayList<String> setIdarr ;
 
 	    // all_set_maps.
 
-		PhotosetsInterface psets_i = flickr.getPhotosetsInterface();
+		PhotosetsInterface psetsInterface = flickr.getPhotosetsInterface();
 
 		Photoset set = null;
 		
 	    if(setid == null) {
 	    	// In case it is a new photo-set.	
-	    	set_idarr = set_name_to_id.get(setName);
-	    	if(set_idarr == null) {
-	    		// set_idarr should be null since we checked it get_set_photos.
+	    	setIdarr = setNameToId.get(setName);
+	    	if(setIdarr == null) {
+	    		// setIdarr should be null since we checked it getSetPhotos.
 	    		// Create the new set.
 	    		// set the setid .
 
 	    		String description = "";
-	    		set = psets_i.create(setName, description, photoid);
+	    		set = psetsInterface.create(setName, description, photoid);
 	    		setid = set.getId();
 
-	    		set_idarr = new ArrayList<String>();
-	    		set_idarr.add(new String(setid));
-	    		set_name_to_id.put(setName, set_idarr);
+	    		setIdarr = new ArrayList<String>();
+	    		setIdarr.add(new String(setid));
+	    		setNameToId.put(setName, setIdarr);
 
-	    		all_sets_map.put(set.getId(), set);
+	    		allSetsMap.put(set.getId(), set);
 	    	}
 	    }
 	    else {
-	    	set = all_sets_map.get(setid);
-		    psets_i.addPhoto(setid , photoid);
+	    	set = allSetsMap.get(setid);
+		    psetsInterface.addPhoto(setid , photoid);
 	    }
 	    // Add to photos .
 	    
@@ -861,7 +864,7 @@ public class UploadPhoto {
 				title = basefilename.substring(0, basefilename.lastIndexOf('.') );
 			else
 				title = p.getTitle();
-			file_photos.put(title, p);
+			filePhotos.put(title, p);
 	    }
     }
 }

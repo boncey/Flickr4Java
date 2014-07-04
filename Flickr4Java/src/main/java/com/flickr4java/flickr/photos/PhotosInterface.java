@@ -1375,11 +1375,11 @@ public class PhotosInterface {
             } else if (size == Size.SITE_MP4) {
             	urlStr = photo.getSiteMP4Url();
             } 
-    		else if(size == Size.Mobile_MP4) {
-    			urlStr = photo.getMobileMP4Url();
+    		else if(size == Size.MOBILE_MP4) {
+    			urlStr = photo.getMobileMp4Url();
     		}
     		else if(size == Size.HD_MP4) {
-    			urlStr = photo.getHD_MP4Url();
+    			urlStr = photo.getHdMp4Url();
     		} else {
                 throw new FlickrException("0", "Unknown Photo-size");
             }

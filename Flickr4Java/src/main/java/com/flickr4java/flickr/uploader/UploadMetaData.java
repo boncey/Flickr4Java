@@ -16,7 +16,7 @@ public class UploadMetaData {
 
 	private String filename = null;
 	
-	private String filemimetype = null;
+	private String fileMimeType = null;
 	
     private String title;
 
@@ -178,11 +178,11 @@ public class UploadMetaData {
 	}
 
 	public String getFilemimetype() {
-		return filemimetype;
+		return fileMimeType;
 	}
 
-	public void setFilemimetype(String filemimetype) {
-		this.filemimetype = filemimetype;
+	public void setFilemimetype(String fileMimeType) {
+		this.fileMimeType = fileMimeType;
 	}
 
 	public boolean isAsync() {

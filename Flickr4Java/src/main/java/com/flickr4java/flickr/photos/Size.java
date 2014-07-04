@@ -173,7 +173,7 @@ public class Size {
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
-    public static final int Mobile_MP4 = 15;
+    public static final int MOBILE_MP4 = 15;
     
     public static final int HD_MP4 = 16;
 

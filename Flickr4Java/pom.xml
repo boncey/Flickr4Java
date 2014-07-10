@@ -7,6 +7,33 @@
     <version>2.9-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>flickr4java</name>
+    <description>Java API For Flickr. Fork of FlickrJ.</description>
+    <url>https://github.com/callmeal/Flickr4Java</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 1.1</name>
+            <url>http://www.apache.org/licenses/LICENSE-1.1.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+      <developer>
+        <id>boncey</id>
+        <name>Darren Greaves</name>
+        <roles>
+          <role>developer</role>
+        </roles>
+      </developer>
+      <developer>
+        <id>callmeal</id>
+        <name>Allan</name>
+        <roles>
+          <role>developer</role>
+        </roles>
+      </developer>
+    </developers>
 
     <properties>
         <javaVersion>1.6</javaVersion>
@@ -63,6 +90,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
             </plugin>
         </plugins>
 

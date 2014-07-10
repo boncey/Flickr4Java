@@ -10,6 +10,12 @@
     <description>Java API For Flickr. Fork of FlickrJ.</description>
     <url>https://github.com/callmeal/Flickr4Java</url>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <licenses>
         <license>
             <name>Apache License, Version 1.1</name>

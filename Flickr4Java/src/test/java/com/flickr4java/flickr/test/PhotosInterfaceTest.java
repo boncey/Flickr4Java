@@ -336,7 +336,7 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         Photo photo = iface.getInfo(photoId, null);
         BufferedImage image = iface.getImage(photo, Size.THUMB);
         assertNotNull(image);
-        assertTrue(67==image.getWidth() || 68==image.getWidth());
+        assertTrue(67 == image.getWidth() || 68 == image.getWidth());
         assertEquals(100, image.getHeight());
         ImageIO.write(image, "jpg", thumbnailFile);
     }
@@ -504,19 +504,19 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         p.setOriginalSecret("osecret");
         p.setFarm("1");
 
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_m.jpg", p.getSmallUrl());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_s.jpg", p.getSmallSquareUrl());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_t.jpg", p.getThumbnailUrl());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret.jpg", p.getMediumUrl());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_b.jpg", p.getLargeUrl());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_q.jpg", p.getSquareLargeUrl());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_n.jpg", p.getSmall320Url());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_z.jpg", p.getMedium640Url());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_c.jpg", p.getMedium800Url());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_h.jpg", p.getLarge1600Url());
-        assertEquals("http://farm1.static.flickr.com/server/id_secret_k.jpg", p.getLarge2048Url());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_m.jpg", p.getSmallUrl());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_s.jpg", p.getSmallSquareUrl());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_t.jpg", p.getThumbnailUrl());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret.jpg", p.getMediumUrl());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_b.jpg", p.getLargeUrl());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_q.jpg", p.getSquareLargeUrl());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_n.jpg", p.getSmall320Url());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_z.jpg", p.getMedium640Url());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_c.jpg", p.getMedium800Url());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_h.jpg", p.getLarge1600Url());
+        assertEquals("https://farm1.static.flickr.com/server/id_secret_k.jpg", p.getLarge2048Url());
         try {
-            assertEquals("http://farm1.static.flickr.com/server/id_osecret_o.jpg", p.getOriginalUrl());
+            assertEquals("https://farm1.static.flickr.com/server/id_osecret_o.jpg", p.getOriginalUrl());
         } catch (FlickrException ex) {
         }
         // setSizes() to override the generated URLs.

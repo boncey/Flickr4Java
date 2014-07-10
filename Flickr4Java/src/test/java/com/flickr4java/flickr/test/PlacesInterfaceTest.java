@@ -75,7 +75,7 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
 
         place = list.get(1);
         assertEquals("SmLXwKZUV7JlnVvxUA", place.getPlaceId());
-        assertEquals("/France/%C3%8Ele-de-France/Paris/Europe", place.getPlaceUrl());
+        assertEquals("/France/Ile-de-France/Paris/Europe", place.getPlaceUrl());
         assertEquals(Place.TYPE_NEIGHBOURHOOD, place.getPlaceType());
     }
 
@@ -103,8 +103,8 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         for (int i = 0; i < list.size(); i++) {
             Place place = list.get(i);
             // System.out.println(place.getName());
-            if (place.getPlaceId().equals("uSdaoQpTUb.eNcX1Jg")) {
-                assertEquals("Presidio, San Francisco, CA, US, United States", place.getName());
+            if (place.getPlaceId().equals("7bgsk3lTWrhSWp2fUQ")) {
+                assertEquals("Fisherman's Wharf, San Francisco, CA, US, United States", place.getName());
                 presidioFound = true;
             }
         }

@@ -115,6 +115,6 @@ public class GroupsInterfaceTest extends Flickr4JavaTest {
         iface.leave(TEST_JOIN_GROUP, false);
         group = iface.getInfo(TEST_JOIN_GROUP);
         int cntAfterLeave = group.getMembers();
-        assertTrue("Member count decreasted by 1", cntAfterLeave == cntBeforeJoin);
+        assertTrue("Member count decreased by 1", cntAfterLeave == cntBeforeJoin);
     }
 }

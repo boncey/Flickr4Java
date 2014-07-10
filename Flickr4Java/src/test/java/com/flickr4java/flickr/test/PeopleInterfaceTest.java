@@ -13,7 +13,6 @@ import com.flickr4java.flickr.people.PeopleInterface;
 import com.flickr4java.flickr.people.PersonTag;
 import com.flickr4java.flickr.people.PersonTagList;
 import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.people.UserList;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 
@@ -107,14 +106,16 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testAddDelete() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
-        iface.add(testProperties.getPhotoId(), testProperties.getNsid(), null);
         PersonTagList<PersonTag> usrs = iface.getList(testProperties.getPhotoId());
-        assertNotNull(usrs);
-        assertEquals(1, usrs.size());
-        iface.delete(testProperties.getPhotoId(), testProperties.getNsid());
-        usrs = iface.getList(testProperties.getPhotoId());
-        assertNotNull(usrs);
-        assertEquals(0, usrs.size());
+        int size = usrs.size();
+        try {
+            iface.add(testProperties.getPhotoId(), testProperties.getNsid(), null);
+        } finally {
+            iface.delete(testProperties.getPhotoId(), testProperties.getNsid());
+            usrs = iface.getList(testProperties.getPhotoId());
+            assertNotNull(usrs);
+            assertEquals(size, usrs.size());
+        }
     }
 
     @Test

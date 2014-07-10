@@ -20,6 +20,11 @@ public abstract class Transport {
 
     protected static final String API_HOST = "api.flickr.com";
 
+    /**
+     * Host is different for upload, need to set it from Uploader.java.
+     */
+    public static final String UPLOAD_API_HOST = "up.flickr.com";
+
     protected static final String DEFAULT_SCHEME = "https";
     
     private String transportType;

@@ -657,7 +657,7 @@ public class PhotosInterface {
         permissions.setId(permissionsElement.getAttribute("id"));
         permissions.setPublicFlag("1".equals(permissionsElement.getAttribute("ispublic")));
         permissions.setFamilyFlag("1".equals(permissionsElement.getAttribute("isfamily")));
-        permissions.setFriendFlag("1".equals(permissionsElement.getAttribute("isFriend")));
+        permissions.setFriendFlag("1".equals(permissionsElement.getAttribute("isfriend")));
         permissions.setComment(permissionsElement.getAttribute("permcomment"));
         permissions.setAddmeta(permissionsElement.getAttribute("permaddmeta"));
         return permissions;
@@ -1368,7 +1368,19 @@ public class PhotosInterface {
                 urlStr = photo.getMedium640Url();
             } else if (size == Size.MEDIUM_800) {
                 urlStr = photo.getMedium800Url();
-            } else {
+            } else if (size == Size.VIDEO_ORIGINAL) {
+            	urlStr = photo.getVideoOriginalUrl();
+            } else if (size == Size.VIDEO_PLAYER) {
+            	urlStr = photo.getVideoPlayerUrl();
+            } else if (size == Size.SITE_MP4) {
+            	urlStr = photo.getSiteMP4Url();
+            } 
+    		else if(size == Size.MOBILE_MP4) {
+    			urlStr = photo.getMobileMp4Url();
+    		}
+    		else if(size == Size.HD_MP4) {
+    			urlStr = photo.getHdMp4Url();
+    		} else {
                 throw new FlickrException("0", "Unknown Photo-size");
             }
             URL url = new URL(urlStr);

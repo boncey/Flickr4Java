@@ -41,7 +41,6 @@ public class Uploader {
      * 
      */
     private static final String SERVICES_REPLACE_PATH = "/services/replace/";
-
     /**
      * 
      */
@@ -62,7 +61,7 @@ public class Uploader {
     public Uploader(String apiKey, String sharedSecret) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
-        this.transport = new REST();
+        this.transport = new REST(Transport.UPLOAD_API_HOST);
         this.transport.setResponseClass(UploaderResponse.class);
     }
 
@@ -223,6 +222,17 @@ public class Uploader {
     private Map<String, Object> setUploadParameters(UploadMetaData metaData) {
         Map<String, Object> parameters = new TreeMap<String, Object>();
 
+        String filename = metaData.getFilename();
+        if(filename == null || filename.equals(""))
+        	filename = "image.jpg";  // Will NOT work for videos, filename must be passed.
+        parameters.put("filename", filename);
+
+        String fileMimeType = metaData.getFilemimetype();
+        if(fileMimeType == null || fileMimeType.equals(""))
+        	fileMimeType = "image/jpeg";
+        
+        parameters.put("filemimetype", fileMimeType);
+      
         String title = metaData.getTitle();
         if (title != null) {
             parameters.put("title", title);

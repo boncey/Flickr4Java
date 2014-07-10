@@ -14,6 +14,10 @@ import java.util.Collection;
  */
 public class UploadMetaData {
 
+	private String filename = null;
+	
+	private String fileMimeType = null;
+	
     private String title;
 
     private String description;
@@ -157,7 +161,31 @@ public class UploadMetaData {
         return this;
     }
 
-    public boolean isAsync() {
+    /**
+	 * @return the filename
+	 */
+	public String getFilename() {
+		return filename;
+	}
+
+	/**
+	 * @param filename the filename to set
+	 */
+	public UploadMetaData setFilename(String filename) {
+		this.filename = filename;
+		
+		return this;
+	}
+
+	public String getFilemimetype() {
+		return fileMimeType;
+	}
+
+	public void setFilemimetype(String fileMimeType) {
+		this.fileMimeType = fileMimeType;
+	}
+
+	public boolean isAsync() {
         return async;
     }
 

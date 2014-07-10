@@ -165,6 +165,17 @@ public class Size {
      * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
      */
     public static final int VIDEO_ORIGINAL = 14;
+    /**
+     * Video, the original for mobiles.
+     * 
+     * @see com.flickr4java.flickr.photos.Size#getLabel()
+     * @see com.flickr4java.flickr.photos.Size#setLabel(int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImage(Photo, int)
+     * @see com.flickr4java.flickr.photos.PhotosInterface#getImageAsStream(Photo, int)
+     */
+    public static final int MOBILE_MP4 = 15;
+    
+    public static final int HD_MP4 = 16;
 
     private int label;
 
@@ -203,7 +214,7 @@ public class Size {
     }
 
     private final List<String> lstSizes = Arrays.asList("Thumbnail", "Square", "Small", "Medium", "Large", "Original", "Square Large", "Small 320",
-            "Medium 640", "Medium 800", "Large 1600", "Large 2048", "Site MP4", "Video Player", "Video Original");
+            "Medium 640", "Medium 800", "Large 1600", "Large 2048", "Site MP4", "Video Player", "Video Original", "Mobile MP4", "HD MP4");
 
     /**
      * Set the String-representation of size.

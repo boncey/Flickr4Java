@@ -167,8 +167,12 @@ public final class PhotoUtils {
         // Searches, or other list may contain orginal_format.
         // If not choosen via extras, set jpg as default.
         try {
-            if (photo.getOriginalFormat().equals("")) {
-                photo.setOriginalFormat("jpg");
+        	if (photo.getOriginalFormat() == null || photo.getOriginalFormat().equals("")) {
+            	String media = photo.getMedia();
+            	if(media != null && media.equals("video"))
+                    photo.setOriginalFormat("mov");  // Currently flickr incorrectly returns original_format as jpg for movies.
+            	else
+            		photo.setOriginalFormat("jpg");
             }
         } catch (NullPointerException e) {
             photo.setOriginalFormat("jpg");
@@ -181,7 +185,7 @@ public final class PhotoUtils {
                 owner.setId(getAttribute("owner", photoElement, defaultElement));
                 owner.setUsername(getAttribute("ownername", photoElement, defaultElement));
                 photo.setOwner(owner);
-                photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+                photo.setUrl("https://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
             } else {
                 User owner = new User();
                 owner.setId(ownerElement.getAttribute("nsid"));
@@ -200,14 +204,14 @@ public final class PhotoUtils {
                 owner.setRealName(ownerElement.getAttribute("realname"));
                 owner.setLocation(ownerElement.getAttribute("location"));
                 photo.setOwner(owner);
-                photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+                photo.setUrl("https://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
             }
         } catch (IndexOutOfBoundsException e) {
             User owner = new User();
             owner.setId(photoElement.getAttribute("owner"));
             owner.setUsername(photoElement.getAttribute("ownername"));
             photo.setOwner(owner);
-            photo.setUrl("http://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
+            photo.setUrl("https://flickr.com/photos/" + owner.getId() + "/" + photo.getId());
         }
 
         try {

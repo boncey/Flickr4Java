@@ -27,11 +27,14 @@ import java.util.Map;
 public class FileAuthStore implements AuthStore {
 
     private Map<String, Auth> auths;
+    private Map<String, Auth> authsByUser; // Separate HashMap due to retrieveAll.
 
     private File authStoreDir;
 
     public FileAuthStore(File authStoreDir) throws FlickrException {
         this.auths = new HashMap<String, Auth>();
+        this.authsByUser = new HashMap<String, Auth>();
+
         this.authStoreDir = authStoreDir;
 
         if (!authStoreDir.exists())
@@ -65,7 +68,11 @@ public class FileAuthStore implements AuthStore {
                     }
                     if (authInst != null) {
                         this.auths.put(authInst.getUser().getId(), authInst);
+                        
+                        // Also store by user-name since it is generally easier to remember.
+                        this.authsByUser.put(authInst.getUser().getUsername(), authInst);
                     }
+                    authStream.close();
                 }
             }
         } catch (IOException e) {
@@ -80,6 +87,7 @@ public class FileAuthStore implements AuthStore {
      */
     public void store(Auth token) throws IOException {
         this.auths.put(token.getUser().getId(), token);
+        this.authsByUser.put(token.getUser().getUsername(), token);
 
         String filename = token.getUser().getId() + ".auth";
         File outFile = new File(this.authStoreDir, filename);
@@ -89,16 +97,20 @@ public class FileAuthStore implements AuthStore {
         authStream.writeObject(token);
         authStream.flush();
         authStream.close();
-
     }
 
     /*
      * (non-Javadoc)
+     * Retrieve via flickr user id or username.
      * 
      * @see com.flickr4java.flickr.util.AuthStore#retrieve(java.lang.String)
      */
     public Auth retrieve(String nsid) {
-        return this.auths.get(nsid);
+    	Auth auth =  this.auths.get(nsid);
+    	if(auth != null)
+    		return auth;
+    	else
+    		return this.authsByUser.get(nsid);
     }
 
     /*
@@ -117,6 +129,7 @@ public class FileAuthStore implements AuthStore {
      */
     public void clearAll() {
         this.auths.clear();
+        this.authsByUser.clear();
         File[] auths = this.authStoreDir.listFiles(new AuthFilenameFilter());
         for (int i = 0; i < auths.length; i++) {
             auths[i].delete();
@@ -129,7 +142,12 @@ public class FileAuthStore implements AuthStore {
      * @see com.flickr4java.flickr.util.AuthStore#clear(java.lang.String)
      */
     public void clear(String nsid) {
-        this.auths.remove(nsid);
+    	Auth a =  this.auths.get(nsid);
+    	if(a != null) {
+            this.authsByUser.remove(a.getUser().getUsername());
+    	}
+    	this.auths.remove(nsid);
+        this.authsByUser.remove(nsid); // in case username is passed.
         File auth = new File(this.authStoreDir, nsid + ".auth");
         if (auth.exists())
             auth.delete();

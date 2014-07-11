@@ -151,13 +151,6 @@
         <url>https://github.com/callmeal/Flickr4Java</url>
         <tag>HEAD</tag>
     </scm>
-    <distributionManagement>
-        <repository>
-            <id>bintray-boncey-Flickr4Java-Flickr4Java</id>
-            <name>boncey-Flickr4Java-Flickr4Java</name>
-            <url>https://api.bintray.com/maven/boncey/Flickr4Java/Flickr4Java</url>
-        </repository>
-    </distributionManagement>
     <profiles>
         <profile>
             <id>release</id>

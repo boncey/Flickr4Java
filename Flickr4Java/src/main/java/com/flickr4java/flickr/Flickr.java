@@ -78,11 +78,6 @@ public class Flickr {
      */
     public static boolean debugRequest = false;
 
-    /**
-     * If set to true, trace messages will be printed to STDOUT.
-     */
-    public static boolean tracing = false;
-
     private String apiKey;
 
     private String sharedSecret;
@@ -156,9 +151,9 @@ public class Flickr {
     private StatsInterface statsInterface;
 
     private CamerasInterface cameraInterface;
-    
+
     private SuggestionsInterface suggestionsInterface;
-    
+
     private GroupDiscussInterface discussionInterface;
 
     /**
@@ -617,30 +612,30 @@ public class Flickr {
         }
         return cameraInterface;
     }
-    
+
     /**
      * Get the SuggestionsInterface.
      * 
      * @return The SuggestionsInterface
      */
-        public SuggestionsInterface getSuggestionsInterface() {
-            if (suggestionsInterface == null) {
-            	suggestionsInterface = new SuggestionsInterface(apiKey, sharedSecret, transport);
-            }
-            return suggestionsInterface;
+    public SuggestionsInterface getSuggestionsInterface() {
+        if (suggestionsInterface == null) {
+            suggestionsInterface = new SuggestionsInterface(apiKey, sharedSecret, transport);
         }
-    
-    /**
-    * Get the GroupDiscussInterface.
-    * 
-    * @return The GroupDiscussInterface
-    */
-      
-    public GroupDiscussInterface getDiscussionInterface() {
-    if (discussionInterface == null) {
-    	discussionInterface= new GroupDiscussInterface(apiKey, sharedSecret, transport);
+        return suggestionsInterface;
     }
-    	return discussionInterface;
+
+    /**
+     * Get the GroupDiscussInterface.
+     * 
+     * @return The GroupDiscussInterface
+     */
+
+    public GroupDiscussInterface getDiscussionInterface() {
+        if (discussionInterface == null) {
+            discussionInterface = new GroupDiscussInterface(apiKey, sharedSecret, transport);
+        }
+        return discussionInterface;
     }
 
 }

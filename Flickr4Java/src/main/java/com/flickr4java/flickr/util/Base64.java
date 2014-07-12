@@ -57,6 +57,8 @@
 
 package com.flickr4java.flickr.util;
 
+import org.apache.log4j.Logger;
+
 /**
  * This class provides encode/decode for RFC 2045 Base64 as defined by RFC 2045, N. Freed and N. Borenstein. RFC 2045: Multipurpose Internet Mail Extensions
  * (MIME) Part One: Format of Internet Message Bodies. Reference 1996 Available at: http://www.ietf.org/rfc/rfc2045.txt This class is used by XML Schema binary
@@ -73,6 +75,9 @@ package com.flickr4java.flickr.util;
  * @version Base64.java,v 1.8 2001/05/29 22:19:01 neilg Exp
  */
 public final class Base64 {
+
+    private static Logger _log = Logger.getLogger(Base64.class);
+
     static private final int BASELENGTH = 255;
 
     static private final int LOOKUPLENGTH = 64;
@@ -90,8 +95,6 @@ public final class Base64 {
     static private final int SIGN = -128;
 
     static private final byte PAD = (byte) '=';
-
-    static private final boolean fDebug = false;
 
     static private byte[] base64Alphabet = new byte[BASELENGTH];
 
@@ -216,8 +219,8 @@ public final class Base64 {
         int encodedIndex = 0;
         int dataIndex = 0;
         int i = 0;
-        if (fDebug) {
-            System.out.println("number of triplets = " + numberTriplets);
+        if (_log.isDebugEnabled()) {
+            _log.debug("number of triplets = " + numberTriplets);
         }
         for (i = 0; i < numberTriplets; i++) {
 
@@ -226,8 +229,8 @@ public final class Base64 {
             b2 = binaryData[dataIndex + 1];
             b3 = binaryData[dataIndex + 2];
 
-            if (fDebug) {
-                System.out.println("b1= " + b1 + ", b2= " + b2 + ", b3= " + b3);
+            if (_log.isDebugEnabled()) {
+                _log.debug("b1= " + b1 + ", b2= " + b2 + ", b3= " + b3);
             }
 
             l = (byte) (b2 & 0x0f);
@@ -240,10 +243,10 @@ public final class Base64 {
             byte val3 = ((b3 & SIGN) == 0) ? (byte) (b3 >> 6) : (byte) ((b3) >> 6 ^ 0xfc);
 
             encodedData[encodedIndex] = lookUpBase64Alphabet[val1];
-            if (fDebug) {
-                System.out.println("val2 = " + val2);
-                System.out.println("k4   = " + (k << 4));
-                System.out.println("vak  = " + (val2 | (k << 4)));
+            if (_log.isDebugEnabled()) {
+                _log.debug("val2 = " + val2);
+                _log.debug("k4   = " + (k << 4));
+                _log.debug("vak  = " + (val2 | (k << 4)));
             }
 
             encodedData[encodedIndex + 1] = lookUpBase64Alphabet[val2 | (k << 4)];
@@ -257,9 +260,9 @@ public final class Base64 {
         if (fewerThan24bits == EIGHTBIT) {
             b1 = binaryData[dataIndex];
             k = (byte) (b1 & 0x03);
-            if (fDebug) {
-                System.out.println("b1=" + b1);
-                System.out.println("b1<<2 = " + (b1 >> 2));
+            if (_log.isDebugEnabled()) {
+                _log.debug("b1=" + b1);
+                _log.debug("b1<<2 = " + (b1 >> 2));
             }
             byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
             encodedData[encodedIndex] = lookUpBase64Alphabet[val1];

@@ -14,6 +14,7 @@ import com.flickr4java.flickr.photosets.Photoset;
 import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
 
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,8 @@ import java.util.List;
  * @author Anthony Eden
  */
 public class PhotosetsInterfaceTest extends Flickr4JavaTest {
+
+    private static Logger _log = Logger.getLogger(PhotosetsInterfaceTest.class);
 
     private Photoset testSet;
 
@@ -95,7 +98,7 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
     public void testGetInfo() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photoset photoset = iface.getInfo(testProperties.getPhotosetId());
-        System.err.println(photoset.getUrl());
+        _log.debug(photoset.getUrl());
         assertNotNull(photoset);
         assertNotNull(photoset.getPrimaryPhoto());
         assertTrue(photoset.getPhotoCount() >= 1);

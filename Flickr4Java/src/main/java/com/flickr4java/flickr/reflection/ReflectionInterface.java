@@ -8,6 +8,7 @@ import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.util.XMLUtilities;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -26,15 +27,17 @@ import java.util.Map;
  */
 public class ReflectionInterface {
 
+    private static Logger _log = Logger.getLogger(ReflectionInterface.class);
+
     public static final String METHOD_GET_METHOD_INFO = "flickr.reflection.getMethodInfo";
 
     public static final String METHOD_GET_METHODS = "flickr.reflection.getMethods";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transport;
+    private final Transport transport;
 
     /**
      * Construct a ReflectionInterface.
@@ -111,7 +114,7 @@ public class ReflectionInterface {
         // </rsp>
         //
         if (argumentsElement == null) {
-            // System.err.println("getMethodInfo: Using workaround for arguments array");
+            _log.debug("getMethodInfo: Using workaround for arguments array");
             Element parent = (Element) methodElement.getParentNode();
             Element child = XMLUtilities.getChild(parent, "arguments");
             if (child != null) {
@@ -150,7 +153,7 @@ public class ReflectionInterface {
         // </rsp>
         //
         if (errorsElement == null) {
-            // System.err.println("getMethodInfo: Using workaround for errors array");
+            _log.debug("getMethodInfo: Using workaround for errors array");
             Element parent = (Element) methodElement.getParentNode();
             Element child = XMLUtilities.getChild(parent, "errors");
             if (child != null) {

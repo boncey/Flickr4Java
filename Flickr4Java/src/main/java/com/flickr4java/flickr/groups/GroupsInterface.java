@@ -8,6 +8,7 @@ import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.util.XMLUtilities;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -25,6 +26,8 @@ import java.util.Map;
  */
 public class GroupsInterface {
 
+    private static Logger _log = Logger.getLogger(GroupsInterface.class);
+
     public static final String METHOD_BROWSE = "flickr.groups.browse";
 
     public static final String METHOD_GET_ACTIVE_LIST = "flickr.groups.getActiveList";
@@ -39,11 +42,11 @@ public class GroupsInterface {
 
     public static final String METHOD_LEAVE = "flickr.groups.leave";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transportAPI;
+    private final Transport transportAPI;
 
     public GroupsInterface(String apiKey, String sharedSecret, Transport transportAPI) {
         this.apiKey = apiKey;
@@ -60,6 +63,7 @@ public class GroupsInterface {
      * @throws FlickrException
      * @deprecated Flickr returns just empty results
      */
+    @Deprecated
     public Category browse(String catId) throws FlickrException {
         List<Subcategory> subcategories = new ArrayList<Subcategory>();
         List<Group> groups = new ArrayList<Group>();
@@ -159,38 +163,38 @@ public class GroupsInterface {
                 throttle.setRemaining(Integer.parseInt(remainingStr));
             }
         } else if (n > 1) {
-            System.err.println("WARNING: more than one throttle element in group");
+            _log.warn("WARNING: more than one throttle element in group");
         }
-        
+
         NodeList restrictionNodes = groupElement.getElementsByTagName("restrictions");
         n = restrictionNodes.getLength();
         if (n == 1) {
-	        Element restrictionElement = (Element) restrictionNodes.item(0);
-	        Restriction restriction = new Restriction();
-	        group.setRestriction(restriction);
-	        restriction.setIsPhotosOk("1".equals(restrictionElement.getAttribute("photos_ok")));
-	        restriction.setIsVideosOk("1".equals(restrictionElement.getAttribute("videos_ok")));
-	        restriction.setIsImagesOk("1".equals(restrictionElement.getAttribute("images_ok")));
-	        restriction.setIsScreensOk("1".equals(restrictionElement.getAttribute("screens_ok")));
-	        restriction.setIsArtOk("1".equals(restrictionElement.getAttribute("art_ok")));
-	        restriction.setIsSafeOk("1".equals(restrictionElement.getAttribute("safe_ok")));
-	        restriction.setIsModerateOk("1".equals(restrictionElement.getAttribute("moderate_ok")));
-	        restriction.setIsRestrictedOk("1".equals(restrictionElement.getAttribute("restricted_ok")));
-	        restriction.setIsHasGeo("1".equals(restrictionElement.getAttribute("has_geo")));
+            Element restrictionElement = (Element) restrictionNodes.item(0);
+            Restriction restriction = new Restriction();
+            group.setRestriction(restriction);
+            restriction.setIsPhotosOk("1".equals(restrictionElement.getAttribute("photos_ok")));
+            restriction.setIsVideosOk("1".equals(restrictionElement.getAttribute("videos_ok")));
+            restriction.setIsImagesOk("1".equals(restrictionElement.getAttribute("images_ok")));
+            restriction.setIsScreensOk("1".equals(restrictionElement.getAttribute("screens_ok")));
+            restriction.setIsArtOk("1".equals(restrictionElement.getAttribute("art_ok")));
+            restriction.setIsSafeOk("1".equals(restrictionElement.getAttribute("safe_ok")));
+            restriction.setIsModerateOk("1".equals(restrictionElement.getAttribute("moderate_ok")));
+            restriction.setIsRestrictedOk("1".equals(restrictionElement.getAttribute("restricted_ok")));
+            restriction.setIsHasGeo("1".equals(restrictionElement.getAttribute("has_geo")));
         } else if (n > 1) {
-        	System.err.println("WARNING: more than one throttle element in group");
+            _log.warn("WARNING: more than one throttle element in group");
         }
         NodeList blastNodes = groupElement.getElementsByTagName("blast");
         n = blastNodes.getLength();
         if (n == 1) {
-	        Element blastElement = (Element) blastNodes.item(0);
-	        Blast blast = new Blast();
-	        group.setBlast(blast);
-	        blast.setUserId(blastElement.getAttribute("user_id"));
-	        blast.setDateBlastAdded(blastElement.getAttribute("date_blast_added"));
-	        blast.setBlast(XMLUtilities.getChildValue(groupElement,"blast"));
+            Element blastElement = (Element) blastNodes.item(0);
+            Blast blast = new Blast();
+            group.setBlast(blast);
+            blast.setUserId(blastElement.getAttribute("user_id"));
+            blast.setDateBlastAdded(blastElement.getAttribute("date_blast_added"));
+            blast.setBlast(XMLUtilities.getChildValue(groupElement, "blast"));
         } else if (n > 1) {
-        	System.err.println("WARNING: more than one throttle element in group");
+            _log.warn("WARNING: more than one throttle element in group");
         }
 
         return group;
@@ -245,14 +249,15 @@ public class GroupsInterface {
 
     /**
      * Join a group as a public member.
-     *
-     * Note: if a group has rules - the client must display the rules to the user and the
-     * user must accept them prior to joining the group. The acceptRules parameter indicates
-     * that the user has accepted those rules.
-     *
-     * @param groupId - the id of the group to join
-     * @param acceptRules - if a group has rules, true indicates the user has accepted the rules
-     *
+     * 
+     * Note: if a group has rules - the client must display the rules to the user and the user must accept them prior to joining the group. The acceptRules
+     * parameter indicates that the user has accepted those rules.
+     * 
+     * @param groupId
+     *            - the id of the group to join
+     * @param acceptRules
+     *            - if a group has rules, true indicates the user has accepted the rules
+     * 
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.join.html">flickr.groups.join</a>
      */
     public void join(String groupId, Boolean acceptRules) throws FlickrException {
@@ -261,7 +266,7 @@ public class GroupsInterface {
         parameters.put("method", METHOD_JOIN);
         parameters.put("group_id", groupId);
         if (acceptRules != null) {
-            parameters.put("accept_rules",acceptRules);
+            parameters.put("accept_rules", acceptRules);
         }
 
         Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
@@ -272,16 +277,18 @@ public class GroupsInterface {
 
     /**
      * Request to join a group.
-     *
-     * Note: if a group has rules, the client must display the rules to the user and the user must
-     * accept them (which is indicated by passing a true value to acceptRules) prior to making the
-     * join request.
-     *
-     * @param groupId - groupId parameter
-     * @param message - (required) message to group administrator
-     * @param acceptRules - (required) parameter indicating user has accepted groups rules
+     * 
+     * Note: if a group has rules, the client must display the rules to the user and the user must accept them (which is indicated by passing a true value to
+     * acceptRules) prior to making the join request.
+     * 
+     * @param groupId
+     *            - groupId parameter
+     * @param message
+     *            - (required) message to group administrator
+     * @param acceptRules
+     *            - (required) parameter indicating user has accepted groups rules
      */
-    public void joinRequest(String groupId,String message, boolean acceptRules) throws FlickrException {
+    public void joinRequest(String groupId, String message, boolean acceptRules) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_JOIN_REQUEST);
         parameters.put("group_id", groupId);
@@ -296,12 +303,14 @@ public class GroupsInterface {
 
     /**
      * Leave a group.
-     *
-     * @see <a href="http://www.flickr.com/services/api/flickr.groups.leave.html">lickr.groups.leave</a> for
-     * a description of the various behaviors possible when a user leaves a group.
-     *
-     * @param groupId - the id of the group to leave
-     * @param deletePhotos - delete photos by this user from group
+     * 
+     * @see <a href="http://www.flickr.com/services/api/flickr.groups.leave.html">lickr.groups.leave</a> for a description of the various behaviors possible
+     *      when a user leaves a group.
+     * 
+     * @param groupId
+     *            - the id of the group to leave
+     * @param deletePhotos
+     *            - delete photos by this user from group
      */
     public void leave(String groupId, Boolean deletePhotos) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

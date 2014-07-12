@@ -16,6 +16,7 @@ import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -33,6 +34,8 @@ import java.util.Set;
  * @version $Id: PhotosetsInterface.java,v 1.27 2009/11/08 21:58:00 x-mago Exp $
  */
 public class PhotosetsInterface {
+
+    private static Logger _log = Logger.getLogger(PhotosetsInterface.class);
 
     public static final String METHOD_ADD_PHOTO = "flickr.photosets.addPhoto";
 
@@ -237,7 +240,7 @@ public class PhotosetsInterface {
             } else if (elementName.equals("count")) {
                 // TODO: process this information
             } else {
-                System.err.println("unsupported element name: " + elementName);
+                _log.warn("unsupported element name: " + elementName);
             }
         }
         return photoContext;
@@ -289,7 +292,7 @@ public class PhotosetsInterface {
         photoset.setCommentCount(Integer.parseInt(photosetElement.getAttribute("count_comments")));
         photoset.setDateCreate(photosetElement.getAttribute("date_create"));
         photoset.setDateUpdate(photosetElement.getAttribute("date_update"));
-      
+
         photoset.setIsCanComment("1".equals(photosetElement.getAttribute("can_comment")));
 
         photoset.setTitle(XMLUtilities.getChildValue(photosetElement, "title"));
@@ -381,13 +384,12 @@ public class PhotosetsInterface {
             photoset.setCommentCount(Integer.parseInt(photosetElement.getAttribute("count_comments")));
             photoset.setDateCreate(photosetElement.getAttribute("date_create"));
             photoset.setDateUpdate(photosetElement.getAttribute("date_update"));
-          
+
             photoset.setIsCanComment("1".equals(photosetElement.getAttribute("can_comment")));
             photoset.setIsNeedsInterstitial("1".equals(photosetElement.getAttribute("needs_interstitial")));
             photoset.setIsVisible("1".equals(photosetElement.getAttribute("visibility_can_see_set")));
             photoset.setDescription(XMLUtilities.getChildValue(photosetElement, "description"));
-            
-            
+
             photoset.setTitle(XMLUtilities.getChildValue(photosetElement, "title"));
             photoset.setDescription(XMLUtilities.getChildValue(photosetElement, "description"));
 
@@ -395,7 +397,7 @@ public class PhotosetsInterface {
         }
 
         photosetsObject.setPhotosets(photosets);
-        
+
         return photosetsObject;
     }
 
@@ -536,7 +538,8 @@ public class PhotosetsInterface {
      */
     public void orderSets(String[] photosetIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("method", METHOD_ORDER_SETS);;
+        parameters.put("method", METHOD_ORDER_SETS);
+        ;
 
         parameters.put("photoset_ids", StringUtilities.join(photosetIds, ","));
 

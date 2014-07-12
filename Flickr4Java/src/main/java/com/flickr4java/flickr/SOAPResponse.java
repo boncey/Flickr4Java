@@ -5,6 +5,7 @@ import com.flickr4java.flickr.util.XMLUtilities;
 import org.apache.axis.message.SOAPBody;
 import org.apache.axis.message.SOAPEnvelope;
 import org.apache.axis.message.SOAPFault;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -19,30 +20,33 @@ import java.util.List;
  */
 public class SOAPResponse implements Response {
 
+    private static Logger _log = Logger.getLogger(SOAPResponse.class);
+
     private List<Element> payload;
 
     private String errorCode;
 
     private String errorMessage;
 
-    private SOAPEnvelope envelope;
+    private final SOAPEnvelope envelope;
 
     public SOAPResponse(SOAPEnvelope envelope) {
         this.envelope = envelope;
     }
 
+    @Override
     public void parse(Document document) {
         try {
             SOAPBody body = (SOAPBody) envelope.getBody();
 
             if (Flickr.debugStream) {
-                System.out.println("SOAP RESPONSE.parse");
-                System.out.println(body.getAsString());
+                _log.debug("SOAP RESPONSE.parse");
+                _log.debug(body.getAsString());
             }
 
             SOAPFault fault = (SOAPFault) body.getFault();
             if (fault != null) {
-                System.err.println("FAULT: " + fault.getAsString());
+                _log.warn("FAULT: " + fault.getAsString());
                 errorCode = fault.getFaultCode();
                 errorMessage = fault.getFaultString();
             } else {
@@ -63,6 +67,7 @@ public class SOAPResponse implements Response {
         return null;
     }
 
+    @Override
     public Element getPayload() {
         if (payload.isEmpty()) {
             throw new RuntimeException("SOAP response payload has no elements");
@@ -70,18 +75,22 @@ public class SOAPResponse implements Response {
         return payload.get(0);
     }
 
+    @Override
     public Collection<Element> getPayloadCollection() {
         return payload;
     }
 
+    @Override
     public boolean isError() {
         return errorCode != null;
     }
 
+    @Override
     public String getErrorCode() {
         return errorCode;
     }
 
+    @Override
     public String getErrorMessage() {
         return errorMessage;
     }

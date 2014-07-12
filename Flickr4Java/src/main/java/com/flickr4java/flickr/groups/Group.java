@@ -3,9 +3,10 @@
  */
 package com.flickr4java.flickr.groups;
 
-import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.util.BuddyIconable;
 import com.flickr4java.flickr.util.UrlUtilities;
+
+import org.apache.log4j.Logger;
 
 /**
  * Class representing a Flickr Group.
@@ -14,14 +15,16 @@ import com.flickr4java.flickr.util.UrlUtilities;
  */
 public class Group implements BuddyIconable {
 
+    private static Logger _log = Logger.getLogger(Group.class);
+
     private String id;
 
     private String name;
 
     private int members;
-    
+
     private int poolCount;
-    
+
     private int topicCount;
 
     private String privacy;
@@ -33,9 +36,9 @@ public class Group implements BuddyIconable {
     private String description;
 
     private Throttle throttle;
-    
+
     private Blast blast;
-    
+
     private Restriction restriction;
 
     private String lang;
@@ -91,10 +94,10 @@ public class Group implements BuddyIconable {
                 setMembers(Integer.parseInt(members));
         } catch (NumberFormatException nfe) {
             setMembers(0);
-            if (Flickr.tracing)
-                System.out.println("trace: Group.setMembers(String) encountered a number format " + "exception.  members set to 0");
+            _log.trace("Group.setMembers(String) encountered a number format exception.  members set to 0");
         }
     }
+
     public int getPoolCount() {
         return poolCount;
     }
@@ -109,10 +112,10 @@ public class Group implements BuddyIconable {
                 setPoolCount(Integer.parseInt(poolCount));
         } catch (NumberFormatException nfe) {
             setPoolCount(0);
-            if (Flickr.tracing)
-                System.out.println("trace: Group.setPoolCount(String) encountered a number format " + "exception.  poolCount set to 0");
+            _log.trace("Group.setPoolCount(String) encountered a number format exception.  poolCount set to 0");
         }
     }
+
     public int getTopicCount() {
         return topicCount;
     }
@@ -127,8 +130,7 @@ public class Group implements BuddyIconable {
                 setTopicCount(Integer.parseInt(topicCount));
         } catch (NumberFormatException nfe) {
             setPoolCount(0);
-            if (Flickr.tracing)
-                System.out.println("trace: Group.setTopicCount(String) encountered a number format " + "exception.  topicCount set to 0");
+            _log.trace("Group.setTopicCount(String) encountered a number format exception.  topicCount set to 0");
         }
     }
 
@@ -136,6 +138,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @return the online-state
      */
+    @Deprecated
     public int getOnline() {
         return online;
     }
@@ -144,6 +147,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @param online
      */
+    @Deprecated
     public void setOnline(int online) {
         this.online = online;
     }
@@ -152,14 +156,14 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @param online
      */
+    @Deprecated
     public void setOnline(String online) {
         try {
             if (online != null)
                 setOnline(Integer.parseInt(online));
         } catch (NumberFormatException nfe) {
             setOnline(0);
-            if (Flickr.tracing)
-                System.out.println("trace: Group.setOnline(String) encountered a number format " + "exception.  online set to 0");
+            _log.trace("Group.setOnline(String) encountered a number format exception.  online set to 0");
         }
     }
 
@@ -167,6 +171,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @return chatId
      */
+    @Deprecated
     public String getChatId() {
         return chatId;
     }
@@ -175,6 +180,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @param chatId
      */
+    @Deprecated
     public void setChatId(String chatId) {
         this.chatId = chatId;
     }
@@ -183,6 +189,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @return the number of users in chat
      */
+    @Deprecated
     public int getInChat() {
         return inChat;
     }
@@ -191,6 +198,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @param inChat
      */
+    @Deprecated
     public void setInChat(int inChat) {
         this.inChat = inChat;
     }
@@ -199,15 +207,14 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @param inChat
      */
+    @Deprecated
     public void setInChat(String inChat) {
         try {
             if (inChat != null)
                 setInChat(Integer.parseInt(inChat));
         } catch (NumberFormatException nfe) {
             setInChat(0);
-            if (Flickr.tracing) {
-                System.out.println("trace: Group.setInChat(String) encountered a number format " + "exception.  InChat set to 0");
-            }
+            _log.trace("Group.setInChat(String) encountered a number format exception.  InChat set to 0");
         }
     }
 
@@ -232,7 +239,7 @@ public class Group implements BuddyIconable {
     }
 
     /**
-     *
+     * 
      * @param photoCount
      */
     public void setPhotoCount(int photoCount) {
@@ -249,9 +256,7 @@ public class Group implements BuddyIconable {
                 setPhotoCount(Integer.parseInt(photoCount));
             } catch (NumberFormatException nfe) {
                 setPhotoCount(0);
-                if (Flickr.tracing) {
-                    System.out.println("trace: Group.setPhotoCount(String) encountered a number format " + "exception.  PhotoCount set to 0");
-                }
+                _log.trace("Group.setPhotoCount(String) encountered a number format exception.  PhotoCount set to 0");
             }
         }
     }
@@ -260,6 +265,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @return boolean
      */
+    @Deprecated
     public boolean isEighteenPlus() {
         return eighteenPlus;
     }
@@ -268,6 +274,7 @@ public class Group implements BuddyIconable {
      * @deprecated
      * @param eighteenPlus
      */
+    @Deprecated
     public void setEighteenPlus(boolean eighteenPlus) {
         this.eighteenPlus = eighteenPlus;
     }
@@ -296,28 +303,34 @@ public class Group implements BuddyIconable {
         this.poolModerated = poolModerated;
     }
 
+    @Override
     public int getIconFarm() {
         return iconFarm;
     }
 
+    @Override
     public void setIconFarm(int iconFarm) {
         this.iconFarm = iconFarm;
     }
 
+    @Override
     public void setIconFarm(String iconFarm) {
         if (iconFarm != null) {
             setIconFarm(Integer.parseInt(iconFarm));
         }
     }
 
+    @Override
     public int getIconServer() {
         return iconServer;
     }
 
+    @Override
     public void setIconServer(int iconServer) {
         this.iconServer = iconServer;
     }
 
+    @Override
     public void setIconServer(String iconServer) {
         if (iconServer != null) {
             setIconServer(Integer.parseInt(iconServer));
@@ -333,6 +346,7 @@ public class Group implements BuddyIconable {
      * @return The BuddyIconUrl
      * @deprecated use {@link #getSecureBuddyIconUrl() }
      */
+    @Override
     @Deprecated
     public String getBuddyIconUrl() {
         return UrlUtilities.createBuddyIconUrl(iconFarm, iconServer, id);
@@ -357,7 +371,7 @@ public class Group implements BuddyIconable {
     public void setThrottle(Throttle throttle) {
         this.throttle = throttle;
     }
-    
+
     public Blast getBlast() {
         return blast;
     }
@@ -365,7 +379,7 @@ public class Group implements BuddyIconable {
     public void setBlast(Blast blast) {
         this.blast = blast;
     }
-    
+
     public Restriction getRestriction() {
         return restriction;
     }

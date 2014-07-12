@@ -15,14 +15,13 @@ import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,6 +30,8 @@ import java.util.Set;
  * @version $Id: PoolsInterface.java,v 1.16 2011/07/02 19:00:59 x-mago Exp $
  */
 public class PoolsInterface {
+
+    private static Logger _log = Logger.getLogger(PoolsInterface.class);
 
     public static final String METHOD_ADD = "flickr.groups.pools.add";
 
@@ -42,11 +43,11 @@ public class PoolsInterface {
 
     public static final String METHOD_REMOVE = "flickr.groups.pools.remove";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transport;
+    private final Transport transport;
 
     public PoolsInterface(String apiKey, String sharedSecret, Transport transport) {
         this.apiKey = apiKey;
@@ -110,8 +111,8 @@ public class PoolsInterface {
                 Photo photo = new Photo();
                 photo.setId(element.getAttribute("id"));
                 photoContext.setNextPhoto(photo);
-            } else {
-                System.err.println("unsupported element name: " + elementName);
+            } else if (!elementName.equals("count")) {
+                _log.warn("unsupported element name: " + elementName);
             }
         }
         return photoContext;
@@ -124,7 +125,7 @@ public class PoolsInterface {
      * @throws FlickrException
      */
     public Collection<Group> getGroups() throws FlickrException {
-    	GroupList<Group> groups = new GroupList<Group>();
+        GroupList<Group> groups = new GroupList<Group>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_GROUPS);

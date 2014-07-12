@@ -82,7 +82,7 @@
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
                         <useReleaseProfile>false</useReleaseProfile>
-                        <arguments>-Psonatype-oss-release</arguments>
+                        <arguments>${arguments} -Psonatype-oss-release</arguments>
                         <pomFileName>Flickr4Java/pom.xml</pomFileName>
                     </configuration>
                 </plugin>
@@ -138,6 +138,13 @@
         <url>https://github.com/callmeal/Flickr4Java</url>
         <tag>HEAD</tag>
     </scm>
+    <distributionManagement>
+        <repository>
+            <id>bintray-boncey-Flickr4Java-Flickr4Java</id>
+            <name>boncey-Flickr4Java-Flickr4Java</name>
+            <url>https://api.bintray.com/maven/boncey/Flickr4Java/Flickr4Java</url>
+        </repository>
+    </distributionManagement>
     <profiles>
         <profile>
             <id>release</id>

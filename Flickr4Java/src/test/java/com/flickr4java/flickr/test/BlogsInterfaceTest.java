@@ -37,7 +37,7 @@ public class BlogsInterfaceTest extends Flickr4JavaTest {
         Iterator<Service> it = services.iterator();
         boolean bloggerFound = false;
         while (it.hasNext()) {
-            Service ser = (Service) it.next();
+            Service ser = it.next();
             if (ser.getId().equals("beta.blogger.com") && ser.getName().equals("Blogger")) {
                 bloggerFound = true;
             }

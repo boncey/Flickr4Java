@@ -11,12 +11,20 @@ import com.flickr4java.flickr.galleries.Gallery;
 import com.flickr4java.flickr.groups.Group;
 import com.flickr4java.flickr.urls.UrlsInterface;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * @author Anthony Eden
  */
 public class UrlsInterfaceTest extends Flickr4JavaTest {
+
+    @Override
+    @Before
+    public void setUp() throws FlickrException {
+        super.setUp();
+        clearAuth();
+    }
 
     @Test
     public void testGetGroup() throws FlickrException {

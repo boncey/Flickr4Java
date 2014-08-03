@@ -32,11 +32,11 @@ public class BlogsInterface {
 
     private static final String METHOD_POST_PHOTO = "flickr.blogs.postPhoto";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transportAPI;
+    private final Transport transportAPI;
 
     public BlogsInterface(String apiKey, String sharedSecret, Transport transport) {
         this.apiKey = apiKey;
@@ -57,7 +57,7 @@ public class BlogsInterface {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SERVICES);
 
-        Response response = transportAPI.post(transportAPI.getPath(), parameters, apiKey, sharedSecret);
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

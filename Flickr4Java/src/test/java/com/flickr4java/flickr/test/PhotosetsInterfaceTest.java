@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoContext;
 import com.flickr4java.flickr.photos.PhotoList;
@@ -48,6 +49,8 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
 
     @After
     public void tearDown() throws FlickrException {
+        setAuth(Permission.DELETE);
+
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         iface.delete(testSet.getId());
     }
@@ -96,6 +99,8 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
 
     @Test
     public void testGetInfo() throws FlickrException {
+        clearAuth();
+
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
         Photoset photoset = iface.getInfo(testProperties.getPhotosetId());
         _log.debug(photoset.getUrl());

@@ -35,7 +35,6 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         assertTrue(list.getTotal() == 1);
         Place place = list.get(0);
         assertEquals("zot2ouJXUbKOJRM", place.getPlaceId());
-        assertEquals("/Germany/Berlin/Berlin", place.getPlaceUrl());
         assertEquals(Place.TYPE_LOCALITY, place.getPlaceType());
         assertEquals("638242", place.getWoeId());
         assertEquals(52.516D, place.getLatitude(), 0d);
@@ -75,7 +74,6 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
 
         place = list.get(1);
         assertEquals("SmLXwKZUV7JlnVvxUA", place.getPlaceId());
-        assertEquals("/France/Ile-de-France/Paris/Europe", place.getPlaceUrl());
         assertEquals(Place.TYPE_NEIGHBOURHOOD, place.getPlaceType());
     }
 

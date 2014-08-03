@@ -36,11 +36,11 @@ public class UrlsInterface {
 
     public static final String METHOD_LOOKUP_GALLERY = "flickr.urls.lookupGallery";
 
-    private String apiKey;
+    private final String apiKey;
 
-    private String sharedSecret;
+    private final String sharedSecret;
 
-    private Transport transport;
+    private final Transport transport;
 
     /**
      * Construct a UrlsInterface.
@@ -70,7 +70,7 @@ public class UrlsInterface {
 
         parameters.put("group_id", groupId);
 
-        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
+        Response response = transport.get(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -93,7 +93,7 @@ public class UrlsInterface {
 
         parameters.put("user_id", userId);
 
-        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
+        Response response = transport.get(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -116,7 +116,7 @@ public class UrlsInterface {
 
         parameters.put("user_id", userId);
 
-        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
+        Response response = transport.get(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -139,7 +139,7 @@ public class UrlsInterface {
 
         parameters.put("url", url);
 
-        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
+        Response response = transport.get(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -166,7 +166,7 @@ public class UrlsInterface {
 
         parameters.put("url", url);
 
-        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
+        Response response = transport.get(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
@@ -190,7 +190,7 @@ public class UrlsInterface {
         parameters.put("method", METHOD_LOOKUP_GALLERY);
         parameters.put("url", galleryId);
 
-        Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
+        Response response = transport.get(transport.getPath(), parameters, apiKey, sharedSecret);
         if (response.isError()) {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }

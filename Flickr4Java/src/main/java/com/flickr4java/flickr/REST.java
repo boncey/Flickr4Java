@@ -177,7 +177,7 @@ public class REST extends Transport {
 
             com.flickr4java.flickr.Response response = null;
             synchronized (mutex) {
-                String strXml = scribeResponse.getBody();
+                String strXml = scribeResponse.getBody().trim();
                 if (Flickr.debugStream) {
                     logger.debug(strXml);
                 }
@@ -300,7 +300,7 @@ public class REST extends Transport {
         try {
             com.flickr4java.flickr.Response response = null;
             synchronized (mutex) {
-                String strXml = scribeResponse.getBody();
+                String strXml = scribeResponse.getBody().trim();
                 if (Flickr.debugStream) {
                     logger.debug(strXml);
                 }

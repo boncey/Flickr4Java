@@ -8,6 +8,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
 import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.places.Place;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.XMLUtilities;
 
@@ -414,6 +415,42 @@ public final class PhotoUtils {
             if (longitude.length() > 0 && latitude.length() > 0 && !("0".equals(longitude) && "0".equals(latitude))) {
                 photo.setGeoData(new GeoData(longitude, latitude, accuracy));
             }
+        }
+
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("locality").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setLocality(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
+        }
+
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("county").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setCounty(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
+        }
+
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("region").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setRegion(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
+        }
+
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("country").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setCountry(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
         }
 
         return photo;

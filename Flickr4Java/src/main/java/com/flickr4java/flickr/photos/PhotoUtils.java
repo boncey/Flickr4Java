@@ -416,6 +416,42 @@ public final class PhotoUtils {
             }
         }
 
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("locality").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setLocality(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
+        }
+
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("county").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setCounty(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
+        }
+
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("region").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setRegion(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
+        }
+
+        try {
+            Place place = null;
+            Element element = (Element) photoElement.getElementsByTagName("country").item(0);
+            place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
+            photo.setCountry(place);
+        } catch(IndexOutOfBoundsException e) {
+        } catch(NullPointerException e) {
+        }
+
         return photo;
     }
 

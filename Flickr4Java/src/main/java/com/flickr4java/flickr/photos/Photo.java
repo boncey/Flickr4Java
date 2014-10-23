@@ -5,6 +5,7 @@ package com.flickr4java.flickr.photos;
 
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.places.Place;
 import com.flickr4java.flickr.stats.Stats;
 import com.flickr4java.flickr.stats.StatsInterface;
 import com.flickr4java.flickr.tags.Tag;
@@ -180,6 +181,14 @@ public class Photo {
     private Usage usage;
     
     private boolean hasPeople;
+
+    private Place locality;
+
+    private Place county;
+
+    private Place region;
+
+    private Place country;
 
     /**
      * Stats on views, comments and favorites. Only set on {@link StatsInterface#getPopularPhotos} call.
@@ -1248,5 +1257,36 @@ public class Photo {
 		this.hasPeople = hasPeople;
 	}
 
+    public Place getLocality() {
+        return locality;
+    }
+
+    public void setLocality(Place locality) {
+        this.locality = locality;
+    }
+
+    public Place getCounty() {
+        return county;
+    }
+
+    public void setCounty(Place county) {
+        this.county = county;
+    }
+
+    public Place getRegion() {
+        return region;
+    }
+
+    public void setRegion(Place region) {
+        this.region = region;
+    }
+
+    public Place getCountry() {
+        return country;
+    }
+
+    public void setCountry(Place country) {
+        this.country = country;
+    }
 	
 }

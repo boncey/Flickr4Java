@@ -62,6 +62,12 @@ public class Place {
         this.placeType = placeType;
     }
 
+    public Place(String placeId, String name, Strubg woeId) {
+        this.name = name;
+        this.placeId = placeId;
+        this.woeId = woeId;
+    }
+
     public String getName() {
         return name;
     }

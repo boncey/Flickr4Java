@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * The abstract Transport class provides a common interface for transporting requests to the Flickr servers. Flickr offers several transport methods including
  * REST, SOAP and XML-RPC. Flickr4Java currently implements the REST transport and work is being done to include the SOAP transport.
- * 
+ *
  * @author Matt Ray
  * @author Anthony Eden
  */
@@ -26,7 +26,7 @@ public abstract class Transport {
     public static final String UPLOAD_API_HOST = "up.flickr.com";
 
     protected static final String DEFAULT_SCHEME = "https";
-    
+
     private String transportType;
 
     protected Class<?> responseClass;
@@ -36,7 +36,7 @@ public abstract class Transport {
     private String host;
 
     private int port = 443;
-    
+
     private String scheme;
 
     public String getHost() {
@@ -81,7 +81,7 @@ public abstract class Transport {
 
     /**
      * Invoke an HTTP GET request on a remote host. You must close the InputStream after you are done with.
-     * 
+     *
      * @param path
      *            The request path
      * @param parameters
@@ -94,8 +94,27 @@ public abstract class Transport {
     public abstract Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException;
 
     /**
+     * Invoke an HTTP GET request on a remote host. You must close the InputStream after you are done with.
+     * While #get request for XML which is further processed to marshalize flickr-objects,
+     * this method makes sure the response contaisn json which could be passed to a client (JavaScript available).
+     *
+     * @param path
+     *            The request path
+     * @param parameters
+     *            The parameters (collection of Parameter objects)
+     * @param apiKey
+     * @param sharedSecret
+     * @return The Response
+     * @throws FlickrException
+     */
+    public abstract JSONResponse getJson(String path, Map<String, Object> parameters, String apiKey, String sharedSecret,boolean noJsonCallback) throws FlickrException;
+
+
+
+
+    /**
      * Invoke an HTTP POST request on a remote host.
-     * 
+     *
      * @param path
      *            The request path
      * @param parameters
@@ -109,7 +128,7 @@ public abstract class Transport {
 
     /**
      * Invoke an HTTP POST request on a remote host.
-     * 
+     *
      * @param path
      *            The request path
      * @param parameters
@@ -126,9 +145,9 @@ public abstract class Transport {
 
     /**
      * Invoke a non OAuth HTTP GET request on a remote host.
-     * 
+     *
      * This is only used for the Flickr OAuth methods checkToken and getAccessToken.
-     * 
+     *
      * @param path
      *            The request path
      * @param parameters

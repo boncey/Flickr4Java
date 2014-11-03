@@ -11,3 +11,4 @@ Flickr4Java.iws
 .project
 .settings/
 bin/
+**rebel.xml

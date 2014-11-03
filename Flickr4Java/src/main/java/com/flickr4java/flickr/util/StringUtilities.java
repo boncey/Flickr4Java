@@ -10,7 +10,10 @@ import java.util.regex.Pattern;
 
 /**
  * String utility methods.
- * 
+ *
+ *
+ * // TODO: what about adding org.apache.commons.lang3 ?
+ *
  * @author Anthony Eden
  * @version $Id: StringUtilities.java,v 1.5 2009/07/23 20:41:03 x-mago Exp $
  */
@@ -21,9 +24,18 @@ public class StringUtilities {
 
     }
 
+    public static boolean isNotBlank(String string){
+        return string != null && string.length()>0;
+    }
+
+    public static boolean isBlank(String string){
+        return string == null && string.length()==0;
+    }
+
+
     /**
      * Join the array of Strings using the specified delimiter.
-     * 
+     *
      * @param s
      *            The String array
      * @param delimiter
@@ -40,7 +52,7 @@ public class StringUtilities {
 
     /**
      * Join the Collection of Strings using the specified delimter and optionally quoting each
-     * 
+     *
      * @param s
      *            The String collection
      * @param delimiter
@@ -67,7 +79,7 @@ public class StringUtilities {
 
     /**
      * Join the Collection of Strings using the specified delimiter.
-     * 
+     *
      * @param s
      *            The String collection
      * @param delimiter

@@ -313,7 +313,23 @@ public class PhotosetsInterface {
      * @throws FlickrException
      */
     public Photosets getList(String userId) throws FlickrException {
-        return getList(userId, 0, 0);
+        return getList(userId, 0, 0, null);
+    }
+
+    /**
+     * Get a list of all photosets for the specified user.
+     * 
+     * This method does not require authentication. But to get a Photoset into the list, that contains just private photos, the call needs to be authenticated.
+     * 
+     * @param userId
+     *            The User id
+     * @param primaryPhotoExtras
+     *            A comma-delimited list of extra information to fetch for the primary photo
+     * @return The Photosets collection
+     * @throws FlickrException
+     */
+    public Photosets getList(String userId, String primaryPhotoExtras) throws FlickrException {
+        return getList(userId, 0, 0, primaryPhotoExtras);
     }
 
     /**
@@ -327,10 +343,12 @@ public class PhotosetsInterface {
      *            The number of photosets per page
      * @param page
      *            The page offset
+     * @param primaryPhotoExtras
+     *            A comma-delimited list of extra information to fetch for the primary photo
      * @return The Photosets collection
      * @throws FlickrException
      */
-    public Photosets getList(String userId, int perPage, int page) throws FlickrException {
+    public Photosets getList(String userId, int perPage, int page, String primaryPhotoExtras) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_LIST);
 
@@ -344,6 +362,10 @@ public class PhotosetsInterface {
 
         if (page > 0) {
             parameters.put("page", String.valueOf(page));
+        }
+
+        if (primaryPhotoExtras != null) {
+            parameters.put("primary_photo_extras", primaryPhotoExtras);
         }
 
         Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
@@ -368,7 +390,13 @@ public class PhotosetsInterface {
             owner.setId(photosetElement.getAttribute("owner"));
             photoset.setOwner(owner);
 
-            Photo primaryPhoto = new Photo();
+            Element primaryPhotoExtrasEl = XMLUtilities.getChild(photosetElement, "primary_photo_extras");
+            Photo primaryPhoto;
+            if (primaryPhotoExtrasEl != null) {
+                primaryPhoto = PhotoUtils.createPhoto(primaryPhotoExtrasEl);
+            } else {
+                primaryPhoto = new Photo();
+            }
             primaryPhoto.setId(photosetElement.getAttribute("primary"));
             primaryPhoto.setSecret(photosetElement.getAttribute("secret")); // TODO verify that this is the secret for the photo
             primaryPhoto.setServer(photosetElement.getAttribute("server")); // TODO verify that this is the server for the photo

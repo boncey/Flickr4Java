@@ -20,6 +20,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -118,10 +119,17 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
     }
 
     @Test
-    public void testGetList2() throws FlickrException {
+    public void testGetListWithExtras() throws FlickrException {
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
-        Photosets photosets = iface.getList("26095690@N00");
+        Photosets photosets = iface.getList(testProperties.getNsid(), "last_update, owner_name");
         assertNotNull(photosets);
+        Collection<Photoset> photosetsList = photosets.getPhotosets();
+        assertFalse(photosetsList.isEmpty());
+        Photoset photoset = photosetsList.iterator().next();
+        assertNotNull(photoset.getPrimaryPhoto().getLastUpdate());
+        assertNotNull(photoset.getPrimaryPhoto().getOwner());
+        assertNotNull(photoset.getPrimaryPhoto().getOwner().getUsername());
+        assertTrue(photoset.getPrimaryPhoto().getOwner().getUsername().length() > 0);
     }
 
     @Test

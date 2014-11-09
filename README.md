@@ -23,11 +23,14 @@ __Please note:__ this library is not thread safe.
 
 ### Requirements
 
-This API has been tested with JDK 1.4 and JDK 1.5. The default distribution is built with JDK 1.5 (it builds and runs fine under 1.6 and 1.7 too though).
+This API has been tested with JDK 1.5 and JDK 1.6. The default distribution is built with JDK 1.5 (it builds and runs fine under 1.6 and 1.7 too though).
 
 An API key is required to use this API.  You can [request one on Flickr](http://www.flickr.com/services/api/).
 
-[scribe-java (v.1.3.2)](https://github.com/fernandezpablo85/scribe-java/wiki/Getting-Started) is also required for the OAuth functionality.
+#### Required libraries
+
+- [scribe-java (v.1.3.2 onwards)](https://github.com/fernandezpablo85/scribe-java/wiki/Getting-Started) (required for the OAuth functionality).
+- [log4j](http://www.apache.org/dyn/closer.cgi/logging/log4j/1.2.17/log4j-1.2.17.zip) (runtime dependency for logging)
 
 ### Download
 

@@ -14,9 +14,10 @@ To use the API just construct an instance of the class `com.flickr4java.flickr.t
 For example, to send a test ping to the Flickr service:
 
     String apiKey = "YOUR_API_KEY";
-    Flickr f = new Flickr(apiKey);
+    String sharedSecret = "YOUR_SHARED_SECRET";
+    Flickr f = new Flickr(apiKey, sharedSecret, new REST());
     TestInterface testInterface = f.getTestInterface();
-    Collection results = testInterface.echo(Collections.EMPTY_LIST);
+    Collection results = testInterface.echo(Collections.EMPTY_MAP);
 
 __Please note:__ this library is not thread safe.
 

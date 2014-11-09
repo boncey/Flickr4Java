@@ -3,6 +3,7 @@
  */
 package com.flickr4java.flickr.test;
 
+import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
@@ -10,7 +11,6 @@ import com.flickr4java.flickr.people.User;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -52,6 +52,7 @@ public class TestInterface {
     public Collection<Element> echo(Map<String, String> params) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_ECHO);
+        parameters.put(Flickr.API_KEY, apiKey);
         parameters.putAll(params);
 
         Response response = transport.post(transport.getPath(), parameters, apiKey, sharedSecret);
@@ -65,7 +66,6 @@ public class TestInterface {
      * A testing method which checks if the caller is logged in then returns a User object.
      * 
      * @return The User object
-     * @throws SAXException
      * @throws FlickrException
      */
     public User login() throws FlickrException {

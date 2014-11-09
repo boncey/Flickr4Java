@@ -4,19 +4,19 @@ package com.flickr4java.flickr.test;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.junit.Test;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.IOUtilities;
+
+import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @author Anthony Eden
@@ -49,7 +49,15 @@ public class UploaderTest extends Flickr4JavaTest {
             metaData.setTitle("óöä");
             String photoId = uploader.upload(out.toByteArray(), metaData);
             assertNotNull(photoId);
-            pint.delete(photoId);
+            try {
+                pint.delete(photoId);
+            } catch (FlickrException e) {
+                // Ignore if user doesn't have delete permissions
+                // This will leave a *private* photo in the test account's photostream!
+                if (!e.getErrorCode().equals("99")) {
+                    throw e;
+                }
+            }
         } finally {
             IOUtilities.close(in);
             IOUtilities.close(out);
@@ -77,7 +85,16 @@ public class UploaderTest extends Flickr4JavaTest {
             metaData.setTitle("óöä");
             String photoId = uploader.upload(in, metaData);
             assertNotNull(photoId);
-            pint.delete(photoId);
+            try {
+                pint.delete(photoId);
+            } catch (FlickrException e) {
+                // Ignore if user doesn't have delete permissions
+                // This will leave a *private* photo in the test account's photostream!
+                if (!e.getErrorCode().equals("99")) {
+                    throw e;
+                }
+            }
+
         } finally {
             IOUtilities.close(in);
         }
@@ -119,7 +136,16 @@ public class UploaderTest extends Flickr4JavaTest {
                     throw e;
                 }
             }
-            pint.delete(photoId);
+            try {
+                pint.delete(photoId);
+            } catch (FlickrException e) {
+                // Ignore if user doesn't have delete permissions
+                // This will leave a *private* photo in the test account's photostream!
+                if (!e.getErrorCode().equals("99")) {
+                    throw e;
+                }
+            }
+
         } finally {
             IOUtilities.close(replaceIS);
         }
@@ -161,7 +187,16 @@ public class UploaderTest extends Flickr4JavaTest {
                 }
             }
 
-            pint.delete(photoId);
+            try {
+                pint.delete(photoId);
+            } catch (FlickrException e) {
+                // Ignore if user doesn't have delete permissions
+                // This will leave a *private* photo in the test account's photostream!
+                if (!e.getErrorCode().equals("99")) {
+                    throw e;
+                }
+            }
+
         } finally {
             IOUtilities.close(in);
         }

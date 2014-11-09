@@ -22,8 +22,6 @@ import java.util.Collection;
  */
 public class GroupsInterfaceTest extends Flickr4JavaTest {
 
-    public static final String TEST_JOIN_GROUP = "2173840@N20";
-
     public void deprecatedBrowse() throws FlickrException {
         GroupsInterface iface = flickr.getGroupsInterface();
         Category cat = iface.browse(null);
@@ -102,19 +100,33 @@ public class GroupsInterfaceTest extends Flickr4JavaTest {
 
     @Test
     public void testJoinLeave() throws FlickrException {
-
         GroupsInterface iface = flickr.getGroupsInterface();
 
-        Group group = iface.getInfo(TEST_JOIN_GROUP);
+        Group group = iface.getInfo(testProperties.getGroupId());
         int cntBeforeJoin = group.getMembers();
-        iface.join(TEST_JOIN_GROUP, null);
-        group = iface.getInfo(TEST_JOIN_GROUP);
-        int cntAfterJoin = group.getMembers();
-        assertTrue("Member count increased by 1", cntBeforeJoin + 1 == cntAfterJoin);
+        try {
+            iface.join(testProperties.getGroupId(), null);
+            group = iface.getInfo(testProperties.getGroupId());
+            int cntAfterJoin = group.getMembers();
+            assertTrue("Member count increased by 1", cntBeforeJoin + 1 == cntAfterJoin);
+        } catch (FlickrException e) {
+            // Ignore if user is already in group
+            if (!e.getErrorCode().equals("4")) {
+                throw e;
+            }
+        }
 
-        iface.leave(TEST_JOIN_GROUP, false);
-        group = iface.getInfo(TEST_JOIN_GROUP);
-        int cntAfterLeave = group.getMembers();
-        assertTrue("Member count decreased by 1", cntAfterLeave == cntBeforeJoin);
+        try {
+            iface.leave(testProperties.getGroupId(), false);
+            group = iface.getInfo(testProperties.getGroupId());
+            int cntAfterLeave = group.getMembers();
+            assertTrue("Member count decreased by 1", cntAfterLeave == cntBeforeJoin);
+        } catch (FlickrException e) {
+            // Ignore if user doesn't have delete permissions
+            if (!e.getErrorCode().equals("99")) {
+                throw e;
+            }
+        }
+
     }
 }

@@ -38,7 +38,7 @@ public class ReflectionInterfaceTest extends Flickr4JavaTest {
         assertFalse(method.needsLogin());
 
         assertNotNull(method.getArguments());
-        assertEquals(7, method.getArguments().size());
+        assertEquals(5, method.getArguments().size());
         Collection<Argument> args = method.getArguments();
         Iterator<Argument> argsIterator = args.iterator();
 
@@ -50,14 +50,6 @@ public class ReflectionInterfaceTest extends Flickr4JavaTest {
         Argument date = argsIterator.next();
         assertEquals("date", date.getName());
         assertTrue(date.isOptional());
-
-        Argument panda = argsIterator.next();
-        assertEquals("use_panda", panda.getName());
-        assertTrue(panda.isOptional());
-
-        Argument offsetDays = argsIterator.next();
-        assertEquals("offset_days", offsetDays.getName());
-        assertTrue(offsetDays.isOptional());
 
         Argument extras = argsIterator.next();
         assertEquals("extras", extras.getName());

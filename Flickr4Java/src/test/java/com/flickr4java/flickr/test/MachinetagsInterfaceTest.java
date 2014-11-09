@@ -96,7 +96,7 @@ public class MachinetagsInterfaceTest extends Flickr4JavaTest {
         String namespace = "ceramics";
         String predicate = "material";
         Calendar addedSince = Calendar.getInstance();
-        addedSince.add(Calendar.YEAR, -5);
+        addedSince.add(Calendar.YEAR, -10);
         NamespacesList<Value> list = machinetagsInterface.getRecentValues(namespace, predicate, addedSince.getTime());
         assertTrue(list.size() >= 3);
         boolean contentFound = false;

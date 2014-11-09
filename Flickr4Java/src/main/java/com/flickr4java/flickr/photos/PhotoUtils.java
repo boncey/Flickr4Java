@@ -79,6 +79,7 @@ public final class PhotoUtils {
         photo.setMedia(photoElement.getAttribute("media"));
         photo.setMediaStatus(photoElement.getAttribute("media_status"));
         photo.setPathAlias(photoElement.getAttribute("pathalias"));
+        photo.setViews(photoElement.getAttribute("views"));
         
         Element peopleElement = (Element) photoElement.getElementsByTagName("people").item(0);
         if(peopleElement != null){

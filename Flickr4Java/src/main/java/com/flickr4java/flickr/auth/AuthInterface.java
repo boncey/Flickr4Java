@@ -128,7 +128,7 @@ public class AuthInterface {
                 accessToken = service.getAccessToken(oAuthRequestToken, verifier);
                 success = true;
             } catch (OAuthException e) {
-                if (i == maxGetTokenRetries) {
+                if (i == maxGetTokenRetries - 1) {
                     logger.error(String.format("OAuthService.getAccessToken failing after %d tries, re-throwing exception", i), e);
                     throw e;
                 } else {

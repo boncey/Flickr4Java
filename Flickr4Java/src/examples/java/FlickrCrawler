@@ -1,3 +1,5 @@
+package com.company;
+
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -13,12 +15,11 @@ import java.util.prefs.Preferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /*
-    - Java 7 is needed
-    - insert your api- and secretkey
-
-    start main with wanted tags as parameter, for example: FlickrCrawler.main(Sunset) and all pics will be saved in original size or large to pics\sunset\...
+ *  - Java 7 is needed
+ *  - insert your api- and secretkey
+ *
+ *  start main with wanted tags as parameter, for example: FlickrCrawler.main(Sunset) and all pics will be saved in original size or large to pics\sunset\...
  */
 public class FlickrCrawler {
 
@@ -40,13 +41,14 @@ public class FlickrCrawler {
     }
 
     public static boolean saveImage(Flickr f, Photo p) {
+
         String cleanTitle = convertToFileSystemChar(p.getTitle());
 
         File orgFile = new File(path + File.separator + cleanTitle + "_" + p.getId() + "_o." + p.getOriginalFormat());
         File largeFile = new File(path + File.separator + cleanTitle + "_" + p.getId() + "_b." + p.getOriginalFormat());
 
         if (orgFile.exists() || largeFile.exists()) {
-            System.out.println(p.getTitle() + "\t" + p.getLargeUrl() + " skiped!");
+            System.out.println(p.getTitle() + "\t" + p.getLargeUrl() + " skipped!");
             return false;
         }
 
@@ -69,39 +71,35 @@ public class FlickrCrawler {
     }
 
     public static void main(String[] args) {
-	    // set you own key and secret
-        String apikey = "apikey";
-        String secret = "secret";
-
-        Flickr flickr = new Flickr(apikey, secret, new REST());
-
-        // Set the wanted search parameters (I'm not using real variables in the example)
-        SearchParameters searchParameters = new SearchParameters();
-        searchParameters.setAccuracy(1);
         if (args.length == 0) {
             System.out.println("Parameter are needed as for searching. Example: FlickrCrawler.java sunset");
             return;
         }
-        String s[] = args;
+
+        String apikey = "apikey";
+        String secret = "secret";
+
+        Flickr flickr = new Flickr(apikey, secret, new REST());
+        SearchParameters searchParameters = new SearchParameters();
+        searchParameters.setAccuracy(1);
 
         StringBuilder tagsBuilder = new StringBuilder();
-        for (String tmp : s) {
+        for (String tmp : args) {
             tagsBuilder.append(" " + tmp);
         }
         path = "pics" + File.separator + tagsBuilder.toString().substring(1);
 
         new File(path).mkdirs();
-        searchParameters.setTags(s);
-
+        searchParameters.setTags(args);
 
         for (int i = userPrefs.getInt(path, 0); true; i++) {
             userPrefs.putInt( path, i );
             System.out.println("\tcurrent page: " + userPrefs.getInt(path, 0));
             try {
                 PhotoList<Photo> list = flickr.getPhotosInterface().search(searchParameters, 500, i);
-
-                if (list.isEmpty()) break;
-
+                if (list.isEmpty())
+                    break;
+                    
                 Iterator itr = list.iterator();
                 while (itr.hasNext()) {
                     saveImage(flickr, (Photo) itr.next());

@@ -32,6 +32,10 @@ public class FlickrCrawler {
         while (m.find()) {
             erg += name.substring(m.start(), m.end());
         }
+        if (erg.length() > 200) {
+            erg = erg.substring(0, 200);
+            System.out.println("cut filename: " + erg);
+        }
         return erg;
     }
 

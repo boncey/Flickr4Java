@@ -1,6 +1,6 @@
 package com.flickr4java.flickr.people;
 
-public class PersonTag {
+public class FaceTag {
 	
 	private String id;
 

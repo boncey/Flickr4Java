@@ -260,7 +260,7 @@ public class Size {
 
     public void setWidth(String width) {
 
-        if (width != null) {
+        if (!(width == null || "".equals(width))) {   // checking both null and empty
             setWidth(Integer.parseInt(width));
         }
     }
@@ -277,7 +277,7 @@ public class Size {
 
     public void setHeight(String height) {
 
-        if (height != null) {
+        if (!(height == null || "".equals(height))) {   // checking both null and empty
             setHeight(Integer.parseInt(height));
         }
     }

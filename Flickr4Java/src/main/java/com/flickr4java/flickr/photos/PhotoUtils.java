@@ -1,16 +1,16 @@
 package com.flickr4java.flickr.photos;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.flickr4java.flickr.people.User;
+import com.flickr4java.flickr.places.Place;
+import com.flickr4java.flickr.tags.Tag;
+import com.flickr4java.flickr.util.XMLUtilities;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-import com.flickr4java.flickr.people.User;
-import com.flickr4java.flickr.places.Place;
-import com.flickr4java.flickr.tags.Tag;
-import com.flickr4java.flickr.util.XMLUtilities;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utilitiy-methods to transfer requested XML to Photo-objects.
@@ -74,18 +74,18 @@ public final class PhotoUtils {
         photo.setLastUpdate(photoElement.getAttribute("lastupdate"));
         // flickr.groups.pools.getPhotos provides this value!
         photo.setDateAdded(photoElement.getAttribute("dateadded"));
-        photo.setOriginalWidth(photoElement.getAttribute("o_width"));
-        photo.setOriginalHeight(photoElement.getAttribute("o_height"));
+        photo.setOriginalWidth(photoElement.getAttribute("width_o"));
+        photo.setOriginalHeight(photoElement.getAttribute("height_o"));
         photo.setMedia(photoElement.getAttribute("media"));
         photo.setMediaStatus(photoElement.getAttribute("media_status"));
         photo.setPathAlias(photoElement.getAttribute("pathalias"));
         photo.setViews(photoElement.getAttribute("views"));
-        
+
         Element peopleElement = (Element) photoElement.getElementsByTagName("people").item(0);
-        if(peopleElement != null){
-        	photo.setIsHasPeople("1".equals(peopleElement.getAttribute("haspeople")));
-        }else{
-        	photo.setIsHasPeople(false);
+        if (peopleElement != null) {
+            photo.setIsHasPeople("1".equals(peopleElement.getAttribute("haspeople")));
+        } else {
+            photo.setIsHasPeople(false);
         }
 
         // If the attributes active that contain the image-urls,
@@ -97,6 +97,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.THUMB);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_t"));
+            sizeT.setHeight(photoElement.getAttribute("height_t"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_s");
@@ -104,6 +106,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.SMALL);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_s"));
+            sizeT.setHeight(photoElement.getAttribute("height_s"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_sq");
@@ -111,6 +115,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.SQUARE);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_sq"));
+            sizeT.setHeight(photoElement.getAttribute("height_sq"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_m");
@@ -118,6 +124,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.MEDIUM);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_m"));
+            sizeT.setHeight(photoElement.getAttribute("height_m"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_l");
@@ -125,6 +133,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.LARGE);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_l"));
+            sizeT.setHeight(photoElement.getAttribute("height_l"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_o");
@@ -132,6 +142,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.ORIGINAL);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_o"));
+            sizeT.setHeight(photoElement.getAttribute("height_o"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_q");
@@ -139,6 +151,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.SQUARE_LARGE);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_q"));
+            sizeT.setHeight(photoElement.getAttribute("height_q"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_n");
@@ -146,6 +160,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.SMALL_320);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_n"));
+            sizeT.setHeight(photoElement.getAttribute("height_n"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_z");
@@ -153,6 +169,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.MEDIUM_640);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_z"));
+            sizeT.setHeight(photoElement.getAttribute("height_z"));
             sizes.add(sizeT);
         }
         urlTmp = photoElement.getAttribute("url_c");
@@ -160,6 +178,8 @@ public final class PhotoUtils {
             Size sizeT = new Size();
             sizeT.setLabel(Size.MEDIUM_800);
             sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_c"));
+            sizeT.setHeight(photoElement.getAttribute("height_c"));
             sizes.add(sizeT);
         }
         if (sizes.size() > 0) {
@@ -169,12 +189,12 @@ public final class PhotoUtils {
         // Searches, or other list may contain orginal_format.
         // If not choosen via extras, set jpg as default.
         try {
-        	if (photo.getOriginalFormat() == null || photo.getOriginalFormat().equals("")) {
-            	String media = photo.getMedia();
-            	if(media != null && media.equals("video"))
-                    photo.setOriginalFormat("mov");  // Currently flickr incorrectly returns original_format as jpg for movies.
-            	else
-            		photo.setOriginalFormat("jpg");
+            if (photo.getOriginalFormat() == null || photo.getOriginalFormat().equals("")) {
+                String media = photo.getMedia();
+                if (media != null && media.equals("video"))
+                    photo.setOriginalFormat("mov"); // Currently flickr incorrectly returns original_format as jpg for movies.
+                else
+                    photo.setOriginalFormat("jpg");
             }
         } catch (NullPointerException e) {
             photo.setOriginalFormat("jpg");
@@ -257,7 +277,6 @@ public final class PhotoUtils {
             photo.setDateTaken(photoElement.getAttribute("datetaken"));
         }
 
-       
         try {
             Element permissionsElement = (Element) photoElement.getElementsByTagName("permissions").item(0);
             Permissions permissions = new Permissions();
@@ -268,7 +287,6 @@ public final class PhotoUtils {
         } catch (NullPointerException e) {
             // nop
         }
-        
 
         try {
             Element editabilityElement = (Element) photoElement.getElementsByTagName("editability").item(0);
@@ -280,7 +298,7 @@ public final class PhotoUtils {
         } catch (NullPointerException e) {
             // nop
         }
-        
+
         try {
             Element publicEditabilityElement = (Element) photoElement.getElementsByTagName("publiceditability").item(0);
             Editability publicEditability = new Editability();
@@ -291,11 +309,11 @@ public final class PhotoUtils {
         } catch (NullPointerException e) {
             // nop
         }
-        
+
         try {
             Element usageElement = (Element) photoElement.getElementsByTagName("usage").item(0);
             Usage usage = new Usage();
-            
+
             usage.setIsCanBlog("1".equals(usageElement.getAttribute("canblog")));
             usage.setIsCanDownload("1".equals(usageElement.getAttribute("candownload")));
             usage.setIsCanShare("1".equals(usageElement.getAttribute("canshare")));
@@ -384,9 +402,9 @@ public final class PhotoUtils {
                     photo.setUrl(photoUrl.getUrl());
                     urls.add(photoUrl.getUrl());
                 }
-                
+
             }
-            
+
             photo.setUrls(urls);
         } catch (IndexOutOfBoundsException e) {
         } catch (NullPointerException e) {
@@ -423,8 +441,8 @@ public final class PhotoUtils {
             Element element = (Element) photoElement.getElementsByTagName("locality").item(0);
             place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
             photo.setLocality(place);
-        } catch(IndexOutOfBoundsException e) {
-        } catch(NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
         }
 
         try {
@@ -432,8 +450,8 @@ public final class PhotoUtils {
             Element element = (Element) photoElement.getElementsByTagName("county").item(0);
             place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
             photo.setCounty(place);
-        } catch(IndexOutOfBoundsException e) {
-        } catch(NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
         }
 
         try {
@@ -441,8 +459,8 @@ public final class PhotoUtils {
             Element element = (Element) photoElement.getElementsByTagName("region").item(0);
             place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
             photo.setRegion(place);
-        } catch(IndexOutOfBoundsException e) {
-        } catch(NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
         }
 
         try {
@@ -450,8 +468,8 @@ public final class PhotoUtils {
             Element element = (Element) photoElement.getElementsByTagName("country").item(0);
             place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
             photo.setCountry(place);
-        } catch(IndexOutOfBoundsException e) {
-        } catch(NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
         }
 
         return photo;

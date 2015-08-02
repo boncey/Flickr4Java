@@ -434,7 +434,7 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         size.setUrl("urlLargePage");
         sizes.add(size);
         size = new Size();
-        size.setLabel("Square Large");
+        size.setLabel("Large Square");
         size.setWidth("150");
         size.setHeight("150");
         size.setSource("urlSquareLarge");

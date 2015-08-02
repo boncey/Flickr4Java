@@ -898,14 +898,8 @@ public class PlacesInterface {
         location.setWoeName(locationElement.getAttribute("woe_name"));
         location.setIsHasShapeData("1".equals(locationElement.getAttribute("has_shapedata")));
         location.setPlaceType(stringPlaceTypeToInt(locationElement.getAttribute("place_type")));
-        try {
-            location.setLocality(parseLocationPlace(localityElement, Place.TYPE_LOCALITY));
-        } catch (NullPointerException ex) {
-        }
-        try {
-            location.setCounty(parseLocationPlace(countyElement, Place.TYPE_COUNTY));
-        } catch (NullPointerException ex) {
-        }
+        location.setLocality(parseLocationPlace(localityElement, Place.TYPE_LOCALITY));
+        location.setCounty(parseLocationPlace(countyElement, Place.TYPE_COUNTY));
         location.setRegion(parseLocationPlace(regionElement, Place.TYPE_REGION));
         location.setCountry(parseLocationPlace(countryElement, Place.TYPE_COUNTRY));
 
@@ -913,14 +907,18 @@ public class PlacesInterface {
     }
 
     private Place parseLocationPlace(Element element, int type) {
-        Place place = new Place();
-        place.setName(XMLUtilities.getValue(element));
-        place.setPlaceId(element.getAttribute("place_id"));
-        place.setPlaceUrl(element.getAttribute("place_url"));
-        place.setWoeId(element.getAttribute("woeid"));
-        place.setLatitude(element.getAttribute("latitude"));
-        place.setLongitude(element.getAttribute("longitude"));
-        place.setPlaceType(type);
+        Place place = null;
+        if (element != null) {
+            place = new Place();
+            place.setName(XMLUtilities.getValue(element));
+            place.setPlaceId(element.getAttribute("place_id"));
+            place.setPlaceUrl(element.getAttribute("place_url"));
+            place.setWoeId(element.getAttribute("woeid"));
+            place.setLatitude(element.getAttribute("latitude"));
+            place.setLongitude(element.getAttribute("longitude"));
+            place.setPlaceType(type);
+        }
+
         return place;
     }
 

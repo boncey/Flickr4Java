@@ -18,11 +18,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import javax.imageio.ImageIO;
+import javax.net.ssl.HttpsURLConnection;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -188,10 +188,10 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public PhotoAllContext getAllContexts(String photoId) throws FlickrException {
-    	PhotoSetList<PhotoSet> setList = new PhotoSetList<PhotoSet>();
-    	PoolList<Pool> poolList = new PoolList<Pool>();
-    	PhotoAllContext allContext = new PhotoAllContext();
-    	     
+        PhotoSetList<PhotoSet> setList = new PhotoSetList<PhotoSet>();
+        PoolList<Pool> poolList = new PoolList<Pool>();
+        PhotoAllContext allContext = new PhotoAllContext();
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_ALL_CONTEXTS);
 
@@ -203,35 +203,35 @@ public class PhotosInterface {
         }
         Collection<Element> photosElement = response.getPayloadCollection();
 
-    	for (Element setElement : photosElement) {
-    		if(setElement.getTagName().equals("set")){
-	            PhotoSet pset = new PhotoSet();
-	            pset.setTitle(setElement.getAttribute("title"));
-	            pset.setSecret(setElement.getAttribute("secret"));
-	            pset.setId(setElement.getAttribute("id"));
-	            pset.setFarm(setElement.getAttribute("farm"));
-	            pset.setPrimary(setElement.getAttribute("primary"));
-	            pset.setServer(setElement.getAttribute("server"));
-	            pset.setViewCount(Integer.parseInt(setElement.getAttribute("view_count")));
-	            pset.setCommentCount(Integer.parseInt(setElement.getAttribute("comment_count")));
-	            pset.setCountPhoto(Integer.parseInt(setElement.getAttribute("count_photo")));
-	            pset.setCountVideo(Integer.parseInt(setElement.getAttribute("count_video")));
-	            setList.add(pset);
-	            allContext.setPhotoSetList(setList);
-        	}else if(setElement.getTagName().equals("pool")){
-        		Pool pool = new Pool();
-        		pool.setTitle(setElement.getAttribute("title"));
-        		pool.setId(setElement.getAttribute("id"));
-        		pool.setUrl(setElement.getAttribute("url"));
-        		pool.setIconServer(setElement.getAttribute("iconserver"));
-        		pool.setIconFarm(setElement.getAttribute("iconfarm"));
-        		pool.setMemberCount(Integer.parseInt(setElement.getAttribute("members")));
-        		pool.setPoolCount(Integer.parseInt(setElement.getAttribute("pool_count")));
- 	            poolList.add(pool);
- 	            allContext.setPoolList(poolList);
-        	}
-    	}
-                
+        for (Element setElement : photosElement) {
+            if (setElement.getTagName().equals("set")) {
+                PhotoSet pset = new PhotoSet();
+                pset.setTitle(setElement.getAttribute("title"));
+                pset.setSecret(setElement.getAttribute("secret"));
+                pset.setId(setElement.getAttribute("id"));
+                pset.setFarm(setElement.getAttribute("farm"));
+                pset.setPrimary(setElement.getAttribute("primary"));
+                pset.setServer(setElement.getAttribute("server"));
+                pset.setViewCount(Integer.parseInt(setElement.getAttribute("view_count")));
+                pset.setCommentCount(Integer.parseInt(setElement.getAttribute("comment_count")));
+                pset.setCountPhoto(Integer.parseInt(setElement.getAttribute("count_photo")));
+                pset.setCountVideo(Integer.parseInt(setElement.getAttribute("count_video")));
+                setList.add(pset);
+                allContext.setPhotoSetList(setList);
+            } else if (setElement.getTagName().equals("pool")) {
+                Pool pool = new Pool();
+                pool.setTitle(setElement.getAttribute("title"));
+                pool.setId(setElement.getAttribute("id"));
+                pool.setUrl(setElement.getAttribute("url"));
+                pool.setIconServer(setElement.getAttribute("iconserver"));
+                pool.setIconFarm(setElement.getAttribute("iconfarm"));
+                pool.setMemberCount(Integer.parseInt(setElement.getAttribute("members")));
+                pool.setPoolCount(Integer.parseInt(setElement.getAttribute("pool_count")));
+                poolList.add(pool);
+                allContext.setPoolList(poolList);
+            }
+        }
+
         return allContext;
 
     }
@@ -732,7 +732,7 @@ public class PhotosInterface {
      * @throws FlickrException
      */
     public Collection<Size> getSizes(String photoId, boolean sign) throws FlickrException {
-    	SizeList<Size> sizes = new  SizeList<Size>();
+        SizeList<Size> sizes = new SizeList<Size>();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_GET_SIZES);
@@ -1369,22 +1369,20 @@ public class PhotosInterface {
             } else if (size == Size.MEDIUM_800) {
                 urlStr = photo.getMedium800Url();
             } else if (size == Size.VIDEO_ORIGINAL) {
-            	urlStr = photo.getVideoOriginalUrl();
+                urlStr = photo.getVideoOriginalUrl();
             } else if (size == Size.VIDEO_PLAYER) {
-            	urlStr = photo.getVideoPlayerUrl();
+                urlStr = photo.getVideoPlayerUrl();
             } else if (size == Size.SITE_MP4) {
-            	urlStr = photo.getSiteMP4Url();
-            } 
-    		else if(size == Size.MOBILE_MP4) {
-    			urlStr = photo.getMobileMp4Url();
-    		}
-    		else if(size == Size.HD_MP4) {
-    			urlStr = photo.getHdMp4Url();
-    		} else {
+                urlStr = photo.getSiteMP4Url();
+            } else if (size == Size.MOBILE_MP4) {
+                urlStr = photo.getMobileMp4Url();
+            } else if (size == Size.HD_MP4) {
+                urlStr = photo.getHdMp4Url();
+            } else {
                 throw new FlickrException("0", "Unknown Photo-size");
             }
             URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             if (transport instanceof REST) {
                 if (((REST) transport).isProxyAuth()) {
                     conn.setRequestProperty("Proxy-Authorization", "Basic " + ((REST) transport).getProxyCredentials());
@@ -1429,7 +1427,7 @@ public class PhotosInterface {
         InputStream in = null;
         try {
             URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             if (transport instanceof REST) {
                 if (((REST) transport).isProxyAuth()) {
                     conn.setRequestProperty("Proxy-Authorization", "Basic " + ((REST) transport).getProxyCredentials());

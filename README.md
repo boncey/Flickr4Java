@@ -43,7 +43,7 @@ An API key is required to use this API.  You can [request one on Flickr](http://
     <dependency>
       <groupId>com.flickr4java</groupId>
       <artifactId>flickr4java</artifactId>
-      <version>2.12</version>
+      <version>2.13</version>
     </dependency>
 
 Flickr4Java is now available on Maven Central so the above settings should be all you need (it used to only be available on [JCenter](https://bintray.com/bintray/jcenter).

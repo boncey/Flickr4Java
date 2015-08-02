@@ -55,6 +55,8 @@ public class SearchParameters {
 
     private int accuracy = 0;
 
+    private int privacyFilter = 0;
+
     private String safeSearch;
 
     private String[] machineTags;
@@ -70,11 +72,11 @@ public class SearchParameters {
     private String radiusUnits;
 
     private boolean hasGeo = false;
-    
+
     private boolean inGallery = false;
-    
+
     private boolean isCommons = false;
-    
+
     private boolean isGetty = false;
 
     public static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
@@ -137,6 +139,30 @@ public class SearchParameters {
 
     public int getAccuracy() {
         return accuracy;
+    }
+
+    /**
+     * @return the privacyFilter
+     */
+    public int getPrivacyFilter() {
+        return privacyFilter;
+    }
+
+    /**
+     * @param privacyFilter
+     *            Return photos only matching a certain privacy level.
+     * 
+     *            This only applies when making an authenticated call to view photos you own. Valid values are:
+     *            <ul>
+     *            <li>1 public photos
+     *            <li>2 private photos visible to friends
+     *            <li>3 private photos visible to family
+     *            <li>4 private photos visible to friends &amp; family
+     *            <li>5 completely private photos
+     *            </ul>
+     */
+    public void setPrivacyFilter(int privacyFilter) {
+        this.privacyFilter = privacyFilter;
     }
 
     public String getGroupId() {
@@ -366,6 +392,7 @@ public class SearchParameters {
      * @return A placeId
      * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
      */
+    @SuppressWarnings("javadoc")
     public String getPlaceId() {
         return placeId;
     }
@@ -385,6 +412,7 @@ public class SearchParameters {
      * @see com.flickr4java.flickr.places.Place#getPlaceId()
      * @see com.flickr4java.flickr.places.Location#getPlaceId()
      */
+    @SuppressWarnings("javadoc")
     public void setPlaceId(String placeId) {
         this.placeId = placeId;
     }
@@ -582,6 +610,10 @@ public class SearchParameters {
         boolean isGetty = getIsGetty();
         if (isGetty) {
             parameters.put("is_getty", "true");
+        }
+
+        if (privacyFilter > 0) {
+            parameters.put("privacy_filter", Integer.toString(privacyFilter));
         }
 
         if (extras != null && !extras.isEmpty()) {

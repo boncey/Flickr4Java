@@ -31,6 +31,8 @@ public class User implements Serializable, BuddyIconable {
 
     private String username;
 
+    private String description;
+
     private boolean admin;
 
     private boolean pro;
@@ -44,7 +46,7 @@ public class User implements Serializable, BuddyIconable {
     private String location;
 
     private TimeZone timeZone;
-    
+
     private Date photosFirstDate;
 
     private Date photosFirstDateTaken;
@@ -60,17 +62,17 @@ public class User implements Serializable, BuddyIconable {
     private long bandwidthMax;
 
     private long bandwidthUsed;
-    
+
     private Boolean bandwidthUnlimited;
-    
+
     private String setsCreated;
-    
+
     private String setsRemaining;
-    
+
     private String videosUploaded;
-    
+
     private String videosRemaining;
-    
+
     private String videoSizeMax;
 
     private long filesizeMax;
@@ -90,11 +92,10 @@ public class User implements Serializable, BuddyIconable {
     private boolean revFamily;
 
     private String pathAlias;
-    
+
     private PhotoLimits photoLimits;
-    
+
     private VideoLimits videoLimits;
-    
 
     public User() {
     }
@@ -115,6 +116,20 @@ public class User implements Serializable, BuddyIconable {
         this.username = username;
     }
 
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public boolean isAdmin() {
         return admin;
     }
@@ -131,28 +146,34 @@ public class User implements Serializable, BuddyIconable {
         this.pro = pro;
     }
 
+    @Override
     public int getIconFarm() {
         return iconFarm;
     }
 
+    @Override
     public void setIconFarm(int iconFarm) {
         this.iconFarm = iconFarm;
     }
 
+    @Override
     public void setIconFarm(String iconFarm) {
         if (iconFarm != null) {
             setIconFarm(Integer.parseInt(iconFarm));
         }
     }
 
+    @Override
     public int getIconServer() {
         return iconServer;
     }
 
+    @Override
     public void setIconServer(int iconServer) {
         this.iconServer = iconServer;
     }
 
+    @Override
     public void setIconServer(String iconServer) {
         if (iconServer != null) {
             setIconServer(Integer.parseInt(iconServer));
@@ -167,12 +188,10 @@ public class User implements Serializable, BuddyIconable {
         this.realName = realName;
     }
 
-    
-    public TimeZone  getTimeZone() {
+    public TimeZone getTimeZone() {
         return timeZone;
     }
-    
-    
+
     public TimeZone setTimeZone(TimeZone string) {
         return this.timeZone = string;
     }
@@ -186,11 +205,12 @@ public class User implements Serializable, BuddyIconable {
      * @return The BuddyIconUrl
      * @deprecated use {@link #getSecureBuddyIconUrl() }
      */
+    @Override
     @Deprecated
     public String getBuddyIconUrl() {
         return UrlUtilities.createBuddyIconUrl(iconFarm, iconServer, id);
     }
-    
+
     public String getLocation() {
         return location;
     }
@@ -206,7 +226,6 @@ public class User implements Serializable, BuddyIconable {
     public String getSecureBuddyIconUrl() {
         return UrlUtilities.createSecureBuddyIconUrl(iconFarm, iconServer, id);
     }
-
 
     public void setLocation(String location) {
         this.location = location;
@@ -461,6 +480,7 @@ public class User implements Serializable, BuddyIconable {
     public void setPathAlias(String pathAlias) {
         this.pathAlias = pathAlias;
     }
+
     /**
      * @return PhotoLimits class instance
      */
@@ -471,6 +491,7 @@ public class User implements Serializable, BuddyIconable {
     public void setPhotoLimits(PhotoLimits photoLimits) {
         this.photoLimits = photoLimits;
     }
+
     /**
      * @return VideoLimits class instance
      */
@@ -481,54 +502,53 @@ public class User implements Serializable, BuddyIconable {
     public void setPhotoLimits(VideoLimits videoLimits) {
         this.videoLimits = videoLimits;
     }
-    public Boolean isBandwidthUnlimited(){
-    	return bandwidthUnlimited;
-    }
-    public void setIsBandwidthUnlimited(Boolean bandwidthUnlimited){
-    	this.bandwidthUnlimited = bandwidthUnlimited; 
+
+    public Boolean isBandwidthUnlimited() {
+        return bandwidthUnlimited;
     }
 
-	public String getSetsCreated() {
-		return setsCreated;
-	}
+    public void setIsBandwidthUnlimited(Boolean bandwidthUnlimited) {
+        this.bandwidthUnlimited = bandwidthUnlimited;
+    }
 
-	public void setSetsCreated(String setsCreated) {
-		this.setsCreated = setsCreated;
-	}
+    public String getSetsCreated() {
+        return setsCreated;
+    }
 
-	public String getSetsRemaining() {
-		return setsRemaining;
-	}
+    public void setSetsCreated(String setsCreated) {
+        this.setsCreated = setsCreated;
+    }
 
-	public void setSetsRemaining(String setsRemaining) {
-		this.setsRemaining = setsRemaining;
-	}
+    public String getSetsRemaining() {
+        return setsRemaining;
+    }
 
-	public String getVideosUploaded() {
-		return videosUploaded;
-	}
+    public void setSetsRemaining(String setsRemaining) {
+        this.setsRemaining = setsRemaining;
+    }
 
-	public void setVideosUploaded(String videosUploaded) {
-		this.videosUploaded = videosUploaded;
-	}
+    public String getVideosUploaded() {
+        return videosUploaded;
+    }
 
-	public String getVideosRemaining() {
-		return videosRemaining;
-	}
+    public void setVideosUploaded(String videosUploaded) {
+        this.videosUploaded = videosUploaded;
+    }
 
-	public void setVideosRemaining(String videosRemaining) {
-		this.videosRemaining = videosRemaining;
-	}
+    public String getVideosRemaining() {
+        return videosRemaining;
+    }
 
-	public String getVideosSizeMax() {
-		return videoSizeMax;
-	}
+    public void setVideosRemaining(String videosRemaining) {
+        this.videosRemaining = videosRemaining;
+    }
 
-	public void setVideoSizeMax(String videoSizeMax) {
-		this.videoSizeMax = videoSizeMax;
-	}
+    public String getVideosSizeMax() {
+        return videoSizeMax;
+    }
 
-	
+    public void setVideoSizeMax(String videoSizeMax) {
+        this.videoSizeMax = videoSizeMax;
+    }
 
-	
 }

@@ -157,6 +157,11 @@ public class PeopleInterface {
         user.setPathAlias(lPathAlias == null || "".equals(lPathAlias) ? null : lPathAlias);
         user.setUsername(XMLUtilities.getChildValue(userElement, "username"));
         user.setDescription(XMLUtilities.getChildValue(userElement, "description"));
+        user.setGender(XMLUtilities.getChildValue(userElement, "gender"));
+        user.setIgnored("1".equals(XMLUtilities.getChildValue(userElement, "ignored")));
+        user.setContact("1".equals(XMLUtilities.getChildValue(userElement, "contact")));
+        user.setFriend("1".equals(XMLUtilities.getChildValue(userElement, "friend")));
+        user.setFamily("1".equals(XMLUtilities.getChildValue(userElement, "family")));
         user.setRealName(XMLUtilities.getChildValue(userElement, "realname"));
         user.setLocation(XMLUtilities.getChildValue(userElement, "location"));
         user.setMbox_sha1sum(XMLUtilities.getChildValue(userElement, "mbox_sha1sum"));

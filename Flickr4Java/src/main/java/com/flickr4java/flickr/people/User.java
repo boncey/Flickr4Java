@@ -33,6 +33,16 @@ public class User implements Serializable, BuddyIconable {
 
     private String description;
 
+    private String gender;
+
+    private boolean ignored;
+
+    private boolean contact;
+
+    private boolean friend;
+
+    private boolean family;
+
     private boolean admin;
 
     private boolean pro;
@@ -124,10 +134,51 @@ public class User implements Serializable, BuddyIconable {
     }
 
     /**
-     * @param description the description to set
+     * @param description
+     *            the description to set
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public boolean isIgnored() {
+        return ignored;
+    }
+
+    public void setIgnored(boolean ignored) {
+        this.ignored = ignored;
+    }
+
+    public boolean isContact() {
+        return contact;
+    }
+
+    public void setContact(boolean contact) {
+        this.contact = contact;
+    }
+
+    public boolean isFriend() {
+        return friend;
+    }
+
+    public void setFriend(boolean friend) {
+        this.friend = friend;
+    }
+
+    public boolean isFamily() {
+        return family;
+    }
+
+    public void setFamily(boolean family) {
+        this.family = family;
     }
 
     public boolean isAdmin() {

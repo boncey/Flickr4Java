@@ -2,7 +2,6 @@
 
 package com.flickr4java.flickr.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -27,7 +26,6 @@ public class BlogsInterfaceTest extends Flickr4JavaTest {
         BlogsInterface blogsInterface = flickr.getBlogsInterface();
         Collection<Blog> blogs = blogsInterface.getList();
         assertNotNull(blogs);
-        assertEquals(0, blogs.size());
     }
 
     @Test

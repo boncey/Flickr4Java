@@ -70,6 +70,12 @@ public class SearchParameters {
     private String radiusUnits;
 
     private boolean hasGeo = false;
+    
+    private boolean inGallery = false;
+    
+    private boolean isCommons = false;
+    
+    private boolean isGetty = false;
 
     public static final ThreadLocal<SimpleDateFormat> DATE_FORMATS = new ThreadLocal<SimpleDateFormat>() {
         @Override
@@ -563,6 +569,21 @@ public class SearchParameters {
             parameters.put("has_geo", "true");
         }
 
+        boolean inGallery = getInGallery();
+        if (inGallery) {
+            parameters.put("in_gallery", "true");
+        }
+
+        boolean isCommons = getIsCommons();
+        if (isCommons) {
+            parameters.put("is_commons", "true");
+        }
+
+        boolean isGetty = getIsGetty();
+        if (isGetty) {
+            parameters.put("is_getty", "true");
+        }
+
         if (extras != null && !extras.isEmpty()) {
             parameters.put("extras", StringUtilities.join(extras, ","));
         }
@@ -639,4 +660,27 @@ public class SearchParameters {
         this.userId = userId;
     }
 
+    public void setInGallery(boolean inGallery) {
+        this.inGallery = inGallery;
+    }
+
+    public boolean getInGallery() {
+        return inGallery;
+    }
+
+    public void setIsCommons(boolean isCommons) {
+        this.isCommons = isCommons;
+    }
+
+    public boolean getIsCommons() {
+        return isCommons;
+    }
+
+    public void setIsGetty(boolean isGetty) {
+        this.isGetty = isGetty;
+    }
+
+    public boolean getIsGetty() {
+        return isGetty;
+    }
 }

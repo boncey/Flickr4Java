@@ -11,7 +11,6 @@ import com.flickr4java.flickr.util.UrlUtilities;
 
 import org.apache.log4j.Logger;
 import org.scribe.builder.ServiceBuilder;
-
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Token;
@@ -358,7 +357,7 @@ public class REST extends Transport {
         request.addHeader("Content-Type", "multipart/form-data; boundary=" + getMultipartBoundary());
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
             String key = entry.getKey();
-            if (!key.equals("photo") && !key.equals("filename") &&  !key.equals("filemimetype")) {
+            if (!key.equals("photo") && !key.equals("filename") && !key.equals("filemimetype")) {
                 request.addQuerystringParameter(key, String.valueOf(entry.getValue()));
             }
         }
@@ -389,19 +388,19 @@ public class REST extends Transport {
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
-        	String filename = (String) parameters.get("filename");
-        	if(filename == null)
-        		filename = "image.jpg";
+            String filename = (String) parameters.get("filename");
+            if (filename == null)
+                filename = "image.jpg";
 
-        	String fileMimeType = (String) parameters.get("filemimetype");
-        	if(fileMimeType == null)
-        		fileMimeType = "image/jpeg";
-        	
+            String fileMimeType = (String) parameters.get("filemimetype");
+            if (fileMimeType == null)
+                fileMimeType = "image/jpeg";
+
             buffer.write(("--" + boundary + "\r\n").getBytes(CHARSET_NAME));
             for (Entry<String, Object> entry : parameters.entrySet()) {
                 String key = entry.getKey();
-                if(!key.equals("filename") && !key.equals("filemimetype"))
-                	writeParam(key, entry.getValue(), buffer, boundary, filename, fileMimeType);
+                if (!key.equals("filename") && !key.equals("filemimetype"))
+                    writeParam(key, entry.getValue(), buffer, boundary, filename, fileMimeType);
             }
         } catch (IOException e) {
             throw new FlickrRuntimeException(e);

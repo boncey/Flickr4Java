@@ -22,6 +22,10 @@ For example, to send a test ping to the Flickr service:
 __Please note:__ this library is not thread safe.
 
 
+### Development and contributing
+
+Please fork from the `develop` branch as that will make merging in easier.
+
 ### Requirements
 
 This API has been tested with JDK 1.5 and JDK 1.6. The default distribution is built with JDK 1.5 (it builds and runs fine under 1.6 and 1.7 too though).

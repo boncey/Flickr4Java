@@ -336,7 +336,7 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         Photo photo = iface.getInfo(photoId, null);
         BufferedImage image = iface.getImage(photo, Size.THUMB);
         assertNotNull(image);
-        assertTrue(67 == image.getWidth() || 68 == image.getWidth());
+        assertTrue(66 == image.getWidth() || 67 == image.getWidth() || 68 == image.getWidth());
         assertEquals(100, image.getHeight());
         ImageIO.write(image, "jpg", thumbnailFile);
     }

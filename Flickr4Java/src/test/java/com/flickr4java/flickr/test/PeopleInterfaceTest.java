@@ -60,6 +60,10 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         assertEquals(person.getPhotosurl(), String.format("https://www.flickr.com/photos/%s/", testProperties.getUsername()));
         assertEquals(person.getProfileurl(), String.format("https://www.flickr.com/people/%s/", testProperties.getUsername()));
         assertTrue(person.getSecureBuddyIconUrl().startsWith("https://"));
+        assertNotNull(person.getTimeZone());
+        assertNotNull(person.getTimeZone().getTimeZoneId());
+        assertNotNull(person.getTimeZone().getOffset());
+        assertNotNull(person.getTimeZone().getLabel());
     }
 
     @Test

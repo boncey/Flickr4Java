@@ -180,6 +180,7 @@ public class PeopleInterface {
             TimeZone tz = new TimeZone();
             user.setTimeZone(tz);
             tz.setLabel(tzElement.getAttribute("label"));
+            tz.setTimeZoneId(tzElement.getAttribute("timezone_id"));
             tz.setOffset(tzElement.getAttribute("offset"));
         }
 

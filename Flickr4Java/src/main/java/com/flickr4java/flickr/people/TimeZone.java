@@ -2,14 +2,16 @@ package com.flickr4java.flickr.people;
 
 public class TimeZone {
 
-	private String label;
+    private String label;
 
     private String offset;
+
+    private String timeZoneId;
 
     /**
      * Time Zone text
      * 
-     * @return timezone
+     * @return the label
      */
     public String getLabel() {
         return label;
@@ -24,6 +26,14 @@ public class TimeZone {
      * 
      * @return timezone offset value
      */
+    public String getOffset() {
+        return offset;
+    }
+
+    /**
+     * @deprecated typo in method name, use {@link #getOffset()}.
+     */
+    @Deprecated
     public String geOffset() {
         return offset;
     }
@@ -31,5 +41,18 @@ public class TimeZone {
     public void setOffset(String offset) {
         this.offset = offset;
     }
-	
+
+    /**
+     * Time Zone id
+     * 
+     * @return timezone_id offset value
+     */
+    public String getTimeZoneId() {
+        return timeZoneId;
+    }
+
+    public void setTimeZoneId(String id) {
+        this.timeZoneId = id;
+    }
+
 }

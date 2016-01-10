@@ -21,6 +21,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
@@ -1081,6 +1082,15 @@ public class Photo {
             	hdMP4 = size;
             }
         }
+    }
+
+    public Collection<Size> getSizes() {
+        return Arrays.asList(
+                smallSize, squareSize, thumbnailSize, mediumSize,
+                largeSize, large1600Size, large2048Size, originalSize,
+                squareLargeSize, small320Size, medium640Size, medium800Size,
+                videoPlayer, siteMP4, videoOriginal, mobileMP4, hdMP4
+        );
     }
 
     public Size getSquareSize() {

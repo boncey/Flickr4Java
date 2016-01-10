@@ -51,6 +51,14 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
     private final File smallSquareFile = new File("out.smallsquare.jpg");
 
     private final File thumbnailFile = new File("out.thumbnail.jpg");
+    
+    private List<Size> photoSizes;
+
+    @Override
+    public void setUp() throws FlickrException {
+        super.setUp();
+        preparePhotoSizes();
+    }
 
     @After
     public void teardown() {
@@ -60,6 +68,129 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         smallFile.deleteOnExit();
         smallSquareFile.deleteOnExit();
         thumbnailFile.deleteOnExit();
+    }
+    
+    private void preparePhotoSizes() {
+        photoSizes = new ArrayList<Size>();
+        Size size = new Size();
+        size.setLabel("Thumbnail");
+        size.setWidth("100");
+        size.setHeight("75");
+        size.setSource("urlThumb");
+        size.setUrl("urlThumbPage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Square");
+        size.setWidth("75");
+        size.setHeight("75");
+        size.setSource("urlSquare");
+        size.setUrl("urlSquarePage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Small");
+        size.setWidth("240");
+        size.setHeight("180");
+        size.setSource("urlSmall");
+        size.setUrl("urlSmallPage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Medium");
+        size.setWidth("240");
+        size.setHeight("180");
+        size.setSource("urlMedium");
+        size.setUrl("urlMediumPage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Original");
+        size.setWidth("240");
+        size.setHeight("180");
+        size.setSource("urlOriginal");
+        size.setUrl("urlOriginalPage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Large");
+        size.setWidth("240");
+        size.setHeight("180");
+        size.setSource("urlLarge");
+        size.setUrl("urlLargePage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Large Square");
+        size.setWidth("150");
+        size.setHeight("150");
+        size.setSource("urlSquareLarge");
+        size.setUrl("urlSquareLargePage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Small 320");
+        size.setWidth("320");
+        size.setHeight("240");
+        size.setSource("urlSmall320");
+        size.setUrl("urlSmall320Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Medium 640");
+        size.setWidth("640");
+        size.setHeight("320");
+        size.setSource("urlMedium640");
+        size.setUrl("urlMedium640Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Medium 800");
+        size.setWidth("800");
+        size.setHeight("500");
+        size.setSource("urlMedium800");
+        size.setUrl("urlMedium800Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Large 1600");
+        size.setWidth("1600");
+        size.setHeight("1024");
+        size.setSource("urlLarge1600");
+        size.setUrl("urlLarge1600Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Large 2048");
+        size.setWidth("2048");
+        size.setHeight("1600");
+        size.setSource("urlLarge2048");
+        size.setUrl("urlLarge2048Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Video Player");
+        size.setWidth("320");
+        size.setHeight("240");
+        size.setSource("urlVideoPlayer");
+        size.setUrl("urlVideoPlayerPage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Site MP4");
+        size.setWidth("320");
+        size.setHeight("240");
+        size.setSource("urlSiteMP4");
+        size.setUrl("urlSiteMP4Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Video Original");
+        size.setWidth("960");
+        size.setHeight("720");
+        size.setSource("urlVideoOriginal");
+        size.setUrl("urlVideoOriginalPage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("Mobile MP4");
+        size.setWidth("640");
+        size.setHeight("360");
+        size.setSource("urlMobileMP4");
+        size.setUrl("urlMobileMP4Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("HD MP4");
+        size.setWidth("1280");
+        size.setHeight("720");
+        size.setSource("urlHDMP4");
+        size.setUrl("urlHDMP4Page");
+        photoSizes.add(size);
     }
 
     @Test
@@ -390,113 +521,6 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
      */
     @Test
     public void testSetSizes() {
-        List<Size> sizes = new ArrayList<Size>();
-        Size size = new Size();
-        size.setLabel("Thumbnail");
-        size.setWidth("100");
-        size.setHeight("75");
-        size.setSource("urlThumb");
-        size.setUrl("urlThumbPage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Square");
-        size.setWidth("75");
-        size.setHeight("75");
-        size.setSource("urlSquare");
-        size.setUrl("urlSquarePage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Small");
-        size.setWidth("240");
-        size.setHeight("180");
-        size.setSource("urlSmall");
-        size.setUrl("urlSmallPage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Medium");
-        size.setWidth("240");
-        size.setHeight("180");
-        size.setSource("urlMedium");
-        size.setUrl("urlMediumPage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Original");
-        size.setWidth("240");
-        size.setHeight("180");
-        size.setSource("urlOriginal");
-        size.setUrl("urlOriginalPage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Large");
-        size.setWidth("240");
-        size.setHeight("180");
-        size.setSource("urlLarge");
-        size.setUrl("urlLargePage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Large Square");
-        size.setWidth("150");
-        size.setHeight("150");
-        size.setSource("urlSquareLarge");
-        size.setUrl("urlSquareLargePage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Small 320");
-        size.setWidth("320");
-        size.setHeight("240");
-        size.setSource("urlSmall320");
-        size.setUrl("urlSmall320Page");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Medium 640");
-        size.setWidth("640");
-        size.setHeight("320");
-        size.setSource("urlMedium640");
-        size.setUrl("urlMedium640Page");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Medium 800");
-        size.setWidth("800");
-        size.setHeight("500");
-        size.setSource("urlMedium800");
-        size.setUrl("urlMedium800Page");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Large 1600");
-        size.setWidth("1600");
-        size.setHeight("1024");
-        size.setSource("urlLarge1600");
-        size.setUrl("urlLarge1600Page");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Large 2048");
-        size.setWidth("2048");
-        size.setHeight("1600");
-        size.setSource("urlLarge2048");
-        size.setUrl("urlLarge2048Page");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Video Player");
-        size.setWidth("320");
-        size.setHeight("240");
-        size.setSource("urlVideoPlayer");
-        size.setUrl("urlVideoPlayerPage");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Site MP4");
-        size.setWidth("320");
-        size.setHeight("240");
-        size.setSource("urlSiteMP4");
-        size.setUrl("urlSiteMP4Page");
-        sizes.add(size);
-        size = new Size();
-        size.setLabel("Video Original");
-        size.setWidth("960");
-        size.setHeight("720");
-        size.setSource("urlVideoOriginal");
-        size.setUrl("urlVideoOriginalPage");
-        sizes.add(size);
-
         Photo p = new Photo();
         p.setId("id");
         p.setServer("server");
@@ -520,7 +544,7 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         } catch (FlickrException ex) {
         }
         // setSizes() to override the generated URLs.
-        p.setSizes(sizes);
+        p.setSizes(photoSizes);
         assertEquals("urlSmall", p.getSmallUrl());
         assertEquals("urlSquare", p.getSmallSquareUrl());
         assertEquals("urlThumb", p.getThumbnailUrl());
@@ -538,6 +562,18 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         try {
             assertEquals("urlOriginal", p.getOriginalUrl());
         } catch (FlickrException ex) {
+        }
+    }
+    
+    @Test
+    public void testGetAllSizes() {
+        Photo p = new Photo();
+        p.setSizes(photoSizes);
+        
+        List<Size> pSizes = new ArrayList<Size>(p.getSizes());
+        
+        for(Size s: pSizes) {
+            assertNotNull(s);
         }
     }
 }

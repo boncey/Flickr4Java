@@ -21,6 +21,10 @@ For example, to send a test ping to the Flickr service:
 
 __Please note:__ this library is not thread safe.
 
+###Setup for gradle
+```gradle
+  compile 'com.aetrion.flickr:flickrapi:1.1'
+  ```
 
 ### Development and contributing
 

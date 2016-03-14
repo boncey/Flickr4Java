@@ -7,7 +7,7 @@ Describe your issue here.
 
 ### Steps to reproduce
 Tell us how to reproduce this issue.
-Please provide a working code.
+Please provide working code.
 
 ### Expected behaviour
 Tell us what should happen
@@ -16,4 +16,7 @@ Tell us what should happen
 Tell us what happens instead
 
 ### Log
+```
 Please copy paste the log here if available
+
+```

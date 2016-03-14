@@ -314,6 +314,10 @@ public class SearchParameters {
     public void setExtras(Set<String> extras) {
         this.extras = extras;
     }
+    
+    public Set<String> getExtras() {
+        return extras;
+    }
 
     /**
      * 4 values defining the Bounding Box of the area that will be searched.

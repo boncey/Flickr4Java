@@ -537,6 +537,8 @@ public class PeopleInterface {
             group.setAdmin("1".equals(groupElement.getAttribute("admin")));
             group.setEighteenPlus("1".equals(groupElement.getAttribute("eighteenplus")));
             group.setInvitationOnly("1".equals(groupElement.getAttribute("invitation_only")));
+            group.setMembers(groupElement.getAttribute("members"));
+            group.setPhotoCount(groupElement.getAttribute("pool_count"));
             groupList.add(group);
         }
         return groupList;

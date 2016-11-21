@@ -67,7 +67,7 @@ public class SearchParameters {
 
     private String longitude;
 
-    private int radius = -1;
+    private double radius = -1;
 
     private String radiusUnits;
 
@@ -660,7 +660,7 @@ public class SearchParameters {
         latitude = lat;
     }
 
-    public void setRadius(int r) {
+    public void setRadius(double r) {
         radius = r;
     }
 

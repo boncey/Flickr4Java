@@ -5,6 +5,8 @@ import com.flickr4java.flickr.util.IOUtilities;
 
 import org.apache.log4j.Logger;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,7 +24,6 @@ public class TestProperties {
     /**
      * Logger for log4j.
      */
-    @SuppressWarnings("unused")
     private static Logger _log = Logger.getLogger(TestProperties.class);
 
     private String host;
@@ -105,8 +106,15 @@ public class TestProperties {
     private Properties load() {
         Properties properties = new Properties();
         InputStream in = null;
+        String setupPropertiesPath = System.getenv("SETUP_PROPERTIES_PATH");
+
         try {
-            in = getClass().getResourceAsStream("/setup.properties");
+            if (setupPropertiesPath != null) {
+                _log.info("Using properties file at " + setupPropertiesPath);
+                in = new FileInputStream(new File(setupPropertiesPath));
+            } else {
+                in = getClass().getResourceAsStream("/setup.properties");
+            }
             properties.load(in);
         } catch (IOException e) {
             throw new FlickrRuntimeException("Problem loading setup.properties", e);

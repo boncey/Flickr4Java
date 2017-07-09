@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <name>flickr4java</name>
     <description>Java API For Flickr. Fork of FlickrJ.</description>
-    <url>https://github.com/callmeal/Flickr4Java</url>
+    <url>https://github.com/boncey/Flickr4Java</url>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -151,9 +151,9 @@
         </resources>
     </build>
     <scm>
-        <connection>scm:git:https://github.com/callmeal/Flickr4Java.git</connection>
-        <developerConnection>scm:git:git@github.com:callmeal/Flickr4Java.git</developerConnection>
-        <url>https://github.com/callmeal/Flickr4Java</url>
+        <connection>scm:git:https://github.com/boncey/Flickr4Java.git</connection>
+        <developerConnection>scm:git:git@github.com:boncey/Flickr4Java.git</developerConnection>
+        <url>https://github.com/boncey/Flickr4Java</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>

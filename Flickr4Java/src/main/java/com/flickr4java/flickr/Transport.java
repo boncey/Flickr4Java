@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * The abstract Transport class provides a common interface for transporting requests to the Flickr servers. Flickr offers several transport methods including
- * REST, SOAP and XML-RPC. Flickr4Java currently implements the REST transport and work is being done to include the SOAP transport.
+ * REST, SOAP and XML-RPC. Flickr4Java currently implements the REST transport.
  * 
  * @author Matt Ray
  * @author Anthony Eden
@@ -15,8 +15,6 @@ import java.util.Map;
 public abstract class Transport {
 
     public static final String REST = "REST";
-
-    public static final String SOAP = "SOAP";
 
     protected static final String API_HOST = "api.flickr.com";
 

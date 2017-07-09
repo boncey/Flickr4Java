@@ -210,8 +210,8 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         Calendar maxUploadDate = Calendar.getInstance();
         Calendar minTakenDate = Calendar.getInstance();
         Calendar maxTakenDate = Calendar.getInstance();
-        minUploadDate.roll(Calendar.YEAR, -5);
-        minTakenDate.roll(Calendar.YEAR, -5);
+        minUploadDate.roll(Calendar.YEAR, -10);
+        minTakenDate.roll(Calendar.YEAR, -10);
         PlacesList<Place> places = placesInterface.placesForUser(placeType, woeId, placeId, threshold, minUploadDate.getTime(), maxUploadDate.getTime(),
                 minTakenDate.getTime(), maxTakenDate.getTime());
         assertTrue((places.size() > 0));

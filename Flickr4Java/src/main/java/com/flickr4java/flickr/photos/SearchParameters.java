@@ -494,9 +494,9 @@ public class SearchParameters {
             parameters.put("lon", lon);
         }
 
-        int radius = getRadius();
+        double radius = getRadius();
         if (radius > 0) {
-            parameters.put("radius", Integer.toString(radius));
+            parameters.put("radius", Double.toString(radius));
         }
 
         String radiusUnits = getRadiusUnits();
@@ -664,6 +664,10 @@ public class SearchParameters {
         radius = r;
     }
 
+    public void setRadius(int r) {
+        radius = r;
+    }
+
     public void setLongitude(String lon) {
         longitude = lon;
     }
@@ -680,7 +684,7 @@ public class SearchParameters {
         return longitude;
     }
 
-    public int getRadius() {
+    public double getRadius() {
         return radius;
     }
 

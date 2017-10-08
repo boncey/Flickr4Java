@@ -143,7 +143,7 @@ public class REST extends Transport {
      * @return The Response
      */
     @Override
-    public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) {
+    public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException {
 
         OAuthRequest request = new OAuthRequest(Verb.GET, getScheme() + "://" + getHost() + path);
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
@@ -213,7 +213,7 @@ public class REST extends Transport {
      * @return The Response
      */
     @Override
-    public Response getNonOAuth(String path, Map<String, String> parameters) {
+    public Response getNonOAuth(String path, Map<String, String> parameters) throws FlickrException {
         InputStream in = null;
         try {
             URL url = UrlUtilities.buildUrl(getScheme(), getHost(), getPort(), path, parameters);
@@ -264,7 +264,7 @@ public class REST extends Transport {
      * @return The Response object
      */
     @Override
-    public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret, boolean multipart) {
+    public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret, boolean multipart) throws FlickrException {
 
         OAuthRequest request = new OAuthRequest(Verb.POST, getScheme() + "://" + getHost() + path);
 

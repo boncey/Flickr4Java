@@ -26,13 +26,9 @@ __Please note:__ this library is not thread safe.
   compile 'com.aetrion.flickr:flickrapi:1.1'
   ```
 
-### Development and contributing
-
-Please fork from the `develop` branch as that will make merging in easier.
-
 ### Requirements
 
-This API has been tested with JDK 1.5 and JDK 1.6. The default distribution is built with JDK 1.5 (it builds and runs fine under 1.6 and 1.7 too though).
+This API has been tested and built with JDK 1.8.
 
 An API key is required to use this API.  You can [request one on Flickr](http://www.flickr.com/services/api/).
 

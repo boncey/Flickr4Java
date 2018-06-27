@@ -832,7 +832,8 @@ public class Photo {
 
     public String getVideoOriginalUrl() {
         if (videoOriginal == null) {
-            return "";
+            // Workaround for API limitations
+            return String.format("https://www.flickr.com/video_download.gne?id=%s&originalSecret=%s&secret=%s", id, originalSecret, secret);
         } else {
             return videoOriginal.getSource();
         }

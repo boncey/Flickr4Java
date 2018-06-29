@@ -77,7 +77,7 @@
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
                         <useReleaseProfile>false</useReleaseProfile>
-                        <arguments>${arguments} -Psonatype-oss-release</arguments>
+                        <arguments>-Psonatype-oss-release</arguments>
                         <pomFileName>Flickr4Java/pom.xml</pomFileName>
                     </configuration>
                 </plugin>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<groups>
+	<group nsid="34427469792@N01" name="FlickrCentral" iconfarm="3" iconserver="2871" admin="0" eighteenplus="0" invitation_only="0" members="278047" pool_count="10049968" topic_count="12621" is_member="1" is_moderator="0" is_admin="0" />
+	<group nsid="1873140@N24" name="Flickr4Java test" iconfarm="0" iconserver="0" admin="1" eighteenplus="0" invitation_only="0" members="2" pool_count="0" topic_count="0" is_member="1" is_moderator="0" is_admin="1" />
+	<group nsid="2141598@N24" name="Darren's test group" iconfarm="0" iconserver="0" admin="0" eighteenplus="0" invitation_only="1" members="2" pool_count="1" topic_count="1" is_member="1" is_moderator="0" is_admin="0" />
+</groups>
+</rsp>

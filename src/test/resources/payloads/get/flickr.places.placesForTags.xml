@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<places total="1">
+	<place place_id="NsbUWfBTUb4mbyVu" woeid="2347563" latitude="37.271" longitude="-119.270" place_url="/United+States/California" place_type="region" place_type_id="8" timezone="America/Los_Angeles" woe_name="California" photo_count="6395">California, US, United States</place>
+</places>
+</rsp>

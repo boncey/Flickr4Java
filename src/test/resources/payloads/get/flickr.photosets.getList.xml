@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photosets cancreate="1" page="1" pages="1" perpage="5" total="5">
+	<photoset id="72157696874176211" primary="4169948514" secret="2a0ba239ca" server="2723" farm="3" photos="3" videos="0" needs_interstitial="0" visibility_can_see_set="1" count_views="0" count_comments="0" can_comment="1" date_create="1530378299" date_update="1530378301">
+		<title>PhotosetsInterfaceTest</title>
+		<description>JUnit test, should be deleted</description>
+		<primary_photo_extras lastupdate="1365099907" ownername="boncey_test" />
+	</photoset>
+	<photoset id="72157629121093621" primary="5628122182" secret="a329333ebb" server="5264" farm="6" photos="9" videos="0" needs_interstitial="0" visibility_can_see_set="1" count_views="1" count_comments="0" can_comment="1" date_create="1328051660" date_update="1530378289">
+		<title>test</title>
+		<description />
+		<primary_photo_extras lastupdate="1530039736" ownername="boncey_test" />
+	</photoset>
+	<photoset id="72157656624356126" primary="4169948514" secret="2a0ba239ca" server="2723" farm="3" photos="3" videos="0" needs_interstitial="0" visibility_can_see_set="1" count_views="0" count_comments="0" can_comment="1" date_create="1438536655" date_update="1530378289">
+		<title>PhotosetsInterfaceTest</title>
+		<description>JUnit test, should be deleted</description>
+		<primary_photo_extras lastupdate="1365099907" ownername="boncey_test" />
+	</photoset>
+	<photoset id="72157644773002233" primary="5628095432" secret="678f9b91c1" server="5150" farm="6" photos="1" videos="0" needs_interstitial="0" visibility_can_see_set="1" count_views="0" count_comments="0" can_comment="1" date_create="1400431115" date_update="1530378289">
+		<title>test</title>
+		<description>A test photoset</description>
+		<primary_photo_extras lastupdate="1530378269" ownername="boncey_test" />
+	</photoset>
+	<photoset id="72157629291380265" primary="5628119818" secret="da208d5f47" server="5265" farm="6" photos="4" videos="0" needs_interstitial="0" visibility_can_see_set="1" count_views="0" count_comments="0" can_comment="1" date_create="1329081906" date_update="1530378289">
+		<title>Places</title>
+		<description />
+		<primary_photo_extras lastupdate="1365147796" ownername="boncey_test" />
+	</photoset>
+</photosets>
+</rsp>

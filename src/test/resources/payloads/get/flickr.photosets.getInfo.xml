@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photoset id="72157668632940327" owner="24573443@N04" username="boncey_test" primary="5628095432" secret="678f9b91c1" server="5150" farm="6" photos="4" count_views="0" count_comments="0" count_photos="4" count_videos="0" can_comment="1" date_create="1530378291" date_update="1530378293">
+	<title>PhotosetsInterfaceTest</title>
+	<description>JUnit test, should be deleted</description>
+</photoset>
+</rsp>

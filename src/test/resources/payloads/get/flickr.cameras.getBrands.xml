@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<brands>
+	<brand id="apple" name="Apple" />
+	<brand id="canon" name="Canon" />
+	<brand id="nikon" name="Nikon" />
+	<brand id="samsung" name="Samsung" />
+	<brand id="sony" name="Sony" />
+	<brand id="fujifilm" name="Fujifilm" />
+	<brand id="olympus" name="Olympus" />
+	<brand id="panasonic" name="Panasonic" />
+	<brand id="motorola" name="Motorola" />
+	<brand id="lg" name="LG" />
+	<brand id="htc" name="HTC" />
+	<brand id="google" name="Google" />
+	<brand id="pentax" name="Pentax" />
+	<brand id="ricoh" name="Ricoh" />
+	<brand id="kodak" name="Kodak" />
+	<brand id="leica" name="Leica" />
+	<brand id="nokia" name="Nokia" />
+	<brand id="gopro" name="GoPro" />
+	<brand id="sonyericsson" name="Sony Ericsson" />
+	<brand id="casio" name="Casio" />
+	<brand id="blackberry" name="BlackBerry" />
+	<brand id="minolta" name="Konica Minolta" />
+	<brand id="hp" name="HP" />
+	<brand id="phaseone" name="Phase One" />
+	<brand id="sigma" name="Sigma" />
+	<brand id="sanyo" name="Sanyo" />
+	<brand id="leaf" name="Leaf" />
+	<brand id="epson" name="Epson" />
+	<brand id="polaroid" name="Polaroid" />
+	<brand id="vivitar" name="Vivitar" />
+	<brand id="kyocera" name="Kyocera" />
+	<brand id="jvc" name="JVC" />
+	<brand id="sharp" name="Sharp" />
+	<brand id="nintendo" name="Nintendo" />
+	<brand id="acer" name="Acer" />
+	<brand id="palm" name="Palm" />
+	<brand id="concord" name="Concord" />
+	<brand id="docomo" name="DoCoMo" />
+	<brand id="kddi" name="KDDI" />
+	<brand id="benq" name="BenQ" />
+	<brand id="toshiba" name="Toshiba" />
+	<brand id="helio" name="Helio" />
+</brands>
+</rsp>

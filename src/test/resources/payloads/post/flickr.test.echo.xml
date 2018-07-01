@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<method>flickr.test.echo</method>
+<test>test</test>
+<api_key>20f26bfcb5a2b46a2c11fd1210d3b420</api_key>
+<oauth_nonce>1356028145</oauth_nonce>
+<oauth_signature>CDKIJMigpfmKk6rcHyBxVqwEtV8=</oauth_signature>
+<oauth_token>72157628704501859-025864ab0471c9bc</oauth_token>
+<oauth_consumer_key>20f26bfcb5a2b46a2c11fd1210d3b420</oauth_consumer_key>
+<oauth_timestamp>1530378332</oauth_timestamp>
+<oauth_signature_method>HMAC-SHA1</oauth_signature_method>
+<oauth_version>1.0</oauth_version>
+<api_auth_is_oauth>1</api_auth_is_oauth>
+<api_sig>CDKIJMigpfmKk6rcHyBxVqwEtV8=</api_sig>
+<auth_token>72157628704501859-025864ab0471c9bc</auth_token>
+</rsp>

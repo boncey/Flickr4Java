@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photos page="1" pages="16" perpage="15" total="227">
+	<photo id="43105821921" owner="24573443@N04" secret="349ce6e6ef" server="839" farm="1" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="42200902055" owner="24573443@N04" secret="b276d23012" server="1784" farm="2" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="43105819991" owner="24573443@N04" secret="43948d91bf" server="1805" farm="2" title="óöä" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="41294240330" owner="24573443@N04" secret="9d9ee92926" server="1789" farm="2" title="óöä" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="41293984100" owner="24573443@N04" secret="a2c2eb3fe9" server="927" farm="1" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="41293983470" owner="24573443@N04" secret="ccb6dd8226" server="1826" farm="2" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="28236203247" owner="24573443@N04" secret="dc5ccc2914" server="1824" farm="2" title="óöä" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="28236202867" owner="24573443@N04" secret="204f2f74fe" server="847" farm="1" title="óöä" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="43055294942" owner="24573443@N04" secret="f0f733d510" server="1787" farm="2" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="28236191947" owner="24573443@N04" secret="8c86d9e5e6" server="923" farm="1" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="42386895694" owner="24573443@N04" secret="67836c6812" server="1803" farm="2" title="óöä" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="43105430541" owner="24573443@N04" secret="b91a5d2a15" server="838" farm="1" title="óöä" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="42200546735" owner="24573443@N04" secret="452dab7852" server="1788" farm="2" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="42386873584" owner="24573443@N04" secret="a00774ab69" server="927" farm="1" title="image" ispublic="0" isfriend="0" isfamily="0" />
+	<photo id="41293940140" owner="24573443@N04" secret="5de95183c4" server="917" farm="1" title="óöä" ispublic="0" isfriend="0" isfamily="0" />
+</photos>
+</rsp>

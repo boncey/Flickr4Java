@@ -464,4 +464,13 @@ public class REST extends Transport {
     public void setReadTimeoutMs(Integer readTimeoutMs) {
         this.readTimeoutMs = readTimeoutMs;
     }
+
+    // Generate responses for offline tests
+//    private void dumpResponseToFile(Object flickrMethod, String strXml, String httpMethod) throws IOException {
+//        String filename = String.format("%s.xml", flickrMethod);
+//        Path filePath = Paths.get("src/test/resources/payloads/" + httpMethod, filename);
+//        Files.write(filePath, strXml.getBytes());
+//        logger.info(String.format("Writing payload to file '%s'", filePath));
+//    }
+
 }

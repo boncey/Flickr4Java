@@ -1,7 +1,6 @@
-package com.flickr4java.flickr.test;
+package com.flickr4java.flickr.test.util;
 
 import com.flickr4java.flickr.FlickrRuntimeException;
-import com.flickr4java.flickr.util.IOUtilities;
 
 import org.apache.log4j.Logger;
 
@@ -19,12 +18,12 @@ import java.util.Properties;
  * 
  * @author Darren Greaves Copyright (c) 2012 Darren Greaves.
  */
-public class TestProperties {
+public class FileTestProperties implements TestProperties {
 
     /**
      * Logger for log4j.
      */
-    private static Logger _log = Logger.getLogger(TestProperties.class);
+    private static Logger _log = Logger.getLogger(FileTestProperties.class);
 
     private String host;
 
@@ -64,11 +63,22 @@ public class TestProperties {
 
     private final List<String> photosetPhotos;
 
-    public TestProperties() {
-
-        photosetPhotos = new ArrayList<String>();
-        Properties properties = load();
+    public FileTestProperties(File propertiesFile) {
+        photosetPhotos = new ArrayList<>();
+        Properties properties = load(propertiesFile);
         populate(properties);
+    }
+
+    private Properties load(File propertiesFile) {
+        Properties properties = new Properties();
+
+        try (InputStream in = new FileInputStream(propertiesFile)) {
+            properties.load(in);
+        } catch (IOException e) {
+            throw new FlickrRuntimeException("Problem loading properties", e);
+        }
+
+        return properties;
     }
 
     /**
@@ -103,102 +113,104 @@ public class TestProperties {
         Collections.sort(this.photosetPhotos);
     }
 
-    private Properties load() {
-        Properties properties = new Properties();
-        InputStream in = null;
-        String setupPropertiesPath = System.getenv("SETUP_PROPERTIES_PATH");
-
-        try {
-            if (setupPropertiesPath != null) {
-                _log.info("Using properties file at " + setupPropertiesPath);
-                in = new FileInputStream(new File(setupPropertiesPath));
-            } else {
-                in = getClass().getResourceAsStream("/setup.properties");
-            }
-            properties.load(in);
-        } catch (IOException e) {
-            throw new FlickrRuntimeException("Problem loading setup.properties", e);
-        } finally {
-            IOUtilities.close(in);
-        }
-
-        return properties;
-    }
-
+    @Override
     public String getHost() {
         return host;
     }
 
+    @Override
     public String getApiKey() {
         return apiKey;
     }
 
+    @Override
     public String getSecret() {
         return secret;
     }
 
+    @Override
     public String getToken() {
         return token;
     }
 
+    @Override
     public String getTokenSecret() {
         return tokenSecret;
     }
 
+    @Override
     public String getNsid() {
         return nsid;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
     public String getGroupId() {
         return groupId;
     }
 
+    @Override
     public String getTestGroupId() {
         return testGroupId;
     }
 
+    @Override
     public String getPhotoId() {
         return photoId;
     }
 
+    @Override
     public String getPhotosetId() {
         return photosetId;
     }
 
+    @Override
     public String getImageFile() {
         return imageFile;
     }
 
+    @Override
     public String getGeoWritePhotoId() {
         return geoWritePhotoId;
     }
 
+    @Override
     public String getCollectionId() {
         return collectionId;
     }
 
+    @Override
     public String getCollectionUrlId() {
         return collectionUrlId;
     }
 
+    @Override
     public String getGalleryId() {
         return galleryId;
     }
 
+    @Override
     public String getDisplayname() {
         return displayname;
     }
 
+    @Override
     public List<String> getPhotosetPhotos() {
         return photosetPhotos;
+    }
+
+    @Override
+    public boolean isRealFlickr() {
+        return true;
     }
 
 }

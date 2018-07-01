@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photos page="1" pages="1" perpage="10" total="2">
+	<photo id="4166860451" owner="24573443@N04" secret="1fc90ecdbd" server="2735" farm="3" title="_ICT0037" ispublic="0" isfriend="1" isfamily="0" />
+	<photo id="4166860585" owner="24573443@N04" secret="a9a1734747" server="2709" farm="3" title="_ICT0056" ispublic="0" isfriend="1" isfamily="0" />
+</photos>
+</rsp>

@@ -50,16 +50,6 @@ public class PlacesInterfaceTest extends Flickr4JavaTest {
         assertEquals(Place.TYPE_REGION, place.getPlaceType());
     }
 
-    @Test
-    public void testFindEurope() throws FlickrException {
-        PlacesInterface placesInterface = flickr.getPlacesInterface();
-        PlacesList<Place> list = placesInterface.find("Europe");
-        Place place = list.get(0);
-        assertEquals("6dCBhRRTVrJiB5xOrg", place.getPlaceId());
-        assertEquals("/6dCBhRRTVrJiB5xOrg", place.getPlaceUrl());
-        assertEquals(Place.TYPE_CONTINENT, place.getPlaceType());
-    }
-
     @SuppressWarnings("deprecation")
     @Test
     public void testResolvePlaceId() throws FlickrException {

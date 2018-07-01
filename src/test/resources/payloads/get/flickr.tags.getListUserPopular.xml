@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<who id="24573443@N04">
+	<tags>
+		<tag count="2">developer:brand=foma</tag>
+		<tag count="2">developer:name=fomafomauniversaldeveloper</tag>
+		<tag count="2">film:brand=kodak</tag>
+		<tag count="2">film:iso=25</tag>
+		<tag count="2">film:name=kodakprofessionalortho655625</tag>
+		<tag count="2">filmdev:recipe=6417</tag>
+		<tag count="2">fomafomauniversaldeveloper</tag>
+		<tag count="1">green</tag>
+		<tag count="2">kodakprofessionalortho6556</tag>
+		<tag count="2">london</tag>
+	</tags>
+</who>
+</rsp>

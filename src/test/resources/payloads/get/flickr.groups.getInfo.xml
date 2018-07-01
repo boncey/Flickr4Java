@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<group id="34427469792@N01" nsid="34427469792@N01" path_alias="central" iconserver="2871" iconfarm="3" lang="" ispoolmoderated="0" photo_limit_opt_out="0" is_member="1" is_moderator="0" is_admin="0">
+	<name>FlickrCentral</name>
+	<description>&lt;b&gt;Welcome to FlickrCentral!&lt;/b&gt; 
+Just like Grand Central but without the oyster bar, the trains, New York city...
+
+FlickrCentral is a place for the newbies to get a taste of what Flickr is about, and a place for the more experienced users to keep a finger on the pulse of our favorite addiction. This group is for viewing Flickr from high above - &lt;i&gt;a place for posts on things that are about Flickr or would interest MOST flickrites.&lt;/i&gt;
+
+We adhere to Flickr's &lt;a href=&quot;http://www.flickr.com/groups_guidelines.gne&quot;&gt;Group Guidelines&lt;/a&gt; and &lt;a href=&quot;http://www.flickr.com/guidelines.gne&quot;&gt;Community Guidelines&lt;/a&gt;.
+
+&lt;b&gt;This is a moderated group.&lt;/b&gt; The moderators retain the right to delete (or lock as appropriate) threads and comments that do not follow these rules, guidelines or are perceived to be abusive, redundant, self-promotional/commercial or not leading to novel discussion. 
+
+</description>
+	<rules>- Be polite: Do not fingerpoint, shame, nor attack personally other flickr members.
+
+- Please use the search tools (&lt;a href=&quot;http://www.flickr.com/search/groups/?w=34427469792@N01&amp;amp;q=&quot;&gt;FlickrCentral discussions&lt;/a&gt;, &lt;a href=&quot;http://www.flickr.com/search/groups/?q=&quot;&gt;group search&lt;/a&gt;) before posting a new topic.
+
+- Photos added to group discussions must be of &amp;quot;small&amp;quot; size, or smaller.
+
+- Photos added to the group pool must be 'Kid Friendly' and 'Safe For Workplaces'.
+
+- &lt;b&gt;If you wish to say 'Hello!':&lt;/b&gt;
+Please do not create threads to introduce yourself, or to ask for views, comments or votes &lt;b&gt;(this includes any 'game' threads for this purpose too)&lt;/b&gt;, but instead look at the following threads and post there:
+&lt;a href=&quot;http://www.flickr.com/groups/central/discuss/72157627531743181//lastpage&quot;&gt;Introduce Yourself&lt;/a&gt;.
+&lt;a href=&quot;http://www.flickr.com/groups/central/discuss/72157627531749025/lastpage&quot;&gt;Announce a New Group&lt;/a&gt;.
+&lt;a href=&quot;http://www.flickr.com/groups/central/discuss/72157605807256126/&quot;&gt;Suggest content for the FlickrBlog&lt;/a&gt;.
+&lt;a href=&quot;http://www.flickr.com/groups/central/discuss/98246/&quot;&gt;Announce exhibits and shows featuring flickr members&lt;/a&gt;.
+
+To clarify - if you start a thread that includes your own image as a means to promote traffic, or even that encourages traffic as a byproduct, it will be deleted. If your thread cannot stand on it's own without an image from your stream being included, then it is sufficiently self-promotional to fall foul of this rule. By all means discuss all things photography, but the discussion itself should be of more importance than using an image to demonstrate it.
+</rules>
+	<members>278047</members>
+	<pool_count>10049968</pool_count>
+	<topic_count>12621</topic_count>
+	<privacy>3</privacy>
+	<roles member="Member" moderator="Moderator" admin="Admin" />
+	<blast date_blast_added="1462893360" user_id="7698">Submission rate to the FlickrCentral pool has been restored to its former 1 per day limit. The total number of pictures in the pool is controlled by a bot, and older images (but not the oldest) are removed to make room for newer stuff. </blast>
+	<throttle count="1" mode="day" remaining="1" />
+	<restrictions photos_ok="1" videos_ok="1" images_ok="1" screens_ok="1" art_ok="1" safe_ok="1" moderate_ok="0" restricted_ok="0" has_geo="0" />
+</group>
+</rsp>

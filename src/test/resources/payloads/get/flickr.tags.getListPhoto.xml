@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photo id="5628095432">
+	<tags>
+		<tag id="24541304-5628095432-586" author="24573443@N04" authorname="boncey_test" raw="green" machine_tag="0">green</tag>
+		<tag id="24541304-5628095432-457575" author="24573443@N04" authorname="boncey_test" raw="grn" machine_tag="0">grn</tag>
+		<tag id="24541304-5628095432-18041086" author="24573443@N04" authorname="boncey_test" raw="grngrn" machine_tag="0">grngrn</tag>
+	</tags>
+</photo>
+</rsp>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<method name="flickr.interestingness.getList" needslogin="0" needssigning="0" requiredperms="0">
+	<description>Returns the list of interesting photos for the most recent day or a user-specified date.</description>
+</method>
+<arguments>
+	<argument name="api_key" optional="0">Your API application key. &lt;a href=&quot;/services/api/misc.api_keys.html&quot;&gt;See here&lt;/a&gt; for more details.</argument>
+	<argument name="date" optional="1">A specific date, formatted as YYYY-MM-DD, to return interesting photos for.</argument>
+	<argument name="extras" optional="1">A comma-delimited list of extra information to fetch for each returned record. Currently supported fields are: &lt;code&gt;description&lt;/code&gt;, &lt;code&gt;license&lt;/code&gt;, &lt;code&gt;date_upload&lt;/code&gt;, &lt;code&gt;date_taken&lt;/code&gt;, &lt;code&gt;owner_name&lt;/code&gt;, &lt;code&gt;icon_server&lt;/code&gt;, &lt;code&gt;original_format&lt;/code&gt;, &lt;code&gt;last_update&lt;/code&gt;, &lt;code&gt;geo&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;, &lt;code&gt;machine_tags&lt;/code&gt;, &lt;code&gt;o_dims&lt;/code&gt;, &lt;code&gt;views&lt;/code&gt;, &lt;code&gt;media&lt;/code&gt;, &lt;code&gt;path_alias&lt;/code&gt;, &lt;code&gt;url_sq&lt;/code&gt;, &lt;code&gt;url_t&lt;/code&gt;, &lt;code&gt;url_s&lt;/code&gt;, &lt;code&gt;url_q&lt;/code&gt;, &lt;code&gt;url_m&lt;/code&gt;, &lt;code&gt;url_n&lt;/code&gt;, &lt;code&gt;url_z&lt;/code&gt;, &lt;code&gt;url_c&lt;/code&gt;, &lt;code&gt;url_l&lt;/code&gt;, &lt;code&gt;url_o&lt;/code&gt;</argument>
+	<argument name="per_page" optional="1">Number of photos to return per page. If this argument is omitted, it defaults to 100. The maximum allowed value is 500.</argument>
+	<argument name="page" optional="1">The page of results to return. If this argument is omitted, it defaults to 1.</argument>
+</arguments>
+<errors>
+	<error code="1" message="Not a valid date string.">The date string passed did not validate. All dates must be formatted : YYYY-MM-DD</error>
+	<error code="100" message="Invalid API Key">The API key passed was not valid or has expired.</error>
+	<error code="105" message="Service currently unavailable">The requested service is temporarily unavailable.</error>
+	<error code="106" message="Write operation failed">The requested operation failed due to a temporary issue.</error>
+	<error code="111" message="Format &quot;xxx&quot; not found">The requested response format was not found.</error>
+	<error code="112" message="Method &quot;xxx&quot; not found">The requested method was not found.</error>
+	<error code="114" message="Invalid SOAP envelope">The SOAP envelope send in the request could not be parsed.</error>
+	<error code="115" message="Invalid XML-RPC Method Call">The XML-RPC request document could not be parsed.</error>
+	<error code="116" message="Bad URL found">One or more arguments contained a URL that has been used for abuse on Flickr.</error>
+</errors>
+</rsp>

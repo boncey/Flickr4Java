@@ -52,3 +52,6 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 
 Flickr4Java is now available on Maven Central so the above settings should be all you need (it used to only be available on [JCenter](https://bintray.com/bintray/jcenter).
 
+### Testing
+The tests now run against captured responses from Flickr (see `src/test/resources/payloads`) and don't contact the Flickr API at all.  
+This means there is no longer any need to create a test account and populate a properties file.

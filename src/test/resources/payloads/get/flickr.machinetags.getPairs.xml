@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<pairs namespace="ceramics" page="1" total="14" perpage="100" pages="1">
+	<pair namespace="ceramics" predicate="artist" usage="191">ceramics:artist</pair>
+	<pair namespace="ceramics" predicate="date" usage="177">ceramics:date</pair>
+	<pair namespace="ceramics" predicate="dateadded" usage="44">ceramics:dateadded</pair>
+	<pair namespace="ceramics" predicate="depth" usage="124">ceramics:depth</pair>
+	<pair namespace="ceramics" predicate="glazing" usage="190">ceramics:glazing</pair>
+	<pair namespace="ceramics" predicate="height" usage="132">ceramics:height</pair>
+	<pair namespace="ceramics" predicate="length" usage="4">ceramics:length</pair>
+	<pair namespace="ceramics" predicate="material" usage="246">ceramics:material</pair>
+	<pair namespace="ceramics" predicate="object_type" usage="210">ceramics:object_type</pair>
+	<pair namespace="ceramics" predicate="series_title" usage="15">ceramics:series_title</pair>
+	<pair namespace="ceramics" predicate="technique" usage="205">ceramics:technique</pair>
+	<pair namespace="ceramics" predicate="temperature" usage="189">ceramics:temperature</pair>
+	<pair namespace="ceramics" predicate="title" usage="185">ceramics:title</pair>
+	<pair namespace="ceramics" predicate="width" usage="108">ceramics:width</pair>
+</pairs>
+</rsp>

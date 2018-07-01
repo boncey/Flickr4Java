@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<namespaces predicate="collection" page="1" total="16" perpage="100" pages="1">
+	<namespace usage="154" predicates="1">cameratoss</namespace>
+	<namespace usage="1" predicates="1">camertoss</namespace>
+	<namespace usage="57" predicates="1">commons</namespace>
+	<namespace usage="21" predicates="1">content</namespace>
+	<namespace usage="3" predicates="1">diptych</namespace>
+	<namespace usage="5" predicates="1">experimentcameratoss</namespace>
+	<namespace usage="243" predicates="1">fc</namespace>
+	<namespace usage="21" predicates="1">getty</namespace>
+	<namespace usage="1" predicates="1">gravitygroup</namespace>
+	<namespace usage="1" predicates="1">image</namespace>
+	<namespace usage="1" predicates="1">jds</namespace>
+	<namespace usage="17" predicates="1">jp2br</namespace>
+	<namespace usage="2" predicates="1">labels</namespace>
+	<namespace usage="18" predicates="1">pfo</namespace>
+	<namespace usage="58" predicates="1">thegardens</namespace>
+	<namespace usage="136" predicates="1">wrh</namespace>
+</namespaces>
+</rsp>

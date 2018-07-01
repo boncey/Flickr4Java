@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<collection id="24541304-72157634925166197" child_count="2" datecreate="1375638190" iconlarge="https://farm6.staticflickr.com/5329/cols/72157634925166197_c0e27e6066_l.jpg" iconsmall="https://farm6.staticflickr.com/5329/cols/72157634925166197_c0e27e6066_s.jpg" server="5329" secret="c0e27e6066">
+	<title>test</title>
+	<description>test description</description>
+	<iconphotos>
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+		<photo id="5628095432" owner="24573443@N04" secret="678f9b91c1" server="5150" farm="6" title="Robot" ispublic="1" isfriend="0" isfamily="0" />
+	</iconphotos>
+</collection>
+</rsp>

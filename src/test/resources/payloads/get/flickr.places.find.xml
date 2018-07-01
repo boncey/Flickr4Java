@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<places query="Alabama" total="6">
+	<place place_id="KSb302RTUb74OxqL" woeid="2347559" latitude="32.614" longitude="-86.680" place_url="/United+States/Alabama" place_type="region" place_type_id="8" timezone="America/Chicago" woe_name="Alabama">Alabama, United States</place>
+	<place place_id="D_36GGlTUb8R9C_Y" woeid="2352520" latitude="43.081" longitude="-78.388" place_url="/United+States/New+York" place_type="locality" place_type_id="7" timezone="America/New_York" woe_name="Alabama">Alabama, United States</place>
+	<place place_id="3BCBV2pQV70Ei4_4" woeid="1579389" latitude="-26.871" longitude="26.597" place_url="/South+Africa/North-West/Alabama" place_type="locality" place_type_id="7" timezone="Africa/Johannesburg" woe_name="Alabama">Alabama, North-West, South Africa</place>
+	<place place_id="k20w5pRUVLu71ul08A" woeid="56195625" latitude="26.587" longitude="-81.659" place_url="/United+States/Florida/Lehigh+Acres/Alabama" place_type="neighbourhood" place_type_id="22" timezone="America/New_York" woe_name="Alabama">Alabama, Lehigh Acres, FL, United States</place>
+	<place place_id="q5U9DitXVLk30Wo" woeid="663363" latitude="49.055" longitude="9.244" place_url="/Germany/Baden-Wurttemberg/Ilsfeld" place_type="locality" place_type_id="7" timezone="Europe/Berlin" woe_name="Ilsfeld">Ilsfeld, Baden-Wurttemberg, Germany</place>
+	<place place_id="WQUosZ9WULvQhbk" woeid="721682" latitude="44.053" longitude="12.569" place_url="/Italy/Emilia+Romagna/Rimini" place_type="locality" place_type_id="7" timezone="Europe/Rome" woe_name="Rimini">Rimini, Emilia Romagna, Italy</place>
+</places>
+</rsp>

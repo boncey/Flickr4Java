@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<predicates namespace="all" page="1" total="9" perpage="100" pages="1">
+	<predicate usage="18440" namespaces="1">age</predicate>
+	<predicate usage="436045" namespaces="1">all</predicate>
+	<predicate usage="51406" namespaces="1">flickrprivacy</predicate>
+	<predicate usage="54745" namespaces="1">flickrsafesearch</predicate>
+	<predicate usage="10774" namespaces="1">groups</predicate>
+	<predicate usage="212549" namespaces="1">location</predicate>
+	<predicate usage="2265" namespaces="1">projects</predicate>
+	<predicate usage="28615" namespaces="1">realestate</predicate>
+	<predicate usage="1183" namespaces="1">synonyms</predicate>
+</predicates>
+</rsp>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<user id="24573443@N04" ispro="0">
+	<username>boncey_test</username>
+	<bandwidth max="2147483648" used="0" maxbytes="214748364800" usedbytes="0" remainingbytes="214748364800" maxkb="209715200" usedkb="0" remainingkb="209715200" unlimited="1" />
+	<filesize max="209715200" maxbytes="209715200" maxkb="204800" maxmb="200" />
+	<sets created="4" remaining="lots" />
+	<videosize maxbytes="1073741824" maxkb="1048576" maxmb="1024" />
+	<videos uploaded="0" remaining="lots" />
+</user>
+</rsp>

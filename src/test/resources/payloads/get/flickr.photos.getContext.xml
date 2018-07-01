@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<count>227</count>
+<prevphoto id="4169948514" owner="24573443@N04" secret="2a0ba239ca" server="2723" farm="3" title="river" url="/photos/boncey_test/4169948514/in/photostream/" thumb="https://farm3.staticflickr.com/2723/4169948514_2a0ba239ca_s.jpg" license="0" media="photo" is_faved="0" />
+<nextphoto id="5628111146" owner="24573443@N04" secret="52ea7d2a14" server="5308" farm="6" title="iMac" url="/photos/boncey_test/5628111146/in/photostream/" thumb="https://farm6.staticflickr.com/5308/5628111146_52ea7d2a14_s.jpg" license="0" media="photo" is_faved="0" />
+</rsp>

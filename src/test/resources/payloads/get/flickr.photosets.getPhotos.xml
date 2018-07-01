@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photoset id="72157629121093621" primary="5628122182" owner="24573443@N04" ownername="boncey_test" page="1" per_page="10" perpage="10" pages="1" title="test" total="9">
+	<photo id="5628122182" secret="a329333ebb" server="5264" farm="6" title="Mexican food" isprimary="1" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="0ec3a55cd5" originalformat="jpg" />
+	<photo id="5628119818" secret="da208d5f47" server="5265" farm="6" title="Too many tags" isprimary="0" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="20323dfa48" originalformat="jpg" />
+	<photo id="5628111146" secret="52ea7d2a14" server="5308" farm="6" title="iMac" isprimary="0" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="d9b137a53c" originalformat="jpg" />
+	<photo id="5628095432" secret="678f9b91c1" server="5150" farm="6" title="Robot" isprimary="0" ispublic="1" isfriend="0" isfamily="0" ownername="boncey_test" originalsecret="815e3b9f27" originalformat="jpg" />
+	<photo id="4169948514" secret="2a0ba239ca" server="2723" farm="3" title="river" isprimary="0" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="281c1fe62d" originalformat="jpg" />
+	<photo id="4169184625" secret="0e43b49e72" server="2533" farm="3" title="football" isprimary="0" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="191410bf6e" originalformat="jpg" />
+	<photo id="4169947784" secret="ffb183f893" server="2767" farm="3" title="bike" isprimary="0" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="eb3dbe27bc" originalformat="jpg" />
+	<photo id="4166860585" secret="a9a1734747" server="2709" farm="3" title="_ICT0056" isprimary="0" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="a6eff571a9" originalformat="jpg" />
+	<photo id="4166860451" secret="1fc90ecdbd" server="2735" farm="3" title="_ICT0037" isprimary="0" ispublic="0" isfriend="1" isfamily="0" ownername="boncey_test" originalsecret="82342eba56" originalformat="jpg" />
+</photoset>
+</rsp>

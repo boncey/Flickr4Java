@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<clusters source="api" total="4">
+	<cluster total="14">
+		<tag>fiori</tag>
+		<tag>macro</tag>
+		<tag>insetti</tag>
+		<tag>flowers</tag>
+		<tag>natura</tag>
+		<tag>nature</tag>
+		<tag>insects</tag>
+		<tag>nikon</tag>
+		<tag>animali</tag>
+		<tag>primavera</tag>
+		<tag>spring</tag>
+		<tag>closeup</tag>
+		<tag>canon</tag>
+		<tag>estate</tag>
+	</cluster>
+	<cluster total="2">
+		<tag>verde</tag>
+		<tag>green</tag>
+	</cluster>
+	<cluster total="15">
+		<tag>bee</tag>
+		<tag>ape</tag>
+		<tag>bees</tag>
+		<tag>flower</tag>
+		<tag>fiore</tag>
+		<tag>insect</tag>
+		<tag>italy</tag>
+		<tag>yellow</tag>
+		<tag>giallo</tag>
+		<tag>miele</tag>
+		<tag>honey</tag>
+		<tag>italia</tag>
+		<tag>insetto</tag>
+		<tag>girasole</tag>
+		<tag>sunflower</tag>
+	</cluster>
+	<cluster total="3">
+		<tag>flickr</tag>
+		<tag>screenshot</tag>
+		<tag>flickrapi</tag>
+	</cluster>
+</clusters>
+</rsp>

@@ -53,15 +53,6 @@ public class InterestingnessInterfaceTest extends Flickr4JavaTest {
                 // System.out.println(photo.getId() + " " + photo.getGeoData() + " " + photo.getUrl());
             }
         }
-
-        // date in the far future
-        try {
-            list = ii.getList("2030-01-01", null, 100, 3);
-            fail("Expected exception not thrown");
-        } catch (FlickrException e) {
-            // everything ok. we expect that
-        }
-
     }
 
     /*

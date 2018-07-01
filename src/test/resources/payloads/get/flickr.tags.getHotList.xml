@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<hottags period="day" count="20">
+	<tag score="100">feb23</tag>
+	<tag score="97">whitenight</tag>
+	<tag score="95">whitenightmelbourne</tag>
+	<tag score="94">farligt</tag>
+	<tag score="93">avstand</tag>
+	<tag score="92">facedowntuesday</tag>
+	<tag score="90">encuentros</tag>
+	<tag score="90">whenigrowup</tag>
+	<tag score="90">dp3merrill</tag>
+	<tag score="90">whitenightmelb</tag>
+	<tag score="84">fdt</tag>
+	<tag score="83">northplatterealestate</tag>
+	<tag score="82">fencefriday</tag>
+	<tag score="82">benchmonday</tag>
+	<tag score="82">genomskinlig</tag>
+	<tag score="81">myvalentine</tag>
+	<tag score="79">tva</tag>
+	<tag score="78">dp3</tag>
+	<tag score="76">happyvalentines</tag>
+	<tag score="75">leicammonochrom</tag>
+</hottags>
+</rsp>

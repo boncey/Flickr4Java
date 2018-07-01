@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<location place_id="7.MJR8tTVrIO1EgB" woeid="2487956" latitude="37.747" longitude="-122.439" place_url="/United+States/California/San+Francisco" place_type="locality" place_type_id="7" timezone="America/Los_Angeles" name="San Francisco, California, United States" woe_name="San Francisco">
+	<locality place_id="7.MJR8tTVrIO1EgB" woeid="2487956" latitude="37.747" longitude="-122.439" place_url="/United+States/California/San+Francisco">San Francisco, California, United States</locality>
+	<county place_id=".7sOmlRQUL9nK.kMzA" woeid="12587707" latitude="37.767" longitude="-122.443" place_url="/.7sOmlRQUL9nK.kMzA">San Francisco County, California, United States</county>
+	<region place_id="NsbUWfBTUb4mbyVu" woeid="2347563" latitude="37.271" longitude="-119.270" place_url="/United+States/California">California, United States</region>
+	<country place_id="nz.gsghTUb4c2WAecA" woeid="23424977" latitude="37.167" longitude="-95.845" place_url="/United+States">United States</country>
+</location>
+</rsp>

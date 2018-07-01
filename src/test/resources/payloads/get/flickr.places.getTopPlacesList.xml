@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<places total="1" date_start="1530230400" date_stop="1530316799">
+	<place place_id="nz.gsghTUb4c2WAecA" woeid="23424977" latitude="37.167" longitude="-95.845" place_url="/United+States" place_type="country" place_type_id="12" woe_name="United States" photo_count="408">United States</place>
+</places>
+</rsp>

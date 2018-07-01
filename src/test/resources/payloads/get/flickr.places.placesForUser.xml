@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<places total="2">
+	<place place_id="2eIY2QFTVr_DwWZNLg" woeid="24554868" latitude="52.883" longitude="-1.974" place_url="/United+Kingdom/England" place_type="region" place_type_id="8" timezone="Europe/London" woe_name="England" photo_count="2">England, GB, United Kingdom</place>
+	<place place_id="4rwZy6tTUb5CS2j3" woeid="2346951" latitude="23.776" longitude="44.703" place_url="/Saudi+Arabia/Riyadh" place_type="region" place_type_id="8" timezone="Asia/Riyadh" woe_name="Riyadh" photo_count="1">Riyadh, SA, Saudi Arabia</place>
+</places>
+</rsp>

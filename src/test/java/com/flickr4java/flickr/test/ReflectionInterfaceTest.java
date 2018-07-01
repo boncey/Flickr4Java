@@ -75,38 +75,6 @@ public class ReflectionInterfaceTest extends Flickr4JavaTest {
     }
 
     @Test
-    public void testGetMethodInfo_withPerms() throws FlickrException {
-        String methodName = "flickr.photos.addTags";
-        ReflectionInterface reflectionInterface = flickr.getReflectionInterface();
-        Method method = reflectionInterface.getMethodInfo(methodName);
-        assertNotNull(method);
-        assertEquals(methodName, method.getName());
-        assertNotNull(method.getArguments());
-        assertEquals(3, method.getArguments().size());
-
-        assertTrue(method.needsSigning());
-        assertTrue(method.needsLogin());
-        assertEquals(Method.WRITE_PERMISSION, method.getRequiredPerms());
-
-        Collection<Argument> c = method.getArguments();
-        Iterator<Argument> argsIterator = c.iterator();
-
-        Argument api_key = argsIterator.next();
-        assertEquals(Flickr.API_KEY, api_key.getName());
-        assertFalse(api_key.isOptional());
-        assertNotNull(api_key.getDescription());
-
-        Argument photo_id = argsIterator.next();
-        assertEquals("photo_id", photo_id.getName());
-        assertFalse(photo_id.isOptional());
-
-        Argument tags = argsIterator.next();
-        assertEquals("tags", tags.getName());
-        assertFalse(tags.isOptional());
-
-    }
-
-    @Test
     public void testGetMethods() throws FlickrException {
         ReflectionInterface reflectionInterface = flickr.getReflectionInterface();
         Collection<String> methods = reflectionInterface.getMethods();

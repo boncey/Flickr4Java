@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photo id="5628095432" secret="678f9b91c1" server="5150" farm="6" camera="Canon EOS 20D">
+	<exif tagspace="JFIF" tagspaceid="0" tag="JFIFVersion" label="JFIFVersion">
+		<raw>1.01</raw>
+	</exif>
+	<exif tagspace="JFIF" tagspaceid="0" tag="ResolutionUnit" label="Resolution Unit">
+		<raw>inches</raw>
+	</exif>
+	<exif tagspace="JFIF" tagspaceid="0" tag="XResolution" label="X-Resolution">
+		<raw>240</raw>
+		<clean>240 dpi</clean>
+	</exif>
+	<exif tagspace="JFIF" tagspaceid="0" tag="YResolution" label="Y-Resolution">
+		<raw>240</raw>
+		<clean>240 dpi</clean>
+	</exif>
+	<exif tagspace="Photoshop" tagspaceid="0" tag="DisplayedUnitsX" label="Displayed Units X">
+		<raw>inches</raw>
+	</exif>
+	<exif tagspace="Photoshop" tagspaceid="0" tag="DisplayedUnitsY" label="Displayed Units Y">
+		<raw>inches</raw>
+	</exif>
+	<exif tagspace="Photoshop" tagspaceid="0" tag="PhotoshopThumbnail" label="Photoshop Thumbnail">
+		<raw>(Binary data 9083 bytes, use -b option to extract)</raw>
+	</exif>
+	<exif tagspace="Photoshop" tagspaceid="0" tag="IPTCDigest" label="IPTCDigest">
+		<raw>6ec563ec53e8134661386ad9612f591b</raw>
+	</exif>
+	<exif tagspace="IPTC" tagspaceid="0" tag="ApplicationRecordVersion" label="Application Record Version">
+		<raw>2</raw>
+	</exif>
+	<exif tagspace="IPTC" tagspaceid="0" tag="By-line" label="By-line">
+		<raw>Darren Greaves</raw>
+	</exif>
+	<exif tagspace="IFD0" tagspaceid="0" tag="Make" label="Make">
+		<raw>Canon</raw>
+	</exif>
+	<exif tagspace="IFD0" tagspaceid="0" tag="Model" label="Model">
+		<raw>Canon EOS 20D</raw>
+	</exif>
+	<exif tagspace="IFD0" tagspaceid="0" tag="ResolutionUnit" label="Resolution Unit">
+		<raw>inches</raw>
+	</exif>
+	<exif tagspace="IFD0" tagspaceid="0" tag="ModifyDate" label="Date and Time (Modified)">
+		<raw>2011:04:03 11:47:32</raw>
+	</exif>
+	<exif tagspace="IFD0" tagspaceid="0" tag="Artist" label="Artist">
+		<raw>Darren Greaves</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="ExposureTime" label="Exposure">
+		<raw>1/60</raw>
+		<clean>0.017 sec (1/60)</clean>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="FNumber" label="Aperture">
+		<raw>4.0</raw>
+		<clean>f/4.0</clean>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="ExposureProgram" label="Exposure Program">
+		<raw>Aperture-priority AE</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="ISO" label="ISO Speed">
+		<raw>400</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="ExifVersion" label="Exif Version">
+		<raw>0221</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="DateTimeOriginal" label="Date and Time (Original)">
+		<raw>2011:04:02 18:55:46</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="CreateDate" label="Date and Time (Digitized)">
+		<raw>2011:04:02 18:55:46</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="ExposureCompensation" label="Exposure Bias">
+		<raw>0</raw>
+		<clean>0 EV</clean>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="MaxApertureValue" label="Max Aperture Value">
+		<raw>1.8</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="MeteringMode" label="Metering Mode">
+		<raw>Multi-segment</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="Flash" label="Flash">
+		<raw>Off, Did not fire</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="FocalLength" label="Focal Length">
+		<raw>28.0 mm</raw>
+		<clean>28 mm</clean>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="ImageNumber" label="Image Number">
+		<raw>212</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="FocalPlaneXResolution" label="Focal Plane X-Resolution">
+		<raw>3959.322034</raw>
+		<clean>3959.32203389831 dpi</clean>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="FocalPlaneYResolution" label="Focal Plane Y-Resolution">
+		<raw>3959.322034</raw>
+		<clean>3959.32203389831 dpi</clean>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="FocalPlaneResolutionUnit" label="Focal Plane Resolution Unit">
+		<raw>inches</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="CustomRendered" label="Custom Rendered">
+		<raw>Normal</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="ExposureMode" label="Exposure Mode">
+		<raw>Auto</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="WhiteBalance" label="White Balance">
+		<raw>Auto</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="SceneCaptureType" label="Scene Capture Type">
+		<raw>Standard</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="Contrast" label="Contrast">
+		<raw>High</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="Saturation" label="Saturation">
+		<raw>Normal</raw>
+	</exif>
+	<exif tagspace="ExifIFD" tagspaceid="0" tag="Sharpness" label="Sharpness">
+		<raw>Hard</raw>
+	</exif>
+	<exif tagspace="IFD1" tagspaceid="0" tag="Compression" label="Compression">
+		<raw>JPEG (old-style)</raw>
+	</exif>
+	<exif tagspace="IFD1" tagspaceid="0" tag="ResolutionUnit" label="Resolution Unit">
+		<raw>inches</raw>
+	</exif>
+	<exif tagspace="IFD1" tagspaceid="0" tag="ThumbnailOffset" label="Thumbnail Offset">
+		<raw>9984</raw>
+	</exif>
+	<exif tagspace="IFD1" tagspaceid="0" tag="ThumbnailLength" label="Thumbnail Length">
+		<raw>9083</raw>
+	</exif>
+	<exif tagspace="XMP-x" tagspaceid="0" tag="XMPToolkit" label="XMPToolkit">
+		<raw>Image::ExifTool 8.15</raw>
+	</exif>
+	<exif tagspace="XMP-aux" tagspaceid="0" tag="Firmware" label="Firmware">
+		<raw>1.1.0</raw>
+	</exif>
+	<exif tagspace="XMP-aux" tagspaceid="0" tag="FlashCompensation" label="Flash Compensation">
+		<raw>0</raw>
+	</exif>
+	<exif tagspace="XMP-aux" tagspaceid="0" tag="ImageNumber" label="Image Number">
+		<raw>212</raw>
+	</exif>
+	<exif tagspace="XMP-aux" tagspaceid="0" tag="Lens" label="Lens">
+		<raw>28.0 mm</raw>
+	</exif>
+	<exif tagspace="XMP-aux" tagspaceid="0" tag="LensID" label="Lens ID">
+		<raw>65535</raw>
+	</exif>
+	<exif tagspace="XMP-aux" tagspaceid="0" tag="OwnerName" label="Owner Name">
+		<raw>Darren Greaves</raw>
+	</exif>
+	<exif tagspace="XMP-dc" tagspaceid="0" tag="Creator" label="Creator">
+		<raw>Darren Greaves</raw>
+	</exif>
+	<exif tagspace="XMP-photoshop" tagspaceid="0" tag="LegacyIPTCDigest" label="Legacy IPTCDigest">
+		<raw>6EC563EC53E8134661386AD9612F591B</raw>
+	</exif>
+	<exif tagspace="XMP-tiff" tagspaceid="0" tag="BitsPerSample" label="Bits Per Sample">
+		<raw>8</raw>
+	</exif>
+	<exif tagspace="XMP-tiff" tagspaceid="0" tag="Compression" label="Compression">
+		<raw>JPEG (old-style)</raw>
+	</exif>
+	<exif tagspace="XMP-tiff" tagspaceid="0" tag="Make" label="Make">
+		<raw>Canon</raw>
+	</exif>
+	<exif tagspace="XMP-tiff" tagspaceid="0" tag="Model" label="Model">
+		<raw>Canon EOS 20D</raw>
+	</exif>
+	<exif tagspace="XMP-tiff" tagspaceid="0" tag="ResolutionUnit" label="Resolution Unit">
+		<raw>inches</raw>
+	</exif>
+	<exif tagspace="XMP-tiff" tagspaceid="0" tag="YCbCrSubSampling" label="YCb Cr Sub Sampling">
+		<raw>YCbCr4:4:4 (1 1)</raw>
+	</exif>
+	<exif tagspace="XMP-xmp" tagspaceid="0" tag="Rating" label="Rating">
+		<raw>0</raw>
+	</exif>
+</photo>
+</rsp>

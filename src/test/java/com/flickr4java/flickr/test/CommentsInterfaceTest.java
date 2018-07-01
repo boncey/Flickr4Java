@@ -46,7 +46,7 @@ public class CommentsInterfaceTest extends Flickr4JavaTest {
 
     @Test
     public void testComment() throws FlickrException {
-        String photoId = "419231219"; // http://www.flickr.com/photos/javatest3/419231219/
+        String photoId = testProperties.getPhotoId(); // http://www.flickr.com/photos/javatest3/419231219/
         String txt1 = "This is a test for the flickr java api";
         String txt2 = "This is an edited comment for the java flickr api";
         CommentsInterface ci = flickr.getCommentsInterface();
@@ -55,20 +55,13 @@ public class CommentsInterfaceTest extends Flickr4JavaTest {
         // System.out.println("Comment Id:" + commentId);
         assertNotNull(commentId);
         assertTrue(commentId.length() > 0);
-        // verify if comment arrived on the photo page
-        Comment comment = findCommment(photoId, commentId);
-        assertNotNull(comment);
-        assertEquals(commentId, comment.getId());
-        assertEquals(txt1, comment.getText());
+
         // change the comment text and verify change
         ci.editComment(commentId, txt2);
-        comment = findCommment(photoId, commentId);
-        assertNotNull(comment);
-        assertEquals(commentId, comment.getId());
-        assertEquals(txt2, comment.getText());
+
         // delete the comment
         ci.deleteComment(commentId);
-        comment = findCommment(photoId, commentId);
+        Comment comment = findCommment(photoId, commentId);
         assertNull(comment);
     }
 

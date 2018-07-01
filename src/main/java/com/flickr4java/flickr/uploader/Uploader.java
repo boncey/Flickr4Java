@@ -36,7 +36,7 @@ import java.util.TreeMap;
  * @author Anthony Eden
  * @version $Id: Uploader.java,v 1.12 2009/12/15 20:57:49 x-mago Exp $
  */
-public class Uploader {
+public class Uploader implements IUploader {
     /**
      * 
      */
@@ -54,15 +54,26 @@ public class Uploader {
 
     /**
      * Construct an Uploader.
-     * 
+     *
      * @param apiKey
      *            The API key
      */
     public Uploader(String apiKey, String sharedSecret) {
+        this(apiKey, sharedSecret, new REST(Transport.UPLOAD_API_HOST));
+        this.transport.setResponseClass(UploaderResponse.class);
+    }
+
+    /**
+     * Construct an Uploader.
+     *
+     * @param apiKey
+     *            The API key
+     * @param transport
+     */
+    public Uploader(String apiKey, String sharedSecret, Transport transport) {
         this.apiKey = apiKey;
         this.sharedSecret = sharedSecret;
-        this.transport = new REST(Transport.UPLOAD_API_HOST);
-        this.transport.setResponseClass(UploaderResponse.class);
+        this.transport = transport;
     }
 
     /**
@@ -75,6 +86,7 @@ public class Uploader {
      * @return photoId or ticketId
      * @throws FlickrException
      */
+    @Override
     public String upload(byte[] data, UploadMetaData metaData) throws FlickrException {
         Map<String, Object> parameters = setUploadParameters(metaData);
         parameters.put("photo", data);
@@ -94,6 +106,7 @@ public class Uploader {
      * @return photoId or ticketId
      * @throws FlickrException
      */
+    @Override
     public String upload(File file, UploadMetaData metaData) throws FlickrException {
         InputStream in = null;
 
@@ -115,6 +128,7 @@ public class Uploader {
      * @return photoId or ticketId
      * @throws FlickrException
      */
+    @Override
     public String upload(InputStream in, UploadMetaData metaData) throws FlickrException {
         Map<String, Object> parameters = setUploadParameters(metaData);
         parameters.put("photo", in);
@@ -131,6 +145,7 @@ public class Uploader {
      * @return photoId or ticketId
      * @throws FlickrException
      */
+    @Override
     public String replace(InputStream in, String flickrId, boolean async) throws FlickrException {
         Map<String, Object> parameters = setReplaceParameters(flickrId, async);
         parameters.put("photo", in);
@@ -149,6 +164,7 @@ public class Uploader {
      * @return photoId or ticketId
      * @throws FlickrException
      */
+    @Override
     public String replace(byte[] data, String flickrId, boolean async) throws FlickrException {
         Map<String, Object> parameters = setReplaceParameters(flickrId, async);
 
@@ -168,6 +184,7 @@ public class Uploader {
      * @return photoId or ticketId
      * @throws FlickrException
      */
+    @Override
     public String replace(File file, String flickrId, boolean async) throws FlickrException {
         InputStream in = null;
 

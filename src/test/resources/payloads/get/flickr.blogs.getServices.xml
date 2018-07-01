@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<services>
+	<service id="beta.blogger.com">Blogger</service>
+	<service id="LiveJournal">LiveJournal</service>
+	<service id="MetaWeblogAPI">Wordpress</service>
+	<service id="BloggerAPI">BloggerAPI</service>
+	<service id="Twitter">Twitter</service>
+</services>
+</rsp>

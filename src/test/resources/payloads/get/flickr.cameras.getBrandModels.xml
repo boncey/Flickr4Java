@@ -1,0 +1,2487 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<cameras brand="canon">
+	<camera id="eos_5d_mark_iii">
+		<name>Canon EOS 5D Mark III</name>
+		<details>
+			<megapixels>22.3</megapixels>
+			<lcd_screen_size>3.2</lcd_screen_size>
+			<memory_type>CompactFlash, Secure Digital, SDHC, SDXC</memory_type>
+		</details>
+		<images>
+			<small>https://farm8.staticflickr.com/7184/cameras/72157622292089908_model_small_99bff53988.jpg</small>
+			<large>https://farm8.staticflickr.com/7184/cameras/72157622292089908_model_large_497d3698ba.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_6d">
+		<name>Canon EOS 6D</name>
+		<details>
+			<megapixels>20.2</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8083/cameras/72157607012320362_model_small_aa23f6b999.jpg</small>
+			<large>https://farm9.staticflickr.com/8083/cameras/72157607012320362_model_large_ceb47a4e39.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_5d_mark_ii">
+		<name>Canon EOS 5D Mark II</name>
+		<details>
+			<megapixels>21.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3154/cameras/72157607348761901_model_small_a874952616.jpg</small>
+			<large>https://farm4.staticflickr.com/3154/cameras/72157607348761901_model_large_97198e11ef.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_7d_mark_ii">
+		<name>Canon EOS 7D MARK II</name>
+		<images>
+			<small>https://farm8.staticflickr.com/7467/cameras/72157644861391679_model_small_68f69eec3f.jpg</small>
+			<large>https://farm8.staticflickr.com/7467/cameras/72157644861391679_model_large_12fcf1403e.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_5d_mark_iv">
+		<name>CANON EOS 5D MARK IV</name>
+	</camera>
+	<camera id="eos_70d">
+		<name>Canon EOS 70D</name>
+		<details>
+			<megapixels>20.2</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm8.staticflickr.com/7440/cameras/72157633273873695_model_small_e17b51707b.jpg</small>
+			<large>https://farm8.staticflickr.com/7440/cameras/72157633273873695_model_large_0ac43738dc.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t3i">
+		<name>Canon EOS REBEL T3i</name>
+		<details>
+			<megapixels>18</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5035/cameras/72157625858229685_model_small_82002d6bd6.jpg</small>
+			<large>https://farm6.staticflickr.com/5035/cameras/72157625858229685_model_large_7c02ddbfe1.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_7d">
+		<name>Canon EOS 7D</name>
+		<details>
+			<megapixels>18</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3487/cameras/72157602280763141_model_small_d6e5af0712.jpg</small>
+			<large>https://farm4.staticflickr.com/3487/cameras/72157602280763141_model_large_1f77f7e0f2.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_80d">
+		<name>Canon EOS 80D</name>
+		<images>
+			<small>https://farm8.staticflickr.com/7021/cameras/72157664130845639_model_small_0888c8b51d.jpg</small>
+			<large>https://farm8.staticflickr.com/7021/cameras/72157664130845639_model_large_4404988642.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_60d">
+		<name>Canon EOS 60D</name>
+		<details>
+			<megapixels>18</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, SDXC</memory_type>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5249/cameras/72157624493316109_model_small_93c8e25107.jpg</small>
+			<large>https://farm6.staticflickr.com/5249/cameras/72157624493316109_model_large_c07377e8d4.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_700d">
+		<name>Canon EOS 700D</name>
+		<images>
+			<small>https://farm4.staticflickr.com/3828/cameras/72157632461630521_model_small_7db5f3e1ea.jpg</small>
+			<large>https://farm4.staticflickr.com/3828/cameras/72157632461630521_model_large_ebdc3e28a2.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_750d">
+		<name>Canon EOS 750D</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5746/cameras/72157632205837729_model_small_42e58fa967.jpg</small>
+			<large>https://farm6.staticflickr.com/5746/cameras/72157632205837729_model_large_8cb7ba6c52.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t2i">
+		<name>Canon EOS REBEL T2i</name>
+		<details>
+			<megapixels>18</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>SDXC, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3369/cameras/72157623502347808_model_small_d6f54d07c8.jpg</small>
+			<large>https://farm4.staticflickr.com/3369/cameras/72157623502347808_model_large_692b09d10c.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t3">
+		<name>Canon EOS REBEL T3</name>
+		<details>
+			<megapixels>12.2</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+			<memory_type>SDHC Memory Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5280/cameras/72157625983689520_model_small_fbd9eb7715.jpg</small>
+			<large>https://farm6.staticflickr.com/5280/cameras/72157625983689520_model_large_f244f70fb6.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t6">
+		<name>Canon EOS Rebel T6</name>
+		<images>
+			<small>https://farm5.staticflickr.com/4762/cameras/72157665871654952_model_small_3fb73b6dcf.jpg</small>
+			<large>https://farm5.staticflickr.com/4762/cameras/72157665871654952_model_large_fe071c3051.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t5i">
+		<name>Canon EOS REBEL T5i</name>
+		<details>
+			<megapixels>18</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, SDXC</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2854/cameras/72157633291340568_model_small_a29265b941.jpg</small>
+			<large>https://farm3.staticflickr.com/2854/cameras/72157633291340568_model_large_6aa43d9736.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t5">
+		<name>Canon EOS REBEL T5</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm8.staticflickr.com/7531/cameras/72157642353970835_model_small_b3f1ecb638.jpg</small>
+			<large>https://farm8.staticflickr.com/7531/cameras/72157642353970835_model_large_359a3f62ee.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_6d_mark_ii">
+		<name>Canon EOS 6D Mark II</name>
+		<images>
+			<small>https://farm1.staticflickr.com/819/cameras/72157662779818774_model_small_b1ed20e0a1.jpg</small>
+			<large>https://farm1.staticflickr.com/819/cameras/72157662779818774_model_large_c2d76f60af.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t1i">
+		<name>Canon EOS REBEL T1i</name>
+		<details>
+			<megapixels>15.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2456/cameras/72157617313528954_model_small_aa0037849d.jpg</small>
+			<large>https://farm3.staticflickr.com/2456/cameras/72157617313528954_model_large_1fd8120fef.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos-1d_x">
+		<name>Canon EOS-1D X</name>
+		<details>
+			<megapixels>18.1</megapixels>
+			<lcd_screen_size>3.2</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8174/cameras/72157629220288179_model_small_4807a929c8.jpg</small>
+			<large>https://farm9.staticflickr.com/8174/cameras/72157629220288179_model_large_9b2a9a4024.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_digital_rebel_xsi">
+		<name>Canon EOS Digital Rebel XSi</name>
+		<details>
+			<megapixels>12.2</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2372/cameras/72157604225656701_model_small_c76252f106.jpg</small>
+			<large>https://farm3.staticflickr.com/2372/cameras/72157604225656701_model_large_dedb412bb3.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_digital_rebel_xti">
+		<name>Canon EOS Digital Rebel XTi</name>
+		<details>
+			<megapixels>1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/119/cameras/68_model_small_201afafc2f.jpg</small>
+			<large>https://farm1.staticflickr.com/119/cameras/68_model_large_5fbbd26c3c.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t4i">
+		<name>Canon EOS REBEL T4i</name>
+		<details>
+			<megapixels>18</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8170/cameras/72157630136654636_model_small_7aa6948e95.jpg</small>
+			<large>https://farm9.staticflickr.com/8170/cameras/72157630136654636_model_large_9f1336ca57.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos-1d_x_mark_ii">
+		<name>Canon EOS-1D X Mark II</name>
+		<images>
+			<small>https://farm8.staticflickr.com/7369/cameras/72157663262267976_model_small_fe1274e6b7.jpg</small>
+			<large>https://farm8.staticflickr.com/7369/cameras/72157663262267976_model_large_a69c5c58dd.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_5d">
+		<name>Canon EOS 5D</name>
+		<details>
+			<megapixels>12.8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/111/cameras/130_model_small_9dbbe5a2b2.jpg</small>
+			<large>https://farm1.staticflickr.com/111/cameras/130_model_large_b8df029b89.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_1200d">
+		<name>Canon EOS 1200D</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5608/cameras/72157640939372033_model_small_c1a3cb597a.jpg</small>
+			<large>https://farm6.staticflickr.com/5608/cameras/72157640939372033_model_large_52555f6708.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_50d">
+		<name>Canon EOS 50D</name>
+		<details>
+			<megapixels>15.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3236/cameras/72157606814096380_model_small_acfeba1dae.jpg</small>
+			<large>https://farm4.staticflickr.com/3236/cameras/72157606814096380_model_large_320ea78949.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_40d">
+		<name>Canon EOS 40D</name>
+		<details>
+			<megapixels>10.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1311/cameras/13483_model_small_bc865d9a17.jpg</small>
+			<large>https://farm2.staticflickr.com/1311/cameras/13483_model_large_9d618a4965.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_digital_rebel_xs">
+		<name>Canon EOS Digital Rebel XS</name>
+		<details>
+			<megapixels>10.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3290/cameras/72157605582107524_model_small_f8c3eacc3e.jpg</small>
+			<large>https://farm4.staticflickr.com/3290/cameras/72157605582107524_model_large_f2dd3c1f2b.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_100d">
+		<name>Canon EOS 100D</name>
+		<images>
+			<small>https://farm1.staticflickr.com/651/cameras/72157623555354732_model_small_4ee35cfeb3.jpg</small>
+			<large>https://farm1.staticflickr.com/651/cameras/72157623555354732_model_large_b5dc69964d.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx60_hs">
+		<name>Canon PowerShot SX60 HS</name>
+		<images>
+			<small>https://farm4.staticflickr.com/3700/cameras/72157647824755152_model_small_e23090b5f4.jpg</small>
+			<large>https://farm4.staticflickr.com/3700/cameras/72157647824755152_model_large_7e7e4f80c6.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t6s">
+		<name>Canon EOS 760D</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5762/cameras/72157651752742028_model_small_299d7bef9a.jpg</small>
+			<large>https://farm6.staticflickr.com/5762/cameras/72157651752742028_model_large_c8b8060b16.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_digital_rebel_xt">
+		<name>Canon EOS Digital Rebel XT</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/110/cameras/31_model_small_7143654004.jpg</small>
+			<large>https://farm1.staticflickr.com/110/cameras/31_model_large_f11b305bdd.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_77d">
+		<name>Canon EOS 77D</name>
+	</camera>
+	<camera id="eos_5ds_r">
+		<name>Canon EOS 5DS R</name>
+		<images>
+			<small>https://farm4.staticflickr.com/3817/cameras/72157650665459092_model_small_70265a1860.jpg</small>
+			<large>https://farm4.staticflickr.com/3817/cameras/72157650665459092_model_large_0272a7ab99.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g7_x_mark_ii">
+		<name>Canon PowerShot G7 X Mark II</name>
+	</camera>
+	<camera id="powershot_sx50_hs">
+		<name>Canon PowerShot SX50 HS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.8</lcd_screen_size>
+			<memory_type>Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8089/cameras/72157631606498503_model_small_e5db6a3484.jpg</small>
+			<large>https://farm9.staticflickr.com/8089/cameras/72157631606498503_model_large_17cd9b1f8e.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_20d">
+		<name>Canon EOS 20D</name>
+		<details>
+			<megapixels>8.3</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/111/cameras/44_model_small_2cb85e48f5.jpg</small>
+			<large>https://farm1.staticflickr.com/111/cameras/44_model_large_eb72aa76ed.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos-1d_mark_iv">
+		<name>Canon EOS-1D Mark IV</name>
+		<details>
+			<megapixels>16.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>SDHC Memory Card, CompactFlash, Secure Digital (SD) Card, Microdrive</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2777/cameras/72157603810225532_model_small_e8a45a1b36.jpg</small>
+			<large>https://farm3.staticflickr.com/2777/cameras/72157603810225532_model_large_9785d9733c.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_sl1">
+		<name>Canon EOS REBEL SL1</name>
+		<images>
+			<small>https://farm4.staticflickr.com/3786/cameras/72157633336811707_model_small_9f40643ac4.jpg</small>
+			<large>https://farm4.staticflickr.com/3786/cameras/72157633336811707_model_large_2d70d20249.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_30d">
+		<name>Canon EOS 30D</name>
+		<details>
+			<megapixels>8.2</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/111/cameras/9_model_small_e4b4d029e2.jpg</small>
+			<large>https://farm1.staticflickr.com/111/cameras/9_model_large_b17d8c82c3.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_1ds_mark_iii">
+		<name>Canon EOS 1Ds Mark III</name>
+		<details>
+			<megapixels>21.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2079/cameras/72157601586629334_model_small_071161b82f.jpg</small>
+			<large>https://farm3.staticflickr.com/2079/cameras/72157601586629334_model_large_9bfa056618.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_5ds">
+		<name>Canon EOS 5Ds</name>
+		<images>
+			<small>https://farm1.staticflickr.com/283/cameras/72157603423041122_model_small_7066489740.jpg</small>
+			<large>https://farm1.staticflickr.com/283/cameras/72157603423041122_model_large_ca4d89355b.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g7_x">
+		<name>Canon PowerShot G7 X</name>
+		<images>
+			<small>https://farm4.staticflickr.com/3676/cameras/72157645338335022_model_small_7ec3d31a3c.jpg</small>
+			<large>https://farm4.staticflickr.com/3676/cameras/72157645338335022_model_large_c815303a07.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx530_hs">
+		<name>Canon PowerShot SX530 HS</name>
+		<images>
+			<small>https://farm8.staticflickr.com/7048/cameras/72157648098386118_model_small_7b16d1c3a6.jpg</small>
+			<large>https://farm8.staticflickr.com/7048/cameras/72157648098386118_model_large_aaf7999ccb.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_m3">
+		<name>Canon EOS M3</name>
+	</camera>
+	<camera id="powershot_sx720_hs">
+		<name>Canon PowerShot SX720 HS</name>
+	</camera>
+	<camera id="eos_m">
+		<name>Canon EOS M</name>
+		<details>
+			<megapixels>18</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm8.staticflickr.com/7421/cameras/72157630734034208_model_small_92bbea491c.jpg</small>
+			<large>https://farm8.staticflickr.com/7421/cameras/72157630734034208_model_large_2a60438278.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx40_hs">
+		<name>Canon PowerShot SX40 HS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm8.staticflickr.com/7157/cameras/72157627707836876_model_small_d58fd3c6ff.jpg</small>
+			<large>https://farm8.staticflickr.com/7157/cameras/72157627707836876_model_large_9edd7fd023.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx710_hs">
+		<name>Canon PowerShot SX710 HS</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5816/cameras/72157649863292917_model_small_4e5f4385ba.jpg</small>
+			<large>https://farm6.staticflickr.com/5816/cameras/72157649863292917_model_large_9af0e169f3.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_rebel_t7i">
+		<name>Canon EOS Rebel T7i</name>
+	</camera>
+	<camera id="powershot_g16">
+		<name>Canon PowerShot G16</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5038/cameras/72157633994515034_model_small_4563648ebb.jpg</small>
+			<large>https://farm6.staticflickr.com/5038/cameras/72157633994515034_model_large_8458a45884.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_digital_rebel">
+		<name>Canon EOS Digital Rebel</name>
+		<details>
+			<megapixels>6.3</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash, Microdrive</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/99/cameras/4_model_small_0d320aed75.jpg</small>
+			<large>https://farm1.staticflickr.com/99/cameras/4_model_large_2a7e545a1e.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_m5">
+		<name>Canon EOS M5</name>
+		<images>
+			<small>https://farm5.staticflickr.com/4520/cameras/72157668584224581_model_small_7ccab5572f.jpg</small>
+			<large>https://farm5.staticflickr.com/4520/cameras/72157668584224581_model_large_fde021b1e9.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g12">
+		<name>Canon PowerShot G12</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.8</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5003/cameras/72157624839718693_model_small_81c526286d.jpg</small>
+			<large>https://farm6.staticflickr.com/5003/cameras/72157624839718693_model_large_b6d975e7d6.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_1d_mark_iii">
+		<name>Canon EOS 1D Mark III</name>
+		<details>
+			<megapixels>10.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/222/cameras/72157600288628059_model_small_4cdfcb3773.jpg</small>
+			<large>https://farm1.staticflickr.com/222/cameras/72157600288628059_model_large_97180e7aa5.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_1ds_mark_ii">
+		<name>Canon EOS 1Ds Mark II</name>
+		<details>
+			<megapixels>16.7</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>CompactFlash, Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/121/cameras/156_model_small_a56b80a67f.jpg</small>
+			<large>https://farm1.staticflickr.com/121/cameras/156_model_large_e6b1f8216a.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd1100_is">
+		<name>Canon PowerShot SD1100 IS</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2186/cameras/72157603983956398_model_small_b6d51a8150.jpg</small>
+			<large>https://farm3.staticflickr.com/2186/cameras/72157603983956398_model_large_c4d1e89f8d.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_m6">
+		<name>Canon EOS M6</name>
+		<images>
+			<small>https://farm5.staticflickr.com/4552/cameras/72157676311863712_model_small_35cc29dfba.jpg</small>
+			<large>https://farm5.staticflickr.com/4552/cameras/72157676311863712_model_large_2a969ea6f8.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g15">
+		<name>Canon PowerShot G15</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8073/cameras/72157631669626016_model_small_b412b6f89a.jpg</small>
+			<large>https://farm9.staticflickr.com/8073/cameras/72157631669626016_model_large_aee995637e.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g10">
+		<name>Canon PowerShot G10</name>
+		<details>
+			<megapixels>14.7</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3226/cameras/72157607254728807_model_small_c7595d237f.jpg</small>
+			<large>https://farm4.staticflickr.com/3226/cameras/72157607254728807_model_large_62ddda0838.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx510_hs">
+		<name>Canon PowerShot SX510 HS</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3720/cameras/72157633170380529_model_small_267d868489.jpg</small>
+			<large>https://farm4.staticflickr.com/3720/cameras/72157633170380529_model_large_1196f12423.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g9">
+		<name>Canon PowerShot G9</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1189/cameras/72157601586583928_model_small_71f71758a6.jpg</small>
+			<large>https://farm2.staticflickr.com/1189/cameras/72157601586583928_model_large_3df7faed63.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx610_hs">
+		<name>Canon PowerShot SX610 HS</name>
+		<images>
+			<small>https://farm8.staticflickr.com/7492/cameras/72157648049359450_model_small_3e6493e3ac.jpg</small>
+			<large>https://farm8.staticflickr.com/7492/cameras/72157648049359450_model_large_bf8a8110d6.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx620_hs">
+		<name>Canon PowerShot SX620 HS</name>
+	</camera>
+	<camera id="powershot_g9_x_mark_ii">
+		<name>Canon PowerShot G9 X Mark II</name>
+	</camera>
+	<camera id="powershot_s5_is">
+		<name>Canon PowerShot S5 IS</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1288/cameras/72157600292972439_model_small_d10462f983.jpg</small>
+			<large>https://farm2.staticflickr.com/1288/cameras/72157600292972439_model_large_33a048b67b.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx520_hs">
+		<name>Canon PowerShot SX520 HS</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/416/cameras/72157646860530030_model_small_c287cae292.jpg</small>
+			<large>https://farm1.staticflickr.com/416/cameras/72157646860530030_model_large_2e679b44dd.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s95">
+		<name>Canon PowerShot S95</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>SD/SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm5.staticflickr.com/4087/cameras/72157624762166562_model_small_fdc8df7c28.jpg</small>
+			<large>https://farm5.staticflickr.com/4087/cameras/72157624762166562_model_large_85e6ab9d4f.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx730_hs">
+		<name>Canon PowerShot SX730 HS</name>
+		<images>
+			<small>https://farm5.staticflickr.com/4527/cameras/72157673805378274_model_small_544878b8ee.jpg</small>
+			<large>https://farm5.staticflickr.com/4527/cameras/72157673805378274_model_large_13e4637fe9.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s3_is">
+		<name>Canon PowerShot S3 IS</name>
+		<details>
+			<megapixels>6</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/103/cameras/115_model_small_ec10d60f7a.jpg</small>
+			<large>https://farm1.staticflickr.com/103/cameras/115_model_large_9ffdcf70bf.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g9_x">
+		<name>Canon PowerShot G9 X</name>
+		<images>
+			<small>https://farm5.staticflickr.com/4569/cameras/72157654193429816_model_small_4ef5d73fbb.jpg</small>
+			<large>https://farm5.staticflickr.com/4569/cameras/72157654193429816_model_large_199f1a72bc.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd1000">
+		<name>Canon PowerShot SD1000</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>SDHC Memory Card, MultiMediaCard, Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/234/cameras/72157600291596369_model_small_9cf1a0b9c6.jpg</small>
+			<large>https://farm1.staticflickr.com/234/cameras/72157600291596369_model_large_9782e6ca80.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx30_is">
+		<name>Canon PowerShot SX30 IS</name>
+		<details>
+			<megapixels>14.1</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5249/cameras/72157624846412507_model_small_3ba18a5885.jpg</small>
+			<large>https://farm6.staticflickr.com/5249/cameras/72157624846412507_model_large_478b8f73b5.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_1d_mark_ii">
+		<name>Canon EOS 1D Mark II</name>
+		<details>
+			<megapixels>8.2</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>CompactFlash, Secure Digital (SD) Card, Microdrive</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/117/cameras/12_model_small_1242e67975.jpg</small>
+			<large>https://farm1.staticflickr.com/117/cameras/12_model_large_dfa80dabd0.jpg</large>
+		</images>
+	</camera>
+	<camera id="sx700hs">
+		<name>Canon PowerShot SX700 HS</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8574/cameras/72157641922172003_model_small_335e01dc78.jpg</small>
+			<large>https://farm9.staticflickr.com/8574/cameras/72157641922172003_model_large_c62a48d7c0.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_10d">
+		<name>Canon EOS 10D</name>
+		<details>
+			<megapixels>6.3</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/105/cameras/81_model_small_4b6d829266.jpg</small>
+			<large>https://farm1.staticflickr.com/105/cameras/81_model_large_7082fc8590.jpg</large>
+		</images>
+	</camera>
+	<camera id="g1x_markii">
+		<name>Canon PowerShot G1 X Mark II</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5619/cameras/72157640985213904_model_small_8d1b938d77.jpg</small>
+			<large>https://farm6.staticflickr.com/5619/cameras/72157640985213904_model_large_8454c17833.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s100">
+		<name>Canon PowerShot S100</name>
+	</camera>
+	<camera id="powershot_sx260_hs">
+		<name>Canon PowerShot SX260 HS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card, Secure Digital High Capacity (SDHC) Card, Secure Digital Extended Capacity (SDXC)</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8333/cameras/72157629555712731_model_small_c08bd90398.jpg</small>
+			<large>https://farm9.staticflickr.com/8333/cameras/72157629555712731_model_large_cf014452fb.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd1300_is">
+		<name>Canon PowerShot SD1300 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+			<memory_type>SDHC Memory Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5032/cameras/72157623495818996_model_small_a77640cee0.jpg</small>
+			<large>https://farm6.staticflickr.com/5032/cameras/72157623495818996_model_large_23f998fc01.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a590_is">
+		<name>Canon PowerShot A590 IS</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MMCplus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3059/cameras/72157603914408544_model_small_70f463f26f.jpg</small>
+			<large>https://farm4.staticflickr.com/3059/cameras/72157603914408544_model_large_914d992355.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s120">
+		<name>Canon PowerShot S120</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5509/cameras/72157632858905716_model_small_09c906f983.jpg</small>
+			<large>https://farm6.staticflickr.com/5509/cameras/72157632858905716_model_large_85a885e1ce.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g11">
+		<name>Canon PowerShot G11</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.8</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2539/cameras/72157621971543189_model_small_1644edb612.jpg</small>
+			<large>https://farm3.staticflickr.com/2539/cameras/72157621971543189_model_large_bdefce42a8.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx280_hs">
+		<name>Canon PowerShot SX280 HS</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5596/cameras/72157633352455718_model_small_d946c5d9ca.jpg</small>
+			<large>https://farm6.staticflickr.com/5596/cameras/72157633352455718_model_large_0bc3ebbc33.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx170_is">
+		<name>Canon PowerShot SX170 IS</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5619/cameras/72157635427421420_model_small_2ddc739862.jpg</small>
+			<large>https://farm6.staticflickr.com/5619/cameras/72157635427421420_model_large_6530dd3eac.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx400_is">
+		<name>Canon PowerShot SX400 IS</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5807/cameras/72157647167111895_model_small_d02bbe89d7.jpg</small>
+			<large>https://farm6.staticflickr.com/5807/cameras/72157647167111895_model_large_cfbf3da591.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd600">
+		<name>Canon PowerShot SD600</name>
+		<details>
+			<megapixels>6</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/100/cameras/147_model_small_d4e6885dd1.jpg</small>
+			<large>https://farm1.staticflickr.com/100/cameras/147_model_large_7542357b7b.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd1200_is">
+		<name>Canon PowerShot SD1200 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3303/cameras/72157615858002250_model_small_d297c2dd76.jpg</small>
+			<large>https://farm4.staticflickr.com/3303/cameras/72157615858002250_model_large_18e94049dd.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd750">
+		<name>Canon PowerShot SD750</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/221/cameras/72157600292482502_model_small_16de7e5ce6.jpg</small>
+			<large>https://farm1.staticflickr.com/221/cameras/72157600292482502_model_large_25b3e8c05d.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx130_is">
+		<name>Canon PowerShot SX130 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>SDHX</memory_type>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5079/cameras/72157624843263664_model_small_466ca9648e.jpg</small>
+			<large>https://farm6.staticflickr.com/5079/cameras/72157624843263664_model_large_0cdf8d446b.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx500_is">
+		<name>Canon PowerShot SX500 IS</name>
+		<details>
+			<megapixels>16</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2826/cameras/72157631426644668_model_small_3db39a01f5.jpg</small>
+			<large>https://farm3.staticflickr.com/2826/cameras/72157631426644668_model_large_3d45443eaf.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx240_hs">
+		<name>Canon PowerShot SX240 HS</name>
+	</camera>
+	<camera id="powershot_sx210_is">
+		<name>Canon PowerShot SX210 IS</name>
+		<details>
+			<megapixels>14.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5169/cameras/72157623514846576_model_small_102da06252.jpg</small>
+			<large>https://farm6.staticflickr.com/5169/cameras/72157623514846576_model_large_ff33eaebcd.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s90">
+		<name>Canon PowerShot S90</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2790/cameras/72157622037248671_model_small_599abbeea4.jpg</small>
+			<large>https://farm3.staticflickr.com/2790/cameras/72157622037248671_model_large_a3e2203efb.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx160_is">
+		<name>Canon PowerShot SX160 IS</name>
+	</camera>
+	<camera id="eos_1d_mark_ii_n">
+		<name>Canon EOS 1D Mark II N</name>
+		<details>
+			<megapixels>8.2</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>CompactFlash, Secure Digital (SD) Card, Microdrive</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/122/cameras/792_model_small_79b90ff356.jpg</small>
+			<large>https://farm1.staticflickr.com/122/cameras/792_model_large_ae86ccf632.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g1_x">
+		<name>Canon PowerShot G1 X</name>
+		<details>
+			<megapixels>14.3</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, SDXC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8314/cameras/72157628828372835_model_small_198698201c.jpg</small>
+			<large>https://farm9.staticflickr.com/8314/cameras/72157628828372835_model_large_a3c965c325.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s110">
+		<name>Canon PowerShot S110</name>
+	</camera>
+	<camera id="powershot_sd780_is">
+		<name>Canon PowerShot SD780 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3540/cameras/72157615260423184_model_small_bc5565c8b7.jpg</small>
+			<large>https://farm4.staticflickr.com/3540/cameras/72157615260423184_model_large_f0a803b0fc.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s2_is">
+		<name>Canon PowerShot S2 IS</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/99/cameras/73_model_small_54db2b6032.jpg</small>
+			<large>https://farm1.staticflickr.com/99/cameras/73_model_large_b8912b2c1e.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx20_is">
+		<name>Canon PowerShot SX20 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard (MMC)</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2724/cameras/72157622054003161_model_small_fa47de9a45.jpg</small>
+			<large>https://farm3.staticflickr.com/2724/cameras/72157622054003161_model_large_84bc659ebc.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd870_is">
+		<name>Canon PowerShot SD870 IS</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1022/cameras/72157601661637005_model_small_8e99150a47.jpg</small>
+			<large>https://farm2.staticflickr.com/1022/cameras/72157601661637005_model_large_778c7a6f7f.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a2300">
+		<name>Canon PowerShot A2300</name>
+		<details>
+			<megapixels>16</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, SDXC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8495/cameras/72157629682877859_model_small_0e76052de3.jpg</small>
+			<large>https://farm9.staticflickr.com/8495/cameras/72157629682877859_model_large_512c829f1c.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a2500">
+		<name>Canon PowerShot A2500</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5530/cameras/72157633211759483_model_small_fdf71aaa57.jpg</small>
+			<large>https://farm6.staticflickr.com/5530/cameras/72157633211759483_model_large_068f77cbc8.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx230_hs">
+		<name>Canon PowerShot SX230 HS</name>
+		<images>
+			<small>https://farm7.staticflickr.com/6029/cameras/72157626107421899_model_small_fe96996285.jpg</small>
+			<large>https://farm7.staticflickr.com/6029/cameras/72157626107421899_model_large_3b15049271.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx200_is">
+		<name>Canon PowerShot SX200 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3382/cameras/72157615327177137_model_small_c923617fcf.jpg</small>
+			<large>https://farm4.staticflickr.com/3382/cameras/72157615327177137_model_large_e2585949a3.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx10_is">
+		<name>Canon PowerShot SX10 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3368/cameras/72157607394786554_model_small_cd7b8479c5.jpg</small>
+			<large>https://farm4.staticflickr.com/3368/cameras/72157607394786554_model_large_472ea85a5a.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd1400_is">
+		<name>Canon PowerShot SD1400 IS</name>
+		<details>
+			<megapixels>12</megapixels>
+		</details>
+		<images>
+			<small>https://farm7.staticflickr.com/6023/cameras/72157623403735861_model_small_7b6eef712c.jpg</small>
+			<large>https://farm7.staticflickr.com/6023/cameras/72157623403735861_model_large_6377095b94.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a520">
+		<name>Canon PowerShot A520</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/108/cameras/113_model_small_3c4e2b476c.jpg</small>
+			<large>https://farm1.staticflickr.com/108/cameras/113_model_large_a8ae50aaa2.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx150_is">
+		<name>Canon PowerShot SX150 IS</name>
+		<details>
+			<megapixels>14.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8040/cameras/72157627401052221_model_small_27ede7c032.jpg</small>
+			<large>https://farm9.staticflickr.com/8040/cameras/72157627401052221_model_large_a88fcd5700.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx600_hs">
+		<name>Canon PowerShot SX600 HS</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3735/cameras/72157642221879684_model_small_dc7d3c59ee.jpg</small>
+			<large>https://farm4.staticflickr.com/3735/cameras/72157642221879684_model_large_206c3e1651.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_m100">
+		<name>Canon EOS M100</name>
+		<images>
+			<small>https://farm5.staticflickr.com/4552/cameras/72157683011558521_model_small_c108ba4596.jpg</small>
+			<large>https://farm5.staticflickr.com/4552/cameras/72157683011558521_model_large_6958cc8184.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd800_is">
+		<name>Canon PowerShot SD800 IS</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/100/cameras/3506_model_small_baa4b8be11.jpg</small>
+			<large>https://farm1.staticflickr.com/100/cameras/3506_model_large_9fba9d5611.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a2200">
+		<name>Canon PowerShot A2200</name>
+		<details>
+			<megapixels>14.1</megapixels>
+		</details>
+		<images>
+			<small>https://farm6.staticflickr.com/5278/cameras/72157626006484232_model_small_32fb85f79e.jpg</small>
+			<large>https://farm6.staticflickr.com/5278/cameras/72157626006484232_model_large_7de50bc2d5.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a710_is">
+		<name>Canon PowerShot A710 IS</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/100/cameras/928_model_small_687bc868ed.jpg</small>
+			<large>https://farm1.staticflickr.com/100/cameras/928_model_large_863d565f23.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd850_is">
+		<name>Canon PowerShot SD850 IS</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1001/cameras/72157600316000762_model_small_a83286a964.jpg</small>
+			<large>https://farm2.staticflickr.com/1001/cameras/72157600316000762_model_large_1970b12f6c.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_elph_100_hs">
+		<name>Canon PowerShot ELPH 100 HS</name>
+		<images>
+			<small>https://farm7.staticflickr.com/6058/cameras/72157626077723737_model_small_422bc9313f.jpg</small>
+			<large>https://farm7.staticflickr.com/6058/cameras/72157626077723737_model_large_e95bc5563a.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx120_is">
+		<name>Canon PowerShot SX120 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2594/cameras/72157622008716929_model_small_7acbfb860f.jpg</small>
+			<large>https://farm3.staticflickr.com/2594/cameras/72157622008716929_model_large_730372a5d9.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a560">
+		<name>Canon PowerShot A560</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/201/cameras/72157600291685735_model_small_c81b932be3.jpg</small>
+			<large>https://farm1.staticflickr.com/201/cameras/72157600291685735_model_large_6bcd9d3efc.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a540">
+		<name>Canon PowerShot A540</name>
+		<details>
+			<megapixels>6</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/109/cameras/21_model_small_4595d398d7.jpg</small>
+			<large>https://farm1.staticflickr.com/109/cameras/21_model_large_511e5c2f88.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx110_is">
+		<name>Canon PowerShot SX110 IS</name>
+		<details>
+			<megapixels>9</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3319/cameras/72157607097240125_model_small_89b9359b0a.jpg</small>
+			<large>https://farm4.staticflickr.com/3319/cameras/72157607097240125_model_large_37bf0a0285.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd630">
+		<name>Canon PowerShot SD630</name>
+		<details>
+			<megapixels>6</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/100/cameras/380_model_small_ced61150f3.jpg</small>
+			<large>https://farm1.staticflickr.com/100/cameras/380_model_large_aa27b87301.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a70">
+		<name>Canon PowerShot A70</name>
+		<images>
+			<small>https://farm2.staticflickr.com/1396/cameras/331_model_small_fd6c5d9f6e.jpg</small>
+			<large>https://farm2.staticflickr.com/1396/cameras/331_model_large_2a908d5d29.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a620">
+		<name>Canon PowerShot A620</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/107/cameras/134_model_small_92eeb17022.jpg</small>
+			<large>https://farm1.staticflickr.com/107/cameras/134_model_large_d1c1e2d3df.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_1ds">
+		<name>Canon EOS 1DS</name>
+		<details>
+			<megapixels>11.1</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>CompactFlash</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/115/cameras/541_model_small_8bf11ebe60.jpg</small>
+			<large>https://farm1.staticflickr.com/115/cameras/541_model_large_f104299b9c.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd400">
+		<name>Canon PowerShot SD400</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/101/cameras/30_model_small_ba4763b423.jpg</small>
+			<large>https://farm1.staticflickr.com/101/cameras/30_model_large_464f18fc8a.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a720_is">
+		<name>Canon PowerShot A720 IS</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1342/cameras/72157601700908638_model_small_ffa204741b.jpg</small>
+			<large>https://farm2.staticflickr.com/1342/cameras/72157601700908638_model_large_c5f41eec0b.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd450">
+		<name>Canon PowerShot SD450</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/114/cameras/64_model_small_fa1065b7b6.jpg</small>
+			<large>https://farm1.staticflickr.com/114/cameras/64_model_large_35994d68f5.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a95">
+		<name>Canon PowerShot A95</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/107/cameras/58_model_small_1e7955211c.jpg</small>
+			<large>https://farm1.staticflickr.com/107/cameras/58_model_large_2f415e825f.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_650d">
+		<name>Canon EOS 650D</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5681/cameras/72157658988031402_model_small_84fd539622.jpg</small>
+			<large>https://farm6.staticflickr.com/5681/cameras/72157658988031402_model_large_3b9e33f1d9.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd550">
+		<name>Canon PowerShot SD550</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/122/cameras/482_model_small_f8b4bfe6d8.jpg</small>
+			<large>https://farm1.staticflickr.com/122/cameras/482_model_large_033233faac.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a570_is">
+		<name>Canon PowerShot A570 IS</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8031/cameras/72157600291595413_model_small_4f322f47a2.jpg</small>
+			<large>https://farm9.staticflickr.com/8031/cameras/72157600291595413_model_large_d7bed7b9d9.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a3100_is">
+		<name>Canon PowerShot A3100 IS</name>
+		<details>
+			<megapixels>12</megapixels>
+		</details>
+	</camera>
+	<camera id="powershot_sx220_hs">
+		<name>Canon PowerShot SX220 HS</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5620/cameras/72157626120402661_model_small_2d8ae30536.jpg</small>
+			<large>https://farm6.staticflickr.com/5620/cameras/72157626120402661_model_large_16f4ed2c3f.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd700_is">
+		<name>Canon PowerShot SD700 IS</name>
+		<details>
+			<megapixels>6</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/122/cameras/432_model_small_08e9751d7e.jpg</small>
+			<large>https://farm1.staticflickr.com/122/cameras/432_model_large_137b141680.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a3300_is">
+		<name>Canon PowerShot A3300 IS</name>
+		<details>
+			<megapixels>16</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8313/cameras/72157626169050894_model_small_9024e25b64.jpg</small>
+			<large>https://farm9.staticflickr.com/8313/cameras/72157626169050894_model_large_11c60be00c.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a610">
+		<name>Canon PowerShot A610</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/107/cameras/295_model_small_ec60d819ec.jpg</small>
+			<large>https://farm1.staticflickr.com/107/cameras/295_model_large_b9f67ef906.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g2">
+		<name>Canon PowerShot G2</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8310/cameras/42_model_small_53424d7981.jpg</small>
+			<large>https://farm9.staticflickr.com/8310/cameras/42_model_large_e48879fba0.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd960_is">
+		<name>Canon PowerShot SD960 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.8</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3542/cameras/72157615260434668_model_small_068dd2b166.jpg</small>
+			<large>https://farm4.staticflickr.com/3542/cameras/72157615260434668_model_large_bddd57f961.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx100_is">
+		<name>Canon PowerShot SX100 IS</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2400/cameras/72157602254956013_model_small_c7fc8218ed.jpg</small>
+			<large>https://farm3.staticflickr.com/2400/cameras/72157602254956013_model_large_ca3276f712.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd790_is">
+		<name>Canon PowerShot SD790 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2234/cameras/72157604206177666_model_small_61519d019b.jpg</small>
+			<large>https://farm3.staticflickr.com/2234/cameras/72157604206177666_model_large_fe0abf6ac8.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a630">
+		<name>Canon PowerShot A630</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/118/cameras/880_model_small_f621539dd2.jpg</small>
+			<large>https://farm1.staticflickr.com/118/cameras/880_model_large_f447184173.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a4000_is">
+		<name>Canon PowerShot A4000 IS</name>
+		<details>
+			<megapixels>16</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, SDXC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8234/cameras/72157629690121413_model_small_c3674f9a04.jpg</small>
+			<large>https://farm9.staticflickr.com/8234/cameras/72157629690121413_model_large_fd69104134.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g5">
+		<name>Canon PowerShot G5</name>
+	</camera>
+	<camera id="powershot_a1100_is">
+		<name>Canon PowerShot A1100 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3403/cameras/72157614912551863_model_small_6c2707008a.jpg</small>
+			<large>https://farm4.staticflickr.com/3403/cameras/72157614912551863_model_large_3870e9c623.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_elph_110_hs">
+		<name>Canon PowerShot ELPH 110 HS</name>
+		<details>
+			<lcd_screen_size>3</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8491/cameras/72157629310448342_model_small_cd14d2b324.jpg</small>
+			<large>https://farm9.staticflickr.com/8491/cameras/72157629310448342_model_large_d505d94f18.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a1000_is">
+		<name>Canon PowerShot A1000 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3474/cameras/72157607149127437_model_small_ea9ae41258.jpg</small>
+			<large>https://farm4.staticflickr.com/3474/cameras/72157607149127437_model_large_c274e4a031.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a430">
+		<name>Canon PowerShot A430</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/122/cameras/7_model_small_b345a26c77.jpg</small>
+			<large>https://farm1.staticflickr.com/122/cameras/7_model_large_377848c90e.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s400">
+		<name>Canon PowerShot S400</name>
+		<images>
+			<small>https://farm2.staticflickr.com/1314/cameras/533_model_small_d595a3f690.jpg</small>
+			<large>https://farm2.staticflickr.com/1314/cameras/533_model_large_9c8688c05a.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a80">
+		<name>Canon PowerShot A80</name>
+	</camera>
+	<camera id="powershot_s500">
+		<name>Canon PowerShot S500</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>1.5</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/113/cameras/311_model_small_8f0b9890f5.jpg</small>
+			<large>https://farm1.staticflickr.com/113/cameras/311_model_large_7d733573e9.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd770_is">
+		<name>Canon PowerShot SD770 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3223/cameras/72157604597339286_model_small_4e767448d9.jpg</small>
+			<large>https://farm4.staticflickr.com/3223/cameras/72157604597339286_model_large_c7c345de36.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g3">
+		<name>Canon PowerShot G3</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8321/cameras/168_model_small_f86db7018f.jpg</small>
+			<large>https://farm9.staticflickr.com/8321/cameras/168_model_large_bf37ba94b6.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd500">
+		<name>Canon PowerShot SD500</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/111/cameras/413_model_small_cde2faea24.jpg</small>
+			<large>https://farm1.staticflickr.com/111/cameras/413_model_large_9eff7352b6.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a480">
+		<name>Canon PowerShot A480</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3652/cameras/72157613371182459_model_small_8f00044538.jpg</small>
+			<large>https://farm4.staticflickr.com/3652/cameras/72157613371182459_model_large_6f9d21111d.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_pro1">
+		<name>Canon PowerShot Pro1</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>CompactFlash</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/118/cameras/279_model_small_e6281ed159.jpg</small>
+			<large>https://farm1.staticflickr.com/118/cameras/279_model_large_ac13e907a7.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a400">
+		<name>Canon PowerShot A400</name>
+	</camera>
+	<camera id="powershot_sd900">
+		<name>Canon PowerShot SD900</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/109/cameras/2705_model_small_e4e7c5e7df.jpg</small>
+			<large>https://farm1.staticflickr.com/109/cameras/2705_model_large_af0d96d561.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd110">
+		<name>Canon PowerShot SD110</name>
+	</camera>
+	<camera id="eos_m2">
+		<name>Canon EOS M2</name>
+		<images>
+			<small>https://farm1.staticflickr.com/681/cameras/72157638486651333_model_small_dd694f802b.jpg</small>
+			<large>https://farm1.staticflickr.com/681/cameras/72157638486651333_model_large_ee0838b78e.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a550">
+		<name>Canon PowerShot A550</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/252/cameras/72157600289383418_model_small_0ee0a7e545.jpg</small>
+			<large>https://farm1.staticflickr.com/252/cameras/72157600289383418_model_large_b029991d3d.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd950_is">
+		<name>Canon PowerShot SD950 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2068/cameras/72157602219148731_model_small_d208e9a3b0.jpg</small>
+			<large>https://farm3.staticflickr.com/2068/cameras/72157602219148731_model_large_95eacd033f.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd200">
+		<name>Canon PowerShot SD200</name>
+	</camera>
+	<camera id="powershot_sd300">
+		<name>Canon PowerShot SD300</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/109/cameras/192_model_small_dc3c6ec0b9.jpg</small>
+			<large>https://farm1.staticflickr.com/109/cameras/192_model_large_d808fc3fb6.jpg</large>
+		</images>
+	</camera>
+	<camera id="ixus_220hs">
+		<name>Canon IXUS 220HS</name>
+	</camera>
+	<camera id="powershot_a470">
+		<name>Canon PowerShot A470</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2099/cameras/72157604008953746_model_small_ab3a0c68fb.jpg</small>
+			<large>https://farm3.staticflickr.com/2099/cameras/72157604008953746_model_large_5b25b77672.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_d10">
+		<name>Canon PowerShot D10</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3488/cameras/72157616911061933_model_small_e0ca711a7f.jpg</small>
+			<large>https://farm4.staticflickr.com/3488/cameras/72157616911061933_model_large_cc00846c64.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a75">
+		<name>Canon PowerShot A75</name>
+		<details>
+			<megapixels>3.2</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/114/cameras/53_model_small_1358fa386c.jpg</small>
+			<large>https://farm1.staticflickr.com/114/cameras/53_model_large_83792310b4.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s50">
+		<name>Canon PowerShot S50</name>
+	</camera>
+	<camera id="powershot_a510">
+		<name>Canon PowerShot A510</name>
+		<details>
+			<megapixels>3.2</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1436/cameras/103_model_small_b132094ab0.jpg</small>
+			<large>https://farm2.staticflickr.com/1436/cameras/103_model_large_f8b0f7772c.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a530">
+		<name>Canon PowerShot A530</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/117/cameras/303_model_small_85ec2a9970.jpg</small>
+			<large>https://farm1.staticflickr.com/117/cameras/303_model_large_90dd997c32.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_d60">
+		<name>Canon EOS D60</name>
+	</camera>
+	<camera id="powershot_a640">
+		<name>Canon PowerShot A640</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/114/cameras/1317_model_small_82221e6d98.jpg</small>
+			<large>https://farm1.staticflickr.com/114/cameras/1317_model_large_5c7290e792.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_elph_300hs">
+		<name>Canon PowerShot ELPH 300HS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDXC, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8309/cameras/72157626177410605_model_small_384a9a5bf2.jpg</small>
+			<large>https://farm9.staticflickr.com/8309/cameras/72157626177410605_model_large_ac6be593a2.jpg</large>
+		</images>
+	</camera>
+	<camera id="eos_1d">
+		<name>Canon EOS 1D</name>
+	</camera>
+	<camera id="powershot_a85">
+		<name>Canon PowerShot A85</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1389/cameras/123_model_small_64e30bc0c3.jpg</small>
+			<large>https://farm2.staticflickr.com/1389/cameras/123_model_large_6a55c4cc59.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s45">
+		<name>Canon PowerShot S45</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8175/cameras/373_model_small_f2002e4d4c.jpg</small>
+			<large>https://farm9.staticflickr.com/8175/cameras/373_model_large_8d345e31a2.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s30">
+		<name>Canon PowerShot S30</name>
+		<details>
+			<megapixels>3.2</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8173/cameras/681_model_small_b801bc3de5.jpg</small>
+			<large>https://farm9.staticflickr.com/8173/cameras/681_model_large_fc4c035a37.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_g1">
+		<name>Canon PowerShot G1</name>
+	</camera>
+	<camera id="powershot_g7">
+		<name>Canon PowerShot G7</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/122/cameras/24369_model_small_cc7df00614.jpg</small>
+			<large>https://farm1.staticflickr.com/122/cameras/24369_model_large_e18440c1ed.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd880_is">
+		<name>Canon PowerShot SD880 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3347/cameras/72157607803563543_model_small_f054e019cf.jpg</small>
+			<large>https://farm4.staticflickr.com/3347/cameras/72157607803563543_model_large_b23b35ef33.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s200">
+		<name>Canon PowerShot S200</name>
+	</camera>
+	<camera id="powershot_a40">
+		<name>Canon PowerShot A40</name>
+	</camera>
+	<camera id="powershot_g6">
+		<name>Canon PowerShot G6</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/120/cameras/306_model_small_10710a51a3.jpg</small>
+			<large>https://farm1.staticflickr.com/120/cameras/306_model_large_1cbfb40949.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a650_is">
+		<name>Canon PowerShot A650 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1226/cameras/72157601891740240_model_small_935ab686ff.jpg</small>
+			<large>https://farm2.staticflickr.com/1226/cameras/72157601891740240_model_large_010a6f6998.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd990_is">
+		<name>Canon PowerShot SD990 IS</name>
+		<details>
+			<megapixels>14.7</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3461/cameras/72157607826378076_model_small_570b3e63da.jpg</small>
+			<large>https://farm4.staticflickr.com/3461/cameras/72157607826378076_model_large_57edfd2df8.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a495">
+		<name>Canon PowerShot A495</name>
+		<images>
+			<small>https://farm6.staticflickr.com/5314/cameras/72157623248701455_model_small_866f79da99.jpg</small>
+			<large>https://farm6.staticflickr.com/5314/cameras/72157623248701455_model_large_d76121e78f.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a490">
+		<name>Canon PowerShot A490</name>
+		<details>
+			<megapixels>10</megapixels>
+		</details>
+	</camera>
+	<camera id="powershot_s70">
+		<name>Canon PowerShot S70</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/110/cameras/70_model_small_74b4f1d550.jpg</small>
+			<large>https://farm1.staticflickr.com/110/cameras/70_model_large_f9711ed374.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s430">
+		<name>Canon PowerShot S430</name>
+	</camera>
+	<camera id="eos_d30">
+		<name>Canon EOS D30</name>
+	</camera>
+	<camera id="powershot_elph_300_hs">
+		<name>Canon PowerShot ELPH 300 HS</name>
+		<details>
+			<megapixels>12</megapixels>
+		</details>
+		<images>
+			<small>https://farm7.staticflickr.com/6004/cameras/72157626133707081_model_small_fd24fe9a5f.jpg</small>
+			<large>https://farm7.staticflickr.com/6004/cameras/72157626133707081_model_large_5789bb40d6.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sx1_is">
+		<name>Canon PowerShot SX1 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.8</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3580/cameras/72157607398275267_model_small_506f6616ce.jpg</small>
+			<large>https://farm4.staticflickr.com/3580/cameras/72157607398275267_model_large_533d29fcab.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a460">
+		<name>Canon PowerShot A460</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/228/cameras/72157600289350296_model_small_7fbe5bacab.jpg</small>
+			<large>https://farm1.staticflickr.com/228/cameras/72157600289350296_model_large_4a22860b7c.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s230">
+		<name>Canon PowerShot S230</name>
+	</camera>
+	<camera id="powershot_s1_is">
+		<name>Canon PowerShot S1 IS</name>
+		<details>
+			<megapixels>3.2</megapixels>
+			<lcd_screen_size>1.5</lcd_screen_size>
+			<memory_type>CompactFlash</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/116/cameras/445_model_small_a6791e4c0a.jpg</small>
+			<large>https://farm1.staticflickr.com/116/cameras/445_model_large_7499eb1668.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a3000_is">
+		<name>Canon PowerShot A3000 IS</name>
+		<images>
+			<small>https://farm7.staticflickr.com/6015/cameras/72157623337752577_model_small_ff326581e0.jpg</small>
+			<large>https://farm7.staticflickr.com/6015/cameras/72157623337752577_model_large_fa3577dc49.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a1200">
+		<name>Canon PowerShot A1200</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+			<memory_type>SD/SDHC/SDXC</memory_type>
+		</details>
+		<images>
+			<small>https://farm8.staticflickr.com/7178/cameras/72157626100347637_model_small_98281cf6c9.jpg</small>
+			<large>https://farm8.staticflickr.com/7178/cameras/72157626100347637_model_large_5815e8dea2.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a700">
+		<name>Canon PowerShot A700</name>
+		<details>
+			<megapixels>6</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/118/cameras/24_model_small_82f9fe11cf.jpg</small>
+			<large>https://farm1.staticflickr.com/118/cameras/24_model_large_9a1ac4b633.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd100">
+		<name>Canon PowerShot SD100</name>
+	</camera>
+	<camera id="powershot_s60">
+		<name>Canon PowerShot S60</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/121/cameras/319_model_small_b6503c5e8f.jpg</small>
+			<large>https://farm1.staticflickr.com/121/cameras/319_model_large_a74142fbbb.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd30">
+		<name>Canon PowerShot SD30</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/100/cameras/329_model_small_ca1aa2959e.jpg</small>
+			<large>https://farm1.staticflickr.com/100/cameras/329_model_large_ab5abc906b.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a580">
+		<name>Canon PowerShot A580</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MMCplus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2017/cameras/72157604000068487_model_small_11826b37d5.jpg</small>
+			<large>https://farm3.staticflickr.com/2017/cameras/72157604000068487_model_large_57e09b15a2.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a60">
+		<name>Canon PowerShot A60</name>
+	</camera>
+	<camera id="powershot_sd890_is">
+		<name>Canon PowerShot SD890 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3213/cameras/72157604325182497_model_small_37aa89e826.jpg</small>
+			<large>https://farm4.staticflickr.com/3213/cameras/72157604325182497_model_large_80e15aacfd.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a410">
+		<name>Canon PowerShot A410</name>
+		<details>
+			<megapixels>3.2</megapixels>
+			<lcd_screen_size>1.5</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/113/cameras/18_model_small_4e47ea423d.jpg</small>
+			<large>https://farm1.staticflickr.com/113/cameras/18_model_large_dc8a8ee8b3.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd10">
+		<name>Canon PowerShot SD10</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/102/cameras/345_model_small_727b7fb8a6.jpg</small>
+			<large>https://farm1.staticflickr.com/102/cameras/345_model_large_0640966e76.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s80">
+		<name>Canon PowerShot S80</name>
+		<details>
+			<megapixels>8</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/121/cameras/162_model_small_e1565c67c9.jpg</small>
+			<large>https://farm1.staticflickr.com/121/cameras/162_model_large_571ee7b4bd.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a310">
+		<name>Canon PowerShot A310</name>
+	</camera>
+	<camera id="powershot_s40">
+		<name>Canon PowerShot S40</name>
+	</camera>
+	<camera id="powershot_a2000_is">
+		<name>Canon PowerShot A2000 IS</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm9.staticflickr.com/8038/cameras/72157607272610511_model_small_ffc16364ec.jpg</small>
+			<large>https://farm9.staticflickr.com/8038/cameras/72157607272610511_model_large_c3440fdc55.jpg</large>
+		</images>
+	</camera>
+	<camera id="ixus_300_hs">
+		<name>Canon IXUS 300 HS</name>
+		<images>
+			<small>https://farm7.staticflickr.com/6011/cameras/72157624136191544_model_small_c8c1f1020d.jpg</small>
+			<large>https://farm7.staticflickr.com/6011/cameras/72157624136191544_model_large_0d9be374a0.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a20">
+		<name>Canon PowerShot A20</name>
+	</camera>
+	<camera id="powershot_s300">
+		<name>Canon PowerShot S300</name>
+	</camera>
+	<camera id="powershot_e1">
+		<name>Canon PowerShot E1</name>
+		<details>
+			<megapixels>10</megapixels>
+			<lcd_screen_size>2.5</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm4.staticflickr.com/3664/cameras/72157607584729571_model_small_19dc0473cb.jpg</small>
+			<large>https://farm4.staticflickr.com/3664/cameras/72157607584729571_model_large_ef505b6354.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a200">
+		<name>Canon PowerShot A200</name>
+	</camera>
+	<camera id="powershot_a2100_is">
+		<name>Canon PowerShot A2100 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2719/cameras/72157615813690609_model_small_85a05a0580.jpg</small>
+			<large>https://farm3.staticflickr.com/2719/cameras/72157615813690609_model_large_5c483e0981.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a50">
+		<name>Canon PowerShot A50</name>
+	</camera>
+	<camera id="powershot_sd980_is">
+		<name>Canon PowerShot SD980 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2594/cameras/72157622084783391_model_small_1558771e45.jpg</small>
+			<large>https://farm3.staticflickr.com/2594/cameras/72157622084783391_model_large_05e2884fe1.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a420">
+		<name>Canon PowerShot A420</name>
+	</camera>
+	<camera id="powershot_sd940_is">
+		<name>Canon PowerShot SD940 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>2.7</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2669/cameras/72157622084755657_model_small_1eaf6702b9.jpg</small>
+			<large>https://farm3.staticflickr.com/2669/cameras/72157622084755657_model_large_b543294bc4.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s410">
+		<name>Canon PowerShot S410</name>
+		<details>
+			<megapixels>4</megapixels>
+			<lcd_screen_size>1.5</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/112/cameras/49_model_small_a82d562b14.jpg</small>
+			<large>https://farm1.staticflickr.com/112/cameras/49_model_large_f7c124120b.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a300">
+		<name>Canon PowerShot A300</name>
+	</camera>
+	<camera id="powershot_sd3500_is">
+		<name>Canon PowerShot SD3500 IS</name>
+		<details>
+			<megapixels>14.1</megapixels>
+		</details>
+	</camera>
+	<camera id="powershot_sd20">
+		<name>Canon PowerShot SD20</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>1.5</lcd_screen_size>
+			<memory_type>Secure Digital (SD) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/101/cameras/1056_model_small_0fe1cb84e6.jpg</small>
+			<large>https://farm1.staticflickr.com/101/cameras/1056_model_large_c3b3853158.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_s20">
+		<name>Canon PowerShot S20</name>
+	</camera>
+	<camera id="powershot_s330">
+		<name>Canon PowerShot S330</name>
+	</camera>
+	<camera id="powershot_s10">
+		<name>Canon PowerShot S10</name>
+	</camera>
+	<camera id="powershot_a10">
+		<name>Canon PowerShot A10</name>
+	</camera>
+	<camera id="powershot_a450">
+		<name>Canon PowerShot A450</name>
+	</camera>
+	<camera id="powershot_pro90_is">
+		<name>Canon PowerShot Pro90 IS</name>
+		<details>
+			<megapixels>3.2</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>CompactFlash (CF) Card</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/101/cameras/1792_model_small_6ca66ff1ac.jpg</small>
+			<large>https://farm1.staticflickr.com/101/cameras/1792_model_large_2654c5d5de.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd970_is">
+		<name>Canon PowerShot SD970 IS</name>
+		<details>
+			<megapixels>12.1</megapixels>
+			<lcd_screen_size>3</lcd_screen_size>
+			<memory_type>Secure Digital, SDHC, MultiMediaCard, MMCPlus</memory_type>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2674/cameras/72157616347164661_model_small_3f4b234723.jpg</small>
+			<large>https://farm3.staticflickr.com/2674/cameras/72157616347164661_model_large_886fd1e530.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd40">
+		<name>Canon PowerShot SD40</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/120/cameras/50047_model_small_07b3b7b4c4.jpg</small>
+			<large>https://farm1.staticflickr.com/120/cameras/50047_model_large_21ac845732.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_tx1">
+		<name>Canon PowerShot TX1</name>
+		<details>
+			<megapixels>7.1</megapixels>
+			<lcd_screen_size>1.8</lcd_screen_size>
+			<memory_type>MultiMediaCard, Secure Digital, SDHC</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/195/cameras/72157600293208250_model_small_264ea2a837.jpg</small>
+			<large>https://farm1.staticflickr.com/195/cameras/72157600293208250_model_large_d7a965d3fb.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a100">
+		<name>Canon PowerShot A100</name>
+	</camera>
+	<camera id="hv20">
+		<name>Canon HV20</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm3.staticflickr.com/2081/cameras/72157600292920852_model_small_08ffbdf604.jpg</small>
+			<large>https://farm3.staticflickr.com/2081/cameras/72157600292920852_model_large_3175d743e7.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_a30">
+		<name>Canon PowerShot A30</name>
+	</camera>
+	<camera id="optura_300">
+		<name>Canon Optura 300</name>
+	</camera>
+	<camera id="optura_20">
+		<name>Canon Optura 20</name>
+	</camera>
+	<camera id="zr70_mc">
+		<name>Canon ZR70 MC</name>
+	</camera>
+	<camera id="zr200">
+		<name>Canon ZR200</name>
+		<details>
+			<lcd_screen_size>2.4</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/104/cameras/834_model_small_32d5d5661c.jpg</small>
+			<large>https://farm1.staticflickr.com/104/cameras/834_model_large_0e0c1b4558.jpg</large>
+		</images>
+	</camera>
+	<camera id="dc10">
+		<name>Canon DC10</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1147/cameras/1556_model_small_4687e277f0.jpg</small>
+			<large>https://farm2.staticflickr.com/1147/cameras/1556_model_large_22f4d11350.jpg</large>
+		</images>
+	</camera>
+	<camera id="powershot_sd430_wireless">
+		<name>Canon PowerShot SD430 Wireless</name>
+		<details>
+			<megapixels>5</megapixels>
+			<lcd_screen_size>2</lcd_screen_size>
+			<memory_type>Secure Digital, MultiMediaCard</memory_type>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/108/cameras/414_model_small_ecb3329329.jpg</small>
+			<large>https://farm1.staticflickr.com/108/cameras/414_model_large_a004c60da3.jpg</large>
+		</images>
+	</camera>
+	<camera id="optura_600">
+		<name>Canon Optura 600</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/116/cameras/2644_model_small_2b31ee6a72.jpg</small>
+			<large>https://farm1.staticflickr.com/116/cameras/2644_model_large_c99852498a.jpg</large>
+		</images>
+	</camera>
+	<camera id="hv10">
+		<name>Canon HV10</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/101/cameras/4250_model_small_0587b2f1d4.jpg</small>
+			<large>https://farm1.staticflickr.com/101/cameras/4250_model_large_485d09c770.jpg</large>
+		</images>
+	</camera>
+	<camera id="optura_200_mc">
+		<name>Canon Optura 200 MC</name>
+	</camera>
+	<camera id="zr85">
+		<name>Canon ZR85</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/118/cameras/2031_model_small_23f714666e.jpg</small>
+			<large>https://farm1.staticflickr.com/118/cameras/2031_model_large_b853e28789.jpg</large>
+		</images>
+	</camera>
+	<camera id="elura_70">
+		<name>Canon Elura 70</name>
+	</camera>
+	<camera id="dc100">
+		<name>Canon DC100</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/116/cameras/2732_model_small_36ae667f4a.jpg</small>
+			<large>https://farm1.staticflickr.com/116/cameras/2732_model_large_068d35c572.jpg</large>
+		</images>
+	</camera>
+	<camera id="zr90">
+		<name>Canon ZR90</name>
+	</camera>
+	<camera id="elura_60">
+		<name>Canon Elura 60</name>
+		<images>
+			<small>https://farm1.staticflickr.com/113/cameras/3243_model_small_7171eda644.jpg</small>
+			<large>https://farm1.staticflickr.com/113/cameras/3243_model_large_4b80555830.jpg</large>
+		</images>
+	</camera>
+	<camera id="zr65_mc">
+		<name>Canon ZR65 MC</name>
+	</camera>
+	<camera id="zr700">
+		<name>Canon ZR700</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/113/cameras/6046_model_small_f41b4b4d4e.jpg</small>
+			<large>https://farm1.staticflickr.com/113/cameras/6046_model_large_6c3b8985db.jpg</large>
+		</images>
+	</camera>
+	<camera id="zr850">
+		<name>Canon ZR850</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1149/cameras/72157600292491412_model_small_bd46421c08.jpg</small>
+			<large>https://farm2.staticflickr.com/1149/cameras/72157600292491412_model_large_5f38b568a4.jpg</large>
+		</images>
+	</camera>
+	<camera id="gl2">
+		<name>Canon GL2</name>
+	</camera>
+	<camera id="elura_85">
+		<name>Canon Elura 85</name>
+	</camera>
+	<camera id="zr600">
+		<name>Canon ZR600</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/112/cameras/1901_model_small_5e8b8ace02.jpg</small>
+			<large>https://farm1.staticflickr.com/112/cameras/1901_model_large_00bb945fd0.jpg</large>
+		</images>
+	</camera>
+	<camera id="optura_xi">
+		<name>Canon Optura Xi</name>
+		<images>
+			<small>https://farm1.staticflickr.com/113/cameras/2327_model_small_4adaf0cbba.jpg</small>
+			<large>https://farm1.staticflickr.com/113/cameras/2327_model_large_afb3324063.jpg</large>
+		</images>
+	</camera>
+	<camera id="dc40">
+		<name>Canon DC40</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/101/cameras/2604_model_small_be408cc63c.jpg</small>
+			<large>https://farm1.staticflickr.com/101/cameras/2604_model_large_42c1d7eeed.jpg</large>
+		</images>
+	</camera>
+	<camera id="elura_100">
+		<name>Canon Elura 100</name>
+		<details>
+			<lcd_screen_size>2.7</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/120/cameras/3454_model_small_c33c5c12df.jpg</small>
+			<large>https://farm1.staticflickr.com/120/cameras/3454_model_large_2c7745a2c9.jpg</large>
+		</images>
+	</camera>
+	<camera id="elura_40_mc">
+		<name>Canon Elura 40 MC</name>
+	</camera>
+	<camera id="elura_50">
+		<name>Canon Elura 50</name>
+	</camera>
+	<camera id="optura_40">
+		<name>Canon Optura 40</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1262/cameras/1766_model_small_f8791abed7.jpg</small>
+			<large>https://farm2.staticflickr.com/1262/cameras/1766_model_large_dd791c27a3.jpg</large>
+		</images>
+	</camera>
+	<camera id="zr400">
+		<name>Canon ZR400</name>
+		<details>
+			<lcd_screen_size>2.4</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/118/cameras/2427_model_small_ef31cd0754.jpg</small>
+			<large>https://farm1.staticflickr.com/118/cameras/2427_model_large_8dea31956f.jpg</large>
+		</images>
+	</camera>
+	<camera id="elura_65">
+		<name>Canon Elura 65</name>
+	</camera>
+	<camera id="dc20">
+		<name>Canon DC20</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/165/cameras/2706_model_small_c33b9358b4.jpg</small>
+			<large>https://farm1.staticflickr.com/165/cameras/2706_model_large_dc34c957f5.jpg</large>
+		</images>
+	</camera>
+	<camera id="optura_50">
+		<name>Canon Optura 50</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/121/cameras/2715_model_small_dc3a2c41df.jpg</small>
+			<large>https://farm1.staticflickr.com/121/cameras/2715_model_large_dcd9166601.jpg</large>
+		</images>
+	</camera>
+	<camera id="optura_30">
+		<name>Canon Optura 30</name>
+	</camera>
+	<camera id="elura_80">
+		<name>Canon Elura 80</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm2.staticflickr.com/1054/cameras/3699_model_small_44534ffb98.jpg</small>
+			<large>https://farm2.staticflickr.com/1054/cameras/3699_model_large_c50d67a3b0.jpg</large>
+		</images>
+	</camera>
+	<camera id="zr300">
+		<name>Canon ZR300</name>
+		<details>
+			<lcd_screen_size>2.4</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/117/cameras/4573_model_small_cdec1cc747.jpg</small>
+			<large>https://farm1.staticflickr.com/117/cameras/4573_model_large_6603ffbb98.jpg</large>
+		</images>
+	</camera>
+	<camera id="elura_90">
+		<name>Canon Elura 90</name>
+	</camera>
+	<camera id="optura_400">
+		<name>Canon Optura 400</name>
+		<details>
+			<lcd_screen_size>2.5</lcd_screen_size>
+		</details>
+		<images>
+			<small>https://farm1.staticflickr.com/117/cameras/7708_model_small_6893d5c98d.jpg</small>
+			<large>https://farm1.staticflickr.com/117/cameras/7708_model_large_7046065dd5.jpg</large>
+		</images>
+	</camera>
+	<camera id="optura_10">
+		<name>Canon Optura 10</name>
+	</camera>
+</cameras>
+</rsp>

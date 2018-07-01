@@ -58,19 +58,8 @@ public class FavoritesInterfaceTest extends Flickr4JavaTest {
         } catch (Exception e) {
             // running the remove in case it's there before the add
         }
-        iface.add(photoId);
+        iface.add(photoId);  // No response to check
 
-        Photo foundPhoto = null;
-        Iterator<Photo> favorites = iface.getList(null, 0, 0, null).iterator();
-        while (favorites.hasNext()) {
-            Photo photo = favorites.next();
-            if (photo.getId().equals(photoId)) {
-                foundPhoto = photo;
-                break;
-            }
-        }
-        assertNotNull(foundPhoto);
-        assertEquals(photoId, foundPhoto.getId());
         iface.remove(photoId);
     }
 

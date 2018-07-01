@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<places latitude="52.524577" longitude="13.412247" accuracy="11" total="1">
+	<place place_id="HZGdhWdTVLKSWAXdOg" woeid="26821864" latitude="52.511" longitude="13.408" place_url="/Germany/Berlin/Berlin/Ortsteil+Mitte" place_type="neighbourhood" place_type_id="22" timezone="Europe/Berlin" name="Ortsteil Mitte, Berlin, BE, DE, Germany" woe_name="Ortsteil Mitte" />
+</places>
+</rsp>

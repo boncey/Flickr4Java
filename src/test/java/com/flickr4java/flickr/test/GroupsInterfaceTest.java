@@ -90,11 +90,11 @@ public class GroupsInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testSearchPage() throws FlickrException {
         GroupsInterface iface = flickr.getGroupsInterface();
-        GroupList<Group> groups = (GroupList<Group>) iface.search("java", 10, 1);
+        GroupList<Group> groups = (GroupList<Group>) iface.search("java", 100, 1);
         assertTrue(groups.size() > 0);
         assertEquals(1, groups.getPage());
         assertTrue(groups.getPages() > 0);
-        assertEquals(10, groups.getPerPage());
+        assertEquals(100, groups.getPerPage());
         assertTrue(groups.getTotal() > 0);
     }
 

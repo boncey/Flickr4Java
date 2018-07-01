@@ -1,4 +1,4 @@
-package com.flickr4java.flickr.test;
+package com.flickr4java.flickr.test.util;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;

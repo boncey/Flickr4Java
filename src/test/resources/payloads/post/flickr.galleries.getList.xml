@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<galleries total="1" per_page="10" user_id="24573443@N04" page="1" pages="1">
+	<gallery id="24541304-72157634925210101" gallery_id="72157634925210101" url="https://www.flickr.com/photos/boncey_test/galleries/72157634925210101" owner="24573443@N04" username="boncey_test" iconserver="7008" iconfarm="8" primary_photo_id="9146847978" date_create="1375638400" date_update="1375638401" count_photos="1" count_videos="0" count_views="0" count_comments="0" sort_group="" primary_photo_server="3797" primary_photo_farm="4" primary_photo_secret="deaf2be435">
+		<title>test</title>
+		<description>test gallery for Flickr4Java</description>
+	</gallery>
+</galleries>
+</rsp>

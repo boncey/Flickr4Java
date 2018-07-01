@@ -5,11 +5,14 @@ package com.flickr4java.flickr.test;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.IFlickr;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.Permission;
-
+import com.flickr4java.flickr.test.util.FlickrStub;
+import com.flickr4java.flickr.test.util.TestProperties;
+import com.flickr4java.flickr.test.util.TestPropertiesFactory;
 import org.junit.Before;
 
 /**
@@ -18,7 +21,7 @@ import org.junit.Before;
  */
 public class Flickr4JavaTest {
 
-    protected Flickr flickr = null;
+    protected IFlickr flickr;
 
     protected TestProperties testProperties;
 
@@ -27,14 +30,18 @@ public class Flickr4JavaTest {
      */
     @Before
     public void setUp() throws FlickrException {
-        testProperties = new TestProperties();
+        testProperties = TestPropertiesFactory.getTestProperties();
 
-        REST rest = new REST();
-        rest.setHost(testProperties.getHost());
+        if (testProperties.isRealFlickr()) {
+            REST rest = new REST();
+            rest.setHost(testProperties.getHost());
 
-        flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
+            flickr = new Flickr(testProperties.getApiKey(), testProperties.getSecret(), rest);
 
-        setAuth(Permission.READ);
+            setAuth(Permission.READ);
+        } else {
+            flickr = new FlickrStub();
+        }
     }
 
     /**

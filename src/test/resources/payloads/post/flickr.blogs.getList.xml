@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<blogs>
+	<blog id="72157650418100039" name="Twitter: FilmDev" service="Twitter" needspassword="0" url="https://twitter.com/filmdev" />
+</blogs>
+</rsp>

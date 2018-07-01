@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photo id="5628095432">
+	<location latitude="23.340000" longitude="46.990000" accuracy="13" context="0" place_id="qfUc_u5QW7lgSMT6" woeid="1939730">
+		<locality place_id="qfUc_u5QW7lgSMT6" woeid="1939730">Al-Mith'ab</locality>
+		<county place_id="lK5mu.ZUVLv7VoTj5g" woeid="56120186">Hota Bani Tamim</county>
+		<region place_id="4rwZy6tTUb5CS2j3" woeid="2346951">Riyadh</region>
+		<country place_id="iLKqaDdTUb5Edhemcg" woeid="23424938">Saudi Arabia</country>
+	</location>
+</photo>
+</rsp>

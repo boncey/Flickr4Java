@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photos total="5" page="1" per_page="10" pages="1">
+	<photo id="41191337190" secret="9f2a93dc4d" server="1839" farm="2" owner="92023420@N00" username="boncey" title="New glasshouse at Kew" ispublic="1" isfriend="0" isfamily="0" />
+	<photo id="42642346701" secret="4d7bd07a7f" server="1755" farm="2" owner="92023420@N00" username="boncey" title="Me" ispublic="1" isfriend="0" isfamily="0" />
+	<photo id="41406119505" secret="fbdd82f4f3" server="962" farm="1" owner="92023420@N00" username="boncey" title="Old Porsche" ispublic="1" isfriend="0" isfamily="0" />
+	<photo id="42233307741" secret="189dc9b7e3" server="911" farm="1" owner="92023420@N00" username="boncey" title="Locally sourced" ispublic="1" isfriend="0" isfamily="0" />
+	<photo id="41452986324" secret="9fcffab451" server="979" farm="1" owner="92023420@N00" username="boncey" title="Waiting" ispublic="1" isfriend="0" isfamily="0" />
+</photos>
+</rsp>

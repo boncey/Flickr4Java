@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<places place_type="locality" total="1" pages="1" page="1" bbox="-122.42307100000001,37.773779,-122.381071,37.815779">
+	<place place_id="H1cgedZQUL_syJWOpQ" woeid="12523438" latitude="37.782" longitude="-122.388" place_url="/United+States/California/China+Basin+Heliport" place_type="locality" place_type_id="7" timezone="America/Los_Angeles" woe_name="China Basin Heliport">China Basin Heliport, United States</place>
+</places>
+</rsp>

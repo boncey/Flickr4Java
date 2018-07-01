@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+<photos page="1" pages="1" perpage="100" total="2">
+	<photo id="23604352" owner="92023420@N00" secret="be1ddbcf66" server="18" farm="1" title="Doorway, Shelton Street" ispublic="1" isfriend="0" isfamily="0" date_faved="1329579250" />
+	<photo id="6751375995" owner="92023420@N00" secret="089ed176ec" server="7009" farm="8" title="Wall" ispublic="1" isfriend="0" isfamily="0" date_faved="1327871147" />
+</photos>
+</rsp>

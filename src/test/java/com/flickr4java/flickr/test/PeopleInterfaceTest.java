@@ -40,13 +40,8 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.findByUsername(testProperties.getUsername());
         assertNotNull(person);
-        assertEquals(testProperties.getNsid(), person.getId());
         assertEquals(testProperties.getUsername(), person.getUsername());
-        // Do the UrlEcoding is correct?
-        person = iface.findByUsername("K H A L E D");
-        assertNotNull(person);
-        assertEquals("7478210@N02", person.getId());
-        assertEquals("K H A L E D", person.getUsername());
+        assertNotNull(person.getId());
     }
 
     @Test

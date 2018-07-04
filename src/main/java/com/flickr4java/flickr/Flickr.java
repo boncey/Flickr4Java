@@ -38,7 +38,6 @@ import com.flickr4java.flickr.stats.StatsInterface;
 import com.flickr4java.flickr.tags.TagsInterface;
 import com.flickr4java.flickr.test.TestInterface;
 import com.flickr4java.flickr.uploader.Uploader;
-import com.flickr4java.flickr.uploader.UploaderResponse;
 import com.flickr4java.flickr.urls.UrlsInterface;
 
 import java.util.Set;

@@ -2,8 +2,8 @@ package com.flickr4java.flickr.collections;
 
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photosets.Photoset;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class Collection {
      * Logger for log4j.
      */
     @SuppressWarnings("unused")
-    private static Logger _log = Logger.getLogger(Collection.class);
+    private static Logger _log = LoggerFactory.getLogger(Collection.class);
 
     private String id;
 

@@ -8,14 +8,14 @@ import com.flickr4java.flickr.util.Base64;
 import com.flickr4java.flickr.util.DebugInputStream;
 import com.flickr4java.flickr.util.IOUtilities;
 import com.flickr4java.flickr.util.UrlUtilities;
-
-import org.apache.log4j.Logger;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -23,7 +23,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +41,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class REST extends Transport {
 
-    private static final Logger logger = Logger.getLogger(REST.class);
+    private static final Logger logger = LoggerFactory.getLogger(REST.class);
 
     public static final String PATH = "/services/rest/";
 

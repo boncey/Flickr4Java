@@ -1,6 +1,7 @@
 package com.flickr4java.flickr.test.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -11,7 +12,7 @@ public class TestPropertiesFactory {
     /**
      * Logger for log4j.
      */
-    private static Logger _log = Logger.getLogger(TestPropertiesFactory.class);
+    private static Logger _log = LoggerFactory.getLogger(TestPropertiesFactory.class);
 
 
     public static TestProperties getTestProperties() {

@@ -1,6 +1,7 @@
 package com.flickr4java.flickr.stats;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Stats information as returned by the stats interface.
@@ -14,7 +15,7 @@ public class Stats {
      * Logger for log4j.
      */
     @SuppressWarnings("unused")
-    private static Logger _log = Logger.getLogger(Stats.class);
+    private static Logger _log = LoggerFactory.getLogger(Stats.class);
 
     private int views;
 

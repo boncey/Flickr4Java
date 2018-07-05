@@ -7,8 +7,8 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -32,7 +32,7 @@ public class CamerasInterface {
      * Logger for log4j.
      */
     @SuppressWarnings("unused")
-    private static Logger _log = Logger.getLogger(CamerasInterface.class);
+    private static Logger _log = LoggerFactory.getLogger(CamerasInterface.class);
 
     private final String apiKey;
 

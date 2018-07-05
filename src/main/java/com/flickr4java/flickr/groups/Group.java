@@ -5,8 +5,8 @@ package com.flickr4java.flickr.groups;
 
 import com.flickr4java.flickr.util.BuddyIconable;
 import com.flickr4java.flickr.util.UrlUtilities;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class representing a Flickr Group.
@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  */
 public class Group implements BuddyIconable {
 
-    private static Logger _log = Logger.getLogger(Group.class);
+    private static Logger _log = LoggerFactory.getLogger(Group.class);
 
     private String id;
 

@@ -2,7 +2,6 @@ import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.RequestContext;
-// import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
@@ -11,31 +10,25 @@ import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotosInterface;
-// import com.flickr4java.flickr.photos.Size;
 import com.flickr4java.flickr.photosets.Photoset;
 import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
-// import com.flickr4java.flickr.util.IOUtilities;
 import com.flickr4java.flickr.prefs.PrefsInterface;
-// import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.AuthStore;
 import com.flickr4java.flickr.util.FileAuthStore;
-
-import org.apache.log4j.Logger;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-// import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FilenameFilter;
-// import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-// import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -44,16 +37,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-// import java.util.Map;
 import java.util.Scanner;
-// import java.io.ByteArrayOutputStream;
-//import java.io.File;
-// import java.io.FileInputStream;
-// import java.io.IOException;
-// import java.io.InputStream;
 import java.util.Set;
-
-// import com.flickr4java.flickr.tags.Tag;
 
 /**
  * A simple program to upload photos to a set. It checks for files already uploaded assuming the title is not changed so that it can be rerun if partial upload
@@ -69,7 +54,7 @@ import java.util.Set;
 
 public class UploadPhoto {
 
-    private static final Logger logger = Logger.getLogger(UploadPhoto.class);
+    private static final Logger logger = LoggerFactory.getLogger(UploadPhoto.class);
 
     private String nsid;
 

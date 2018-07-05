@@ -43,8 +43,8 @@
 
     <properties>
         <javaVersion>1.8</javaVersion>
-        <log4jVersion>1.2.17</log4jVersion>
         <junitVersion>4.11</junitVersion>
+        <slf4j.version>1.7.25</slf4j.version>
     </properties>
 
     <dependencies>
@@ -54,10 +54,9 @@
             <version>1.3.5</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4jVersion}</version>
-            <!-- <scope>provided</scope> -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

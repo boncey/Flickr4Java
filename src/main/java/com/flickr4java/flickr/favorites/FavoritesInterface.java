@@ -11,8 +11,8 @@ import com.flickr4java.flickr.photos.PhotoContext;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.StringUtilities;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -29,7 +29,7 @@ import java.util.Set;
  */
 public class FavoritesInterface {
 
-    private static final Logger logger = Logger.getLogger(FavoritesInterface.class);
+    private static final Logger logger = LoggerFactory.getLogger(FavoritesInterface.class);
 
     public static final String METHOD_ADD = "flickr.favorites.add";
 

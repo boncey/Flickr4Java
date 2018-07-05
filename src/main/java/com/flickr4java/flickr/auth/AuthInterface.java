@@ -11,14 +11,14 @@ import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.util.ByteUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.apache.log4j.Logger;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.exceptions.OAuthException;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 import java.io.UnsupportedEncodingException;
@@ -49,7 +49,7 @@ public class AuthInterface {
 
     private final Transport transportAPI;
 
-    private final static Logger logger = Logger.getLogger(AuthInterface.class);
+    private final static Logger logger = LoggerFactory.getLogger(AuthInterface.class);
 
     private int maxGetTokenRetries = 3;
 

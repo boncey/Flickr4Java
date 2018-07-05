@@ -8,8 +8,8 @@ import com.flickr4java.flickr.photos.Photo;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotoUtils;
 import com.flickr4java.flickr.util.XMLUtilities;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -34,7 +34,7 @@ public class StatsInterface {
      * Logger for log4j.
      */
     @SuppressWarnings("unused")
-    private static Logger _log = Logger.getLogger(StatsInterface.class);
+    private static Logger _log = LoggerFactory.getLogger(StatsInterface.class);
 
     private static final String METHOD_GET_COLLECTION_DOMAINS = "flickr.stats.getCollectionDomains";
 

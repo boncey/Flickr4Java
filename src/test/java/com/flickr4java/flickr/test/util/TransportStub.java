@@ -5,7 +5,8 @@ import com.flickr4java.flickr.RESTResponse;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.uploader.UploaderResponse;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 
 public class TransportStub extends Transport {
 
-    private static final Logger _log = Logger.getLogger(TransportStub.class);
+    private static final Logger _log = LoggerFactory.getLogger(TransportStub.class);
 
     private final DocumentBuilder builder;
 

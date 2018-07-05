@@ -1,11 +1,5 @@
 package com.flickr4java.flickr.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.photos.Photo;
@@ -14,22 +8,26 @@ import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photosets.Photoset;
 import com.flickr4java.flickr.photosets.Photosets;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
-
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Anthony Eden
  */
 public class PhotosetsInterfaceTest extends Flickr4JavaTest {
 
-    private static Logger _log = Logger.getLogger(PhotosetsInterfaceTest.class);
+    private static Logger _log = LoggerFactory.getLogger(PhotosetsInterfaceTest.class);
 
     private Photoset testSet;
 

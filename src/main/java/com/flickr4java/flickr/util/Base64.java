@@ -57,7 +57,8 @@
 
 package com.flickr4java.flickr.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class provides encode/decode for RFC 2045 Base64 as defined by RFC 2045, N. Freed and N. Borenstein. RFC 2045: Multipurpose Internet Mail Extensions
@@ -76,7 +77,7 @@ import org.apache.log4j.Logger;
  */
 public final class Base64 {
 
-    private static Logger _log = Logger.getLogger(Base64.class);
+    private static Logger _log = LoggerFactory.getLogger(Base64.class);
 
     static private final int BASELENGTH = 255;
 

@@ -182,6 +182,24 @@ public final class PhotoUtils {
             sizeT.setHeight(photoElement.getAttribute("height_c"));
             sizes.add(sizeT);
         }
+        urlTmp = photoElement.getAttribute("url_h");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.LARGE_1600);
+            sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_h"));
+            sizeT.setHeight(photoElement.getAttribute("height_h"));
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_k");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.LARGE_2048);
+            sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_k"));
+            sizeT.setHeight(photoElement.getAttribute("height_k"));
+            sizes.add(sizeT);
+        }
         if (sizes.size() > 0) {
             photo.setSizes(sizes);
         }

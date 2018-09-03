@@ -157,7 +157,7 @@
         <repository>
             <id>bintray-boncey-Flickr4Java-Flickr4Java</id>
             <name>boncey-Flickr4Java-Flickr4Java</name>
-            <url>https://api.bintray.com/maven/boncey/Flickr4Java/Flickr4Java</url>
+            <url>https://api.bintray.com/maven/boncey/Flickr4Java/Flickr4Java?publish=1</url>
         </repository>
     </distributionManagement>
     <profiles>

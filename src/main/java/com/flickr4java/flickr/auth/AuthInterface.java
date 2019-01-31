@@ -6,26 +6,29 @@ package com.flickr4java.flickr.auth;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
+import com.flickr4java.flickr.FlickrRuntimeException;
 import com.flickr4java.flickr.Response;
 import com.flickr4java.flickr.Transport;
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.util.ByteUtilities;
 import com.flickr4java.flickr.util.XMLUtilities;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.exceptions.OAuthException;
-import org.scribe.model.Token;
-import org.scribe.model.Verifier;
-import org.scribe.oauth.OAuthService;
+import com.github.scribejava.apis.FlickrApi;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.exceptions.OAuthException;
+import com.github.scribejava.core.model.OAuth1AccessToken;
+import com.github.scribejava.core.model.OAuth1RequestToken;
+import com.github.scribejava.core.oauth.OAuth10aService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Authentication interface.
@@ -70,9 +73,9 @@ public class AuthInterface {
     /**
      * Get the OAuth request token - this is step one of authorization.
      * 
-     * @return the {@link Token}, store this for when the user returns from the Flickr website.
+     * @return the {@link OAuth1RequestToken}, store this for when the user returns from the Flickr website.
      */
-    public Token getRequestToken() {
+    public OAuth1RequestToken getRequestToken() throws InterruptedException, ExecutionException, IOException {
 
         return getRequestToken(null);
     }
@@ -82,15 +85,21 @@ public class AuthInterface {
      * 
      * @param callbackUrl
      *            optional callback URL - required for web auth flow, will be set to "oob" if not specified.
-     * @return the {@link Token}, store this for when the user returns from the Flickr website.
+     * @return the {@link OAuth1RequestToken}, store this for when the user returns from the Flickr website.
      */
-    public Token getRequestToken(String callbackUrl) {
-
+    public OAuth1RequestToken getRequestToken(String callbackUrl) {
         String callback = (callbackUrl != null) ? callbackUrl : OUT_OF_BOUND_AUTH_METHOD;
 
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret).callback(callback).build();
+        OAuth10aService service = new ServiceBuilder(apiKey)
+                .apiSecret(sharedSecret)
+                .callback(callback)
+                .build(FlickrApi.instance());
 
-        return service.getRequestToken();
+        try {
+            return service.getRequestToken();
+        } catch (IOException | InterruptedException | ExecutionException e) {
+            throw new FlickrRuntimeException(e);
+        }
     }
 
     /**
@@ -99,38 +108,39 @@ public class AuthInterface {
      * @param oAuthRequestToken
      *            the token from a {@link AuthInterface#getRequestToken} call.
      */
-    public String getAuthorizationUrl(Token oAuthRequestToken, Permission permission) {
+    public String getAuthorizationUrl(OAuth1RequestToken oAuthRequestToken, Permission permission) {
 
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret).build();
-
+        OAuth10aService service = new ServiceBuilder(apiKey)
+                .apiSecret(sharedSecret)
+                .build(FlickrApi.instance());
         String authorizationUrl = service.getAuthorizationUrl(oAuthRequestToken);
         return String.format("%s&perms=%s", authorizationUrl, permission.toString());
     }
 
     /**
      * Trade the request token for an access token, this is step three of authorization.
-     * 
-     * @param oAuthRequestToken
+     *  @param oAuthRequestToken
      *            this is the token returned by the {@link AuthInterface#getRequestToken} call.
      * @param verifier
-     *            the Verifier created from the code entered by a user or passed back to a callback URL.
      */
     @SuppressWarnings("boxing")
-    public Token getAccessToken(Token oAuthRequestToken, Verifier verifier) {
-        OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret).build();
+    public OAuth1AccessToken getAccessToken(OAuth1RequestToken oAuthRequestToken, String verifier) {
+        OAuth10aService service = new ServiceBuilder(apiKey)
+                .apiSecret(sharedSecret)
+                .build(FlickrApi.instance());
 
         // Flickr seems to return invalid token sometimes so retry a few times.
         // See http://www.flickr.com/groups/api/discuss/72157628028927244/
-        Token accessToken = null;
+        OAuth1AccessToken accessToken = null;
         boolean success = false;
         for (int i = 0; i < maxGetTokenRetries && !success; i++) {
             try {
                 accessToken = service.getAccessToken(oAuthRequestToken, verifier);
                 success = true;
-            } catch (OAuthException e) {
+            } catch (OAuthException | IOException | InterruptedException | ExecutionException e) {
                 if (i == maxGetTokenRetries - 1) {
                     logger.error(String.format("OAuthService.getAccessToken failing after %d tries, re-throwing exception", i), e);
-                    throw e;
+                    throw new FlickrRuntimeException(e);
                 } else {
                     logger.warn(String.format("OAuthService.getAccessToken failed, try number %d: %s", i, e.getMessage()));
                     try {
@@ -156,9 +166,8 @@ public class AuthInterface {
      * @return The Auth object
      * @throws FlickrException
      */
-    public Auth checkToken(Token accessToken) throws FlickrException {
-
-        return checkToken(accessToken.getToken(), accessToken.getSecret());
+    public Auth checkToken(OAuth1AccessToken accessToken) {
+        return checkToken(accessToken.getToken(), accessToken.getTokenSecret());
     }
 
     /**
@@ -170,7 +179,7 @@ public class AuthInterface {
      * @throws FlickrException
      * @see "http://www.flickr.com/services/api/flickr.auth.oauth.checkToken.html"
      */
-    public Auth checkToken(String authToken, String tokenSecret) throws FlickrException {
+    public Auth checkToken(String authToken, String tokenSecret) {
 
         // Use TreeMap so keys are automatically sorted alphabetically
         Map<String, String> parameters = new TreeMap<String, String>();
@@ -182,7 +191,7 @@ public class AuthInterface {
 
         Response response = transportAPI.getNonOAuth(transportAPI.getPath(), parameters);
         if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+            throw new FlickrRuntimeException(response.getErrorCode(), response.getErrorMessage());
         }
 
         Auth auth = constructAuth(response, authToken, tokenSecret);
@@ -198,7 +207,7 @@ public class AuthInterface {
      * @throws FlickrException
      * @see "http://www.flickr.com/services/api/flickr.auth.oauth.getAccessToken.html"
      */
-    public Token exchangeAuthToken(String authToken) throws FlickrException {
+    public OAuth1RequestToken exchangeAuthToken(String authToken) {
 
         // Use TreeMap so keys are automatically sorted alphabetically
         Map<String, String> parameters = new TreeMap<String, String>();
@@ -209,10 +218,10 @@ public class AuthInterface {
 
         Response response = transportAPI.getNonOAuth(transportAPI.getPath(), parameters);
         if (response.isError()) {
-            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+            throw new FlickrRuntimeException(response.getErrorCode(), response.getErrorMessage());
         }
 
-        Token accessToken = constructToken(response);
+        OAuth1RequestToken accessToken = constructToken(response);
 
         return accessToken;
     }
@@ -244,12 +253,12 @@ public class AuthInterface {
      * 
      * @param response
      */
-    private Token constructToken(Response response) {
+    private OAuth1RequestToken constructToken(Response response) {
         Element authElement = response.getPayload();
         String oauthToken = XMLUtilities.getChildValue(authElement, "oauth_token");
         String oauthTokenSecret = XMLUtilities.getChildValue(authElement, "oauth_token_secret");
 
-        Token token = new Token(oauthToken, oauthTokenSecret);
+        OAuth1RequestToken token = new OAuth1RequestToken(oauthToken, oauthTokenSecret);
         return token;
     }
 

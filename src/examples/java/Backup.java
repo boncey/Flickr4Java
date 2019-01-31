@@ -14,8 +14,9 @@ import com.flickr4java.flickr.photosets.PhotosetsInterface;
 import com.flickr4java.flickr.util.AuthStore;
 import com.flickr4java.flickr.util.FileAuthStore;
 
-import org.scribe.model.Token;
-import org.scribe.model.Verifier;
+import com.github.scribejava.core.model.OAuth1AccessToken;
+import com.github.scribejava.core.model.OAuth1RequestToken;
+import com.github.scribejava.core.model.Token;
 import org.xml.sax.SAXException;
 
 import java.io.BufferedInputStream;
@@ -29,6 +30,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A simple program to backup all of a users private and public photos in a photoset aware manner. If photos are classified in multiple photosets, they will be
@@ -57,11 +59,11 @@ public class Backup {
         }
     }
 
-    private void authorize() throws IOException, SAXException, FlickrException {
+    private void authorize() throws IOException, SAXException, FlickrException, ExecutionException, InterruptedException {
         AuthInterface authInterface = flickr.getAuthInterface();
-        Token accessToken = authInterface.getRequestToken();
+        OAuth1RequestToken requestToken = authInterface.getRequestToken();
 
-        String url = authInterface.getAuthorizationUrl(accessToken, Permission.READ);
+        String url = authInterface.getAuthorizationUrl(requestToken, Permission.READ);
         System.out.println("Follow this URL to authorise yourself on Flickr");
         System.out.println(url);
         System.out.println("Paste in the token it gives you:");
@@ -69,9 +71,9 @@ public class Backup {
 
         String tokenKey = new Scanner(System.in).nextLine();
 
-        Token requestToken = authInterface.getAccessToken(accessToken, new Verifier(tokenKey));
+        OAuth1AccessToken accessToken = authInterface.getAccessToken(requestToken, tokenKey);
 
-        Auth auth = authInterface.checkToken(requestToken);
+        Auth auth = authInterface.checkToken(accessToken);
         RequestContext.getRequestContext().setAuth(auth);
         this.authStore.store(auth);
         System.out.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");

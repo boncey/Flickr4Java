@@ -10,6 +10,10 @@ public class FlickrRuntimeException extends RuntimeException {
 
     private static final long serialVersionUID = 1303207981175254196L;
 
+    private String errorCode;
+
+    private String errorMessage;
+
     public FlickrRuntimeException() {
     }
 
@@ -23,5 +27,19 @@ public class FlickrRuntimeException extends RuntimeException {
 
     public FlickrRuntimeException(String message, Throwable rootCause) {
         super(message, rootCause);
+    }
+
+    public FlickrRuntimeException(String errorCode, String errorMessage) {
+        super(errorCode + ": " + errorMessage);
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

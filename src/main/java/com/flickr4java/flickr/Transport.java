@@ -134,7 +134,7 @@ public abstract class Transport {
      * @return The Response
      * @throws FlickrException
      */
-    public abstract Response getNonOAuth(String path, Map<String, String> parameters) throws FlickrException;
+    public abstract Response getNonOAuth(String path, Map<String, String> parameters) throws FlickrRuntimeException;
 
     public void setResponseClass(Class<?> responseClass) {
         if (responseClass == null) {

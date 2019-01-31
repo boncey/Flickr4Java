@@ -8,12 +8,12 @@ import com.flickr4java.flickr.util.Base64;
 import com.flickr4java.flickr.util.DebugInputStream;
 import com.flickr4java.flickr.util.IOUtilities;
 import com.flickr4java.flickr.util.UrlUtilities;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FlickrApi;
-import org.scribe.model.OAuthRequest;
-import org.scribe.model.Token;
-import org.scribe.model.Verb;
-import org.scribe.oauth.OAuthService;
+import com.github.scribejava.apis.FlickrApi;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuth1AccessToken;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuth10aService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -31,7 +31,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.TimeUnit;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Transport implementation using the REST interface.
@@ -155,9 +156,9 @@ public class REST extends Transport {
 
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
+        OAuth1AccessToken requestToken = new OAuth1AccessToken(auth.getToken(), auth.getTokenSecret());
+        OAuth10aService service = createOAuthService(apiKey, sharedSecret);
         if (auth != null) {
-            Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-            OAuthService service = createOAuthService(parameters, apiKey, sharedSecret);
             service.signRequest(requestToken, request);
         } else {
             // For calls that do not require authorization e.g. flickr.people.findByUsername which could be the
@@ -171,11 +172,11 @@ public class REST extends Transport {
             logger.debug("GET: " + request.getCompleteUrl());
         }
         setTimeouts(request);
-        org.scribe.model.Response scribeResponse = request.send();
 
         try {
+            com.github.scribejava.core.model.Response scribeResponse = service.execute(request);
 
-            com.flickr4java.flickr.Response response = null;
+            com.flickr4java.flickr.Response f4jResponse;
             synchronized (mutex) {
                 String strXml = scribeResponse.getBody().trim();
                 if (Flickr.debugStream) {
@@ -185,17 +186,11 @@ public class REST extends Transport {
                     throw new FlickrRuntimeException(strXml);
                 }
                 Document document = builder.parse(new InputSource(new StringReader(strXml)));
-                response = (com.flickr4java.flickr.Response) responseClass.newInstance();
-                response.parse(document);
+                f4jResponse = (com.flickr4java.flickr.Response) responseClass.newInstance();
+                f4jResponse.parse(document);
             }
-            return response;
-        } catch (IllegalAccessException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (SAXException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (IOException e) {
+            return f4jResponse;
+        } catch (IllegalAccessException | InstantiationException | SAXException | IOException | InterruptedException | ExecutionException e) {
             throw new FlickrRuntimeException(e);
         }
     }
@@ -212,7 +207,7 @@ public class REST extends Transport {
      * @return The Response
      */
     @Override
-    public Response getNonOAuth(String path, Map<String, String> parameters) throws FlickrException {
+    public Response getNonOAuth(String path, Map<String, String> parameters) {
         InputStream in = null;
         try {
             URL url = UrlUtilities.buildUrl(getScheme(), getHost(), getPort(), path, parameters);
@@ -240,13 +235,7 @@ public class REST extends Transport {
                 response.parse(document);
             }
             return response;
-        } catch (IllegalAccessException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (IOException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (SAXException e) {
+        } catch (IllegalAccessException | SAXException | IOException | InstantiationException e) {
             throw new FlickrRuntimeException(e);
         } finally {
             IOUtilities.close(in);
@@ -275,16 +264,17 @@ public class REST extends Transport {
 
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
+        OAuth1AccessToken requestToken = new OAuth1AccessToken(auth.getToken(), auth.getTokenSecret());
+        OAuth10aService service = createOAuthService(apiKey, sharedSecret);
         if (auth != null) {
-            Token requestToken = new Token(auth.getToken(), auth.getTokenSecret());
-            OAuthService service = createOAuthService(parameters, apiKey, sharedSecret);
             service.signRequest(requestToken, request);
         }
 
         if (multipart) {
             // Ensure all parameters (including oauth) are added to payload so signature matches
             parameters.putAll(request.getOauthParameters());
-            request.addPayload(buildMultipartBody(parameters, getMultipartBoundary()));
+            // TODO Try addMultipartPayload instead, might be simpler
+            request.setPayload(buildMultipartBody(parameters, getMultipartBoundary()));
         }
 
         if (proxyAuth) {
@@ -295,10 +285,11 @@ public class REST extends Transport {
             logger.debug("POST: " + request.getCompleteUrl());
         }
 
-        org.scribe.model.Response scribeResponse = request.send();
+//        org.scribe.model.Response scribeResponse = request.send();
 
         try {
-            com.flickr4java.flickr.Response response = null;
+            com.github.scribejava.core.model.Response scribeResponse = service.execute(request);
+            com.flickr4java.flickr.Response response;
             synchronized (mutex) {
                 String strXml = scribeResponse.getBody().trim();
                 if (Flickr.debugStream) {
@@ -312,30 +303,24 @@ public class REST extends Transport {
                 response.parse(document);
             }
             return response;
-        } catch (IllegalAccessException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (SAXException e) {
-            throw new FlickrRuntimeException(e);
-        } catch (IOException e) {
+        } catch (IllegalAccessException | InterruptedException | ExecutionException | InstantiationException | IOException | SAXException e) {
             throw new FlickrRuntimeException(e);
         }
     }
 
     /**
      * 
-     * @param parameters
      * @param sharedSecret
      * @return
      */
-    private OAuthService createOAuthService(Map<String, Object> parameters, String apiKey, String sharedSecret) {
-        ServiceBuilder serviceBuilder = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(sharedSecret);
+    private OAuth10aService createOAuthService(String apiKey, String sharedSecret) {
+        ServiceBuilder serviceBuilder = new ServiceBuilder(apiKey).apiKey(apiKey).apiSecret(sharedSecret);
+
         if (Flickr.debugRequest) {
             serviceBuilder = serviceBuilder.debug();
         }
 
-        return serviceBuilder.build();
+        return serviceBuilder.build(FlickrApi.instance());
     }
 
     /**
@@ -369,7 +354,7 @@ public class REST extends Transport {
      * @return
      */
     private String getMultipartBoundary() {
-        return "---------------------------7d273f7a0d3";
+        return "---------------------------" + UUID.randomUUID();
     }
 
     public boolean isProxyAuth() {
@@ -448,12 +433,13 @@ public class REST extends Transport {
     }
 
     private void setTimeouts(OAuthRequest request) {
-        if (connectTimeoutMs != null) {
-            request.setConnectTimeout(connectTimeoutMs, TimeUnit.MILLISECONDS);
-        }
-        if (readTimeoutMs != null) {
-            request.setReadTimeout(readTimeoutMs, TimeUnit.MILLISECONDS);
-        }
+        // TODO Can't figure out how to do this in new Scribe
+//        if (connectTimeoutMs != null) {
+//            request.setConnectTimeout(connectTimeoutMs, TimeUnit.MILLISECONDS);
+//        }
+//        if (readTimeoutMs != null) {
+//            request.setReadTimeout(readTimeoutMs, TimeUnit.MILLISECONDS);
+//        }
     }
 
     public void setConnectTimeoutMs(Integer connectTimeoutMs) {

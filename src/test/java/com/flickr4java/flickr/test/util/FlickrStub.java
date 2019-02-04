@@ -236,7 +236,7 @@ public class FlickrStub implements IFlickr {
         return activityInterface;
     }
 
-    public synchronized BlogsInterface getBlogsInterface() {
+    public BlogsInterface getBlogsInterface() {
         if (blogsInterface == null) {
             blogsInterface = new BlogsInterface(apiKey, sharedSecret, transport);
         }
@@ -288,7 +288,7 @@ public class FlickrStub implements IFlickr {
     /**
      * @return the interface to the flickr.interestingness methods
      */
-    public synchronized InterestingnessInterface getInterestingnessInterface() {
+    public InterestingnessInterface getInterestingnessInterface() {
         if (interestingnessInterface == null) {
             interestingnessInterface = new InterestingnessInterface(apiKey, sharedSecret, transport);
         }

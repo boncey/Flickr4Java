@@ -38,7 +38,7 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * Transport implementation using the REST interface.
- * 
+ *
  * @author Anthony Eden
  * @version $Id: REST.java,v 1.26 2009/07/01 22:07:08 x-mago Exp $
  */
@@ -48,17 +48,11 @@ public class REST extends Transport {
 
     private static final String PATH = "/services/rest/";
 
-    private static final String CHARSET_NAME = "UTF-8";
-
     private boolean proxyAuth = false;
 
     private String proxyUser = "";
 
     private String proxyPassword = "";
-
-    private final DocumentBuilder builder;
-
-    private static Object mutex = new Object();
 
     private Integer connectTimeoutMs;
 
@@ -73,19 +67,12 @@ public class REST extends Transport {
         setPath(PATH);
         setScheme(DEFAULT_SCHEME);
         setResponseClass(RESTResponse.class);
-        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-        try {
-            builder = builderFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            throw new FlickrRuntimeException(e);
-        }
     }
 
     /**
      * Construct a new REST transport instance using the specified host endpoint.
-     * 
-     * @param host
-     *            The host endpoint
+     *
+     * @param host The host endpoint
      */
     public REST(String host) {
         this();
@@ -94,11 +81,9 @@ public class REST extends Transport {
 
     /**
      * Construct a new REST transport instance using the specified host and port endpoint.
-     * 
-     * @param host
-     *            The host endpoint
-     * @param port
-     *            The port
+     *
+     * @param host The host endpoint
+     * @param port The port
      */
     public REST(String host, int port) {
         this();
@@ -108,7 +93,7 @@ public class REST extends Transport {
 
     /**
      * Set a proxy for REST-requests.
-     * 
+     *
      * @param proxyHost
      * @param proxyPort
      */
@@ -122,7 +107,7 @@ public class REST extends Transport {
 
     /**
      * Set a proxy with authentication for REST-requests.
-     * 
+     *
      * @param proxyHost
      * @param proxyPort
      * @param username
@@ -137,11 +122,9 @@ public class REST extends Transport {
 
     /**
      * Invoke an HTTP GET request on a remote host. You must close the InputStream after you are done with.
-     * 
-     * @param path
-     *            The request path
-     * @param parameters
-     *            The parameters (collection of Parameter objects)
+     *
+     * @param path       The request path
+     * @param parameters The parameters (collection of Parameter objects)
      * @return The Response
      */
     @Override
@@ -176,7 +159,7 @@ public class REST extends Transport {
 
         try {
             return handleResponse(request, service);
-        } catch (IllegalAccessException | InstantiationException | SAXException | IOException | InterruptedException | ExecutionException e) {
+        } catch (IllegalAccessException | InstantiationException | SAXException | IOException | InterruptedException | ExecutionException | ParserConfigurationException e) {
             throw new FlickrRuntimeException(e);
         }
     }
@@ -184,10 +167,8 @@ public class REST extends Transport {
     /**
      * Invoke an HTTP POST request on a remote host.
      *
-     * @param path
-     *            The request path
-     * @param parameters
-     *            The parameters (collection of Parameter objects)
+     * @param path       The request path
+     * @param parameters The parameters (collection of Parameter objects)
      * @return The Response object
      */
     @Override
@@ -201,7 +182,7 @@ public class REST extends Transport {
 
         try {
             return handleResponse(request, service);
-        } catch (IllegalAccessException | InterruptedException | ExecutionException | InstantiationException | IOException | SAXException e) {
+        } catch (IllegalAccessException | InterruptedException | ExecutionException | InstantiationException | IOException | SAXException | ParserConfigurationException e) {
             throw new FlickrRuntimeException(e);
         }
     }
@@ -209,10 +190,8 @@ public class REST extends Transport {
     /**
      * Invoke an HTTP POST request on a remote host.
      *
-     * @param path
-     *            The request path
-     * @param metaData
-     *            The parameters (collection of Parameter objects)
+     * @param path     The request path
+     * @param metaData The parameters (collection of Parameter objects)
      * @param payload
      * @return The Response object
      */
@@ -235,7 +214,7 @@ public class REST extends Transport {
 
         try {
             return handleResponse(request, service);
-        } catch (IllegalAccessException | InterruptedException | ExecutionException | InstantiationException | IOException | SAXException e) {
+        } catch (IllegalAccessException | InterruptedException | ExecutionException | InstantiationException | IOException | SAXException | ParserConfigurationException e) {
             throw new FlickrRuntimeException(e);
         }
     }
@@ -264,34 +243,33 @@ public class REST extends Transport {
         return String.format("%s://%s%s", getScheme(), getHost(), path);
     }
 
-    private Response handleResponse(OAuthRequest request, OAuth10aService service) throws InterruptedException, ExecutionException, IOException, SAXException, InstantiationException, IllegalAccessException {
+    private Response handleResponse(OAuthRequest request, OAuth10aService service) throws InterruptedException, ExecutionException, IOException, SAXException, InstantiationException, IllegalAccessException, ParserConfigurationException {
         com.github.scribejava.core.model.Response scribeResponse = service.execute(request);
 
         Response f4jResponse;
-        synchronized (mutex) {
-            String strXml = scribeResponse.getBody().trim();
-            if (Flickr.debugStream) {
-                logger.debug(strXml);
-            }
-            if (strXml.startsWith("oauth_problem=")) {
-                throw new FlickrRuntimeException(strXml);
-            }
-            Document document = builder.parse(new InputSource(new StringReader(strXml)));
-            f4jResponse = (Response) responseClass.newInstance();
-            f4jResponse.parse(document);
+        String strXml = scribeResponse.getBody().trim();
+        if (Flickr.debugStream) {
+            logger.debug(strXml);
         }
+        if (strXml.startsWith("oauth_problem=")) {
+            throw new FlickrRuntimeException(strXml);
+        }
+
+        DocumentBuilder builder = getDocumentBuilder();
+        Document document = builder.parse(new InputSource(new StringReader(strXml)));
+        f4jResponse = (Response) responseClass.newInstance();
+        f4jResponse.parse(document);
+
         return f4jResponse;
     }
 
     /**
      * Invoke a non OAuth HTTP GET request on a remote host.
-     * 
+     * <p>
      * This is only used for the Flickr OAuth methods checkToken and getAccessToken.
-     * 
-     * @param path
-     *            The request path
-     * @param parameters
-     *            The parameters
+     *
+     * @param path       The request path
+     * @param parameters The parameters
      * @return The Response
      */
     @Override
@@ -317,13 +295,13 @@ public class REST extends Transport {
             }
 
             Response response;
-            synchronized (mutex) {
-                Document document = builder.parse(in);
-                response = (Response) responseClass.newInstance();
-                response.parse(document);
-            }
+            DocumentBuilder builder = getDocumentBuilder();
+            Document document = builder.parse(in);
+            response = (Response) responseClass.newInstance();
+            response.parse(document);
+
             return response;
-        } catch (IllegalAccessException | SAXException | IOException | InstantiationException e) {
+        } catch (IllegalAccessException | SAXException | IOException | InstantiationException | ParserConfigurationException e) {
             throw new FlickrRuntimeException(e);
         } finally {
             IOUtilities.close(in);
@@ -331,7 +309,6 @@ public class REST extends Transport {
     }
 
     /**
-     * 
      * @param sharedSecret
      * @return
      */
@@ -353,7 +330,6 @@ public class REST extends Transport {
     }
 
     /**
-     * 
      * @param parameters
      * @param request
      */
@@ -364,7 +340,7 @@ public class REST extends Transport {
     }
 
     /**
-     *  @param parameters
+     * @param parameters
      * @param request
      */
     private void buildMultipartRequest(Map<String, String> parameters, OAuthRequest request) {
@@ -387,7 +363,7 @@ public class REST extends Transport {
 
     /**
      * Generates Base64-encoded credentials from locally stored username and password.
-     * 
+     *
      * @return credentials
      */
     public String getProxyCredentials() {
@@ -409,6 +385,11 @@ public class REST extends Transport {
 
     public void setReadTimeoutMs(Integer readTimeoutMs) {
         this.readTimeoutMs = readTimeoutMs;
+    }
+
+    private DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        return builderFactory.newDocumentBuilder();
     }
 
     // Generate responses for offline tests

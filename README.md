@@ -6,7 +6,7 @@ __Note:__ This API has been forked from [FlickrJ at Sourceforge](http://flickrj.
 
 This is a Java API which wraps the [REST-based Flickr API](http://www.flickr.com/services/api/).
 
-Comments and questions should be sent to the [GitHub Repo](https://github.com/callmeal/Flickr4Java).
+Comments and questions should be raised on the [GitHub Repo issue tracker](https://github.com/boncey/Flickr4Java/issues).
 
 ### Usage
 

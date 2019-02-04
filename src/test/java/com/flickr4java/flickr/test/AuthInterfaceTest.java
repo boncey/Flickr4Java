@@ -17,7 +17,6 @@ import java.util.concurrent.ExecutionException;
 
 import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
-import com.github.scribejava.core.model.Token;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -25,7 +24,6 @@ import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
-import org.junit.rules.Verifier;
 
 /**
  * @author Anthony Eden
@@ -35,7 +33,7 @@ public class AuthInterfaceTest extends Flickr4JavaTest {
     @Test
     @Ignore
     // Ignored as test is interactive so would fail a build
-    public void testAuthFlow() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public void testAuthFlow() throws IOException, URISyntaxException, ExecutionException, InterruptedException, FlickrException {
 
         AuthInterface authInterface = flickr.getAuthInterface();
 

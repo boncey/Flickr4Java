@@ -1,6 +1,7 @@
 package com.flickr4java.flickr.test.util;
 
 import com.flickr4java.flickr.Flickr;
+import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
@@ -21,12 +22,12 @@ public class Setup {
         System.out.println("Flickr4Java: Set up integration test environment");
         try {
             new Setup();
-        } catch (IOException | ExecutionException | InterruptedException e) {
+        } catch (IOException | ExecutionException | InterruptedException | FlickrException e) {
             e.printStackTrace();
         }
     }
 
-    public Setup() throws IOException, ExecutionException, InterruptedException {
+    public Setup() throws IOException, ExecutionException, InterruptedException, FlickrException {
         String propertiesFile = "src/test/resources/setup.properties";
         Properties properties = new Properties();
         properties.load(new FileInputStream(propertiesFile));

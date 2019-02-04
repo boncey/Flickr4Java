@@ -2,25 +2,23 @@
 
 package com.flickr4java.flickr.test;
 
-import static org.junit.Assert.assertNotNull;
-
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.uploader.UploadMetaData;
-
 import com.flickr4java.flickr.uploader.Uploader;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.file.Files;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Anthony Eden
  */
 public class UploaderTest extends Flickr4JavaTest {
+
+    private static final String DUMMY_PHOTO_ID = "1234567890";
 
     /**
      * Test photo uploading using a byte array.
@@ -35,25 +33,21 @@ public class UploaderTest extends Flickr4JavaTest {
         PhotosInterface pint = flickr.getPhotosInterface();
 
         if (testProperties.isRealFlickr()) {
-            try (InputStream in = new FileInputStream(imageFile); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-                int b;
-                while ((b = in.read()) != -1) {
-                    out.write((byte) b);
+
+            UploadMetaData metaData = buildPrivatePhotoMetadata();
+            // check correct handling of escaped value
+            metaData.setTitle("óöä");
+            String photoId = uploader.upload(Files.readAllBytes(imageFile.toPath()), metaData);
+            assertNotNull(photoId);
+            try {
+                pint.delete(photoId);
+            } catch (FlickrException e) {
+                // Ignore if user doesn't have delete permissions
+                // This will leave a *private* photo in the test account's photostream!
+                if (!e.getErrorCode().equals("99")) {
+                    throw e;
                 }
-                UploadMetaData metaData = buildPrivatePhotoMetadata();
-                // check correct handling of escaped value
-                metaData.setTitle("óöä");
-                String photoId = uploader.upload(out.toByteArray(), metaData);
-                assertNotNull(photoId);
-                try {
-                    pint.delete(photoId);
-                } catch (FlickrException e) {
-                    // Ignore if user doesn't have delete permissions
-                    // This will leave a *private* photo in the test account's photostream!
-                    if (!e.getErrorCode().equals("99")) {
-                        throw e;
-                    }
-                }
+
             }
         } else {
             UploadMetaData metaData = buildPrivatePhotoMetadata();
@@ -142,9 +136,10 @@ public class UploaderTest extends Flickr4JavaTest {
                 }
             }
         } else {
-            UploadMetaData metaData = buildPrivatePhotoMetadata();
-            String photoId = uploader.upload("".getBytes(), metaData);
-            assertNotNull(photoId);
+            try (InputStream replaceIS = new ByteArrayInputStream("".getBytes())) {
+                String photoId = uploader.replace(replaceIS, DUMMY_PHOTO_ID, false);
+                assertNotNull(photoId);
+            }
         }
     }
 
@@ -161,39 +156,32 @@ public class UploaderTest extends Flickr4JavaTest {
         PhotosInterface pint = flickr.getPhotosInterface();
 
         if (testProperties.isRealFlickr()) {
-            try (InputStream in = new FileInputStream(imageFile); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-                int b;
-                while ((b = in.read()) != -1) {
-                    out.write((byte) b);
+
+            // Upload a photo, which we'll replace, then delete
+            UploadMetaData metaData = buildPrivatePhotoMetadata();
+            String photoId = uploader.upload(Files.readAllBytes(imageFile.toPath()), metaData);
+
+            try {
+                photoId = uploader.replace(Files.readAllBytes(imageFile.toPath()), photoId, false);
+                assertNotNull(photoId);
+            } catch (FlickrException e) {
+                // Error code 1 means test account is not pro so don't fail test because of that
+                if (!e.getErrorCode().equals("1")) {
+                    throw e;
                 }
+            }
 
-                // Upload a photo, which we'll replace, then delete
-                UploadMetaData metaData = buildPrivatePhotoMetadata();
-                String photoId = uploader.upload(out.toByteArray(), metaData);
-
-                try {
-                    photoId = uploader.replace(out.toByteArray(), photoId, false);
-                    assertNotNull(photoId);
-                } catch (FlickrException e) {
-                    // Error code 1 means test account is not pro so don't fail test because of that
-                    if (!e.getErrorCode().equals("1")) {
-                        throw e;
-                    }
-                }
-
-                try {
-                    pint.delete(photoId);
-                } catch (FlickrException e) {
-                    // Ignore if user doesn't have delete permissions
-                    // This will leave a *private* photo in the test account's photostream!
-                    if (!e.getErrorCode().equals("99")) {
-                        throw e;
-                    }
+            try {
+                pint.delete(photoId);
+            } catch (FlickrException e) {
+                // Ignore if user doesn't have delete permissions
+                // This will leave a *private* photo in the test account's photostream!
+                if (!e.getErrorCode().equals("99")) {
+                    throw e;
                 }
             }
         } else {
-            UploadMetaData metaData = buildPrivatePhotoMetadata();
-            String photoId = uploader.upload("".getBytes(), metaData);
+            String photoId = uploader.replace("".getBytes(), DUMMY_PHOTO_ID, false);
             assertNotNull(photoId);
         }
     }

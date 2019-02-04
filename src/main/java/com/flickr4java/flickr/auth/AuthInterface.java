@@ -152,9 +152,6 @@ public class AuthInterface {
             }
         }
 
-        assert accessToken != null;
-        assert success;
-
         return accessToken;
     }
 
@@ -166,7 +163,7 @@ public class AuthInterface {
      * @return The Auth object
      * @throws FlickrException
      */
-    public Auth checkToken(OAuth1AccessToken accessToken) {
+    public Auth checkToken(OAuth1AccessToken accessToken) throws FlickrException {
         return checkToken(accessToken.getToken(), accessToken.getTokenSecret());
     }
 
@@ -179,7 +176,7 @@ public class AuthInterface {
      * @throws FlickrException
      * @see "http://www.flickr.com/services/api/flickr.auth.oauth.checkToken.html"
      */
-    public Auth checkToken(String authToken, String tokenSecret) {
+    public Auth checkToken(String authToken, String tokenSecret) throws FlickrException {
 
         // Use TreeMap so keys are automatically sorted alphabetically
         Map<String, String> parameters = new TreeMap<String, String>();
@@ -191,7 +188,7 @@ public class AuthInterface {
 
         Response response = transportAPI.getNonOAuth(transportAPI.getPath(), parameters);
         if (response.isError()) {
-            throw new FlickrRuntimeException(response.getErrorCode(), response.getErrorMessage());
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
 
         Auth auth = constructAuth(response, authToken, tokenSecret);
@@ -207,7 +204,7 @@ public class AuthInterface {
      * @throws FlickrException
      * @see "http://www.flickr.com/services/api/flickr.auth.oauth.getAccessToken.html"
      */
-    public OAuth1RequestToken exchangeAuthToken(String authToken) {
+    public OAuth1RequestToken exchangeAuthToken(String authToken) throws FlickrException {
 
         // Use TreeMap so keys are automatically sorted alphabetically
         Map<String, String> parameters = new TreeMap<String, String>();
@@ -218,7 +215,7 @@ public class AuthInterface {
 
         Response response = transportAPI.getNonOAuth(transportAPI.getPath(), parameters);
         if (response.isError()) {
-            throw new FlickrRuntimeException(response.getErrorCode(), response.getErrorMessage());
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
 
         OAuth1RequestToken accessToken = constructToken(response);

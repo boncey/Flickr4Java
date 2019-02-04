@@ -18,7 +18,7 @@ import java.util.List;
 public class Collection {
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     @SuppressWarnings("unused")
     private static Logger _log = LoggerFactory.getLogger(Collection.class);

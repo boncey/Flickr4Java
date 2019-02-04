@@ -21,7 +21,7 @@ import java.util.Properties;
 public class FileTestProperties implements TestProperties {
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     private static Logger _log = LoggerFactory.getLogger(FileTestProperties.class);
 

@@ -31,7 +31,7 @@ import java.util.Map;
 public class StatsInterface {
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     @SuppressWarnings("unused")
     private static Logger _log = LoggerFactory.getLogger(StatsInterface.class);

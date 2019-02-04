@@ -14,7 +14,7 @@ import java.util.Date;
 public class Csv {
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     @SuppressWarnings("unused")
     private static Logger _log = LoggerFactory.getLogger(Csv.class);

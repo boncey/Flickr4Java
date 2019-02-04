@@ -10,7 +10,7 @@ import java.util.Optional;
 public class TestPropertiesFactory {
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     private static Logger _log = LoggerFactory.getLogger(TestPropertiesFactory.class);
 

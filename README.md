@@ -18,13 +18,10 @@ For example, to send a test ping to the Flickr service:
     Flickr f = new Flickr(apiKey, sharedSecret, new REST());
     TestInterface testInterface = f.getTestInterface();
     Collection results = testInterface.echo(Collections.EMPTY_MAP);
+    
+See `/src/examples/java` for more.
 
 __Please note:__ this library is not thread safe.
-
-###Setup for gradle
-```gradle
-  compile 'com.aetrion.flickr:flickrapi:1.1'
-  ```
 
 ### Requirements
 
@@ -34,13 +31,17 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 
 #### Required libraries
 
-- [scribe-java (v.1.3.2 onwards)](https://github.com/fernandezpablo85/scribe-java/wiki/Getting-Started) (required for the OAuth functionality).
-- [log4j](http://www.apache.org/dyn/closer.cgi/logging/log4j/1.2.17/log4j-1.2.17.zip) (runtime dependency for logging)
+- [scribejava-api (v 6.2.0 onwards)](https://github.com/scribejava/scribejava) (required for the OAuth functionality).
+- [slf4j](https://www.slf4j.org) (runtime dependency for logging)
 
 ### Download
 
 [Download the latest version from bintray](https://bintray.com/boncey/Flickr4Java/Flickr4Java).
 
+
+### Gradle
+
+    compile 'com.flickr4java:flickr4java:2.19'
 
 ### Maven
 
@@ -50,7 +51,7 @@ An API key is required to use this API.  You can [request one on Flickr](http://
       <version>2.19</version>
     </dependency>
 
-Flickr4Java is now available on Maven Central so the above settings should be all you need (it used to only be available on [JCenter](https://bintray.com/bintray/jcenter).
+Flickr4Java is available on Maven Central so the above settings should be all you need.
 
 ### Testing
 The tests now run against captured responses from Flickr (see `src/test/resources/payloads`) and don't contact the Flickr API at all.  

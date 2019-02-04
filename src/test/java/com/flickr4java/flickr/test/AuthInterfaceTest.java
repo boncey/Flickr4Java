@@ -15,8 +15,8 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
-import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
+import com.github.scribejava.core.model.OAuth1Token;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -67,7 +67,7 @@ public class AuthInterfaceTest extends Flickr4JavaTest {
 
         assertNotNull(code);
 
-        OAuth1AccessToken accessToken = authInterface.getAccessToken(requestToken, code);
+        OAuth1Token accessToken = authInterface.getAccessToken(requestToken, code);
 
         assertNotNull(accessToken);
         assertNotNull(accessToken.getToken());

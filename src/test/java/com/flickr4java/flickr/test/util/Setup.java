@@ -6,15 +6,14 @@ import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
-import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
+import com.github.scribejava.core.model.OAuth1Token;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class Setup {
 
@@ -22,12 +21,12 @@ public class Setup {
         System.out.println("Flickr4Java: Set up integration test environment");
         try {
             new Setup();
-        } catch (IOException | ExecutionException | InterruptedException | FlickrException e) {
+        } catch (IOException | FlickrException e) {
             e.printStackTrace();
         }
     }
 
-    public Setup() throws IOException, ExecutionException, InterruptedException, FlickrException {
+    public Setup() throws IOException, FlickrException {
         String propertiesFile = "src/test/resources/setup.properties";
         Properties properties = new Properties();
         properties.load(new FileInputStream(propertiesFile));
@@ -48,7 +47,7 @@ public class Setup {
 
         String tokenKey = scanner.nextLine().trim();
 
-        OAuth1AccessToken accessToken = authInterface.getAccessToken(requestToken, tokenKey);
+        OAuth1Token accessToken = authInterface.getAccessToken(requestToken, tokenKey);
         System.out.println("Authentication success");
 
         Auth auth = authInterface.checkToken(accessToken);

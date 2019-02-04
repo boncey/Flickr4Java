@@ -15,8 +15,8 @@ import com.flickr4java.flickr.util.XMLUtilities;
 import com.github.scribejava.apis.FlickrApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.exceptions.OAuthException;
-import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
+import com.github.scribejava.core.model.OAuth1Token;
 import com.github.scribejava.core.oauth.OAuth10aService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +75,7 @@ public class AuthInterface {
      * 
      * @return the {@link OAuth1RequestToken}, store this for when the user returns from the Flickr website.
      */
-    public OAuth1RequestToken getRequestToken() throws InterruptedException, ExecutionException, IOException {
+    public OAuth1RequestToken getRequestToken() {
 
         return getRequestToken(null);
     }
@@ -124,14 +124,14 @@ public class AuthInterface {
      * @param verifier
      */
     @SuppressWarnings("boxing")
-    public OAuth1AccessToken getAccessToken(OAuth1RequestToken oAuthRequestToken, String verifier) {
+    public OAuth1Token getAccessToken(OAuth1RequestToken oAuthRequestToken, String verifier) {
         OAuth10aService service = new ServiceBuilder(apiKey)
                 .apiSecret(sharedSecret)
                 .build(FlickrApi.instance());
 
         // Flickr seems to return invalid token sometimes so retry a few times.
         // See http://www.flickr.com/groups/api/discuss/72157628028927244/
-        OAuth1AccessToken accessToken = null;
+        OAuth1Token accessToken = null;
         boolean success = false;
         for (int i = 0; i < maxGetTokenRetries && !success; i++) {
             try {
@@ -163,7 +163,7 @@ public class AuthInterface {
      * @return The Auth object
      * @throws FlickrException
      */
-    public Auth checkToken(OAuth1AccessToken accessToken) throws FlickrException {
+    public Auth checkToken(OAuth1Token accessToken) throws FlickrException {
         return checkToken(accessToken.getToken(), accessToken.getTokenSecret());
     }
 

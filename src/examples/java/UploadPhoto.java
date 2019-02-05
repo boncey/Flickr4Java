@@ -18,12 +18,10 @@ import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.AuthStore;
 import com.flickr4java.flickr.util.FileAuthStore;
-import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
-import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.OAuth1Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -40,7 +38,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 /**
  * A simple program to upload photos to a set. It checks for files already uploaded assuming the title is not changed so that it can be rerun if partial upload
@@ -165,7 +162,7 @@ public class UploadPhoto {
         }
     }
 
-    private void authorize() throws IOException, ExecutionException, InterruptedException {
+    private void authorize() throws IOException, FlickrException {
         AuthInterface authInterface = flickr.getAuthInterface();
         OAuth1RequestToken accessToken = authInterface.getRequestToken();
 
@@ -179,7 +176,7 @@ public class UploadPhoto {
         Scanner scanner = new Scanner(System.in);
         String tokenKey = scanner.nextLine();
 
-        OAuth1AccessToken requestToken = authInterface.getAccessToken(accessToken, tokenKey);
+        OAuth1Token requestToken = authInterface.getAccessToken(accessToken, tokenKey);
 
         Auth auth = authInterface.checkToken(requestToken);
         RequestContext.getRequestContext().setAuth(auth);
@@ -219,7 +216,7 @@ public class UploadPhoto {
         return auth;
     }
 
-    public void setAuth(String authToken, String username, String tokenSecret) throws IOException, ExecutionException, InterruptedException {
+    public void setAuth(String authToken, String username, String tokenSecret) throws IOException, FlickrException {
         RequestContext rc = RequestContext.getRequestContext();
         Auth auth = null;
 

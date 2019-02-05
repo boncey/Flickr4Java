@@ -13,11 +13,8 @@ import com.flickr4java.flickr.photosets.Photoset;
 import com.flickr4java.flickr.photosets.PhotosetsInterface;
 import com.flickr4java.flickr.util.AuthStore;
 import com.flickr4java.flickr.util.FileAuthStore;
-
-import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
-import com.github.scribejava.core.model.Token;
-import org.xml.sax.SAXException;
+import com.github.scribejava.core.model.OAuth1Token;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -30,7 +27,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 /**
  * A simple program to backup all of a users private and public photos in a photoset aware manner. If photos are classified in multiple photosets, they will be
@@ -59,7 +55,7 @@ public class Backup {
         }
     }
 
-    private void authorize() throws IOException, SAXException, FlickrException, ExecutionException, InterruptedException {
+    private void authorize() throws IOException, FlickrException {
         AuthInterface authInterface = flickr.getAuthInterface();
         OAuth1RequestToken requestToken = authInterface.getRequestToken();
 
@@ -71,7 +67,7 @@ public class Backup {
 
         String tokenKey = new Scanner(System.in).nextLine();
 
-        OAuth1AccessToken accessToken = authInterface.getAccessToken(requestToken, tokenKey);
+        OAuth1Token accessToken = authInterface.getAccessToken(requestToken, tokenKey);
 
         Auth auth = authInterface.checkToken(accessToken);
         RequestContext.getRequestContext().setAuth(auth);

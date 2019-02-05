@@ -5,9 +5,8 @@ import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.util.IOUtilities;
-import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
-import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.OAuth1Token;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +55,7 @@ public class AuthExample {
         String tokenKey = scanner.nextLine();
         scanner.close();
 
-        OAuth1AccessToken accessToken = authInterface.getAccessToken(requestToken, tokenKey);
+        OAuth1Token accessToken = authInterface.getAccessToken(requestToken, tokenKey);
         System.out.println("Authentication success");
 
         Auth auth = authInterface.checkToken(accessToken);

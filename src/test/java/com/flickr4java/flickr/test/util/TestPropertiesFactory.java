@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Optional;
 
@@ -31,18 +32,20 @@ public class TestPropertiesFactory {
     }
 
     private Optional<File> findPropertyFile() {
-        Optional<File> fileOptional;
+        Optional<File> fileOptional = Optional.empty();
         String setupPropertiesPath = System.getenv("SETUP_PROPERTIES_PATH");
 
         try {
-            if (setupPropertiesPath != null) {
-                _log.debug("Using properties file at " + setupPropertiesPath);
+            if (setupPropertiesPath != null && setupPropertiesPath.length() > 0) {
+                _log.info("Using properties file at '{}'", setupPropertiesPath);
                 File properties = new File(setupPropertiesPath);
                 fileOptional = properties.exists() ? Optional.of(properties) : Optional.empty();
             } else {
-                _log.debug("Using properties file /setup.properties from classpath");
-                File properties =  Paths.get(this.getClass().getResource("/setup.properties").toURI()).toFile();
-                fileOptional = properties.exists() ? Optional.of(properties) : Optional.empty();
+                URL resource = this.getClass().getResource("/setup.properties");
+                if (resource != null) {
+                    fileOptional = Optional.of(Paths.get(resource.toURI()).toFile());
+                    _log.info("Using properties file /setup.properties from classpath");
+                }
             }
         } catch (Exception e) {
             _log.warn("Unable to load properties file", e);

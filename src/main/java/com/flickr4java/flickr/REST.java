@@ -4,7 +4,6 @@ package com.flickr4java.flickr;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.uploader.Payload;
 import com.flickr4java.flickr.uploader.UploadMetaData;
-import com.flickr4java.flickr.util.Base64;
 import com.flickr4java.flickr.util.DebugInputStream;
 import com.flickr4java.flickr.util.IOUtilities;
 import com.flickr4java.flickr.util.UrlUtilities;
@@ -29,6 +28,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -365,7 +365,7 @@ public class REST extends Transport {
      * @return credentials
      */
     public String getProxyCredentials() {
-        return new String(Base64.encode((proxyUser + ":" + proxyPassword).getBytes()));
+        return new String(Base64.getEncoder().encode((proxyUser + ":" + proxyPassword).getBytes()));
     }
 
     private void setTimeouts(HttpURLConnection conn) {

@@ -1,6 +1,4 @@
-/*
- * Copyright (c) 2005 Aetrion LLC.
- */
+
 package com.flickr4java.flickr.test.util;
 
 import com.flickr4java.flickr.IFlickr;

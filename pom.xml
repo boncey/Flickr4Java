@@ -16,14 +16,6 @@
         <version>7</version>
     </parent>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 1.1</name>
-            <url>http://www.apache.org/licenses/LICENSE-1.1.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
     <developers>
       <developer>
         <id>boncey</id>

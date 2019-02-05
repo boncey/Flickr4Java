@@ -1,6 +1,4 @@
-/*
- * Copyright (c) 2005 Aetrion LLC.
- */
+
 package com.flickr4java.flickr.groups;
 
 import com.flickr4java.flickr.util.BuddyIconable;

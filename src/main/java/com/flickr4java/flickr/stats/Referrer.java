@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 public class Referrer {
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     @SuppressWarnings("unused")
     private static Logger _log = LoggerFactory.getLogger(Referrer.class);

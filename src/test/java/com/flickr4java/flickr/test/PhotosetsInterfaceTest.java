@@ -74,13 +74,12 @@ public class PhotosetsInterfaceTest extends Flickr4JavaTest {
 
         PhotosetsInterface iface = flickr.getPhotosetsInterface();
 
-        iface.addPhoto(testSet.getId(), testProperties.getPhotoId());
         iface.editPhotos(testSet.getId(), testProperties.getPhotoId(), setPics.toArray(new String[setPics.size()]));
 
         Photoset ps = iface.getInfo(testSet.getId());
         assertNotNull(ps);
         assertEquals(testProperties.getPhotoId(), ps.getPrimaryPhoto().getId());
-        assertTrue(ps.getPhotoCount() > 2);
+        assertTrue(ps.getPhotoCount() >= 2);
     }
 
     @Test

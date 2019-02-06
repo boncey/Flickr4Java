@@ -6,13 +6,14 @@ import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.auth.Auth;
 import com.flickr4java.flickr.auth.AuthInterface;
 import com.flickr4java.flickr.auth.Permission;
+import com.github.scribejava.core.model.OAuth1RequestToken;
+import com.github.scribejava.core.model.OAuth1Token;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
-import org.scribe.model.Token;
-import org.scribe.model.Verifier;
 
 public class Setup {
 
@@ -20,9 +21,7 @@ public class Setup {
         System.out.println("Flickr4Java: Set up integration test environment");
         try {
             new Setup();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (FlickrException e) {
+        } catch (IOException | FlickrException e) {
             e.printStackTrace();
         }
     }
@@ -38,7 +37,7 @@ public class Setup {
 
         Scanner scanner = new Scanner(System.in);
 
-        Token requestToken = authInterface.getRequestToken();
+        OAuth1RequestToken requestToken = authInterface.getRequestToken();
 
         String url = authInterface.getAuthorizationUrl(requestToken, Permission.DELETE);
         System.out.println("Follow this URL to authorise yourself on Flickr");
@@ -48,18 +47,18 @@ public class Setup {
 
         String tokenKey = scanner.nextLine().trim();
 
-        Token accessToken = authInterface.getAccessToken(requestToken, new Verifier(tokenKey));
+        OAuth1Token accessToken = authInterface.getAccessToken(requestToken, tokenKey);
         System.out.println("Authentication success");
 
         Auth auth = authInterface.checkToken(accessToken);
 
         properties.setProperty("token", accessToken.getToken());
-        properties.setProperty("tokensecret", accessToken.getSecret());
+        properties.setProperty("tokensecret", accessToken.getTokenSecret());
         properties.store(new FileOutputStream(propertiesFile), "");
 
         // This token can be used until the user revokes it.
         System.out.println("Access token - token  = " + accessToken.getToken());
-        System.out.println("             - secret = " + accessToken.getSecret());
+        System.out.println("             - secret = " + accessToken.getTokenSecret());
         System.out.println("(These have been saved to the properties file.)");
         System.out.println("Realname: " + auth.getUser().getRealName());
         System.out.println("Username: " + auth.getUser().getUsername());

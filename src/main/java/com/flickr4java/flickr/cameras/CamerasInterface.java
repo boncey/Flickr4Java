@@ -29,7 +29,7 @@ public class CamerasInterface {
     private static final String METHOD_GET_BRAND_MODELS = "flickr.cameras.getBrandModels";
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     @SuppressWarnings("unused")
     private static Logger _log = LoggerFactory.getLogger(CamerasInterface.class);

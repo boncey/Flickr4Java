@@ -1,10 +1,12 @@
-/*
- * Copyright (c) 2005 Aetrion LLC.
- */
+
 
 package com.flickr4java.flickr.uploader;
 
+import com.flickr4java.flickr.util.StringUtilities;
+
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Metadata that describe a photo.
@@ -14,9 +16,9 @@ import java.util.Collection;
  */
 public class UploadMetaData {
 
-	private String filename = null;
+	private String filename = "image.jpg";
 	
-	private String fileMimeType = null;
+	private String fileMimeType = "image/jpeg";
 	
     private String title;
 
@@ -30,13 +32,15 @@ public class UploadMetaData {
 
     private boolean familyFlag;
 
-    private boolean async = false;
+    private boolean async;
 
     private Boolean hidden;
 
     private String safetyLevel;
 
     private String contentType;
+
+    private String photoId;
 
     public String getTitle() {
         return title;
@@ -190,7 +194,7 @@ public class UploadMetaData {
     }
 
     /**
-     * Switch the Uploader behaviour - sychronous or asyncrounous.
+     * Switch the Uploader behaviour - synchronous or asynchronous.
      * <p>
      * 
      * The default is sychronous.
@@ -202,6 +206,72 @@ public class UploadMetaData {
         this.async = async;
 
         return this;
+    }
+
+    public String getPhotoId() {
+        return photoId;
+    }
+
+    /**
+     * Set the existing photo id for a replace operation.
+     * @param photoId
+     */
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
+    }
+
+    /**
+     * Get the upload parameters.
+     * @return
+     */
+    public Map<String, String> getUploadParameters() {
+        Map<String, String> parameters = new TreeMap<>();
+
+
+        String title = getTitle();
+        if (title != null) {
+            parameters.put("title", title);
+        }
+
+        String description = getDescription();
+        if (description != null) {
+            parameters.put("description", description);
+        }
+
+        Collection<String> tags = getTags();
+        if (tags != null) {
+            parameters.put("tags", StringUtilities.join(tags, " "));
+        }
+
+        if (isHidden() != null) {
+            parameters.put("hidden", isHidden().booleanValue() ? "1" : "0");
+        }
+
+        if (getSafetyLevel() != null) {
+            parameters.put("safety_level", getSafetyLevel());
+        }
+
+        if (getContentType() != null) {
+            parameters.put("content_type", getContentType());
+        }
+
+        if (getPhotoId() != null) {
+            parameters.put("photo_id", getPhotoId());
+        }
+
+        parameters.put("is_public", isPublicFlag() ? "1" : "0");
+        parameters.put("is_family", isFamilyFlag() ? "1" : "0");
+        parameters.put("is_friend", isFriendFlag() ? "1" : "0");
+        parameters.put("async", isAsync() ? "1" : "0");
+
+        return parameters;
+    }
+
+    public static UploadMetaData replace(boolean async, String photoId) {
+        UploadMetaData metaData = new UploadMetaData();
+        metaData.async = async;
+        metaData.photoId = photoId;
+        return metaData;
     }
 
 }

@@ -1,4 +1,4 @@
-/* Copyright 2004, Aetrion LLC.  All Rights Reserved. */
+
 
 package com.flickr4java.flickr.photos;
 

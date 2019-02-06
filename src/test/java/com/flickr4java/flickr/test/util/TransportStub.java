@@ -1,9 +1,8 @@
 package com.flickr4java.flickr.test.util;
 
-import com.flickr4java.flickr.FlickrRuntimeException;
-import com.flickr4java.flickr.RESTResponse;
-import com.flickr4java.flickr.Response;
-import com.flickr4java.flickr.Transport;
+import com.flickr4java.flickr.*;
+import com.flickr4java.flickr.uploader.Payload;
+import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.UploaderResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 
 public class TransportStub extends Transport {
@@ -41,12 +41,13 @@ public class TransportStub extends Transport {
     }
 
     @Override
-    public Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret, boolean multipart) {
-        if (multipart) {
-            return loadMulitpartResponseFromFile("upload", "post");
-        } else {
-            return loadResponseFromFile(parameters.get("method"), "post");
-        }
+    public Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) {
+        return loadResponseFromFile(parameters.get("method"), "post");
+    }
+
+    @Override
+    public Response postMultiPart(String path, UploadMetaData parameters, Payload payload, String apiKey, String sharedSecret) {
+        return loadMulitpartResponseFromFile("upload", "post");
     }
 
     @Override

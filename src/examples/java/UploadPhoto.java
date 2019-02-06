@@ -18,11 +18,10 @@ import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 import com.flickr4java.flickr.util.AuthStore;
 import com.flickr4java.flickr.util.FileAuthStore;
-import org.scribe.model.Token;
-import org.scribe.model.Verifier;
+import com.github.scribejava.core.model.OAuth1RequestToken;
+import com.github.scribejava.core.model.OAuth1Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -163,9 +162,9 @@ public class UploadPhoto {
         }
     }
 
-    private void authorize() throws IOException, SAXException, FlickrException {
+    private void authorize() throws IOException, FlickrException {
         AuthInterface authInterface = flickr.getAuthInterface();
-        Token accessToken = authInterface.getRequestToken();
+        OAuth1RequestToken accessToken = authInterface.getRequestToken();
 
         // Try with DELETE permission. At least need write permission for upload and add-to-set.
         String url = authInterface.getAuthorizationUrl(accessToken, Permission.DELETE);
@@ -177,7 +176,7 @@ public class UploadPhoto {
         Scanner scanner = new Scanner(System.in);
         String tokenKey = scanner.nextLine();
 
-        Token requestToken = authInterface.getAccessToken(accessToken, new Verifier(tokenKey));
+        OAuth1Token requestToken = authInterface.getAccessToken(accessToken, tokenKey);
 
         Auth auth = authInterface.checkToken(requestToken);
         RequestContext.getRequestContext().setAuth(auth);
@@ -217,7 +216,7 @@ public class UploadPhoto {
         return auth;
     }
 
-    public void setAuth(String authToken, String username, String tokenSecret) throws IOException, SAXException, FlickrException {
+    public void setAuth(String authToken, String username, String tokenSecret) throws IOException, FlickrException {
         RequestContext rc = RequestContext.getRequestContext();
         Auth auth = null;
 

@@ -29,7 +29,7 @@ public class CollectionsInterface {
     private static final String METHOD_GET_TREE = "flickr.collections.getTree";
 
     /**
-     * Logger for log4j.
+     * Logger.
      */
     @SuppressWarnings("unused")
     private static Logger _log = LoggerFactory.getLogger(CollectionsInterface.class);

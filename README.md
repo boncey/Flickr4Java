@@ -21,8 +21,6 @@ For example, to send a test ping to the Flickr service:
     
 See `/src/examples/java` for more.
 
-__Please note:__ this library is not thread safe.
-
 ### Requirements
 
 This API has been tested and built with JDK 1.8.

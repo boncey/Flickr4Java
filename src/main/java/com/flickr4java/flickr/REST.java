@@ -46,6 +46,11 @@ public class REST extends Transport {
 
     private static final String PATH = "/services/rest/";
 
+    /**
+     * Error code from Flickr API when the service is unavailable.
+     */
+    private static final String FLICKR_SERVICE_UNAVAILABLE = "105";
+
     private boolean proxyAuth = false;
 
     private String proxyUser = "";
@@ -126,7 +131,7 @@ public class REST extends Transport {
      * @return The Response
      */
     @Override
-    public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) {
+    public com.flickr4java.flickr.Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException {
 
         OAuthRequest request = new OAuthRequest(Verb.GET, buildUrl(path));
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
@@ -170,7 +175,7 @@ public class REST extends Transport {
      * @return The Response object
      */
     @Override
-    public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) {
+    public com.flickr4java.flickr.Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException {
 
         OAuthRequest request = new OAuthRequest(Verb.POST, buildUrl(path));
 
@@ -194,7 +199,7 @@ public class REST extends Transport {
      * @return The Response object
      */
     @Override
-    public com.flickr4java.flickr.Response postMultiPart(String path, UploadMetaData metaData, Payload payload, String apiKey, String sharedSecret) {
+    public com.flickr4java.flickr.Response postMultiPart(String path, UploadMetaData metaData, Payload payload, String apiKey, String sharedSecret) throws FlickrException {
 
         OAuthRequest request = new OAuthRequest(Verb.POST, buildUrl(path));
         Map<String, String> uploadParameters = new HashMap<>(metaData.getUploadParameters());
@@ -241,9 +246,12 @@ public class REST extends Transport {
         return String.format("%s://%s%s", getScheme(), getHost(), path);
     }
 
-    private Response handleResponse(OAuthRequest request, OAuth10aService service) throws InterruptedException, ExecutionException, IOException, SAXException, InstantiationException, IllegalAccessException, ParserConfigurationException {
+    private Response handleResponse(OAuthRequest request, OAuth10aService service) throws InterruptedException, ExecutionException, IOException, SAXException, InstantiationException, IllegalAccessException, ParserConfigurationException, FlickrException {
         com.github.scribejava.core.model.Response scribeResponse = service.execute(request);
 
+        if (!scribeResponse.isSuccessful()) {
+            throw new FlickrException(FLICKR_SERVICE_UNAVAILABLE, String.format("Received '%s' error from Flickr with status %d", scribeResponse.getMessage(), scribeResponse.getCode()));
+        }
         Response f4jResponse;
         String strXml = scribeResponse.getBody().trim();
         if (Flickr.debugStream) {

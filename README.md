@@ -29,8 +29,11 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 
 #### Required libraries
 
-- [scribejava-api (v 6.2.0 onwards)](https://github.com/scribejava/scribejava) (required for the OAuth functionality).
-- [slf4j](https://www.slf4j.org) (runtime dependency for logging)
+- [scribejava-api (v 6.2.0 onwards)](https://github.com/scribejava/scribejava) (required for the OAuth functionality)
+- [SLF4J](https://www.slf4j.org) (runtime dependency for logging)
+
+[See here](https://www.slf4j.org/manual.html#swapping) for details on how to choose and configure an SLF4J logging library.
+
 
 ### Download
 

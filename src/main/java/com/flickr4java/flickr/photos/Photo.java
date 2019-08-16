@@ -969,7 +969,7 @@ public class Photo {
         StringBuffer buffer = new StringBuffer();
         buffer.append("https://farm");
         buffer.append(getFarm());
-        buffer.append(".static.flickr.com/");
+        buffer.append(".staticflickr.com/");
         buffer.append(getServer());
         buffer.append("/");
         buffer.append(getId());

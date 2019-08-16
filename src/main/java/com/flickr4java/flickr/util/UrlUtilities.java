@@ -206,7 +206,7 @@ public class UrlUtilities {
          */
         String iconUrl = scheme + "://www.flickr.com/images/buddyicon.jpg";
         if (iconServer > 0) {
-            iconUrl = scheme + "://farm" + iconFarm + ".static.flickr.com/" + iconServer + "/buddyicons/" + id + ".jpg";
+            iconUrl = scheme + "://farm" + iconFarm + ".staticflickr.com/" + iconServer + "/buddyicons/" + id + ".jpg";
         }
         return iconUrl;
     }

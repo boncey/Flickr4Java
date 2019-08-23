@@ -4,7 +4,7 @@
 
     <groupId>com.flickr4java</groupId>
     <artifactId>flickr4java</artifactId>
-    <version>3.0.2-SNAPSHOT</version>
+    <version>3.0.2</version>
     <packaging>jar</packaging>
     <name>flickr4java</name>
     <description>Java API For Flickr. Fork of FlickrJ.</description>

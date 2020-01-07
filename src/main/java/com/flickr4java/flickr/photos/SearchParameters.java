@@ -302,7 +302,7 @@ public class SearchParameters {
 
     /**
      * List of extra information to fetch for each returned record. Currently supported fields are: license, date_upload, date_taken, owner_name, icon_server,
-     * original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_l, url_o
+     * original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_l, url_o,count_faves,count_comments,count_views
      * 
      * @param extras
      *            A set of extra-attributes

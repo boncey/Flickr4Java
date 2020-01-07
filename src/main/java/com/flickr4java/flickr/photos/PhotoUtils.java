@@ -2,6 +2,7 @@ package com.flickr4java.flickr.photos;
 
 import com.flickr4java.flickr.people.User;
 import com.flickr4java.flickr.places.Place;
+import com.flickr4java.flickr.stats.Stats;
 import com.flickr4java.flickr.tags.Tag;
 import com.flickr4java.flickr.util.XMLUtilities;
 
@@ -486,6 +487,17 @@ public final class PhotoUtils {
             Element element = (Element) photoElement.getElementsByTagName("country").item(0);
             place = new Place(element.getAttribute("place_id"), element.getTextContent(), element.getAttribute("woeid"));
             photo.setCountry(place);
+        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
+        }
+        
+        //set stats from extras (count_faves,count_comments,count_views)
+        try {
+            Stats stats = new Stats();;
+            stats.setFavorites(photoElement.getAttribute("count_faves"));
+            stats.setComments(photoElement.getAttribute("count_comments"));
+            stats.setViews(photoElement.getAttribute("count_views"));
+            photo.setStats(stats);
         } catch (IndexOutOfBoundsException e) {
         } catch (NullPointerException e) {
         }

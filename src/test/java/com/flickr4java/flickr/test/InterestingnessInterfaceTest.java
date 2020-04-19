@@ -3,7 +3,6 @@ package com.flickr4java.flickr.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.interestingness.InterestingnessInterface;

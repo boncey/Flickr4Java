@@ -16,7 +16,6 @@ import com.flickr4java.flickr.photos.PhotoContext;
 import org.junit.Test;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * @author Anthony Eden

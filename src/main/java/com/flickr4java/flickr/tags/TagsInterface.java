@@ -70,7 +70,6 @@ public class TagsInterface {
 
     /**
      * Search for tag-clusters.
-     * <p/>
      * 
      * <p>
      * This method does not require authentication.

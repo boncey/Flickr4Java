@@ -43,18 +43,18 @@ import java.util.Map;
  * is the excellent "Flickr Upcoming Event" greasemonkey script:
  * <p>
  * 
- * {@link <a href="http://userscripts.org/scripts/show/5464">http://userscripts.org/scripts/show/5464</a>}
+ * <a href="https://web.archive.org/web/20131103192452/http://userscripts.org/scripts/show/5464">Flickr Upcoming Event</a>
  * <p>
  * 
  * Dan Catt wrote a very good piece about machine tags - he called them "triple tags" - last year:
  * <p>
  * 
- * {@link <a href="http://geobloggers.com/archives/2006/01/11/advanced-tagging-and-tripletags/">http://geobloggers.com/archives/2006/01/11/advanced-tagging-and-tripletags/</a>}
+ * <a href="https://web.archive.org/web/20080617093009/http://geobloggers.com:80/archives/2006/01/11/advanced-tagging-and-tripletags/">Advanced Tagging and TripleTags</a>
  * <p>
  * 
  * Update : Dan's gone and written another excellent piece about all of this stuff now that we've launched machine tags:
  * 
- * {@link <a href="http://geobloggers.com/archives/2007/01/24/offtopic-ish-flickr-ramps-up-triple-tag-support/">http://geobloggers.com/archives/2007/01/24/offtopic-ish-flickr-ramps-up-triple-tag-support/</a>}
+ * <a href="https://web.archive.org/web/20080621114435/http://geobloggers.com/archives/2007/01/24/offtopic-ish-flickr-ramps-up-triple-tag-support/">Flickr Ramps up Triple Tag (Machine Tags) Support</a>
  * </li>
  * </ul>
  * <p>
@@ -130,37 +130,37 @@ import java.util.Map;
  * <li>Find photos using the 'dc' namespace:
  * <p>
  * 
- * {"machine_tags" => "dc:"}</li>
+ * {"machine_tags" =&gt; "dc:"}</li>
  * 
  * <li>Find photos with a title in the 'dc' namespace:
  * <p>
  * 
- * {"machine_tags" => "dc:title="}</li>
+ * {"machine_tags" =&gt; "dc:title="}</li>
  * 
  * <li>Find photos titled "mr. camera" in the 'dc' namespace:
  * <p>
  * 
- * {"machine_tags" => "dc:title=\"mr. camera\"}</li>
+ * {"machine_tags" =&gt; "dc:title=\"mr. camera\"}</li>
  * 
  * <li>Find photos whose value is "mr. camera":
  * <p>
  * 
- * {"machine_tags" => "*:*=\"mr. camera\""}</li>
+ * {"machine_tags" =&gt; "*:*=\"mr. camera\""}</li>
  * 
  * <li>Find photos that have a title, in any namespace:
  * <p>
  * 
- * {"machine_tags" => "*:title="}</li>
+ * {"machine_tags" =&gt; "*:title="}</li>
  * 
  * <li>Find photos that have a title, in any namespace, whose value is "mr. camera":
  * <p>
  * 
- * {"machine_tags" => "*:title=\"mr. camera\""}</li>
+ * {"machine_tags" =&gt; "*:title=\"mr. camera\""}</li>
  * 
  * <li>Find photos, in the 'dc' namespace whose value is "mr. camera":
  * <p>
  * 
- * {"machine_tags" => "dc:*=\"mr. camera\""}</li>
+ * {"machine_tags" =&gt; "dc:*=\"mr. camera\""}</li>
  * </ul>
  * 
  * <h3>Is there a limit to the number of machine tags I can query?</h3>
@@ -215,7 +215,7 @@ import java.util.Map;
  * 
  * See also:
  * 
- * {@link <a href="http://weblog.scifihifi.com/2005/08/05/meta-tags-the-poor-mans-rdf">http://weblog.scifihifi.com/2005/08/05/meta-tags-the-poor-mans-rdf</a>}
+ * <a href="https://web.archive.org/web/20110716015005/http://weblog.scifihifi.com/2005/08/05/meta-tags-the-poor-mans-rdf/">Meta Tags: The Poor Man’s RDF?</a>
  * 
  * <h3>Huh, what is RDF?</h3>
  * 

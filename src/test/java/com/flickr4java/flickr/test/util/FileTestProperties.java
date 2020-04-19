@@ -1,8 +1,6 @@
 package com.flickr4java.flickr.test.util;
 
 import com.flickr4java.flickr.FlickrRuntimeException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,11 +17,6 @@ import java.util.Properties;
  * @author Darren Greaves Copyright (c) 2012 Darren Greaves.
  */
 public class FileTestProperties implements TestProperties {
-
-    /**
-     * Logger.
-     */
-    private static Logger _log = LoggerFactory.getLogger(FileTestProperties.class);
 
     private String host;
 

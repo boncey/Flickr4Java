@@ -25,7 +25,7 @@ import java.util.Map;
  * <p>
  * 
  * <PRE>
- * From: kellan <kellan@yahoo-inc.com>
+ * From: kellan - kellan@yahoo-inc.com
  * Date: Fri, 11 Jan 2008 15:57:59 -0800
  * Subject: [yws-flickr] Flickr and "Place IDs"
  * 

@@ -35,9 +35,9 @@
 
     <properties>
         <javaVersion>1.8</javaVersion>
-        <junitVersion>4.11</junitVersion>
-        <slf4j.version>1.7.25</slf4j.version>
-        <scribe.version>6.2.0</scribe.version>
+        <junitVersion>4.13</junitVersion>
+        <slf4j.version>1.7.30</slf4j.version>
+        <scribe.version>6.9.0</scribe.version>
     </properties>
 
     <dependencies>
@@ -71,7 +71,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.1</version>
+                    <version>2.5.3</version>
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
                         <useReleaseProfile>false</useReleaseProfile>
@@ -85,7 +85,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${javaVersion}</source>
                     <target>${javaVersion}</target>
@@ -94,7 +94,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>2.22.2</version>
                 <configuration>
                     <environmentVariables>
                         <SETUP_PROPERTIES_PATH>${setupPropertiesPath}</SETUP_PROPERTIES_PATH>
@@ -104,7 +104,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -118,7 +118,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -202,7 +202,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.1</version>
+                        <version>1.6</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -222,7 +222,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </reporting>

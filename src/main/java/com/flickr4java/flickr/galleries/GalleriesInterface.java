@@ -77,7 +77,7 @@ public class GalleriesInterface {
      * @return gallery
      * @throws FlickrException
      * 
-     * @see <a hrerf="http://www.flickr.com/services/api/flickr.galleries.getList.html">flickr.galleries.getList</a>
+     * @see <a href="https://www.flickr.com/services/api/flickr.galleries.getList.html">flickr.galleries.getList</a>
      */
     public List<Gallery> getList(String userId, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

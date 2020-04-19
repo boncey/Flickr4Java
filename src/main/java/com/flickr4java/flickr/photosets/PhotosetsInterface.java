@@ -77,7 +77,7 @@ public class PhotosetsInterface {
 
     /**
      * Add a photo to the end of the photoset.
-     * <p/>
+     * <p>
      * Note: requires authentication with the new authentication API with 'write' permission.
      * 
      * @param photosetId

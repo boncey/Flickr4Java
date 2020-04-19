@@ -197,7 +197,6 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
 
         // Find number of existing tags
         int preCount = photo.getTags().size();
-        int postCount = preCount + 1;
 
         // Add a tag
         String[] tagsToAdd = { "test" };

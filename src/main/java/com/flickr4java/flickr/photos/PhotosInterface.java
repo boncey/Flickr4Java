@@ -809,7 +809,7 @@ public class PhotosInterface {
      *            <li>1 public photos</li>
      *            <li>2 private photos visible to friends</li>
      *            <li>3 private photos visible to family</li>
-     *            <li>4 private photos visible to friends & family</li>
+     *            <li>4 private photos visible to friends and family</li>
      *            <li>5 completely private photos</li>
      *            </ul>
      *            Set to 0 to not specify a privacy Filter.
@@ -889,7 +889,7 @@ public class PhotosInterface {
      *            <li>1 public photos</li>
      *            <li>2 private photos visible to friends</li>
      *            <li>3 private photos visible to family</li>
-     *            <li>4 private photos visible to friends & family</li>
+     *            <li>4 private photos visible to friends and family</li>
      *            <li>5 completely private photos</li>
      *            </ul>
      *            Set to 0 to not specify a privacy Filter.

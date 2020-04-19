@@ -516,7 +516,7 @@ public class User implements Serializable, BuddyIconable {
 
     /**
      * Get the user's path alias, which may appear instead of nsid in urls published by Flickr. For example feeds have urls of the form
-     * .../photos/${NSID_OR_PATHALIAS}/${PHOTO_ID} & .../people/${NSID_OR_PATHALIAS}. This allows clients to look up a {@link User} given such a url. (Note that
+     * .../photos/${NSID_OR_PATHALIAS}/${PHOTO_ID} and .../people/${NSID_OR_PATHALIAS}. This allows clients to look up a {@link User} given such a url. (Note that
      * <code>&lt;author&gt;</code> elements in feeds have a <code>&lt;flickr:nsid&gt;</code> child which could be used instead of the lookup this method
      * enables.)
      * 

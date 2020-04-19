@@ -75,9 +75,9 @@ public class FavoritesInterface {
      * @param userId
      *            The optional user ID. Null value will be ignored.
      * @param perPage
-     *            The optional per page value. Values <= 0 will be ignored.
+     *            The optional per page value. Values {@code <= 0} will be ignored.
      * @param page
-     *            The page to view. Values <= 0 will be ignored.
+     *            The page to view. Values {@code <= 0} will be ignored.
      * @param extras
      *            a Set Strings representing extra parameters to send
      * @return The Collection of Photo objects
@@ -128,9 +128,9 @@ public class FavoritesInterface {
      * @param userId
      *            The user ID
      * @param perPage
-     *            The optional per page value. Values <= 0 will be ignored.
+     *            The optional per page value. Values {@code <= 0} will be ignored.
      * @param page
-     *            The optional page to view. Values <= 0 will be ignored
+     *            The optional page to view. Values {@code <= 0} will be ignored
      * @param extras
      *            A Set of extra parameters to send
      * @return A Collection of Photo objects

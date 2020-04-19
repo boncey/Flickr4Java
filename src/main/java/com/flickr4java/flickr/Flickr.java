@@ -49,7 +49,7 @@ import java.util.Set;
  * <p>
  * 
  * The user who authenticates himself, can manage this permissions at <a href="http://www.flickr.com/services/auth/list.gne">his list of Third-party
- * applications</a> (You -> Your account -> Extending Flickr -> Account Links -> edit).
+ * applications</a> (You / Your account / Extending Flickr / Account Links / edit).
  * 
  * @author Anthony Eden
  * @version $Id: Flickr.java,v 1.45 2009/06/23 21:51:25 x-mago Exp $

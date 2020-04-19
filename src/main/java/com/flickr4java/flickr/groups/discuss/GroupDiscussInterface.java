@@ -42,7 +42,7 @@ public class GroupDiscussInterface {
      * Get a list of topics from a group.
      * 
      * @param groupId
-     *            Unique identifier of a group returns a list of topics for a given group {@link Group}.
+     *            Unique identifier of a group returns a list of topics for a given group {@link com.flickr4java.flickr.groups.Group}.
      * @param perPage
      *            Number of records per page.
      * @param page

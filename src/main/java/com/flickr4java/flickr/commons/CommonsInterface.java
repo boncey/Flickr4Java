@@ -38,7 +38,7 @@ public class CommonsInterface {
      * This method does not require authentication.
      * 
      * @return List of Institution
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public ArrayList<Institution> getInstitutions() throws FlickrException {
         ArrayList<Institution> institutions = new ArrayList<Institution>();

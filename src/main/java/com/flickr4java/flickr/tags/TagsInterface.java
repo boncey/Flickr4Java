@@ -116,7 +116,7 @@ public class TagsInterface {
      * @param tag
      * @param clusterId
      * @return PhotoList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getClusterPhotos(String tag, String clusterId) throws FlickrException {
 
@@ -239,7 +239,7 @@ public class TagsInterface {
      * @param userId
      *            The User ID
      * @return The User object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Tag> getListUser(String userId) throws FlickrException {
 
@@ -277,7 +277,7 @@ public class TagsInterface {
      * @param userId
      *            The user ID
      * @return The collection of Tag objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Tag> getListUserPopular(String userId) throws FlickrException {
 
@@ -314,7 +314,7 @@ public class TagsInterface {
      * </p>
      * 
      * @return The collection of Tag objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<TagRaw> getListUserRaw() throws FlickrException {
 
@@ -332,7 +332,7 @@ public class TagsInterface {
      *            a tag to search for (optional)
      * 
      * @return The collection of Tag objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<TagRaw> getListUserRaw(String tagVal) throws FlickrException {
 
@@ -377,7 +377,7 @@ public class TagsInterface {
      * @param tag
      *            The source tag
      * @return A RelatedTagsList object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public RelatedTagsList getRelated(String tag) throws FlickrException {
 

@@ -84,7 +84,7 @@ public class PoolsInterface {
      * @param groupId
      *            The group ID
      * @return The PhotoContext
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoContext getContext(String photoId, String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -120,7 +120,7 @@ public class PoolsInterface {
      * Get a collection of all of the user's groups.
      * 
      * @return A Collection of Group objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Group> getGroups() throws FlickrException {
         GroupList<Group> groups = new GroupList<Group>();
@@ -172,7 +172,7 @@ public class PoolsInterface {
      * @param page
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getPhotos(String groupId, String userId, String[] tags, Set<String> extras, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -242,7 +242,7 @@ public class PoolsInterface {
      * @param page
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getPhotos(String groupId, String[] tags, Set<String> extras, int perPage, int page) throws FlickrException {
         return getPhotos(groupId, null, tags, extras, perPage, page);
@@ -275,7 +275,7 @@ public class PoolsInterface {
      *            The photo ID
      * @param groupId
      *            The group ID
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void remove(String photoId, String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

@@ -22,7 +22,7 @@ public class UploaderTest extends Flickr4JavaTest {
      * Test photo uploading using a byte array.
      *
      * @throws IOException
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Test
     public void testUploadByteArray() throws IOException, FlickrException {
@@ -58,7 +58,7 @@ public class UploaderTest extends Flickr4JavaTest {
      * Test photo upload using an InputStream.
      *
      * @throws IOException
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Test
     public void testUploadInputStream() throws IOException, FlickrException {
@@ -95,7 +95,7 @@ public class UploaderTest extends Flickr4JavaTest {
      * Test photo replace using an InputStream.
      *
      * @throws IOException
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Test
     public void testReplaceInputStream() throws IOException, FlickrException {
@@ -145,7 +145,7 @@ public class UploaderTest extends Flickr4JavaTest {
      * Test photo replace using a byte array.
      *
      * @throws IOException
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Test
     public void testReplaceByteArray() throws IOException, FlickrException {

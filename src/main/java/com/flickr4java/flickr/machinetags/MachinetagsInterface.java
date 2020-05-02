@@ -261,7 +261,7 @@ public class MachinetagsInterface {
      * @param perPage
      * @param page
      * @return NamespacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public NamespacesList<Namespace> getNamespaces(String predicate, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -309,7 +309,7 @@ public class MachinetagsInterface {
      * @param page
      *            The page offset
      * @return NamespacesList containing Pair-objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public NamespacesList<Pair> getPairs(String namespace, String predicate, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -358,7 +358,7 @@ public class MachinetagsInterface {
      * @param page
      *            The page offset
      * @return NamespacesList containing Predicate
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public NamespacesList<Predicate> getPredicates(String namespace, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -406,7 +406,7 @@ public class MachinetagsInterface {
      * @param page
      *            The page offset
      * @return NamespacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public NamespacesList<Value> getValues(String namespace, String predicate, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -458,7 +458,7 @@ public class MachinetagsInterface {
      * @param addedSince
      *            Only return machine tags values that have been added since this Date.
      * @return NamespacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public NamespacesList<Value> getRecentValues(String namespace, String predicate, Date addedSince) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

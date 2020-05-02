@@ -151,7 +151,7 @@ public class PlacesInterface {
      * 
      * @param query
      * @return PlacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> find(String query) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -229,7 +229,7 @@ public class PlacesInterface {
      *            The longitude whose valid range is -180 to 180. Anything more than 4 decimal places will be truncated.
      * @param accuracy
      * @return A PlacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> findByLatLon(double latitude, double longitude, int accuracy) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -271,7 +271,7 @@ public class PlacesInterface {
      * @param woeId
      *            A Where On Earth (WOE) ID. Can be null. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @return List of Places
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> getChildrenWithPhotosPublic(String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -314,7 +314,7 @@ public class PlacesInterface {
      * @param woeId
      *            A Where On Earth (WOE) ID. Optional, can be null. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @return A Location
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Location getInfo(String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -344,7 +344,7 @@ public class PlacesInterface {
      * 
      * @param url
      * @return A Location
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Location getInfoByUrl(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -368,7 +368,7 @@ public class PlacesInterface {
      * </p>
      * 
      * @return A list of placetypes
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public ArrayList<PlaceType> getPlaceTypes() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -408,7 +408,7 @@ public class PlacesInterface {
      * @param woeId
      *            A Where On Earth (WOE) ID. Optional, can be null.
      * @return A list of shapes
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public ShapeDataList<ShapeData> getShapeHistory(String placeId, String woeId) throws FlickrException {
         ShapeDataList<ShapeData> shapeList = new ShapeDataList<ShapeData>();
@@ -468,7 +468,7 @@ public class PlacesInterface {
      * @param woeId
      *            A Where On Earth (WOE) ID. Optional, can be null.
      * @return PlacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> getTopPlacesList(int placeType, Date date, String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -525,7 +525,7 @@ public class PlacesInterface {
      * @param bbox
      * @param placeType
      * @return A PlacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> placesForBoundingBox(int placeType, String bbox) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -569,7 +569,7 @@ public class PlacesInterface {
      * @param contacts
      *            Search your contacts. Either 'all' or 'ff' for just friends and family. (Optional, default is all)
      * @return A PlacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> placesForContacts(int placeType, String placeId, String woeId, String threshold, String contacts) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -638,7 +638,7 @@ public class PlacesInterface {
      * @param maxTakenDate
      *            Optional, can be null.
      * @return A PlacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> placesForTags(int placeTypeId, String woeId, String placeId, String threshold, String[] tags, String tagMode, String machineTags,
             String machineTagMode, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate) throws FlickrException {
@@ -719,7 +719,7 @@ public class PlacesInterface {
      * @param maxTakenDate
      *            Optional, can be null.
      * @return A PlacesList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PlacesList<Place> placesForUser(int placeType, String woeId, String placeId, String threshold, Date minUploadDate, Date maxUploadDate,
             Date minTakenDate, Date maxTakenDate) throws FlickrException {
@@ -773,7 +773,7 @@ public class PlacesInterface {
      * @deprecated This method has been deprecated. It won't be removed but you should use {@link #getInfo(String, String)} instead.
      * @param placeId
      * @return A Location
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Deprecated
     public Location resolvePlaceId(String placeId) throws FlickrException {
@@ -800,7 +800,7 @@ public class PlacesInterface {
      * @deprecated This method has been deprecated. It won't be removed but you should use {@link PlacesInterface#getInfoByUrl(String)} instead.
      * @param flickrPlacesUrl
      * @return A Location
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Deprecated
     public Location resolvePlaceURL(String flickrPlacesUrl) throws FlickrException {
@@ -837,7 +837,7 @@ public class PlacesInterface {
      * @param maxTakenDate
      *            Optional, can be null.
      * @return A list of Tags
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public ArrayList<Tag> tagsForPlace(String woeId, String placeId, Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate)
             throws FlickrException {

@@ -55,7 +55,7 @@ public class CollectionsInterface {
      *            the id of the collection (from the getTree call, not from the collection URL).
      * 
      * @return the given Collection
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection getInfo(String collectionId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -83,7 +83,7 @@ public class CollectionsInterface {
      *            the user id of the collection owner (optional - defaults to calling user).
      * 
      * @return List of Institution
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public List<Collection> getTree(String collectionId, String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

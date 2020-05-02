@@ -50,7 +50,7 @@ public class PhotosetsCommentsInterface {
      * @param commentText
      *            Text of the comment
      * @return the comment id
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String addComment(String photosetId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -75,7 +75,7 @@ public class PhotosetsCommentsInterface {
      * 
      * @param commentId
      *            The id of the comment to delete from a photoset.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void deleteComment(String commentId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -98,7 +98,7 @@ public class PhotosetsCommentsInterface {
      *            The id of the comment to edit.
      * @param commentText
      *            Update the comment to this text.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void editComment(String commentId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -123,7 +123,7 @@ public class PhotosetsCommentsInterface {
      * @param photosetId
      *            The id of the photoset to fetch comments for.
      * @return a list of {@link Comment} objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public List<Comment> getList(String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

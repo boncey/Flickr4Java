@@ -56,7 +56,7 @@ public class FavoritesInterface {
      * 
      * @param photoId
      *            The photo ID
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void add(String photoId) throws  FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -134,7 +134,7 @@ public class FavoritesInterface {
      * @param extras
      *            A Set of extra parameters to send
      * @return A Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList<Photo> getPublicList(String userId, int perPage, int page, Set<String> extras) throws FlickrException {

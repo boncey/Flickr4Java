@@ -41,7 +41,7 @@ public class UploadInterface {
      * @param tickets
      *            a set of ticket ids (Strings) or {@link Ticket} objects containing ids
      * @return a list of {@link Ticket} objects.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public List<Ticket> checkTickets(Set<String> tickets) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

@@ -56,7 +56,7 @@ public class PrefsInterface {
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_PHOTO
      * @see com.flickr4java.flickr.Flickr#CONTENTTYPE_SCREENSHOT
      * @return The content-type
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String getContentType() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -75,7 +75,7 @@ public class PrefsInterface {
      * Returns the default privacy level for geographic information attached to the user's photos.
      * 
      * @return privacy-level
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_NO_FILTER
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_PUBLIC
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
@@ -107,7 +107,7 @@ public class PrefsInterface {
      * Returns the default hidden preference for the user.
      * 
      * @return boolean hidden or not
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public boolean getHidden() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -129,7 +129,7 @@ public class PrefsInterface {
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
      * @return The current users safety-level
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String getSafetyLevel() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -153,7 +153,7 @@ public class PrefsInterface {
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS_FAMILY
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FAMILY
      * @see com.flickr4java.flickr.Flickr#PRIVACY_LEVEL_FRIENDS
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @return privacyLevel
      */
     public int getPrivacy() throws FlickrException {

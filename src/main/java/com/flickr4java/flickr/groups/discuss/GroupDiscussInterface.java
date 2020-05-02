@@ -48,7 +48,7 @@ public class GroupDiscussInterface {
      * @param page
      *            Result-section.
      * @return A group topic list
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.discuss.topics.getList.html">API Documentation</a>
      */
     public TopicList<Topic> getTopicsList(String groupId, int perPage, int page) throws FlickrException {
@@ -98,7 +98,7 @@ public class GroupDiscussInterface {
      * @param topicId
      *            Unique identifier of a topic for a given group {@link Topic}.
      * @return A group topic
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.discuss.topics.getInfo.html">API Documentation</a>
      */
     public Topic getTopicInfo(String topicId) throws FlickrException {
@@ -122,7 +122,7 @@ public class GroupDiscussInterface {
      * @param topicId
      *            Unique identifier of a topic for a given group {@link Topic}.
      * @return A reply object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.discuss.replies.getList.html">API Documentation</a>
      */
     public ReplyObject getReplyList(String topicId, int perPage, int page) throws FlickrException {
@@ -174,7 +174,7 @@ public class GroupDiscussInterface {
      * @param replyId
      *            Unique identifier of a reply for a given topic {@link Reply}.
      * @return A group topic
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.discuss.replies.getInfo.html">API Documentation</a>
      */
     public Reply getReplyInfo(String topicId, String replyId) throws FlickrException {

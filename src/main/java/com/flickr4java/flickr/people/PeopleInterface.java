@@ -75,7 +75,7 @@ public class PeopleInterface {
      * @param email
      *            The email address
      * @return The User
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public User findByEmail(String email) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -102,7 +102,7 @@ public class PeopleInterface {
      * @param username
      *            The username
      * @return The User object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public User findByUsername(String username) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -129,7 +129,7 @@ public class PeopleInterface {
      * @param userId
      *            The user ID
      * @return The User object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public User getInfo(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -196,7 +196,7 @@ public class PeopleInterface {
      * @param userId
      *            The user ID
      * @return The public groups
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Group> getPublicGroups(String userId) throws FlickrException {
         List<Group> groups = new ArrayList<Group>();
@@ -243,7 +243,7 @@ public class PeopleInterface {
      * @param page
      *            The page offset
      * @return The PhotoList collection
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getPublicPhotos(String userId, Set<String> extras, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -288,7 +288,7 @@ public class PeopleInterface {
      * Requires authentication with 'read' permission using the new authentication API.
      * 
      * @return A User object with upload status data fields filled
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public User getUploadStatus() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -440,7 +440,7 @@ public class PeopleInterface {
      * @param photoId
      * @param userId
      * @param bounds
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void add(String photoId, String userId, Rectangle bounds) throws FlickrException {
 
@@ -454,7 +454,7 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void delete(String photoId, String userId) throws FlickrException {
 
@@ -468,7 +468,7 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void deleteCoords(String photoId, String userId) throws FlickrException {
 
@@ -483,7 +483,7 @@ public class PeopleInterface {
      * @param photoId
      * @param userId
      * @param bounds
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void editCoords(String photoId, String userId, Rectangle bounds) throws FlickrException {
 
@@ -496,7 +496,7 @@ public class PeopleInterface {
      * Get a list of people in a given photo.
      * 
      * @param photoId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PersonTagList<PersonTag> getList(String photoId) throws FlickrException {
 
@@ -508,7 +508,7 @@ public class PeopleInterface {
     /**
      * 
      * @param userId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public GroupList<Group> getGroups(String userId) throws FlickrException {
 

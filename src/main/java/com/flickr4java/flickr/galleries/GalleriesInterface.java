@@ -75,7 +75,7 @@ public class GalleriesInterface {
      * @param page
      *            The page number
      * @return gallery
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * 
      * @see <a href="https://www.flickr.com/services/api/flickr.galleries.getList.html">flickr.galleries.getList</a>
      */
@@ -214,7 +214,7 @@ public class GalleriesInterface {
      * @param strTitle
      * @param strDescription
      * @param primaryPhotoId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Gallery create(String strTitle, String strDescription, String primaryPhotoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -255,7 +255,7 @@ public class GalleriesInterface {
      * @param page
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getPhotos(String galleryId, Set<String> extras, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -330,7 +330,7 @@ public class GalleriesInterface {
      * @param page
      *            The page offset (0 to ignore)
      * @return A Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getListForPhoto(String photoId, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();

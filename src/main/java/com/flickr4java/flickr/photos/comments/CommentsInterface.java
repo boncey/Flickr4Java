@@ -59,7 +59,7 @@ public class CommentsInterface {
      * @param commentText
      *            Text of the comment.
      * @return a unique comment id.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String addComment(String photoId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -84,7 +84,7 @@ public class CommentsInterface {
      * 
      * @param commentId
      *            The id of the comment to delete.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void deleteComment(String commentId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -110,7 +110,7 @@ public class CommentsInterface {
      *            The id of the comment to edit.
      * @param commentText
      *            Update the comment to this text.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void editComment(String commentId, String commentText) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -136,7 +136,7 @@ public class CommentsInterface {
      * @param photoId
      *            The id of the photo to fetch comments for.
      * @return a List of {@link Comment} objects.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public List<Comment> getList(String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -206,7 +206,7 @@ public class CommentsInterface {
      * @param page
      *            The page offset.
      * @return List of photos
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getRecentForContacts(Date lastComment, ArrayList<String> contactsFilter, Set<String> extras, int perPage, int page)
             throws FlickrException {

@@ -58,7 +58,7 @@ public class GroupsInterface {
      * @param catId
      *            The optional category id. Null value will be ignored.
      * @return The Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @deprecated Flickr returns just empty results
      */
     @Deprecated
@@ -209,7 +209,7 @@ public class GroupsInterface {
      * @param page
      *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return A GroupList Object. Only the fields <em>id</em>, <em>name</em> and <em>eighteenplus</em> in the Groups will be set.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Group> search(String text, int perPage, int page) throws FlickrException {
         GroupList<Group> groupList = new GroupList<Group>();

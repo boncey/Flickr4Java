@@ -108,7 +108,7 @@ public class PhotosetsInterface {
      * @param primaryPhotoId
      *            The primary photo id
      * @return The new Photset
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Photoset create(String title, String description, String primaryPhotoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -134,7 +134,7 @@ public class PhotosetsInterface {
      * 
      * @param photosetId
      *            The photoset ID
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void delete(String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -157,7 +157,7 @@ public class PhotosetsInterface {
      *            A new title
      * @param description
      *            A new description (can be null)
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void editMeta(String photosetId, String title, String description) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -184,7 +184,7 @@ public class PhotosetsInterface {
      *            The primary photo Id
      * @param photoIds
      *            The photo IDs for the photos in the set
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void editPhotos(String photosetId, String primaryPhotoId, String[] photoIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -210,7 +210,7 @@ public class PhotosetsInterface {
      * @param photosetId
      *            The photoset ID
      * @return The PhotoContext
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoContext getContext(String photoId, String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -252,7 +252,7 @@ public class PhotosetsInterface {
      * @param photosetId
      *            The photoset ID
      * @return The Photoset
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Photoset getInfo(String photosetId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -308,7 +308,7 @@ public class PhotosetsInterface {
      * @param userId
      *            The User id
      * @return The Photosets collection
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Photosets getList(String userId) throws FlickrException {
         return getList(userId, 0, 0, null);
@@ -324,7 +324,7 @@ public class PhotosetsInterface {
      * @param primaryPhotoExtras
      *            A comma-delimited list of extra information to fetch for the primary photo
      * @return The Photosets collection
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Photosets getList(String userId, String primaryPhotoExtras) throws FlickrException {
         return getList(userId, 0, 0, primaryPhotoExtras);
@@ -344,7 +344,7 @@ public class PhotosetsInterface {
      * @param primaryPhotoExtras
      *            A comma-delimited list of extra information to fetch for the primary photo
      * @return The Photosets collection
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Photosets getList(String userId, int perPage, int page, String primaryPhotoExtras) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -435,7 +435,7 @@ public class PhotosetsInterface {
      * @param userId
      *            The User id
      * @return int The number of photosets
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public int getPhotosetCount(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -481,7 +481,7 @@ public class PhotosetsInterface {
      * @param page
      *            The page offset
      * @return PhotoList The Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getPhotos(String photosetId, Set<String> extras, int privacy_filter, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -547,7 +547,7 @@ public class PhotosetsInterface {
      * @param page
      *            The page offset
      * @return PhotoList The Collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getPhotos(String photosetId, int perPage, int page) throws FlickrException {
         return getPhotos(photosetId, Extras.MIN_EXTRAS, Flickr.PRIVACY_LEVEL_NO_FILTER, perPage, page);
@@ -560,7 +560,7 @@ public class PhotosetsInterface {
      * 
      * @param photosetIds
      *            An array of Ids
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void orderSets(String[] photosetIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -582,7 +582,7 @@ public class PhotosetsInterface {
      *            The photoset ID
      * @param photoId
      *            The photo ID
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void removePhoto(String photosetId, String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -604,7 +604,7 @@ public class PhotosetsInterface {
      *            The photoset ID
      * @param photoIds
      *            The ID's of the photos, in CVS format
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void removePhotos(String photosetId, String photoIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -626,7 +626,7 @@ public class PhotosetsInterface {
      *            The photoset ID
      * @param photoIds
      *            The ID's of the photos, in CSV format, in the order they need to be in.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void reorderPhotos(String photosetId, String photoIds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -648,7 +648,7 @@ public class PhotosetsInterface {
      *            The photoset ID
      * @param photoId
      *            The photo ID that is being added
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setPrimaryPhoto(String photosetId, String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

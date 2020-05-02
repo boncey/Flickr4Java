@@ -137,7 +137,7 @@ public class PhotosInterface {
      *            The photo ID
      * @param tags
      *            The tags
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void addTags(String photoId, String[] tags) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -158,7 +158,7 @@ public class PhotosInterface {
      * This method requires authentication with 'delete' permission.
      * 
      * @param photoId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void delete(String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -183,7 +183,7 @@ public class PhotosInterface {
      * @param photoId
      *            The photo to return information for.
      * @return a list of {@link PhotoContext} objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoAllContext getAllContexts(String photoId) throws FlickrException {
         PhotoSetList<PhotoSet> setList = new PhotoSetList<PhotoSet>();
@@ -248,7 +248,7 @@ public class PhotosInterface {
      * @param includeSelf
      *            Set to true to include self
      * @return The Collection of photos
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getContactsPhotos(int count, boolean justFriends, boolean singlePhoto, boolean includeSelf) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -303,7 +303,7 @@ public class PhotosInterface {
      * @param includeSelf
      *            True to include self
      * @return A collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getContactsPublicPhotos(String userId, int count, boolean justFriends, boolean singlePhoto, boolean includeSelf)
             throws FlickrException {
@@ -369,7 +369,7 @@ public class PhotosInterface {
      * @param photoId
      *            The photo ID
      * @return The PhotoContext
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoContext getContext(String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -472,7 +472,7 @@ public class PhotosInterface {
      * @param secret
      *            The secret
      * @return A collection of Exif objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Exif> getExif(String photoId, String secret) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -560,7 +560,7 @@ public class PhotosInterface {
      * @param secret
      *            The optional secret String
      * @return The Photo
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Photo getInfo(String photoId, String secret) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -590,7 +590,7 @@ public class PhotosInterface {
      * @param page
      *            The page
      * @return The collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getNotInSet(int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -638,7 +638,7 @@ public class PhotosInterface {
      * @param photoId
      *            The photo id
      * @return The Permissions object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Permissions getPerms(String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -674,7 +674,7 @@ public class PhotosInterface {
      * @param page
      *            The page offset
      * @return A collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getRecent(Set<String> extras, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -709,7 +709,7 @@ public class PhotosInterface {
      * @param photoId
      *            The photo ID
      * @return A collection of {@link Size}
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Size> getSizes(String photoId) throws FlickrException {
         return getSizes(photoId, false);
@@ -727,7 +727,7 @@ public class PhotosInterface {
      * @param sign
      *            toggle to allow optionally signing the call (Authenticate)
      * @return A collection of {@link Size}
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Size> getSizes(String photoId, boolean sign) throws FlickrException {
         SizeList<Size> sizes = new SizeList<Size>();
@@ -768,7 +768,7 @@ public class PhotosInterface {
      * @param perPage
      * @param page
      * @return A Collection of Photos
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getUntagged(int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -826,7 +826,7 @@ public class PhotosInterface {
      * @param page
      *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return photos
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getWithGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort,
             Set<String> extras, int perPage, int page) throws FlickrException {
@@ -906,7 +906,7 @@ public class PhotosInterface {
      * @param page
      *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return a photo list
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getWithoutGeoData(Date minUploadDate, Date maxUploadDate, Date minTakenDate, Date maxTakenDate, int privacyFilter, String sort,
             Set<String> extras, int perPage, int page) throws FlickrException {
@@ -967,7 +967,7 @@ public class PhotosInterface {
      * @param page
      *            The page of results to return. If this argument is 0, it defaults to 1.
      * @return a list of photos
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> recentlyUpdated(Date minDate, Set<String> extras, int perPage, int page) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1001,7 +1001,7 @@ public class PhotosInterface {
      * 
      * @param tagId
      *            The tag ID
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void removeTag(String tagId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1025,7 +1025,7 @@ public class PhotosInterface {
      * @param page
      *            The page offset
      * @return A PhotoList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> search(SearchParameters params, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -1070,7 +1070,7 @@ public class PhotosInterface {
      * @param page
      *            The page to start on
      * @return A PhotoList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> searchInterestingness(SearchParameters params, int perPage, int page) throws FlickrException {
         PhotoList<Photo> photos = new PhotoList<Photo>();
@@ -1131,7 +1131,7 @@ public class PhotosInterface {
      *            The photo ID
      * @param contentType
      *            The contentType to set
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setContentType(String photoId, String contentType) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1159,7 +1159,7 @@ public class PhotosInterface {
      *            The date the photo was taken or null
      * @param dateTakenGranularity
      *            The granularity of the taken date or null
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setDates(String photoId, Date datePosted, Date dateTaken, String dateTakenGranularity) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1196,7 +1196,7 @@ public class PhotosInterface {
      *            The new title
      * @param description
      *            The new description
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setMeta(String photoId, String title, String description) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1221,7 +1221,7 @@ public class PhotosInterface {
      *            The photo ID
      * @param permissions
      *            The permissions object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setPerms(String photoId, Permissions permissions) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1255,7 +1255,7 @@ public class PhotosInterface {
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_SAFE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_MODERATE
      * @see com.flickr4java.flickr.Flickr#SAFETYLEVEL_RESTRICTED
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setSafetyLevel(String photoId, String safetyLevel, Boolean hidden) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1286,7 +1286,7 @@ public class PhotosInterface {
      *            The photo ID
      * @param tags
      *            The tag array
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setTags(String photoId, String[] tags) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -1337,7 +1337,7 @@ public class PhotosInterface {
      * @param size
      *            The Size
      * @return InputStream The InputStream
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public InputStream getImageAsStream(Photo photo, int size) throws FlickrException {
         try {
@@ -1404,7 +1404,7 @@ public class PhotosInterface {
      * @param size
      *            The size
      * @return An Image
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public BufferedImage getImage(Photo photo, int size) throws FlickrException {
         try {

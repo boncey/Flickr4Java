@@ -77,7 +77,7 @@ public class NotesInterface {
      * 
      * @param noteId
      *            The node ID
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void delete(String noteId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -96,7 +96,7 @@ public class NotesInterface {
      * 
      * @param note
      *            The Note to update
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void edit(Note note) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

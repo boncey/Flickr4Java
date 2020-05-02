@@ -26,7 +26,7 @@ public class Flickr4JavaTest {
     protected TestProperties testProperties;
 
     /**
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Before
     public void setUp() throws FlickrException {

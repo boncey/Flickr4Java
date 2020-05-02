@@ -98,7 +98,7 @@ public class ContactsInterface {
      *            Valid options are: <b>ff</b> -&gt; friends and family, <b>all</b> -&gt; all your contacts. (Optional, can be null)
      * 
      * @return List of Contacts
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter) throws FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
@@ -149,7 +149,7 @@ public class ContactsInterface {
      * @param userId
      *            The user ID
      * @return The Collection of Contact objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Contact> getPublicList(String userId) throws FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();

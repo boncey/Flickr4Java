@@ -45,7 +45,7 @@ public class TestInterface {
      * @param params
      *            The parameters
      * @return The Collection of echoed elements
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Element> echo(Map<String, String> params) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -64,7 +64,7 @@ public class TestInterface {
      * A testing method which checks if the caller is logged in then returns a User object.
      * 
      * @return The User object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public User login() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -87,7 +87,7 @@ public class TestInterface {
     /**
      * Null test. This method requires authentication with 'read' permission.
      * 
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void null_() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

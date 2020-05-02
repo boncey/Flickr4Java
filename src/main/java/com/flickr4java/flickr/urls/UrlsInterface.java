@@ -60,7 +60,7 @@ public class UrlsInterface {
      * @param groupId
      *            The group ID
      * @return The group URL
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String getGroup(String groupId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -83,7 +83,7 @@ public class UrlsInterface {
      * @param userId
      *            The user ID
      * @return The user photo URL
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String getUserPhotos(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -106,7 +106,7 @@ public class UrlsInterface {
      * @param userId
      *            The user ID
      * @return The URL
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String getUserProfile(String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -129,7 +129,7 @@ public class UrlsInterface {
      * @param url
      *            The url
      * @return The group
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Group lookupGroup(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -156,7 +156,7 @@ public class UrlsInterface {
      * @param url
      *            The user profile URL
      * @return The username
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public String lookupUser(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -180,7 +180,7 @@ public class UrlsInterface {
      * @param galleryId
      *            The user profile URL
      * @return The Gallery
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Gallery lookupGallery(String galleryId) throws FlickrException {
 

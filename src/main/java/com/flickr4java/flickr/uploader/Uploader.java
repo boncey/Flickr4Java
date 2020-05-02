@@ -69,7 +69,7 @@ public class Uploader implements IUploader {
      * @param metaData
      *            The meta data
      * @return photoId or ticketId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Override
     public String upload(byte[] data, UploadMetaData metaData) throws FlickrException {
@@ -85,7 +85,7 @@ public class Uploader implements IUploader {
      * @param metaData
      *            The meta data
      * @return photoId or ticketId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Override
     public String upload(File file, UploadMetaData metaData) throws FlickrException {
@@ -99,7 +99,7 @@ public class Uploader implements IUploader {
      * @param in
      * @param metaData
      * @return photoId or ticketId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Override
     public String upload(InputStream in, UploadMetaData metaData) throws FlickrException {
@@ -112,7 +112,7 @@ public class Uploader implements IUploader {
      * 
      * @param in
      * @return photoId or ticketId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Override
     public String replace(InputStream in, String flickrId, boolean async) throws FlickrException {
@@ -127,7 +127,7 @@ public class Uploader implements IUploader {
      * @param flickrId
      * @param async
      * @return photoId or ticketId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Override
     public String replace(byte[] data, String flickrId, boolean async) throws FlickrException {
@@ -142,7 +142,7 @@ public class Uploader implements IUploader {
      * @param flickrId
      * @param async
      * @return photoId or ticketId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Override
     public String replace(File file, String flickrId, boolean async) throws FlickrException {

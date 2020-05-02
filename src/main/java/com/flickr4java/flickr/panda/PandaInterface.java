@@ -48,7 +48,7 @@ public class PandaInterface {
      * This method does not require authentication.
      * 
      * @return A list of pandas
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public ArrayList<Panda> getList() throws FlickrException {
         ArrayList<Panda> pandas = new ArrayList<Panda>();
@@ -84,7 +84,7 @@ public class PandaInterface {
      * @param page
      *            The page offset
      * @return A PhotoList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList<Photo> getPhotos(Panda panda, Set<String> extras, int perPage, int page) throws FlickrException {

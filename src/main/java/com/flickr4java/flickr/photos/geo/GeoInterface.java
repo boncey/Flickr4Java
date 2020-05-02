@@ -62,7 +62,7 @@ public class GeoInterface {
      * @param photoId
      *            reqired photo id, not null
      * @return Geo Data, if the photo has it.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      *             if photo id is invalid, if photo has no geodata or if any other error has been reported in the response.
      */
     public GeoData getLocation(String photoId) throws FlickrException {
@@ -99,7 +99,7 @@ public class GeoInterface {
      * @param photoId
      *            reqired photo id, not null
      * @return the permissions
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      *             if photo id is invalid, if photo has no geodata or if any other error has been reported in the response.
      */
     public GeoPermissions getPerms(String photoId) throws FlickrException {
@@ -130,7 +130,7 @@ public class GeoInterface {
      * 
      * This method requires authentication with 'write' permission.
      * 
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void removeLocation(String photoId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -157,7 +157,7 @@ public class GeoInterface {
      *            The id of the photo to cet permissions for.
      * @param location
      *            geo data with optional accuracy (1-16), accuracy 0 to use the default.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setLocation(String photoId, GeoData location) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -189,7 +189,7 @@ public class GeoInterface {
      *            The id of the photo to set permissions for.
      * @param perms
      *            Permissions, who can see the geo data of this photo
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setPerms(String photoId, GeoPermissions perms) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -221,7 +221,7 @@ public class GeoInterface {
      *            A Flickr Places ID. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @param woeId
      *            A Where On Earth (WOE) ID. (While optional, you must pass either a valid Places ID or a WOE ID.)
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void batchCorrectLocation(GeoData location, String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -254,7 +254,7 @@ public class GeoInterface {
      *            A Flickr Places ID. (While optional, you must pass either a valid Places ID or a WOE ID.)
      * @param woeId
      *            A Where On Earth (WOE) ID. (While optional, you must pass either a valid Places ID or a WOE ID.)
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void correctLocation(String photoId, String placeId, String woeId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -285,7 +285,7 @@ public class GeoInterface {
      * @param perPage
      * @param page
      * @return The collection of Photo objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList<Photo> photosForLocation(GeoData location, Set<String> extras, int perPage, int page) throws FlickrException {
@@ -334,7 +334,7 @@ public class GeoInterface {
      * @param context
      *            Context is a numeric value representing the photo's geotagginess beyond latitude and longitude. For example, you may wish to indicate that a
      *            photo was taken "indoors" (1) or "outdoors" (2).
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setContext(String photoId, int context) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

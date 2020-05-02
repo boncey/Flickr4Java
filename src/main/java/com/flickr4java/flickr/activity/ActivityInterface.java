@@ -45,7 +45,7 @@ public class ActivityInterface {
      * @param perPage
      * @param page
      * @return ItemList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public ItemList<Item> userComments(int perPage, int page) throws FlickrException {
         ItemList<Item> items = new ItemList<Item>();
@@ -88,7 +88,7 @@ public class ActivityInterface {
      * @param page
      * @param timeframe
      * @return ItemList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public ItemList<Item> userPhotos(int perPage, int page, String timeframe) throws FlickrException {
         ItemList<Item> items = new ItemList<Item>();

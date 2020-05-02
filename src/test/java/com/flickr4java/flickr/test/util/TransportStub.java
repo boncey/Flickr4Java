@@ -4,8 +4,6 @@ import com.flickr4java.flickr.*;
 import com.flickr4java.flickr.uploader.Payload;
 import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.UploaderResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
@@ -17,12 +15,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 
 public class TransportStub extends Transport {
-
-    private static final Logger _log = LoggerFactory.getLogger(TransportStub.class);
 
     private final DocumentBuilder builder;
 

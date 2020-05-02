@@ -46,7 +46,7 @@ public class MembersInterface {
      * @param page
      *            Result-section.
      * @return A members-list
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see <a href="http://www.flickr.com/services/api/flickr.groups.members.getList.html">API Documentation</a>
      */
     public MembersList<Member> getList(String groupId, Set<String> memberTypes, int perPage, int page) throws FlickrException {

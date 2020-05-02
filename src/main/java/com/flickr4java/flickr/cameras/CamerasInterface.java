@@ -53,7 +53,7 @@ public class CamerasInterface {
      * 
      * 
      * @return List of Brands
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public List<Brand> getBrands() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -85,7 +85,7 @@ public class CamerasInterface {
      * 
      * 
      * @return List of Brands
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public List<Camera> getBrandModels(String strBrand) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

@@ -124,7 +124,7 @@ public class UploadPhoto {
     /**
      * Check local saved copy first ??. If Auth by username is available, then we will not need to make the API call.
      * 
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
 
     private void setNsid() throws FlickrException {

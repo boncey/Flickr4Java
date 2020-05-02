@@ -89,7 +89,7 @@ public abstract class Transport {
      * @param apiKey
      * @param sharedSecret
      * @return The Response
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public abstract Response get(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException;
 
@@ -103,7 +103,7 @@ public abstract class Transport {
      * @param apiKey
      * @param sharedSecret
      * @return The Response object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public abstract Response post(String path, Map<String, Object> parameters, String apiKey, String sharedSecret) throws FlickrException;
 
@@ -118,7 +118,7 @@ public abstract class Transport {
      * @param apiKey
      * @param sharedSecret
      * @return The Response object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public abstract Response postMultiPart(String path, UploadMetaData parameters, Payload payload, String apiKey, String sharedSecret) throws FlickrException;
 
@@ -132,7 +132,7 @@ public abstract class Transport {
      * @param parameters
      *            The parameters
      * @return The Response
-     * @throws FlickrException
+     * @throws FlickrRuntimeException
      */
     public abstract Response getNonOAuth(String path, Map<String, String> parameters) throws FlickrRuntimeException;
 

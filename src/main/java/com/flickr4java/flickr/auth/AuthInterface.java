@@ -159,7 +159,7 @@ public class AuthInterface {
      * @param accessToken
      *            The authentication token
      * @return The Auth object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Auth checkToken(OAuth1Token accessToken) throws FlickrException {
         return checkToken(accessToken.getToken(), accessToken.getTokenSecret());
@@ -171,7 +171,7 @@ public class AuthInterface {
      *            The authentication token
      * @param tokenSecret
      * @return The Auth object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see "http://www.flickr.com/services/api/flickr.auth.oauth.checkToken.html"
      */
     public Auth checkToken(String authToken, String tokenSecret) throws FlickrException {
@@ -199,7 +199,7 @@ public class AuthInterface {
      * Calling this method will delete the auth token used to make the request.
      * 
      * @param authToken
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see "http://www.flickr.com/services/api/flickr.auth.oauth.getAccessToken.html"
      */
     public OAuth1RequestToken exchangeAuthToken(String authToken) throws FlickrException {

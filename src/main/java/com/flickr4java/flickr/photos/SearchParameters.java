@@ -155,7 +155,7 @@ public class SearchParameters {
      *            <li>1 public photos
      *            <li>2 private photos visible to friends
      *            <li>3 private photos visible to family
-     *            <li>4 private photos visible to friends &amp; family
+     *            <li>4 private photos visible to friends and family
      *            <li>5 completely private photos
      *            </ul>
      */
@@ -184,7 +184,7 @@ public class SearchParameters {
      * "parameterless searches" for queries without a geo component.
      * <p>
      * 
-     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is
+     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &mdash; If no limiting factor is
      * passed flickr will return only photos added in the last 12 hours (though flickr may extend the limit in the future).
      * 
      * @param hasGeo
@@ -394,7 +394,6 @@ public class SearchParameters {
      * @return A placeId
      * @see com.flickr4java.flickr.places.PlacesInterface#resolvePlaceId(String)
      */
-    @SuppressWarnings("javadoc")
     public String getPlaceId() {
         return placeId;
     }
@@ -406,7 +405,7 @@ public class SearchParameters {
      * "parameterless searches" for queries without a geo component.
      * <p>
      * 
-     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is
+     * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &mdash; If no limiting factor is
      * passed we return only photos added in the last 12 hours (though we may extend the limit in the future).
      * 
      * @param placeId
@@ -414,7 +413,6 @@ public class SearchParameters {
      * @see com.flickr4java.flickr.places.Place#getPlaceId()
      * @see com.flickr4java.flickr.places.Location#getPlaceId()
      */
-    @SuppressWarnings("javadoc")
     public void setPlaceId(String placeId) {
         this.placeId = placeId;
     }
@@ -427,15 +425,15 @@ public class SearchParameters {
      * A Where on Earth identifier to use to filter photo clusters.<br>
      * For example all the photos clustered by locality in the United States (WOE ID 23424977).<br>
      * (not used if bbox argument is present).
-     * <p/>
+     * <p>
      * 
      * Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against
      * "parameterless searches" for queries without a geo component.
-     * <p/>
+     * <p>
      * 
      * A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters. If no limiting factor is passed we
      * return only photos added in the last 12 hours (though flickr may extend the limit in the future).
-     * <p/>
+     * <p>
      * 
      * @param woeId
      * @see com.flickr4java.flickr.places.Place#getWoeId()
@@ -468,7 +466,7 @@ public class SearchParameters {
 
     /**
      * Search your contacts. Valid arguments are either 'all' or 'ff' for just friends and family.
-     * <p/>
+     * <p>
      * 
      * It requires that the "user_id" field also be set and allows you to limit queries to only photos belonging to that user's photos. As in : All my contacts
      * photos tagged "aaron". (Experimental)

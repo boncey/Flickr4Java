@@ -133,7 +133,7 @@ public class StatsInterface {
     /**
      * Returns a list of URLs for text files containing all your stats data (from November 26th 2007 onwards) for the currently auth'd user.
      * 
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * 
      * @see "http://www.flickr.com/services/api/flickr.stats.getCSVFiles.html"
      */
@@ -315,7 +315,7 @@ public class StatsInterface {
      *            (Optional) Number of referrers to return per page. If this argument is omitted, it defaults to 25. The maximum allowed value is 100.
      * @param page
      *            (Optional) The page of results to return. If this argument is omitted, it defaults to 1.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see "http://www.flickr.com/services/api/flickr.stats.getPopularPhotos.html"
      */
     public PhotoList<Photo> getPopularPhotos(Date date, StatsSort sort, int perPage, int page) throws FlickrException {
@@ -344,7 +344,7 @@ public class StatsInterface {
      * @param date
      *            (Optional) Stats will be returned for this date. A day according to Flickr Stats starts at midnight GMT for all users, and timestamps will
      *            automatically be rounded down to the start of the day. If no date is provided, all time view counts will be returned.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * 
      * @see "http://www.flickr.com/services/api/flickr.stats.getTotalViews.html"
      */

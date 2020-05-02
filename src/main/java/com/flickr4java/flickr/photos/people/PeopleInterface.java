@@ -50,7 +50,7 @@ public class PeopleInterface {
      * @param photoId
      * @param userId
      * @param bounds
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void add(String photoId, String userId, Rectangle bounds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -76,7 +76,7 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void delete(String photoId, String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -96,7 +96,7 @@ public class PeopleInterface {
      * 
      * @param photoId
      * @param userId
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void deleteCoords(String photoId, String userId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -117,7 +117,7 @@ public class PeopleInterface {
      * @param photoId
      * @param userId
      * @param bounds
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void editCoords(String photoId, String userId, Rectangle bounds) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

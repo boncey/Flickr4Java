@@ -59,7 +59,7 @@ public class ReflectionInterface {
      * @param methodName
      *            The method name
      * @return The Method object
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Method getMethodInfo(String methodName) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -177,7 +177,7 @@ public class ReflectionInterface {
      * Get a list of all methods.
      * 
      * @return The method names
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<String> getMethods() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

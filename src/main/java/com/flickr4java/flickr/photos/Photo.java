@@ -570,7 +570,7 @@ public class Photo {
      * @see PhotosInterface#getImage(Photo, int)
      * @return An Image
      * @throws IOException
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Deprecated
     public BufferedImage getOriginalImage() throws IOException, FlickrException {
@@ -878,7 +878,7 @@ public class Photo {
      *            The URL suffix, including the .extension
      * @return The BufferedImage object
      * @throws IOException
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Deprecated
     private BufferedImage getOriginalImage(String suffix) throws IOException, FlickrException {
@@ -931,7 +931,7 @@ public class Photo {
      * @param suffix
      * @return InoutStream
      * @throws IOException
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Deprecated
     private InputStream getOriginalImageAsStream(String suffix) throws IOException, FlickrException {

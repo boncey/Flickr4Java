@@ -44,7 +44,7 @@ public class LicensesInterface {
      * This method does not require authentication.
      * 
      * @return A collection of License objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<License> getInfo() throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -77,7 +77,7 @@ public class LicensesInterface {
      *            The photo to update the license for.
      * @param licenseId
      *            The license to apply, or 0 (zero) to remove the current license.
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void setLicense(String photoId, int licenseId) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();

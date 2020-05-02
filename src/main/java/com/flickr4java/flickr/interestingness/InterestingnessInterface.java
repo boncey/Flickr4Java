@@ -76,7 +76,7 @@ public class InterestingnessInterface {
      * @param page
      *            The page offset
      * @return PhotoList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList<Photo> getList(String date, Set<String> extras, int perPage, int page) throws FlickrException {
@@ -126,7 +126,7 @@ public class InterestingnessInterface {
      * @param perPage
      * @param page
      * @return PhotoList
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      * @see com.flickr4java.flickr.photos.Extras
      */
     public PhotoList<Photo> getList(Date date, Set<String> extras, int perPage, int page) throws FlickrException {
@@ -142,7 +142,7 @@ public class InterestingnessInterface {
      * convenience method to get the list of all 500 most recent photos in flickr explore with all known extra attributes.
      * 
      * @return a List of Photos
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public PhotoList<Photo> getList() throws FlickrException {
         return getList((String) null, Extras.ALL_EXTRAS, 500, 1);

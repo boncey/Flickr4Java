@@ -94,11 +94,11 @@ public class ContactsInterface {
      *            Limits the resultset to contacts that have uploaded photos since this date. The date should be in the form of a Unix timestamp. The default,
      *            and maximum, offset is (1) hour. (Optional, can be null)
      * @param filter
-     *            Limit the result set to all contacts or only those who are friends or family.<br/>
+     *            Limit the result set to all contacts or only those who are friends or family.<br>
      *            Valid options are: <b>ff</b> -&gt; friends and family, <b>all</b> -&gt; all your contacts. (Optional, can be null)
      * 
      * @return List of Contacts
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Contact> getListRecentlyUploaded(Date lastUpload, String filter) throws FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();
@@ -149,7 +149,7 @@ public class ContactsInterface {
      * @param userId
      *            The user ID
      * @return The Collection of Contact objects
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Contact> getPublicList(String userId) throws FlickrException {
         List<Contact> contacts = new ArrayList<Contact>();

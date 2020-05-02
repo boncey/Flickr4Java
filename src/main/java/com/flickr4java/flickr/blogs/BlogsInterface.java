@@ -48,7 +48,7 @@ public class BlogsInterface {
      * This method does not require authentication.
      * 
      * @return List of Services
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Service> getServices() throws FlickrException {
         List<Service> list = new ArrayList<Service>();
@@ -80,7 +80,7 @@ public class BlogsInterface {
      *            The blog ID
      * @param blogPassword
      *            The blog password
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void postPhoto(Photo photo, String blogId, String blogPassword) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
@@ -107,7 +107,7 @@ public class BlogsInterface {
      *            The photo metadata
      * @param blogId
      *            The blog ID
-     * @throws FlickrException
+     * @throws FlickrException if there was a problem connecting to Flickr
      */
     public void postPhoto(Photo photo, String blogId) throws FlickrException {
         postPhoto(photo, blogId, null);

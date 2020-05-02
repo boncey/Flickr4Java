@@ -57,3 +57,15 @@ Flickr4Java is available on Maven Central so the above settings should be all yo
 ### Testing
 The tests now run against captured responses from Flickr (see `src/test/resources/payloads`) and don't contact the Flickr API at all.  
 This means there is no longer any need to create a test account and populate a properties file.
+
+#### Functional testing against the Flickr API.
+This is the setup to run the tests against the Flickr API.  
+*Not for the faint-hearted. Only do this to test large refactorings etc.*  
+
+Create up a `setup.properties` file (see `src/test/resources/setup.properties.example`) with details of a real account on Flickr (I recommend setting up a test account for this purpose).  
+Run tests as follows.  
+
+    mvn -DsetupPropertiesPath=/path/to/your/setup.properties clean install
+
+Expect lots of failures and general flakiness as data has changed on Flickr and the tests or data need updating.
+

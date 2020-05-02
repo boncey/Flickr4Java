@@ -204,9 +204,9 @@ public class REST extends Transport {
         // Ensure all parameters (including oauth) are added to payload so signature matches
         uploadParameters.putAll(request.getOauthParameters());
 
-        request.addFileByteArrayBodyPartPayloadInMultipartPayload(metaData.getFilemimetype(), payload.getPayload());
+        request.addFileByteArrayBodyPartPayloadInMultipartPayload(payload.getPayload(), "photo", metaData.getFilename());
         uploadParameters.entrySet().forEach(e ->
-                request.addFileByteArrayBodyPartPayloadInMultipartPayload(null, e.getValue().getBytes()));
+                request.addFileByteArrayBodyPartPayloadInMultipartPayload(null, e.getValue().getBytes(), e.getKey()));
 
         try {
             return handleResponse(request, service);

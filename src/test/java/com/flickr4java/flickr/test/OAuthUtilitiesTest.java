@@ -34,7 +34,7 @@ public class OAuthUtilitiesTest extends Flickr4JavaTest {
     @Test
     public void testSignRequest() {
         // No proxy credentials
-        OAuth10aService service = new ServiceBuilder("foo").build(FlickrApi.instance());
+        OAuth10aService service = new ServiceBuilder("foo").apiSecret("bar").build(FlickrApi.instance());
         OAuthRequest request = new OAuthRequest(Verb.GET, "http://foobar");
         assertTrue(request.getOauthParameters().isEmpty());
         OAuthUtilities.signRequest(service, request, null);

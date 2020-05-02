@@ -98,7 +98,7 @@ public class UploaderTest extends Flickr4JavaTest {
      * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Test
-    public void testReplaceInputStream() throws IOException, FlickrException {
+    public void testReplaceInputStream() throws IOException, FlickrException, InterruptedException {
         Uploader uploader = flickr.getUploader();
         PhotosInterface pint = flickr.getPhotosInterface();
         File imageFile = new File(testProperties.getImageFile());
@@ -111,6 +111,9 @@ public class UploaderTest extends Flickr4JavaTest {
                 UploadMetaData metaData = buildPrivatePhotoMetadata();
                 photoId = uploader.upload(uploadIS, metaData);
             }
+
+            // Fix some odd timing issue
+            Thread.sleep(1500);
 
             try (InputStream replaceIS = new FileInputStream(imageFile)) {
 
@@ -148,7 +151,7 @@ public class UploaderTest extends Flickr4JavaTest {
      * @throws FlickrException if there was a problem connecting to Flickr
      */
     @Test
-    public void testReplaceByteArray() throws IOException, FlickrException {
+    public void testReplaceByteArray() throws IOException, FlickrException, InterruptedException {
         File imageFile = new File(testProperties.getImageFile());
         Uploader uploader = flickr.getUploader();
         PhotosInterface pint = flickr.getPhotosInterface();
@@ -158,6 +161,9 @@ public class UploaderTest extends Flickr4JavaTest {
             // Upload a photo, which we'll replace, then delete
             UploadMetaData metaData = buildPrivatePhotoMetadata();
             String photoId = uploader.upload(Files.readAllBytes(imageFile.toPath()), metaData);
+
+            // Fix some odd timing issue
+            Thread.sleep(1500);
 
             try {
                 photoId = uploader.replace(Files.readAllBytes(imageFile.toPath()), photoId, false);

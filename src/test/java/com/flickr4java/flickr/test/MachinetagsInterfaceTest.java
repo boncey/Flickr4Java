@@ -93,15 +93,15 @@ public class MachinetagsInterfaceTest extends Flickr4JavaTest {
     @Test
     public void testGetRecentValues() throws FlickrException {
         MachinetagsInterface machinetagsInterface = flickr.getMachinetagsInterface();
-        String namespace = "ceramics";
-        String predicate = "material";
+        String namespace = "filmdev";
+        String predicate = "recipe";
         Calendar addedSince = Calendar.getInstance();
         addedSince.add(Calendar.YEAR, -10);
         NamespacesList<Value> list = machinetagsInterface.getRecentValues(namespace, predicate, addedSince.getTime());
         assertTrue(list.size() >= 3);
         boolean contentFound = false;
         for (Value value : list) {
-            if (value.getValue().equals("mixed_media")) {
+            if (value.getValue().equals("8040")) {
                 contentFound = true;
             }
         }

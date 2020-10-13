@@ -35,7 +35,7 @@
 
     <properties>
         <javaVersion>1.8</javaVersion>
-        <junitVersion>4.13</junitVersion>
+        <junitVersion>4.13.1</junitVersion>
         <slf4j.version>1.7.30</slf4j.version>
         <scribe.version>6.9.0</scribe.version>
     </properties>

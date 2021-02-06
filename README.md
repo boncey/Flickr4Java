@@ -35,11 +35,6 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 [See here](https://www.slf4j.org/manual.html#swapping) for details on how to choose and configure an SLF4J logging library.
 
 
-### Download
-
-[Download the latest version from bintray](https://bintray.com/boncey/Flickr4Java/Flickr4Java).
-
-
 ### Gradle
 
     compile 'com.flickr4java:flickr4java:3.0.4'

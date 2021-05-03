@@ -27,6 +27,14 @@
       </developer>
     </developers>
 
+    <licenses>
+        <license>
+            <name>BSD 2-Clause License</name>
+            <url>https://github.com/boncey/Flickr4Java/blob/master/LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <properties>
         <javaVersion>1.8</javaVersion>
         <junitVersion>4.13.1</junitVersion>

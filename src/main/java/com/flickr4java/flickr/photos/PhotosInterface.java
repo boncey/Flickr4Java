@@ -730,9 +730,9 @@ public class PhotosInterface {
      * @throws FlickrException if there was a problem connecting to Flickr
      */
     public Collection<Size> getSizes(String photoId, boolean sign) throws FlickrException {
-        SizeList<Size> sizes = new SizeList<Size>();
+        SizeList<Size> sizes = new SizeList<>();
 
-        Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<>();
         parameters.put("method", METHOD_GET_SIZES);
 
         parameters.put("photo_id", photoId);

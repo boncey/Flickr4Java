@@ -178,6 +178,8 @@ public class Size {
 
     private int label;
 
+    private String labelName;
+
     private int width;
 
     private int height;
@@ -207,9 +209,14 @@ public class Size {
      * @see com.flickr4java.flickr.photos.Size#MEDIUM_640
      * @see com.flickr4java.flickr.photos.Size#MEDIUM_800
      */
+    @Deprecated // This method is unreliable - use getLabelName instead
     public int getLabel() {
 
         return label;
+    }
+
+    public String getLabelName() {
+        return labelName;
     }
 
     private final List<String> lstSizes = Arrays.asList("Thumbnail", "Square", "Small", "Medium", "Large", "Original", "Large Square", "Small 320",
@@ -228,6 +235,7 @@ public class Size {
         if (ix != -1) {
             setLabel(ix);
         }
+        labelName = label;
     }
 
     /**

@@ -20,12 +20,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -324,6 +319,10 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         PhotosInterface iface = flickr.getPhotosInterface();
         Collection<Size> sizes = iface.getSizes(testProperties.getPhotoId());
         assertNotNull(sizes);
+
+        sizes.forEach(size -> assertNotNull(size.getLabelName()));
+        Optional<Size> original = sizes.stream().filter(size -> size.getLabelName().equals("Original")).findFirst();
+        assertTrue(original.isPresent());
     }
 
     @Test

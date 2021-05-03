@@ -79,6 +79,7 @@
                         <useReleaseProfile>false</useReleaseProfile>
                         <releaseProfiles>release</releaseProfiles>
                         <goals>deploy</goals>
+                        <arguments>${arguments} -Prelease-sign-artifacts</arguments>
                     </configuration>
                 </plugin>
             </plugins>

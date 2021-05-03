@@ -10,12 +10,6 @@
     <description>Java API For Flickr. Fork of FlickrJ.</description>
     <url>https://github.com/boncey/Flickr4Java</url>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
-
     <developers>
       <developer>
         <id>boncey</id>
@@ -73,10 +67,10 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.3</version>
                     <configuration>
-                        <mavenExecutorId>forked-path</mavenExecutorId>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
                         <useReleaseProfile>false</useReleaseProfile>
-                        <!--suppress UnresolvedMavenProperty -->
-                        <arguments>${arguments} -Psonatype-oss-release</arguments>
+                        <releaseProfiles>release</releaseProfiles>
+                        <goals>deploy</goals>
                     </configuration>
                 </plugin>
             </plugins>

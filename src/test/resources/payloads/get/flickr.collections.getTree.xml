@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
 <collections>
-	<collection id="24541304-72157634925166197" title="test" description="test description" iconlarge="https://farm6.staticflickr.com/5329/cols/72157634925166197_c0e27e6066_l.jpg" iconsmall="https://farm6.staticflickr.com/5329/cols/72157634925166197_c0e27e6066_s.jpg">
+	<collection id="24541304-72157634925166197" title="test" description="test description" iconlarge="https://combo.staticflickr.com/pw/images/collection_default_l.gif" iconsmall="https://combo.staticflickr.com/pw/images/collection_default_s.gif">
 		<set id="72157629291380265" title="Places" description="" />
 		<set id="72157629121093621" title="test" description="" />
 	</collection>

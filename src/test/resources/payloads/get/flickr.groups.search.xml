@@ -1,105 +1,105 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<groups page="1" pages="8" perpage="100" total="759">
-	<group nsid="36101698118@N01" name="java" eighteenplus="0" iconserver="1" iconfarm="1" members="285" pool_count="2804" topic_count="18" privacy="3" />
-	<group nsid="1915393@N23" name="java for all" eighteenplus="0" iconserver="0" iconfarm="0" members="19" pool_count="199" topic_count="0" privacy="3" />
-	<group nsid="2004476@N21" name="Central Java Indonesia" eighteenplus="0" iconserver="7127" iconfarm="8" members="66" pool_count="319" topic_count="0" privacy="3" />
+<groups page="1" pages="8" perpage="100" total="727">
+	<group nsid="36101698118@N01" name="java" eighteenplus="0" iconserver="1" iconfarm="1" members="310" pool_count="2828" topic_count="18" privacy="3" />
+	<group nsid="1915393@N23" name="java for all" eighteenplus="0" iconserver="0" iconfarm="0" members="23" pool_count="213" topic_count="0" privacy="3" />
+	<group nsid="2004476@N21" name="Central Java Indonesia" eighteenplus="0" iconserver="7127" iconfarm="8" members="88" pool_count="1047" topic_count="0" privacy="3" />
 	<group nsid="2280266@N25" name="Java Beach" eighteenplus="0" iconserver="2860" iconfarm="3" members="3" pool_count="60" topic_count="0" privacy="3" />
-	<group nsid="345253@N23" name="Java Day" eighteenplus="0" iconserver="169" iconfarm="1" members="12" pool_count="29" topic_count="1" privacy="3" />
-	<group nsid="455206@N23" name="Java ARC" eighteenplus="0" iconserver="1007" iconfarm="2" members="4" pool_count="2" topic_count="1" privacy="3" />
 	<group nsid="1922430@N24" name="PT.JUG" eighteenplus="0" iconserver="7231" iconfarm="8" members="6" pool_count="142" topic_count="0" privacy="3" />
-	<group nsid="1379651@N22" name="indonesia java international destination" eighteenplus="0" iconserver="4034" iconfarm="5" members="81" pool_count="2" topic_count="1" privacy="3" />
-	<group nsid="1114476@N23" name="java 群组" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="345253@N23" name="Java Day" eighteenplus="0" iconserver="169" iconfarm="1" members="12" pool_count="29" topic_count="1" privacy="3" />
 	<group nsid="2712671@N20" name="Java Developers" eighteenplus="0" iconserver="0" iconfarm="0" members="6" pool_count="0" topic_count="0" privacy="3" />
 	<group nsid="1808678@N20" name="Java Developer JLCINDIA" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="719683@N25" name="Java Programming Group" eighteenplus="0" iconserver="0" iconfarm="0" members="33" pool_count="156" topic_count="4" privacy="3" />
+	<group nsid="1452032@N23" name="Java Community" eighteenplus="0" iconserver="1173" iconfarm="2" members="9" pool_count="292" topic_count="0" privacy="2" />
+	<group nsid="1114476@N23" name="java 群组" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="719683@N25" name="Java Programming Group" eighteenplus="0" iconserver="0" iconfarm="0" members="35" pool_count="164" topic_count="4" privacy="3" />
 	<group nsid="1770570@N24" name="JavaOne 2011 San Francisco" eighteenplus="0" iconserver="6052" iconfarm="7" members="5" pool_count="513" topic_count="0" privacy="3" />
 	<group nsid="2274412@N20" name="Java Soulnation Festival" eighteenplus="0" iconserver="3669" iconfarm="4" members="3" pool_count="6" topic_count="0" privacy="3" />
-	<group nsid="343367@N21" name="Java Jazz Festival photos" eighteenplus="0" iconserver="170" iconfarm="1" members="64" pool_count="777" topic_count="0" privacy="3" />
-	<group nsid="56158444@N00" name="Project Looking Glass" eighteenplus="0" iconserver="37" iconfarm="1" members="12" pool_count="277" topic_count="0" privacy="3" />
-	<group nsid="947677@N22" name="Java eiland Amsterdam- Java island Amsterdam" eighteenplus="0" iconserver="3183" iconfarm="4" members="43" pool_count="662" topic_count="2" privacy="3" />
-	<group nsid="643357@N21" name="Java sparrow MANIAX （文鳥マニアックス）" eighteenplus="0" iconserver="2180" iconfarm="3" members="27" pool_count="186" topic_count="0" privacy="3" />
-	<group nsid="546272@N24" name="java programmers" eighteenplus="0" iconserver="0" iconfarm="0" members="25" pool_count="42" topic_count="0" privacy="3" />
-	<group nsid="1249180@N24" name="Austin Java" eighteenplus="0" iconserver="2749" iconfarm="3" members="4" pool_count="14" topic_count="0" privacy="3" />
+	<group nsid="343367@N21" name="Java Jazz Festival photos" eighteenplus="0" iconserver="170" iconfarm="1" members="64" pool_count="790" topic_count="0" privacy="3" />
+	<group nsid="947677@N22" name="Java eiland Amsterdam- Java island Amsterdam" eighteenplus="0" iconserver="3183" iconfarm="4" members="43" pool_count="647" topic_count="2" privacy="3" />
+	<group nsid="546272@N24" name="java programmers" eighteenplus="0" iconserver="0" iconfarm="0" members="35" pool_count="49" topic_count="0" privacy="3" />
 	<group nsid="1086900@N24" name="JavaFirstRobotics" eighteenplus="0" iconserver="0" iconfarm="0" members="3" pool_count="30" topic_count="0" privacy="3" />
-	<group nsid="60166513@N00" name="Pune Java" eighteenplus="0" iconserver="0" iconfarm="0" members="6" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="24897426@N00" name="JavaOne2005" eighteenplus="0" iconserver="17" iconfarm="1" members="30" pool_count="581" topic_count="3" privacy="3" />
-	<group nsid="46874765@N00" name="Java Programming" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4508578@N24" name="Java Developer Resources" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="2" topic_count="0" privacy="3" />
 	<group nsid="2190781@N20" name="Java Adventure" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="437325@N23" name="All Open Source" eighteenplus="0" iconserver="1037" iconfarm="2" members="34" pool_count="76" topic_count="2" privacy="3" />
-	<group nsid="2849682@N22" name="JAVA In FIlm" eighteenplus="0" iconserver="0" iconfarm="0" members="3" pool_count="39" topic_count="0" privacy="3" />
-	<group nsid="329674@N24" name="Jammin' Java" eighteenplus="0" iconserver="182" iconfarm="1" members="38" pool_count="510" topic_count="0" privacy="3" />
-	<group nsid="1978135@N20" name="Java Bali Lombok Juni 2012" eighteenplus="0" iconserver="7134" iconfarm="8" members="13" pool_count="684" topic_count="0" privacy="2" />
-	<group nsid="634067@N22" name="Bromo - East Java" eighteenplus="0" iconserver="0" iconfarm="0" members="82" pool_count="500" topic_count="0" privacy="3" />
-	<group nsid="76894976@N00" name="Java City" eighteenplus="0" iconserver="0" iconfarm="0" members="5" pool_count="19" topic_count="2" privacy="2" />
-	<group nsid="1806514@N22" name="Travel to Java" eighteenplus="0" iconserver="6173" iconfarm="7" members="294" pool_count="3847" topic_count="0" privacy="3" />
-	<group nsid="3925491@N25" name="Javatpoint.com" eighteenplus="0" iconserver="0" iconfarm="0" members="3" pool_count="1" topic_count="0" privacy="3" />
-	<group nsid="1654313@N24" name="Semarang (Jawa - Indonesia)" eighteenplus="0" iconserver="5167" iconfarm="6" members="82" pool_count="240" topic_count="1" privacy="3" />
-	<group nsid="15436230@N00" name="Art and a Cup of Java" eighteenplus="0" iconserver="63" iconfarm="1" members="14" pool_count="5" topic_count="8" privacy="3" />
+	<group nsid="2849682@N22" name="JAVA In FIlm" eighteenplus="0" iconserver="0" iconfarm="0" members="4" pool_count="45" topic_count="0" privacy="3" />
+	<group nsid="3111431@N21" name="Java Programming and Fun Group" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="5" topic_count="2" privacy="2" />
+	<group nsid="1978135@N20" name="Java Bali Lombok Juni 2012" eighteenplus="0" iconserver="7134" iconfarm="8" members="12" pool_count="609" topic_count="0" privacy="2" />
+	<group nsid="634067@N22" name="Bromo - East Java" eighteenplus="0" iconserver="0" iconfarm="0" members="97" pool_count="584" topic_count="3" privacy="3" />
+	<group nsid="1806514@N22" name="Travel to Java" eighteenplus="0" iconserver="6173" iconfarm="7" members="392" pool_count="5843" topic_count="1" privacy="3" />
+	<group nsid="3925491@N25" name="Javatpoint.com" eighteenplus="0" iconserver="0" iconfarm="0" members="9" pool_count="5" topic_count="0" privacy="3" />
+	<group nsid="1654313@N24" name="Semarang (Jawa - Indonesia)" eighteenplus="0" iconserver="5167" iconfarm="6" members="88" pool_count="227" topic_count="1" privacy="3" />
 	<group nsid="1859436@N22" name="London Java Community Open Conference 2011" eighteenplus="0" iconserver="7035" iconfarm="8" members="4" pool_count="132" topic_count="0" privacy="3" />
-	<group nsid="397390@N22" name="East Java - Jawa Timur" eighteenplus="0" iconserver="3205" iconfarm="4" members="418" pool_count="3500" topic_count="2" privacy="3" />
-	<group nsid="95862304@N00" name="London Java Meetups" eighteenplus="0" iconserver="33" iconfarm="1" members="6" pool_count="12" topic_count="0" privacy="3" />
-	<group nsid="95723720@N00" name="POJO (Computer programmers)" eighteenplus="0" iconserver="46" iconfarm="1" members="85" pool_count="112" topic_count="4" privacy="3" />
-	<group nsid="915286@N22" name="Central Java StoneTemples" eighteenplus="0" iconserver="3105" iconfarm="4" members="51" pool_count="901" topic_count="1" privacy="3" />
-	<group nsid="19746123@N00" name="Bandung Indonesia" eighteenplus="0" iconserver="5" iconfarm="1" members="366" pool_count="3012" topic_count="16" privacy="2" />
-	<group nsid="13098399@N00" name="JUG Padova" eighteenplus="0" iconserver="34" iconfarm="1" members="16" pool_count="734" topic_count="1" privacy="3" />
-	<group nsid="2727821@N24" name="Visit Java in Parawisata" eighteenplus="0" iconserver="0" iconfarm="0" members="8" pool_count="8" topic_count="0" privacy="3" />
-	<group nsid="991046@N22" name="Devoxx08" eighteenplus="0" iconserver="3221" iconfarm="4" members="24" pool_count="235" topic_count="1" privacy="3" />
+	<group nsid="397390@N22" name="East Java - Jawa Timur" eighteenplus="0" iconserver="3205" iconfarm="4" members="431" pool_count="3541" topic_count="2" privacy="3" />
+	<group nsid="95723720@N00" name="POJO (Computer programmers)" eighteenplus="0" iconserver="46" iconfarm="1" members="86" pool_count="73" topic_count="4" privacy="3" />
+	<group nsid="915286@N22" name="Central Java StoneTemples" eighteenplus="0" iconserver="3105" iconfarm="4" members="60" pool_count="280" topic_count="1" privacy="3" />
+	<group nsid="19746123@N00" name="Bandung Indonesia" eighteenplus="0" iconserver="5" iconfarm="1" members="356" pool_count="3006" topic_count="16" privacy="2" />
+	<group nsid="13098399@N00" name="JUG Padova" eighteenplus="0" iconserver="34" iconfarm="1" members="14" pool_count="730" topic_count="1" privacy="3" />
+	<group nsid="2727821@N24" name="Visit Java in Parawisata" eighteenplus="0" iconserver="0" iconfarm="0" members="8" pool_count="9" topic_count="0" privacy="3" />
+	<group nsid="991046@N22" name="Devoxx08" eighteenplus="0" iconserver="3221" iconfarm="4" members="23" pool_count="209" topic_count="1" privacy="3" />
 	<group nsid="1623884@N22" name="South Beach Java Review health" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="360959@N20" name="Surabaya Walking Through" eighteenplus="0" iconserver="197" iconfarm="1" members="210" pool_count="1815" topic_count="17" privacy="3" />
+	<group nsid="874343@N21" name="Surfing Indonesia" eighteenplus="0" iconserver="4900" iconfarm="5" members="131" pool_count="1043" topic_count="0" privacy="3" />
+	<group nsid="360959@N20" name="Surabaya Walking Through" eighteenplus="0" iconserver="197" iconfarm="1" members="212" pool_count="1414" topic_count="17" privacy="3" />
 	<group nsid="1599666@N24" name="South Beach Java Weight Lose" eighteenplus="0" iconserver="0" iconfarm="0" members="3" pool_count="0" topic_count="0" privacy="3" />
 	<group nsid="1642578@N23" name="South Beach Java Reviews" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="21921744@N00" name="JavaOne'06" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="358" topic_count="0" privacy="3" />
-	<group nsid="70705190@N00" name="JavaOne2006" eighteenplus="0" iconserver="44" iconfarm="1" members="37" pool_count="768" topic_count="8" privacy="3" />
+	<group nsid="70705190@N00" name="JavaOne2006" eighteenplus="0" iconserver="44" iconfarm="1" members="39" pool_count="732" topic_count="8" privacy="3" />
 	<group nsid="1226341@N24" name="villa sido mukti" eighteenplus="0" iconserver="2779" iconfarm="3" members="3" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="4407148@N23" name="Java  Specific Localedge" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3905866@N22" name="Java Version Programmatically" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3073772@N21" name="Java Xmlconfiguration  Attribute" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="1196979@N24" name="Java 2009-invitation" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4374118@N21" name="Java  Parameter Values" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="1362485@N21" name="Java Champions" eighteenplus="0" iconserver="0" iconfarm="0" members="18" pool_count="21" topic_count="0" privacy="2" />
+	<group nsid="4407087@N23" name="Away Katchafire Letra" eighteenplus="0" iconserver="0" iconfarm="0" members="0" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="2944460@N24" name="Celleditorlistener  Rowed" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4364065@N25" name="Militares Cantando  Lucky" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3866006@N20" name="Java Version Remotely" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="1162336@N24" name="SMI Photos" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="1" topic_count="0" privacy="3" />
+	<group nsid="91711720@N00" name="Taksa" eighteenplus="0" iconserver="40" iconfarm="1" members="56" pool_count="804" topic_count="4" privacy="3" />
+	<group nsid="2892199@N24" name="Java Gul" eighteenplus="0" iconserver="764" iconfarm="1" members="1" pool_count="3" topic_count="0" privacy="2" />
+	<group nsid="3035331@N24" name="Java Documentlistener  Changed" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="2992280@N23" name="Java  Current Fragment" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4030514@N23" name="Java-Bali 2018 FOX" eighteenplus="0" iconserver="1939" iconfarm="2" members="7" pool_count="311" topic_count="0" privacy="2" />
+	<group nsid="2489550@N20" name="JAVA WORLD" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="3853544@N24" name="Jsonrequest  Not Allowed" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3036139@N25" name="Xsl  Default Namespace" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
 	<group nsid="1843360@N20" name="Java Store" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
 	<group nsid="3059834@N20" name="Java  Download Filename" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="4407148@N23" name="Java  Specific Localedge" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3073772@N21" name="Java Xmlconfiguration  Attribute" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="2992280@N23" name="Java  Current Fragment" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="1575321@N24" name="Java Mug Rug Challenge" eighteenplus="0" iconserver="5056" iconfarm="6" members="5" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="2944460@N24" name="Celleditorlistener  Rowed" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="34842430@N00" name="Java&amp;Career" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="4364065@N25" name="Militares Cantando  Lucky" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="1162336@N24" name="SMI Photos" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="1" topic_count="0" privacy="3" />
-	<group nsid="4002426@N22" name="Java Talk Social Site" eighteenplus="0" iconserver="885" iconfarm="1" members="2" pool_count="5" topic_count="0" privacy="3" />
-	<group nsid="3905866@N22" name="Java Version Programmatically" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="4409408@N23" name="Javascript  Translate3D Position" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="2506805@N25" name="Coroa Minas" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="4338164@N25" name="Silverstripe Sitetree" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3037181@N24" name="Java Jtabbedpane  Tabindexchanged" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3022821@N24" name="Nsifile  Path Javascript" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="91711720@N00" name="Taksa" eighteenplus="0" iconserver="40" iconfarm="1" members="55" pool_count="720" topic_count="4" privacy="3" />
-	<group nsid="2915828@N20" name="java Travel" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="6" privacy="3" />
-	<group nsid="1452032@N23" name="Java Community" eighteenplus="0" iconserver="1173" iconfarm="2" members="9" pool_count="292" topic_count="0" privacy="2" />
-	<group nsid="4359275@N25" name="Incredible Dream Machines" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="606070@N21" name="java test gruop" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="4374118@N21" name="Java  Parameter Values" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3853544@N24" name="Jsonrequest  Not Allowed" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="1087233@N25" name="JavaOne2009" eighteenplus="0" iconserver="3102" iconfarm="4" members="6" pool_count="3131" topic_count="0" privacy="3" />
-	<group nsid="1821661@N25" name="Java Partner" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="3085443@N21" name="Java  Separator Pathology" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="1196979@N24" name="Java 2009-invitation" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3008322@N22" name="Java Arraylist  Object" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="79688026@N00" name="Live daily" eighteenplus="0" iconserver="79" iconfarm="1" members="1" pool_count="6" topic_count="0" privacy="3" />
-	<group nsid="3090243@N22" name="Appxpackage Microsoft Edge" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="2937667@N25" name="Jquery  Content Document" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3857924@N24" name="Jquery  Colgroup Width" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3036139@N25" name="Xsl  Default Namespace" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="4349169@N20" name="Java  Collection Classes" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="53765638@N00" name="j2ee" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="1" privacy="3" />
-	<group nsid="3035331@N24" name="Java Documentlistener  Changed" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3866006@N20" name="Java Version Remotely" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="65756607@N00" name="I am growing up!" eighteenplus="0" iconserver="0" iconfarm="0" members="3" pool_count="1" topic_count="6" privacy="3" />
-	<group nsid="1641502@N25" name="Javas Vegetable Garden 2011" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="4351249@N20" name="Java  Directories Recursively" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="2489550@N20" name="JAVA WORLD" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
-	<group nsid="4407087@N23" name="Away Katchafire Letra" eighteenplus="0" iconserver="0" iconfarm="0" members="0" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="3070081@N23" name="Java  Process Username" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="1362485@N21" name="Java Champions" eighteenplus="0" iconserver="0" iconfarm="0" members="19" pool_count="25" topic_count="0" privacy="2" />
-	<group nsid="2960152@N20" name="Space Engineers  Hydrogen" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
 	<group nsid="3052749@N25" name="Java Offline Uninstall" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4367435@N25" name="Routevaluedictionary In Controller" eighteenplus="0" iconserver="0" iconfarm="0" members="0" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4409408@N23" name="Javascript  Translate3D Position" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="1087233@N25" name="JavaOne2009" eighteenplus="0" iconserver="3102" iconfarm="4" members="6" pool_count="3131" topic_count="0" privacy="3" />
+	<group nsid="2506805@N25" name="Coroa Minas" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3085443@N21" name="Java  Separator Pathology" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="1821661@N25" name="Java Partner" eighteenplus="0" iconserver="0" iconfarm="0" members="2" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="3070081@N23" name="Java  Process Username" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4329154@N25" name="Java Jpasswordfield  Text" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3050093@N20" name="Child Powerbuilder Workout" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="1641502@N25" name="Javas Vegetable Garden 2011" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="1757018@N24" name="Java Travelling" eighteenplus="0" iconserver="6151" iconfarm="7" members="1" pool_count="6" topic_count="1" privacy="3" />
+	<group nsid="1557373@N20" name="javaone" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="43" topic_count="0" privacy="3" />
+	<group nsid="3068722@N21" name="Java System  Classpath" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3008322@N22" name="Java Arraylist  Object" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3037181@N24" name="Java Jtabbedpane  Tabindexchanged" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
 	<group nsid="4336905@N25" name="Hypnosis Youtube  Organized" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
-	<group nsid="2892199@N24" name="Java Gul" eighteenplus="0" iconserver="764" iconfarm="1" members="1" pool_count="3" topic_count="0" privacy="2" />
+	<group nsid="2937667@N25" name="Jquery  Content Document" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3771365@N20" name="&lt;java.util.PriorityQueue serialization=&quot;custom&quot;&gt;&lt;unserializable-" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="1575321@N24" name="Java Mug Rug Challenge" eighteenplus="0" iconserver="5056" iconfarm="6" members="5" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="4351249@N20" name="Java  Directories Recursively" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="2960152@N20" name="Space Engineers  Hydrogen" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4002426@N22" name="Java Talk Social Site" eighteenplus="0" iconserver="885" iconfarm="1" members="2" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="4338164@N25" name="Silverstripe Sitetree" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3857924@N24" name="Jquery  Colgroup Width" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3022821@N24" name="Nsifile  Path Javascript" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3032743@N20" name="Java System Properties" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4359275@N25" name="Incredible Dream Machines" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="2915828@N20" name="java Travel" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="6" privacy="3" />
+	<group nsid="1796532@N22" name="Java &amp; Bali" eighteenplus="0" iconserver="0" iconfarm="0" members="7" pool_count="72" topic_count="0" privacy="3" />
+	<group nsid="4349169@N20" name="Java  Collection Classes" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="3090243@N22" name="Appxpackage Microsoft Edge" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="655830@N23" name="Shadow Puppet Gallery" eighteenplus="0" iconserver="2081" iconfarm="3" members="34" pool_count="221" topic_count="0" privacy="3" />
+	<group nsid="2711711@N24" name="JAVA Plugin Team - Photography course fun day" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="2" />
+	<group nsid="4596660@N22" name="java.util.HashMaðorg.springframework.aop.target.HotSwappableTar" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="4041964@N23" name="[&quot;java.util.HashSet&quot;,[[&quot;org.springframework.aop.support.DefaultB" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="4546359@N20" name="java.util.HashMaðorg.springframework.aop.target.HotSwappableTar" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
+	<group nsid="4573898@N23" name="java.util.TreeMaðorg.apache.commons.beanutils.BeanComparatoòja" eighteenplus="0" iconserver="0" iconfarm="0" members="1" pool_count="0" topic_count="0" privacy="3" />
 </groups>
 </rsp>

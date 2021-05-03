@@ -15,6 +15,8 @@ public class HotlistTag {
 
     }
 
+    @Deprecated
+    // Note that the API no longer returns the score
     public int getScore() {
         return score;
     }

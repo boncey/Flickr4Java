@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<photo id="5628095432" secret="678f9b91c1" server="5150" farm="6" dateuploaded="1303057683" isfavorite="0" license="0" safety_level="0" rotation="0" originalsecret="815e3b9f27" originalformat="jpg" views="64" media="photo">
+<photo id="5628095432" secret="678f9b91c1" server="5150" farm="6" dateuploaded="1303057683" isfavorite="0" license="0" safety_level="0" rotation="0" originalsecret="815e3b9f27" originalformat="jpg" views="86" media="photo">
 	<owner nsid="24573443@N04" username="boncey_test" realname="Darren Greaves" location="London, England" iconserver="7008" iconfarm="8" path_alias="boncey_test" />
 	<title>Robot</title>
 	<description>Description</description>
 	<visibility ispublic="1" isfriend="0" isfamily="0" />
-	<dates posted="1303057683" taken="2011-04-02 18:55:46" takengranularity="0" takenunknown="0" lastupdate="1530378267" />
+	<dates posted="1303057683" taken="2011-04-02 18:55:46" takengranularity="0" takenunknown="0" lastupdate="1620054984" />
 	<permissions permcomment="3" permaddmeta="2" />
 	<editability cancomment="1" canaddmeta="1" />
 	<publiceditability cancomment="1" canaddmeta="0" />
@@ -18,11 +18,11 @@
 		<tag id="24541304-5628095432-457575" author="24573443@N04" authorname="boncey_test" raw="grn" machine_tag="">grn</tag>
 		<tag id="24541304-5628095432-18041086" author="24573443@N04" authorname="boncey_test" raw="grngrn" machine_tag="">grngrn</tag>
 	</tags>
-	<location latitude="23.340000" longitude="46.990000" accuracy="13" context="0" place_id="qfUc_u5QW7lgSMT6" woeid="1939730">
-		<locality place_id="qfUc_u5QW7lgSMT6" woeid="1939730">Al-Mith'ab</locality>
-		<county place_id="lK5mu.ZUVLv7VoTj5g" woeid="56120186">Hota Bani Tamim</county>
-		<region place_id="4rwZy6tTUb5CS2j3" woeid="2346951">Riyadh</region>
-		<country place_id="iLKqaDdTUb5Edhemcg" woeid="23424938">Saudi Arabia</country>
+	<location latitude="23.340000" longitude="46.990000" accuracy="13" context="0">
+		<locality>Daḩl Hīt</locality>
+		<neighbourhood />
+		<region>Ar Riyāḑ</region>
+		<country>Saudi Arabia</country>
 	</location>
 	<geoperms ispublic="1" iscontact="0" isfriend="0" isfamily="0" />
 	<urls>

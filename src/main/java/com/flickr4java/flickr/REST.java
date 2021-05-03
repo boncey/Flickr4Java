@@ -10,6 +10,7 @@ import com.flickr4java.flickr.util.OAuthUtilities;
 import com.flickr4java.flickr.util.UrlUtilities;
 import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Parameter;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth10aService;
 import org.slf4j.Logger;
@@ -26,9 +27,13 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -216,9 +221,9 @@ public class REST extends Transport {
     }
 
     private OAuth10aService createAndSignRequest(String apiKey, String sharedSecret, OAuthRequest request) {
-    	OAuth10aService service = OAuthUtilities.createOAuthService(apiKey, sharedSecret, connectTimeoutMs, readTimeoutMs);
-    	OAuthUtilities.signRequest(service, request, proxyAuth ? getProxyCredentials() : null);
-    	return service;
+        OAuth10aService service = OAuthUtilities.createOAuthService(apiKey, sharedSecret, connectTimeoutMs, readTimeoutMs);
+        OAuthUtilities.signRequest(service, request, proxyAuth ? getProxyCredentials() : null);
+        return service;
     }
 
     private String buildUrl(String path) {
@@ -243,6 +248,9 @@ public class REST extends Transport {
         Document document = builder.parse(new InputSource(new StringReader(strXml)));
         Response f4jResponse = (Response) responseClass.getConstructor().newInstance();
         f4jResponse.parse(document);
+
+        // Enable this method to update the test payloads
+        // dumpResponseToFile(request, strXml);
 
         return f4jResponse;
     }
@@ -328,11 +336,25 @@ public class REST extends Transport {
     }
 
     // Generate responses for offline tests
-//    private void dumpResponseToFile(Object flickrMethod, String strXml, String httpMethod) throws IOException {
-//        String filename = String.format("%s.xml", flickrMethod);
-//        Path filePath = Paths.get("src/test/resources/payloads/" + httpMethod, filename);
-//        Files.write(filePath, strXml.getBytes());
-//        logger.info(String.format("Writing payload to file '%s'", filePath));
-//    }
 
+    private void dumpResponseToFile(OAuthRequest request, String strXml) throws IOException {
+        Verb verb = request.getVerb();
+        Optional<String> flickrMethod = Optional.empty();
+        switch (verb) {
+            case GET:
+                flickrMethod = request.getQueryStringParams().getParams().stream().filter(param -> param.getKey().equals("method")).findFirst().map(Parameter::getValue);
+                break;
+            case POST:
+                 flickrMethod = request.getBodyParams().getParams().stream().filter(param -> param.getKey().equals("method")).findFirst().map(Parameter::getValue);
+                break;
+        }
+        if (flickrMethod.isPresent()) {
+            String filename = String.format("%s.xml", flickrMethod.get());
+            Path filePath = Paths.get("src/test/resources/payloads/" + verb, filename);
+            Files.write(filePath, strXml.getBytes());
+            logger.info(String.format("Writing payload to file '%s'", filePath));
+        } else {
+            logger.warn("Not dumping response to file as method not found in request for URL {}", request.getUrl());
+        }
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<comment id="7285574-419231219-72157698056694594" author="24573443@N04" authorname="boncey_test" datecreate="1530378194" permalink="https://www.flickr.com/photos/javatest3/419231219/#comment72157698056694594" path_alias="boncey_test" realname="Darren Greaves">
-This is a test for the flickr java api	<iconurls retina="" large="" medium="" small="" default="https://farm8.staticflickr.com/7008/buddyicons/24573443@N04.jpg?1325281174#24573443@N04" />
+<comment id="24541304-5628095432-72157719084171588" author="24573443@N04" authorname="boncey_test" datecreate="1620054952" permalink="https://www.flickr.com/photos/boncey_test/5628095432/#comment72157719084171588" path_alias="boncey_test" realname="Darren Greaves">
+This is a test for the flickr java api	<iconurls retina="https://farm8.staticflickr.com/7008/buddyicons/24573443@N04_r.jpg?1325281174#24573443@N04" large="https://farm8.staticflickr.com/7008/buddyicons/24573443@N04_l.jpg?1325281174#24573443@N04" medium="https://farm8.staticflickr.com/7008/buddyicons/24573443@N04_m.jpg?1325281174#24573443@N04" small="https://farm8.staticflickr.com/7008/buddyicons/24573443@N04_s.jpg?1325281174#24573443@N04" default="https://farm8.staticflickr.com/7008/buddyicons/24573443@N04.jpg?1325281174#24573443@N04" />
 </comment>
 </rsp>

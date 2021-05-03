@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
 <sizes canblog="1" canprint="1" candownload="1">
-	<size label="Square" width="75" height="75" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1_s.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/sq/" media="photo" />
-	<size label="Large Square" width="150" height="150" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1_q.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/q/" media="photo" />
-	<size label="Thumbnail" width="67" height="100" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1_t.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/t/" media="photo" />
-	<size label="Small" width="160" height="240" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1_m.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/s/" media="photo" />
-	<size label="Small 320" width="213" height="320" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1_n.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/n/" media="photo" />
-	<size label="Medium" width="333" height="500" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/m/" media="photo" />
-	<size label="Medium 640" width="427" height="640" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1_z.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/z/" media="photo" />
-	<size label="Large" width="683" height="1024" source="https://farm6.staticflickr.com/5150/5628095432_678f9b91c1_b.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/l/" media="photo" />
-	<size label="Original" width="1168" height="1752" source="https://farm6.staticflickr.com/5150/5628095432_815e3b9f27_o.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/o/" media="photo" />
+	<size label="Square" width="75" height="75" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_s.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/sq/" media="photo" />
+	<size label="Large Square" width="150" height="150" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_q.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/q/" media="photo" />
+	<size label="Thumbnail" width="67" height="100" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_t.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/t/" media="photo" />
+	<size label="Small" width="160" height="240" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_m.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/s/" media="photo" />
+	<size label="Small 320" width="213" height="320" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_n.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/n/" media="photo" />
+	<size label="Small 400" width="267" height="400" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_w.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/w/" media="photo" />
+	<size label="Medium" width="333" height="500" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/m/" media="photo" />
+	<size label="Medium 640" width="427" height="640" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_z.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/z/" media="photo" />
+	<size label="Medium 800" width="533" height="800" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_c.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/c/" media="photo" />
+	<size label="Large" width="683" height="1024" source="https://live.staticflickr.com/5150/5628095432_678f9b91c1_b.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/l/" media="photo" />
+	<size label="Large 1600" width="1067" height="1600" source="https://live.staticflickr.com/5150/5628095432_6ac3753351_h.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/h/" media="photo" />
+	<size label="Original" width="1168" height="1752" source="https://live.staticflickr.com/5150/5628095432_815e3b9f27_o.jpg" url="https://www.flickr.com/photos/boncey_test/5628095432/sizes/o/" media="photo" />
 </sizes>
 </rsp>

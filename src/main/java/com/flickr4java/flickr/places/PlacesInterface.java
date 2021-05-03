@@ -20,6 +20,9 @@ import java.util.Map;
 /**
  * Lookup Flickr Places.
  * <p>
+ *
+ * Note: As of May 2021 many of these methods no longer seem to work correctly in the Flickr API.
+ * Confirmed via the https://www.flickr.com/services/api/ page.
  * 
  * Announcement on places from yahoo:
  * <p>

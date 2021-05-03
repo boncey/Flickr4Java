@@ -1,25 +1,147 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<hottags period="day" count="20">
-	<tag score="100">feb23</tag>
-	<tag score="97">whitenight</tag>
-	<tag score="95">whitenightmelbourne</tag>
-	<tag score="94">farligt</tag>
-	<tag score="93">avstand</tag>
-	<tag score="92">facedowntuesday</tag>
-	<tag score="90">encuentros</tag>
-	<tag score="90">whenigrowup</tag>
-	<tag score="90">dp3merrill</tag>
-	<tag score="90">whitenightmelb</tag>
-	<tag score="84">fdt</tag>
-	<tag score="83">northplatterealestate</tag>
-	<tag score="82">fencefriday</tag>
-	<tag score="82">benchmonday</tag>
-	<tag score="82">genomskinlig</tag>
-	<tag score="81">myvalentine</tag>
-	<tag score="79">tva</tag>
-	<tag score="78">dp3</tag>
-	<tag score="76">happyvalentines</tag>
-	<tag score="75">leicammonochrom</tag>
+<period />
+<count />
+<hottags>
+	<tag>
+fs210502		<thm_data>
+			<photos>
+				<photo id="51153306725" secret="fe713eabb7" server="65535" farm="66" owner="126142762@N08" username="" title="1st of May, a sign of Summer" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+fotosondag		<thm_data>
+			<photos>
+				<photo id="27022488965" secret="7c23872475" server="7705" farm="8" owner="132132254@N04" username="" title="Follow the yellow brick road" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+budding		<thm_data>
+			<photos>
+				<photo id="26800429586" secret="04ece01701" server="7530" farm="8" owner="33443905@N04" username="" title="Spring Bokeh" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+longexposure		<thm_data>
+			<photos>
+				<photo id="29974623771" secret="aa30442a70" server="8273" farm="9" owner="136299521@N05" username="" title="Morning dew" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+spirande		<thm_data>
+			<photos>
+				<photo id="51153306725" secret="fe713eabb7" server="65535" farm="66" owner="126142762@N08" username="" title="1st of May, a sign of Summer" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+macromondays		<thm_data>
+			<photos>
+				<photo id="31627200164" secret="d7711c6b3f" server="488" farm="1" owner="96444540@N06" username="" title="#Macro Mondays -It's A-Peeling To Me" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+sony		<thm_data>
+			<photos>
+				<photo id="31276917984" secret="4c72f438a6" server="442" farm="1" owner="126616561@N08" username="" title="Swakopmund's pier at sunset" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+brittany		<thm_data>
+			<photos>
+				<photo id="29915040132" secret="b32a24ee8e" server="5148" farm="6" owner="138649129@N08" username="" title="Sunrise over Saint-Cado" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+abstract		<thm_data>
+			<photos>
+				<photo id="31227612186" secret="47d0da10ae" server="5787" farm="6" owner="65416880@N00" username="" title="sun ... in the water" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+españa		<thm_data>
+			<photos>
+				<photo id="28395769635" secret="04f9417e7c" server="8591" farm="9" owner="54695128@N04" username="" title="Flores y colores" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+scotland		<thm_data>
+			<photos>
+				<photo id="31655643880" secret="edb09cc66d" server="668" farm="1" owner="57973623@N06" username="" title="Melancholy (Scotland)" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+beautiful		<thm_data>
+			<photos>
+				<photo id="31669879034" secret="5300a3fc51" server="437" farm="1" owner="44086533@N00" username="" title="DRAMATIC STORM AT THE SEA(FELGUEIRAS/PORTO/PORTUGAL)" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+thailand		<thm_data>
+			<photos>
+				<photo id="22662744563" secret="bc58a15219" server="774" farm="1" owner="45549654@N05" username="" title="9158 Casting net under the morning sun--Thailand" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+rocks		<thm_data>
+			<photos>
+				<photo id="31163428030" secret="fbdaaa2e10" server="484" farm="1" owner="63768088@N00" username="" title="mistery on the history" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+m42		<thm_data>
+			<photos>
+				<photo id="27574090084" secret="d65332d1bd" server="8621" farm="9" owner="137144029@N06" username="" title="Last moments III" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+niedersachsen		<thm_data>
+			<photos>
+				<photo id="20864788404" secret="611280a898" server="5632" farm="6" owner="47290259@N06" username="" title="Water and Light  Show &quot;Vive la France&quot; in  the  Autostadt  Wolfsburg" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+reflection		<thm_data>
+			<photos>
+				<photo id="28696203074" secret="ca57cd3d4e" server="8444" farm="9" owner="57973623@N06" username="" title="Dreaming Matterhorn (Riffelsee, Switzerland)" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+waterfall		<thm_data>
+			<photos>
+				<photo id="21456642814" secret="cb5d406eb7" server="5798" farm="6" owner="77176980@N06" username="" title="Whatcom Falls, Washington" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+720nm		<thm_data>
+			<photos>
+				<photo id="51088114976" secret="8c5dffdddc" server="65535" farm="66" owner="52474066@N05" username="" title="Sedona Monuments - IR" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
+	<tag>
+light		<thm_data>
+			<photos>
+				<photo id="25951106394" secret="f691fdc789" server="1662" farm="2" owner="24544649@N06" username="" title="Sunrise" ispublic="1" isfriend="0" isfamily="0" />
+			</photos>
+		</thm_data>
+	</tag>
 </hottags>
 </rsp>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<comments photo_id="419231219">
-	<comment id="7285574-419231219-72157594585125923" author="7317713@N04" author_is_deleted="0" authorname="javatest3" iconserver="0" iconfarm="0" datecreate="1173743480" permalink="https://www.flickr.com/photos/javatest3/419231219/#comment72157594585125923" path_alias="javatest3" realname="">green too</comment>
-	<comment id="7285574-419231219-72157629748476537" author="84454580@N00" author_is_deleted="0" authorname="I_am_Allan" iconserver="5451" iconfarm="6" datecreate="1333659226" permalink="https://www.flickr.com/photos/javatest3/419231219/#comment72157629748476537" path_alias="misteral" realname="Allan">This is an edited comment for the java flickr api</comment>
-	<comment id="7285574-419231219-72157632837280513" author="91938458@N07" author_is_deleted="0" authorname="kipzter" iconserver="8051" iconfarm="9" datecreate="1361661386" permalink="https://www.flickr.com/photos/javatest3/419231219/#comment72157632837280513" path_alias="kipz" realname="">This is a test for the flickr java api</comment>
+<comments photo_id="5628095432">
+	<comment id="24541304-5628095432-72157629147135805" author="92023420@N00" author_is_deleted="0" authorname="boncey" iconserver="5442" iconfarm="6" datecreate="1328212836" permalink="https://www.flickr.com/photos/boncey_test/5628095432/#comment72157629147135805" path_alias="boncey" realname="Darren Greaves">This looks familiar</comment>
 </comments>
 </rsp>

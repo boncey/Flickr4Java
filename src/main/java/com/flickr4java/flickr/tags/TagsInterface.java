@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.Map;
 
 /**
@@ -171,16 +172,18 @@ public class TagsInterface {
             throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
         }
 
-        Element tagsElement = response.getPayload();
+        Collection<Element> payloadCollection = response.getPayloadCollection();
+        Optional<Element> element = payloadCollection.stream().filter(payload -> payload.getTagName().equals("hottags")).findFirst();
 
-        List<HotlistTag> tags = new ArrayList<HotlistTag>();
-        NodeList tagElements = tagsElement.getElementsByTagName("tag");
-        for (int i = 0; i < tagElements.getLength(); i++) {
-            Element tagElement = (Element) tagElements.item(i);
-            HotlistTag tag = new HotlistTag();
-            tag.setScore(tagElement.getAttribute("score"));
-            tag.setValue(((Text) tagElement.getFirstChild()).getData());
-            tags.add(tag);
+        List<HotlistTag> tags = new ArrayList<>();
+        if (element.isPresent()) {
+            NodeList tagElements = element.get().getElementsByTagName("tag");
+            for (int i = 0; i < tagElements.getLength(); i++) {
+                Element tagElement = (Element) tagElements.item(i);
+                HotlistTag tag = new HotlistTag();
+                tag.setValue(((Text) tagElement.getFirstChild()).getData());
+                tags.add(tag);
+            }
         }
         return tags;
     }

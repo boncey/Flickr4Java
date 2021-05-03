@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<gallery id="1979953-72157629277637049" gallery_id="72157629277637049" url="https://www.flickr.com/photos/misteral/galleries/72157629277637049" owner="84454580@N00" username="I_am_Allan" iconserver="5451" iconfarm="6" primary_photo_id="6859109815" date_create="1329005178" date_update="1425422877" count_photos="15" count_videos="0" count_views="392" count_comments="0" sort_group="" current_state="4ce80e3c8107fdf294c861fdd6769920" primary_photo_server="7061" primary_photo_farm="8" primary_photo_secret="4d9b758a58">
+<gallery id="1979953-72157629277637049" gallery_id="72157629277637049" url="https://www.flickr.com/photos/misteral/galleries/72157629277637049" owner="84454580@N00" username="I_am_Allan" iconserver="5451" iconfarm="6" primary_photo_id="6859109815" date_create="1329005178" date_update="1425422877" count_photos="15" count_videos="0" count_total="15" count_views="403" count_comments="0" sort_group="" current_state="4ce80e3c8107fdf294c861fdd6769920" primary_photo_server="7061" primary_photo_farm="8" primary_photo_secret="4d9b758a58">
 	<title>Motorcycle Pics</title>
 	<description />
 	<cover_photos>
-		<photo url="https://farm8.staticflickr.com/7061/6859109815_4d9b758a58_q.jpg" width="150" height="150" is_primary="1" />
-		<photo url="https://farm6.staticflickr.com/5146/5564299505_27ce048b67_q.jpg" width="150" height="150" is_primary="0" />
-		<photo url="https://farm8.staticflickr.com/7067/6846742166_c3f0a99297_q.jpg" width="150" height="150" is_primary="0" />
+		<photo url="https://live.staticflickr.com/7061/6859109815_4d9b758a58_q.jpg" width="150" height="150" is_primary="1" is_video="0" />
+		<photo url="https://live.staticflickr.com/5146/5564299505_27ce048b67_q.jpg" width="150" height="150" is_primary="0" is_video="0" />
+		<photo url="https://live.staticflickr.com/7067/6846742166_c3f0a99297_q.jpg" width="150" height="150" is_primary="0" is_video="0" />
 	</cover_photos>
 </gallery>
 </rsp>

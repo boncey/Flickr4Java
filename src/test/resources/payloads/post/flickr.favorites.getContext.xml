@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<count>14</count>
-<prevphoto id="5602817067" owner="35021233@N08" secret="91304b3301" server="5188" farm="6" title="unknow gives away free tasty chocolate" url="/photos/thilosoph/5602817067/in/faves-aeden/" thumb="https://farm6.staticflickr.com/5188/5602817067_91304b3301_s.jpg" license="1" media="photo" is_faved="0" />
-<nextphoto id="5844052415" owner="36307913@N00" secret="3a2a8c5854" server="5309" farm="6" title="Nordic Ruby 2011 - first day" url="/photos/froderik/5844052415/in/faves-aeden/" thumb="https://farm6.staticflickr.com/5309/5844052415_3a2a8c5854_s.jpg" license="5" media="photo" is_faved="0" />
+<count>12</count>
+<prevphoto id="5602817067" owner="35021233@N08" secret="91304b3301" server="5188" farm="6" title="unknow gives away free tasty chocolate" url="/photos/thilosoph/5602817067/in/faves-aeden/" thumb="https://live.staticflickr.com/5188/5602817067_91304b3301_s.jpg" license="1" media="photo" is_faved="0" />
+<nextphoto id="5844052415" owner="36307913@N00" secret="3a2a8c5854" server="5309" farm="6" title="Nordic Ruby 2011 - first day" url="/photos/froderik/5844052415/in/faves-aeden/" thumb="https://live.staticflickr.com/5309/5844052415_3a2a8c5854_s.jpg" license="5" media="photo" is_faved="0" />
 </rsp>

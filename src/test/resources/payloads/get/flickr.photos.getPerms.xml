@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<perms id="5628095432" ispublic="1" isfriend="0" isfamily="0" permcomment="3" permaddmeta="2" />
+<perms id="5628095432" ispublic="1" isfriend="0" isfamily="0" permcomment="3" permaddmeta="2" permprint="0" />
 </rsp>

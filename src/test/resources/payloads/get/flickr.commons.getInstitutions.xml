@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
 <institutions>
+	<institution nsid="61270229@N05" date_launch="1578333809">
+		<name>NavyMedicine</name>
+		<urls>
+			<url type="site">https://www.med.navy.mil/Pages/default.aspx</url>
+			<url type="license">https://www.flickr.com/people/navymedicine/</url>
+			<url type="flickr">http://flickr.com/photos/navymedicine/</url>
+		</urls>
+	</institution>
 	<institution nsid="134319968@N02" date_launch="1529602845">
 		<name>Colección Amadeo León - Boconó</name>
 		<urls>
@@ -42,7 +50,7 @@
 		</urls>
 	</institution>
 	<institution nsid="142575440@N02" date_launch="1474649711">
-		<name>Liberaal Archief - Liberas</name>
+		<name>Liberas</name>
 		<urls>
 			<url type="site">http://www.liberaalarchief.be/</url>
 			<url type="license">http://www.liberaalarchief.be/LiberaalArchief-NoKnownCopyrightRestrictions.pdf</url>
@@ -98,7 +106,7 @@
 		</urls>
 	</institution>
 	<institution nsid="128445772@N04" date_launch="1433870682">
-		<name>Directorate General of Press and Information</name>
+		<name>Presidency Of The Republic Of Turkey Directorate o</name>
 		<urls>
 			<url type="site">http://www.byegm.gov.tr/english</url>
 			<url type="license">http://www.byegm.gov.tr/turkce/rightsstatement</url>
@@ -135,14 +143,6 @@
 			<url type="site">http://www.library.vcu.edu/</url>
 			<url type="license">http://www.library.vcu.edu/about/policies/copyright-privacy/#flickr-policy</url>
 			<url type="flickr">http://flickr.com/photos/vcucommons/</url>
-		</urls>
-	</institution>
-	<institution nsid="129514810@N08" date_launch="1424462238">
-		<name>Netherlands Institute of Military History</name>
-		<urls>
-			<url type="site">http://www.defensie.nl/organisatie/cdc/inhoud/eenheden/nimh</url>
-			<url type="license">http://nimh-beeldbank.defensie.nl/images/stories/intro/Rights_statement_NIMH_Flickr_the_Commons.pdf</url>
-			<url type="flickr">http://flickr.com/photos/nimhimages/</url>
 		</urls>
 	</institution>
 	<institution nsid="125149169@N06" date_launch="1420651955">
@@ -226,7 +226,7 @@
 		</urls>
 	</institution>
 	<institution nsid="104959762@N04" date_launch="1402064583">
-		<name>CDHS</name>
+		<name>Cloyne &amp; District Historical Society</name>
 		<urls>
 			<url type="site">www.cloynepioneermuseum.ca</url>
 			<url type="license">http://pioneer.mazinaw.on.ca/flickr_statement.php</url>
@@ -266,15 +266,15 @@
 		</urls>
 	</institution>
 	<institution nsid="60147353@N07" date_launch="1399375726">
-		<name>SALTOnline</name>
+		<name>SALT Research</name>
 		<urls>
 			<url type="site">http://saltonline.org/en/anasayfa</url>
-			<url type="license">http://saltonline.org/en/#!/en/798/right-statement/</url>
+			<url type="license">https://archives.saltresearch.org/salt/info_rights.jsp</url>
 			<url type="flickr">http://flickr.com/photos/saltonline/</url>
 		</urls>
 	</institution>
 	<institution nsid="107895189@N03" date_launch="1397132793">
-		<name>Tasmanian Archive and Heritage Office Commons</name>
+		<name>Tasmanian Archives and State Library (Commons)</name>
 		<urls>
 			<url type="site">http://www.linc.tas.gov.au/tasmaniasheritage</url>
 			<url type="license">http://www.linc.tas.gov.au/tasmaniasheritage/browse/pictorial/flickr-commons</url>
@@ -393,19 +393,11 @@
 			<url type="flickr">http://flickr.com/photos/slsarkiva/</url>
 		</urls>
 	</institution>
-	<institution nsid="95520404@N07" date_launch="1372285012">
-		<name>National Library of Sweden</name>
-		<urls>
-			<url type="site">http://www.kb.se/</url>
-			<url type="license">http://www.kb.se/english/services/reprographic/Flickr-Commons/</url>
-			<url type="flickr">http://flickr.com/photos/95520404@N07/</url>
-		</urls>
-	</institution>
 	<institution nsid="94021017@N05" date_launch="1372285004">
 		<name>National Archives of Estonia</name>
 		<urls>
 			<url type="site">http://www.ra.ee/</url>
-			<url type="license">http://rahvusarhiiv.ra.ee/en/flickr-commons/</url>
+			<url type="license">http://www.ra.ee/en/flickr-commons/</url>
 			<url type="flickr">http://flickr.com/photos/national_archives_of_estonia/</url>
 		</urls>
 	</institution>
@@ -415,14 +407,6 @@
 			<url type="site">http://www.thenewinstitute.nl</url>
 			<url type="license">http://www.hetnieuweinstituut.nl/en/page/flickr-commons-rights-statement</url>
 			<url type="flickr">http://flickr.com/photos/nai_collection/</url>
-		</urls>
-	</institution>
-	<institution nsid="77015680@N05" date_launch="1371066889">
-		<name>Mississippi Department of Archives and History</name>
-		<urls>
-			<url type="site">http://mdah.state.ms.us</url>
-			<url type="license">http://mdah.state.ms.us/arrec/copyright.php</url>
-			<url type="flickr">http://flickr.com/photos/mississippi-dept-of-archives-and-history/</url>
 		</urls>
 	</institution>
 	<institution nsid="39758725@N03" date_launch="1371066882">
@@ -602,7 +586,7 @@
 		</urls>
 	</institution>
 	<institution nsid="37547255@N08" date_launch="1274822330">
-		<name>Fylkesarkivet i Sogn og Fjordane</name>
+		<name>Fylkesarkivet i Vestland</name>
 		<urls>
 			<url type="site">http://fylkesarkiv.no</url>
 			<url type="license">http://www.fylkesarkiv.no/en/side/flickr-commons</url>
@@ -669,7 +653,7 @@
 		<name>The National Archives UK</name>
 		<urls>
 			<url type="site">http://www.nationalarchives.gov.uk/</url>
-			<url type="license">http://www.nationalarchives.gov.uk/legal/copyright.htm#flickr</url>
+			<url type="license">http://www.nationalarchives.gov.uk/legal/copyright/creative-commons-and-photo-sharing/</url>
 			<url type="flickr">http://flickr.com/photos/nationalarchives/</url>
 		</urls>
 	</institution>

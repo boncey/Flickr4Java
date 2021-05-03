@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<group id="34427469792@N01" nsid="34427469792@N01" path_alias="central" iconserver="2871" iconfarm="3" lang="" ispoolmoderated="0" photo_limit_opt_out="0" is_member="1" is_moderator="0" is_admin="0">
+<group id="34427469792@N01" nsid="34427469792@N01" path_alias="central" iconserver="2871" iconfarm="3" lang="" ispoolmoderated="0" photo_limit_opt_out="0" eighteenplus="0" invitation_only="0" is_member="1" is_moderator="0" is_admin="0" is_founder="0">
 	<name>FlickrCentral</name>
 	<description>&lt;b&gt;Welcome to FlickrCentral!&lt;/b&gt; 
 Just like Grand Central but without the oyster bar, the trains, New York city...
@@ -29,13 +29,15 @@ Please do not create threads to introduce yourself, or to ask for views, comment
 
 To clarify - if you start a thread that includes your own image as a means to promote traffic, or even that encourages traffic as a byproduct, it will be deleted. If your thread cannot stand on it's own without an image from your stream being included, then it is sufficiently self-promotional to fall foul of this rule. By all means discuss all things photography, but the discussion itself should be of more importance than using an image to demonstrate it.
 </rules>
-	<members>278047</members>
-	<pool_count>10049968</pool_count>
-	<topic_count>12621</topic_count>
+	<members>313872</members>
+	<pool_count>8808003</pool_count>
+	<topic_count>12810</topic_count>
 	<privacy>3</privacy>
 	<roles member="Member" moderator="Moderator" admin="Admin" />
-	<blast date_blast_added="1462893360" user_id="7698">Submission rate to the FlickrCentral pool has been restored to its former 1 per day limit. The total number of pictures in the pool is controlled by a bot, and older images (but not the oldest) are removed to make room for newer stuff. </blast>
-	<throttle count="1" mode="day" remaining="1" />
-	<restrictions photos_ok="1" videos_ok="1" images_ok="1" screens_ok="1" art_ok="1" safe_ok="1" moderate_ok="0" restricted_ok="0" has_geo="0" />
+	<datecreate>2004-02-05 22:15:10</datecreate>
+	<dateactivity>1620054938</dateactivity>
+	<blast date_blast_added="1611776491" user_id="7698">Due to the volume of pictures in the pool and it's constant bashing up against the size limit, I have changed the limit to be 25 photos TOTAL in the pool from any user. So if you want to add new stuff, you need to remove your oldest stuff first!</blast>
+	<throttle count="25" mode="ever" remaining="25" />
+	<restrictions photos_ok="1" videos_ok="0" images_ok="1" screens_ok="1" art_ok="0" safe_ok="1" moderate_ok="0" restricted_ok="0" has_geo="0" />
 </group>
 </rsp>

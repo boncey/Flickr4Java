@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<person id="24573443@N04" nsid="24573443@N04" ispro="0" can_buy_pro="0" iconserver="7008" iconfarm="8" path_alias="boncey_test" has_stats="0">
+<person id="24573443@N04" nsid="24573443@N04" ispro="0" can_buy_pro="1" iconserver="7008" iconfarm="8" path_alias="boncey_test" has_stats="0" upload_count="100" upload_limit="1000" upload_limit_status="below_limit" is_cognito_user="1" all_rights_reserved_photos_count="18">
 	<username>boncey_test</username>
 	<realname>Darren Greaves</realname>
 	<mbox_sha1sum>a35471fa063d334a497c1ad805a0bbf4d1f77641</mbox_sha1sum>
@@ -13,8 +13,8 @@
 	<photos>
 		<firstdatetaken>2009-12-07 14:28:39</firstdatetaken>
 		<firstdate>1260224919</firstdate>
-		<count>227</count>
-		<views>94</views>
+		<count>100</count>
+		<views>106</views>
 	</photos>
 </person>
 </rsp>

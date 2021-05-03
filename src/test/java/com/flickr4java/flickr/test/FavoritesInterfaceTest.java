@@ -49,7 +49,7 @@ public class FavoritesInterfaceTest extends Flickr4JavaTest {
 
     @Test
     public void testAddAndRemove() throws FlickrException {
-        String photoId = "2153378";
+        String photoId = "51144759448"; // Photo that doesn't belong to the test user's account
         FavoritesInterface iface = flickr.getFavoritesInterface();
 
         try {

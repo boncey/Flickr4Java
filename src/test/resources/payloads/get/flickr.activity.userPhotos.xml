@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
 <items page="1" pages="1" perpage="10" total="2">
-	<item type="photo" id="28177658657" owner="24573443@N04" ownername="boncey_test" realname="Darren Greaves" iconserver="7008" iconfarm="8" secret="6de6c517b0" server="913" farm="1" media="video" comments="0" notes="0" views="1" faves="0">
+	<item type="photo" id="28177658657" owner="24573443@N04" ownername="boncey_test" realname="Darren Greaves" iconserver="7008" iconfarm="8" secret="6de6c517b0" server="913" farm="1" media="video" comments="0" notes="0" views="5" faves="0">
 		<title>2014-05-04 13.56.00</title>
 		<activity>
 			<event type="tag" user="92023420@N00" username="boncey" iconserver="5442" iconfarm="6" dateadded="1530119216" is_muted="" realname="Darren Greaves">london</event>
 		</activity>
 	</item>
-	<item type="photo" id="5628095432" owner="24573443@N04" ownername="boncey_test" realname="Darren Greaves" iconserver="7008" iconfarm="8" secret="678f9b91c1" server="5150" farm="6" media="photo" comments="1" notes="0" views="64" faves="2">
+	<item type="photo" id="5628095432" owner="24573443@N04" ownername="boncey_test" realname="Darren Greaves" iconserver="7008" iconfarm="8" secret="678f9b91c1" server="5150" farm="6" media="photo" comments="1" notes="0" views="86" faves="2">
 		<title>Robot</title>
 		<activity>
 			<event type="comment" user="92023420@N00" username="boncey" iconserver="5442" iconfarm="6" dateadded="1328212836" is_muted="" realname="Darren Greaves" commentid="72157629147135805">This looks familiar</event>

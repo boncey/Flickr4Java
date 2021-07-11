@@ -45,6 +45,15 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
     }
 
     @Test
+    public void testSearch() throws FlickrException {
+        PeopleInterface iface = flickr.getPeopleInterface();
+        iface.search(testProperties.getUsername());
+//        assertNotNull(person);
+//        assertEquals(testProperties.getUsername(), person.getUsername());
+//        assertNotNull(person.getId());
+    }
+
+    @Test
     public void testGetInfo() throws FlickrException {
         PeopleInterface iface = flickr.getPeopleInterface();
         User person = iface.getInfo(testProperties.getNsid());

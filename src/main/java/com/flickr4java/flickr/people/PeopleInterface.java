@@ -186,6 +186,29 @@ public class PeopleInterface {
     }
 
     /**
+     * Search for the specified user.
+     *
+     * This method does not require authentication.
+     *
+     * @param username
+     *            The user ID
+     * @return The User object
+     * @throws FlickrException if there was a problem connecting to Flickr
+     */
+    public void search(String username) throws FlickrException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("method", "flickr.people.search");
+
+        parameters.put("username", username);
+
+        Response response = transportAPI.get(transportAPI.getPath(), parameters, apiKey, sharedSecret);
+        if (response.isError()) {
+            throw new FlickrException(response.getErrorCode(), response.getErrorMessage());
+        }
+        Element searchElement = response.getPayload();
+    }
+
+    /**
      * Get a collection of public groups for the user.
      * 
      * The groups will contain only the members nsid, name, admin and eighteenplus. If you want the whole group-information, you have to call

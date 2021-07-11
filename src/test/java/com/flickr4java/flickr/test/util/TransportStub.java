@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.StringReader;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,12 +55,17 @@ public class TransportStub extends Transport {
         RESTResponse response;
         String filename = String.format("/payloads/%s/%s.xml", httpMethod, flickrMethod);
         try {
-            Path filePath = Paths.get(this.getClass().getResource(filename).toURI());
-            String strXml = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
-            Document document = builder.parse(new InputSource(new StringReader(strXml)));
+            URL resource = this.getClass().getResource(filename);
+            if (resource != null) {
+                Path filePath = Paths.get(resource.toURI());
+                String strXml = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
+                Document document = builder.parse(new InputSource(new StringReader(strXml)));
 
-            response = new RESTResponse();
-            response.parse(document);
+                response = new RESTResponse();
+                response.parse(document);
+            } else {
+                throw new FlickrRuntimeException(String.format("Unable to load response for %s %s", httpMethod.toUpperCase(), flickrMethod));
+            }
         } catch (Exception e) {
             throw new FlickrRuntimeException(e);
         }

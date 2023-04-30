@@ -59,6 +59,8 @@ public class REST extends Transport {
 
     private String proxyPassword = "";
 
+    private String userAgent = "Flickr4Java/3.x";
+
     private Integer connectTimeoutMs;
 
     private Integer readTimeoutMs;
@@ -126,6 +128,16 @@ public class REST extends Transport {
     }
 
     /**
+     * Override the default User-Agent header passed in requests to the Flickr API.
+     * @param userAgent
+     * @return
+     */
+    public REST setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+        return this;
+    }
+
+    /**
      * Invoke an HTTP GET request on a remote host. You must close the InputStream after you are done with.
      *
      * @param path       The request path
@@ -143,6 +155,8 @@ public class REST extends Transport {
         if (proxyAuth) {
             request.addHeader("Proxy-Authorization", "Basic " + getProxyCredentials());
         }
+
+        request.addHeader("User-Agent", userAgent);
 
         RequestContext requestContext = RequestContext.getRequestContext();
         Auth auth = requestContext.getAuth();
@@ -181,6 +195,8 @@ public class REST extends Transport {
 
         OAuthRequest request = OAuthUtilities.buildNormalPostRequest(parameters, buildUrl(path));
 
+        request.addHeader("User-Agent", userAgent);
+
         OAuth10aService service = createAndSignRequest(apiKey, sharedSecret, request);
 
         try {
@@ -203,6 +219,8 @@ public class REST extends Transport {
 
         Map<String, String> uploadParameters = new HashMap<>(metaData.getUploadParameters());
         OAuthRequest request = OAuthUtilities.buildMultipartRequest(uploadParameters, buildUrl(path));
+
+        request.addHeader("User-Agent", userAgent);
 
         OAuth10aService service = createAndSignRequest(apiKey, sharedSecret, request);
 
@@ -277,6 +295,9 @@ public class REST extends Transport {
             if (proxyAuth) {
                 conn.setRequestProperty("Proxy-Authorization", "Basic " + getProxyCredentials());
             }
+
+            conn.setRequestProperty("User-Agent", userAgent);
+
             setTimeouts(conn);
             conn.connect();
 

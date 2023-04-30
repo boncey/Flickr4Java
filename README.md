@@ -21,6 +21,18 @@ For example, to send a test ping to the Flickr service:
     
 See `/src/examples/java` for more.
 
+#### Setting User-Agent
+
+Since version 3.0.7 Flickr4Java passes the following User-Agent header in its requests
+
+    Flickr4Java/3.x
+
+If you want to override that and set your own you can pass in your own value.  Note that no validation is performed on the provided string.
+
+    REST transport = new REST();
+    transport.setUserAgent("MyUserAgent/0.1");
+    Flickr f = new Flickr(apiKey, sharedSecret, transport);
+
 ### Requirements
 
 This API has been tested and built with JDK 1.8.

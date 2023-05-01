@@ -41,7 +41,7 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 
 #### Required libraries
 
-- [scribejava-api (v 6.9.0 onwards)](https://github.com/scribejava/scribejava) (required for the OAuth functionality)
+- [scribejava-api (v8.3.3 onwards)](https://github.com/scribejava/scribejava) (required for the OAuth functionality)
 - [SLF4J](https://www.slf4j.org) (runtime dependency for logging)
 
 [See here](https://www.slf4j.org/manual.html#swapping) for details on how to choose and configure an SLF4J logging library.
@@ -76,3 +76,10 @@ Run tests as follows.
 
 Expect lots of failures and general flakiness as data has changed on Flickr and the tests or data need updating.
 
+### Dependency checker
+
+[OWASP dependency-check](https://github.com/jeremylong/DependencyCheck) is configured in the pom.xml.
+
+To run a dependency check
+
+    mvn -U clean verify -P dependency-check

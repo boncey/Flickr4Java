@@ -8,6 +8,7 @@ import com.flickr4java.flickr.util.DebugInputStream;
 import com.flickr4java.flickr.util.IOUtilities;
 import com.flickr4java.flickr.util.OAuthUtilities;
 import com.flickr4java.flickr.util.UrlUtilities;
+import com.github.scribejava.core.httpclient.multipart.FileByteArrayBodyPartPayload;
 import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Parameter;
@@ -227,9 +228,8 @@ public class REST extends Transport {
         // Ensure all parameters (including oauth) are added to payload so signature matches
         uploadParameters.putAll(request.getOauthParameters());
 
-        request.addFileByteArrayBodyPartPayloadInMultipartPayload(payload.getPayload(), "photo", metaData.getFilename());
-        uploadParameters.entrySet().forEach(e ->
-                request.addFileByteArrayBodyPartPayloadInMultipartPayload(null, e.getValue().getBytes(), e.getKey()));
+        request.addBodyPartPayloadInMultipartPayload(new FileByteArrayBodyPartPayload(payload.getPayload(), "photo", metaData.getFilename()));
+        uploadParameters.forEach((param, uploadPayload) -> request.addBodyPartPayloadInMultipartPayload(new FileByteArrayBodyPartPayload(uploadPayload.getBytes(), param)));
 
         try {
             return handleResponse(request, service);

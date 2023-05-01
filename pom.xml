@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.flickr4java</groupId>
@@ -11,20 +12,20 @@
     <url>https://github.com/boncey/Flickr4Java</url>
 
     <developers>
-      <developer>
-        <id>boncey</id>
-        <name>Darren Greaves</name>
-        <roles>
-          <role>developer</role>
-        </roles>
-      </developer>
-      <developer>
-        <id>callmeal</id>
-        <name>Allan</name>
-        <roles>
-          <role>developer</role>
-        </roles>
-      </developer>
+        <developer>
+            <id>boncey</id>
+            <name>Darren Greaves</name>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>callmeal</id>
+            <name>Allan</name>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
     </developers>
 
     <licenses>
@@ -37,9 +38,12 @@
 
     <properties>
         <javaVersion>1.8</javaVersion>
-        <junitVersion>4.13.1</junitVersion>
-        <slf4j.version>1.7.30</slf4j.version>
-        <scribe.version>6.9.0</scribe.version>
+        <junitVersion>4.13.2</junitVersion>
+        <slf4j.version>2.0.5</slf4j.version>
+        <scribe.version>8.3.3</scribe.version>
+        <dependency.check.suppression.file>config/dependencyCheckSuppression.xml</dependency.check.suppression.file>
+        <dependency.check.version>8.2.1</dependency.check.version>
+
     </properties>
 
     <dependencies>
@@ -133,7 +137,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
+                            <additionalOptions>-Xdoclint:none</additionalOptions>
                         </configuration>
                     </execution>
                 </executions>
@@ -182,13 +186,21 @@
                         </executions>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <configuration>
+                            <source>8</source>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
+                                <configuration>
+                                    <additionalOptions>-Xdoclint:none</additionalOptions>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -226,6 +238,33 @@
                                 <phase>verify</phase>
                                 <goals>
                                     <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>dependency-check</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>${dependency.check.version}</version>
+                        <configuration>
+                            <suppressionFile>${dependency.check.suppression.file}</suppressionFile>
+                            <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>check</goal>
                                 </goals>
                             </execution>
                         </executions>

@@ -11,13 +11,13 @@ import org.w3c.dom.NodeList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Group.Discuss Interface.
+ *
+ * @author Jonathan Willis
+ */
 public class GroupDiscussInterface {
 
-    /**
-     * Group.Discuss Interface.
-     * 
-     * @author Jonathan Willis
-     */
     public static final String METHOD_TOPICS_GET_LIST = "flickr.groups.discuss.topics.getList";
 
     public static final String METHOD_TOPICS_GET_INFO = "flickr.groups.discuss.topics.getInfo";

@@ -348,9 +348,9 @@ public class Size {
     public int hashCode() {
 
         int hash = 1;
-        hash += new Integer(label).hashCode();
-        hash += new Integer(width).hashCode();
-        hash += new Integer(height).hashCode();
+        hash += Integer.hashCode(label);
+        hash += Integer.hashCode(width);
+        hash += Integer.hashCode(height);
         if (source != null) {
             hash += source.hashCode();
         }

@@ -49,7 +49,7 @@ public class Referrer {
     public void setViews(String views) {
 
         try {
-            setViews(new Long(views));
+            setViews(Long.valueOf(views));
         } catch (NumberFormatException e) {
             // ignore and set value as null
         }

@@ -45,8 +45,8 @@ public class Editability {
     @Override
     public int hashCode() {
         int hash = 1;
-        hash += new Boolean(comment).hashCode();
-        hash += new Boolean(addmeta).hashCode();
+        hash += Boolean.hashCode(comment);
+        hash += Boolean.hashCode(addmeta);
         return hash;
     }
 

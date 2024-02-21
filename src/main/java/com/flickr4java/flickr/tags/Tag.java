@@ -90,7 +90,7 @@ public class Tag {
     @Override
     public int hashCode() {
         int hash = 1;
-        hash += new Integer(count).hashCode();
+        hash +=  Integer.hashCode(count);
         if (value != null) {
             hash += value.hashCode();
         }

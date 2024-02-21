@@ -103,11 +103,11 @@ public class Permissions {
     public int hashCode() {
         int hash = 87;
         hash += id.hashCode();
-        hash += new Integer(comment).hashCode();
-        hash += new Integer(addmeta).hashCode();
-        hash += new Boolean(publicFlag).hashCode();
-        hash += new Boolean(friendFlag).hashCode();
-        hash += new Boolean(familyFlag).hashCode();
+        hash += Integer.hashCode(comment);
+        hash += Integer.hashCode(addmeta);
+        hash += Boolean.hashCode(publicFlag);
+        hash += Boolean.hashCode(friendFlag);
+        hash += Boolean.hashCode(familyFlag);
         return hash;
     }
 }

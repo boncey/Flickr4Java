@@ -81,9 +81,9 @@ public class GeoData {
     @Override
     public int hashCode() {
         int hash = 1;
-        hash += new Float(longitude).hashCode();
-        hash += new Float(latitude).hashCode();
-        hash += new Integer(accuracy).hashCode();
+        hash += Float.hashCode(longitude);
+        hash += Float.hashCode(latitude);
+        hash += Integer.hashCode(accuracy);
         return hash;
     }
 }

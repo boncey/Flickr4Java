@@ -30,6 +30,7 @@ public class RESTResponse implements Response {
         stat = rspElement.getAttribute("stat");
         if ("ok".equals(stat)) {
             // TODO: Verify that the payload is always a single XML node
+            // Function has been made in XMLUtilities.java
             payload = (List<Element>) XMLUtilities.getChildElements(rspElement);
         } else if ("fail".equals(stat)) {
             Element errElement = (Element) rspElement.getElementsByTagName("err").item(0);

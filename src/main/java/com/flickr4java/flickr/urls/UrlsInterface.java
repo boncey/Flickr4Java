@@ -152,13 +152,39 @@ public class UrlsInterface {
 
     /**
      * Lookup the username for the specified User URL.
-     * 
+     *
      * @param url
      *            The user profile URL
      * @return The username
      * @throws FlickrException if there was a problem connecting to Flickr
      */
+    public String lookupUsernameByURL(String url) throws FlickrException {
+        return lookupUserByURL(url).getUsername();
+    }
+
+    /**
+     * Lookup the username for the specified User URL.
+     * 
+     * @param url
+     *            The user profile URL
+     * @return The username
+     * @throws FlickrException if there was a problem connecting to Flickr
+     * @deprecated use {@link #lookupUsernameByURL(String) }
+     */
+    @Deprecated
     public String lookupUser(String url) throws FlickrException {
+        return lookupUsernameByURL(url);
+    }
+
+    /**
+     * Lookup the user for the specified User URL.
+     *
+     * @param url
+     *            The user profile URL
+     * @return The user
+     * @throws FlickrException if there was a problem connecting to Flickr
+     */
+    public User lookupUserByURL(String url) throws FlickrException {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("method", METHOD_LOOKUP_USER);
 
@@ -171,7 +197,10 @@ public class UrlsInterface {
 
         Element payload = response.getPayload();
         Element groupnameElement = (Element) payload.getElementsByTagName("username").item(0);
-        return ((Text) groupnameElement.getFirstChild()).getData();
+        User user = new User();
+        user.setId(payload.getAttribute("id"));
+        user.setUsername(((Text) groupnameElement.getFirstChild()).getData());
+        return user;
     }
 
     /**

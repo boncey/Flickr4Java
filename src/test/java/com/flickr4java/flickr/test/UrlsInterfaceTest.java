@@ -56,10 +56,10 @@ public class UrlsInterfaceTest extends Flickr4JavaTest {
     }
 
     @Test
-    public void testLookupUser() throws FlickrException {
+    public void testLookupUsernameByURL() throws FlickrException {
         UrlsInterface iface = flickr.getUrlsInterface();
         String username = testProperties.getUsername();
-        String usernameOnFlickr = iface.lookupUser(String.format("https://www.flickr.com/people/%s/", username));
+        String usernameOnFlickr = iface.lookupUsernameByURL(String.format("https://www.flickr.com/people/%s/", username));
         assertEquals(username, usernameOnFlickr);
     }
 

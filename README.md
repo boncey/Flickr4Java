@@ -49,14 +49,14 @@ An API key is required to use this API.  You can [request one on Flickr](http://
 
 ### Gradle
 
-    compile 'com.flickr4java:flickr4java:3.0.8'
+    compile 'com.flickr4java:flickr4java:3.0.9'
 
 ### Maven
 
     <dependency>
       <groupId>com.flickr4java</groupId>
       <artifactId>flickr4java</artifactId>
-      <version>3.0.8</version>
+      <version>3.0.9</version>
     </dependency>
 
 Flickr4Java is available on Maven Central so the above settings should be all you need.

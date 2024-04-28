@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
 <institutions>
+	<institution nsid="200049760@N08" date_launch="1706549057">
+		<name>CommonsTestAccount</name>
+		<urls>
+			<url type="site">https://flickr.org</url>
+			<url type="license">https://flickr.org</url>
+			<url type="flickr">http://flickr.com/photos/200049760@N08/</url>
+		</urls>
+	</institution>
 	<institution nsid="61270229@N05" date_launch="1578333809">
 		<name>NavyMedicine</name>
 		<urls>
@@ -13,7 +21,7 @@
 		<name>Colección Amadeo León - Boconó</name>
 		<urls>
 			<url type="site">fotoleonbocono.tumblr.com</url>
-			<url type="license">https://fotoleonbocono.tumblr.com/post/174576043211/flickr-commons</url>
+			<url type="license">https://www.tumblr.com/fotoleonbocono-blog/174576043211/galer%C3%ADa-flickr-commons</url>
 			<url type="flickr">http://flickr.com/photos/bocono/</url>
 		</urls>
 	</institution>
@@ -53,8 +61,8 @@
 		<name>Liberas</name>
 		<urls>
 			<url type="site">http://www.liberaalarchief.be/</url>
-			<url type="license">http://www.liberaalarchief.be/LiberaalArchief-NoKnownCopyrightRestrictions.pdf</url>
-			<url type="flickr">http://flickr.com/photos/142575440@N02/</url>
+			<url type="license">http://www.liberaalarchief.be/doc/liberas_rights_statement.pdf</url>
+			<url type="flickr">http://flickr.com/photos/liberas/</url>
 		</urls>
 	</institution>
 	<institution nsid="138361426@N08" date_launch="1474307180">
@@ -98,7 +106,7 @@
 		</urls>
 	</institution>
 	<institution nsid="99115493@N08" date_launch="1434742978">
-		<name>sinaloaarchivohistorico</name>
+		<name>Sinaloa Fotografías Históricas</name>
 		<urls>
 			<url type="site">http://ahgs.gob.mx/</url>
 			<url type="license">http://ahgs.gob.mx/servicios-digitales/archivo-fotografico/</url>
@@ -117,7 +125,7 @@
 		<name>Regionaal Archief Alkmaar Commons</name>
 		<urls>
 			<url type="site">www.archiefalkmaar.nl</url>
-			<url type="license">https://www.regionaalarchiefalkmaar.nl/api-english</url>
+			<url type="license">https://www.regionaalarchiefalkmaar.nl/over-ons-english/open-data-english</url>
 			<url type="flickr">http://flickr.com/photos/public-domain-archief-alkmaar/</url>
 		</urls>
 	</institution>
@@ -186,7 +194,7 @@
 		</urls>
 	</institution>
 	<institution nsid="47756470@N03" date_launch="1412080144">
-		<name>National Library of Medicine - History of Medicine</name>
+		<name>Archives of Medicine - NLM - NIH</name>
 		<urls>
 			<url type="site">http://www.nlm.nih.gov/</url>
 			<url type="license">http://www.nlm.nih.gov/hmd/collections/photos/flickr.html</url>
@@ -229,7 +237,7 @@
 		<name>Cloyne &amp; District Historical Society</name>
 		<urls>
 			<url type="site">www.cloynepioneermuseum.ca</url>
-			<url type="license">http://pioneer.mazinaw.on.ca/flickr_statement.php</url>
+			<url type="license">https://pioneer.mazinaw.on.ca/licensing-terms/</url>
 			<url type="flickr">http://flickr.com/photos/cdhs/</url>
 		</urls>
 	</institution>
@@ -266,7 +274,7 @@
 		</urls>
 	</institution>
 	<institution nsid="60147353@N07" date_launch="1399375726">
-		<name>SALT Research</name>
+		<name>Salt Research</name>
 		<urls>
 			<url type="site">http://saltonline.org/en/anasayfa</url>
 			<url type="license">https://archives.saltresearch.org/salt/info_rights.jsp</url>
@@ -309,7 +317,7 @@
 		<name>Miami U. Libraries - Digital Collections</name>
 		<urls>
 			<url type="site">http://www.lib.miamioh.edu</url>
-			<url type="license">http://www.lib.miamioh.edu/digital-collections-flickr-rights-statement</url>
+			<url type="license">https://spec.lib.miamioh.edu/home/services/copyright/</url>
 			<url type="flickr">http://flickr.com/photos/muohio_digital_collections/</url>
 		</urls>
 	</institution>
@@ -317,7 +325,7 @@
 		<name>The British Library</name>
 		<urls>
 			<url type="site">www.bl.uk</url>
-			<url type="license">http://www.bl.uk/aboutus/terms/copyright/index.html</url>
+			<url type="license">https://www.bl.uk/about-us/terms-and-conditions/content-on-flickr-and-wikimedia-commons</url>
 			<url type="flickr">http://flickr.com/photos/britishlibrary/</url>
 		</urls>
 	</institution>
@@ -329,14 +337,6 @@
 			<url type="flickr">http://flickr.com/photos/costicaacsinte/</url>
 		</urls>
 	</institution>
-	<institution nsid="99915476@N04" date_launch="1383218514">
-		<name>Vancouver Public Library Historical Photographs</name>
-		<urls>
-			<url type="site">http://www.vpl.ca</url>
-			<url type="license">https://www.vpl.ca/find/cat/C393/C393</url>
-			<url type="flickr">http://flickr.com/photos/99915476@N04/</url>
-		</urls>
-	</institution>
 	<institution nsid="48220291@N04" date_launch="1381954880">
 		<name>National Library of Norway</name>
 		<urls>
@@ -346,7 +346,7 @@
 		</urls>
 	</institution>
 	<institution nsid="69269002@N04" date_launch="1381528229">
-		<name>Royal Australian Historical Society</name>
+		<name>libraryrahs@gmail.com</name>
 		<urls>
 			<url type="site">http://www.rahs.org.au/</url>
 			<url type="license">http://www.rahs.org.au/about-rahs/rahs-copyright-statement/</url>
@@ -373,7 +373,7 @@
 		<name>Schlesinger Library, RIAS, Harvard University</name>
 		<urls>
 			<url type="site">http://www.radcliffe.harvard.edu/schlesinger-library</url>
-			<url type="license">http://www.radcliffe.harvard.edu/schlesinger-library/permission-publish</url>
+			<url type="license">https://www.radcliffe.harvard.edu/schlesinger-library/research-services/permissions-and-copyright</url>
 			<url type="flickr">http://flickr.com/photos/schlesinger_library/</url>
 		</urls>
 	</institution>
@@ -405,7 +405,7 @@
 		<name>Het Nieuwe Instituut - Architecture Collection</name>
 		<urls>
 			<url type="site">http://www.thenewinstitute.nl</url>
-			<url type="license">http://www.hetnieuweinstituut.nl/en/page/flickr-commons-rights-statement</url>
+			<url type="license">https://collectie.hetnieuweinstituut.nl/en/flickr-commons-rights-statement</url>
 			<url type="flickr">http://flickr.com/photos/nai_collection/</url>
 		</urls>
 	</institution>
@@ -429,7 +429,7 @@
 		<name>Mennonite Church USA Archives</name>
 		<urls>
 			<url type="site">http://www.mennoniteusa.org/executive-board/archives/</url>
-			<url type="license">http://www.mennoniteusa.org/executive-board/archives/archives-about/archives-about-policies/archives-about-policies-copyright/</url>
+			<url type="license">https://www.mennoniteusa.org/resource-portal/resource/archives-copyright-statement/</url>
 			<url type="flickr">http://flickr.com/photos/mennonitechurchusa-archives/</url>
 		</urls>
 	</institution>
@@ -442,19 +442,11 @@
 		</urls>
 	</institution>
 	<institution nsid="27331537@N06" date_launch="1369941313">
-		<name>NSW State Archives and Records</name>
+		<name>MHNSW - State Archives Collection</name>
 		<urls>
 			<url type="site">http://www.records.nsw.gov.au/</url>
 			<url type="license">http://www.records.nsw.gov.au/about-us/rights-and-permissions</url>
 			<url type="flickr">http://flickr.com/photos/state-records-nsw/</url>
-		</urls>
-	</institution>
-	<institution nsid="61232251@N05" date_launch="1369941300">
-		<name>Nova Scotia Archives</name>
-		<urls>
-			<url type="site">gov.ns.ca/nsarm</url>
-			<url type="license">http://novascotia.ca/archives/useimages.asp</url>
-			<url type="flickr">http://flickr.com/photos/nsarchives/</url>
 		</urls>
 	</institution>
 	<institution nsid="54403180@N04" date_launch="1367877142">
@@ -490,10 +482,10 @@
 		</urls>
 	</institution>
 	<institution nsid="59811348@N05" date_launch="1316418893">
-		<name>Riksarkivet (National Archives of Norway)</name>
+		<name>Arkivverket (National Archives of Norway)</name>
 		<urls>
 			<url type="site">http://www.arkivverket.no/</url>
-			<url type="license">http://www.arkivverket.no/eng/content/view/full/9266</url>
+			<url type="license">https://www.arkivverket.no/en/about-us/the-use-of-photos</url>
 			<url type="flickr">http://flickr.com/photos/national_archives_of_norway/</url>
 		</urls>
 	</institution>
@@ -565,7 +557,7 @@
 		<name>National Library of Scotland</name>
 		<urls>
 			<url type="site">http://www.nls.uk/</url>
-			<url type="license">http://www.nls.uk/copyright/index.html</url>
+			<url type="license">https://www.nls.uk/copyright/</url>
 			<url type="flickr">http://flickr.com/photos/nlscotland/</url>
 		</urls>
 	</institution>
@@ -642,7 +634,7 @@
 		</urls>
 	</institution>
 	<institution nsid="48143042@N05" date_launch="1270600982">
-		<name>Jewish Historical Society of the Upper Midwest</name>
+		<name>Upper Midwest Jewish Archives, University of Minne</name>
 		<urls>
 			<url type="site">http://www.jhsum.org/</url>
 			<url type="license">http://www.jhsum.org/collections/copyright/</url>
@@ -685,7 +677,7 @@
 		<name>LSE Library</name>
 		<urls>
 			<url type="site">http://www2.lse.ac.uk/library/Home.aspx</url>
-			<url type="license">http://www2.lse.ac.uk/library/archive/flickr_rights_statement.aspx</url>
+			<url type="license">https://www.lse.ac.uk/library/about/library-rules-and-general-policies#:~:text=Flickr%20Rights%20Statement</url>
 			<url type="flickr">http://flickr.com/photos/lselibrary/</url>
 		</urls>
 	</institution>
@@ -717,7 +709,7 @@
 		<name>LlGC ~ NLW</name>
 		<urls>
 			<url type="site">http://www.llgc.org.uk/</url>
-			<url type="license">http://www.llgc.org.uk/index.php?id=publicationrights#Flickr</url>
+			<url type="license">https://www.library.wales/commercial-services/media/licensing</url>
 			<url type="flickr">http://flickr.com/photos/llgc/</url>
 		</urls>
 	</institution>
@@ -741,7 +733,7 @@
 		<name>Swedish National Heritage Board</name>
 		<urls>
 			<url type="site">http://www.kms.raa.se/cocoon/bild/public_search.html</url>
-			<url type="license">http://www.kms.raa.se/cocoon/bild/about.html</url>
+			<url type="license">https://www.raa.se/hitta-information/arkiv-och-bibliotek/om-arkivet-och-biblioteket/fotografier/</url>
 			<url type="flickr">http://flickr.com/photos/swedish_heritage_board/</url>
 		</urls>
 	</institution>
@@ -757,7 +749,7 @@
 		<name>OSU Special Collections &amp; Archives : Commons</name>
 		<urls>
 			<url type="site">http://osulibrary.oregonstate.edu/archives/</url>
-			<url type="license">http://osulibrary.oregonstate.edu/archives/FlickrCommonsNoKnownCopyrightsRestrictions.html</url>
+			<url type="license">http://scarc.library.oregonstate.edu/duplication.html</url>
 			<url type="flickr">http://flickr.com/photos/osucommons/</url>
 		</urls>
 	</institution>
@@ -813,7 +805,7 @@
 		<name>Australian War Memorial collection</name>
 		<urls>
 			<url type="site">http://www.awm.gov.au/</url>
-			<url type="license">http://www.awm.gov.au/about/copyright/index.asp</url>
+			<url type="license">https://www.awm.gov.au/about/organisation/corporate/copyright</url>
 			<url type="flickr">http://flickr.com/photos/australian-war-memorial/</url>
 		</urls>
 	</institution>
@@ -826,10 +818,10 @@
 		</urls>
 	</institution>
 	<institution nsid="25786829@N08" date_launch="1223937653">
-		<name>Musée McCord Museum</name>
+		<name>Musée McCord Stewart Museum</name>
 		<urls>
 			<url type="site">http://www.mccord-museum.qc.ca/</url>
-			<url type="license">http://www.mccord-museum.qc.ca/en/copyright.html#noknowncopyright</url>
+			<url type="license">https://www.musee-mccord-stewart.ca/en/collections/photographic-services-and-copyright/</url>
 			<url type="flickr">http://flickr.com/photos/museemccordmuseum/</url>
 		</urls>
 	</institution>
@@ -842,10 +834,10 @@
 		</urls>
 	</institution>
 	<institution nsid="29454428@N08" date_launch="1222730121">
-		<name>State Library of New South Wales collection</name>
+		<name>State Library of NSW</name>
 		<urls>
 			<url type="site">http://www.sl.nsw.gov.au/</url>
-			<url type="license">http://www.sl.nsw.gov.au/about/policies/copyright.html</url>
+			<url type="license">https://www.sl.nsw.gov.au/copyright</url>
 			<url type="flickr">http://flickr.com/photos/statelibraryofnsw/</url>
 		</urls>
 	</institution>
@@ -885,7 +877,7 @@
 		<name>bibliothequedetoulouse</name>
 		<urls>
 			<url type="site">http://www.bm-toulouse.fr/</url>
-			<url type="license">http://www.bibliothequedetoulouse.fr/fr/catalogues/02-mentions_legales.jsp</url>
+			<url type="license">https://www.bibliotheque.toulouse.fr/pratique/nous-suivre/</url>
 			<url type="flickr">http://flickr.com/photos/bibliothequedetoulouse/</url>
 		</urls>
 	</institution>

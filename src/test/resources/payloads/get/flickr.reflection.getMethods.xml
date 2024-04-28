@@ -36,7 +36,6 @@
 	<method>flickr.galleries.getListForPhoto</method>
 	<method>flickr.galleries.getPhotos</method>
 	<method>flickr.galleries.removePhoto</method>
-	<method>flickr.groups.browse</method>
 	<method>flickr.groups.discuss.replies.add</method>
 	<method>flickr.groups.discuss.replies.delete</method>
 	<method>flickr.groups.discuss.replies.edit</method>
@@ -108,6 +107,7 @@
 	<method>flickr.photos.getWithoutGeoData</method>
 	<method>flickr.photos.licenses.getInfo</method>
 	<method>flickr.photos.licenses.setLicense</method>
+	<method>flickr.photos.licenses.getLicenseHistory</method>
 	<method>flickr.photos.notes.add</method>
 	<method>flickr.photos.notes.delete</method>
 	<method>flickr.photos.notes.edit</method>
@@ -181,6 +181,7 @@
 	<method>flickr.stats.getCollectionReferrers</method>
 	<method>flickr.stats.getCollectionStats</method>
 	<method>flickr.stats.getCSVFiles</method>
+	<method>flickr.stats.getMostPopularPhotoDateRange</method>
 	<method>flickr.stats.getPhotoDomains</method>
 	<method>flickr.stats.getPhotoReferrers</method>
 	<method>flickr.stats.getPhotosetDomains</method>

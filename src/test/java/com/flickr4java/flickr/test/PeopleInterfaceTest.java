@@ -51,7 +51,7 @@ public class PeopleInterfaceTest extends Flickr4JavaTest {
         assertNotNull(person);
         assertEquals(testProperties.getNsid(), person.getId());
         assertEquals(testProperties.getDisplayname(), person.getRealName());
-        assertTrue(person.getMobileurl().startsWith("https://m.flickr.com/photostream.gne"));
+        assertEquals(person.getMobileurl(), String.format("https://www.flickr.com/photos/%s/", testProperties.getUsername()));
         assertEquals(person.getPhotosurl(), String.format("https://www.flickr.com/photos/%s/", testProperties.getUsername()));
         assertEquals(person.getProfileurl(), String.format("https://www.flickr.com/people/%s/", testProperties.getUsername()));
         assertTrue(person.getSecureBuddyIconUrl().startsWith("https://"));

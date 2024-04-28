@@ -30,7 +30,7 @@ public class CommonsInterfaceTest extends Flickr4JavaTest {
             if (inst.getName().equals("The British Library")) {
                 assertEquals(1386975388000L, inst.getDateLaunch().getTime());
                 assertEquals("www.bl.uk", inst.getSiteUrl());
-                assertEquals("http://www.bl.uk/aboutus/terms/copyright/index.html", inst.getLicenseUrl());
+                assertEquals("https://www.bl.uk/about-us/terms-and-conditions/content-on-flickr-and-wikimedia-commons", inst.getLicenseUrl());
                 assertEquals("http://flickr.com/photos/britishlibrary/", inst.getFlickrUrl());
                 museumFound = true;
             }

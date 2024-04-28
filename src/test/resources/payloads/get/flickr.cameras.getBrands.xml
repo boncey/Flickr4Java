@@ -5,43 +5,49 @@
 	<brand id="canon" name="Canon" />
 	<brand id="nikon" name="Nikon" />
 	<brand id="sony" name="Sony" />
-	<brand id="fujifilm" name="Fujifilm" />
-	<brand id="olympus" name="Olympus" />
-	<brand id="panasonic" name="Panasonic" />
-	<brand id="samsung" name="Samsung" />
 	<brand id="google" name="Google" />
-	<brand id="leica" name="Leica" />
+	<brand id="fujifilm" name="Fujifilm" />
+	<brand id="samsung" name="Samsung" />
+	<brand id="panasonic" name="Panasonic" />
+	<brand id="nintendo" name="Nintendo" />
+	<brand id="olympus" name="Olympus" />
 	<brand id="ricoh" name="Ricoh" />
+	<brand id="leica" name="Leica" />
+	<brand id="huawei" name="Huawei" />
+	<brand id="dji" name="DJI" />
 	<brand id="pentax" name="Pentax" />
+	<brand id="xiaomi" name="Xiaomi" />
+	<brand id="hasselblad" name="Hasselblad" />
+	<brand id="oneplus" name="OnePlus" />
 	<brand id="gopro" name="GoPro" />
-	<brand id="kodak" name="Kodak" />
-	<brand id="motorola" name="Motorola" />
-	<brand id="lg" name="LG" />
-	<brand id="nokia" name="Nokia" />
-	<brand id="minolta" name="Konica Minolta" />
-	<brand id="casio" name="Casio" />
 	<brand id="sigma" name="Sigma" />
+	<brand id="kodak" name="Kodak" />
+	<brand id="minolta" name="Konica Minolta" />
+	<brand id="nokia" name="Nokia" />
 	<brand id="htc" name="HTC" />
-	<brand id="sonyericsson" name="Sony Ericsson" />
+	<brand id="lg" name="LG" />
+	<brand id="phaseone" name="Phase One" />
 	<brand id="hp" name="HP" />
 	<brand id="blackberry" name="BlackBerry" />
-	<brand id="phaseone" name="Phase One" />
-	<brand id="polaroid" name="Polaroid" />
-	<brand id="epson" name="Epson" />
-	<brand id="jvc" name="JVC" />
-	<brand id="docomo" name="DoCoMo" />
+	<brand id="sonyericsson" name="Sony Ericsson" />
+	<brand id="motorola" name="Motorola" />
 	<brand id="concord" name="Concord" />
-	<brand id="benq" name="BenQ" />
-	<brand id="palm" name="Palm" />
-	<brand id="nintendo" name="Nintendo" />
 	<brand id="leaf" name="Leaf" />
+	<brand id="helio" name="Helio" />
+	<brand id="palm" name="Palm" />
+	<brand id="mamiya" name="Mamiya" />
 	<brand id="toshiba" name="Toshiba" />
 	<brand id="sharp" name="Sharp" />
-	<brand id="sanyo" name="Sanyo" />
+	<brand id="epson" name="Epson" />
+	<brand id="polaroid" name="Polaroid" />
 	<brand id="kddi" name="KDDI" />
+	<brand id="jvc" name="JVC" />
+	<brand id="docomo" name="DoCoMo" />
+	<brand id="benq" name="BenQ" />
 	<brand id="acer" name="Acer" />
 	<brand id="kyocera" name="Kyocera" />
 	<brand id="vivitar" name="Vivitar" />
-	<brand id="helio" name="Helio" />
+	<brand id="sanyo" name="Sanyo" />
+	<brand id="casio" name="Casio" />
 </brands>
 </rsp>

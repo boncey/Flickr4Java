@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rsp stat="ok">
-<user id="24573443@N04" ispro="0" upload_count="100" upload_limit="1000" upload_limit_status="below_limit">
+<user id="24573443@N04" ispro="0" upload_count="35" upload_limit="1000" upload_limit_status="below_limit">
 	<username>boncey_test</username>
 	<bandwidth max="2147483648" used="0" maxbytes="214748364800" usedbytes="0" remainingbytes="214748364800" maxkb="209715200" usedkb="0" remainingkb="209715200" unlimited="1" />
 	<filesize max="209715200" maxbytes="209715200" maxkb="204800" maxmb="200" />

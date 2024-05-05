@@ -93,4 +93,27 @@ public class XMLUtilities {
         return Boolean.getBoolean(s);
     }
 
+    /**
+     * Verifies if a given xml code is a single node or not
+     * 
+     * @param xmlCode
+     *            The xml code that has to be checked
+
+     * @return True if a xml code is a single node, otherwise returns False
+     */
+    public static boolean isASingleXMLNode(String xmlCode) {
+		String initialLabel = xmlCode.substring(0, xmlCode.substring(1, xmlCode.length()).indexOf('>')+2);
+		String finalLabel = xmlCode.substring(xmlCode.substring(0, xmlCode.length()-1).lastIndexOf('<'), xmlCode.length());
+		boolean answer = false;
+		if(initialLabel.startsWith("<") && initialLabel.endsWith(">") && finalLabel.startsWith("</") && finalLabel.endsWith(">")) {
+			if(initialLabel.substring(1, initialLabel.length()-1).equals(finalLabel.substring(2, finalLabel.length()-1))) {
+				String payloadBody = xmlCode.substring(initialLabel.length(), xmlCode.length()-finalLabel.length());
+				if(!(payloadBody.contains(initialLabel) || payloadBody.contains(finalLabel))){
+					answer = true;
+				}				
+			}
+		}
+		return answer;
+	}
+
 }

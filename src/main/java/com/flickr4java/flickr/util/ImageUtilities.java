@@ -28,7 +28,7 @@ public class ImageUtilities {
 
     private void waitForImage(BufferedImage bufferedImage) {
         final ImageLoadStatus imageLoadStatus = new ImageLoadStatus();
-        bufferedImage.getHeight(new ImageObserver() {
+        var unused = bufferedImage.getHeight(new ImageObserver() {
             public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
                 if (infoflags == ALLBITS) {
                     imageLoadStatus.heightDone = true;
@@ -37,7 +37,7 @@ public class ImageUtilities {
                 return false;
             }
         });
-        bufferedImage.getWidth(new ImageObserver() {
+        unused = bufferedImage.getWidth(new ImageObserver() {
             public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
                 if (infoflags == ALLBITS) {
                     imageLoadStatus.widthDone = true;

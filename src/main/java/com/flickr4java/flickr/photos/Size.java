@@ -135,6 +135,31 @@ public class Size {
     public static final int LARGE_2048 = 11;
 
     /**
+     * Extra Large 3K, 3072 px on the longest side
+     */
+    public static final int EXTRA_LARGE_3072 = 17;
+
+    /**
+     * Extra Large 4K, 4096 px on the longest side
+     */
+    public static final int EXTRA_LARGE_4096 = 18;
+
+    /**
+     * Extra Large 4K, 4096 px on the longest side, only exists for 2:1 aspect ratio photos
+     */
+    public static final int EXTRA_LARGE_4096_F = 19;
+
+    /**
+     * Extra Large 5K, 5120 px on the longest side
+     */
+    public static final int EXTRA_LARGE_5120 = 20;
+
+    /**
+     * Extra Large 6K, 6144 px on the longest side
+     */
+    public static final int EXTRA_LARGE_6144 = 21;
+
+    /**
      * Video, for playback on the site.
      * 
      * @see com.flickr4java.flickr.photos.Size#getLabel()
@@ -220,7 +245,9 @@ public class Size {
     }
 
     private final List<String> lstSizes = Arrays.asList("Thumbnail", "Square", "Small", "Medium", "Large", "Original", "Large Square", "Small 320",
-            "Medium 640", "Medium 800", "Large 1600", "Large 2048", "Site MP4", "Video Player", "Video Original", "Mobile MP4", "HD MP4");
+            "Medium 640", "Medium 800", "Large 1600", "Large 2048",
+            "Site MP4", "Video Player", "Video Original", "Mobile MP4", "HD MP4",
+            "X-Large 3K", "X-Large 4K", "X-Large 4K F", "X-Large 5K", "X-Large 6K");
 
     /**
      * Set the String-representation of size.
@@ -363,5 +390,14 @@ public class Size {
     private boolean areEqual(Object x, Object y) {
 
         return x == null ? y == null : x.equals(y);
+    }
+
+    @Override
+    public String toString() {
+        return "Size{" +
+                "labelName='" + labelName + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
     }
 }

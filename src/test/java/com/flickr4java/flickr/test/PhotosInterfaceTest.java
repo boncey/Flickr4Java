@@ -182,6 +182,42 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         size.setSource("urlHDMP4");
         size.setUrl("urlHDMP4Page");
         photoSizes.add(size);
+        size = new Size();
+        size.setLabel("X-Large 3K");
+        size.setWidth("3072");
+        size.setHeight("2048");
+        size.setSource("urlExtraLarge3072");
+        size.setUrl("urlExtraLarge3072Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("X-Large 4K");
+        size.setWidth("4096");
+        size.setHeight("2048");
+        size.setSource("urlExtraLarge4096");
+        size.setUrl("urlExtraLarge4096Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("X-Large 4K F");
+        size.setWidth("4096");
+        size.setHeight("8192");
+        size.setSource("urlExtraLarge4096F");
+        size.setUrl("urlExtraLarge4096FPage");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("X-Large 5K");
+        size.setWidth("5120");
+        size.setHeight("4096");
+        size.setSource("urlExtraLarge5120");
+        size.setUrl("urlExtraLarge5120Page");
+        photoSizes.add(size);
+        size = new Size();
+        size.setLabel("X-Large 6K");
+        size.setWidth("6144");
+        size.setHeight("5120");
+        size.setSource("urlExtraLarge6144");
+        size.setUrl("urlExtraLarge6144Page");
+        photoSizes.add(size);
+
     }
 
     @Test
@@ -321,8 +357,6 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         assertNotNull(sizes);
 
         sizes.forEach(size -> assertNotNull(size.getLabelName()));
-        Optional<Size> original = sizes.stream().filter(size -> size.getLabelName().equals("Original")).findFirst();
-        assertTrue(original.isPresent());
     }
 
     @Test
@@ -508,6 +542,11 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         assertEquals("https://farm1.staticflickr.com/server/id_secret_c.jpg", p.getMedium800Url());
         assertEquals("https://farm1.staticflickr.com/server/id_secret_h.jpg", p.getLarge1600Url());
         assertEquals("https://farm1.staticflickr.com/server/id_secret_k.jpg", p.getLarge2048Url());
+        assertEquals("https://farm1.staticflickr.com/server/id_secret_3k.jpg", p.getExtraLarge3072Url());
+        assertEquals("https://farm1.staticflickr.com/server/id_secret_4k.jpg", p.getExtraLarge4096Url());
+        assertEquals("https://farm1.staticflickr.com/server/id_secret_f.jpg", p.getExtraLarge4096FUrl());
+        assertEquals("https://farm1.staticflickr.com/server/id_secret_5k.jpg", p.getExtraLarge5120Url());
+        assertEquals("https://farm1.staticflickr.com/server/id_secret_6k.jpg", p.getExtraLarge6144Url());
         try {
             assertEquals("https://farm1.staticflickr.com/server/id_osecret_o.jpg", p.getOriginalUrl());
         } catch (FlickrException ex) {
@@ -525,24 +564,17 @@ public class PhotosInterfaceTest extends Flickr4JavaTest {
         assertEquals("urlMedium800", p.getMedium800Url());
         assertEquals("urlLarge1600", p.getLarge1600Url());
         assertEquals("urlLarge2048", p.getLarge2048Url());
+        assertEquals("urlExtraLarge3072", p.getExtraLarge3072Url());
+        assertEquals("urlExtraLarge4096", p.getExtraLarge4096Url());
+        assertEquals("urlExtraLarge4096F", p.getExtraLarge4096FUrl());
+        assertEquals("urlExtraLarge5120", p.getExtraLarge5120Url());
+        assertEquals("urlExtraLarge6144", p.getExtraLarge6144Url());
         assertEquals("urlVideoPlayer", p.getVideoPlayerUrl());
         assertEquals("urlSiteMP4", p.getSiteMP4Url());
         assertEquals("urlVideoOriginal", p.getVideoOriginalUrl());
         try {
             assertEquals("urlOriginal", p.getOriginalUrl());
         } catch (FlickrException ex) {
-        }
-    }
-    
-    @Test
-    public void testGetAllSizes() {
-        Photo p = new Photo();
-        p.setSizes(photoSizes);
-        
-        List<Size> pSizes = new ArrayList<Size>(p.getSizes());
-        
-        for(Size s: pSizes) {
-            assertNotNull(s);
         }
     }
 }

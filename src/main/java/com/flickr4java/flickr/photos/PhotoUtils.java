@@ -201,6 +201,51 @@ public final class PhotoUtils {
             sizeT.setHeight(photoElement.getAttribute("height_k"));
             sizes.add(sizeT);
         }
+        urlTmp = photoElement.getAttribute("url_3k");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.EXTRA_LARGE_3072);
+            sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_3k"));
+            sizeT.setHeight(photoElement.getAttribute("height_3k"));
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_4k");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.EXTRA_LARGE_4096);
+            sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_4k"));
+            sizeT.setHeight(photoElement.getAttribute("height_4k"));
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_f");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.EXTRA_LARGE_4096_F);
+            sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_f"));
+            sizeT.setHeight(photoElement.getAttribute("height_f"));
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_5k");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.EXTRA_LARGE_5120);
+            sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_5k"));
+            sizeT.setHeight(photoElement.getAttribute("height_5k"));
+            sizes.add(sizeT);
+        }
+        urlTmp = photoElement.getAttribute("url_6k");
+        if (urlTmp != null && urlTmp.startsWith("http")) {
+            Size sizeT = new Size();
+            sizeT.setLabel(Size.EXTRA_LARGE_6144);
+            sizeT.setSource(urlTmp);
+            sizeT.setWidth(photoElement.getAttribute("width_6k"));
+            sizeT.setHeight(photoElement.getAttribute("height_6k"));
+            sizes.add(sizeT);
+        }
         if (sizes.size() > 0) {
             photo.setSizes(sizes);
         }

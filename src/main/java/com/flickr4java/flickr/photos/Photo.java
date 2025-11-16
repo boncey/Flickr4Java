@@ -55,6 +55,16 @@ public class Photo {
 
     private static final String LARGE_2048_IMAGE_SUFFIX = "_k.jpg";
 
+    private static final String EXTRA_LARGE_3072_IMAGE_SUFFIX = "_3k.jpg";
+
+    private static final String EXTRA_LARGE_4096_IMAGE_SUFFIX = "_4k.jpg";
+
+    private static final String EXTRA_LARGE_4096_F_IMAGE_SUFFIX = "_f.jpg";
+
+    private static final String EXTRA_LARGE_5120_IMAGE_SUFFIX = "_5k.jpg";
+
+    private static final String EXTRA_LARGE_6144_IMAGE_SUFFIX = "_6k.jpg";
+
     private static final String SQUARE_LARGE_IMAGE_SUFFIX = "_q.jpg";
 
     private static final String SQUARE_320_IMAGE_SUFFIX = "_n.jpg";
@@ -76,6 +86,16 @@ public class Photo {
     private Size large1600Size;
 
     private Size large2048Size;
+
+    private Size extraLarge3072Size;
+
+    private Size extraLarge4096Size;
+
+    private Size extraLarge4096FSize;
+
+    private Size extraLarge5120Size;
+
+    private Size extraLarge6144Size;
 
     private Size originalSize;
 
@@ -766,7 +786,7 @@ public class Photo {
 
     public String getLarge1600Url() {
         if (large1600Size == null) {
-            return getBaseImageUrl() + LARGE_1600_IMAGE_SUFFIX;
+            return getSafeOriginalBaseImageUrl() + LARGE_1600_IMAGE_SUFFIX;
         } else {
             return large1600Size.getSource();
         }
@@ -774,9 +794,49 @@ public class Photo {
 
     public String getLarge2048Url() {
         if (large2048Size == null) {
-            return getBaseImageUrl() + LARGE_2048_IMAGE_SUFFIX;
+            return getSafeOriginalBaseImageUrl() + LARGE_2048_IMAGE_SUFFIX;
         } else {
             return large2048Size.getSource();
+        }
+    }
+
+    public String getExtraLarge3072Url() {
+        if (extraLarge3072Size == null) {
+            return getSafeOriginalBaseImageUrl() + EXTRA_LARGE_3072_IMAGE_SUFFIX;
+        } else {
+            return extraLarge3072Size.getSource();
+        }
+    }
+
+    public String getExtraLarge4096Url() {
+        if (extraLarge4096Size == null) {
+            return getSafeOriginalBaseImageUrl() + EXTRA_LARGE_4096_IMAGE_SUFFIX;
+        } else {
+            return extraLarge4096Size.getSource();
+        }
+    }
+
+    public String getExtraLarge4096FUrl() {
+        if (extraLarge4096FSize == null) {
+            return getSafeOriginalBaseImageUrl() + EXTRA_LARGE_4096_F_IMAGE_SUFFIX;
+        } else {
+            return extraLarge4096FSize.getSource();
+        }
+    }
+
+    public String getExtraLarge5120Url() {
+        if (extraLarge5120Size == null) {
+            return getSafeOriginalBaseImageUrl() + EXTRA_LARGE_5120_IMAGE_SUFFIX;
+        } else {
+            return extraLarge5120Size.getSource();
+        }
+    }
+
+    public String getExtraLarge6144Url() {
+        if (extraLarge6144Size == null) {
+            return getSafeOriginalBaseImageUrl() + EXTRA_LARGE_6144_IMAGE_SUFFIX;
+        } else {
+            return extraLarge6144Size.getSource();
         }
     }
 
@@ -965,6 +1025,17 @@ public class Photo {
         return buffer;
     }
 
+    private StringBuffer getSafeOriginalBaseImageUrl() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(_getBaseImageUrl());
+        if (getOriginalSecret().length() > 8) {
+            buffer.append(getOriginalSecret());
+        } else {
+            buffer.append(getSecret());
+        }
+        return buffer;
+    }
+
     private StringBuffer _getBaseImageUrl() {
         StringBuffer buffer = new StringBuffer();
         buffer.append("https://farm");
@@ -1057,6 +1128,16 @@ public class Photo {
                 large1600Size = size;
             } else if (size.getLabel() == Size.LARGE_2048) {
                 large2048Size = size;
+            } else if (size.getLabel() == Size.EXTRA_LARGE_3072) {
+                extraLarge3072Size = size;
+            } else if (size.getLabel() == Size.EXTRA_LARGE_4096) {
+                extraLarge4096Size = size;
+            } else if (size.getLabel() == Size.EXTRA_LARGE_4096_F) {
+                extraLarge4096FSize = size;
+            } else if (size.getLabel() == Size.EXTRA_LARGE_5120) {
+                extraLarge5120Size = size;
+            } else if (size.getLabel() == Size.EXTRA_LARGE_6144) {
+                extraLarge6144Size = size;
             } else if (size.getLabel() == Size.ORIGINAL) {
                 originalSize = size;
             } else if (size.getLabel() == Size.SQUARE_LARGE) {
@@ -1088,7 +1169,8 @@ public class Photo {
                 smallSize, squareSize, thumbnailSize, mediumSize,
                 largeSize, large1600Size, large2048Size, originalSize,
                 squareLargeSize, small320Size, medium640Size, medium800Size,
-                videoPlayer, siteMP4, videoOriginal, mobileMP4, hdMP4
+                videoPlayer, siteMP4, videoOriginal, mobileMP4, hdMP4,
+                extraLarge3072Size, extraLarge4096Size, extraLarge4096FSize, extraLarge5120Size, extraLarge6144Size
         );
     }
 
@@ -1118,6 +1200,26 @@ public class Photo {
 
     public Size getLarge2048Size() {
         return large2048Size;
+    }
+
+    public Size getExtraLarge3072Size() {
+        return extraLarge3072Size;
+    }
+
+    public Size getExtraLarge4096Size() {
+        return extraLarge4096Size;
+    }
+
+    public Size getExtraLarge4096FSize() {
+        return extraLarge4096FSize;
+    }
+
+    public Size getExtraLarge5120Size() {
+        return extraLarge5120Size;
+    }
+
+    public Size getExtraLarge6144Size() {
+        return extraLarge6144Size;
     }
 
     public Size getOriginalSize() {

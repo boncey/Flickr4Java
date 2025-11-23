@@ -15,26 +15,6 @@ import java.util.Map;
 public class UrlUtilities {
 
     public static final String UTF8 = "UTF-8";
-
-    /**
-     * Build a request URL.
-     * 
-     * @param host
-     *            The host
-     * @param port
-     *            The port
-     * @param path
-     *            The path
-     * @param parameters
-     *            The parameters
-     * @return The URL
-     * @throws MalformedURLException
-     * @deprecated use {@link #buildSecureUrl(java.lang.String, int, java.lang.String, java.util.Map) }
-     */
-    @Deprecated
-    public static URL buildUrl(String host, int port, String path, Map<String, String> parameters) throws MalformedURLException {
-        return buildUrl("http", port, path, parameters);
-    }
     
     /**
      * Build a request URL using a given scheme.
